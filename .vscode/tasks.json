@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "group": "build",
+            "type": "shell",
+            "command": "scons",
+            "args": [
+                "-j",
+                "12",
+                // "builtin_enet=yes",
+                // "builtin_mbedtls=yes",
+                // "builtin_embree=yes",
+                // "builtin_miniupnpc=yes",
+                // "builtin_freetype=no",
+                // "builtin_graphite=no",
+                // "builtin_harfbuzz=no",
+                // "builtin_libogg=no",
+                // "builtin_libpng=no",
+                // "builtin_libtheora=no",
+                // "builtin_libvorbis=no",
+                // "builtin_libwebp=no",
+                // "builtin_pcre2=no",
+                // "builtin_zlib=no",
+                // "builtin_zstd=no"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
