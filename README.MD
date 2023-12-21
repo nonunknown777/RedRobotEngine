@@ -6,7 +6,7 @@
 > 
 > ZEngine is our brainchild, born from the minds of code wizards who looked at other game engines and said, "What if we make something that's lean, mean, and makes coding feel like a walk in the park?"
 
-> ### Key Features:
+> ## Key Features:
 > 
 > -   **C++20 Swagger:** ZEngine starts off with the coolness of C++20, making your code look more stylish than a catwalk model.
 >     
@@ -21,7 +21,7 @@
 > -   **Modular Mania:** ZEngine is so modular it's practically a game engine transformer. Mix and match, plug and play - your game, your rules.
 >     
 
-> **Current Project State: A Code in Progress 🚧**
+> ## Current Project State: A Code in Progress 🚧
 > 
 > Hold onto your coding hats, folks! As of now, ZEngine is in its early stages – think of it as the software equivalent of a doodle on a napkin before the masterpiece. I'm knee-deep in recreating the main editor window, and I've got decisions to make—2D, 3D, or a bold leap into the realm of basic 3D? It's a bit like choosing between chocolate or vanilla ice cream, but with more curly braces.
 > 
@@ -47,18 +47,19 @@
 >     
 > 3.  **Laugh Maniacally:** As your game starts running, unleash an evil genius laugh. You've just embarked on a ZEngine adventure!
 >     
-> 
+
 > ## Contributing
 > 
 > Feel like joining the ZEngine revolution? Fork, code, create a pull request. We're all about that collaboration life!
-> 
+
 > ## Disclaimer
 > 
 > This is a game engine, not a comedy club. Laughter is not guaranteed but highly recommended. Side effects may include euphoria, increased coding speed, and an insatiable desire to make the coolest games ever.
-> I'm not a professional programmer (and dont have the intentions to do so), I'm just a hobbyst guy, this project has no intention to be something professional, please dont create high spectations with this!
+> I'm not a professional programmer (and dont have the intentions to be), I'm just a hobbyst guy, this project has no intention to be something professional, please dont create high spectations with this!
 > 
 > Now, go forth, code like the wind, and let the ZEngine games begin! 🚀🎮
-> 
+
+
 > Cheers, NonUnknown
 > ## Beware
 > 

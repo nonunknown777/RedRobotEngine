@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,c++,scons
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,c++,scons
 
+## build Executables
+myproject
+
 ### C++ ###
 # Prerequisites
 *.d
