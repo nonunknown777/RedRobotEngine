@@ -7,6 +7,8 @@ class CanvasItem : public Node {
     public:
         CanvasItem(std::string name = "CanvasItem") : Node(name) {};
         ~CanvasItem();
+
+        virtual void _draw() = 0;
 };
 
 #endif

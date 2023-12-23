@@ -9,6 +9,7 @@
             "args": [
                 "-j",
                 "12",
+                "target=debug"
                 // "builtin_enet=yes",
                 // "builtin_mbedtls=yes",
                 // "builtin_embree=yes",

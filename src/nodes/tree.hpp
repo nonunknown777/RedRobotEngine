@@ -12,8 +12,8 @@ class SceneTree {
         Window* root;
         Node* current_scene;
 
-        void simulate_children();
         void update(float delta);
+        void action(Node* node, const float& delta);
 };
 
 #endif

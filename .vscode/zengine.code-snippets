@@ -1,0 +1,38 @@
+{
+    "Create C++ Class": {
+        "prefix": "zheader",
+        "body": [
+            "#ifndef ${1:CLASS_NAME_UPPER}_H",
+            "#define ${1:CLASS_NAME_UPPER}_H",
+            "",
+            "class ${2:ClassName} {",
+            "",
+            "public:",
+            "    ${2:ClassName}();",
+            "    ~${2:ClassName}();",
+            "",
+            "};",
+            "",
+            "#endif"
+        ],
+        "description": "Create a C++ class"
+    },
+    
+    "Create C++ Class Implementation": {
+        "prefix": "zcpp",
+        "body": [
+            "#include \"${1:class_file_name}.hpp\"",
+            "",
+            "${2:ClassName}::${2:ClassName}() {",
+            "",
+            "}",
+            "",
+            "${2:ClassName}::~${2:ClassName}() {",
+            "    ",
+            "}"
+        ],
+        "description": "Create a C++ class implementation"
+    },
+    
+    
+}

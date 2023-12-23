@@ -3,17 +3,35 @@
 #include "utils.hpp"
 
 #include "temp_data.hpp"
+#include "panel.hpp"
+#include "v_box_container.hpp"
+#include "menu_bar.hpp"
+#include "popup_menu.hpp"
 
 SceneTree::SceneTree() {
     root = new Window("MainWindow");
 
     //Create the editor
     Window* main_window = root;
-    main_window->size = WINDOW_SIZE;
+
+    Panel* panel = new Panel();
+    panel->style_box_flat->bg_color = DARKGRAY;
+    panel->position = Vector2(0,0);
     
-    main_window->flags |= ImGuiWindowFlags_NoDecoration;
-    main_window->flags |= ImGuiWindowFlags_NoMove;
-    main_window->flags |= ImGuiWindowFlags_MenuBar;
+    main_window->add_child(panel);
+
+    VBoxContainer* vbox = new VBoxContainer();
+
+    panel->add_child(vbox);
+
+    MenuBar* menu_bar = new MenuBar();
+
+    vbox->add_child(menu_bar);
+
+    PopupMenu* menu_popup = new PopupMenu("Scene");
+
+    menu_bar->add_child(menu_popup);
+
 
 
     //End
@@ -26,45 +44,20 @@ SceneTree::~SceneTree() {
     free(root);
 }
 
-void SceneTree::simulate_children() {
+
+void SceneTree::action(Node* node, const float& delta) {
+    node->_process(delta);
 
 
-    Node* node_a = new Node("A");
-    Node* node_c = new Node("C");
-    Node* node_b = new Node("B");
-    Node* node_d = new Node("D");
-    Node* node_e = new Node("E");
-    Node* node_f = new Node("F");
-    Node* node_g = new Node("G");
-    Node* node_h = new Node("H");
-    Node* node_i = new Node("I"); 
-
-    root->add_child(node_a);
-    node_a->add_child(node_b);
-    node_b->add_child(node_d);
-    node_d->add_child(node_e);
-    node_a->add_child(node_g);
-    node_g->add_child(node_h);
-    node_g->add_child(node_i);
-    node_i->add_child(node_c);
-    node_c->add_child(node_f);
-
+   
 }
 
-/*
+inline void action_down(Node* node) {
+    Control* control = dynamic_cast<Control*>(node);
 
-        output must be:
-         
-        E
-        D
-        B
-        H
-        F
-        C
-        I
-        G
-        A
-*/
+    if (control != nullptr) control->_draw();
+}
+
 void SceneTree::update(float delta) {
     TIMER_START();
 
@@ -81,7 +74,7 @@ void SceneTree::update(float delta) {
 
     while(true)
     {
-        std::cout << "name: " << current->name << "\n";
+        // std::cout << "name: " << current->name << "\n";
 
         if (!is_first) {
             if (current->get_parent() == root) {
@@ -90,8 +83,7 @@ void SceneTree::update(float delta) {
                     current = current->get_child(current->iteration_index);
                     continue;
                 } else {
-                    current->_process(delta);
-                    // result += current->name + ", ";
+                    action(current, delta);
                     current->iteration_index = -1;
                     break; // finished traversing tree;
                 }
@@ -102,8 +94,7 @@ void SceneTree::update(float delta) {
 
             
 
-            current->_process(delta);
-            // result += current->name + ", ";
+            action(current, delta);
             current->iteration_index = -1; //reset index
             
             if (is_first) break;
@@ -120,8 +111,7 @@ void SceneTree::update(float delta) {
                 current = current->get_child(current->iteration_index);
                 continue;
             } else {
-                current->_process(delta);
-                // result += current->name + ", ";
+                action(current, delta);
                 current->iteration_index = -1;
                 current = current->get_parent();
                 continue;
@@ -129,9 +119,11 @@ void SceneTree::update(float delta) {
 
         }
 
+        Node* old = current;
         current->iteration_index++;
         current = current->get_child(current->iteration_index);
         is_first = false;
+        old->iteration_index = -1;
 
     }
 

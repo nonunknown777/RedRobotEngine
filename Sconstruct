@@ -3,16 +3,23 @@
 # Set the C++ version to C++17
 env = Environment(CXXFLAGS='-std=c++20 -g -Wall -Werror ', tools=['default', 'g++'])
 
-# Define DEBUG when needed
-env.Append(CPPDEFINES=['DEBUG'])  # Add this line if you want DEBUG defined
-
+program_name = 'zengine-'
+# Define DEBUG or RELEASE based on the target
+if ARGUMENTS.get('target') == 'debug':
+    program_name += 'debug'
+    env.Append(CPPDEFINES=['DEBUG'])
+    env.Append(CXXFLAGS='-g -Og')  # Add debug information
+else:
+    program_name += 'release'
+    env.Append(CPPDEFINES=['RELEASE'])
+    env.Append(CXXFLAGS='-O3')  # Add optimization level for release
 
 # Include directories
 env.Append(CPPPATH=[Glob('includes/**'),'src/includes/'])
 
 # Source files
 src_files = Glob('src/**/*.cpp')
-
+references_files = Glob('references/**/*.cpp')
 # Libs directory
 env.Append(LIBPATH=['libs'])
 
@@ -20,7 +27,7 @@ env.Append(LIBPATH=['libs'])
 env.Append(LIBS=['raylib'])
 
 # Build the executable
-env.Program(target='my_project', source=['src/main.cpp'] + src_files)
+env.Program(target=program_name, source=['src/main.cpp'] + src_files)
 
 # SConstruct
 

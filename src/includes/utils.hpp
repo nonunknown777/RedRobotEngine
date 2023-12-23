@@ -1,7 +1,7 @@
 
 
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef UTILITY_H
+#define UTILITY_H
 
 #ifdef DEBUG
 
@@ -24,5 +24,13 @@
 #define TIMER_END(functionName)
 
 #endif // DEBUG
+
+
+template <class DstType, class SrcType>
+inline bool IsType(const SrcType* src)
+{
+  return dynamic_cast<const DstType*>(src) != nullptr;
+}
+
 
 #endif // UTILS_H

@@ -6,7 +6,7 @@
             "cwd": "${workspaceFolder}",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/my_project",
+            "program": "${workspaceFolder}/zengine-debug",
             "preLaunchTask": "build",
             "setupCommands": [ { "text": "-enable-pretty-printing" } ]
         },
@@ -15,14 +15,14 @@
             "cwd": "${workspaceFolder}",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/my_project",
+            "program": "${workspaceFolder}/zengine-bebug",
             "setupCommands": [ { "text": "-enable-pretty-printing" } ]
         },
         {
             "name": "C/C++: g++ build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/my_project",
+            "program": "${workspaceFolder}/zengine-debug",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

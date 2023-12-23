@@ -1,17 +1,12 @@
-#ifndef MENUBAR_H
-#define MENUBAR_H
+#ifndef MENU_BAR_H
+#define MENU_BAR_H
 
 #include "control.hpp"
 
-class MenuBar : public Control {
-
-
-    private:
-        
-
-    public:
-        MenuBar(std::string name = "MenuBar") : Control(name) {};
-        ~MenuBar();
+class MenuBar : public Control{
+public:
+    MenuBar(std::string name = "MenuBar");
+    ~MenuBar();
 };
 
 #endif
