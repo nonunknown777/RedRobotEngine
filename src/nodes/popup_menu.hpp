@@ -8,7 +8,8 @@ public:
     PopupMenu(std::string name);
     ~PopupMenu();
 
-    virtual void _process(float delta) override;
+    void _process(float delta) override;
+    void _input() override;
 };
 
 #endif

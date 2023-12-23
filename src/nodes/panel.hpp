@@ -12,7 +12,7 @@ public:
 
     StyleBoxFlat* style_box_flat;
 
-    virtual void _draw() override;
+    void _draw() override;
 
 };
 

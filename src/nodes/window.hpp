@@ -14,6 +14,8 @@ class Window : public Viewport {
         ~Window();
 
         int flags = 0;
+        Vector2 size;
+        Vector2 position;
 
      
 };

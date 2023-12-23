@@ -7,8 +7,15 @@ void Node::_ready()
 
 }
 
-void Node::_process(float delta)
-{
+void Node::_process(float delta) {
+
+}
+
+void Node::_input() {
+
+}
+
+void Node::_unhandled_input(InputEvent event) {
 
 }
 
@@ -53,4 +60,12 @@ std::vector<Node*> Node::get_children() {
 Node* Node::get_parent() {
     if (parent == nullptr) return nullptr;
     return parent;
+}
+
+void Node::set_name(std::string name) {
+   this->name = name;
+}
+
+ std::string Node::get_name() const {
+    return name;
 }

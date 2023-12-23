@@ -33,6 +33,21 @@
         ],
         "description": "Create a C++ class implementation"
     },
+
+    "Set and Get Methods": {
+        "prefix": "zsg",
+        "body": [
+            "void set_${3/([a-z]+)_.*/$1/}(${2:type} ${3:propertyName}) {",
+            "   this->${3:propertyName} = ${3:propertyName};",
+            "}",
+            "",
+            " ${2:type} get_${3/([a-z]+)_.*/$1/}() const {",
+            "    return ${3:propertyName};",
+            "}",
+        ],
+        "description": "Generate set and get methods for a class property"
+    }
+    
     
     
 }

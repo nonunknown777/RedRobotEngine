@@ -51,6 +51,8 @@ int main(int argc, char* argv[])
 
 	
         delta_start = delta_current;
+
+		DrawText(TextFormat("FPS: %03i",GetFPS()),720,100,16,GREEN);
 		EndDrawing();
 	}
 	

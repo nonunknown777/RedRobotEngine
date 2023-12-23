@@ -5,6 +5,7 @@
 #include <string>
 
 #include "raylib.h"
+#include "../references/input_event.hpp"
 
 class Node {
 
@@ -12,16 +13,21 @@ class Node {
         std::vector<Node*> children;
         // std::vector<Node*> siblings;
         Node* parent;
+        std::string name;
 
     public:
         Node(std::string name = "NewNode");
         ~Node();
 
-        std::string name;
+        std::string get_name() const;
+        virtual void set_name(std::string name);
+
         int iteration_index;
 
         virtual void _ready();
         virtual void _process(float delta);
+        virtual void _input();
+        virtual void _unhandled_input(InputEvent event);
         // virtual void _physics_process(float delta);
         void add_child(Node* node);
         int get_child_count();

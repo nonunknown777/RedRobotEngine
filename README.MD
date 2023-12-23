@@ -12,11 +12,11 @@
 >     
 > -   **Future-Forward Migration to Zig:** In our grand symphony of coding, we're charting a course toward the horizon of Zig programming language as soon as it anchors itself in stability. Why the switch, you ask? Well, as aficionados of all things intriguing, we revel in the excitement of the unknown. Much like how skilled mountaineers zigzag their way to conquer challenging terrains, we, too, are poised for a zigzag journey in the realm of game engines. After all, embracing the uncharted paths is not just an adventure—it's the essence of innovation!
 >     
-> -   **Godot's Cool Cousin:** Inspired by Godot, ZEngine brings that awesome Godot flavor but with a focus on C++ and performance. It's like Godot's edgier sibling who rides a motorcycle.
+> -   **Godot's Cool Cousin:** Inspired by Godot, ZEngine brings that awesome Godot's node flavor but with a focus on C++. It's like Godot's edgier sibling who rides a motorcycle.
 >     
 > -   **No Bloat, No Bother:** We're not about that bloat life. ZEngine is sleeker than a cat after a nap, and it won't bog you down with unnecessary baggage.
 >     
-> -   **Raylib5 and ImGui Awesomeness:** We've built ZEngine using Raylib5 and ImGui – like building blocks for game development. It's the Lego set you never knew you needed.
+> -   **Raylib5 as Backend:** We've built ZEngine using Raylib5 – like building blocks for game development. It's the Lego set you never knew you needed.
 >     
 > -   **Modular Mania:** ZEngine is so modular it's practically a game engine transformer. Mix and match, plug and play - your game, your rules.
 >     

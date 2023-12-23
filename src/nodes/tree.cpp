@@ -21,7 +21,7 @@ SceneTree::SceneTree() {
     main_window->add_child(panel);
 
     VBoxContainer* vbox = new VBoxContainer();
-
+    vbox->size = Vector2(40,40);
     panel->add_child(vbox);
 
     MenuBar* menu_bar = new MenuBar();
@@ -48,15 +48,20 @@ SceneTree::~SceneTree() {
 void SceneTree::action(Node* node, const float& delta) {
     node->_process(delta);
 
-
-   
 }
 
 inline void action_down(Node* node) {
+
+    node->_input();
+
     Control* control = dynamic_cast<Control*>(node);
 
     if (control != nullptr) control->_draw();
 }
+
+
+//The tree will call _draw() for Control derived nodes when checking down
+// and will call _process for all Nodes when going up
 
 void SceneTree::update(float delta) {
     TIMER_START();
@@ -79,6 +84,7 @@ void SceneTree::update(float delta) {
         if (!is_first) {
             if (current->get_parent() == root) {
                 if (current->iteration_index+1 < current->get_child_count()) {
+                    if (up == false) action_down(current);
                     current->iteration_index++;
                     current = current->get_child(current->iteration_index);
                     continue;
@@ -93,7 +99,7 @@ void SceneTree::update(float delta) {
         if (current->get_child_count() == 0) {
 
             
-
+            if (up == false) action_down(current);
             action(current, delta);
             current->iteration_index = -1; //reset index
             
@@ -118,6 +124,8 @@ void SceneTree::update(float delta) {
             }
 
         }
+
+        if (up == false) action_down(current);
 
         Node* old = current;
         current->iteration_index++;

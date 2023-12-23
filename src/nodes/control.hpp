@@ -29,8 +29,9 @@ class Control : public CanvasItem {
         ~Control();
 
 		Vector2 position;
+		Vector2 size;
 
-        virtual void _draw() override {};
+        void _draw() override;
 };
 
 #endif
