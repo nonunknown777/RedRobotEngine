@@ -20,6 +20,10 @@
 >     
 > -   **Raylib5 as Backend:** We've built ZEngine using Raylib5 – like building blocks for game development. It's the Lego set you never knew you needed.
 >     
+> -   **2D Physics - PlayRho (not sure yet):** https://github.com/louis-langholtz/PlayRho
+>    
+> -   **3D Physics - Jolt** https://github.com/jrouwe/JoltPhysics
+>    
 > -   **Modular Mania:** ZEngine is so modular it's practically a game engine transformer. Mix and match, plug and play - your game, your rules.
 >     
 
@@ -39,14 +43,14 @@
 > 
 > 1.  **Clone the Repo:**
 >     
+> -   `git clone https://github.com/nonunknown777/ZEngine.git` 
 >     
 > 
-> -   `git clone https://github.com/nonunknown777/ZEngine.git` 
 >     
 > 2.   **Build the Magic:**
 >
 > -   `scons -jN` - where  N is processor core count
->     
+>       make sure you build 2d and 3d physics library and put em in the library folder (not working with them yet, so as an alternative just remove them in the Sconstruct file)
 > 3.  **Laugh Maniacally:** As your game starts running, unleash an evil genius laugh. You've just embarked on a ZEngine adventure!
 >     
 
