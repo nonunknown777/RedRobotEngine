@@ -1,3 +1,5 @@
+![Logo](logo.svg)
+
 > # ZEngine
 > 
 > Hey there, code wranglers! 🚀 Welcome to ZEngine, where the code is snappy, the performance is top-notch, and we take our game development as seriously as a cat chasing a laser pointer.
