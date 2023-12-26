@@ -1,0 +1,91 @@
+\doxysection{Fixed\+Constraint.\+h}
+\hypertarget{FixedConstraint_8h_source}{}\label{FixedConstraint_8h_source}\index{includes/jolt/Physics/Constraints/FixedConstraint.h@{includes/jolt/Physics/Constraints/FixedConstraint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/TwoBodyConstraint.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/RotationEulerConstraintPart.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/PointConstraintPart.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classFixedConstraintSettings}{FixedConstraintSettings}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classTwoBodyConstraintSettings}{TwoBodyConstraintSettings}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classFixedConstraintSettings}{FixedConstraintSettings}})}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ See:\ ConstraintSettings::SaveBinaryState}}
+\DoxyCodeLine{00020\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveBinaryState(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ const\ override;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ virtual\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}\ *\ \ \ \ Create(\mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2)\ const\ override;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ EConstraintSpace\ \ \ \ \ \ \ \ \ \ \ \ mSpace\ =\ EConstraintSpace::WorldSpace;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAutoDetectPoint\ =\ false;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPoint1\ =\ \mbox{\hyperlink{classVec3}{RVec3}}::sZero();}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAxisX1\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sAxisX();}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAxisY1\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sAxisY();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPoint2\ =\ \mbox{\hyperlink{classVec3}{RVec3}}::sZero();}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAxisX2\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sAxisX();}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAxisY2\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sAxisY();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ protected:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ See:\ ConstraintSettings::RestoreBinaryState}}
+\DoxyCodeLine{00043\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreBinaryState(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ override;}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00048\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classFixedConstraint}{FixedConstraint}}\ final\ :\ public\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFixedConstraint_a543015c5f4a7c155e53372b6b759c576}{FixedConstraint}}(\mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classFixedConstraintSettings}{FixedConstraintSettings}}\ \&inSettings);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Generic\ interface\ of\ a\ constraint}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ EConstraintSubType\ \ \mbox{\hyperlink{classFixedConstraint_ae4a226e769a4bab140f41f72a2aff9b5}{GetSubType}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ EConstraintSubType::Fixed;\ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFixedConstraint_a9eff1e123f1856e2821008dcf447b242}{NotifyShapeChanged}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDeltaCOM)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetupVelocityConstraint(\textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WarmStartVelocityConstraint(\textcolor{keywordtype}{float}\ inWarmStartImpulseRatio)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolveVelocityConstraint(\textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolvePositionConstraint(\textcolor{keywordtype}{float}\ inDeltaTime,\ \textcolor{keywordtype}{float}\ inBaumgarte)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraint(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFixedConstraint_a642f9f8a31e77d93123cf6c805399780}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFixedConstraint_ac8b1b8a9ef43fe05d5f38faa2fcc0b33}{RestoreState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classRef}{Ref<ConstraintSettings>}}\ \mbox{\hyperlink{classFixedConstraint_a93bb8668101f811578a71e1e8ef7a742}{GetConstraintSettings}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ See:\ TwoBodyConstraint}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFixedConstraint_a852ac2a355651a1ba586554d1551bcbc}{GetConstraintToBody1Matrix}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_a8cc7184902ce670d0822a28a8906df52}{Mat44::sTranslation}}(mLocalSpacePosition1);\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFixedConstraint_a7782ad778c9f110835e6be7a299bfcc7}{GetConstraintToBody2Matrix}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_aba5427f45393b40263d52ec614cfa985}{Mat44::sRotationTranslation}}(mInvInitialOrientation,\ mLocalSpacePosition2);\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaPosition()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPointConstraintPart.GetTotalLambda();\ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaRotation()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mRotationConstraintPart.GetTotalLambda();\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ CONFIGURATION\ PROPERTIES\ FOLLOW}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ Local\ space\ constraint\ positions}}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpacePosition1;}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpacePosition2;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ Inverse\ of\ initial\ rotation\ from\ body\ 1\ to\ body\ 2\ in\ body\ 1\ space}}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInvInitialOrientation;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ RUN\ TIME\ PROPERTIES\ FOLLOW}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ The\ constraint\ parts}}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classRotationEulerConstraintPart}{RotationEulerConstraintPart}}\ \ mRotationConstraintPart;}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{classPointConstraintPart}{PointConstraintPart}}\ \ \ \ \ \ \ \ \ \ mPointConstraintPart;}
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,5 @@
+<map id="JobSystem::Barrier" name="JobSystem::Barrier">
+<area shape="rect" id="Node000001" title="A job barrier keeps track of a number of jobs and allows waiting until they are all completed." alt="" coords="5,165,139,299"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="11,5,133,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,133,75,166,69,166,69,133"/>
+</map>

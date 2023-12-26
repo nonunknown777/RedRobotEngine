@@ -1,0 +1,206 @@
+\doxysection{RTTI Class Reference}
+\hypertarget{classRTTI}{}\label{classRTTI}\index{RTTI@{RTTI}}
+
+
+{\ttfamily \#include $<$RTTI.\+h$>$}
+
+
+
+Collaboration diagram for RTTI\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d05/classRTTI__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structRTTI_1_1BaseClass}{Base\+Class}}
+\begin{DoxyCompactList}\small\item\em Base class information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRTTI_a2be115b9638514344f6f0958ca695348}\label{classRTTI_a2be115b9638514344f6f0958ca695348} 
+using {\bfseries p\+Create\+Object\+Function} = void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*})()
+\begin{DoxyCompactList}\small\item\em Function to create an object. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_aaf310985dd3df418f3ac0ca410ded276}\label{classRTTI_aaf310985dd3df418f3ac0ca410ded276} 
+using {\bfseries p\+Destruct\+Object\+Function} = void(\texorpdfstring{$\ast$}{*})(void \texorpdfstring{$\ast$}{*}in\+Object)
+\begin{DoxyCompactList}\small\item\em Function to destroy an object. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_aad22110bc8834223a912a906cd710990}\label{classRTTI_aad22110bc8834223a912a906cd710990} 
+using {\bfseries p\+Create\+RTTIFunction} = void(\texorpdfstring{$\ast$}{*})(\mbox{\hyperlink{classRTTI}{RTTI}} \&in\+RTTI)
+\begin{DoxyCompactList}\small\item\em Function to initialize the runtime type info structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRTTI_ac675bf369baae1c03b33fdc404072252}\label{classRTTI_ac675bf369baae1c03b33fdc404072252} 
+{\bfseries RTTI} (const char \texorpdfstring{$\ast$}{*}in\+Name, int in\+Size, \mbox{\hyperlink{classRTTI_a2be115b9638514344f6f0958ca695348}{p\+Create\+Object\+Function}} in\+Create\+Object, \mbox{\hyperlink{classRTTI_aaf310985dd3df418f3ac0ca410ded276}{p\+Destruct\+Object\+Function}} in\+Destruct\+Object)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a200b9e466fc9653a73e2a4f7cc5c8d11}\label{classRTTI_a200b9e466fc9653a73e2a4f7cc5c8d11} 
+{\bfseries RTTI} (const char \texorpdfstring{$\ast$}{*}in\+Name, int in\+Size, \mbox{\hyperlink{classRTTI_a2be115b9638514344f6f0958ca695348}{p\+Create\+Object\+Function}} in\+Create\+Object, \mbox{\hyperlink{classRTTI_aaf310985dd3df418f3ac0ca410ded276}{p\+Destruct\+Object\+Function}} in\+Destruct\+Object, \mbox{\hyperlink{classRTTI_aad22110bc8834223a912a906cd710990}{p\+Create\+RTTIFunction}} in\+Create\+RTTI)
+\item 
+\Hypertarget{classRTTI_a0d8d743280e7d661ef74c26b8b45e3a9}\label{classRTTI_a0d8d743280e7d661ef74c26b8b45e3a9} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries Get\+Name} () const
+\item 
+\Hypertarget{classRTTI_ab6e03f58fa10480bf87c2f91b5f374e8}\label{classRTTI_ab6e03f58fa10480bf87c2f91b5f374e8} 
+void {\bfseries Set\+Name} (const char \texorpdfstring{$\ast$}{*}in\+Name)
+\item 
+\Hypertarget{classRTTI_a84f77151d163bb24c230c0af4a5c2682}\label{classRTTI_a84f77151d163bb24c230c0af4a5c2682} 
+int {\bfseries Get\+Size} () const
+\item 
+\Hypertarget{classRTTI_a8d9df5eaf6fce27b44ccc4c2bb728fd7}\label{classRTTI_a8d9df5eaf6fce27b44ccc4c2bb728fd7} 
+bool {\bfseries Is\+Abstract} () const
+\item 
+\Hypertarget{classRTTI_a99d67628c5549e56c77ba1ef5294d64f}\label{classRTTI_a99d67628c5549e56c77ba1ef5294d64f} 
+int {\bfseries Get\+Base\+Class\+Count} () const
+\item 
+\Hypertarget{classRTTI_a381b52d75fb6242d201da76ff685412c}\label{classRTTI_a381b52d75fb6242d201da76ff685412c} 
+const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Base\+Class} (int in\+Idx) const
+\item 
+\Hypertarget{classRTTI_ad5a67a7623941aeb6a7a75fc89082a92}\label{classRTTI_ad5a67a7623941aeb6a7a75fc89082a92} 
+uint32 {\bfseries Get\+Hash} () const
+\item 
+\Hypertarget{classRTTI_a97cb905567f96a8e766aa8f769394ee0}\label{classRTTI_a97cb905567f96a8e766aa8f769394ee0} 
+void \texorpdfstring{$\ast$}{*} {\bfseries Create\+Object} () const
+\begin{DoxyCompactList}\small\item\em Create an object of this type (returns nullptr if the object is abstract) \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a224cbb3037f84324f9604ecd4218674e}\label{classRTTI_a224cbb3037f84324f9604ecd4218674e} 
+void {\bfseries Destruct\+Object} (void \texorpdfstring{$\ast$}{*}in\+Object) const
+\begin{DoxyCompactList}\small\item\em Destruct object of this type (does nothing if the object is abstract) \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_ae4671375bc88cf535f4de98414c84405}\label{classRTTI_ae4671375bc88cf535f4de98414c84405} 
+void {\bfseries Add\+Base\+Class} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI, int in\+Offset)
+\begin{DoxyCompactList}\small\item\em Add base class. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_ae19fcaadd5a43ddb52e689920920b0b2}\label{classRTTI_ae19fcaadd5a43ddb52e689920920b0b2} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classRTTI}{RTTI}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Equality operators. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a11f57b37456ad4373bb3ca03e9a5cacd}\label{classRTTI_a11f57b37456ad4373bb3ca03e9a5cacd} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classRTTI}{RTTI}} \&in\+RHS) const
+\item 
+\Hypertarget{classRTTI_a91cf4ad4740ffd16fe63e945ef288315}\label{classRTTI_a91cf4ad4740ffd16fe63e945ef288315} 
+bool {\bfseries Is\+Kind\+Of} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI) const
+\begin{DoxyCompactList}\small\item\em Test if this class is derived from class of type in\+RTTI. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a762f7b979423d8cbbc5aa6796611f190}\label{classRTTI_a762f7b979423d8cbbc5aa6796611f190} 
+const void \texorpdfstring{$\ast$}{*} {\bfseries Cast\+To} (const void \texorpdfstring{$\ast$}{*}in\+Object, const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI) const
+\begin{DoxyCompactList}\small\item\em Cast in\+Object of this type to object of type in\+RTTI, returns nullptr if the cast is unsuccessful. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a5672a76cf4f12f280889d711341b2b32}\label{classRTTI_a5672a76cf4f12f280889d711341b2b32} 
+void {\bfseries Add\+Attribute} (const \mbox{\hyperlink{classSerializableAttribute}{Serializable\+Attribute}} \&in\+Attribute)
+\begin{DoxyCompactList}\small\item\em Attribute access. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a0fbba51204c3fbdef9a3ca57ed1951e7}\label{classRTTI_a0fbba51204c3fbdef9a3ca57ed1951e7} 
+int {\bfseries Get\+Attribute\+Count} () const
+\item 
+\Hypertarget{classRTTI_af400a619d0e542926dba2f0a557bcd4b}\label{classRTTI_af400a619d0e542926dba2f0a557bcd4b} 
+const \mbox{\hyperlink{classSerializableAttribute}{Serializable\+Attribute}} \& {\bfseries Get\+Attribute} (int in\+Idx) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRTTI_ac6c1ba7841379194df1ebbd9f7a7fba3}\label{classRTTI_ac6c1ba7841379194df1ebbd9f7a7fba3} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries m\+Name}
+\begin{DoxyCompactList}\small\item\em Class name. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_ae1bedbd6bc7047937339f32647aa624c}\label{classRTTI_ae1bedbd6bc7047937339f32647aa624c} 
+int {\bfseries m\+Size}
+\begin{DoxyCompactList}\small\item\em Class size. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a65f6d7c79be320fd28dd08784682bb78}\label{classRTTI_a65f6d7c79be320fd28dd08784682bb78} 
+\mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{structRTTI_1_1BaseClass}{Base\+Class}}, 4 $>$ {\bfseries m\+Base\+Classes}
+\begin{DoxyCompactList}\small\item\em Names of base classes. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a0bc70d14c290f62bb071ce8c3439d09b}\label{classRTTI_a0bc70d14c290f62bb071ce8c3439d09b} 
+\mbox{\hyperlink{classRTTI_a2be115b9638514344f6f0958ca695348}{p\+Create\+Object\+Function}} {\bfseries m\+Create}
+\begin{DoxyCompactList}\small\item\em Pointer to a function that will create a new instance of this class. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a05e1a68c508992c39107dcdde015138b}\label{classRTTI_a05e1a68c508992c39107dcdde015138b} 
+\mbox{\hyperlink{classRTTI_aaf310985dd3df418f3ac0ca410ded276}{p\+Destruct\+Object\+Function}} {\bfseries m\+Destruct}
+\begin{DoxyCompactList}\small\item\em Pointer to a function that will destruct an object of this class. \end{DoxyCompactList}\item 
+\Hypertarget{classRTTI_a20a73c736f31ff30735518525af8b8f8}\label{classRTTI_a20a73c736f31ff30735518525af8b8f8} 
+\mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classSerializableAttribute}{Serializable\+Attribute}}, 32 $>$ {\bfseries m\+Attributes}
+\begin{DoxyCompactList}\small\item\em All attributes of this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Light weight runtime type information system. This way we don\textquotesingle{}t need to turn on the default \doxylink{classRTTI}{RTTI} system of the compiler (introducing a possible overhead for every class)
+
+Notes\+:
+\begin{DoxyItemize}
+\item An extra virtual member function is added. This adds 8 bytes to the size of an instance of the class (unless you are already using virtual functions).
+\end{DoxyItemize}
+
+To use \doxylink{classRTTI}{RTTI} on a specific class use\+:
+
+Header file\+: \begin{DoxyVerb}class Foo
+{
+    JPH_DECLARE_RTTI_VIRTUAL_BASE(Foo)
+}
+
+class Bar : public Foo
+{
+    JPH_DECLARE_RTTI_VIRTUAL(Bar)
+};
+\end{DoxyVerb}
+ Implementation file\+: \begin{DoxyVerb}JPH_IMPLEMENT_RTTI_VIRTUAL_BASE(Foo)
+{
+}
+
+JPH_IMPLEMENT_RTTI_VIRTUAL(Bar)
+{
+    JPH_ADD_BASE_CLASS(Bar, Foo) // Multiple inheritance is allowed, just do JPH_ADD_BASE_CLASS for every base class
+}
+\end{DoxyVerb}
+ For abstract classes use\+:
+
+Header file\+: \begin{DoxyVerb}class Foo
+{
+    JPH_DECLARE_RTTI_ABSTRACT_BASE(Foo)
+
+public:
+    virtual void AbstractFunction() = 0;
+}
+
+class Bar : public Foo
+{
+    JPH_DECLARE_RTTI_VIRTUAL(Bar)
+
+public:
+    virtual void AbstractFunction() { } // Function is now implemented so this class is no longer abstract
+};
+\end{DoxyVerb}
+ Implementation file\+: \begin{DoxyVerb}JPH_IMPLEMENT_RTTI_ABSTRACT_BASE(Foo)
+{
+}
+
+JPH_IMPLEMENT_RTTI_VIRTUAL(Bar)
+{
+    JPH_ADD_BASE_CLASS(Bar, Foo)
+}
+\end{DoxyVerb}
+ Example of usage in a program\+: \begin{DoxyVerb}Foo *foo_ptr = new Foo;
+Foo *bar_ptr = new Bar;
+
+IsType(foo_ptr, RTTI(Bar)) returns false
+IsType(bar_ptr, RTTI(Bar)) returns true
+
+IsKindOf(foo_ptr, RTTI(Bar)) returns false
+IsKindOf(bar_ptr, RTTI(Foo)) returns true
+IsKindOf(bar_ptr, RTTI(Bar)) returns true
+
+StaticCast<Bar>(foo_ptr) asserts and returns foo_ptr casted to pBar
+StaticCast<Bar>(bar_ptr) returns bar_ptr casted to pBar
+
+DynamicCast<Bar>(foo_ptr) returns nullptr
+DynamicCast<Bar>(bar_ptr) returns bar_ptr casted to pBar
+\end{DoxyVerb}
+ Other feature of Dynamic\+Cast\+: \begin{DoxyVerb}class A { int data[5]; };
+class B { int data[7]; };
+class C : public A, public B { int data[9]; };
+
+C *c = new C;
+A *a = c;
+\end{DoxyVerb}
+ Note that\+: \begin{DoxyVerb}B *b = (B *)a;
+\end{DoxyVerb}
+ generates an invalid pointer, \begin{DoxyVerb}B *b = StaticCast<B>(a);
+\end{DoxyVerb}
+ doesn\textquotesingle{}t compile, and \begin{DoxyVerb}B *b = DynamicCast<B>(a);
+\end{DoxyVerb}
+ does the correct cast 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/RTTI.\+h\end{DoxyCompactItemize}

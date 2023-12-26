@@ -1,0 +1,49 @@
+\doxysection{Physics\+Material.\+h}
+\hypertarget{PhysicsMaterial_8h_source}{}\label{PhysicsMaterial_8h_source}\index{includes/jolt/Physics/Collision/PhysicsMaterial.h@{includes/jolt/Physics/Collision/PhysicsMaterial.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Reference.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Color.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Result.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableObject.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStreamIn}{StreamIn}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStreamOut}{StreamOut}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSerializableObject}{SerializableObject}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}<PhysicsMaterial>}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}})}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ virtual\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string~\mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}()\ override\ =\ default;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ static\ \mbox{\hyperlink{classRefConst}{RefConst}}<\mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}>\ \ \ \ \ sDefault;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Properties}}
+\DoxyCodeLine{00034\ \ \ \ \ virtual\ const\ \textcolor{keywordtype}{char}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetDebugName()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Unknown"{}};\ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classColor}{Color}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetDebugColor()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ Color::sGrey;\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsMaterial_a77371de6bc2a9361b57486af327e7d62}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classResult}{PhysicsMaterialResult}}\ =\ \mbox{\hyperlink{classResult}{Result<Ref<PhysicsMaterial>}}>;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classResult}{PhysicsMaterialResult}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsMaterial_ac6095d76ac66e20d8309fb089d1b8767}{sRestoreFromBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsMaterial_a3e15249c125bf74f0048b1161112f6c3}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream);}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{using\ }PhysicsMaterialList\ =\ Array<RefConst<PhysicsMaterial>>;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

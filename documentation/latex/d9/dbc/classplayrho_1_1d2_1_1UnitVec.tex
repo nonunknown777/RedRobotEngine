@@ -1,0 +1,367 @@
+\doxysection{playrho\+::d2\+::Unit\+Vec Class Reference}
+\hypertarget{classplayrho_1_1d2_1_1UnitVec}{}\label{classplayrho_1_1d2_1_1UnitVec}\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+
+
+2-\/D unit vector.  
+
+
+
+
+{\ttfamily \#include $<$Unit\+Vec.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::d2\+::Unit\+Vec\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{d4/da1/classplayrho_1_1d2_1_1UnitVec__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}\label{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2} 
+using {\bfseries value\+\_\+type} = \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}
+\begin{DoxyCompactList}\small\item\em Value type used for the coordinate values of this vector. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}\label{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b} 
+using {\bfseries size\+\_\+type} = std\+::size\+\_\+t
+\begin{DoxyCompactList}\small\item\em Size type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5}\label{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5} 
+using {\bfseries const\+\_\+reference} = const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\+\_\+type}} \&
+\begin{DoxyCompactList}\small\item\em Constant reference type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ab01e2b6172ff17d8ef644c5915ac0ddc}\label{classplayrho_1_1d2_1_1UnitVec_ab01e2b6172ff17d8ef644c5915ac0ddc} 
+using {\bfseries const\+\_\+pointer} = const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\+\_\+type}} \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Constant pointer type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}\label{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791} 
+using {\bfseries const\+\_\+iterator} = const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\+\_\+type}} \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Constant iterator type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}\label{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64} 
+using {\bfseries const\+\_\+reverse\+\_\+iterator} = std\+::reverse\+\_\+iterator$<$ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\+\_\+iterator}} $>$
+\begin{DoxyCompactList}\small\item\em Constant reverse iterator type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab3503f1c480f004d65ee5562c1039140}{Polar\+Coord}} = std\+::enable\+\_\+if\+\_\+t$<$ \mbox{\hyperlink{structplayrho_1_1IsArithmetic}{Is\+Arithmetic}}$<$ T $>$\+::value, std\+::pair$<$ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}, T $>$ $>$
+\begin{DoxyCompactList}\small\item\em Polar coordinate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_af55450330386cf1cde58138e559bb39f}\label{classplayrho_1_1d2_1_1UnitVec_af55450330386cf1cde58138e559bb39f} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\+\_\+type}} {\bfseries max\+\_\+size} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the max size. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ab2eb4e744f2d9576257c943eb33d31de}\label{classplayrho_1_1d2_1_1UnitVec_ab2eb4e744f2d9576257c943eb33d31de} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\+\_\+type}} {\bfseries size} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the size. \end{DoxyCompactList}\item 
+constexpr bool \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ad7db3fec687e84fa542b4658cc72acc1}{empty}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Whether empty. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a1daed0036c85f79db339d621bd821e7e}\label{classplayrho_1_1d2_1_1UnitVec_a1daed0036c85f79db339d621bd821e7e} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\+\_\+iterator}} {\bfseries begin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a51c92fd671c1aa855d11fc2270d27b8f}\label{classplayrho_1_1d2_1_1UnitVec_a51c92fd671c1aa855d11fc2270d27b8f} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\+\_\+iterator}} {\bfseries end} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets an "{}end"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a05b457eb94056a8e3b3865024d9e7597}\label{classplayrho_1_1d2_1_1UnitVec_a05b457eb94056a8e3b3865024d9e7597} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\+\_\+iterator}} {\bfseries cbegin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_aa0a3a0f53320c3e0461bee2b2c8ea30b}\label{classplayrho_1_1d2_1_1UnitVec_aa0a3a0f53320c3e0461bee2b2c8ea30b} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\+\_\+iterator}} {\bfseries cend} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets an "{}end"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ab22cbe6daab96aee5c3c4117834b06c7}\label{classplayrho_1_1d2_1_1UnitVec_ab22cbe6daab96aee5c3c4117834b06c7} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\+\_\+reverse\+\_\+iterator}} {\bfseries crbegin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a8d44f8cbedd5f58a3a47ec217607e2cd}\label{classplayrho_1_1d2_1_1UnitVec_a8d44f8cbedd5f58a3a47ec217607e2cd} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\+\_\+reverse\+\_\+iterator}} {\bfseries crend} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}end"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a2395f8349fa44e4705f22704a40b6603}\label{classplayrho_1_1d2_1_1UnitVec_a2395f8349fa44e4705f22704a40b6603} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\+\_\+reverse\+\_\+iterator}} {\bfseries rbegin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a0fc0438361d440f40960594f3c50e9d6}\label{classplayrho_1_1d2_1_1UnitVec_a0fc0438361d440f40960594f3c50e9d6} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\+\_\+reverse\+\_\+iterator}} {\bfseries rend} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}end"{} iterator. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5}{const\+\_\+reference}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1e6755e80f6737ff7823b135a1f47318}{operator\mbox{[}$\,$\mbox{]}}} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\+\_\+type}} pos) const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a constant reference to the requested element. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5}{const\+\_\+reference}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7067c246d03f6de8a054b8ce3810b9b2}{at}} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\+\_\+type}} pos) const
+\begin{DoxyCompactList}\small\item\em Gets a constant reference to the requested element. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ab20e84975636fb39972c50fb55251771}\label{classplayrho_1_1d2_1_1UnitVec_ab20e84975636fb39972c50fb55251771} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab01e2b6172ff17d8ef644c5915ac0ddc}{const\+\_\+pointer}} {\bfseries data} () const noexcept
+\begin{DoxyCompactList}\small\item\em Direct access to data. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}\label{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9} 
+constexpr auto {\bfseries GetX} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}\+X"{} value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}\label{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8} 
+constexpr auto {\bfseries GetY} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}\+Y"{} value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a292d9c273617a3ada4a20f53b0e22cbf}\label{classplayrho_1_1d2_1_1UnitVec_a292d9c273617a3ada4a20f53b0e22cbf} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries Flip\+XY} () const noexcept
+\begin{DoxyCompactList}\small\item\em Flips the X and Y values. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a9383bbc355a8e001d1eda9fcc0f98aa2}\label{classplayrho_1_1d2_1_1UnitVec_a9383bbc355a8e001d1eda9fcc0f98aa2} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries FlipX} () const noexcept
+\begin{DoxyCompactList}\small\item\em Flips the X value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a939f4c4a3315818d7cdbb2475406cc41}\label{classplayrho_1_1d2_1_1UnitVec_a939f4c4a3315818d7cdbb2475406cc41} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries FlipY} () const noexcept
+\begin{DoxyCompactList}\small\item\em Flips the Y value. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab8759fd715e0db2fa7658a90aef100b2}{Rotate}} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} amount) const noexcept
+\begin{DoxyCompactList}\small\item\em Rotates the unit vector by the given amount. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1d9cfdf4a1d77ff7f795f4208170a239}{Get\+Rev\+Perpendicular}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a vector counter-\/clockwise (reverse-\/clockwise) perpendicular to this vector. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7b903c5d18da3007dad5d31d66ffa872}{Get\+Fwd\+Perpendicular}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a vector clockwise (forward-\/clockwise) perpendicular to this vector. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a897c2964930d475d582c5ccfd8cee10f}\label{classplayrho_1_1d2_1_1UnitVec_a897c2964930d475d582c5ccfd8cee10f} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries operator-\/} () const noexcept
+\begin{DoxyCompactList}\small\item\em Negation operator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ab4d6bd9c4e747cc1f0118769269df628}\label{classplayrho_1_1d2_1_1UnitVec_ab4d6bd9c4e747cc1f0118769269df628} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries operator+} () const noexcept
+\begin{DoxyCompactList}\small\item\em Positive operator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ad1bcbfce894d533d52b98c6032da9661}\label{classplayrho_1_1d2_1_1UnitVec_ad1bcbfce894d533d52b98c6032da9661} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries Absolute} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the absolute value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a989ef293213c6b3a4d1901533445cd85}{Get\+Right}} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the right-\/ward oriented unit vector. \end{DoxyCompactList}\item 
+static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ad3f132b30c82d05c107a8d8231db244b}{Get\+Top}} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the top-\/ward oriented unit vector. \end{DoxyCompactList}\item 
+static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a44b186e8e5faa989049dcb9fba7367c7}{Get\+Left}} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the left-\/ward oriented unit vector. \end{DoxyCompactList}\item 
+static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a814ef2468f93f2785da36e6651840a14}{Get\+Bottom}} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the bottom-\/ward oriented unit vector. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a36ae084e9c7c9e474738daa40674bf73}\label{classplayrho_1_1d2_1_1UnitVec_a36ae084e9c7c9e474738daa40674bf73} 
+static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries Get\+Zero} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the non-\/oriented unit vector. \end{DoxyCompactList}\item 
+static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1e841cb8279292e8fbaf0d83b4cd0ddb}{Get\+Top\+Right}} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the 45 degree unit vector. \end{DoxyCompactList}\item 
+static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ad253c43a96160cfccf89cf650abd225e}{Get\+Bottom\+Right}} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the -\/45 degree unit vector. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a9c0d12b9f3e418a49933c367305c01c0}\label{classplayrho_1_1d2_1_1UnitVec_a9c0d12b9f3e418a49933c367305c01c0} 
+static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries Get\+Default\+Fallback} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the default fallback. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a64a1edbf6659aa3c059baf770f3c165e}\label{classplayrho_1_1d2_1_1UnitVec_a64a1edbf6659aa3c059baf770f3c165e} 
+{\footnotesize template$<$typename T $>$ }\\static \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab3503f1c480f004d65ee5562c1039140}{Polar\+Coord}}$<$ T $>$ {\bfseries Get} (const T x, const T y, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} fallback=\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a9c0d12b9f3e418a49933c367305c01c0}{Get\+Default\+Fallback}}()) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the unit vector \& magnitude from the given parameters. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a30458bf213b9ea659a0b62491acd5231}{Get}} (const \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} angle) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the given angled unit vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+2-\/D unit vector. 
+
+This is a 2-\/dimensional directional vector. 
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ab3503f1c480f004d65ee5562c1039140}\label{classplayrho_1_1d2_1_1UnitVec_ab3503f1c480f004d65ee5562c1039140} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!PolarCoord@{PolarCoord}}
+\index{PolarCoord@{PolarCoord}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{PolarCoord}{PolarCoord}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+using \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab3503f1c480f004d65ee5562c1039140}{playrho\+::d2\+::\+Unit\+Vec\+::\+Polar\+Coord}} =  std\+::enable\+\_\+if\+\_\+t$<$\mbox{\hyperlink{structplayrho_1_1IsArithmetic}{Is\+Arithmetic}}$<$T$>$\+::value, std\+::pair$<$\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}, T$>$ $>$}
+
+
+
+Polar coordinate. 
+
+This is a direction and magnitude pair defined by the unit vector class. \begin{DoxyNote}{Note}
+A magnitude of 0 indicates that no conclusive direction could be determined. The magnitude will otherwise be a normal value. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a7067c246d03f6de8a054b8ce3810b9b2}\label{classplayrho_1_1d2_1_1UnitVec_a7067c246d03f6de8a054b8ce3810b9b2} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!at@{at}}
+\index{at@{at}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5}{const\+\_\+reference}} playrho\+::d2\+::\+Unit\+Vec\+::at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\+\_\+type}}}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Gets a constant reference to the requested element. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classplayrho_1_1InvalidArgument}{Invalid\+Argument}} & if given a position that\textquotesingle{}s \texorpdfstring{$>$}{>}= \doxylink{classplayrho_1_1d2_1_1UnitVec_ab2eb4e744f2d9576257c943eb33d31de}{size()}. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ad7db3fec687e84fa542b4658cc72acc1}\label{classplayrho_1_1d2_1_1UnitVec_ad7db3fec687e84fa542b4658cc72acc1} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!empty@{empty}}
+\index{empty@{empty}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily constexpr bool playrho\+::d2\+::\+Unit\+Vec\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Whether empty. 
+
+\begin{DoxyNote}{Note}
+Always false for N \texorpdfstring{$>$}{>} 0. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a30458bf213b9ea659a0b62491acd5231}\label{classplayrho_1_1d2_1_1UnitVec_a30458bf213b9ea659a0b62491acd5231} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!Get@{Get}}
+\index{Get@{Get}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the given angled unit vector. 
+
+\begin{DoxyNote}{Note}
+For angles that are meant to be at exact multiples of the quarter turn, better accuracy will be had by using one of the four oriented unit vector returning methods -\/ for the right, top, left, bottom orientations. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a814ef2468f93f2785da36e6651840a14}\label{classplayrho_1_1d2_1_1UnitVec_a814ef2468f93f2785da36e6651840a14} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!GetBottom@{GetBottom}}
+\index{GetBottom@{GetBottom}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{GetBottom()}{GetBottom()}}
+{\footnotesize\ttfamily static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get\+Bottom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the bottom-\/ward oriented unit vector. 
+
+\begin{DoxyNote}{Note}
+This is the actual value for the 3/4 turned (270 degree angled) unit vector. 
+
+This is the reverse perpendicular unit vector of the left oriented vector. 
+
+This is the forward perpendicular unit vector of the right oriented vector. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ad253c43a96160cfccf89cf650abd225e}\label{classplayrho_1_1d2_1_1UnitVec_ad253c43a96160cfccf89cf650abd225e} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!GetBottomRight@{GetBottomRight}}
+\index{GetBottomRight@{GetBottomRight}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{GetBottomRight()}{GetBottomRight()}}
+{\footnotesize\ttfamily static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get\+Bottom\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the -\/45 degree unit vector. 
+
+This is the unit vector in the positive X and negative Y quadrant where \texorpdfstring{$\vert$}{|}\+X\texorpdfstring{$\vert$}{|} == \texorpdfstring{$\vert$}{|}\+Y\texorpdfstring{$\vert$}{|}. \Hypertarget{classplayrho_1_1d2_1_1UnitVec_a7b903c5d18da3007dad5d31d66ffa872}\label{classplayrho_1_1d2_1_1UnitVec_a7b903c5d18da3007dad5d31d66ffa872} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!GetFwdPerpendicular@{GetFwdPerpendicular}}
+\index{GetFwdPerpendicular@{GetFwdPerpendicular}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{GetFwdPerpendicular()}{GetFwdPerpendicular()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get\+Fwd\+Perpendicular (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a vector clockwise (forward-\/clockwise) perpendicular to this vector. 
+
+This returns the unit vector (y, -\/x). \begin{DoxyReturn}{Returns}
+A clockwise 90-\/degree rotation of this vector. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classplayrho_1_1d2_1_1UnitVec_a1d9cfdf4a1d77ff7f795f4208170a239}{Get\+Rev\+Perpendicular}. 
+\end{DoxySeeAlso}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a44b186e8e5faa989049dcb9fba7367c7}\label{classplayrho_1_1d2_1_1UnitVec_a44b186e8e5faa989049dcb9fba7367c7} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!GetLeft@{GetLeft}}
+\index{GetLeft@{GetLeft}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{GetLeft()}{GetLeft()}}
+{\footnotesize\ttfamily static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the left-\/ward oriented unit vector. 
+
+\begin{DoxyNote}{Note}
+This is the actual value for the 2/4 turned (180 degree angled) unit vector. 
+
+This is the reverse perpendicular unit vector of the top oriented vector. 
+
+This is the forward perpendicular unit vector of the bottom oriented vector. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a1d9cfdf4a1d77ff7f795f4208170a239}\label{classplayrho_1_1d2_1_1UnitVec_a1d9cfdf4a1d77ff7f795f4208170a239} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!GetRevPerpendicular@{GetRevPerpendicular}}
+\index{GetRevPerpendicular@{GetRevPerpendicular}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{GetRevPerpendicular()}{GetRevPerpendicular()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get\+Rev\+Perpendicular (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a vector counter-\/clockwise (reverse-\/clockwise) perpendicular to this vector. 
+
+This returns the unit vector (-\/y, x). \begin{DoxyReturn}{Returns}
+A counter-\/clockwise 90-\/degree rotation of this vector. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classplayrho_1_1d2_1_1UnitVec_a7b903c5d18da3007dad5d31d66ffa872}{Get\+Fwd\+Perpendicular}. 
+\end{DoxySeeAlso}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a989ef293213c6b3a4d1901533445cd85}\label{classplayrho_1_1d2_1_1UnitVec_a989ef293213c6b3a4d1901533445cd85} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!GetRight@{GetRight}}
+\index{GetRight@{GetRight}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{GetRight()}{GetRight()}}
+{\footnotesize\ttfamily static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the right-\/ward oriented unit vector. 
+
+\begin{DoxyNote}{Note}
+This is the value for the 0/4 turned (0 angled) unit vector. 
+
+This is the reverse perpendicular unit vector of the bottom oriented vector. 
+
+This is the forward perpendicular unit vector of the top oriented vector. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ad3f132b30c82d05c107a8d8231db244b}\label{classplayrho_1_1d2_1_1UnitVec_ad3f132b30c82d05c107a8d8231db244b} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!GetTop@{GetTop}}
+\index{GetTop@{GetTop}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{GetTop()}{GetTop()}}
+{\footnotesize\ttfamily static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get\+Top (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the top-\/ward oriented unit vector. 
+
+\begin{DoxyNote}{Note}
+This is the actual value for the 1/4 turned (90 degree angled) unit vector. 
+
+This is the reverse perpendicular unit vector of the right oriented vector. 
+
+This is the forward perpendicular unit vector of the left oriented vector. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_a1e841cb8279292e8fbaf0d83b4cd0ddb}\label{classplayrho_1_1d2_1_1UnitVec_a1e841cb8279292e8fbaf0d83b4cd0ddb} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!GetTopRight@{GetTopRight}}
+\index{GetTopRight@{GetTopRight}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{GetTopRight()}{GetTopRight()}}
+{\footnotesize\ttfamily static constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Get\+Top\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the 45 degree unit vector. 
+
+This is the unit vector in the positive X and Y quadrant where X == Y. \Hypertarget{classplayrho_1_1d2_1_1UnitVec_a1e6755e80f6737ff7823b135a1f47318}\label{classplayrho_1_1d2_1_1UnitVec_a1e6755e80f6737ff7823b135a1f47318} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5}{const\+\_\+reference}} playrho\+::d2\+::\+Unit\+Vec\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\+\_\+type}}}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a constant reference to the requested element. 
+
+\begin{DoxyNote}{Note}
+No bounds checking is performed. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Behavior is undefined if given a position equal to or greater than \doxylink{classplayrho_1_1d2_1_1UnitVec_ab2eb4e744f2d9576257c943eb33d31de}{size()}. 
+\end{DoxyWarning}
+\Hypertarget{classplayrho_1_1d2_1_1UnitVec_ab8759fd715e0db2fa7658a90aef100b2}\label{classplayrho_1_1d2_1_1UnitVec_ab8759fd715e0db2fa7658a90aef100b2} 
+\index{playrho::d2::UnitVec@{playrho::d2::UnitVec}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!playrho::d2::UnitVec@{playrho::d2::UnitVec}}
+\doxysubsubsection{\texorpdfstring{Rotate()}{Rotate()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Unit\+Vec\+::\+Rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}}]{amount }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Rotates the unit vector by the given amount. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Expresses the angular difference from the right-\/ward oriented unit vector to rotate this unit vector by.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classResult}{Result} of rotating this unit vector by the given amount. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/\mbox{\hyperlink{UnitVec_8hpp}{Unit\+Vec.\+hpp}}\end{DoxyCompactItemize}

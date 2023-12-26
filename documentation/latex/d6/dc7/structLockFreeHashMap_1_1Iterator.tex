@@ -1,0 +1,59 @@
+\doxysection{Lock\+Free\+Hash\+Map\texorpdfstring{$<$}{<} Key, Value \texorpdfstring{$>$}{>}\+::Iterator Struct Reference}
+\hypertarget{structLockFreeHashMap_1_1Iterator}{}\label{structLockFreeHashMap_1_1Iterator}\index{LockFreeHashMap$<$ Key, Value $>$::Iterator@{LockFreeHashMap$<$ Key, Value $>$::Iterator}}
+
+
+Non-\/const iterator.  
+
+
+
+
+{\ttfamily \#include $<$Lock\+Free\+Hash\+Map.\+h$>$}
+
+
+
+Collaboration diagram for Lock\+Free\+Hash\+Map\texorpdfstring{$<$}{<} Key, Value \texorpdfstring{$>$}{>}\+::Iterator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d02/structLockFreeHashMap_1_1Iterator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structLockFreeHashMap_1_1Iterator_a0511ff0a1aee60f26352f0caddee732a}\label{structLockFreeHashMap_1_1Iterator_a0511ff0a1aee60f26352f0caddee732a} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{structLockFreeHashMap_1_1Iterator}{Iterator}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Comparison. \end{DoxyCompactList}\item 
+\Hypertarget{structLockFreeHashMap_1_1Iterator_ac41d9d1e14de5e0d26edf2c004e7b4b0}\label{structLockFreeHashMap_1_1Iterator_ac41d9d1e14de5e0d26edf2c004e7b4b0} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{structLockFreeHashMap_1_1Iterator}{Iterator}} \&in\+RHS) const
+\item 
+\Hypertarget{structLockFreeHashMap_1_1Iterator_af2b164af90f8efbeb7c5a5bc19333f34}\label{structLockFreeHashMap_1_1Iterator_af2b164af90f8efbeb7c5a5bc19333f34} 
+\mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{Key\+Value}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}} ()
+\begin{DoxyCompactList}\small\item\em Convert to key value pair. \end{DoxyCompactList}\item 
+\Hypertarget{structLockFreeHashMap_1_1Iterator_aaaf8062e981a1be7118d1dde98968ba6}\label{structLockFreeHashMap_1_1Iterator_aaaf8062e981a1be7118d1dde98968ba6} 
+\mbox{\hyperlink{structLockFreeHashMap_1_1Iterator}{Iterator}} \& {\bfseries operator++} ()
+\begin{DoxyCompactList}\small\item\em Next item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structLockFreeHashMap_1_1Iterator_af25da5da601250661337b73982cddde8}\label{structLockFreeHashMap_1_1Iterator_af25da5da601250661337b73982cddde8} 
+\mbox{\hyperlink{classLockFreeHashMap}{Map\+Type}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Map}
+\item 
+\Hypertarget{structLockFreeHashMap_1_1Iterator_ab977da84511df37816a8856402dfef60}\label{structLockFreeHashMap_1_1Iterator_ab977da84511df37816a8856402dfef60} 
+uint32 {\bfseries m\+Bucket}
+\item 
+\Hypertarget{structLockFreeHashMap_1_1Iterator_a1142200c7ea0ad1195007f410ccb8942}\label{structLockFreeHashMap_1_1Iterator_a1142200c7ea0ad1195007f410ccb8942} 
+uint32 {\bfseries m\+Offset}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Key, class Value$>$\newline
+struct Lock\+Free\+Hash\+Map$<$ Key, Value $>$\+::\+Iterator}
+Non-\/const iterator. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Lock\+Free\+Hash\+Map.\+h\item 
+includes/jolt/\+Core/Lock\+Free\+Hash\+Map.\+inl\end{DoxyCompactItemize}

@@ -1,0 +1,94 @@
+\doxysection{Fixed\+Limits.\+hpp}
+\hypertarget{FixedLimits_8hpp_source}{}\label{FixedLimits_8hpp_source}\index{includes/playrho/Common/FixedLimits.hpp@{includes/playrho/Common/FixedLimits.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_FIXEDLIMITS\_HPP}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_FIXEDLIMITS\_HPP}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Fixed.hpp>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{class\ }numeric\_limits<\mbox{\hyperlink{namespaceplayrho}{playrho}}::Fixed<BT,FB>>}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_specialized\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_aef6b014898869a3659af771be6f3d94d}{min}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a51ec3c07dd4a476c6139ee5c481bb2e4}{playrho::Fixed<BT,FB>::GetMin}}();\ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_a5cae892b2eabe9191cb7d4adeda42271}{max}}()\ noexcept\ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{playrho::Fixed<BT,FB>::GetMax}}();\ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_a1360749dc9214c9b99ca22be616dc5cd}{lowest}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed_af56f6641ae9d00bf8894d0b4eaebdd78}{playrho::Fixed<BT,FB>::GetLowest}}();\ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ digits\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>::WholeBits}}\ -\/\ 1;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ digits10\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>::WholeBits}}\ -\/\ 1;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ max\_digits10\ =\ 5;\ \textcolor{comment}{//\ TODO(lou):\ check\ this}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_signed\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_integer\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_exact\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ radix\ =\ 0;\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed32}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_a054d190e6020f2cf8fdd1427c79a22ab}{epsilon}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\{0\};\ \}\ \textcolor{comment}{//\ TODO(lou)}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed32}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_a1bbb81b286f43c361e2c35b4ef69723f}{round\_error}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\{0\};\ \}\ \textcolor{comment}{//\ TODO(lou)}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ min\_exponent\ =\ 0;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ min\_exponent10\ =\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ max\_exponent\ =\ 0;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ max\_exponent10\ =\ 0;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ has\_infinity\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ has\_quiet\_NaN\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ has\_signaling\_NaN\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ float\_denorm\_style\ has\_denorm\ =\ denorm\_absent;\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ has\_denorm\_loss\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_a8fac0820b9590b71656d60a9d9d5566f}{infinity}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{playrho::Fixed<BT,FB>::GetInfinity}}();\ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_af93a9563847cf1c9823545f582099576}{quiet\_NaN}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{playrho::Fixed<BT,FB>::GetNaN}}();\ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_af7443be6924b874e315e342e06b68171}{signaling\_NaN}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\{0\};\ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\ \mbox{\hyperlink{classstd_1_1numeric__limits_3_01playrho_1_1Fixed_3_01BT_00_01FB_01_4_01_4_affef4a666d789ddaf711f18c95cc7eb7}{denorm\_min}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{playrho::Fixed<BT,FB>}}\{0\};\ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_iec559\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_bounded\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_modulo\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ traps\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ tinyness\_before\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ float\_round\_style\ round\_style\ =\ round\_toward\_zero;\ }
+\DoxyCodeLine{00104\ \ \ \ \ \};}
+\DoxyCodeLine{00105\ \ \ \ \ }
+\DoxyCodeLine{00106\ \}\ \textcolor{comment}{//\ namespace\ std}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_FIXEDLIMITS\_HPP}}
+
+\end{DoxyCode}

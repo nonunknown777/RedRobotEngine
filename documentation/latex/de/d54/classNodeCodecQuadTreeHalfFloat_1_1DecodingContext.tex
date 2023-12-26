@@ -1,0 +1,52 @@
+\doxysection{Node\+Codec\+Quad\+Tree\+Half\+Float\texorpdfstring{$<$}{<} Alignment \texorpdfstring{$>$}{>}\+::Decoding\+Context Class Reference}
+\hypertarget{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext}{}\label{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext}\index{NodeCodecQuadTreeHalfFloat$<$ Alignment $>$::DecodingContext@{NodeCodecQuadTreeHalfFloat$<$ Alignment $>$::DecodingContext}}
+
+
+This class decodes and decompresses quad tree nodes.  
+
+
+
+
+{\ttfamily \#include $<$Node\+Codec\+Quad\+Tree\+Half\+Float.\+h$>$}
+
+
+
+Collaboration diagram for Node\+Codec\+Quad\+Tree\+Half\+Float\texorpdfstring{$<$}{<} Alignment \texorpdfstring{$>$}{>}\+::Decoding\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{d9/d52/classNodeCodecQuadTreeHalfFloat_1_1DecodingContext__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_aa3ed16d2ad735587cc31672b2db9c6f4}\label{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_aa3ed16d2ad735587cc31672b2db9c6f4} 
+JPH\+\_\+\+INLINE {\bfseries Decoding\+Context} (const \mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Header}{Header}} \texorpdfstring{$\ast$}{*}in\+Header)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a084241df274ee41e4bb4908b8bd5c943}\label{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a084241df274ee41e4bb4908b8bd5c943} 
+{\footnotesize template$<$class Triangle\+Context , class Visitor $>$ }\\JPH\+\_\+\+INLINE void {\bfseries Walk\+Tree} (const uint8 \texorpdfstring{$\ast$}{*}in\+Buffer\+Start, const Triangle\+Context \&in\+Triangle\+Context, Visitor \&io\+Visitor)
+\begin{DoxyCompactList}\small\item\em Walk the node tree calling the Visitor\+::\+Visit\+Nodes for each node encountered and Visitor\+::\+Visit\+Triangles for each triangle encountered. \end{DoxyCompactList}\item 
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a497beb4af569cc217d1b6d8b311f89ae}\label{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a497beb4af569cc217d1b6d8b311f89ae} 
+bool {\bfseries Is\+Done\+Walking} () const
+\begin{DoxyCompactList}\small\item\em This can be used to have the visitor early out (io\+Visitor.\+Should\+Abort() returns true) and later continue again (call \doxylink{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a084241df274ee41e4bb4908b8bd5c943}{Walk\+Tree()} again) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a90be34ac29998cfd210f0c1d28956a9c}\label{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a90be34ac29998cfd210f0c1d28956a9c} 
+static uint {\bfseries s\+Triangle\+Block\+IDBits} (const \mbox{\hyperlink{classByteBuffer}{Byte\+Buffer}} \&in\+Tree)
+\begin{DoxyCompactList}\small\item\em Get the amount of bits needed to store an ID to a triangle block. \end{DoxyCompactList}\item 
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a6897b5f58d055fde378516056dec1836}\label{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a6897b5f58d055fde378516056dec1836} 
+static const void \texorpdfstring{$\ast$}{*} {\bfseries s\+Get\+Triangle\+Block\+Start} (const uint8 \texorpdfstring{$\ast$}{*}in\+Buffer\+Start, uint in\+Triangle\+Block\+ID)
+\begin{DoxyCompactList}\small\item\em Convert a triangle block ID to the start of the triangle buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$int Alignment$>$\newline
+class Node\+Codec\+Quad\+Tree\+Half\+Float$<$ Alignment $>$\+::\+Decoding\+Context}
+This class decodes and decompresses quad tree nodes. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+AABBTree/\+Node\+Codec/Node\+Codec\+Quad\+Tree\+Half\+Float.\+h\end{DoxyCompactItemize}

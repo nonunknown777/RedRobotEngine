@@ -1,0 +1,19 @@
+<map id="WheelSettingsWV" name="WheelSettingsWV">
+<area shape="rect" id="Node000001" title="WheelSettings object specifically for WheeledVehicleController." alt="" coords="476,1236,657,1433"/>
+<area shape="rect" id="Node000002" href="$d1/dc1/classWheelSettings.html" title="Base class for wheel settings, each VehicleController can implement a derived class of this." alt="" coords="345,935,570,1132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="501,1146,534,1235,529,1237,496,1147"/>
+<area shape="rect" id="Node000003" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="5,438,171,508"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,522,111,574,129,636,153,701,185,762,220,813,261,860,347,943,343,947,257,864,216,816,180,765,148,703,123,637,106,575,94,523"/>
+<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,5,149,117"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="91,132,91,439,85,439,85,132"/>
+<area shape="rect" id="Node000005" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="195,353,410,593"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="342,607,433,934,428,936,337,608"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="238,27,367,96"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="305,96,305,336,300,336,300,96"/>
+<area shape="rect" id="Node000007" href="$d9/de4/classVec3.html" title=" " alt="" coords="434,182,595,764"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="488,764,472,918,466,918,482,763"/>
+<area shape="rect" id="Node000008" href="$da/d78/classSpringSettings.html" title="Settings for a linear or angular spring." alt="" coords="625,332,788,614"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="726,614,726,684,716,757,693,828,677,861,655,892,639,904,621,908,603,909,584,916,567,927,564,923,581,911,602,904,620,902,636,899,651,888,672,858,689,826,710,756,720,683,721,614"/>
+<area shape="rect" id="Node000009" href="$db/dc4/classLinearCurve.html" title=" " alt="" coords="595,914,757,1154"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="635,1155,611,1220,606,1219,630,1153"/>
+</map>

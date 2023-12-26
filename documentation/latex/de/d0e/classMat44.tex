@@ -1,0 +1,331 @@
+\doxysection{Mat44 Class Reference}
+\hypertarget{classMat44}{}\label{classMat44}\index{Mat44@{Mat44}}
+
+
+Holds a 4x4 matrix of floats, but supports also operations on the 3x3 upper left part of the matrix.  
+
+
+
+
+{\ttfamily \#include $<$Mat44.\+h$>$}
+
+
+
+Collaboration diagram for Mat44\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{d0/dc8/classMat44__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMat44_a3aa8910fb3ed0cba6463518fe7d52328}\label{classMat44_a3aa8910fb3ed0cba6463518fe7d52328} 
+using {\bfseries Type} = Vec4\+::\+Type
+\item 
+\Hypertarget{classMat44_af683e408c0736cfaeabba6c87f6308ea}\label{classMat44_af683e408c0736cfaeabba6c87f6308ea} 
+using {\bfseries Arg\+Type} = \mbox{\hyperlink{classMat44}{Mat44\+Arg}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a9e544288786bacea509de796f7a2a224}\label{classMat44_a9e544288786bacea509de796f7a2a224} 
+JPH\+\_\+\+INLINE {\bfseries Mat44} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+C1, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+C2, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+C3, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+C4)
+\item 
+\Hypertarget{classMat44_a5448dda46fe8a36d0ae9b6168607e3cb}\label{classMat44_a5448dda46fe8a36d0ae9b6168607e3cb} 
+JPH\+\_\+\+INLINE {\bfseries Mat44} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+C1, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+C2, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+C3, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+C4)
+\item 
+\Hypertarget{classMat44_ab804bcb6a2583f7bf966d3d5a3a24161}\label{classMat44_ab804bcb6a2583f7bf966d3d5a3a24161} 
+{\bfseries Mat44} (const \mbox{\hyperlink{classMat44}{Mat44}} \&in\+M2)=default
+\item 
+\Hypertarget{classMat44_a84bfaec450f946db0a29c1a6036f4043}\label{classMat44_a84bfaec450f946db0a29c1a6036f4043} 
+\mbox{\hyperlink{classMat44}{Mat44}} \& {\bfseries operator=} (const \mbox{\hyperlink{classMat44}{Mat44}} \&in\+M2)=default
+\item 
+\Hypertarget{classMat44_af8719f405d2de3e6310ba091f79aa518}\label{classMat44_af8719f405d2de3e6310ba091f79aa518} 
+JPH\+\_\+\+INLINE {\bfseries Mat44} (Type in\+C1, Type in\+C2, Type in\+C3, Type in\+C4)
+\item 
+\Hypertarget{classMat44_a7a74f3bb8a8ee63470c5b73e9fbfd5e9}\label{classMat44_a7a74f3bb8a8ee63470c5b73e9fbfd5e9} 
+JPH\+\_\+\+INLINE float {\bfseries operator()} (uint in\+Row, uint in\+Column) const
+\begin{DoxyCompactList}\small\item\em Get float component by element index. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a608a5ec6255c02bfdfa11f4b9d66d438}\label{classMat44_a608a5ec6255c02bfdfa11f4b9d66d438} 
+JPH\+\_\+\+INLINE float \& {\bfseries operator()} (uint in\+Row, uint in\+Column)
+\item 
+\Hypertarget{classMat44_a3be30e0ae2ded68ebb5ceea9afbfe5c1}\label{classMat44_a3be30e0ae2ded68ebb5ceea9afbfe5c1} 
+JPH\+\_\+\+INLINE bool {\bfseries operator==} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+M2) const
+\begin{DoxyCompactList}\small\item\em Comparsion. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a13b1fe0d8085ba8cf9845394c1433d89}\label{classMat44_a13b1fe0d8085ba8cf9845394c1433d89} 
+JPH\+\_\+\+INLINE bool {\bfseries operator!=} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+M2) const
+\item 
+\Hypertarget{classMat44_a69e383afe2897a0179fdeb7a418d961d}\label{classMat44_a69e383afe2897a0179fdeb7a418d961d} 
+JPH\+\_\+\+INLINE bool {\bfseries Is\+Close} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+M2, float in\+Max\+Dist\+Sq=1.\+0e-\/12f) const
+\begin{DoxyCompactList}\small\item\em Test if two matrices are close. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_ae64ca2f2b40571def45845fecd505c64}\label{classMat44_ae64ca2f2b40571def45845fecd505c64} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM) const
+\begin{DoxyCompactList}\small\item\em Multiply matrix by matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a8bbaea1aac790dd55a59b25a9ef7cd16}\label{classMat44_a8bbaea1aac790dd55a59b25a9ef7cd16} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV) const
+\begin{DoxyCompactList}\small\item\em Multiply vector by matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a087d4151cced62fdce757c1895d2d834}\label{classMat44_a087d4151cced62fdce757c1895d2d834} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec4}{Vec4}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} inV) const
+\item 
+\Hypertarget{classMat44_ab599aaeab3e4b832f7f4097816650b14}\label{classMat44_ab599aaeab3e4b832f7f4097816650b14} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Multiply3x3} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV) const
+\begin{DoxyCompactList}\small\item\em Multiply vector by only 3x3 part of the matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a3ed66bc4c5e8e010657bd5bb109f1406}\label{classMat44_a3ed66bc4c5e8e010657bd5bb109f1406} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Multiply3x3\+Transposed} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV) const
+\begin{DoxyCompactList}\small\item\em Multiply vector by only 3x3 part of the transpose of the matrix ( $result = this^T \: inV$) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a03490bf0526b79cc14125d9e6500576e}\label{classMat44_a03490bf0526b79cc14125d9e6500576e} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Multiply3x3} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM) const
+\begin{DoxyCompactList}\small\item\em Multiply 3x3 matrix by 3x3 matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a1c302e1f10c6c5a233aed4a540e0f598}\label{classMat44_a1c302e1f10c6c5a233aed4a540e0f598} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Multiply3x3\+Left\+Transposed} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM) const
+\begin{DoxyCompactList}\small\item\em Multiply transpose of 3x3 matrix by 3x3 matrix ( $result = this^T \: inM$) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a595ae3cf26d9fb87761e20b6b35d3d10}\label{classMat44_a595ae3cf26d9fb87761e20b6b35d3d10} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Multiply3x3\+Right\+Transposed} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM) const
+\begin{DoxyCompactList}\small\item\em Multiply 3x3 matrix by the transpose of a 3x3 matrix ( $result = this \: inM^T$) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_adde2d0df064c3457190cdc6fb0da5dc3}\label{classMat44_adde2d0df064c3457190cdc6fb0da5dc3} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (float inV) const
+\begin{DoxyCompactList}\small\item\em Multiply matrix with float. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a2a3d5b10d49ac1eed4eae855a0fd25d9}\label{classMat44_a2a3d5b10d49ac1eed4eae855a0fd25d9} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}=} (float inV)
+\begin{DoxyCompactList}\small\item\em Multiply matrix with float. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_ac0c3181759450b3498b5dc53967f803d}\label{classMat44_ac0c3181759450b3498b5dc53967f803d} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries operator+} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM) const
+\begin{DoxyCompactList}\small\item\em Per element addition of matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a22b266ee0c8cb215e96edaebc50d2cbf}\label{classMat44_a22b266ee0c8cb215e96edaebc50d2cbf} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries operator-\/} () const
+\begin{DoxyCompactList}\small\item\em Negate. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_acb281c6516de9bfd045aa029f95ba0d0}\label{classMat44_acb281c6516de9bfd045aa029f95ba0d0} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries operator-\/} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM) const
+\begin{DoxyCompactList}\small\item\em Per element subtraction of matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a60273e38c2e5071066f14905698ef994}\label{classMat44_a60273e38c2e5071066f14905698ef994} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} \& {\bfseries operator+=} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM)
+\begin{DoxyCompactList}\small\item\em Per element addition of matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_aa71942f9a684cf2e0e55f8c9ba8f5b99}\label{classMat44_aa71942f9a684cf2e0e55f8c9ba8f5b99} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+AxisX} () const
+\begin{DoxyCompactList}\small\item\em Access to the columns. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a04aad46839683a6d3d82a400c3bbe576}\label{classMat44_a04aad46839683a6d3d82a400c3bbe576} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+AxisX} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\item 
+\Hypertarget{classMat44_a03967bba6efbe4a03e6f1b888e1436a7}\label{classMat44_a03967bba6efbe4a03e6f1b888e1436a7} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+AxisY} () const
+\item 
+\Hypertarget{classMat44_ada218e0e59422cb1b0b38a534b7379b8}\label{classMat44_ada218e0e59422cb1b0b38a534b7379b8} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+AxisY} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\item 
+\Hypertarget{classMat44_a19fc28cb3d425e8b4f462c939bc595fa}\label{classMat44_a19fc28cb3d425e8b4f462c939bc595fa} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+AxisZ} () const
+\item 
+\Hypertarget{classMat44_a469e83f0fb0c2975b4506c682721c3e3}\label{classMat44_a469e83f0fb0c2975b4506c682721c3e3} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+AxisZ} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\item 
+\Hypertarget{classMat44_abd89da8ac7b4e4c5b87c02caabbf10b8}\label{classMat44_abd89da8ac7b4e4c5b87c02caabbf10b8} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Translation} () const
+\item 
+\Hypertarget{classMat44_ae89e485f03d9a5dbaf317c057f4eac30}\label{classMat44_ae89e485f03d9a5dbaf317c057f4eac30} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+Translation} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\item 
+\Hypertarget{classMat44_a6eb3cbc676f2ce57f63bcee9d0b40171}\label{classMat44_a6eb3cbc676f2ce57f63bcee9d0b40171} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Diagonal3} () const
+\item 
+\Hypertarget{classMat44_ab385ba1f663f9de2137d816c0fc4fb3f}\label{classMat44_ab385ba1f663f9de2137d816c0fc4fb3f} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+Diagonal3} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\item 
+\Hypertarget{classMat44_aefb86266992d843e5de8e53cdbc5bdc6}\label{classMat44_aefb86266992d843e5de8e53cdbc5bdc6} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec4}{Vec4}} {\bfseries Get\+Diagonal4} () const
+\item 
+\Hypertarget{classMat44_a335f4cec86c172f07bd0667909a54a7e}\label{classMat44_a335f4cec86c172f07bd0667909a54a7e} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+Diagonal4} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} inV)
+\item 
+\Hypertarget{classMat44_a4d34298d2040673cfd9b86c5cb83a5b9}\label{classMat44_a4d34298d2040673cfd9b86c5cb83a5b9} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Column3} (uint in\+Col) const
+\item 
+\Hypertarget{classMat44_a1659c59725a85b2bb991e333381c87fe}\label{classMat44_a1659c59725a85b2bb991e333381c87fe} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+Column3} (uint in\+Col, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\item 
+\Hypertarget{classMat44_a97c469ed78611039f85415381a67f312}\label{classMat44_a97c469ed78611039f85415381a67f312} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec4}{Vec4}} {\bfseries Get\+Column4} (uint in\+Col) const
+\item 
+\Hypertarget{classMat44_ace29aeaafa5bbff8a159105fee78e2d2}\label{classMat44_ace29aeaafa5bbff8a159105fee78e2d2} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+Column4} (uint in\+Col, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} inV)
+\item 
+\Hypertarget{classMat44_a1f51050b35215131c7da9a7de78a3e1e}\label{classMat44_a1f51050b35215131c7da9a7de78a3e1e} 
+JPH\+\_\+\+INLINE void {\bfseries Store\+Float4x4} (\mbox{\hyperlink{classFloat4}{Float4}} \texorpdfstring{$\ast$}{*}outV) const
+\begin{DoxyCompactList}\small\item\em Store matrix to memory. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a388723db2d35de31efcee6ff0cfb711d}\label{classMat44_a388723db2d35de31efcee6ff0cfb711d} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Transposed} () const
+\begin{DoxyCompactList}\small\item\em Transpose matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a29830ba9d80d31e00d30abcc0c099e7c}\label{classMat44_a29830ba9d80d31e00d30abcc0c099e7c} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Transposed3x3} () const
+\begin{DoxyCompactList}\small\item\em Transpose 3x3 subpart of matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_aae48032b0b6d27778617b8546135b057}\label{classMat44_aae48032b0b6d27778617b8546135b057} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Inversed} () const
+\begin{DoxyCompactList}\small\item\em Inverse 4x4 matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_af962ad0ed20cb6112f8249cb9573c233}\label{classMat44_af962ad0ed20cb6112f8249cb9573c233} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Inversed\+Rotation\+Translation} () const
+\begin{DoxyCompactList}\small\item\em Inverse 4x4 matrix when it only contains rotation and translation. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a2b5ba5e6c68b059ae61a1bbc1b7fbb87}\label{classMat44_a2b5ba5e6c68b059ae61a1bbc1b7fbb87} 
+JPH\+\_\+\+INLINE float {\bfseries Get\+Determinant3x3} () const
+\begin{DoxyCompactList}\small\item\em Get the determinant of a 3x3 matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a3b9c1e6d186b9ad59e81255c64049f22}\label{classMat44_a3b9c1e6d186b9ad59e81255c64049f22} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Adjointed3x3} () const
+\begin{DoxyCompactList}\small\item\em Get the adjoint of a 3x3 matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_ad9f5df546296a7bdc816e6be5627926b}\label{classMat44_ad9f5df546296a7bdc816e6be5627926b} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Inversed3x3} () const
+\begin{DoxyCompactList}\small\item\em Inverse 3x3 matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a814c04077820ea83f444ccc5ae48299f}\label{classMat44_a814c04077820ea83f444ccc5ae48299f} 
+JPH\+\_\+\+INLINE bool {\bfseries Set\+Inversed3x3} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM)
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$\ast$}{*}this = in\+M.\+Inversed3x3(), returns false if the matrix is singular in which case \texorpdfstring{$\ast$}{*}this is unchanged \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a4cc37dcc7b9be4ab8f8e94bf49e06204}\label{classMat44_a4cc37dcc7b9be4ab8f8e94bf49e06204} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Get\+Rotation} () const
+\begin{DoxyCompactList}\small\item\em Get rotation part only (note\+: retains the first 3 values from the bottom row) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a564ee35616cca9a01624760e58bfb9ca}\label{classMat44_a564ee35616cca9a01624760e58bfb9ca} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Get\+Rotation\+Safe} () const
+\begin{DoxyCompactList}\small\item\em Get rotation part only (note\+: also clears the bottom row) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_abd5dc78238403195cbd0cde87f40af49}\label{classMat44_abd5dc78238403195cbd0cde87f40af49} 
+JPH\+\_\+\+INLINE void {\bfseries Set\+Rotation} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Rotation)
+\begin{DoxyCompactList}\small\item\em Updates the rotation part of this matrix (the first 3 columns) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a1e977c53b5f6a0c03f8da33ebef2c05a}\label{classMat44_a1e977c53b5f6a0c03f8da33ebef2c05a} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classQuat}{Quat}} {\bfseries Get\+Quaternion} () const
+\begin{DoxyCompactList}\small\item\em Convert to quaternion. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a2bb16051fdd324325ac9be5e5e7619b7}\label{classMat44_a2bb16051fdd324325ac9be5e5e7619b7} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Get\+Direction\+Preserving\+Matrix} () const
+\begin{DoxyCompactList}\small\item\em Get matrix that transforms a direction with the same transform as this matrix (length is not preserved) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a16f19b423139db52503bb8d6526d947f}\label{classMat44_a16f19b423139db52503bb8d6526d947f} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Pre\+Translated} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Translation) const
+\begin{DoxyCompactList}\small\item\em Pre multiply by translation matrix\+: result = this \texorpdfstring{$\ast$}{*} Mat44\+::s\+Translation(in\+Translation) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a16b90363d2e120bd570c4200e29f5ba6}\label{classMat44_a16b90363d2e120bd570c4200e29f5ba6} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Post\+Translated} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Translation) const
+\begin{DoxyCompactList}\small\item\em Post multiply by translation matrix\+: result = Mat44\+::s\+Translation(in\+Translation) \texorpdfstring{$\ast$}{*} this (i.\+e. add in\+Translation to the 4-\/th column) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_af9c9948eced621a54424f05c397824dd}\label{classMat44_af9c9948eced621a54424f05c397824dd} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Pre\+Scaled} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\begin{DoxyCompactList}\small\item\em Scale a matrix\+: result = this \texorpdfstring{$\ast$}{*} Mat44\+::s\+Scale(in\+Scale) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a6503ccd1384b6681d191c327961fbb6d}\label{classMat44_a6503ccd1384b6681d191c327961fbb6d} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Post\+Scaled} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\begin{DoxyCompactList}\small\item\em Scale a matrix\+: result = Mat44\+::s\+Scale(in\+Scale) \texorpdfstring{$\ast$}{*} this. \end{DoxyCompactList}\item 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classMat44_aa11f571efdce00289f87a65317fbdd58}{Decompose}} (\mbox{\hyperlink{classVec3}{Vec3}} \&out\+Scale) const
+\item 
+\Hypertarget{classMat44_a3445a728646fe8ad80381a0e55ea2289}\label{classMat44_a3445a728646fe8ad80381a0e55ea2289} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries To\+Mat44} () const
+\begin{DoxyCompactList}\small\item\em In single precision mode just return the matrix itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMat44_a1e3a8da1cf3a631ffaf478ca3f6bb1ed}\label{classMat44_a1e3a8da1cf3a631ffaf478ca3f6bb1ed} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Zero} ()
+\begin{DoxyCompactList}\small\item\em Zero matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a1b8c82590f5034e8c7f35157fdfd944f}\label{classMat44_a1b8c82590f5034e8c7f35157fdfd944f} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Identity} ()
+\begin{DoxyCompactList}\small\item\em Identity matrix. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a5c6898814660114482bbfc4908c3ad37}\label{classMat44_a5c6898814660114482bbfc4908c3ad37} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+NaN} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{classMatrix}{Matrix} filled with NaN\textquotesingle{}s. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a3e2a056f901661fd715528c325df455d}\label{classMat44_a3e2a056f901661fd715528c325df455d} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Load\+Float4x4} (const \mbox{\hyperlink{classFloat4}{Float4}} \texorpdfstring{$\ast$}{*}inV)
+\begin{DoxyCompactList}\small\item\em Load 16 floats from memory. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a8bcbeea9029c5251ff4ea9bd4d518f4c}\label{classMat44_a8bcbeea9029c5251ff4ea9bd4d518f4c} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Load\+Float4x4\+Aligned} (const \mbox{\hyperlink{classFloat4}{Float4}} \texorpdfstring{$\ast$}{*}inV)
+\begin{DoxyCompactList}\small\item\em Load 16 floats from memory, 16 bytes aligned. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_af243335b6d6acec2cf71d4cdc79bdff4}\label{classMat44_af243335b6d6acec2cf71d4cdc79bdff4} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+RotationX} (float inX)
+\begin{DoxyCompactList}\small\item\em Rotate around X, Y or Z axis (angle in radians) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_afc881fca3e2d653815f0e7742ad4dce8}\label{classMat44_afc881fca3e2d653815f0e7742ad4dce8} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+RotationY} (float inY)
+\item 
+\Hypertarget{classMat44_a3d393e34a43a22b0fbd2aba60f364434}\label{classMat44_a3d393e34a43a22b0fbd2aba60f364434} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+RotationZ} (float inZ)
+\item 
+\Hypertarget{classMat44_ac3109f2d950061c0b4de57e76a132634}\label{classMat44_ac3109f2d950061c0b4de57e76a132634} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Rotation} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis, float in\+Angle)
+\begin{DoxyCompactList}\small\item\em Rotate around arbitrary axis. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a57c9e6198fcf68a50cb33609fac0980a}\label{classMat44_a57c9e6198fcf68a50cb33609fac0980a} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Rotation} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Quat)
+\begin{DoxyCompactList}\small\item\em Rotate from quaternion. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a8cc7184902ce670d0822a28a8906df52}\label{classMat44_a8cc7184902ce670d0822a28a8906df52} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Translation} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Get matrix that translates. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_aba5427f45393b40263d52ec614cfa985}\label{classMat44_aba5427f45393b40263d52ec614cfa985} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Rotation\+Translation} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} inR, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} inT)
+\begin{DoxyCompactList}\small\item\em Get matrix that rotates and translates. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_ac8be820a7eeb44bf570abb8dc01f4c59}\label{classMat44_ac8be820a7eeb44bf570abb8dc01f4c59} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Inverse\+Rotation\+Translation} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} inR, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} inT)
+\begin{DoxyCompactList}\small\item\em Get inverse matrix of s\+Rotation\+Translation. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a858ecd5c9c124039f5c7adab5bcf5041}\label{classMat44_a858ecd5c9c124039f5c7adab5bcf5041} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Scale} (float in\+Scale)
+\begin{DoxyCompactList}\small\item\em Get matrix that scales uniformly. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a6059fd2921e0dc33405fe05a2d3aaa76}\label{classMat44_a6059fd2921e0dc33405fe05a2d3aaa76} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Scale} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Get matrix that scales (produces a matrix with (inV, 1) on its diagonal) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a44ee960223f2270ce7ea2840418e3c72}\label{classMat44_a44ee960223f2270ce7ea2840418e3c72} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Outer\+Product} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Get outer product of inV and in\+V2 (equivalent to $inV1 \otimes inV2$) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a23d5a6de1a0058d380a0bf42d263c659}\label{classMat44_a23d5a6de1a0058d380a0bf42d263c659} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Cross\+Product} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Get matrix that represents a cross product $A \times B = \text{sCrossProduct}(A) \: B$. \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_adca3adc84118200afa5f4203164d241f}\label{classMat44_adca3adc84118200afa5f4203164d241f} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Quat\+Left\+Multiply} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} inQ)
+\begin{DoxyCompactList}\small\item\em Returns matrix ML so that $ML(q) \: p = q \: p$ (where p and q are quaternions) \end{DoxyCompactList}\item 
+\Hypertarget{classMat44_a2b688da0262b9096bfac9ddfa2c27e52}\label{classMat44_a2b688da0262b9096bfac9ddfa2c27e52} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries s\+Quat\+Right\+Multiply} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} inQ)
+\begin{DoxyCompactList}\small\item\em Returns matrix MR so that $MR(q) \: p = p \: q$ (where p and q are quaternions) \end{DoxyCompactList}\item 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classMat44_a48f32e1e7f27b3eeaa8913d53b2c808f}{s\+Look\+At}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Pos, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Target, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Up)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMat44_afe860f899612b75ff8be07c018614c5b}\label{classMat44_afe860f899612b75ff8be07c018614c5b} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classMat44}{Mat44}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (float inV, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM)
+\item 
+\Hypertarget{classMat44_abc0855ee1ce37289515c5b55dfeac1a6}\label{classMat44_abc0855ee1ce37289515c5b55dfeac1a6} 
+ostream \& {\bfseries operator$<$$<$} (ostream \&in\+Stream, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} inM)
+\begin{DoxyCompactList}\small\item\em To String. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Holds a 4x4 matrix of floats, but supports also operations on the 3x3 upper left part of the matrix. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}\label{classMat44_ad95a3b3f36bf3216574383e3dfb927ed} 
+\index{Mat44@{Mat44}!Mat44@{Mat44}}
+\index{Mat44@{Mat44}!Mat44@{Mat44}}
+\doxysubsubsection{\texorpdfstring{Mat44()}{Mat44()}}
+{\footnotesize\ttfamily Mat44\+::\+Mat44 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Constructor. 
+
+Intentionally not initialized for performance reasons 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMat44_aa11f571efdce00289f87a65317fbdd58}\label{classMat44_aa11f571efdce00289f87a65317fbdd58} 
+\index{Mat44@{Mat44}!Decompose@{Decompose}}
+\index{Decompose@{Decompose}!Mat44@{Mat44}}
+\doxysubsubsection{\texorpdfstring{Decompose()}{Decompose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMat44}{Mat44}} Mat44\+::\+Decompose (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+Scale }\end{DoxyParamCaption}) const}
+
+Decompose a matrix into a rotation \& translation part and into a scale part so that\+: this = return\+\_\+value \texorpdfstring{$\ast$}{*} Mat44\+::s\+Scale(out\+Scale). This equation only holds when the matrix is orthogonal, if it is not the returned matrix will be made orthogonal using the modified Gram-\/\+Schmidt algorithm (see\+: \href{https://en.wikipedia.org/wiki/Gram\%E2\%80\%93Schmidt_process}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Gram\%\+E2\%80\%93\+Schmidt\+\_\+process}}) \Hypertarget{classMat44_a48f32e1e7f27b3eeaa8913d53b2c808f}\label{classMat44_a48f32e1e7f27b3eeaa8913d53b2c808f} 
+\index{Mat44@{Mat44}!sLookAt@{sLookAt}}
+\index{sLookAt@{sLookAt}!Mat44@{Mat44}}
+\doxysubsubsection{\texorpdfstring{sLookAt()}{sLookAt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMat44}{Mat44}} Mat44\+::s\+Look\+At (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Pos,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Target,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Up }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Returns a look at matrix that transforms from world space to view space 
+\begin{DoxyParams}{Parameters}
+{\em in\+Pos} & Position of the camera \\
+\hline
+{\em in\+Target} & Target of the camera \\
+\hline
+{\em in\+Up} & Up vector \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Math/Mat44.\+h\item 
+includes/jolt/\+Math/Mat44.\+inl\end{DoxyCompactItemize}

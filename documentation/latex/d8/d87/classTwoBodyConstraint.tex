@@ -1,0 +1,257 @@
+\doxysection{Two\+Body\+Constraint Class Reference}
+\hypertarget{classTwoBodyConstraint}{}\label{classTwoBodyConstraint}\index{TwoBodyConstraint@{TwoBodyConstraint}}
+
+
+Base class for all constraints that involve 2 bodies. Body1 is usually considered the parent, Body2 the child.  
+
+
+
+
+{\ttfamily \#include $<$Two\+Body\+Constraint.\+h$>$}
+
+
+
+Inheritance diagram for Two\+Body\+Constraint\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d47/classTwoBodyConstraint__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Two\+Body\+Constraint\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d2/df3/classTwoBodyConstraint__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTwoBodyConstraint_a8b370c3d2689b9ae1270b1dfc8f9c290}\label{classTwoBodyConstraint_a8b370c3d2689b9ae1270b1dfc8f9c290} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Two\+Body\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classTwoBodyConstraintSettings}{Two\+Body\+Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual EConstraint\+Type \mbox{\hyperlink{classTwoBodyConstraint_a25655ebd463476c1ada660d3a292d3c7}{Get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of a constraint. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classTwoBodyConstraint_a9ec4e14ada31bf5172141c2d50663e76}{Is\+Active}} () const override
+\begin{DoxyCompactList}\small\item\em Solver interface. \end{DoxyCompactList}\item 
+\Hypertarget{classTwoBodyConstraint_ae09dc01720e01f71e480f2ce3da32918}\label{classTwoBodyConstraint_ae09dc01720e01f71e480f2ce3da32918} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body1} () const
+\begin{DoxyCompactList}\small\item\em Access to the connected bodies. \end{DoxyCompactList}\item 
+\Hypertarget{classTwoBodyConstraint_a9ede1df27455ff0177a7a4501bf3342a}\label{classTwoBodyConstraint_a9ede1df27455ff0177a7a4501bf3342a} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body2} () const
+\item 
+virtual \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classTwoBodyConstraint_a0edd748869643b1c904a7bc1314dad7a}{Get\+Constraint\+To\+Body1\+Matrix}} () const =0
+\begin{DoxyCompactList}\small\item\em Calculates the transform that transforms from constraint space to body 1 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classTwoBodyConstraint_a0966503073a315b6087f10208e8a61ff}{Get\+Constraint\+To\+Body2\+Matrix}} () const =0
+\begin{DoxyCompactList}\small\item\em Calculates the transform that transforms from constraint space to body 2 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTwoBodyConstraint_afca1a46125600fea6ecd15a38ed45790}{Build\+Islands}} (uint32 in\+Constraint\+Index, \mbox{\hyperlink{classIslandBuilder}{Island\+Builder}} \&io\+Builder, \mbox{\hyperlink{classBodyManager}{Body\+Manager}} \&in\+Body\+Manager) override
+\begin{DoxyCompactList}\small\item\em Link bodies that are connected by this constraint in the island builder. \end{DoxyCompactList}\item 
+virtual uint \mbox{\hyperlink{classTwoBodyConstraint_a08db9f012da401e48d5ce4bf404ff6d4}{Build\+Island\+Splits}} (\mbox{\hyperlink{classLargeIslandSplitter}{Large\+Island\+Splitter}} \&io\+Splitter) const override
+\begin{DoxyCompactList}\small\item\em Link bodies that are connected by this constraint in the same split. Returns the split index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classConstraint}{Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Constraint} (const \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Constraint} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+virtual EConstraint\+Sub\+Type \mbox{\hyperlink{classConstraint_a632a8161ad49c443c2e3a8b600a730a1}{Get\+Sub\+Type}} () const =0
+\begin{DoxyCompactList}\small\item\em Get the sub type of a constraint. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraint_a6c75250d651da3854eda9e929193e585}{Get\+Constraint\+Priority}} () const
+\item 
+void {\bfseries Set\+Constraint\+Priority} (uint32 in\+Priority)
+\item 
+void {\bfseries Set\+Num\+Velocity\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Velocity\+Steps\+Override} () const
+\item 
+void {\bfseries Set\+Num\+Position\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Position\+Steps\+Override} () const
+\item 
+void \mbox{\hyperlink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Set\+Enabled}} (bool in\+Enabled)
+\item 
+bool {\bfseries Get\+Enabled} () const
+\begin{DoxyCompactList}\small\item\em Test if a constraint is enabled. \end{DoxyCompactList}\item 
+uint64 {\bfseries Get\+User\+Data} () const
+\begin{DoxyCompactList}\small\item\em Access to the user data, can be used for anything by the application. \end{DoxyCompactList}\item 
+void {\bfseries Set\+User\+Data} (uint64 in\+User\+Data)
+\item 
+virtual void \mbox{\hyperlink{classConstraint_a3072411d2c9da10356f2087cdc02ec70}{Notify\+Shape\+Changed}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Delta\+COM)=0
+\item 
+virtual void \mbox{\hyperlink{classConstraint_aea8609ddde798f001409dd7c1a5c8b82}{Save\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classConstraint_aac3d4c1948f1062a8d7c511eddc92e7b}{Restore\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ \mbox{\hyperlink{classConstraint_a2cb32f0fbbc03050fd09c975e01277d2}{Get\+Constraint\+Settings}} () const =0
+\begin{DoxyCompactList}\small\item\em Debug function to convert a constraint to its settings, note that this will not save to which bodies the constraint is connected to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Setup\+Velocity\+Constraint} (float in\+Delta\+Time)=0
+\item 
+virtual void {\bfseries Warm\+Start\+Velocity\+Constraint} (float in\+Warm\+Start\+Impulse\+Ratio)=0
+\item 
+virtual bool {\bfseries Solve\+Velocity\+Constraint} (float in\+Delta\+Time)=0
+\item 
+virtual bool {\bfseries Solve\+Position\+Constraint} (float in\+Delta\+Time, float in\+Baumgarte)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTwoBodyConstraint_af27aa0e2707d6b96ecbdeb8da8068ea8}\label{classTwoBodyConstraint_af27aa0e2707d6b96ecbdeb8da8068ea8} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body1}
+\begin{DoxyCompactList}\small\item\em The two bodies involved. \end{DoxyCompactList}\item 
+\Hypertarget{classTwoBodyConstraint_a180665fea57c98679a6a25a89057ed06}\label{classTwoBodyConstraint_a180665fea57c98679a6a25a89057ed06} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body2}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classConstraint}{Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries To\+Constraint\+Settings} (\mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} \&out\+Settings) const
+\begin{DoxyCompactList}\small\item\em Helper function to copy settings back to constraint settings for this base class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for all constraints that involve 2 bodies. Body1 is usually considered the parent, Body2 the child. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTwoBodyConstraint_afca1a46125600fea6ecd15a38ed45790}\label{classTwoBodyConstraint_afca1a46125600fea6ecd15a38ed45790} 
+\index{TwoBodyConstraint@{TwoBodyConstraint}!BuildIslands@{BuildIslands}}
+\index{BuildIslands@{BuildIslands}!TwoBodyConstraint@{TwoBodyConstraint}}
+\doxysubsubsection{\texorpdfstring{BuildIslands()}{BuildIslands()}}
+{\footnotesize\ttfamily virtual void Two\+Body\+Constraint\+::\+Build\+Islands (\begin{DoxyParamCaption}\item[{uint32}]{in\+Constraint\+Index,  }\item[{\mbox{\hyperlink{classIslandBuilder}{Island\+Builder}} \&}]{io\+Builder,  }\item[{\mbox{\hyperlink{classBodyManager}{Body\+Manager}} \&}]{in\+Body\+Manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Link bodies that are connected by this constraint in the island builder. 
+
+
+
+Implements \mbox{\hyperlink{classConstraint_af62388f6f234f8cd7d24af34e49180fd}{Constraint}}.
+
+\Hypertarget{classTwoBodyConstraint_a08db9f012da401e48d5ce4bf404ff6d4}\label{classTwoBodyConstraint_a08db9f012da401e48d5ce4bf404ff6d4} 
+\index{TwoBodyConstraint@{TwoBodyConstraint}!BuildIslandSplits@{BuildIslandSplits}}
+\index{BuildIslandSplits@{BuildIslandSplits}!TwoBodyConstraint@{TwoBodyConstraint}}
+\doxysubsubsection{\texorpdfstring{BuildIslandSplits()}{BuildIslandSplits()}}
+{\footnotesize\ttfamily virtual uint Two\+Body\+Constraint\+::\+Build\+Island\+Splits (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classLargeIslandSplitter}{Large\+Island\+Splitter}} \&}]{io\+Splitter }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Link bodies that are connected by this constraint in the same split. Returns the split index. 
+
+
+
+Implements \mbox{\hyperlink{classConstraint_a6388265dbe8e1a92980d796006879798}{Constraint}}.
+
+\Hypertarget{classTwoBodyConstraint_a0edd748869643b1c904a7bc1314dad7a}\label{classTwoBodyConstraint_a0edd748869643b1c904a7bc1314dad7a} 
+\index{TwoBodyConstraint@{TwoBodyConstraint}!GetConstraintToBody1Matrix@{GetConstraintToBody1Matrix}}
+\index{GetConstraintToBody1Matrix@{GetConstraintToBody1Matrix}!TwoBodyConstraint@{TwoBodyConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintToBody1Matrix()}{GetConstraintToBody1Matrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMat44}{Mat44}} Two\+Body\+Constraint\+::\+Get\+Constraint\+To\+Body1\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Calculates the transform that transforms from constraint space to body 1 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. 
+
+
+
+Implemented in \mbox{\hyperlink{classConeConstraint_a3d393e35ae76fed93e76f0692d13089e}{Cone\+Constraint}}, \mbox{\hyperlink{classDistanceConstraint_affc0247d5a56e7448372aea456e0bd04}{Distance\+Constraint}}, \mbox{\hyperlink{classFixedConstraint_a852ac2a355651a1ba586554d1551bcbc}{Fixed\+Constraint}}, \mbox{\hyperlink{classGearConstraint_a054dd58e67669f0fc70979d73421c8d0}{Gear\+Constraint}}, \mbox{\hyperlink{classHingeConstraint_a7bf9e8126f42f136502ca0e4b4d08453}{Hinge\+Constraint}}, \mbox{\hyperlink{classPathConstraint_a7fd4ca9762f295af3146258606a6e22a}{Path\+Constraint}}, \mbox{\hyperlink{classPointConstraint_a11b6acce9456cc5d0c2f34ecaf224f30}{Point\+Constraint}}, \mbox{\hyperlink{classPulleyConstraint_a8afedbd3de6a5484fda155337ee04b64}{Pulley\+Constraint}}, \mbox{\hyperlink{classRackAndPinionConstraint_a74670e5bd4227428b08e3937a63badf7}{Rack\+And\+Pinion\+Constraint}}, \mbox{\hyperlink{classSixDOFConstraint_a93b7ceef3c7017e4a1a0bc53e29c93d8}{Six\+DOFConstraint}}, \mbox{\hyperlink{classSliderConstraint_a2847eab86d86f30e86bea7515d56bae7}{Slider\+Constraint}}, and \mbox{\hyperlink{classSwingTwistConstraint_ab89ec6165c3789f22964700f21695c32}{Swing\+Twist\+Constraint}}.
+
+\Hypertarget{classTwoBodyConstraint_a0966503073a315b6087f10208e8a61ff}\label{classTwoBodyConstraint_a0966503073a315b6087f10208e8a61ff} 
+\index{TwoBodyConstraint@{TwoBodyConstraint}!GetConstraintToBody2Matrix@{GetConstraintToBody2Matrix}}
+\index{GetConstraintToBody2Matrix@{GetConstraintToBody2Matrix}!TwoBodyConstraint@{TwoBodyConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintToBody2Matrix()}{GetConstraintToBody2Matrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMat44}{Mat44}} Two\+Body\+Constraint\+::\+Get\+Constraint\+To\+Body2\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Calculates the transform that transforms from constraint space to body 2 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. 
+
+
+
+Implemented in \mbox{\hyperlink{classConeConstraint_ae4d49e498d4c86a9bcbbff3a3defa31b}{Cone\+Constraint}}, \mbox{\hyperlink{classDistanceConstraint_a32c46e7b4a137df6a68f9bd7752ee0cc}{Distance\+Constraint}}, \mbox{\hyperlink{classFixedConstraint_a7782ad778c9f110835e6be7a299bfcc7}{Fixed\+Constraint}}, \mbox{\hyperlink{classGearConstraint_a67f9c8ff5727f222ef564a508a98e78f}{Gear\+Constraint}}, \mbox{\hyperlink{classHingeConstraint_a027d53947fee240570951ee64ca79451}{Hinge\+Constraint}}, \mbox{\hyperlink{classPathConstraint_aefa354c9926217e88db8741736121f20}{Path\+Constraint}}, \mbox{\hyperlink{classPointConstraint_a03ec92ce018cfae4900a11ac65032988}{Point\+Constraint}}, \mbox{\hyperlink{classPulleyConstraint_aab9c03ae617d8c20d3844f499b33463f}{Pulley\+Constraint}}, \mbox{\hyperlink{classRackAndPinionConstraint_a538bb76ff438211d2edc9ddbf8ac2ce1}{Rack\+And\+Pinion\+Constraint}}, \mbox{\hyperlink{classSixDOFConstraint_a92d86c092002bec9d22d529f8616aa29}{Six\+DOFConstraint}}, \mbox{\hyperlink{classSliderConstraint_a37c4d14c36a7ab4eb0f8a7179fc4e0cd}{Slider\+Constraint}}, and \mbox{\hyperlink{classSwingTwistConstraint_a2ada7d7eadcc3f9d235cb1d8c75f3e4a}{Swing\+Twist\+Constraint}}.
+
+\Hypertarget{classTwoBodyConstraint_a25655ebd463476c1ada660d3a292d3c7}\label{classTwoBodyConstraint_a25655ebd463476c1ada660d3a292d3c7} 
+\index{TwoBodyConstraint@{TwoBodyConstraint}!GetType@{GetType}}
+\index{GetType@{GetType}!TwoBodyConstraint@{TwoBodyConstraint}}
+\doxysubsubsection{\texorpdfstring{GetType()}{GetType()}}
+{\footnotesize\ttfamily virtual EConstraint\+Type Two\+Body\+Constraint\+::\+Get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the type of a constraint. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraint_a6e290088c6049b1f1d1fb26df96dce3a}{Constraint}}.
+
+\Hypertarget{classTwoBodyConstraint_a9ec4e14ada31bf5172141c2d50663e76}\label{classTwoBodyConstraint_a9ec4e14ada31bf5172141c2d50663e76} 
+\index{TwoBodyConstraint@{TwoBodyConstraint}!IsActive@{IsActive}}
+\index{IsActive@{IsActive}!TwoBodyConstraint@{TwoBodyConstraint}}
+\doxysubsubsection{\texorpdfstring{IsActive()}{IsActive()}}
+{\footnotesize\ttfamily virtual bool Two\+Body\+Constraint\+::\+Is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Solver interface. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classPathConstraint_a5f6d3c7d860ee5c715f8fef818fd4f1f}{Path\+Constraint}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Two\+Body\+Constraint.\+h\end{DoxyCompactItemize}

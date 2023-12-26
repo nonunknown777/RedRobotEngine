@@ -1,0 +1,164 @@
+\doxysection{Eigen\+Value\+Symmetric.\+h}
+\hypertarget{EigenValueSymmetric_8h_source}{}\label{EigenValueSymmetric_8h_source}\index{includes/jolt/Math/EigenValueSymmetric.h@{includes/jolt/Math/EigenValueSymmetric.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/FPFlushDenormals.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Vector,\ \textcolor{keyword}{class}\ Matrix>}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{bool}\ EigenValueSymmetric(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMatrix}{Matrix}}\ \&inMatrix,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ \&outEigVec,\ \mbox{\hyperlink{classVector}{Vector}}\ \&outEigVal)}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ This\ algorithm\ works\ with\ very\ small\ numbers\ and\ can\ trigger\ invalid\ float\ exceptions\ when\ not\ flushing\ denormals}}
+\DoxyCodeLine{00032\ \ \ \ \ FPFlushDenormals\ flush\_denormals;}
+\DoxyCodeLine{00033\ \ \ \ \ (void)flush\_denormals;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Maximum\ number\ of\ sweeps\ to\ make}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ cMaxSweeps\ =\ 50;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Get\ problem\ dimension}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ uint\ n\ =\ inMatrix.\mbox{\hyperlink{classMatrix_a295baf4af956351b6bf05548e16887ee}{GetRows}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ the\ dimensions\ are\ right}}
+\DoxyCodeLine{00042\ \ \ \ \ JPH\_ASSERT(inMatrix.\mbox{\hyperlink{classMatrix_a295baf4af956351b6bf05548e16887ee}{GetRows}}()\ ==\ n);}
+\DoxyCodeLine{00043\ \ \ \ \ JPH\_ASSERT(inMatrix.GetCols()\ ==\ n);}
+\DoxyCodeLine{00044\ \ \ \ \ JPH\_ASSERT(outEigVec.\mbox{\hyperlink{classMatrix_a295baf4af956351b6bf05548e16887ee}{GetRows}}()\ ==\ n);}
+\DoxyCodeLine{00045\ \ \ \ \ JPH\_ASSERT(outEigVec.GetCols()\ ==\ n);}
+\DoxyCodeLine{00046\ \ \ \ \ JPH\_ASSERT(outEigVal.\mbox{\hyperlink{classVector_a8c1387fdaa60b9569f5e9acb1363b7fb}{GetRows}}()\ ==\ n);}
+\DoxyCodeLine{00047\ \ \ \ \ JPH\_ASSERT(outEigVec.\mbox{\hyperlink{classMatrix_a35353d8c2a5a249e5368e654bca5fc79}{IsIdentity}}());}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ matrix\ in\ a\ so\ we\ can\ mess\ with\ it}}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ a\ =\ inMatrix;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}\ b,\ z;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ ip\ =\ 0;\ ip\ <\ n;\ ++ip)}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ b\ to\ diagonal\ of\ a}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ b[ip]\ =\ a(ip,\ ip);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ output\ to\ diagonal\ of\ a}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ outEigVal[ip]\ =\ a(ip,\ ip);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ z}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ z[ip]\ =\ 0.0f;}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ sweep\ =\ 0;\ sweep\ <\ cMaxSweeps;\ ++sweep)}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ sum\ of\ the\ off-\/diagonal\ elements\ of\ a}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ sm\ =\ 0.0f;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ ip\ =\ 0;\ ip\ <\ n\ -\/\ 1;\ ++ip)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ iq\ =\ ip\ +\ 1;\ iq\ <\ n;\ ++iq)}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sm\ +=\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(a(ip,\ iq));}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normal\ return,\ convergence\ to\ machine\ underflow}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sm\ ==\ 0.0f)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sanity\ checks}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ c\ =\ 0;\ c\ <\ n;\ ++c)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ eigenvector\ is\ normalized}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(outEigVec.\mbox{\hyperlink{classMatrix_a92a370676cc7e0788bc217a358170b4a}{GetColumn}}(c).IsNormalized());}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ inMatrix\ *\ eigen\_vector\ =\ eigen\_value\ *\ eigen\_vector}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}\ mat\_eigvec\ =\ inMatrix\ *\ outEigVec.\mbox{\hyperlink{classMatrix_a92a370676cc7e0788bc217a358170b4a}{GetColumn}}(c);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}\ eigval\_eigvec\ =\ outEigVal[c]\ *\ outEigVec.\mbox{\hyperlink{classMatrix_a92a370676cc7e0788bc217a358170b4a}{GetColumn}}(c);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(mat\_eigvec.\mbox{\hyperlink{classVector_af792d9902858de9e315caa8eddd89f29}{IsClose}}(eigval\_eigvec,\ max(mat\_eigvec.\mbox{\hyperlink{classVector_afa80dcde530acc7b7911526d921b60e8}{LengthSq}}(),\ eigval\_eigvec.\mbox{\hyperlink{classVector_afa80dcde530acc7b7911526d921b60e8}{LengthSq}}())\ *\ 1.0e-\/6f));}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Success}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ On\ the\ first\ three\ sweeps\ use\ a\ fraction\ of\ the\ sum\ of\ the\ off\ diagonal\ elements\ as\ treshold}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tresh\ =\ sweep\ <\ 4?\ 0.2f\ *\ sm\ /\ Square(n)\ :\ 0.0f;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ ip\ =\ 0;\ ip\ <\ n\ -\/\ 1;\ ++ip)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ iq\ =\ ip\ +\ 1;\ iq\ <\ n;\ ++iq)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ g\ =\ 100.0f\ *\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(a(ip,\ iq));}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ After\ four\ sweeps,\ skip\ the\ rotation\ if\ the\ off-\/diagonal\ element\ is\ small}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sweep\ >\ 4}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(outEigVal[ip])\ +\ g\ ==\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(outEigVal[ip])}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(outEigVal[iq])\ +\ g\ ==\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(outEigVal[iq]))}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(ip,\ iq)\ =\ 0.0f;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(a(ip,\ iq))\ >\ tresh)}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ h\ =\ outEigVal[iq]\ -\/\ outEigVal[ip];}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ t;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(h)\ +\ g\ ==\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(h))}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ a(ip,\ iq)\ /\ h;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ theta\ =\ 0.5f\ *\ h\ /\ a(ip,\ iq);\ \textcolor{comment}{//\ Warning:\ Can\ become\ inf\ if\ a(ip,\ iq)\ too\ small}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ 1.0f\ /\ (\mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(theta)\ +\ \mbox{\hyperlink{group__FixedMath_ga7a9d7e9855b45a3b4103632a47ccd6f4}{sqrt}}(1.0f\ +\ theta\ *\ theta));\ \textcolor{comment}{//\ Warning:\ Squaring\ large\ value\ can\ make\ it\ inf}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (theta\ <\ 0.0f)\ t\ =\ -\/t;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ c\ =\ 1.0f\ /\ \mbox{\hyperlink{group__FixedMath_ga7a9d7e9855b45a3b4103632a47ccd6f4}{sqrt}}(1.0f\ +\ t\ *\ t);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ t\ *\ c;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tau\ =\ s\ /\ (1.0f\ +\ c);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h\ =\ t\ *\ a(ip,\ iq);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(ip,\ iq)\ =\ 0.0f;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ !Modification\ from\ Numerical\ Recipes!}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ h\ can\ become\ infinite\ due\ to\ numerical\ overflow,\ this\ only\ happens\ when\ a(ip,\ iq)\ is\ very\ small}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ so\ we\ can\ safely\ set\ a(ip,\ iq)\ to\ zero\ and\ skip\ the\ rotation,\ see\ lines\ marked\ with\ 'Warning'\ above.}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{group__FixedMath_gab57c92b7d96634ba24fa1f6c25647799}{isnan}}(h))}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z[ip]\ -\/=\ h;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z[iq]\ +=\ h;}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outEigVal[ip]\ -\/=\ h;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outEigVal[iq]\ +=\ h;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_EVS\_ROTATE(a,\ i,\ j,\ k,\ l)\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\ =\ a(i,\ j),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h\ =\ a(k,\ l),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(i,\ j)\ =\ g\ -\/\ s\ *\ (h\ +\ g\ *\ tau),\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a(k,\ l)\ =\ h\ +\ s\ *\ (g\ -\/\ h\ *\ tau)}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint\ j;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (j\ =\ 0;\ j\ <\ ip;\ ++j)\ \ \ \ \ \ \ \ JPH\_EVS\_ROTATE(a,\ j,\ ip,\ j,\ iq);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (j\ =\ ip\ +\ 1;\ j\ <\ iq;\ ++j)\ \ \ JPH\_EVS\_ROTATE(a,\ ip,\ j,\ j,\ iq);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (j\ =\ iq\ +\ 1;\ j\ <\ n;\ ++j)\ \ \ \ JPH\_EVS\_ROTATE(a,\ ip,\ j,\ iq,\ j);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (j\ =\ 0;\ j\ <\ n;\ ++j)\ \ \ \ \ \ \ \ \ JPH\_EVS\_ROTATE(outEigVec,\ j,\ ip,\ j,\ iq);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#undef\ JPH\_EVS\_ROTATE}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ eigenvalues\ with\ the\ sum\ of\ ta\_pq\ and\ reinitialize\ z}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ ip\ =\ 0;\ ip\ <\ n;\ ++ip)}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ b[ip]\ +=\ z[ip];}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ outEigVal[ip]\ =\ b[ip];}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ z[ip]\ =\ 0.0f;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{//\ Failure}}
+\DoxyCodeLine{00171\ \ \ \ \ JPH\_ASSERT(\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Too\ many\ iterations"{}});}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00173\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,475 @@
+\doxysection{Closest\+Point.\+h}
+\hypertarget{ClosestPoint_8h_source}{}\label{ClosestPoint_8h_source}\index{includes/jolt/Geometry/ClosestPoint.h@{includes/jolt/Geometry/ClosestPoint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Turn\ off\ fused\ multiply\ add\ instruction\ because\ it\ makes\ the\ equations\ of\ the\ form\ a\ *\ b\ -\/\ c\ *\ d\ inaccurate\ below}}
+\DoxyCodeLine{00010\ JPH\_PRECISE\_MATH\_ON}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceClosestPoint}{ClosestPoint}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{GetBaryCentricCoordinates}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inB,\ \textcolor{keywordtype}{float}\ \&outU,\ \textcolor{keywordtype}{float}\ \&outV)}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ab\ =\ inB\ -\/\ inA;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ denominator\ =\ ab.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (denominator\ <\ Square(FLT\_EPSILON))}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Degenerate\ line\ segment,\ fallback\ to\ points}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inA.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}()\ <\ inB.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}())}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ closest}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outU\ =\ 1.0f;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outV\ =\ 0.0f;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ B\ closest}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outU\ =\ 0.0f;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outV\ =\ 1.0f;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ outV\ =\ -\/inA.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ab)\ /\ denominator;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ outU\ =\ 1.0f\ -\/\ outV;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{GetBaryCentricCoordinates}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inB,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inC,\ \textcolor{keywordtype}{float}\ \&outU,\ \textcolor{keywordtype}{float}\ \&outV,\ \textcolor{keywordtype}{float}\ \&outW)}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Taken\ from:\ Real-\/Time\ Collision\ Detection\ -\/\ Christer\ Ericson\ (Section:\ Barycentric\ Coordinates)}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ With\ p\ =\ 0}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Adjusted\ to\ always\ include\ the\ shortest\ edge\ of\ the\ triangle\ in\ the\ calculation\ to\ improve\ numerical\ accuracy}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ calculate\ the\ three\ edges}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v0\ =\ inB\ -\/\ inA;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v1\ =\ inC\ -\/\ inA;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v2\ =\ inC\ -\/\ inB;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ that\ the\ shortest\ edge\ is\ included\ in\ the\ calculation\ to\ keep\ the\ products\ a\ *\ b\ -\/\ c\ *\ d\ as\ small\ as\ possible\ to\ preserve\ accuracy}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d00\ =\ v0.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v0);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d11\ =\ v1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v1);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d22\ =\ v2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v2);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d00\ <=\ d22)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ v0\ and\ v1\ to\ calculate\ barycentric\ coordinates}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d01\ =\ v0.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v1);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ denominator\ =\ d00\ *\ d11\ -\/\ d01\ *\ d01;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (abs(denominator)\ <\ 1.0e-\/12f)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Degenerate\ triangle,\ return\ coordinates\ along\ longest\ edge}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d00\ >\ d11)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{GetBaryCentricCoordinates}}(inA,\ inB,\ outU,\ outV);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outW\ =\ 0.0f;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{GetBaryCentricCoordinates}}(inA,\ inC,\ outU,\ outW);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outV\ =\ 0.0f;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ a0\ =\ inA.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v0);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ a1\ =\ inA.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v1);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outV\ =\ (d01\ *\ a1\ -\/\ d11\ *\ a0)\ /\ denominator;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outW\ =\ (d01\ *\ a0\ -\/\ d00\ *\ a1)\ /\ denominator;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outU\ =\ 1.0f\ -\/\ outV\ -\/\ outW;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ v1\ and\ v2\ to\ calculate\ barycentric\ coordinates}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d12\ =\ v1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v2);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ denominator\ =\ d11\ *\ d22\ -\/\ d12\ *\ d12;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (abs(denominator)\ <\ 1.0e-\/12f)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Degenerate\ triangle,\ return\ coordinates\ along\ longest\ edge}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d11\ >\ d22)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{GetBaryCentricCoordinates}}(inA,\ inC,\ outU,\ outW);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outV\ =\ 0.0f;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{GetBaryCentricCoordinates}}(inB,\ inC,\ outV,\ outW);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outU\ =\ 0.0f;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ c1\ =\ inC.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v1);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ c2\ =\ inC.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(v2);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outU\ =\ (d22\ *\ c1\ -\/\ d12\ *\ c2)\ /\ denominator;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outV\ =\ (d11\ *\ c2\ -\/\ d12\ *\ c1)\ /\ denominator;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outW\ =\ 1.0f\ -\/\ outU\ -\/\ outV;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{namespaceClosestPoint_ad687ef98922a03b7128a5d3a5a64ab39}{GetClosestPointOnLine}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inB,\ uint32\ \&outSet)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ u,\ v;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{GetBaryCentricCoordinates}}(inA,\ inB,\ u,\ v);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ <=\ 0.0f)}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ inA\ is\ closest\ point}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ 0b0001;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inA;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (u\ <=\ 0.0f)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ inB\ is\ closest\ point}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ 0b0010;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inB;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Closest\ point\ lies\ on\ line\ inA\ inB}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ 0b0011;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ u\ *\ inA\ +\ v\ *\ inB;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ MustIncludeC\ =\ false>}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{namespaceClosestPoint_a25fcaaf786d8724b11d02406ab74e0bc}{GetClosestPointOnTriangle}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inB,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inC,\ uint32\ \&outSet)}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Taken\ from:\ Real-\/Time\ Collision\ Detection\ -\/\ Christer\ Ericson\ (Section:\ Closest\ Point\ on\ Triangle\ to\ Point)}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ With\ p\ =\ 0}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ most\ accurate\ normal\ is\ calculated\ by\ using\ the\ two\ shortest\ edges}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ See:\ https://box2d.org/posts/2014/01/troublesome-\/triangle/}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ difference\ in\ normals\ is\ most\ pronounced\ when\ one\ edge\ is\ much\ smaller\ than\ the\ others\ (in\ which\ case\ the\ other\ 2\ must\ have\ roughly\ the\ same\ length).}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Therefore\ we\ can\ suffice\ by\ just\ picking\ the\ shortest\ from\ 2\ edges\ and\ use\ that\ with\ the\ 3rd\ edge\ to\ calculate\ the\ normal.}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ first\ check\ which\ of\ the\ edges\ is\ shorter\ and\ if\ bc\ is\ shorter\ than\ ac\ then\ we\ swap\ a\ with\ c\ to\ a\ is\ always\ on\ the\ shortest\ edge}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ swap\_ac;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ac\ =\ inC\ -\/\ inA;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ bc\ =\ inC\ -\/\ inB;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ swap\_ac\ =\ \mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(bc.\mbox{\hyperlink{classVec3_a609366221e50c7b3134d80a80d963312}{DotV4}}(bc),\ ac.\mbox{\hyperlink{classVec3_a609366221e50c7b3134d80a80d963312}{DotV4}}(ac));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ a\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(inA,\ inC,\ swap\_ac);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ c\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(inC,\ inA,\ swap\_ac);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ normal}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ab\ =\ inB\ -\/\ a;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ac\ =\ c\ -\/\ a;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ n\ =\ ab.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(ac);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ n\_len\_sq\ =\ n.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ degenerate}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\_len\_sq\ <\ 1.0e-\/11f)\ \textcolor{comment}{//\ Square(FLT\_EPSILON)\ was\ too\ small\ and\ caused\ numerical\ problems,\ see\ test\ case\ TestCollideParallelTriangleVsCapsule}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Degenerate,\ fallback\ to\ vertices\ and\ edges}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ with\ vertex\ C\ being\ the\ closest}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ closest\_set\ =\ 0b0100;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ closest\_point\ =\ inC;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ best\_dist\_sq\ =\ inC.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ closest\ point\ must\ include\ C\ then\ A\ or\ B\ cannot\ be\ closest}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ we\ test\ vertices\ first\ because\ we\ want\ to\ prefer\ a\ closest\ vertex\ over\ a\ closest\ edge\ (this\ results\ in\ an\ outSet\ with\ fewer\ bits\ set)}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (!MustIncludeC)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Try\ vertex\ A}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ a\_len\_sq\ =\ inA.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a\_len\_sq\ <\ best\_dist\_sq)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ 0b0001;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ inA;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ a\_len\_sq;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Try\ vertex\ B}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ b\_len\_sq\ =\ inB.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (b\_len\_sq\ <\ best\_dist\_sq)}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ 0b0010;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ inB;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ b\_len\_sq;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Edge\ AC}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ac\_len\_sq\ =\ ac.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ac\_len\_sq\ >\ Square(FLT\_EPSILON))}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\ =\ Clamp(-\/a.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ac)\ /\ ac\_len\_sq,\ 0.0f,\ 1.0f);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ a\ +\ v\ *\ ac;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_sq\ =\ q.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\_sq\ <\ best\_dist\_sq)}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ 0b0101;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ q;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ dist\_sq;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Edge\ BC}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ bc\ =\ inC\ -\/\ inB;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ bc\_len\_sq\ =\ bc.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bc\_len\_sq\ >\ Square(FLT\_EPSILON))}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\ =\ Clamp(-\/inB.Dot(bc)\ /\ bc\_len\_sq,\ 0.0f,\ 1.0f);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ inB\ +\ v\ *\ bc;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_sq\ =\ q.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\_sq\ <\ best\_dist\_sq)}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ 0b0110;}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ q;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ dist\_sq;}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ closest\ point\ must\ include\ C\ then\ AB\ cannot\ be\ closest}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (!MustIncludeC)}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Edge\ AB}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ab\ =\ inB\ -\/\ inA;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ab\_len\_sq\ =\ ab.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ab\_len\_sq\ >\ Square(FLT\_EPSILON))}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\ =\ Clamp(-\/inA.Dot(ab)\ /\ ab\_len\_sq,\ 0.0f,\ 1.0f);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ inA\ +\ v\ *\ ab;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_sq\ =\ q.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\_sq\ <\ best\_dist\_sq)}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ 0b0011;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ q;}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ dist\_sq;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ closest\_set;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ closest\_point;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ P\ in\ vertex\ region\ outside\ A}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ap\ =\ -\/a;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d1\ =\ ab.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ap);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d2\ =\ ac.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ap);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d1\ <=\ 0.0f\ \&\&\ d2\ <=\ 0.0f)}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ swap\_ac.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}()?\ 0b0100\ :\ 0b0001;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a;\ \textcolor{comment}{//\ barycentric\ coordinates\ (1,0,0)}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ P\ in\ vertex\ region\ outside\ B}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ bp\ =\ -\/inB;}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d3\ =\ ab.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(bp);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d4\ =\ ac.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(bp);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d3\ >=\ 0.0f\ \&\&\ d4\ <=\ d3)}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ 0b0010;}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inB;\ \textcolor{comment}{//\ barycentric\ coordinates\ (0,1,0)}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ P\ in\ edge\ region\ of\ AB,\ if\ so\ return\ projection\ of\ P\ onto\ AB}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d1\ *\ d4\ <=\ d3\ *\ d2\ \&\&\ d1\ >=\ 0.0f\ \&\&\ d3\ <=\ 0.0f)}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\ =\ d1\ /\ (d1\ -\/\ d3);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ swap\_ac.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}()?\ 0b0110\ :\ 0b0011;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a\ +\ v\ *\ ab;\ \textcolor{comment}{//\ barycentric\ coordinates\ (1-\/v,v,0)}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ P\ in\ vertex\ region\ outside\ C}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ cp\ =\ -\/c;}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d5\ =\ ab.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(cp);}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d6\ =\ ac.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(cp);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d6\ >=\ 0.0f\ \&\&\ d5\ <=\ d6)}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ swap\_ac.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}()?\ 0b0001\ :\ 0b0100;}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ c;\ \textcolor{comment}{//\ barycentric\ coordinates\ (0,0,1)}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ P\ in\ edge\ region\ of\ AC,\ if\ so\ return\ projection\ of\ P\ onto\ AC}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d5\ *\ d2\ <=\ d1\ *\ d6\ \&\&\ d2\ >=\ 0.0f\ \&\&\ d6\ <=\ 0.0f)}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ w\ =\ d2\ /\ (d2\ -\/\ d6);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ 0b0101;}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a\ +\ w\ *\ ac;\ \textcolor{comment}{//\ barycentric\ coordinates\ (1-\/w,0,w)}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ P\ in\ edge\ region\ of\ BC,\ if\ so\ return\ projection\ of\ P\ onto\ BC}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d4\_d3\ =\ d4\ -\/\ d3;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d5\_d6\ =\ d5\ -\/\ d6;}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d3\ *\ d6\ <=\ d5\ *\ d4\ \&\&\ d4\_d3\ >=\ 0.0f\ \&\&\ d5\_d6\ >=\ 0.0f)}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ w\ =\ d4\_d3\ /\ (d4\_d3\ +\ d5\_d6);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ swap\_ac.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}()?\ 0b0011\ :\ 0b0110;}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inB\ +\ w\ *\ (c\ -\/\ inB);\ \textcolor{comment}{//\ barycentric\ coordinates\ (0,1-\/w,w)}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ P\ inside\ face\ region.}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Here\ we\ deviate\ from\ Christer\ Ericson's\ article\ to\ improve\ accuracy.}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ distance\ between\ triangle\ and\ origin:\ distance\ =\ (centroid\ -\/\ origin)\ .\ normal\ /\ |normal|}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Closest\ point\ to\ origin\ is\ then:\ distance\ .\ normal\ /\ |normal|}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ this\ way\ of\ calculating\ the\ closest\ point\ is\ much\ more\ accurate\ than\ first\ calculating\ barycentric\ coordinates}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ and\ then\ calculating\ the\ closest\ point\ based\ on\ those\ coordinates.}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ outSet\ =\ 0b0111;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ n\ *\ (a\ +\ inB\ +\ c).Dot(n)\ /\ (3.0f\ *\ n\_len\_sq);}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceClosestPoint_ad4bc500e8c3ea1bc2b2bc1a289408f1b}{OriginOutsideOfPlane}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inB,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inC,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inD)}
+\DoxyCodeLine{00332\ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Taken\ from:\ Real-\/Time\ Collision\ Detection\ -\/\ Christer\ Ericson\ (Section:\ Closest\ Point\ on\ Tetrahedron\ to\ Point)}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ With\ p\ =\ 0}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ if\ point\ p\ and\ d\ lie\ on\ opposite\ sides\ of\ plane\ through\ abc}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ n\ =\ (inB\ -\/\ inA).Cross(inC\ -\/\ inA);}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signp\ =\ inA.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(n);\ \textcolor{comment}{//\ [AP\ AB\ AC]}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signd\ =\ (inD\ -\/\ inA).Dot(n);\ \textcolor{comment}{//\ [AD\ AB\ AC]}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Points\ on\ opposite\ sides\ if\ expression\ signs\ are\ the\ same}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ we\ left\ out\ the\ minus\ sign\ in\ signp\ so\ we\ need\ to\ check\ >\ 0\ instead\ of\ <\ 0\ as\ in\ Christer's\ book}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ compare\ against\ a\ small\ negative\ value\ to\ allow\ for\ a\ little\ bit\ of\ slop\ in\ the\ calculations}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ signp\ *\ signd\ >\ -\/FLT\_EPSILON;}
+\DoxyCodeLine{00345\ \ \ \ \ \}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{namespaceClosestPoint_a7221bb45d1aec01527f66683bf2611e0}{OriginOutsideOfTetrahedronPlanes}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inB,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inC,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inD)}
+\DoxyCodeLine{00354\ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ab\ =\ inB\ -\/\ inA;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ac\ =\ inC\ -\/\ inA;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ad\ =\ inD\ -\/\ inA;}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ bd\ =\ inD\ -\/\ inB;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ bc\ =\ inC\ -\/\ inB;}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ab\_cross\_ac\ =\ ab.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(ac);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ac\_cross\_ad\ =\ ac.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(ad);}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ ad\_cross\_ab\ =\ ad.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(ab);}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ bd\_cross\_bc\ =\ bd.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(bc);}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ each\ plane\ get\ the\ side\ on\ which\ the\ origin\ is}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signp0\ =\ inA.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ab\_cross\_ac);\ \textcolor{comment}{//\ ABC}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signp1\ =\ inA.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ac\_cross\_ad);\ \textcolor{comment}{//\ ACD}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signp2\ =\ inA.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ad\_cross\_ab);\ \textcolor{comment}{//\ ADB}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signp3\ =\ inB.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(bd\_cross\_bc);\ \textcolor{comment}{//\ BDC}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ signp(signp0,\ signp1,\ signp2,\ signp3);}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ each\ plane\ get\ the\ side\ that\ is\ outside\ (determined\ by\ the\ 4th\ point)}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signd0\ =\ ad.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ab\_cross\_ac);\ \ \textcolor{comment}{//\ D}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signd1\ =\ ab.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ac\_cross\_ad);\ \ \textcolor{comment}{//\ B}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signd2\ =\ ac.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(ad\_cross\_ab);\ \ \textcolor{comment}{//\ C}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ signd3\ =\ -\/ab.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(bd\_cross\_bc);\ \textcolor{comment}{//\ A}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ signd(signd0,\ signd1,\ signd2,\ signd3);}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ winding\ of\ all\ triangles\ has\ been\ chosen\ so\ that\ signd\ should\ have\ the}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ same\ sign\ for\ all\ components.\ If\ this\ is\ not\ the\ case\ the\ tetrahedron}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ degenerate\ and\ we\ return\ that\ the\ origin\ is\ in\ front\ of\ all\ sides}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sign\_bits\ =\ signd.\mbox{\hyperlink{classVec4_aeccf9a2f8d2742fba6c62d4419cfa5d6}{GetSignBits}}();}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (sign\_bits)}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ positive}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec4_a81da488f59d4a7a84b8ad78fb9d9832d}{Vec4::sGreaterOrEqual}}(signp,\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(-\/FLT\_EPSILON));}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0xf:}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ All\ negative}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec4_a4880dd63dffd8c23e5a692279d8a8762}{Vec4::sLessOrEqual}}(signp,\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(FLT\_EPSILON));}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mixed\ signs,\ degenerate\ tetrahedron}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(0xffffffff);}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00398\ \ \ \ \ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ MustIncludeD\ =\ false>}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{namespaceClosestPoint_abafebdbe3dea0fe6674c20fc9ccc8540}{GetClosestPointOnTetrahedron}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inB,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inC,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inD,\ uint32\ \&outSet)}
+\DoxyCodeLine{00405\ \ \ \ \ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Taken\ from:\ Real-\/Time\ Collision\ Detection\ -\/\ Christer\ Ericson\ (Section:\ Closest\ Point\ on\ Tetrahedron\ to\ Point)}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ With\ p\ =\ 0}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ out\ assuming\ point\ inside\ all\ halfspaces,\ so\ closest\ to\ itself}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ uint32\ closest\_set\ =\ 0b1111;}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ closest\_point\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ best\_dist\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ for\ each\ of\ the\ faces\ of\ the\ tetrahedron\ if\ the\ origin\ is\ in\ front\ of\ the\ plane}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ origin\_out\_of\_planes\ =\ \mbox{\hyperlink{namespaceClosestPoint_a7221bb45d1aec01527f66683bf2611e0}{OriginOutsideOfTetrahedronPlanes}}(inA,\ inB,\ inC,\ inD);}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ point\ outside\ face\ abc\ then\ compute\ closest\ point\ on\ abc}}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (origin\_out\_of\_planes.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}())\ \textcolor{comment}{//\ OriginOutsideOfPlane(inA,\ inB,\ inC,\ inD)}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (MustIncludeD)}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ closest\ point\ must\ include\ D\ then\ ABC\ cannot\ be\ closest\ but\ the\ closest\ point}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cannot\ be\ an\ interior\ point\ either\ so\ we\ return\ A\ as\ closest\ point}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ 0b0001;}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ inA;}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ the\ face\ normally}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ GetClosestPointOnTriangle<false>(inA,\ inB,\ inC,\ closest\_set);}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ closest\_point.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Repeat\ test\ for\ face\ acd}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (origin\_out\_of\_planes.GetY())\ \textcolor{comment}{//\ OriginOutsideOfPlane(inA,\ inC,\ inD,\ inB)}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ set;}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ GetClosestPointOnTriangle<MustIncludeD>(inA,\ inC,\ inD,\ set);}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_sq\ =\ q.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\_sq\ <\ best\_dist\_sq)}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ dist\_sq;}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ q;}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ (set\ \&\ 0b0001)\ +\ ((set\ \&\ 0b0110)\ <<\ 1);}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Repeat\ test\ for\ face\ adb}}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (origin\_out\_of\_planes.GetZ())\ \textcolor{comment}{//\ OriginOutsideOfPlane(inA,\ inD,\ inB,\ inC)}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keep\ original\ vertex\ order,\ it\ doesn't\ matter\ if\ the\ triangle\ is\ facing\ inward\ or\ outward}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ and\ it\ improves\ consistency\ for\ GJK\ which\ will\ always\ add\ a\ new\ vertex\ D\ and\ keep\ the\ closest}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ feature\ from\ the\ previous\ iteration\ in\ ABC}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ set;}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ GetClosestPointOnTriangle<MustIncludeD>(inA,\ inB,\ inD,\ set);}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_sq\ =\ q.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\_sq\ <\ best\_dist\_sq)}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ dist\_sq;}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ q;}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ (set\ \&\ 0b0011)\ +\ ((set\ \&\ 0b0100)\ <<\ 1);}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Repeat\ test\ for\ face\ bdc}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (origin\_out\_of\_planes.GetW())\ \textcolor{comment}{//\ OriginOutsideOfPlane(inB,\ inD,\ inC,\ inA)}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keep\ original\ vertex\ order,\ it\ doesn't\ matter\ if\ the\ triangle\ is\ facing\ inward\ or\ outward}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ and\ it\ improves\ consistency\ for\ GJK\ which\ will\ always\ add\ a\ new\ vertex\ D\ and\ keep\ the\ closest}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ feature\ from\ the\ previous\ iteration\ in\ ABC}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ set;}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ GetClosestPointOnTriangle<MustIncludeD>(inB,\ inC,\ inD,\ set);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_sq\ =\ q.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\_sq\ <\ best\_dist\_sq)}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_point\ =\ q;}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_set\ =\ set\ <<\ 1;}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ outSet\ =\ closest\_set;}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ closest\_point;}
+\DoxyCodeLine{00484\ \ \ \ \ \}}
+\DoxyCodeLine{00485\ \};}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ JPH\_PRECISE\_MATH\_OFF}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,83 @@
+\doxysection{Plane.\+h}
+\hypertarget{Plane_8h_source}{}\label{Plane_8h_source}\index{includes/jolt/Geometry/Plane.h@{includes/jolt/Geometry/Plane.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classPlane}{Plane}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlane_ac7a2eaef6e334fba41a0ac6ab7a97a6e}{Plane}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlane}{Plane}}(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inNormalAndConstant)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mNormalAndConstant(inNormalAndConstant)\ \{\ \}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlane}{Plane}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inNormal,\ \textcolor{keywordtype}{float}\ inConstant)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mNormalAndConstant(inNormal,\ inConstant)\ \{\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classPlane}{Plane}}\ \ \ \mbox{\hyperlink{classPlane_ab650685703d992f746e1934ffd20850d}{sFromPointAndNormal}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inNormal)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classPlane}{Plane}}(\mbox{\hyperlink{classVec4}{Vec4}}(inNormal,\ -\/inNormal.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inPoint)));\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classPlane}{Plane}}\ \ \ \mbox{\hyperlink{classPlane_a65ed67db9667cdc78040f503b1bce933}{sFromPointAndNormal}}(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inPoint,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inNormal)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classPlane}{Plane}}(\mbox{\hyperlink{classVec4}{Vec4}}(inNormal,\ -\/\textcolor{keywordtype}{float}(\mbox{\hyperlink{classDVec3}{DVec3}}(inNormal).Dot(inPoint))));\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classPlane}{Plane}}\ \ \ \mbox{\hyperlink{classPlane_acf01f90a7839a26f8d1e0129b661c32d}{sFromPointsCCW}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV3)\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ sFromPointAndNormal(inV1,\ (inV2\ -\/\ inV1).Cross(inV3\ -\/\ inV1).Normalized());\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Properties}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ GetNormal()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mNormalAndConstant);\ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ SetNormal(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inNormal)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mNormalAndConstant\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(inNormal,\ mNormalAndConstant.GetW());\ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ GetConstant()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNormalAndConstant.GetW();\ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ SetConstant(\textcolor{keywordtype}{float}\ inConstant)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mNormalAndConstant.SetW(inConstant);\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classPlane}{Plane}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlane_adce0e2bf9f6e85a2788ede7adfbe031d}{Offset}}(\textcolor{keywordtype}{float}\ inDistance)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classPlane}{Plane}}(mNormalAndConstant\ -\/\ \mbox{\hyperlink{classVec4}{Vec4}}(\mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}(),\ inDistance));\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classPlane}{Plane}}\ \ \ \mbox{\hyperlink{classPlane_a23c3f6c2eaf6344447cb5e0a8a52d63d}{GetTransformed}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inTransform)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ transformed\_normal\ =\ inTransform.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(GetNormal());}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classPlane}{Plane}}(transformed\_normal,\ GetConstant()\ -\/\ inTransform.GetTranslation().\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(transformed\_normal));}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlane_a96f5ba7b329fcccd22eaa63a7e282605}{SignedDistance}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ inPoint.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(GetNormal())\ +\ GetConstant();\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{classPlane_abffae87f2329df22fc511aaf4a40fb6e}{sIntersectPlanes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classPlane}{Plane}}\ \&inP1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPlane}{Plane}}\ \&inP2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPlane}{Plane}}\ \&inP3,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPoint)}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ solve\ the\ equation:}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ |ax,\ ay,\ az,\ aw|\ \ \ |\ x\ |\ \ \ |\ 0\ |}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ |bx,\ by,\ bz,\ bw|\ *\ |\ y\ |\ =\ |\ 0\ |}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ |cx,\ cy,\ cz,\ cw|\ \ \ |\ z\ |\ \ \ |\ 0\ |}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ |\ 0,\ \ 0,\ \ 0,\ \ 1|\ \ \ |\ 1\ |\ \ \ |\ 1\ |}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Where\ normal\ of\ plane\ 1\ =\ (ax,\ ay,\ az),\ plane\ constant\ of\ 1\ =\ aw,\ normal\ of\ plane\ 2\ =\ (bx,\ by,\ bz)\ etc.}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ involves\ inverting\ the\ matrix\ and\ multiplying\ it\ with\ [0,\ 0,\ 0,\ 1]}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ the\ normals\ and\ plane\ constants\ for\ the\ three\ planes}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ a\ =\ inP1.mNormalAndConstant;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ b\ =\ inP2.mNormalAndConstant;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ c\ =\ inP3.mNormalAndConstant;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Result\ is\ a\ vector\ that\ we\ have\ to\ divide\ by:}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ denominator\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(a).\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(\mbox{\hyperlink{classVec3}{Vec3}}(b).Cross(\mbox{\hyperlink{classVec3}{Vec3}}(c)));}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (denominator\ ==\ 0.0f)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ numerator\ is:}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [aw*(bz*cy-\/by*cz)+ay*(bw*cz-\/bz*cw)+az*(by*cw-\/bw*cy)]}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [aw*(bx*cz-\/bz*cx)+ax*(bz*cw-\/bw*cz)+az*(bw*cx-\/bx*cw)]}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [aw*(by*cx-\/bx*cy)+ax*(bw*cy-\/by*cw)+ay*(bx*cw-\/bw*cx)]}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ numerator\ =}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ a.\mbox{\hyperlink{classVec4_aa890d45169669b6845a2770a72166fcf}{SplatW}}()\ *\ (b.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_Y,\ SWIZZLE\_UNUSED>()\ *\ c.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_UNUSED>()\ -\/\ b.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_UNUSED>()\ *\ c.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_Y,\ SWIZZLE\_UNUSED>())}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ +\ a.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_X,\ SWIZZLE\_X,\ SWIZZLE\_UNUSED>()\ *\ (b.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_W,\ SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_UNUSED>()\ *\ c.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_Y,\ SWIZZLE\_UNUSED>()\ -\/\ b.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_Y,\ SWIZZLE\_UNUSED>()\ *\ c.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_W,\ SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_UNUSED>())}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ +\ a.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_Z,\ SWIZZLE\_Y,\ SWIZZLE\_UNUSED>()\ *\ (b.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_W,\ SWIZZLE\_X,\ SWIZZLE\_UNUSED>()\ *\ c.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_W,\ SWIZZLE\_X,\ SWIZZLE\_W,\ SWIZZLE\_UNUSED>()\ -\/\ b.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_W,\ SWIZZLE\_X,\ SWIZZLE\_W,\ SWIZZLE\_UNUSED>()\ *\ c.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_W,\ SWIZZLE\_X,\ SWIZZLE\_UNUSED>());}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ outPoint\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(numerator)\ /\ denominator;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ mNormalAndConstant;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

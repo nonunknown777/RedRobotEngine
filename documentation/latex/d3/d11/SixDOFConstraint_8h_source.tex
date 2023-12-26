@@ -1,0 +1,243 @@
+\doxysection{Six\+DOFConstraint.\+h}
+\hypertarget{SixDOFConstraint_8h_source}{}\label{SixDOFConstraint_8h_source}\index{includes/jolt/Physics/Constraints/SixDOFConstraint.h@{includes/jolt/Physics/Constraints/SixDOFConstraint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/TwoBodyConstraint.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/MotorSettings.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/PointConstraintPart.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/AxisConstraintPart.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/AngleConstraintPart.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/RotationEulerConstraintPart.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/SwingTwistConstraintPart.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classSixDOFConstraintSettings}{SixDOFConstraintSettings}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classTwoBodyConstraintSettings}{TwoBodyConstraintSettings}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classSixDOFConstraintSettings}{SixDOFConstraintSettings}})}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ enum\ \mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ TranslationX,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ TranslationY,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ TranslationZ,}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ RotationX,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ RotationY,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ RotationZ,}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ Num,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ NumTranslation\ =\ TranslationZ\ +\ 1,}
+\DoxyCodeLine{00036\ \ \ \ \ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ See:\ ConstraintSettings::SaveBinaryState}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraintSettings_ab2f991773883e10b8a26f2de7f6ec9f8}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}\ *\ \ \ \ \mbox{\hyperlink{classSixDOFConstraintSettings_a65db68e27befd3ce125c73206ac3ae2c}{Create}}(\mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ EConstraintSpace\ \ \ \ \ \ \ \ \ \ \ \ mSpace\ =\ EConstraintSpace::WorldSpace;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPosition1\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3::sZero}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAxisX1\ =\ \mbox{\hyperlink{classVec3_a142cc5c79f08229eb11532c26f1a1e90}{Vec3::sAxisX}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAxisY1\ =\ Vec3::sAxisY();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPosition2\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3::sZero}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAxisX2\ =\ \mbox{\hyperlink{classVec3_a142cc5c79f08229eb11532c26f1a1e90}{Vec3::sAxisX}}();}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAxisY2\ =\ Vec3::sAxisY();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxFriction[EAxis::Num]\ =\ \{\ 0,\ 0,\ 0,\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ ESwingType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingType\ =\ ESwingType::Cone;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitMin[EAxis::Num]\ =\ \{\ -\/FLT\_MAX,\ -\/FLT\_MAX,\ -\/FLT\_MAX,\ -\/FLT\_MAX,\ -\/FLT\_MAX,\ -\/FLT\_MAX\ \};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitMax[EAxis::Num]\ =\ \{\ FLT\_MAX,\ FLT\_MAX,\ FLT\_MAX,\ FLT\_MAX,\ FLT\_MAX,\ FLT\_MAX\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitsSpringSettings[EAxis::NumTranslation];}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraintSettings_ad5cff2e8b147d7697aa317df476dcddf}{MakeFreeAxis}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mLimitMin[inAxis]\ =\ -\/FLT\_MAX;\ mLimitMax[inAxis]\ =\ FLT\_MAX;\ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsFreeAxis(EAxis\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLimitMin[inAxis]\ ==\ -\/FLT\_MAX\ \&\&\ mLimitMax[inAxis]\ ==\ FLT\_MAX;\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraintSettings_ad7888719516a85b67a8fc957c9158144}{MakeFixedAxis}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mLimitMin[inAxis]\ =\ FLT\_MAX;\ mLimitMax[inAxis]\ =\ -\/FLT\_MAX;\ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsFixedAxis(EAxis\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLimitMin[inAxis]\ >=\ mLimitMax[inAxis];\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraintSettings_ad707d50d3c830f44ea2f10e3215a6789}{SetLimitedAxis}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis,\ \textcolor{keywordtype}{float}\ inMin,\ \textcolor{keywordtype}{float}\ inMax)\ \ \ \ \ \ \ \{\ mLimitMin[inAxis]\ =\ inMin;\ mLimitMax[inAxis]\ =\ inMax;\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{classMotorSettings}{MotorSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mMotorSettings[EAxis::Num];}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ See:\ ConstraintSettings::RestoreBinaryState}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraintSettings_a45e289ccd2bd8ccfbf7b23b9d1f0a67c}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classSixDOFConstraint}{SixDOFConstraint}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}}
+\DoxyCodeLine{00106\ \{}
+\DoxyCodeLine{00107\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00108\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ =\ \mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{SixDOFConstraintSettings::EAxis}};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a3002dc33540a30ce549738faa272f868}{SixDOFConstraint}}(\mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSixDOFConstraintSettings}{SixDOFConstraintSettings}}\ \&inSettings);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{virtual}\ EConstraintSubType\ \ \mbox{\hyperlink{classSixDOFConstraint_ae13f824a4eddf95835fdeffe61c7ffba}{GetSubType}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ EConstraintSubType::SixDOF;\ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a8fcd02d47dea9f40386d7d5c04aa5e8d}{NotifyShapeChanged}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDeltaCOM)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetupVelocityConstraint(\textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WarmStartVelocityConstraint(\textcolor{keywordtype}{float}\ inWarmStartImpulseRatio)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolveVelocityConstraint(\textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolvePositionConstraint(\textcolor{keywordtype}{float}\ inDeltaTime,\ \textcolor{keywordtype}{float}\ inBaumgarte)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraint(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraintLimits(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a828ee70c16697a599f41aa8fe34d94dc}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a0debe4d73fe64559d33974215d71584e}{RestoreState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classRef}{Ref<ConstraintSettings>}}\ \mbox{\hyperlink{classSixDOFConstraint_a73fd75d9d009ab3da592b43fc6206dcf}{GetConstraintSettings}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ See:\ TwoBodyConstraint}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a93b7ceef3c7017e4a1a0bc53e29c93d8}{GetConstraintToBody1Matrix}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_aba5427f45393b40263d52ec614cfa985}{Mat44::sRotationTranslation}}(mConstraintToBody1,\ mLocalSpacePosition1);\ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a92d86c092002bec9d22d529f8616aa29}{GetConstraintToBody2Matrix}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_aba5427f45393b40263d52ec614cfa985}{Mat44::sRotationTranslation}}(mConstraintToBody2,\ mLocalSpacePosition2);\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_af5ff395b70a1170d8215850acf83826f}{SetTranslationLimits}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLimitMin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLimitMax);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_ae203835b5e57cbdb0acd755bf65e87fd}{SetRotationLimits}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLimitMin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLimitMax);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a19166b2e56147da794b2651896007294}{GetLimitsMin}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLimitMin[inAxis];\ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetLimitsMax(EAxis\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLimitMax[inAxis];\ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTranslationLimitsMin()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(*\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classFloat3}{Float3}}\ *\textcolor{keyword}{>}(\&mLimitMin[EAxis::TranslationX]));\ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTranslationLimitsMax()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(*\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classFloat3}{Float3}}\ *\textcolor{keyword}{>}(\&mLimitMax[EAxis::TranslationX]));\ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetRotationLimitsMin()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(*\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classFloat3}{Float3}}\ *\textcolor{keyword}{>}(\&mLimitMin[EAxis::RotationX]));\ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetRotationLimitsMax()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(*\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classFloat3}{Float3}}\ *\textcolor{keyword}{>}(\&mLimitMax[EAxis::RotationX]));\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a9388c6c3c237389fa77aec2862fba244}{IsFixedAxis}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (mFixedAxis\ \&\ (1\ <<\ inAxis))\ !=\ 0;\ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsFreeAxis(EAxis\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (mFreeAxis\ \&\ (1\ <<\ inAxis))\ !=\ 0;\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\ \&\ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a70687b51cd67ed48ec11975e8799fcc5}{GetLimitsSpringSettings}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(inAxis\ <\ EAxis::NumTranslation);\ \textcolor{keywordflow}{return}\ mLimitsSpringSettings[inAxis];\ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetLimitsSpringSettings(EAxis\ inAxis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\&\ inLimitsSpringSettings)\ \{\ JPH\_ASSERT(inAxis\ <\ EAxis::NumTranslation);\ mLimitsSpringSettings[inAxis]\ =\ inLimitsSpringSettings;\ CacheHasSpringLimits();\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_ab28cc63599921c1b582f71549be647b3}{SetMaxFriction}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis,\ \textcolor{keywordtype}{float}\ inFriction);}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMaxFriction(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMaxFriction[inAxis];\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_ae4af627f61bd4bd61d242756dd7f838a}{GetRotationInConstraintSpace}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{classMotorSettings}{MotorSettings}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a3e4372d1567140760e6cf46710108675}{GetMotorSettings}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mMotorSettings[inAxis];\ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMotorSettings}{MotorSettings}}\ \&\ \ \ \ \ \ GetMotorSettings(EAxis\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMotorSettings[inAxis];\ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a4294f297ae2bdf4f736eb137694ecc44}{SetMotorState}}(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis,\ EMotorState\ inState);}
+\DoxyCodeLine{00172\ \ \ \ \ EMotorState\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMotorState(\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMotorState[inAxis];\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_adea943442830716a4e865fe336910729}{GetTargetVelocityCS}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mTargetVelocity;\ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetTargetVelocityCS(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inVelocity)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mTargetVelocity\ =\ inVelocity;\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a51543e5bc341f2812c0498eeb11ec8a2}{SetTargetAngularVelocityCS}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAngularVelocity)\ \ \ \ \ \ \{\ mTargetAngularVelocity\ =\ inAngularVelocity;\ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTargetAngularVelocityCS()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mTargetAngularVelocity;\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a5e3a3ca4dd727cabe3fbc97a43fffc1d}{GetTargetPositionCS}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mTargetPosition;\ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetTargetPositionCS(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mTargetPosition\ =\ inPosition;\ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_abad5e4ae0dfe6e5da9518683a2f1959c}{SetTargetOrientationCS}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inOrientation);}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTargetOrientationCS()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mTargetOrientation;\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSixDOFConstraint_a27200e904e3f52704ce99c2d3f12ad16}{SetTargetOrientationBS}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inOrientation)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ SetTargetOrientationCS(mConstraintToBody1.Conjugated()\ *\ inOrientation\ *\ mConstraintToBody2);\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaPosition()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ IsTranslationFullyConstrained()?\ mPointConstraintPart.GetTotalLambda()\ :\ \mbox{\hyperlink{classVec3}{Vec3}}(mTranslationConstraintPart[0].GetTotalLambda(),\ mTranslationConstraintPart[1].GetTotalLambda(),\ mTranslationConstraintPart[2].GetTotalLambda());\ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaRotation()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ IsRotationFullyConstrained()?\ mRotationConstraintPart.GetTotalLambda()\ :\ \mbox{\hyperlink{classVec3}{Vec3}}(mSwingTwistConstraintPart.GetTotalTwistLambda(),\ mSwingTwistConstraintPart.GetTotalSwingYLambda(),\ mSwingTwistConstraintPart.GetTotalSwingZLambda());\ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaMotorTranslation()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mMotorTranslationConstraintPart[0].GetTotalLambda(),\ mMotorTranslationConstraintPart[1].GetTotalLambda(),\ mMotorTranslationConstraintPart[2].GetTotalLambda());\ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaMotorRotation()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mMotorRotationConstraintPart[0].GetTotalLambda(),\ mMotorRotationConstraintPart[1].GetTotalLambda(),\ mMotorRotationConstraintPart[2].GetTotalLambda());\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{//\ Calculate\ properties\ needed\ for\ the\ position\ constraint}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetPositionConstraintProperties(\mbox{\hyperlink{classVec3}{Vec3}}\ \&outR1PlusU,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outR2,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outU)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{//\ Sanitize\ the\ translation\ limits}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateTranslationLimits();}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ Propagate\ the\ rotation\ limits\ to\ the\ constraint\ part}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateRotationLimits();}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{//\ Update\ the\ cached\ state\ of\ which\ axis\ are\ free\ and\ which\ ones\ are\ fixed}}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateFixedFreeAxis();}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ state\ of\ mTranslationMotorActive}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CacheTranslationMotorActive();}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ state\ of\ mRotationMotorActive}}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CacheRotationMotorActive();}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ state\ of\ mRotationPositionMotorActive}}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CacheRotationPositionMotorActive();}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CacheHasSpringLimits();}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{comment}{//\ Constraint\ settings\ helper\ functions}}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsTranslationConstrained()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (mFreeAxis\ \&\ 0b111)\ !=\ 0b111;\ \}}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsTranslationFullyConstrained()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (mFixedAxis\ \&\ 0b111)\ ==\ 0b111\ \&\&\ !mHasSpringLimits;\ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsRotationConstrained()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (mFreeAxis\ \&\ 0b111000)\ !=\ 0b111000;\ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsRotationFullyConstrained()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (mFixedAxis\ \&\ 0b111000)\ ==\ 0b111000;\ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HasFriction(EAxis\ inAxis)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ !IsFixedAxis(inAxis)\ \&\&\ mMaxFriction[inAxis]\ >\ 0.0f;\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{comment}{//\ CONFIGURATION\ PROPERTIES\ FOLLOW}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{comment}{//\ Local\ space\ constraint\ positions}}
+\DoxyCodeLine{00235\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpacePosition1;}
+\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpacePosition2;}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{comment}{//\ Transforms\ from\ constraint\ space\ to\ body\ space}}
+\DoxyCodeLine{00239\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConstraintToBody1;}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConstraintToBody2;}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{comment}{//\ Limits}}
+\DoxyCodeLine{00243\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mFreeAxis\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmask\ of\ free\ axis\ (bit\ 0\ =\ TranslationX)}}
+\DoxyCodeLine{00244\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mFixedAxis\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmask\ of\ fixed\ axis\ (bit\ 0\ =\ TranslationX)}}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTranslationMotorActive\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ any\ of\ the\ translational\ frictions\ /\ motors\ are\ active}}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRotationMotorActive\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ any\ of\ the\ rotational\ frictions\ /\ motors\ are\ active}}
+\DoxyCodeLine{00247\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRotationPositionMotorActive\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmask\ of\ axis\ that\ have\ position\ motor\ active\ (bit\ 0\ =\ RotationX)}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHasSpringLimits\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ any\ of\ the\ limit\ springs\ have\ a\ non-\/zero\ frequency/stiffness}}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitMin[EAxis::Num];}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitMax[EAxis::Num];}
+\DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitsSpringSettings[EAxis::NumTranslation];}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{comment}{//\ Motor\ settings\ for\ each\ axis}}
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{classMotorSettings}{MotorSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mMotorSettings[EAxis::Num];}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{comment}{//\ Friction\ settings\ for\ each\ axis}}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxFriction[EAxis::Num];}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{comment}{//\ Motor\ controls}}
+\DoxyCodeLine{00260\ \ \ \ \ EMotorState\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMotorState[EAxis::Num]\ =\ \{\ EMotorState::Off,\ EMotorState::Off,\ EMotorState::Off,\ EMotorState::Off,\ EMotorState::Off,\ EMotorState::Off\ \};}
+\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTargetVelocity\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTargetAngularVelocity\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00263\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTargetPosition\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTargetOrientation\ =\ \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat::sIdentity}}();}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ RUN\ TIME\ PROPERTIES\ FOLLOW}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{comment}{//\ Constraint\ space\ axis\ in\ world\ space}}
+\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTranslationAxis[3];}
+\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRotationAxis[3];}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{comment}{//\ Translation\ displacement\ (valid\ when\ translation\ axis\ has\ a\ range\ limit)}}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDisplacement[3];}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{comment}{//\ Individual\ constraint\ parts\ for\ translation,\ or\ a\ combined\ point\ constraint\ part\ if\ all\ axis\ are\ fixed}}
+\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{classAxisConstraintPart}{AxisConstraintPart}}\ \ \ \ \ \ \ \ \ \ \ \ mTranslationConstraintPart[3];}
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{classPointConstraintPart}{PointConstraintPart}}\ \ \ \ \ \ \ \ \ \ mPointConstraintPart;}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{comment}{//\ Individual\ constraint\ parts\ for\ rotation\ or\ a\ combined\ constraint\ part\ if\ rotation\ is\ fixed}}
+\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart}{SwingTwistConstraintPart}}\ \ \ \ mSwingTwistConstraintPart;}
+\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{classRotationEulerConstraintPart}{RotationEulerConstraintPart}}\ \ mRotationConstraintPart;}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{comment}{//\ Motor\ or\ friction\ constraints}}
+\DoxyCodeLine{00284\ \ \ \ \ \mbox{\hyperlink{classAxisConstraintPart}{AxisConstraintPart}}\ \ \ \ \ \ \ \ \ \ \ \ mMotorTranslationConstraintPart[3];}
+\DoxyCodeLine{00285\ \ \ \ \ \mbox{\hyperlink{classAngleConstraintPart}{AngleConstraintPart}}\ \ \ \ \ \ \ \ \ \ mMotorRotationConstraintPart[3];}
+\DoxyCodeLine{00286\ \};}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

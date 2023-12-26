@@ -1,0 +1,5 @@
+<map id="PolyhedronSubmergedVolumeCalculator::Point" name="PolyhedronSubmergedVolumeCalculator::Point">
+<area shape="rect" id="Node000001" title="A helper class that contains cached information about a polyhedron vertex." alt="" coords="5,652,215,760"/>
+<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="29,5,191,587"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,587,113,635,107,635,107,587"/>
+</map>

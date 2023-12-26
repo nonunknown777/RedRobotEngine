@@ -1,0 +1,59 @@
+\doxysection{Linear\+Curve.\+h}
+\hypertarget{LinearCurve_8h_source}{}\label{LinearCurve_8h_source}\index{includes/jolt/Core/LinearCurve.h@{includes/jolt/Core/LinearCurve.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableObject.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/QuickSort.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStreamOut}{StreamOut}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStreamIn}{StreamIn}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ A\ set\ of\ points\ (x,\ y)\ that\ form\ a\ linear\ curve}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classLinearCurve}{LinearCurve}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_NON\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classLinearCurve}{LinearCurve}})}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ class\ \mbox{\hyperlink{classLinearCurve_1_1Point}{Point}}}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_NON\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classLinearCurve_1_1Point}{Point}})}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ mX\ =\ 0.0f;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ mY\ =\ 0.0f;}
+\DoxyCodeLine{00029\ \ \ \ \ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_aff2fa573a7368134091a91bd01274fca}{Clear}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mPoints.clear();\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_a97a229bd7bbda997fab1f22649afcd9c}{Reserve}}(uint\ inNumPoints)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mPoints.reserve(inNumPoints);\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_aa5b4a499837cb2a3a0c3b9b5eb618a53}{AddPoint}}(\textcolor{keywordtype}{float}\ inX,\ \textcolor{keywordtype}{float}\ inY)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mPoints.push\_back(\{\ inX,\ inY\ \});\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_ad78f856bc64b3249ffd1982a29e0178c}{Sort}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ QuickSort(mPoints.begin(),\ mPoints.end(),\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{classLinearCurve_1_1Point}{Point}}\ \&inLHS,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classLinearCurve_1_1Point}{Point}}\ \&inRHS)\ \{\ return\ inLHS.mX\ <\ inRHS.mX;\ \});\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_ac23b16f88bf858f9ff79e9a94500b549}{GetMinX}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPoints.empty()?\ 0.0f\ :\ mPoints.front().mX;\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_aa92a24bc4fff522ea56c5a0dadbf6ff4}{GetMaxX}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPoints.empty()?\ 0.0f\ :\ mPoints.back().mX;\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_a24eda4be408b24e5dfeba9bf94edb295}{GetValue}}(\textcolor{keywordtype}{float}\ inX)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_a7e8f85b447ccb50d077a1fd61da102e0}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLinearCurve_a1b1dc52c995b9c5ac2d890f01d2af11d}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classLinearCurve_ac5e86231b54adb339250de6c06a77cbc}{Points}}\ =\ Array<Point>;}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classLinearCurve_ac5e86231b54adb339250de6c06a77cbc}{Points}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPoints;}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

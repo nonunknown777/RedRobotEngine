@@ -1,0 +1,114 @@
+\doxysection{playrho\+::detail\+::Indexing\+Named\+Type\texorpdfstring{$<$}{<} T, Tag \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classplayrho_1_1detail_1_1IndexingNamedType}{}\label{classplayrho_1_1detail_1_1IndexingNamedType}\index{playrho::detail::IndexingNamedType$<$ T, Tag $>$@{playrho::detail::IndexingNamedType$<$ T, Tag $>$}}
+
+
+An indexable, hashable, named "{}strong type"{} template class.  
+
+
+
+
+{\ttfamily \#include $<$Indexing\+Named\+Type.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::detail\+::Indexing\+Named\+Type\texorpdfstring{$<$}{<} T, Tag \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{dd/dcf/classplayrho_1_1detail_1_1IndexingNamedType__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}\label{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b} 
+using {\bfseries underlying\+\_\+type} = T
+\begin{DoxyCompactList}\small\item\em Underlying type alias. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a892cfd05d866e1abb9af247c65ebb6df}{Indexing\+Named\+Type}} () noexcept(std\+::is\+\_\+nothrow\+\_\+default\+\_\+constructible$<$ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\+\_\+type}} $>$\+::value)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a3a345acf416a0b32e28a87ee929b65f1}\label{classplayrho_1_1detail_1_1IndexingNamedType_a3a345acf416a0b32e28a87ee929b65f1} 
+constexpr {\bfseries Indexing\+Named\+Type} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\+\_\+type}} \&value) noexcept(std\+::is\+\_\+nothrow\+\_\+copy\+\_\+constructible$<$ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\+\_\+type}} $>$\+::value)
+\begin{DoxyCompactList}\small\item\em Copy initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a3d2b448e6586f75c688e887340a8eedd}\label{classplayrho_1_1detail_1_1IndexingNamedType_a3d2b448e6586f75c688e887340a8eedd} 
+constexpr {\bfseries Indexing\+Named\+Type} (\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\+\_\+type}} \&\&value) noexcept(std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\+\_\+type}} $>$\+::value)
+\begin{DoxyCompactList}\small\item\em Move initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_af542614fbc4afa44a04a94ae6a5b7702}\label{classplayrho_1_1detail_1_1IndexingNamedType_af542614fbc4afa44a04a94ae6a5b7702} 
+constexpr {\bfseries operator underlying\+\_\+type \&} () noexcept
+\begin{DoxyCompactList}\small\item\em Underlying type cast operator support. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a3bf3196bd10d8150d943e66b7d8fa91c}\label{classplayrho_1_1detail_1_1IndexingNamedType_a3bf3196bd10d8150d943e66b7d8fa91c} 
+constexpr {\bfseries operator const underlying\+\_\+type \&} () const noexcept
+\begin{DoxyCompactList}\small\item\em Underlying type cast operator support. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}\label{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3} 
+constexpr \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\+\_\+type}} \& {\bfseries get} () noexcept
+\begin{DoxyCompactList}\small\item\em Accesses the underlying value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a6bda1c5b4714875c8cc05b4c759a201e}\label{classplayrho_1_1detail_1_1IndexingNamedType_a6bda1c5b4714875c8cc05b4c759a201e} 
+constexpr \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\+\_\+type}} const \& {\bfseries get} () const noexcept
+\begin{DoxyCompactList}\small\item\em Accesses the underlying value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a901b8a220621944bbaeb9368355580be}\label{classplayrho_1_1detail_1_1IndexingNamedType_a901b8a220621944bbaeb9368355580be} 
+friend\+::std\+::size\+\_\+t {\bfseries hash} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&v) noexcept
+\begin{DoxyCompactList}\small\item\em Hashes the value given. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a2e21d574919f686373b0b82f9d35ef98}\label{classplayrho_1_1detail_1_1IndexingNamedType_a2e21d574919f686373b0b82f9d35ef98} 
+void {\bfseries swap} (\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&a, \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&b) noexcept
+\begin{DoxyCompactList}\small\item\em Swap function. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a1219971355b53a396aadfb666f8d663f}\label{classplayrho_1_1detail_1_1IndexingNamedType_a1219971355b53a396aadfb666f8d663f} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a7fc38b3b9704801b3675cf1a002ad7e5}\label{classplayrho_1_1detail_1_1IndexingNamedType_a7fc38b3b9704801b3675cf1a002ad7e5} 
+constexpr bool {\bfseries operator!=} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a16b5aef0f779b655555dfbf0078ca0b5}\label{classplayrho_1_1detail_1_1IndexingNamedType_a16b5aef0f779b655555dfbf0078ca0b5} 
+constexpr bool {\bfseries operator$<$} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Less-\/than operator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a8ec128feccdf41a973ec8a828f879919}\label{classplayrho_1_1detail_1_1IndexingNamedType_a8ec128feccdf41a973ec8a828f879919} 
+constexpr bool {\bfseries operator$>$} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Greater-\/than operator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a0d791ea9f12cadd7cc5461f9faf7b084}\label{classplayrho_1_1detail_1_1IndexingNamedType_a0d791ea9f12cadd7cc5461f9faf7b084} 
+constexpr bool {\bfseries operator$<$=} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Less-\/than-\/or-\/equal-\/to operator. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a3d99fc15f9494510cac6473350bf5d35}\label{classplayrho_1_1detail_1_1IndexingNamedType_a3d99fc15f9494510cac6473350bf5d35} 
+constexpr bool {\bfseries operator$>$=} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Greater-\/than-\/or-\/equal-\/to operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename Tag$>$\newline
+class playrho\+::detail\+::\+Indexing\+Named\+Type$<$ T, Tag $>$}
+An indexable, hashable, named "{}strong type"{} template class. 
+
+A template class for wrapping types into more special-\/purposed types. Wrapping types this way is often referred to as more "{}strongly typing"{} the underlying type. \begin{DoxyNote}{Note}
+This comes from pulling together code found from various sites on the Internet. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://www.fluentcpp.com/2016/12/08/strong-types-for-strong-interfaces/}{\texttt{ https\+://www.\+fluentcpp.\+com/2016/12/08/strong-\/types-\/for-\/strong-\/interfaces/}} 
+
+\href{https://foonathan.net/blog/2016/10/19/strong-typedefs.html}{\texttt{ https\+://foonathan.\+net/blog/2016/10/19/strong-\/typedefs.\+html}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classplayrho_1_1detail_1_1IndexingNamedType_a892cfd05d866e1abb9af247c65ebb6df}\label{classplayrho_1_1detail_1_1IndexingNamedType_a892cfd05d866e1abb9af247c65ebb6df} 
+\index{playrho::detail::IndexingNamedType$<$ T, Tag $>$@{playrho::detail::IndexingNamedType$<$ T, Tag $>$}!IndexingNamedType@{IndexingNamedType}}
+\index{IndexingNamedType@{IndexingNamedType}!playrho::detail::IndexingNamedType$<$ T, Tag $>$@{playrho::detail::IndexingNamedType$<$ T, Tag $>$}}
+\doxysubsubsection{\texorpdfstring{IndexingNamedType()}{IndexingNamedType()}}
+{\footnotesize\ttfamily template$<$typename T , typename Tag $>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{playrho\+::detail\+::\+Indexing\+Named\+Type}}$<$ T, Tag $>$\+::\+Indexing\+Named\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Default constructor. 
+
+\begin{DoxyNote}{Note}
+This causes default initialization of the underlying type. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Indexing\+Named\+Type.\+hpp\end{DoxyCompactItemize}

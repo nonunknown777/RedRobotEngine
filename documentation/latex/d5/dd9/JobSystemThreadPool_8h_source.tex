@@ -1,0 +1,79 @@
+\doxysection{Job\+System\+Thread\+Pool.\+h}
+\hypertarget{JobSystemThreadPool_8h_source}{}\label{JobSystemThreadPool_8h_source}\index{includes/jolt/Core/JobSystemThreadPool.h@{includes/jolt/Core/JobSystemThreadPool.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/JobSystemWithBarrier.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/FixedSizeFreeList.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Semaphore.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00013\ JPH\_SUPPRESS\_WARNINGS\_STD\_END}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Things\ we're\ using\ from\ STL}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ }std::thread;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classJobSystemThreadPool}{JobSystemThreadPool}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classJobSystemWithBarrier}{JobSystemWithBarrier}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool_a646665a28d2b4fd168ed3f283efc67c0}{JobSystemThreadPool}}(uint\ inMaxJobs,\ uint\ inMaxBarriers,\ \textcolor{keywordtype}{int}\ inNumThreads\ =\ -\/1);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool}{JobSystemThreadPool}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool}{\string~JobSystemThreadPool}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool_a4dc159b1f4b99e398cc5d27262c555f1}{Init}}(uint\ inMaxJobs,\ uint\ inMaxBarriers,\ \textcolor{keywordtype}{int}\ inNumThreads\ =\ -\/1);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ See\ JobSystem}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool_ad9d1ead2ffc5ab1ec9aa6e06948c98ac}{GetMaxConcurrency}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ int(mThreads.size())\ +\ 1;\ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool_aaca24192ded59a7ade7e655a495f9d48}{CreateJob}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classJobSystem_ae31ef61a509934f03d4705aec19c61f5}{JobFunction}}\ \&inJobFunction,\ uint32\ inNumDependencies\ =\ 0)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool_a4b7f3271d9bd98562563d4dfcaa40c9d}{SetNumThreads}}(\textcolor{keywordtype}{int}\ inNumThreads)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ StopThreads();\ StartThreads(inNumThreads);\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ See\ JobSystem}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool_ae5a196fc16e3dd738c81eef74b3027c4}{QueueJob}}(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ *inJob)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool_a95cc3e8610b53bce87730404f44c7e96}{QueueJobs}}(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ **inJobs,\ uint\ inNumJobs)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystemThreadPool_ad9ae9ac8231c2098b99837b76e4155f9}{FreeJob}}(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ *inJob)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StartThreads(\textcolor{keywordtype}{int}\ inNumThreads);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StopThreads();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ThreadMain(\textcolor{keywordtype}{int}\ inThreadIndex);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ GetHead()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ QueueJobInternal(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ *inJob);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classFixedSizeFreeList}{AvailableJobs}}\ =\ \mbox{\hyperlink{classFixedSizeFreeList}{FixedSizeFreeList<Job>}};}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classFixedSizeFreeList}{AvailableJobs}}\ \ \ \ \ \ \ \ \ \ mJobs;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ Array<thread>\ \ \ \ \ \ \ \ \ \ \ mThreads;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ The\ job\ queue}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint32\ cQueueLength\ =\ 1024;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static\_assert}(IsPowerOf2(cQueueLength));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ do\ bit\ operations\ and\ require\ queue\ length\ to\ be\ a\ power\ of\ 2}}
+\DoxyCodeLine{00079\ \ \ \ \ atomic<Job\ *>\ \ \ \ \ \ \ \ \ \ \ mQueue[cQueueLength];}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ Head\ and\ tail\ of\ the\ queue,\ do\ this\ value\ modulo\ cQueueLength\ -\/\ 1\ to\ get\ the\ element\ in\ the\ mQueue\ array}}
+\DoxyCodeLine{00082\ \ \ \ \ atomic<uint>\ *\ \ \ \ \ \ \ \ \ \ mHeads\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{alignas}(JPH\_CACHE\_LINE\_SIZE)\ atomic<uint>\ mTail\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ Semaphore\ used\ to\ signal\ worker\ threads\ that\ there\ is\ new\ work}}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classSemaphore}{Semaphore}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mSemaphore;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ atomic<bool>\ \ \ \ \ \ \ \ \ \ \ \ mQuit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

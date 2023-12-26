@@ -1,0 +1,451 @@
+\doxysection{Physical Quantity Types}
+\hypertarget{group__PhysicalQuantities}{}\label{group__PhysicalQuantities}\index{Physical Quantity Types@{Physical Quantity Types}}
+
+
+Types for physical quantities.  
+
+
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{playrho\+::\+Time}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::time)
+\begin{DoxyCompactList}\small\item\em Time quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_gad39135cf298be76964c70829ec84a51e}{playrho\+::\+Frequency}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::frequency)
+\begin{DoxyCompactList}\small\item\em Frequency quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{playrho\+::\+Length}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::length)
+\begin{DoxyCompactList}\small\item\em Length quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga6e944c18ed210626b5829b8ad2813fde}{playrho\+::\+Linear\+Velocity}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::velocity)
+\begin{DoxyCompactList}\small\item\em Linear velocity quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_gadf7de472e7f4a6fa26bff6a655f100e7}{playrho\+::\+Linear\+Acceleration}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::acceleration)
+\begin{DoxyCompactList}\small\item\em Linear acceleration quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{playrho\+::\+Mass}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::mass)
+\begin{DoxyCompactList}\small\item\em Mass quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga9b387148008099ec9d37dbcf1f1a1571}{playrho\+::\+Inv\+Mass}} = PLAYRHO\+\_\+\+QUANTITY(playrho\+::units\+::si\+::inverse\+\_\+mass)
+\begin{DoxyCompactList}\small\item\em Inverse mass quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{playrho\+::\+Area}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::area)
+\begin{DoxyCompactList}\small\item\em Area quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga534c92a63631b49d1e80119a68af8a4a}{playrho\+::\+Area\+Density}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::surface\+\_\+density)
+\begin{DoxyCompactList}\small\item\em Area (surface) density quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{playrho\+::\+Angle}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::plane\+\_\+angle)
+\begin{DoxyCompactList}\small\item\em Angle quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_gac33f92018f7e8821550296aece465028}{playrho\+::\+Angular\+Velocity}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::angular\+\_\+velocity)
+\begin{DoxyCompactList}\small\item\em Angular velocity quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_gafcce543a0d59f313adb801e2e18ede86}{playrho\+::\+Angular\+Acceleration}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::angular\+\_\+acceleration)
+\begin{DoxyCompactList}\small\item\em Angular acceleration quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_gabdbf955ed1cafec5062f074511ee4829}{playrho\+::\+Force}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::force)
+\begin{DoxyCompactList}\small\item\em Force quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_gaa13e620479b6e4a34fae5a90bcaf9355}{playrho\+::\+Torque}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::torque)
+\begin{DoxyCompactList}\small\item\em Torque quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga9ded7e1044d55beb1ca2957d671ece44}{playrho\+::\+Second\+Moment\+Of\+Area}} = PLAYRHO\+\_\+\+QUANTITY(playrho\+::units\+::si\+::second\+\_\+moment\+\_\+of\+\_\+area)
+\begin{DoxyCompactList}\small\item\em Second moment of area quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga67bbb3e4938321efec8d939636bf988e}{playrho\+::\+Rot\+Inertia}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::moment\+\_\+of\+\_\+inertia)
+\begin{DoxyCompactList}\small\item\em Rotational inertia quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_gad5941a3d5c4b22ba991887772a3744de}{playrho\+::\+Inv\+Rot\+Inertia}} = PLAYRHO\+\_\+\+QUANTITY(playrho\+::units\+::si\+::inverse\+\_\+moment\+\_\+of\+\_\+inertia)
+\begin{DoxyCompactList}\small\item\em Inverse rotational inertia quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8}{playrho\+::\+Momentum}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::momentum)
+\begin{DoxyCompactList}\small\item\em Momentum quantity. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{group__PhysicalQuantities_ga3537d441743bb2f96c612296424f1e43}{playrho\+::\+Angular\+Momentum}} = PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::angular\+\_\+momentum)
+\begin{DoxyCompactList}\small\item\em Angular momentum quantity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Types for physical quantities. 
+
+These are the type aliases for physical quantities like time and length that are used by the Play\+Rho library. Conceptually a given quantity is only expressable in the units that are defined for that quantity. \begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalUnits}{Units For Physical Quantities} 
+
+\href{https://en.wikipedia.org/wiki/List_of_physical_quantities}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+List\+\_\+of\+\_\+physical\+\_\+quantities}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}\label{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Angle@{Angle}}
+\index{Angle@{Angle}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Angle}{Angle}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{playrho\+::\+Angle}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::plane\+\_\+angle)}
+
+
+
+Angle quantity. 
+
+This is the type alias for the plane angle base quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimension is\+: plane angle ({\ttfamily QP}). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalUnits_gaebbe3f5282db32af8292500e505e21e5}{Radian}, \doxylink{group__PhysicalUnits_gaf0840a4c6fcfa4ed0f1e25820fea0ca3}{Degree}. 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_gafcce543a0d59f313adb801e2e18ede86}\label{group__PhysicalQuantities_gafcce543a0d59f313adb801e2e18ede86} 
+\index{Physical Quantity Types@{Physical Quantity Types}!AngularAcceleration@{AngularAcceleration}}
+\index{AngularAcceleration@{AngularAcceleration}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{AngularAcceleration}{AngularAcceleration}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_gafcce543a0d59f313adb801e2e18ede86}{playrho\+::\+Angular\+Acceleration}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::angular\+\_\+acceleration)}
+
+
+
+Angular acceleration quantity. 
+
+This is the type alias for the angular acceleration quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: plane angle per time squared ({\ttfamily QP T\texorpdfstring{$^\wedge$}{\string^}-\/2}). 
+
+The SI derived unit of angular acceleration is the radian per second-\/squared. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}, \doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}, \doxylink{group__PhysicalQuantities_gac33f92018f7e8821550296aece465028}{Angular\+Velocity}. 
+
+\doxylink{group__PhysicalUnits_ga0da7c45fe3ebc86d397e684154033742}{Radian\+Per\+Square\+Second}, \doxylink{group__PhysicalUnits_ga7a7cdea552b0f98a011b3287850433a2}{Degree\+Per\+Square\+Second}. 
+
+\href{https://en.wikipedia.org/wiki/Angular_acceleration}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Angular\+\_\+acceleration}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga3537d441743bb2f96c612296424f1e43}\label{group__PhysicalQuantities_ga3537d441743bb2f96c612296424f1e43} 
+\index{Physical Quantity Types@{Physical Quantity Types}!AngularMomentum@{AngularMomentum}}
+\index{AngularMomentum@{AngularMomentum}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{AngularMomentum}{AngularMomentum}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga3537d441743bb2f96c612296424f1e43}{playrho\+::\+Angular\+Momentum}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::angular\+\_\+momentum)}
+
+
+
+Angular momentum quantity. 
+
+This is the type alias for the angular momentum quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: length-\/squared mass per time per angle ({\ttfamily L\texorpdfstring{$^\wedge$}{\string^}2 M T\texorpdfstring{$^\wedge$}{\string^}-\/1 QP\texorpdfstring{$^\wedge$}{\string^}-\/1}). 
+
+The SI derived unit of angular momentum is the kilogram meter-\/squared per second. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}, \doxylink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{Mass}, \doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}, \doxylink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}, \doxylink{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8}{Momentum}. 
+
+\doxylink{group__PhysicalUnits_gae55524173aec32daa74def2b8dddc0bb}{Newton\+Meter\+Second}. 
+
+\href{https://en.wikipedia.org/wiki/Angular_momentum}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Angular\+\_\+momentum}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_gac33f92018f7e8821550296aece465028}\label{group__PhysicalQuantities_gac33f92018f7e8821550296aece465028} 
+\index{Physical Quantity Types@{Physical Quantity Types}!AngularVelocity@{AngularVelocity}}
+\index{AngularVelocity@{AngularVelocity}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{AngularVelocity}{AngularVelocity}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_gac33f92018f7e8821550296aece465028}{playrho\+::\+Angular\+Velocity}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::angular\+\_\+velocity)}
+
+
+
+Angular velocity quantity. 
+
+This is the type alias for the plane angular velocity quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: plane angle per time ({\ttfamily QP T\texorpdfstring{$^\wedge$}{\string^}-\/1}). 
+
+The SI derived unit of angular velocity is the radian per second. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}, \doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}. 
+
+\doxylink{group__PhysicalUnits_ga446e46852ff69dee446aadc44635865c}{Radian\+Per\+Second}, \doxylink{group__PhysicalUnits_ga987ba57899c87b7d6734d046d1c854b8}{Degree\+Per\+Second}. 
+
+\href{https://en.wikipedia.org/wiki/Angular_velocity}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Angular\+\_\+velocity}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}\label{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Area@{Area}}
+\index{Area@{Area}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Area}{Area}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{playrho\+::\+Area}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::area)}
+
+
+
+Area quantity. 
+
+This is the type alias for the area quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimension is\+: length squared ({\ttfamily L\texorpdfstring{$^\wedge$}{\string^}2}). 
+
+The SI unit of area is the square-\/meter. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}. 
+
+\doxylink{group__PhysicalUnits_ga1fb0acbda4409a1a132baf7df83b9870}{Square\+Meter}. 
+
+\href{https://en.wikipedia.org/wiki/Area}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Area}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga534c92a63631b49d1e80119a68af8a4a}\label{group__PhysicalQuantities_ga534c92a63631b49d1e80119a68af8a4a} 
+\index{Physical Quantity Types@{Physical Quantity Types}!AreaDensity@{AreaDensity}}
+\index{AreaDensity@{AreaDensity}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{AreaDensity}{AreaDensity}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga534c92a63631b49d1e80119a68af8a4a}{playrho\+::\+Area\+Density}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::surface\+\_\+density)}
+
+
+
+Area (surface) density quantity. 
+
+This is the type alias for the area density quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: mass per area ({\ttfamily M L\texorpdfstring{$^\wedge$}{\string^}-\/2}). 
+
+The SI derived unit of area density is kilogram per meter-\/squared. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{Mass}, \doxylink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{Area}. 
+
+\doxylink{group__PhysicalUnits_ga64416f646855741c31802eb689760ba8}{Kilogram\+Per\+Square\+Meter}. 
+
+\href{https://en.wikipedia.org/wiki/Area_density}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Area\+\_\+density}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_gabdbf955ed1cafec5062f074511ee4829}\label{group__PhysicalQuantities_gabdbf955ed1cafec5062f074511ee4829} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Force@{Force}}
+\index{Force@{Force}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Force}{Force}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_gabdbf955ed1cafec5062f074511ee4829}{playrho\+::\+Force}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::force)}
+
+
+
+Force quantity. 
+
+This is the type alias for the force quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: length mass per time squared ({\ttfamily L M T\texorpdfstring{$^\wedge$}{\string^}-\/2}). 
+
+The SI derived unit of force is the newton. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}, \doxylink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{Mass}, \doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}. 
+
+\doxylink{group__PhysicalUnits_gac88db74a1ddb390655f0837d9c970f76}{Newton}. 
+
+\href{https://en.wikipedia.org/wiki/Force}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Force}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_gad39135cf298be76964c70829ec84a51e}\label{group__PhysicalQuantities_gad39135cf298be76964c70829ec84a51e} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Frequency@{Frequency}}
+\index{Frequency@{Frequency}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Frequency}{Frequency}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_gad39135cf298be76964c70829ec84a51e}{playrho\+::\+Frequency}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::frequency)}
+
+
+
+Frequency quantity. 
+
+This is the type alias for the frequency quantity. It\textquotesingle{}s a derived quantity that\textquotesingle{}s the inverse of time. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimension is\+: inverse time ({\ttfamily T\texorpdfstring{$^\wedge$}{\string^}-\/1}). 
+
+The SI unit of frequency is the hertz. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}. 
+
+\doxylink{group__PhysicalUnits_gadef54036b9480e0cf730100688e20570}{Hertz}. 
+
+\href{https://en.wikipedia.org/wiki/Frequency}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Frequency}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga9b387148008099ec9d37dbcf1f1a1571}\label{group__PhysicalQuantities_ga9b387148008099ec9d37dbcf1f1a1571} 
+\index{Physical Quantity Types@{Physical Quantity Types}!InvMass@{InvMass}}
+\index{InvMass@{InvMass}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{InvMass}{InvMass}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga9b387148008099ec9d37dbcf1f1a1571}{playrho\+::\+Inv\+Mass}} = typedef PLAYRHO\+\_\+\+QUANTITY(playrho\+::units\+::si\+::inverse\+\_\+mass)}
+
+
+
+Inverse mass quantity. 
+
+This is the type alias for the inverse mass quantity. It\textquotesingle{}s a derived quantity that\textquotesingle{}s the inverse of mass. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimension is\+: inverse mass ({\ttfamily M\texorpdfstring{$^\wedge$}{\string^}-\/1}). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{Mass}. 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_gad5941a3d5c4b22ba991887772a3744de}\label{group__PhysicalQuantities_gad5941a3d5c4b22ba991887772a3744de} 
+\index{Physical Quantity Types@{Physical Quantity Types}!InvRotInertia@{InvRotInertia}}
+\index{InvRotInertia@{InvRotInertia}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{InvRotInertia}{InvRotInertia}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_gad5941a3d5c4b22ba991887772a3744de}{playrho\+::\+Inv\+Rot\+Inertia}} = typedef PLAYRHO\+\_\+\+QUANTITY(playrho\+::units\+::si\+::inverse\+\_\+moment\+\_\+of\+\_\+inertia)}
+
+
+
+Inverse rotational inertia quantity. 
+
+This is the type alias for the inverse rotational inertia quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: angle-\/squared per length-\/squared per mass ({\ttfamily L\texorpdfstring{$^\wedge$}{\string^}-\/2 M\texorpdfstring{$^\wedge$}{\string^}-\/1 QP\texorpdfstring{$^\wedge$}{\string^}2}). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}, \doxylink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{Mass}, \doxylink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}, \doxylink{group__PhysicalQuantities_ga67bbb3e4938321efec8d939636bf988e}{Rot\+Inertia}. 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}\label{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Length@{Length}}
+\index{Length@{Length}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Length}{Length}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{playrho\+::\+Length}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::length)}
+
+
+
+Length quantity. 
+
+This is the type alias for the length base quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimension is\+: length ({\ttfamily L}). 
+
+The SI unit of length is the meter. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalUnits_gab5d1d9c70d11cff5fb552e939de39b9c}{Meter}. 
+
+\href{https://en.wikipedia.org/wiki/Length}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Length}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_gadf7de472e7f4a6fa26bff6a655f100e7}\label{group__PhysicalQuantities_gadf7de472e7f4a6fa26bff6a655f100e7} 
+\index{Physical Quantity Types@{Physical Quantity Types}!LinearAcceleration@{LinearAcceleration}}
+\index{LinearAcceleration@{LinearAcceleration}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{LinearAcceleration}{LinearAcceleration}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_gadf7de472e7f4a6fa26bff6a655f100e7}{playrho\+::\+Linear\+Acceleration}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::acceleration)}
+
+
+
+Linear acceleration quantity. 
+
+This is the type alias for the linear acceleration derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: length over time squared ({\ttfamily L T\texorpdfstring{$^\wedge$}{\string^}-\/2}). 
+
+The SI unit of linear acceleration is meters per second squared. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}, \doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}, \doxylink{group__PhysicalQuantities_ga6e944c18ed210626b5829b8ad2813fde}{Linear\+Velocity}. 
+
+\doxylink{group__PhysicalUnits_ga0bc87db1f0fbc1b5f1ae9b44c66b6e82}{Meter\+Per\+Square\+Second}. 
+
+\href{https://en.wikipedia.org/wiki/Acceleration}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Acceleration}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga6e944c18ed210626b5829b8ad2813fde}\label{group__PhysicalQuantities_ga6e944c18ed210626b5829b8ad2813fde} 
+\index{Physical Quantity Types@{Physical Quantity Types}!LinearVelocity@{LinearVelocity}}
+\index{LinearVelocity@{LinearVelocity}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{LinearVelocity}{LinearVelocity}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga6e944c18ed210626b5829b8ad2813fde}{playrho\+::\+Linear\+Velocity}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::velocity)}
+
+
+
+Linear velocity quantity. 
+
+This is the type alias for the linear velocity derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: length over time ({\ttfamily L T\texorpdfstring{$^\wedge$}{\string^}-\/1}). 
+
+The SI unit of linear velocity is meters per second. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}, \doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}. 
+
+\doxylink{group__PhysicalUnits_ga9d80fc94ec9d5990d2fa6b9e4b67267d}{Meter\+Per\+Second}. 
+
+\href{https://en.wikipedia.org/wiki/Speed}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Speed}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}\label{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Mass@{Mass}}
+\index{Mass@{Mass}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Mass}{Mass}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{playrho\+::\+Mass}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::mass)}
+
+
+
+Mass quantity. 
+
+This is the type alias for the mass base quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimension is\+: mass ({\ttfamily M}). 
+
+The SI unit of mass is the kilogram. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalUnits_gad4ca745853415c1b3df906848978df9d}{Kilogram}. 
+
+\href{https://en.wikipedia.org/wiki/Mass}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Mass}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8}\label{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Momentum@{Momentum}}
+\index{Momentum@{Momentum}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Momentum}{Momentum}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8}{playrho\+::\+Momentum}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::momentum)}
+
+
+
+Momentum quantity. 
+
+This is the type alias for the momentum quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: length mass per time ({\ttfamily L M T\texorpdfstring{$^\wedge$}{\string^}-\/1}). 
+
+The SI derived unit of momentum is the kilogram meter per second. 
+
+If {\ttfamily p} is momentum, {\ttfamily m} is mass, and {\ttfamily v} is velocity, then {\ttfamily p = m \texorpdfstring{$\ast$}{*} v}. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}, \doxylink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{Mass}, \doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}. 
+
+\doxylink{group__PhysicalUnits_ga64db6556e1824d11178c3d68301c2adc}{Newton\+Second}. 
+
+\href{https://en.wikipedia.org/wiki/Momentum}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Momentum}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga67bbb3e4938321efec8d939636bf988e}\label{group__PhysicalQuantities_ga67bbb3e4938321efec8d939636bf988e} 
+\index{Physical Quantity Types@{Physical Quantity Types}!RotInertia@{RotInertia}}
+\index{RotInertia@{RotInertia}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{RotInertia}{RotInertia}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga67bbb3e4938321efec8d939636bf988e}{playrho\+::\+Rot\+Inertia}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::moment\+\_\+of\+\_\+inertia)}
+
+
+
+Rotational inertia quantity. 
+
+This is the type alias for the rotational inertia quantity. It\textquotesingle{}s a derived quantity that\textquotesingle{}s also called the moment of inertia or angular mass. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: length-\/squared mass per angle-\/squared ({\ttfamily L\texorpdfstring{$^\wedge$}{\string^}2 M QP\texorpdfstring{$^\wedge$}{\string^}-\/2}). 
+
+The SI derived unit of rotational inertia is the kilogram meter-\/squared ({\ttfamily kg \texorpdfstring{$\ast$}{*} m\texorpdfstring{$^\wedge$}{\string^}2}). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}, \doxylink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{Mass}, \doxylink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}, \doxylink{group__PhysicalQuantities_gad5941a3d5c4b22ba991887772a3744de}{Inv\+Rot\+Inertia}. 
+
+\href{https://en.wikipedia.org/wiki/Moment_of_inertia}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Moment\+\_\+of\+\_\+inertia}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga9ded7e1044d55beb1ca2957d671ece44}\label{group__PhysicalQuantities_ga9ded7e1044d55beb1ca2957d671ece44} 
+\index{Physical Quantity Types@{Physical Quantity Types}!SecondMomentOfArea@{SecondMomentOfArea}}
+\index{SecondMomentOfArea@{SecondMomentOfArea}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{SecondMomentOfArea}{SecondMomentOfArea}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga9ded7e1044d55beb1ca2957d671ece44}{playrho\+::\+Second\+Moment\+Of\+Area}} = typedef PLAYRHO\+\_\+\+QUANTITY(playrho\+::units\+::si\+::second\+\_\+moment\+\_\+of\+\_\+area)}
+
+
+
+Second moment of area quantity. 
+
+This is the type alias for the second moment of area quantity. It\textquotesingle{}s a derived quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: length-\/squared-\/squared ({\ttfamily L\texorpdfstring{$^\wedge$}{\string^}4}). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}. 
+
+\href{https://en.wikipedia.org/wiki/Second_moment_of_area}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Second\+\_\+moment\+\_\+of\+\_\+area}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}\label{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Time@{Time}}
+\index{Time@{Time}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Time}{Time}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{playrho\+::\+Time}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::time)}
+
+
+
+Time quantity. 
+
+This is the type alias for the time base quantity. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimension is\+: time ({\ttfamily T}). 
+
+The SI unit of time is the second. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalUnits_ga6dacec03532687e9bac4ac6a882b35ad}{Second}. 
+
+\href{https://en.wikipedia.org/wiki/Time_in_physics}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Time\+\_\+in\+\_\+physics}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__PhysicalQuantities_gaa13e620479b6e4a34fae5a90bcaf9355}\label{group__PhysicalQuantities_gaa13e620479b6e4a34fae5a90bcaf9355} 
+\index{Physical Quantity Types@{Physical Quantity Types}!Torque@{Torque}}
+\index{Torque@{Torque}!Physical Quantity Types@{Physical Quantity Types}}
+\doxysubsubsection{\texorpdfstring{Torque}{Torque}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{group__PhysicalQuantities_gaa13e620479b6e4a34fae5a90bcaf9355}{playrho\+::\+Torque}} = typedef PLAYRHO\+\_\+\+QUANTITY(boost\+::units\+::si\+::torque)}
+
+
+
+Torque quantity. 
+
+This is the type alias for the torque quantity. It\textquotesingle{}s a derived quantity that\textquotesingle{}s a rotational force. \begin{DoxyNote}{Note}
+This quantity\textquotesingle{}s dimensions are\+: length-\/squared mass per time-\/squared per angle ({\ttfamily L\texorpdfstring{$^\wedge$}{\string^}2 M T\texorpdfstring{$^\wedge$}{\string^}-\/2 QP\texorpdfstring{$^\wedge$}{\string^}-\/1}). 
+
+The SI derived unit of torque is the newton meter. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}, \doxylink{group__PhysicalQuantities_ga5edfc295416b7690b4f949223b551bc1}{Mass}, \doxylink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}, \doxylink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}. 
+
+\doxylink{group__PhysicalUnits_gab920bd1046410474258f9e8630e557a1}{Newton\+Meter}. 
+
+\href{https://en.wikipedia.org/wiki/Torque}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Torque}} 
+\end{DoxySeeAlso}

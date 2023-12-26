@@ -1,0 +1,212 @@
+\doxysection{Job\+System.\+h}
+\hypertarget{JobSystem_8h_source}{}\label{JobSystem_8h_source}\index{includes/jolt/Core/JobSystem.h@{includes/jolt/Core/JobSystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Reference.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Color.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Profiler.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StaticArray.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Atomics.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classJobSystem}{JobSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJobSystem_1_1Job}{Job}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ :\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classRef}{Ref}}<Job>}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle_a07f9178968f17e7bcb8b876f46ee916d}{JobHandle}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \&inHandle)\ \ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}(\mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \&\&inHandle)\ noexcept\ \ :\ \mbox{\hyperlink{classRef}{Ref<Job>}}(std::move(inHandle))\ \{\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle_a08f33876c4c56f09acc8447c68af002a}{JobHandle}}(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ *inJob)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classRef}{Ref}}<\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}>(inJob)\ \{\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \&\ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \&inHandle)\ \ \ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \&\ operator\ =\ (\mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \&\&inHandle)\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle_a8f060c8caed0f0d1a5cfa45490790529}{IsValid}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ GetPtr()\ !=\ \textcolor{keyword}{nullptr};\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle_a787e04af05eea5f3eda568956cca9f10}{IsDone}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ GetPtr()\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ GetPtr()-\/>IsDone();\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle_af0a10c0398474dbf0ffe9b5866775abb}{AddDependency}}(\textcolor{keywordtype}{int}\ inCount\ =\ 1)\textcolor{keyword}{\ const\ \ \ \ \ \ \ }\{\ GetPtr()-\/>AddDependency(inCount);\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle_a25f723a35202461e725cc3ad6cc166bb}{RemoveDependency}}(\textcolor{keywordtype}{int}\ inCount\ =\ 1)\textcolor{keyword}{\ const\ \ \ \ \ }\{\ GetPtr()-\/>RemoveDependencyAndQueue(inCount);\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ sRemoveDependencies(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ *inHandles,\ uint\ inNumHandles,\ \textcolor{keywordtype}{int}\ inCount\ =\ 1);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle_a822d3ea702c61fe9aa32b2c6e6925749}{sRemoveDependencies}}(\mbox{\hyperlink{classStaticArray}{StaticArray<JobHandle,\ N>}}\ \&inHandles,\ \textcolor{keywordtype}{int}\ inCount\ =\ 1)}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ sRemoveDependencies(inHandles.data(),\ inHandles.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}(),\ inCount);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classRef}{Ref}}<\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}>::GetPtr;}
+\DoxyCodeLine{00119\ \ \ \ \ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJobSystem_1_1Barrier}{Barrier}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Barrier_afcf8f345a7a19e1399c4899942ed49c4}{AddJob}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \&inJob)\ =\ 0;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Barrier_ad62875b2d5b89282bfaae824cac1a476}{AddJobs}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ *inHandles,\ uint\ inNumHandles)\ =\ 0;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJobSystem_1_1Job}{Job}};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Barrier_aa7553c8c987ca8bb810c2715ef8ffbbd}{\string~Barrier}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Barrier_ab76635eef3bb293a2bceb429192adb2a}{OnJobFinished}}(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ *inJob)\ =\ 0;}
+\DoxyCodeLine{00144\ \ \ \ \ \};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classJobSystem_ae31ef61a509934f03d4705aec19c61f5}{JobFunction}}\ =\ function<void()>;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_aaaf28c0a93f2d52eb2c936807f9e8ec9}{\string~JobSystem}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_a5953ad34be5c47e7896b87ac7409b7d7}{GetMaxConcurrency}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_a0766c8acd5ed9ef0e6baf1c2b8f3c38b}{CreateJob}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classJobSystem_ae31ef61a509934f03d4705aec19c61f5}{JobFunction}}\ \&inJobFunction,\ uint32\ inNumDependencies\ =\ 0)\ =\ 0;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classJobSystem_1_1Barrier}{Barrier}}\ *\ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_a2bd7c3efdc8f934b728ee1787e0bd58e}{CreateBarrier}}()\ =\ 0;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_a51c615924cf4f8eefb8e3fbe72041373}{DestroyBarrier}}(\mbox{\hyperlink{classJobSystem_1_1Barrier}{Barrier}}\ *inBarrier)\ =\ 0;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_a32e93cf0a95e8893978cf1ee92eb41d7}{WaitForJobs}}(\mbox{\hyperlink{classJobSystem_1_1Barrier}{Barrier}}\ *inBarrier)\ =\ 0;}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}}
+\DoxyCodeLine{00171\ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Job_a50f9de63538bb632101548fef86258e1}{Job}}([[maybe\_unused]]\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inJobName,\ [[maybe\_unused]]\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \mbox{\hyperlink{classJobSystem}{JobSystem}}\ *inJobSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classJobSystem_ae31ef61a509934f03d4705aec19c61f5}{JobFunction}}\ \&inJobFunction,\ uint32\ inNumDependencies)\ :}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \#if\ defined(JPH\_EXTERNAL\_PROFILE)\ ||\ defined(JPH\_PROFILE\_ENABLED)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ mJobName(inJobName),}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ mColor(inColor),}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \#endif\ \textcolor{comment}{//\ defined(JPH\_EXTERNAL\_PROFILE)\ ||\ defined(JPH\_PROFILE\_ENABLED)}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ mJobSystem(inJobSystem),}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ mJobFunction(inJobFunction),}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ mNumDependencies(inNumDependencies)}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classJobSystem}{JobSystem}}\ *\ \mbox{\hyperlink{classJobSystem_1_1Job_aa3922bb7442e7e778cec6a8ea984f454}{GetJobSystem}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mJobSystem;\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Job_ac6b5861562063d42cfa3c68f45c12b2d}{AddRef}}()}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Adding\ a\ reference\ can\ use\ relaxed\ memory\ ordering}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ mReferenceCount.fetch\_add(1,\ memory\_order\_relaxed);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ Release()}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Releasing\ a\ reference\ must\ use\ release\ semantics...}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mReferenceCount.fetch\_sub(1,\ memory\_order\_release)\ ==\ 1)}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...\ so\ that\ we\ can\ use\ aquire\ to\ ensure\ that\ we\ see\ any\ updates\ from\ other\ threads\ that\ released\ a\ ref\ before\ freeing\ the\ job}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ atomic\_thread\_fence(memory\_order\_acquire);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mJobSystem-\/>FreeJob(\textcolor{keyword}{this});}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ AddDependency(\textcolor{keywordtype}{int}\ inCount);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ RemoveDependency(\textcolor{keywordtype}{int}\ inCount);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ RemoveDependencyAndQueue(\textcolor{keywordtype}{int}\ inCount);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Job_a83a4dee7e40f01cab6eafbafa53a4efc}{SetBarrier}}(\mbox{\hyperlink{classJobSystem_1_1Barrier}{Barrier}}\ *inBarrier)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ intptr\_t\ barrier\ =\ 0;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mBarrier.compare\_exchange\_strong(barrier,\ \textcolor{keyword}{reinterpret\_cast<}intptr\_t\textcolor{keyword}{>}(inBarrier),\ memory\_order\_relaxed))}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(barrier\ ==\ cBarrierDoneState,\ \textcolor{stringliteral}{"{}A\ job\ can\ only\ belong\ to\ 1\ barrier"{}});}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Job_a51718f809ac43edfcd1a3ae87acc2bd4}{Execute}}()}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transition\ job\ to\ executing\ state}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ state\ =\ 0;\ \textcolor{comment}{//\ We\ can\ only\ start\ running\ with\ a\ dependency\ counter\ of\ 0}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!mNumDependencies.compare\_exchange\_strong(state,\ cExecutingState,\ memory\_order\_acquire))}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ state;\ \textcolor{comment}{//\ state\ is\ updated\ by\ compare\_exchange\_strong\ to\ the\ current\ value}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Run\ the\ job\ function}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_PROFILE(mJobName,\ mColor.GetUInt32());}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mJobFunction();}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ the\ barrier\ pointer\ and\ exchange\ it\ for\ the\ done\ state,\ so\ we're\ sure\ that\ no\ barrier\ gets\ set\ after\ we\ want\ to\ call\ the\ callback}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ intptr\_t\ barrier\ =\ mBarrier.load(memory\_order\_relaxed);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mBarrier.compare\_exchange\_weak(barrier,\ cBarrierDoneState,\ memory\_order\_relaxed))}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(barrier\ !=\ cBarrierDoneState);}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mark\ job\ as\ done}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ state\ =\ cExecutingState;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ mNumDependencies.compare\_exchange\_strong(state,\ cDoneState,\ memory\_order\_relaxed);}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(state\ ==\ cExecutingState);}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Notify\ the\ barrier\ after\ we've\ changed\ the\ job\ to\ the\ done\ state\ so\ that\ any\ thread\ reading\ the\ state\ after\ receiving\ the\ callback\ will\ see\ that\ the\ job\ has\ finished}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (barrier\ !=\ 0)}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{classJobSystem_1_1Barrier}{Barrier}}\ *\textcolor{keyword}{>}(barrier)-\/>OnJobFinished(\textcolor{keyword}{this});}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cDoneState;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Job_aaa223bb40f3b9a54e69440ae309a661f}{CanBeExecuted}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumDependencies.load(memory\_order\_relaxed)\ ==\ 0;\ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Job_abd9fad54e1b18a2a0c9795e86e222875}{IsDone}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumDependencies.load(memory\_order\_relaxed)\ ==\ cDoneState;\ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(JPH\_EXTERNAL\_PROFILE)\ ||\ defined(JPH\_PROFILE\_ENABLED)}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \ \ \ \ \ \ \ GetName()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mJobName;\ \}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\ \ \ \ \#endif\ }\textcolor{comment}{//\ defined(JPH\_EXTERNAL\_PROFILE)\ ||\ defined(JPH\_PROFILE\_ENABLED)}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint32\ cExecutingState\ =\ 0xe0e0e0e0;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint32\ cDoneState\ \ \ \ \ \ =\ 0xd0d0d0d0;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ intptr\_t\ cBarrierDoneState\ =\ \string~intptr\_t(0);\ \ \ \ \ }
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(JPH\_EXTERNAL\_PROFILE)\ ||\ defined(JPH\_PROFILE\_ENABLED)}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \ \ \ \ \ \ \ mJobName;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classColor}{Color}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mColor;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\ \ \ \ \#endif\ }\textcolor{comment}{//\ defined(JPH\_EXTERNAL\_PROFILE)\ ||\ defined(JPH\_PROFILE\_ENABLED)}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem}{JobSystem}}\ *\ \ \ \ \ \ \ \ \ \ \ \ mJobSystem;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ atomic<intptr\_t>\ \ \ \ mBarrier\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_ae31ef61a509934f03d4705aec19c61f5}{JobFunction}}\ \ \ \ \ \ \ \ \ \ mJobFunction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ mReferenceCount\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ mNumDependencies;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00289\ \ \ \ \ \};}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_ae6bae9c5725c2009c8e9a2d79f60cb40}{QueueJob}}(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ *inJob)\ =\ 0;}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_a5820eef46d040e6ae17e51a828201118}{QueueJobs}}(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ **inJobs,\ uint\ inNumJobs)\ =\ 0;}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_aa74329d956a01e3f2f219ea22bdc5097}{FreeJob}}(\mbox{\hyperlink{classJobSystem_1_1Job}{Job}}\ *inJob)\ =\ 0;}
+\DoxyCodeLine{00299\ \};}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ =\ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobSystem::JobHandle}};}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#include\ "{}JobSystem.inl"{}}}
+
+\end{DoxyCode}

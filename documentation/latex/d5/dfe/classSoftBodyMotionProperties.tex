@@ -1,0 +1,288 @@
+\doxysection{Soft\+Body\+Motion\+Properties Class Reference}
+\hypertarget{classSoftBodyMotionProperties}{}\label{classSoftBodyMotionProperties}\index{SoftBodyMotionProperties@{SoftBodyMotionProperties}}
+
+
+This class contains the runtime information of a soft body.  
+
+
+
+
+{\ttfamily \#include $<$Soft\+Body\+Motion\+Properties.\+h$>$}
+
+
+
+Inheritance diagram for Soft\+Body\+Motion\+Properties\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d7/d99/classSoftBodyMotionProperties__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Soft\+Body\+Motion\+Properties\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{da/d9b/classSoftBodyMotionProperties__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682}{EStatus}} \{ \mbox{\hyperlink{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682a4478afeb3b0fbabb01bc08e8ca92e691}{No\+Work}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0
+, \mbox{\hyperlink{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682a8474fcf555e5d4cfd9ac45e7f2d6396e}{Did\+Work}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, \mbox{\hyperlink{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682af92965e2c8a7afb3c1b9a5c09a263636}{Done}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2
+ \}
+\begin{DoxyCompactList}\small\item\em Return code for Parallel\+Update. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a75df336bf9ce1b362efe2777604debbe}\label{classSoftBodyMotionProperties_a75df336bf9ce1b362efe2777604debbe} 
+using {\bfseries Vertex} = \mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}}
+\item 
+\Hypertarget{classSoftBodyMotionProperties_a25971eb4086d1c55443efcb298cc89e6}\label{classSoftBodyMotionProperties_a25971eb4086d1c55443efcb298cc89e6} 
+using {\bfseries Edge} = \mbox{\hyperlink{structSoftBodySharedSettings_1_1Edge}{Soft\+Body\+Shared\+Settings\+::\+Edge}}
+\item 
+\Hypertarget{classSoftBodyMotionProperties_a3016ae78b7466b87d8695c82df9f2663}\label{classSoftBodyMotionProperties_a3016ae78b7466b87d8695c82df9f2663} 
+using {\bfseries Face} = \mbox{\hyperlink{structSoftBodySharedSettings_1_1Face}{Soft\+Body\+Shared\+Settings\+::\+Face}}
+\item 
+\Hypertarget{classSoftBodyMotionProperties_abb014fb4190d9ac04aa5c3faa1556214}\label{classSoftBodyMotionProperties_abb014fb4190d9ac04aa5c3faa1556214} 
+using {\bfseries Volume} = \mbox{\hyperlink{structSoftBodySharedSettings_1_1Volume}{Soft\+Body\+Shared\+Settings\+::\+Volume}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodyMotionProperties_a999ca42bb024698adfa2bac1cf971d02}\label{classSoftBodyMotionProperties_a999ca42bb024698adfa2bac1cf971d02} 
+void {\bfseries Initialize} (const \mbox{\hyperlink{classSoftBodyCreationSettings}{Soft\+Body\+Creation\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Initialize the soft body motion properties. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_af56ddceaa1945447bf214647d44ca8f1}\label{classSoftBodyMotionProperties_af56ddceaa1945447bf214647d44ca8f1} 
+const \mbox{\hyperlink{classSoftBodySharedSettings}{Soft\+Body\+Shared\+Settings}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Settings} () const
+\begin{DoxyCompactList}\small\item\em Get the shared settings of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a39f8a1dd664ca0cdbbaed3893885e60a}\label{classSoftBodyMotionProperties_a39f8a1dd664ca0cdbbaed3893885e60a} 
+const Array$<$ \mbox{\hyperlink{classSoftBodyVertex}{Vertex}} $>$ \& {\bfseries Get\+Vertices} () const
+\begin{DoxyCompactList}\small\item\em Get the vertices of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a14aaefdff39da80c5d00f3733618bebb}\label{classSoftBodyMotionProperties_a14aaefdff39da80c5d00f3733618bebb} 
+Array$<$ \mbox{\hyperlink{classSoftBodyVertex}{Vertex}} $>$ \& {\bfseries Get\+Vertices} ()
+\item 
+\Hypertarget{classSoftBodyMotionProperties_aa2581182a2773f19f17bb868419eced1}\label{classSoftBodyMotionProperties_aa2581182a2773f19f17bb868419eced1} 
+const \mbox{\hyperlink{classSoftBodyVertex}{Vertex}} \& {\bfseries Get\+Vertex} (uint in\+Index) const
+\begin{DoxyCompactList}\small\item\em Access an individual vertex. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a043b0f7b9bcc457d12af67a184c82b8e}\label{classSoftBodyMotionProperties_a043b0f7b9bcc457d12af67a184c82b8e} 
+\mbox{\hyperlink{classSoftBodyVertex}{Vertex}} \& {\bfseries Get\+Vertex} (uint in\+Index)
+\item 
+\Hypertarget{classSoftBodyMotionProperties_a1fc5838f0275d998d9431767dc516a71}\label{classSoftBodyMotionProperties_a1fc5838f0275d998d9431767dc516a71} 
+const Physics\+Material\+List \& {\bfseries Get\+Materials} () const
+\begin{DoxyCompactList}\small\item\em Get the materials of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a8166377ba1eaf8dea4589bc90e8baf23}\label{classSoftBodyMotionProperties_a8166377ba1eaf8dea4589bc90e8baf23} 
+const Array$<$ \mbox{\hyperlink{structSoftBodySharedSettings_1_1Face}{Face}} $>$ \& {\bfseries Get\+Faces} () const
+\begin{DoxyCompactList}\small\item\em Get the faces of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_afcbcb8a86be08dddf2f33027741d321b}\label{classSoftBodyMotionProperties_afcbcb8a86be08dddf2f33027741d321b} 
+const \mbox{\hyperlink{structSoftBodySharedSettings_1_1Face}{Face}} \& {\bfseries Get\+Face} (uint in\+Index) const
+\begin{DoxyCompactList}\small\item\em Access to an individual face. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_adc98275db06cee84d06be488a9806ca5}\label{classSoftBodyMotionProperties_adc98275db06cee84d06be488a9806ca5} 
+uint32 {\bfseries Get\+Num\+Iterations} () const
+\begin{DoxyCompactList}\small\item\em Get the number of solver iterations. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_aac3e3c0fc3d111fbe3765188b781c7e0}\label{classSoftBodyMotionProperties_aac3e3c0fc3d111fbe3765188b781c7e0} 
+void {\bfseries Set\+Num\+Iterations} (uint32 in\+Num\+Iterations)
+\item 
+\Hypertarget{classSoftBodyMotionProperties_ae15a2a2fdf14951fe7d9cd22e9e848e6}\label{classSoftBodyMotionProperties_ae15a2a2fdf14951fe7d9cd22e9e848e6} 
+float {\bfseries Get\+Pressure} () const
+\begin{DoxyCompactList}\small\item\em Get the pressure of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a6d55ac6913186e4f8e715e5b4470e657}\label{classSoftBodyMotionProperties_a6d55ac6913186e4f8e715e5b4470e657} 
+void {\bfseries Set\+Pressure} (float in\+Pressure)
+\item 
+\Hypertarget{classSoftBodyMotionProperties_ac798aa56fce5a89d404e164c4b483ddd}\label{classSoftBodyMotionProperties_ac798aa56fce5a89d404e164c4b483ddd} 
+bool {\bfseries Get\+Update\+Position} () const
+\begin{DoxyCompactList}\small\item\em Update the position of the body while simulating (set to false for something that is attached to the static world) \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a4f74fee0d91efe0291d43f7f6433440c}\label{classSoftBodyMotionProperties_a4f74fee0d91efe0291d43f7f6433440c} 
+void {\bfseries Set\+Update\+Position} (bool in\+Update\+Position)
+\item 
+\Hypertarget{classSoftBodyMotionProperties_a9e0c2b0a3a39fb1d97c1318c7b65f9f0}\label{classSoftBodyMotionProperties_a9e0c2b0a3a39fb1d97c1318c7b65f9f0} 
+const \mbox{\hyperlink{classAABox}{AABox}} \& {\bfseries Get\+Local\+Bounds} () const
+\begin{DoxyCompactList}\small\item\em Get local bounding box. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_acfcc07bc8fe8e5a34767df2383eaf7ff}\label{classSoftBodyMotionProperties_acfcc07bc8fe8e5a34767df2383eaf7ff} 
+float {\bfseries Get\+Volume} () const
+\begin{DoxyCompactList}\small\item\em Get the volume of the soft body. Note can become negative if the shape is inside out! \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a9ad11aed026f33e1f26807870ccd1316}\label{classSoftBodyMotionProperties_a9ad11aed026f33e1f26807870ccd1316} 
+void {\bfseries Calculate\+Mass\+And\+Inertia} ()
+\begin{DoxyCompactList}\small\item\em Calculate the total mass and inertia of this body based on the current state of the vertices. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_aadcb5dbf36db97843bb74b18e8b02807}\label{classSoftBodyMotionProperties_aadcb5dbf36db97843bb74b18e8b02807} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a82ab6c1c73650cf2af92072c0fe8368d}\label{classSoftBodyMotionProperties_a82ab6c1c73650cf2af92072c0fe8368d} 
+void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_aec0e4f9a14bad868339c95357a8c37ab}\label{classSoftBodyMotionProperties_aec0e4f9a14bad868339c95357a8c37ab} 
+void {\bfseries Initialize\+Update\+Context} (float in\+Delta\+Time, \mbox{\hyperlink{classBody}{Body}} \&in\+Soft\+Body, const \mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&in\+System, \mbox{\hyperlink{classSoftBodyUpdateContext}{Soft\+Body\+Update\+Context}} \&io\+Context)
+\begin{DoxyCompactList}\small\item\em Initialize the update context (used internally by the \doxylink{classPhysicsSystem}{Physics\+System}) \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a6e66171875f4db4605a1d97e0be04c85}\label{classSoftBodyMotionProperties_a6e66171875f4db4605a1d97e0be04c85} 
+void {\bfseries Determine\+Colliding\+Shapes} (const \mbox{\hyperlink{classSoftBodyUpdateContext}{Soft\+Body\+Update\+Context}} \&in\+Context, const \mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&in\+System)
+\begin{DoxyCompactList}\small\item\em Do a broad phase check and collect all bodies that can possibly collide with this soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a1b000562fd0daa633aa100c629a97f21}\label{classSoftBodyMotionProperties_a1b000562fd0daa633aa100c629a97f21} 
+\mbox{\hyperlink{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682}{EStatus}} {\bfseries Parallel\+Update} (\mbox{\hyperlink{classSoftBodyUpdateContext}{Soft\+Body\+Update\+Context}} \&io\+Context, const \mbox{\hyperlink{structPhysicsSettings}{Physics\+Settings}} \&in\+Physics\+Settings)
+\begin{DoxyCompactList}\small\item\em Update the soft body, will process a batch of work. Used internally. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyMotionProperties_a52d778b84efadb2c33417590e716c2c5}\label{classSoftBodyMotionProperties_a52d778b84efadb2c33417590e716c2c5} 
+void {\bfseries Update\+Rigid\+Body\+Velocities} (const \mbox{\hyperlink{classSoftBodyUpdateContext}{Soft\+Body\+Update\+Context}} \&in\+Context, \mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&in\+System)
+\begin{DoxyCompactList}\small\item\em Update the velocities of all rigid bodies that we collided with. Used internally. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classMotionProperties}{Motion\+Properties}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE EMotion\+Quality {\bfseries Get\+Motion\+Quality} () const
+\begin{DoxyCompactList}\small\item\em Motion quality, or how well it detects collisions when it has a high velocity. \end{DoxyCompactList}\item 
+EAllowed\+DOFs {\bfseries Get\+Allowed\+DOFs} () const
+\begin{DoxyCompactList}\small\item\em Get the allowed degrees of freedom that this body has (this can be changed by calling Set\+Mass\+Properties) \end{DoxyCompactList}\item 
+bool {\bfseries Get\+Allow\+Sleeping} () const
+\begin{DoxyCompactList}\small\item\em If this body can go to sleep. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Linear\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Get world space linear velocity of the center of mass. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Linear\+Velocity} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Linear\+Velocity)
+\begin{DoxyCompactList}\small\item\em Set world space linear velocity of the center of mass. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Linear\+Velocity\+Clamped} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Linear\+Velocity)
+\begin{DoxyCompactList}\small\item\em Set world space linear velocity of the center of mass, will make sure the value is clamped against the maximum linear velocity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Angular\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Get world space angular velocity of the center of mass. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Angular\+Velocity} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Angular\+Velocity)
+\begin{DoxyCompactList}\small\item\em Set world space angular velocity of the center of mass. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Angular\+Velocity\+Clamped} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Angular\+Velocity)
+\begin{DoxyCompactList}\small\item\em Set world space angular velocity of the center of mass, will make sure the value is clamped against the maximum angular velocity. \end{DoxyCompactList}\item 
+void {\bfseries Move\+Kinematic} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Delta\+Position, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Delta\+Rotation, float in\+Delta\+Time)
+\begin{DoxyCompactList}\small\item\em Set velocity of body such that it will be rotate/translate by in\+Delta\+Position/\+Rotation in in\+Delta\+Time seconds. \end{DoxyCompactList}\item 
+void {\bfseries Clamp\+Linear\+Velocity} ()
+\begin{DoxyCompactList}\small\item\em Clamp velocity according to limit. \end{DoxyCompactList}\item 
+void {\bfseries Clamp\+Angular\+Velocity} ()
+\item 
+float {\bfseries Get\+Linear\+Damping} () const
+\begin{DoxyCompactList}\small\item\em Get linear damping\+: dv/dt = -\/c \texorpdfstring{$\ast$}{*} v. c must be between 0 and 1 but is usually close to 0. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Linear\+Damping} (float in\+Linear\+Damping)
+\item 
+float {\bfseries Get\+Angular\+Damping} () const
+\begin{DoxyCompactList}\small\item\em Get angular damping\+: dw/dt = -\/c \texorpdfstring{$\ast$}{*} w. c must be between 0 and 1 but is usually close to 0. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Angular\+Damping} (float in\+Angular\+Damping)
+\item 
+float {\bfseries Get\+Gravity\+Factor} () const
+\begin{DoxyCompactList}\small\item\em Get gravity factor (1 = normal gravity, 0 = no gravity) \end{DoxyCompactList}\item 
+void {\bfseries Set\+Gravity\+Factor} (float in\+Gravity\+Factor)
+\item 
+void {\bfseries Set\+Mass\+Properties} (EAllowed\+DOFs in\+Allowed\+DOFs, const \mbox{\hyperlink{classMassProperties}{Mass\+Properties}} \&in\+Mass\+Properties)
+\begin{DoxyCompactList}\small\item\em Set the mass and inertia tensor. \end{DoxyCompactList}\item 
+float {\bfseries Get\+Inverse\+Mass} () const
+\begin{DoxyCompactList}\small\item\em Get inverse mass (1 / mass). Should only be called on a dynamic object (static or kinematic bodies have infinite mass so should be treated as 1 / mass = 0) \end{DoxyCompactList}\item 
+float {\bfseries Get\+Inverse\+Mass\+Unchecked} () const
+\item 
+void \mbox{\hyperlink{classMotionProperties_a9bf9425aab99ea920b73577819e579b1}{Set\+Inverse\+Mass}} (float in\+Inverse\+Mass)
+\item 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Inverse\+Inertia\+Diagonal} () const
+\begin{DoxyCompactList}\small\item\em Diagonal of inverse inertia matrix\+: D. Should only be called on a dynamic object (static or kinematic bodies have infinite mass so should be treated as D = 0) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classQuat}{Quat}} {\bfseries Get\+Inertia\+Rotation} () const
+\begin{DoxyCompactList}\small\item\em Rotation (R) that takes inverse inertia diagonal to local space\+: $I_{body}^{-1} = R \: D \: R^{-1}$. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotionProperties_a509aafb031d301cbef7e2efdd16ee3dd}{Set\+Inverse\+Inertia}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Diagonal, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rot)
+\item 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Get\+Local\+Space\+Inverse\+Inertia} () const
+\begin{DoxyCompactList}\small\item\em Get inverse inertia matrix ( $I_{body}^{-1}$). Will be a matrix of zeros for a static or kinematic object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Get\+Local\+Space\+Inverse\+Inertia\+Unchecked} () const
+\begin{DoxyCompactList}\small\item\em Same as \doxylink{classMotionProperties_ad52e9ac8d614918a8dc9c80f22b4847e}{Get\+Local\+Space\+Inverse\+Inertia()} but doesn\textquotesingle{}t check if the body is dynamic. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries Get\+Inverse\+Inertia\+For\+Rotation} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Rotation) const
+\begin{DoxyCompactList}\small\item\em Get inverse inertia matrix ( $I^{-1}$) for a given object rotation (translation will be ignored). Zero if object is static or kinematic. \end{DoxyCompactList}\item 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Multiply\+World\+Space\+Inverse\+Inertia\+By\+Vector} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Body\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV) const
+\begin{DoxyCompactList}\small\item\em Multiply a vector with the inverse world space inertia tensor ( $I_{world}^{-1}$). Zero if object is static or kinematic. \end{DoxyCompactList}\item 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Point\+Velocity\+COM} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point\+Relative\+To\+COM) const
+\begin{DoxyCompactList}\small\item\em Velocity of point in\+Point (in center of mass space, e.\+g. on the surface of the body) of the body (unit\+: m/s) \end{DoxyCompactList}\item 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Accumulated\+Force} () const
+\item 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Accumulated\+Torque} () const
+\item 
+JPH\+\_\+\+INLINE void {\bfseries Reset\+Force} ()
+\item 
+JPH\+\_\+\+INLINE void {\bfseries Reset\+Torque} ()
+\item 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Lock\+Translation} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Takes a translation vector inV and returns a vector where the components that are not allowed by m\+Allowed\+DOFs are set to 0. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Num\+Velocity\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when this body is dynamic and colliding. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Velocity\+Steps\+Override} () const
+\item 
+void {\bfseries Set\+Num\+Position\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when this body is dynamic and colliding. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Position\+Steps\+Override} () const
+\item 
+void {\bfseries Apply\+Gyroscopic\+Force\+Internal} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Body\+Rotation, float in\+Delta\+Time)
+\begin{DoxyCompactList}\small\item\em Apply the gyroscopic force (aka Dzhanibekov effect, see \href{https://en.wikipedia.org/wiki/Tennis_racket_theorem}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Tennis\+\_\+racket\+\_\+theorem}}) \end{DoxyCompactList}\item 
+void {\bfseries Apply\+Force\+Torque\+And\+Drag\+Internal} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Body\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Gravity, float in\+Delta\+Time)
+\begin{DoxyCompactList}\small\item\em Apply all accumulated forces, torques and drag (should only be called by the \doxylink{classPhysicsSystem}{Physics\+System}) \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Island\+Index\+Internal} () const
+\begin{DoxyCompactList}\small\item\em Access to the island index. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Island\+Index\+Internal} (uint32 in\+Index)
+\item 
+uint32 {\bfseries Get\+Index\+In\+Active\+Bodies\+Internal} () const
+\begin{DoxyCompactList}\small\item\em Access to the index in the active bodies array. \end{DoxyCompactList}\item 
+void {\bfseries Reset\+Sleep\+Test\+Spheres} (const \mbox{\hyperlink{classVec3}{RVec3}} \texorpdfstring{$\ast$}{*}in\+Points)
+\begin{DoxyCompactList}\small\item\em Reset spheres to center around in\+Points with radius 0. \end{DoxyCompactList}\item 
+void {\bfseries Reset\+Sleep\+Test\+Timer} ()
+\begin{DoxyCompactList}\small\item\em Reset the sleep test timer without resetting the sleep test spheres. \end{DoxyCompactList}\item 
+ECan\+Sleep {\bfseries Accumulate\+Sleep\+Time} (float in\+Delta\+Time, float in\+Time\+Before\+Sleep)
+\begin{DoxyCompactList}\small\item\em Accumulate sleep time and return if a body can go to sleep. \end{DoxyCompactList}\item 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries Get\+Max\+Linear\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Maximum linear velocity that a body can achieve. Used to prevent the system from exploding. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Max\+Linear\+Velocity} (float in\+Linear\+Velocity)
+\item 
+float {\bfseries Get\+Max\+Angular\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Maximum angular velocity that a body can achieve. Used to prevent the system from exploding. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Max\+Angular\+Velocity} (float in\+Angular\+Velocity)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Add\+Linear\+Velocity\+Step} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Linear\+Velocity\+Change)
+\item 
+void {\bfseries Sub\+Linear\+Velocity\+Step} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Linear\+Velocity\+Change)
+\item 
+void {\bfseries Add\+Angular\+Velocity\+Step} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Angular\+Velocity\+Change)
+\item 
+void {\bfseries Sub\+Angular\+Velocity\+Step} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Angular\+Velocity\+Change)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classMotionProperties}{Motion\+Properties}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Inactive\+Index} = uint32(-\/1)
+\begin{DoxyCompactList}\small\item\em Constant indicating that body is not active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class contains the runtime information of a soft body. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682}\label{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682} 
+\index{SoftBodyMotionProperties@{SoftBodyMotionProperties}!EStatus@{EStatus}}
+\index{EStatus@{EStatus}!SoftBodyMotionProperties@{SoftBodyMotionProperties}}
+\doxysubsubsection{\texorpdfstring{EStatus}{EStatus}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682}{Soft\+Body\+Motion\+Properties\+::\+EStatus}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Return code for Parallel\+Update. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NoWork@{NoWork}!SoftBodyMotionProperties@{SoftBodyMotionProperties}}\index{SoftBodyMotionProperties@{SoftBodyMotionProperties}!NoWork@{NoWork}}}\Hypertarget{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682a4478afeb3b0fbabb01bc08e8ca92e691}\label{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682a4478afeb3b0fbabb01bc08e8ca92e691} 
+No\+Work&No work was done because other threads were still working on a batch that cannot run concurrently. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DidWork@{DidWork}!SoftBodyMotionProperties@{SoftBodyMotionProperties}}\index{SoftBodyMotionProperties@{SoftBodyMotionProperties}!DidWork@{DidWork}}}\Hypertarget{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682a8474fcf555e5d4cfd9ac45e7f2d6396e}\label{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682a8474fcf555e5d4cfd9ac45e7f2d6396e} 
+Did\+Work&Work was done to progress the update. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Done@{Done}!SoftBodyMotionProperties@{SoftBodyMotionProperties}}\index{SoftBodyMotionProperties@{SoftBodyMotionProperties}!Done@{Done}}}\Hypertarget{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682af92965e2c8a7afb3c1b9a5c09a263636}\label{classSoftBodyMotionProperties_a0f968ca89a547af5c8978c966e327682af92965e2c8a7afb3c1b9a5c09a263636} 
+Done&All work is done. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Soft\+Body/Soft\+Body\+Motion\+Properties.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,305 @@
+\doxysection{Static\+Array.\+h}
+\hypertarget{StaticArray_8h_source}{}\label{StaticArray_8h_source}\index{includes/jolt/Core/StaticArray.h@{includes/jolt/Core/StaticArray.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classStaticArray}{StaticArray}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ T;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{using\ }size\_type\ =\ uint;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ Capacity\ =\ N;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a0b1020145a67d2f11ef8b6e21e56efda}{StaticArray}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a4289f014eadc8aa60ff6785dabe32f11}{StaticArray}}(std::initializer\_list<T>\ inList)}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inList.size()\ <=\ N);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{typename}\ std::initializer\_list<T>::iterator\ i\ =\ inList.begin();\ i\ !=\ inList.end();\ ++i)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(\&mElements[mSize++]))\ T(*i);}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a9be0006e3a1a001893645dbd5b34b355}{StaticArray}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ \&inRHS)}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (mSize\ <\ inRHS.mSize)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mElements[mSize])\ T(inRHS[mSize]);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ ++mSize;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_afa25bd44899d047990eb77e996031756}{\string~StaticArray}}()}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (!is\_trivially\_destructible<T>())}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (T\ *e\ =\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements),\ *end\ =\ e\ +\ mSize;\ e\ <\ end;\ ++e)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>\string~T();}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a2cac2948666824fe7fee27bcf845f17b}{clear}}()}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (!is\_trivially\_destructible<T>())}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (T\ *e\ =\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements),\ *end\ =\ e\ +\ mSize;\ e\ <\ end;\ ++e)}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>\string~T();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ mSize\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a1117d7fa5ecfe22248396f1632d842cb}{push\_back}}(\textcolor{keyword}{const}\ T\ \&inElement)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSize\ <\ N);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ ::new\ (\&mElements[mSize++])\ T(inElement);}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}...\ A>}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a80c134d64d82df7e26efc48dc629389f}{emplace\_back}}(A\ \&\&...\ inElement)}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSize\ <\ N);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ ::new\ (\&mElements[mSize++])\ T(std::forward<A>(inElement)...);}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_aed109d7f64345b6e7e956bd80de27387}{pop\_back}}()}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSize\ >\ 0);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}T\ \&\textcolor{keyword}{>}(mElements[-\/-\/mSize]).\string~T();}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a90462c290631eb3139ea41b91a14f99a}{empty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSize\ ==\ 0;}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00087\ \ \ \ \ size\_type\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSize;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00093\ \ \ \ \ size\_type\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a1313d0f5827afac5751b7a0a6fc23f83}{capacity}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00094\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ N;}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_af90fb922a70be2d41cc70b243cbc4c64}{resize}}(size\_type\ inNewSize)}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inNewSize\ <=\ N);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (!is\_trivially\_constructible<T>())}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (T\ *element\ =\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements)\ +\ mSize,\ *element\_end\ =\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements)\ +\ inNewSize;\ element\ <\ element\_end;\ ++element)}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (element)\ T;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (!is\_trivially\_destructible<T>())}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (T\ *element\ =\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements)\ +\ inNewSize,\ *element\_end\ =\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements)\ +\ mSize;\ element\ <\ element\_end;\ ++element)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ element-\/>\string~T();}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ mSize\ =\ inNewSize;}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{using\ }const\_iterator\ =\ \textcolor{keyword}{const}\ T\ *;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ const\_iterator\ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a671ecdfc35c476a8efd5b11536a1712f}{begin}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ *\textcolor{keyword}{>}(mElements);}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ const\_iterator\ \ \ \ \ \ end()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00120\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ *\textcolor{keyword}{>}(mElements\ +\ mSize);}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{using\ }iterator\ =\ T\ *;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ iterator\ \ \ \ \ \ \ \ \ \ \ \ begin()}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements);}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ iterator\ \ \ \ \ \ \ \ \ \ \ \ end()}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements\ +\ mSize);}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ T\ *\ \ \ \ \ \ \ \ \ \ \ data()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ *\textcolor{keyword}{>}(mElements);}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ T\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data()}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mElements);}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00147\ \ \ \ \ T\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ []\ (size\_type\ inIdx)}
+\DoxyCodeLine{00148\ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inIdx\ <\ mSize);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ \&\textcolor{keyword}{>}(mElements[inIdx]);}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{const}\ T\ \&\ \ \ \ \ \ \ \ \ \ \ operator\ []\ (size\_type\ inIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00154\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inIdx\ <\ mSize);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ \&\textcolor{keyword}{>}(mElements[inIdx]);}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00160\ \ \ \ \ T\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a83ed073e3ed2248da10cef0277beeb23}{at}}(size\_type\ inIdx)}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inIdx\ <\ mSize);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ \&\textcolor{keyword}{>}(mElements[inIdx]);}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{const}\ T\ \&\ \ \ \ \ \ \ \ \ \ \ at(size\_type\ inIdx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inIdx\ <\ mSize);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ \&\textcolor{keyword}{>}(mElements[inIdx]);}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{const}\ T\ \&\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_aa0626580d53d352633f0a1f5af5ecb12}{front}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00174\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSize\ >\ 0);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ \&\textcolor{keyword}{>}(mElements[0]);}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ T\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ front()}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSize\ >\ 0);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ \&\textcolor{keyword}{>}(mElements[0]);}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{const}\ T\ \&\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a6b5e0b0984bd82a6f09660206a1b4914}{back}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00187\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSize\ >\ 0);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ \&\textcolor{keyword}{>}(mElements[mSize\ -\/\ 1]);}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ T\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ back()}
+\DoxyCodeLine{00193\ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSize\ >\ 0);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ \&\textcolor{keyword}{>}(mElements[mSize\ -\/\ 1]);}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a61742c51d0d5ab0a7a4593e1f907bc2b}{erase}}(const\_iterator\ inIter)}
+\DoxyCodeLine{00200\ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ size\_type\ p\ =\ size\_type(inIter\ -\/\ begin());}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ JPH\_ASSERT(p\ <\ mSize);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}T\ \&\textcolor{keyword}{>}(mElements[p]).\string~T();}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ +\ 1\ <\ mSize)}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ memmove(mElements\ +\ p,\ mElements\ +\ p\ +\ 1,\ (mSize\ -\/\ p\ -\/\ 1)\ *\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ -\/-\/mSize;}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray_a8160d86021d1033d74e9e434458517ef}{erase}}(const\_iterator\ inBegin,\ const\_iterator\ inEnd)}
+\DoxyCodeLine{00211\ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ size\_type\ p\ =\ size\_type(inBegin\ -\/\ begin());}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ size\_type\ n\ =\ size\_type(inEnd\ -\/\ inBegin);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inEnd\ <=\ end());}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (size\_type\ i\ =\ 0;\ i\ <\ n;\ ++i)}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}T\ \&\textcolor{keyword}{>}(mElements[p\ +\ i]).\string~T();}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ +\ n\ <\ mSize)}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ memmove(mElements\ +\ p,\ mElements\ +\ p\ +\ n,\ (mSize\ -\/\ p\ -\/\ n)\ *\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ mSize\ -\/=\ n;}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00223\ \ \ \ \ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ \&\ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ \&inRHS)}
+\DoxyCodeLine{00224\ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ size\_type\ rhs\_size\ =\ inRHS.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}();}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{void}\ *\textcolor{keyword}{>}(\textcolor{keyword}{this})\ !=\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{void}\ *\textcolor{keyword}{>}(\&inRHS))}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ clear();}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (mSize\ <\ rhs\_size)}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mElements[mSize])\ T(inRHS[mSize]);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++mSize;}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00239\ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}\ M>}
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ \&\ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ M>}}\ \&inRHS)}
+\DoxyCodeLine{00244\ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ size\_type\ rhs\_size\ =\ inRHS.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}();}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ JPH\_ASSERT(rhs\_size\ <=\ N);}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{void}\ *\textcolor{keyword}{>}(\textcolor{keyword}{this})\ !=\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{void}\ *\textcolor{keyword}{>}(\&inRHS))}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ clear();}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (mSize\ <\ rhs\_size)}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mElements[mSize])\ T(inRHS[mSize]);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++mSize;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00264\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mSize\ !=\ inRHS.mSize)}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (size\_type\ i\ =\ 0;\ i\ <\ mSize;\ ++i)}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ \&\textcolor{keyword}{>}(mElements[i])\ ==\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ \&\textcolor{keyword}{>}(inRHS.mElements[i])))}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00271\ \ \ \ \ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00274\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mSize\ !=\ inRHS.mSize)}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (size\_type\ i\ =\ 0;\ i\ <\ mSize;\ ++i)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ \&\textcolor{keyword}{>}(mElements[i])\ !=\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ \&\textcolor{keyword}{>}(inRHS.mElements[i]))}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{struct\ }alignas(T)\ \mbox{\hyperlink{structStaticArray_1_1Storage}{Storage}}}
+\DoxyCodeLine{00285\ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ mData[\textcolor{keyword}{sizeof}(T)];}
+\DoxyCodeLine{00287\ \ \ \ \ \};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ ==\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structStaticArray_1_1Storage}{Storage}}),\ \textcolor{stringliteral}{"{}Mismatch\ in\ size"{}});}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{alignof}(T)\ ==\ \textcolor{keyword}{alignof}(\mbox{\hyperlink{structStaticArray_1_1Storage}{Storage}}),\ \textcolor{stringliteral}{"{}Mismatch\ in\ alignment"{}});}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ size\_type\ \ \ \ \ \ \ \ \ \ \ mSize\ =\ 0;}
+\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{structStaticArray_1_1Storage}{Storage}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mElements[N];}
+\DoxyCodeLine{00294\ \};}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ JPH\_SUPPRESS\_WARNING\_PUSH}
+\DoxyCodeLine{00299\ JPH\_CLANG\_SUPPRESS\_WARNING(\textcolor{stringliteral}{"{}-\/Wc++98-\/compat"{}})}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ namespace\ \mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00302\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ JPH::u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{struct\ }hash<JPH::\mbox{\hyperlink{classStaticArray}{StaticArray}}<T,\ N>>}
+\DoxyCodeLine{00306\ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ operator\ ()\ (\textcolor{keyword}{const}\ JPH::StaticArray<T,\ N>\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00308\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ ret\ =\ 0;}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hash\ length\ first}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ JPH::HashCombine(ret,\ inRHS.size());}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then\ hash\ elements}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ T\ \&t\ :\ inRHS)}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH::HashCombine(ret,\ t);}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \ \ \};}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ JPH\_SUPPRESS\_WARNING\_POP}
+
+\end{DoxyCode}

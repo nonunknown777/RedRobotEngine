@@ -1,0 +1,194 @@
+\doxysection{Clip\+Poly.\+h}
+\hypertarget{ClipPoly_8h_source}{}\label{ClipPoly_8h_source}\index{includes/jolt/Geometry/ClipPoly.h@{includes/jolt/Geometry/ClipPoly.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/AABox.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY>}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ ClipPolyVsPlane(\textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&inPolygonToClip,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPlaneOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPlaneNormal,\ VERTEX\_ARRAY\ \&outClippedPolygon)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ JPH\_ASSERT(inPolygonToClip.size()\ >=\ 2);}
+\DoxyCodeLine{00017\ \ \ \ \ JPH\_ASSERT(outClippedPolygon.empty());}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Determine\ state\ of\ last\ point}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ e1\ =\ inPolygonToClip[inPolygonToClip.size()\ -\/\ 1];}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ prev\_num\ =\ (inPlaneOrigin\ -\/\ e1).\mbox{\hyperlink{group__Math_ga451c8554a408d41df85a41650e0ada93}{Dot}}(inPlaneNormal);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ prev\_inside\ =\ prev\_num\ <\ 0.0f;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Loop\ through\ all\ vertices}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{typename}\ VERTEX\_ARRAY::size\_type\ j\ =\ 0;\ j\ <\ inPolygonToClip.size();\ ++j)}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ second\ point\ is\ inside}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ e2\ =\ inPolygonToClip[j];}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ num\ =\ (inPlaneOrigin\ -\/\ e2).\mbox{\hyperlink{group__Math_ga451c8554a408d41df85a41650e0ada93}{Dot}}(inPlaneNormal);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ cur\_inside\ =\ num\ <\ 0.0f;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ -\/>\ Out\ or\ Out\ -\/>\ In:\ Add\ point\ on\ clipping\ plane}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cur\_inside\ !=\ prev\_inside)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solve:\ (X\ -\/\ inPlaneOrigin)\ .\ inPlaneNormal\ =\ 0\ and\ X\ =\ e1\ +\ t\ *\ (e2\ -\/\ e1)\ for\ X}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ e12\ =\ e2\ -\/\ e1;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ denom\ =\ e12.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inPlaneNormal);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (denom\ !=\ 0.0f)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClippedPolygon.push\_back(e1\ +\ (prev\_num\ /\ denom)\ *\ e12);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur\_inside\ =\ prev\_inside;\ \textcolor{comment}{//\ Edge\ is\ parallel\ to\ plane,\ treat\ point\ as\ if\ it\ were\ on\ the\ same\ side\ as\ the\ last\ point}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Point\ inside,\ add\ it}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cur\_inside)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ outClippedPolygon.push\_back(e2);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ previous\ state}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ prev\_num\ =\ num;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ prev\_inside\ =\ cur\_inside;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ e1\ =\ e2;}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY>}
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{void}\ ClipPolyVsPoly(\textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&inPolygonToClip,\ \textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&inClippingPolygon,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inClippingPolygonNormal,\ VERTEX\_ARRAY\ \&outClippedPolygon)}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ JPH\_ASSERT(inPolygonToClip.size()\ >=\ 2);}
+\DoxyCodeLine{00065\ \ \ \ \ JPH\_ASSERT(inClippingPolygon.size()\ >=\ 3);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ VERTEX\_ARRAY\ tmp\_vertices[2];}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ tmp\_vertices\_idx\ =\ 0;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{typename}\ VERTEX\_ARRAY::size\_type\ i\ =\ 0;\ i\ <\ inClippingPolygon.size();\ ++i)}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ edge\ to\ clip\ against}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ clip\_e1\ =\ inClippingPolygon[i];}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ clip\_e2\ =\ inClippingPolygon[(i\ +\ 1)\ \%\ inClippingPolygon.size()];}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ clip\_normal\ =\ inClippingPolygonNormal.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(clip\_e2\ -\/\ clip\_e1);\ \textcolor{comment}{//\ Pointing\ inward\ to\ the\ clipping\ polygon}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ source\ and\ target\ polygon}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&src\_polygon\ =\ (i\ ==\ 0)?\ inPolygonToClip\ :\ tmp\_vertices[tmp\_vertices\_idx];}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ tmp\_vertices\_idx\ \string^=\ 1;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ VERTEX\_ARRAY\ \&tgt\_polygon\ =\ (i\ ==\ inClippingPolygon.size()\ -\/\ 1)?\ outClippedPolygon\ :\ tmp\_vertices[tmp\_vertices\_idx];}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ tgt\_polygon.clear();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clip\ against\ the\ edge}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ ClipPolyVsPlane(src\_polygon,\ clip\_e1,\ clip\_normal,\ tgt\_polygon);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Break\ out\ if\ no\ polygon\ left}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tgt\_polygon.size()\ <\ 3)}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ outClippedPolygon.clear();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY>}
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{void}\ ClipPolyVsEdge(\textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&inPolygonToClip,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inEdgeVertex1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inEdgeVertex2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inClippingEdgeNormal,\ VERTEX\_ARRAY\ \&outClippedPolygon)}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ JPH\_ASSERT(inPolygonToClip.size()\ >=\ 3);}
+\DoxyCodeLine{00101\ \ \ \ \ JPH\_ASSERT(outClippedPolygon.empty());}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ Get\ normal\ that\ is\ perpendicular\ to\ the\ edge\ and\ the\ clipping\ edge\ normal}}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ edge\ =\ inEdgeVertex2\ -\/\ inEdgeVertex1;}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ edge\_normal\ =\ inClippingEdgeNormal.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(edge);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ Project\ vertices\ of\ edge\ on\ inPolygonToClip}}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ polygon\_normal\ =\ (inPolygonToClip[2]\ -\/\ inPolygonToClip[0]).\mbox{\hyperlink{group__Math_ga804d55e7545685ee9841c239bdac7c8f}{Cross}}(inPolygonToClip[1]\ -\/\ inPolygonToClip[0]);}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{float}\ polygon\_normal\_len\_sq\ =\ polygon\_normal.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v1\ =\ inEdgeVertex1\ +\ polygon\_normal.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inPolygonToClip[0]\ -\/\ inEdgeVertex1)\ *\ polygon\_normal\ /\ polygon\_normal\_len\_sq;}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v2\ =\ inEdgeVertex2\ +\ polygon\_normal.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inPolygonToClip[0]\ -\/\ inEdgeVertex2)\ *\ polygon\_normal\ /\ polygon\_normal\_len\_sq;}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v12\ =\ v2\ -\/\ v1;}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{float}\ v12\_len\_sq\ =\ v12.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ Determine\ state\ of\ last\ point}}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ e1\ =\ inPolygonToClip[inPolygonToClip.size()\ -\/\ 1];}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{float}\ prev\_num\ =\ (inEdgeVertex1\ -\/\ e1).\mbox{\hyperlink{group__Math_ga451c8554a408d41df85a41650e0ada93}{Dot}}(edge\_normal);}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ prev\_inside\ =\ prev\_num\ <\ 0.0f;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ Loop\ through\ all\ vertices}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{typename}\ VERTEX\_ARRAY::size\_type\ j\ =\ 0;\ j\ <\ inPolygonToClip.size();\ ++j)}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ second\ point\ is\ inside}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ e2\ =\ inPolygonToClip[j];}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ num\ =\ (inEdgeVertex1\ -\/\ e2).\mbox{\hyperlink{group__Math_ga451c8554a408d41df85a41650e0ada93}{Dot}}(edge\_normal);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ cur\_inside\ =\ num\ <\ 0.0f;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ -\/>\ Out\ or\ Out\ -\/>\ In:\ Add\ point\ on\ clipping\ plane}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cur\_inside\ !=\ prev\_inside)}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solve:\ (X\ -\/\ inPlaneOrigin)\ .\ inPlaneNormal\ =\ 0\ and\ X\ =\ e1\ +\ t\ *\ (e2\ -\/\ e1)\ for\ X}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ e12\ =\ e2\ -\/\ e1;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ denom\ =\ e12.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(edge\_normal);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ clipped\_point\ =\ e1\ +\ (prev\_num\ /\ denom)\ *\ e12;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Project\ point\ on\ line\ segment\ v1,\ v2\ so\ see\ if\ it\ falls\ outside\ if\ the\ edge}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ projection\ =\ (clipped\_point\ -\/\ v1).\mbox{\hyperlink{group__Math_ga451c8554a408d41df85a41650e0ada93}{Dot}}(v12);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (projection\ <\ 0.0f)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClippedPolygon.push\_back(v1);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (projection\ >\ v12\_len\_sq)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClippedPolygon.push\_back(v2);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClippedPolygon.push\_back(clipped\_point);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ previous\ state}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ prev\_num\ =\ num;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ prev\_inside\ =\ cur\_inside;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ e1\ =\ e2;}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY>}
+\DoxyCodeLine{00156\ \textcolor{keywordtype}{void}\ ClipPolyVsAABox(\textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&inPolygonToClip,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inAABox,\ VERTEX\_ARRAY\ \&outClippedPolygon)}
+\DoxyCodeLine{00157\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ JPH\_ASSERT(inPolygonToClip.size()\ >=\ 2);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ VERTEX\_ARRAY\ tmp\_vertices[2];}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{int}\ tmp\_vertices\_idx\ =\ 0;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ coord\ =\ 0;\ coord\ <\ 3;\ ++coord)}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ side\ =\ 0;\ side\ <\ 2;\ ++side)}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ plane\ to\ clip\ against}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ origin\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}(),\ normal\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (side\ ==\ 0)}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normal.SetComponent(coord,\ 1.0f);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin.\mbox{\hyperlink{classVec3_a1ef1f1ce4031e9ecd4545799525281d8}{SetComponent}}(coord,\ inAABox.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}[coord]);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ normal.SetComponent(coord,\ -\/1.0f);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin.\mbox{\hyperlink{classVec3_a1ef1f1ce4031e9ecd4545799525281d8}{SetComponent}}(coord,\ inAABox.mMax[coord]);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ source\ and\ target\ polygon}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&src\_polygon\ =\ tmp\_vertices\_idx\ ==\ 0?\ inPolygonToClip\ :\ tmp\_vertices[tmp\_vertices\_idx\ \&\ 1];}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ tmp\_vertices\_idx++;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ VERTEX\_ARRAY\ \&tgt\_polygon\ =\ tmp\_vertices\_idx\ ==\ 6?\ outClippedPolygon\ :\ tmp\_vertices[tmp\_vertices\_idx\ \&\ 1];}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ tgt\_polygon.clear();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clip\ against\ the\ edge}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ ClipPolyVsPlane(src\_polygon,\ origin,\ normal,\ tgt\_polygon);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Break\ out\ if\ no\ polygon\ left}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tgt\_polygon.size()\ <\ 3)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClippedPolygon.clear();}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Flip\ normal}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ normal\ =\ -\/normal;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

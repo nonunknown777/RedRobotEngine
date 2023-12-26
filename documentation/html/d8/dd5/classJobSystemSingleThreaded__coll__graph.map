@@ -1,0 +1,15 @@
+<map id="JobSystemSingleThreaded" name="JobSystemSingleThreaded">
+<area shape="rect" id="Node000001" title="Implementation of a JobSystem without threads, runs jobs as soon as they are added." alt="" coords="98,821,305,1104"/>
+<area shape="rect" id="Node000002" href="$df/dff/classJobSystem.html" title=" " alt="" coords="5,343,173,583"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,598,91,677,104,755,126,820,121,822,99,757,85,677,81,599"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="144,5,267,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="149,131,129,168,115,211,104,256,93,344,88,343,99,255,109,209,124,166,145,128"/>
+<area shape="rect" id="Node000005" href="$d1/d64/classJobSystem_1_1Barrier.html" title="A job barrier keeps track of a number of jobs and allows waiting until they are all completed." alt="" coords="139,167,272,300"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="208,132,208,167,203,167,203,132"/>
+<area shape="rect" id="Node000006" href="$de/d28/classFixedSizeFreeList.html" title=" " alt="" coords="243,324,413,603"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="266,128,286,166,311,244,324,324,319,325,306,245,282,168,261,131"/>
+<area shape="rect" id="Node000004" href="$d7/d4e/classJobSystemSingleThreaded_1_1BarrierImpl.html" title=" " alt="" coords="114,627,297,756"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="206,756,205,780,205,804,200,804,200,780,201,756"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="208,315,208,627,203,627,203,315"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="350,603,349,700,342,750,329,798,315,830,310,828,324,796,337,749,343,699,344,603"/>
+</map>

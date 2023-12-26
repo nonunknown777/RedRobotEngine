@@ -1,0 +1,47 @@
+\doxysection{Sphere Class Reference}
+\hypertarget{classSphere}{}\label{classSphere}\index{Sphere@{Sphere}}
+
+
+Collaboration diagram for Sphere\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{d7/d21/classSphere__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSphere_a1c4a9559681c92e3520ba68310805a06}\label{classSphere_a1c4a9559681c92e3520ba68310805a06} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Sphere} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classSphere_aad6e2c3173f9261f5aa87a10a03aef94}\label{classSphere_aad6e2c3173f9261f5aa87a10a03aef94} 
+{\bfseries Sphere} (const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+Center, float in\+Radius)
+\item 
+\Hypertarget{classSphere_aa60bc919d16366e674f90fb6b37bd7a8}\label{classSphere_aa60bc919d16366e674f90fb6b37bd7a8} 
+{\bfseries Sphere} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Center, float in\+Radius)
+\item 
+\Hypertarget{classSphere_a3ccfa118fbdbd2c7346d3f7f9d29595e}\label{classSphere_a3ccfa118fbdbd2c7346d3f7f9d29595e} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Support} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction) const
+\begin{DoxyCompactList}\small\item\em Calculate the support vector for this convex shape. \end{DoxyCompactList}\item 
+\Hypertarget{classSphere_a58cd6715b3ab45d6ad8baaa369f31fd1}\label{classSphere_a58cd6715b3ab45d6ad8baaa369f31fd1} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Center} () const
+\item 
+\Hypertarget{classSphere_a1be9f865028172ade600ed25ca0aee4f}\label{classSphere_a1be9f865028172ade600ed25ca0aee4f} 
+float {\bfseries Get\+Radius} () const
+\item 
+\Hypertarget{classSphere_a6aa30078ee8ea3742c9df2aa2cfbcb2c}\label{classSphere_a6aa30078ee8ea3742c9df2aa2cfbcb2c} 
+bool {\bfseries Overlaps} (const \mbox{\hyperlink{classSphere}{Sphere}} \&inB) const
+\begin{DoxyCompactList}\small\item\em Test if two spheres overlap. \end{DoxyCompactList}\item 
+\Hypertarget{classSphere_a0b2393b6b42f0efdf33ae666b3fac39f}\label{classSphere_a0b2393b6b42f0efdf33ae666b3fac39f} 
+bool {\bfseries Overlaps} (const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Other) const
+\begin{DoxyCompactList}\small\item\em Check if this sphere overlaps with a box. \end{DoxyCompactList}\item 
+\Hypertarget{classSphere_ae662c4e0d3f338fe5c5bfa844aaa22ea}\label{classSphere_ae662c4e0d3f338fe5c5bfa844aaa22ea} 
+void {\bfseries Encapsulate\+Point} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point)
+\begin{DoxyCompactList}\small\item\em Create the minimal sphere that encapsulates this sphere and in\+Point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Sphere.\+h\end{DoxyCompactItemize}

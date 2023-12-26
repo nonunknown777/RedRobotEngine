@@ -1,0 +1,8 @@
+<map id="AABoxCast" name="AABoxCast">
+<area shape="rect" id="Node000001" title="Structure that holds AABox moving linearly through 3d space." alt="" coords="78,1059,163,1128"/>
+<area shape="rect" id="Node000002" href="$d0/db4/classAABox.html" title="Axis aligned box." alt="" coords="175,669,317,994"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,980,147,1045,142,1043,173,978"/>
+<area shape="rect" id="Node000003" href="$d9/de4/classVec3.html" title=" " alt="" coords="5,5,167,587"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="56,587,53,685,54,788,62,892,79,993,97,1043,92,1045,74,995,57,893,49,788,47,685,50,587"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="169,565,195,652,190,653,164,566"/>
+</map>

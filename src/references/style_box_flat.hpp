@@ -5,7 +5,7 @@
 #include "style_box.hpp"
 
 
-class StyleBoxFlat : StyleBox {
+class StyleBoxFlat : public StyleBox {
 
 
 public:
@@ -13,6 +13,8 @@ public:
     ~StyleBoxFlat();
 
     Color bg_color;
+
+    void empty() override {};
     
 
 };

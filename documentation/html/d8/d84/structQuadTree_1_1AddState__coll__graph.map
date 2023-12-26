@@ -1,0 +1,9 @@
+<map id="QuadTree::AddState" name="QuadTree::AddState">
+<area shape="rect" id="Node000001" title="Temporary data structure to pass information between AddBodiesPrepare and AddBodiesFinalize/Abort." alt="" coords="59,1059,200,1128"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,690,152,973"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,972,117,1034,118,1042,113,1043,111,1036,99,973"/>
+<area shape="rect" id="Node000003" href="$d0/db4/classAABox.html" title="Axis aligned box." alt="" coords="176,669,317,994"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,995,186,1036,179,1047,174,1045,182,1034,202,992"/>
+<area shape="rect" id="Node000004" href="$d9/de4/classVec3.html" title=" " alt="" coords="166,5,327,587"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="249,587,249,652,244,652,244,587"/>
+</map>

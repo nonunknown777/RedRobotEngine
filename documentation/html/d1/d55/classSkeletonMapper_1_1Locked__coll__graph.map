@@ -1,0 +1,5 @@
+<map id="SkeletonMapper::Locked" name="SkeletonMapper::Locked">
+<area shape="rect" id="Node000001" title="Joints that should have their translation locked (fixed)" alt="" coords="5,652,176,742"/>
+<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="10,5,171,587"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,586,93,635,88,635,88,586"/>
+</map>

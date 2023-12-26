@@ -1,0 +1,12 @@
+<map id="ConvexHullBuilder::Edge" name="ConvexHullBuilder::Edge">
+<area shape="rect" id="Node000001" title="Class that holds the information of an edge." alt="" coords="5,412,179,503"/>
+<area shape="poly" id="edge6_Node000001_Node000001" title=" " alt="" coords="125,410,153,396,166,396,179,400,190,408,198,420,203,437,205,457,200,490,185,511,164,519,140,514,141,509,163,514,182,507,195,488,200,457,198,438,193,423,186,412,177,405,166,401,154,402,127,414"/>
+<area shape="rect" id="Node000003" href="$d8/da2/classConvexHullBuilder_1_1Face.html" title="Class that holds the information of one face." alt="" coords="205,830,430,1006"/>
+<area shape="poly" id="edge5_Node000003_Node000001" title=" " alt="" coords="93,503,94,566,103,644,123,728,139,767,160,804,194,844,190,847,155,808,134,770,118,729,98,645,89,566,87,503"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="168,5,291,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,132,110,413,105,412,203,130"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="304,112,326,137,344,166,374,248,390,321,394,387,390,450,366,582,353,659,344,748,335,831,329,830,339,748,348,658,361,581,384,449,389,387,385,322,369,250,339,168,322,140,300,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="272,831,119,519,124,517,277,829"/>
+<area shape="rect" id="Node000004" href="$d9/de4/classVec3.html" title=" " alt="" coords="405,167,566,748"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="411,749,388,807,384,816,379,814,383,805,406,747"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="Panel" name="Panel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="229,1284,311,1396"/>
+<area shape="rect" id="Node000002" href="$d9/de2/classControl.html" title=" " alt="" coords="151,1107,245,1219"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,1232,250,1284,245,1286,224,1234"/>
+<area shape="rect" id="Node000003" href="$d0/d2c/classCanvasItem.html" title=" " alt="" coords="18,647,143,759"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,773,124,891,158,1025,183,1107,177,1109,153,1026,119,892,93,774"/>
+<area shape="rect" id="Node000004" href="$df/dd0/classNode.html" title=" " alt="" coords="5,5,156,331"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="83,346,83,647,78,647,78,346"/>
+<area shape="rect" id="Node000005" href="$dd/da3/structVector2.html" title=" " alt="" coords="167,657,229,748"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="201,748,201,1091,195,1091,195,748"/>
+<area shape="rect" id="Node000006" href="$de/df1/classStyleBoxFlat.html" title=" " alt="" coords="279,1118,410,1209"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="328,1210,303,1270,298,1267,323,1208"/>
+<area shape="rect" id="Node000007" href="$df/db2/classStyleBox.html" title=" " alt="" coords="253,625,436,780"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="347,795,347,1118,342,1118,342,795"/>
+<area shape="rect" id="Node000008" href="$da/dcd/classResource.html" title=" " alt="" coords="291,123,398,213"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="347,229,347,626,342,626,342,229"/>
+<area shape="rect" id="Node000009" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="460,380,611,1025"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="462,1002,451,1027,426,1068,398,1107,394,1103,422,1066,446,1024,458,1000"/>
+<area shape="poly" id="edge9_Node000009_Node000009" title=" " alt="" coords="612,639,622,647,630,661,635,679,637,703,634,733,625,754,620,752,629,732,632,703,630,680,625,663,618,650,609,643"/>
+</map>

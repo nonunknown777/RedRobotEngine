@@ -1,0 +1,9 @@
+<map id="BodyLockInterface" name="BodyLockInterface">
+<area shape="rect" id="Node000001" title="Base class interface for locking a body. Usually you will use BodyLockRead / BodyLockWrite / BodyLock..." alt="" coords="102,165,298,683"/>
+<area shape="rect" id="Node000003" href="$d3/deb/classBodyLockInterfaceLocking.html" title="Implementation that uses the body manager to lock the correct mutex for a body." alt="" coords="5,731,189,1184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,698,144,731,138,730,145,697"/>
+<area shape="rect" id="Node000004" href="$d4/d99/classBodyLockInterfaceNoLock.html" title="Implementation that performs no locking (assumes the lock has already been taken)" alt="" coords="213,731,395,1184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="256,697,262,730,257,731,251,698"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="139,5,261,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,132,203,165,197,165,197,132"/>
+</map>

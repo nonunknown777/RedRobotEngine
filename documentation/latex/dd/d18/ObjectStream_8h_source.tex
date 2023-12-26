@@ -1,0 +1,315 @@
+\doxysection{Object\+Stream.\+h}
+\hypertarget{ObjectStream_8h_source}{}\label{ObjectStream_8h_source}\index{includes/jolt/ObjectStream/ObjectStream.h@{includes/jolt/ObjectStream/ObjectStream.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StaticArray.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Reference.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/RTTI.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableAttribute.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classObjectStream}{ObjectStream}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStreamType}}}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ Text,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ Binary,}
+\DoxyCodeLine{00024\ \ \ \ \ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectStream_a0a01e88706acdcadf4b7cc7af99a008e}{\string~ObjectStream}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}}\ =\ uint32;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ sVersion\ =\ 1;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ sRevision\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}}\ \ \ \ \ \ \ sNullIdentifier\ =\ 0;}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classObjectStream}{ObjectStream}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadDataType(EOSDataType\ \&outType)\ =\ 0;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadName(String\ \&outName)\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadIdentifier(\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}}\ \&outIdentifier)\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadCount(uint32\ \&outCount)\ =\ 0;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(uint8\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(uint16\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\textcolor{keywordtype}{int}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(uint32\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(uint64\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\textcolor{keywordtype}{float}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\textcolor{keywordtype}{double}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\textcolor{keywordtype}{bool}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(String\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\mbox{\hyperlink{classFloat3}{Float3}}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\mbox{\hyperlink{classDouble3}{Double3}}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\mbox{\hyperlink{classVec3}{Vec3}}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\mbox{\hyperlink{classDVec3}{DVec3}}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\mbox{\hyperlink{classVec4}{Vec4}}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\mbox{\hyperlink{classQuat}{Quat}}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\mbox{\hyperlink{classMat44}{Mat44}}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPrimitiveData(\mbox{\hyperlink{classDMat44}{DMat44}}\ \&outPrimitive)\ =\ 0;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadClassData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName,\ \textcolor{keywordtype}{void}\ *inInstance)\ =\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPointerData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *inRTTI,\ \textcolor{keywordtype}{void}\ **inPointer,\ \textcolor{keywordtype}{int}\ inRefCountOffset\ =\ -\/1)\ =\ 0;}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classObjectStream}{ObjectStream}}}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteDataType(EOSDataType\ inType)\ =\ 0;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteName(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName)\ =\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteIdentifier(\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}}\ inIdentifier)\ =\ 0;}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteCount(uint32\ inCount)\ =\ 0;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ uint8\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ uint16\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ uint32\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ uint64\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ String\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat3}{Float3}}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDouble3}{Double3}}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVec4}{Vec4}}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classQuat}{Quat}}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePrimitiveData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDMat44}{DMat44}}\ \&inPrimitive)\ =\ 0;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WritePointerData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *inRTTI,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inPointer)\ =\ 0;}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WriteClassData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *inRTTI,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inInstance)\ =\ 0;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HintNextItem()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{comment}{/*\ Default\ is\ do\ nothing\ */}\ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HintIndentUp()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{comment}{/*\ Default\ is\ do\ nothing\ */}\ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HintIndentDown()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{comment}{/*\ Default\ is\ do\ nothing\ */}\ \}}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ Define\ macro\ to\ declare\ functions\ for\ a\ specific\ primitive\ type}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ JPH\_DECLARE\_PRIMITIVE(name)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \ \ JPH\_EXPORT\ bool\ OSIsType(name\ *,\ int\ inArrayDepth,\ EOSDataType\ inDataType,\ const\ char\ *inClassName);\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ JPH\_EXPORT\ bool\ OSReadData(IObjectStreamIn\ \&ioStream,\ name\ \&outPrimitive);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \ \ JPH\_EXPORT\ void\ OSWriteDataType(IObjectStreamOut\ \&ioStream,\ name\ *);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ JPH\_EXPORT\ void\ OSWriteData(IObjectStreamOut\ \&ioStream,\ const\ name\ \&inPrimitive);}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ This\ file\ uses\ the\ JPH\_DECLARE\_PRIMITIVE\ macro\ to\ define\ all\ types}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/ObjectStreamTypes.h>}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ Define\ serialization\ templates}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{bool}\ OSIsType(Array<T>\ *,\ \textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName)}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ (inArrayDepth\ >\ 0\ \&\&\ OSIsType(\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}),\ inArrayDepth\ -\/\ 1,\ inDataType,\ inClassName));}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00129\ \textcolor{keywordtype}{bool}\ OSIsType(\mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ *,\ \textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName)}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ (inArrayDepth\ >\ 0\ \&\&\ OSIsType(\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}),\ inArrayDepth\ -\/\ 1,\ inDataType,\ inClassName));}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00135\ \textcolor{keywordtype}{bool}\ OSIsType(T\ (*)[N],\ \textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName)}
+\DoxyCodeLine{00136\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ (inArrayDepth\ >\ 0\ \&\&\ OSIsType(\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}),\ inArrayDepth\ -\/\ 1,\ inDataType,\ inClassName));}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00141\ \textcolor{keywordtype}{bool}\ OSIsType(\mbox{\hyperlink{classRef}{Ref<T>}}\ *,\ \textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName)}
+\DoxyCodeLine{00142\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ OSIsType(\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}),\ inArrayDepth,\ inDataType,\ inClassName);}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00147\ \textcolor{keywordtype}{bool}\ OSIsType(\mbox{\hyperlink{classRefConst}{RefConst<T>}}\ *,\ \textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName)}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ OSIsType(\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}),\ inArrayDepth,\ inDataType,\ inClassName);}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00154\ \textcolor{keywordtype}{bool}\ OSReadData(\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ Array<T>\ \&inArray)}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{bool}\ continue\_reading\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ Read\ array\ length}}
+\DoxyCodeLine{00159\ \ \ \ \ uint32\ array\_length;}
+\DoxyCodeLine{00160\ \ \ \ \ continue\_reading\ =\ ioStream.ReadCount(array\_length);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{//\ Read\ array\ items}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (continue\_reading)}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ inArray.clear();}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ inArray.resize(array\_length);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\ el\ =\ 0;\ el\ <\ array\_length\ \&\&\ continue\_reading;\ ++el)}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ continue\_reading\ =\ OSReadData(ioStream,\ inArray[el]);}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ continue\_reading;}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{bool}\ OSReadData(\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ \&inArray)}
+\DoxyCodeLine{00177\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{bool}\ continue\_reading\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ Read\ array\ length}}
+\DoxyCodeLine{00181\ \ \ \ \ uint32\ array\_length;}
+\DoxyCodeLine{00182\ \ \ \ \ continue\_reading\ =\ ioStream.ReadCount(array\_length);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ can\ fit\ this\ many\ elements}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{if}\ (array\_length\ >\ N)}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{//\ Read\ array\ items}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{if}\ (continue\_reading)}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ inArray.\mbox{\hyperlink{classStaticArray_a2cac2948666824fe7fee27bcf845f17b}{clear}}();}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ inArray.\mbox{\hyperlink{classStaticArray_af90fb922a70be2d41cc70b243cbc4c64}{resize}}(array\_length);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\ el\ =\ 0;\ el\ <\ array\_length\ \&\&\ continue\_reading;\ ++el)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ continue\_reading\ =\ OSReadData(ioStream,\ inArray[el]);}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ continue\_reading;}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00201\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00202\ \textcolor{keywordtype}{bool}\ OSReadData(\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ T\ (\&inArray)[N])}
+\DoxyCodeLine{00203\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{bool}\ continue\_reading\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{//\ Read\ array\ length}}
+\DoxyCodeLine{00207\ \ \ \ \ uint32\ array\_length;}
+\DoxyCodeLine{00208\ \ \ \ \ continue\_reading\ =\ ioStream.ReadCount(array\_length);}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{if}\ (array\_length\ !=\ N)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ Read\ array\ items}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\ el\ =\ 0;\ el\ <\ N\ \&\&\ continue\_reading;\ ++el)}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ continue\_reading\ =\ OSReadData(ioStream,\ inArray[el]);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{return}\ continue\_reading;}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00221\ \textcolor{keywordtype}{bool}\ OSReadData(\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRef)}
+\DoxyCodeLine{00222\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{return}\ ioStream.ReadPointerData(JPH\_RTTI(T),\ inRef.\mbox{\hyperlink{classRef_a77d70f3060879921e889cb1bb14c676f}{InternalGetPointer}}(),\ T::sInternalGetRefCountOffset());}
+\DoxyCodeLine{00224\ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00227\ \textcolor{keywordtype}{bool}\ OSReadData(\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&inRef)}
+\DoxyCodeLine{00228\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ ioStream.ReadPointerData(JPH\_RTTI(T),\ inRef.\mbox{\hyperlink{classRefConst_a87a9a9c835eaabab406c8015c8ef2033}{InternalGetPointer}}(),\ T::sInternalGetRefCountOffset());}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ Define\ serialization\ templates\ for\ dynamic\ arrays}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00234\ \textcolor{keywordtype}{void}\ OSWriteDataType(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ Array<T>\ *)}
+\DoxyCodeLine{00235\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ ioStream.WriteDataType(EOSDataType::Array);}
+\DoxyCodeLine{00237\ \ \ \ \ OSWriteDataType(ioStream,\ \textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00238\ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00241\ \textcolor{keywordtype}{void}\ OSWriteData(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ Array<T>\ \&inArray)}
+\DoxyCodeLine{00242\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{comment}{//\ Write\ size\ of\ array}}
+\DoxyCodeLine{00244\ \ \ \ \ ioStream.HintNextItem();}
+\DoxyCodeLine{00245\ \ \ \ \ ioStream.WriteCount(\textcolor{keyword}{static\_cast<}uint32\textcolor{keyword}{>}(inArray.size()));}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{//\ Write\ data\ in\ array}}
+\DoxyCodeLine{00248\ \ \ \ \ ioStream.HintIndentUp();}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ T\ \&v\ :\ inArray)}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ OSWriteData(ioStream,\ v);}
+\DoxyCodeLine{00251\ \ \ \ \ ioStream.HintIndentDown();}
+\DoxyCodeLine{00252\ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00255\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00256\ \textcolor{keywordtype}{void}\ OSWriteDataType(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ *)}
+\DoxyCodeLine{00257\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ ioStream.WriteDataType(EOSDataType::Array);}
+\DoxyCodeLine{00259\ \ \ \ \ OSWriteDataType(ioStream,\ \textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00260\ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00263\ \textcolor{keywordtype}{void}\ OSWriteData(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classStaticArray}{StaticArray<T,\ N>}}\ \&inArray)}
+\DoxyCodeLine{00264\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{comment}{//\ Write\ size\ of\ array}}
+\DoxyCodeLine{00266\ \ \ \ \ ioStream.HintNextItem();}
+\DoxyCodeLine{00267\ \ \ \ \ ioStream.WriteCount(inArray.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}());}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{comment}{//\ Write\ data\ in\ array}}
+\DoxyCodeLine{00270\ \ \ \ \ ioStream.HintIndentUp();}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ StaticArray<T,\ N>::value\_type\ \&v\ :\ inArray)}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ OSWriteData(ioStream,\ v);}
+\DoxyCodeLine{00273\ \ \ \ \ ioStream.HintIndentDown();}
+\DoxyCodeLine{00274\ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00277\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00278\ \textcolor{keywordtype}{void}\ OSWriteDataType(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ T\ (*)[N])}
+\DoxyCodeLine{00279\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ ioStream.WriteDataType(EOSDataType::Array);}
+\DoxyCodeLine{00281\ \ \ \ \ OSWriteDataType(ioStream,\ \textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00282\ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ u\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00285\ \textcolor{keywordtype}{void}\ OSWriteData(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ T\ (\&inArray)[N])}
+\DoxyCodeLine{00286\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{comment}{//\ Write\ size\ of\ array}}
+\DoxyCodeLine{00288\ \ \ \ \ ioStream.HintNextItem();}
+\DoxyCodeLine{00289\ \ \ \ \ ioStream.WriteCount(uint32(N));}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{comment}{//\ Write\ data\ in\ array}}
+\DoxyCodeLine{00292\ \ \ \ \ ioStream.HintIndentUp();}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ T\ \&v\ :\ inArray)}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ OSWriteData(ioStream,\ v);}
+\DoxyCodeLine{00295\ \ \ \ \ ioStream.HintIndentDown();}
+\DoxyCodeLine{00296\ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00299\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00300\ \textcolor{keywordtype}{void}\ OSWriteDataType(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \mbox{\hyperlink{classRef}{Ref<T>}}\ *)}
+\DoxyCodeLine{00301\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ OSWriteDataType(ioStream,\ \textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00303\ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00306\ \textcolor{keywordtype}{void}\ OSWriteData(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRef)}
+\DoxyCodeLine{00307\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordflow}{if}\ (inRef\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ ioStream.WritePointerData(GetRTTI(inRef.\mbox{\hyperlink{classRef_a11ddc0decf3451568dc47178bed5e2aa}{GetPtr}}()),\ inRef.\mbox{\hyperlink{classRef_a11ddc0decf3451568dc47178bed5e2aa}{GetPtr}}());}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ ioStream.WritePointerData(\textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00312\ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00315\ \textcolor{keywordtype}{void}\ OSWriteDataType(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ *)}
+\DoxyCodeLine{00316\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ OSWriteDataType(ioStream,\ \textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{00318\ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00321\ \textcolor{keywordtype}{void}\ OSWriteData(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&inRef)}
+\DoxyCodeLine{00322\ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keywordflow}{if}\ (inRef\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ ioStream.WritePointerData(GetRTTI(inRef.\mbox{\hyperlink{classRefConst_a1dcd19b921fc3022e10cbde1c5ac36e2}{GetPtr}}()),\ inRef.\mbox{\hyperlink{classRefConst_a1dcd19b921fc3022e10cbde1c5ac36e2}{GetPtr}}());}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ ioStream.WritePointerData(\textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00327\ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

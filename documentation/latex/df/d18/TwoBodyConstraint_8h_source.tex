@@ -1,0 +1,59 @@
+\doxysection{Two\+Body\+Constraint.\+h}
+\hypertarget{TwoBodyConstraint_8h_source}{}\label{TwoBodyConstraint_8h_source}\index{includes/jolt/Physics/Constraints/TwoBodyConstraint.h@{includes/jolt/Physics/Constraints/TwoBodyConstraint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/Constraint.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/Body.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classTwoBodyConstraintSettings}{TwoBodyConstraintSettings}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classConstraintSettings}{ConstraintSettings}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_ABSTRACT(JPH\_EXPORT,\ \mbox{\hyperlink{classTwoBodyConstraintSettings}{TwoBodyConstraintSettings}})}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ virtual\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}\ *\ \ \ \ Create(\mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2)\ const\ =\ 0;}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}\ :\ public\ \mbox{\hyperlink{classConstraint}{Constraint}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_a8b370c3d2689b9ae1270b1dfc8f9c290}{TwoBodyConstraint}}(\mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classTwoBodyConstraintSettings}{TwoBodyConstraintSettings}}\ \&inSettings)\ :\ \mbox{\hyperlink{classConstraint}{Constraint}}(inSettings),\ mBody1(\&inBody1),\ mBody2(\&inBody2)\ \{\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ EConstraintType\ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_a25655ebd463476c1ada660d3a292d3c7}{GetType}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ EConstraintType::TwoBodyConstraint;\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_a9ec4e14ada31bf5172141c2d50663e76}{IsActive}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ Constraint::IsActive()\ \&\&\ (mBody1-\/>IsActive()\ ||\ mBody2-\/>IsActive())\ \&\&\ (mBody2-\/>IsDynamic()\ ||\ mBody1-\/>IsDynamic());\ \}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraintReferenceFrame(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_ae09dc01720e01f71e480f2ce3da32918}{GetBody1}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBody1;\ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetBody2()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBody2;\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_a0edd748869643b1c904a7bc1314dad7a}{GetConstraintToBody1Matrix}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_a0966503073a315b6087f10208e8a61ff}{GetConstraintToBody2Matrix}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_afca1a46125600fea6ecd15a38ed45790}{BuildIslands}}(uint32\ inConstraintIndex,\ \mbox{\hyperlink{classIslandBuilder}{IslandBuilder}}\ \&ioBuilder,\ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ \&inBodyManager)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_a08db9f012da401e48d5ce4bf404ff6d4}{BuildIslandSplits}}(\mbox{\hyperlink{classLargeIslandSplitter}{LargeIslandSplitter}}\ \&ioSplitter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint_af27aa0e2707d6b96ecbdeb8da8068ea8}{mBody1}};}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBody2;}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

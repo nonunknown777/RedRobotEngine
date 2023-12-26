@@ -1,0 +1,32 @@
+\doxysection{Triangle\+Splitter\+Mean.\+h}
+\hypertarget{TriangleSplitterMean_8h_source}{}\label{TriangleSplitterMean_8h_source}\index{includes/jolt/TriangleSplitter/TriangleSplitterMean.h@{includes/jolt/TriangleSplitter/TriangleSplitterMean.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/TriangleSplitter/TriangleSplitter.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classTriangleSplitterMean}{TriangleSplitterMean}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classTriangleSplitter}{TriangleSplitter}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleSplitterMean_a273e193a1adb8cfa7c4e153fb5aef176}{TriangleSplitterMean}}(\textcolor{keyword}{const}\ VertexList\ \&inVertices,\ \textcolor{keyword}{const}\ IndexedTriangleList\ \&inTriangles);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ See\ TriangleSplitter::GetStats}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleSplitterMean_a32235dae954e916c9e3235ebe3704345}{GetStats}}(\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Stats}}\ \&outStats)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ outStats.mSplitterName\ =\ \textcolor{stringliteral}{"{}TriangleSplitterMean"{}};}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ See\ TriangleSplitter::Split}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleSplitterMean_a9a37b9e09896be9c0d91dcab1d5d2369}{Split}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}}\ \&inTriangles,\ \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}}\ \&outLeft,\ \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}}\ \&outRight)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

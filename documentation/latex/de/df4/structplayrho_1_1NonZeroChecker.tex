@@ -1,0 +1,61 @@
+\doxysection{playrho\+::Non\+Zero\+Checker\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structplayrho_1_1NonZeroChecker}{}\label{structplayrho_1_1NonZeroChecker}\index{playrho::NonZeroChecker$<$ T $>$@{playrho::NonZeroChecker$<$ T $>$}}
+
+
+Non-\/zero constrained value checker.  
+
+
+
+
+{\ttfamily \#include $<$Non\+Zero.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Non\+Zero\+Checker\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{de/d45/structplayrho_1_1NonZeroChecker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structplayrho_1_1NonZeroChecker_acb2f16429fc505948b5ebc6bc030265d}\label{structplayrho_1_1NonZeroChecker_acb2f16429fc505948b5ebc6bc030265d} 
+using {\bfseries exception\+\_\+type} = std\+::invalid\+\_\+argument
+\begin{DoxyCompactList}\small\item\em Exception type possibly thrown by this checker. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr auto \mbox{\hyperlink{structplayrho_1_1NonZeroChecker_a6e7ad1c4698849e911ae60a6ca85f43b}{operator()}} (const T \&v) -\/$>$ decltype(!(v !=static\+\_\+cast$<$ T $>$(0)), T\{v\})
+\begin{DoxyCompactList}\small\item\em Value checking functor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct playrho\+::\+Non\+Zero\+Checker$<$ T $>$}
+Non-\/zero constrained value checker. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structplayrho_1_1NonZeroChecker_a6e7ad1c4698849e911ae60a6ca85f43b}\label{structplayrho_1_1NonZeroChecker_a6e7ad1c4698849e911ae60a6ca85f43b} 
+\index{playrho::NonZeroChecker$<$ T $>$@{playrho::NonZeroChecker$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!playrho::NonZeroChecker$<$ T $>$@{playrho::NonZeroChecker$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr auto \mbox{\hyperlink{structplayrho_1_1NonZeroChecker}{playrho\+::\+Non\+Zero\+Checker}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{const T \&}]{v }\end{DoxyParamCaption}) -\/$>$ decltype(!(v != static\+\_\+cast$<$T$>$(0)), T\{v\})     \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Value checking functor. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em exception\+\_\+type} & if given value is not valid. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Non\+Zero.\+hpp\end{DoxyCompactItemize}

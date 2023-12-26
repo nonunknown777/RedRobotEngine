@@ -1,0 +1,11 @@
+<map id="WheeledVehicleController" name="WheeledVehicleController">
+<area shape="rect" id="Node000001" title="Runtime controller class." alt="" coords="103,620,315,1257"/>
+<area shape="rect" id="Node000005" href="$d3/d17/classMotorcycleController.html" title="Runtime controller class." alt="" coords="83,1305,335,1939"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="212,1272,212,1305,207,1305,207,1272"/>
+<area shape="rect" id="Node000002" href="$d6/d05/classVehicleController.html" title="Runtime data for interface that controls acceleration / decelleration of the vehicle." alt="" coords="103,315,315,572"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,587,212,620,207,620,207,587"/>
+<area shape="rect" id="Node000003" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,5,221,267"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="161,280,172,314,167,316,156,282"/>
+<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="245,80,368,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="287,207,252,316,247,314,282,205"/>
+</map>

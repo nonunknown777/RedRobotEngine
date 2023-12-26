@@ -1,0 +1,56 @@
+\doxysection{playrho\+::Is\+Vector\texorpdfstring{$<$}{<} Vector\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structplayrho_1_1IsVector_3_01Vector_3_01T_00_01N_01_4_01_4}{}\label{structplayrho_1_1IsVector_3_01Vector_3_01T_00_01N_01_4_01_4}\index{playrho::IsVector$<$ Vector$<$ T, N $>$ $>$@{playrho::IsVector$<$ Vector$<$ T, N $>$ $>$}}
+
+
+Trait class specialization for checking if type is a {\ttfamily \doxylink{structplayrho_1_1Vector}{Vector}} type..  
+
+
+
+
+{\ttfamily \#include $<$Vector.\+hpp$>$}
+
+
+
+Inheritance diagram for playrho\+::Is\+Vector\texorpdfstring{$<$}{<} Vector\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{df/dcb/structplayrho_1_1IsVector_3_01Vector_3_01T_00_01N_01_4_01_4__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for playrho\+::Is\+Vector\texorpdfstring{$<$}{<} Vector\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{da/d12/structplayrho_1_1IsVector_3_01Vector_3_01T_00_01N_01_4_01_4__coll__graph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, std\+::size\+\_\+t N$>$\newline
+struct playrho\+::\+Is\+Vector$<$ Vector$<$ T, N $>$ $>$}
+Trait class specialization for checking if type is a {\ttfamily \doxylink{structplayrho_1_1Vector}{Vector}} type.. 
+
+\begin{DoxyNote}{Note}
+This implements the specialized case where the given type {\itshape is indeed} a {\ttfamily \doxylink{structplayrho_1_1Vector}{Vector}}. 
+
+For example the following is true\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{IsVector<Vector<int,\ 2>::value\ \&\&\ IsVector<Vector<Vector<float,\ 1>,\ 1>>::value}
+
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structplayrho_1_1Vector}{Vector} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Vector.\+hpp\end{DoxyCompactItemize}

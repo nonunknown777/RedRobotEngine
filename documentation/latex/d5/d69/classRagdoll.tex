@@ -1,0 +1,179 @@
+\doxysection{Ragdoll Class Reference}
+\hypertarget{classRagdoll}{}\label{classRagdoll}\index{Ragdoll@{Ragdoll}}
+
+
+Runtime ragdoll information.  
+
+
+
+
+{\ttfamily \#include $<$Ragdoll.\+h$>$}
+
+
+
+Inheritance diagram for Ragdoll\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d9a/classRagdoll__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ragdoll\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/dc2/classRagdoll__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRagdoll_abf6b6eb34e63af813cc4e394b536208e}\label{classRagdoll_abf6b6eb34e63af813cc4e394b536208e} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Ragdoll} (\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \texorpdfstring{$\ast$}{*}in\+System)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_afbd932bcd7ceae5811204c5c1219d5ac}\label{classRagdoll_afbd932bcd7ceae5811204c5c1219d5ac} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ragdoll} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a3c419f92dd96329ba429ed6f8fe9a74e}\label{classRagdoll_a3c419f92dd96329ba429ed6f8fe9a74e} 
+void {\bfseries Add\+To\+Physics\+System} (EActivation in\+Activation\+Mode, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Add bodies and constraints to the system and optionally activate the bodies. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a76f2d87e4f41cc22ff280b9c962698cf}\label{classRagdoll_a76f2d87e4f41cc22ff280b9c962698cf} 
+void {\bfseries Remove\+From\+Physics\+System} (bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Remove bodies and constraints from the system. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a584d5a41fd6118589b420ed96272827b}\label{classRagdoll_a584d5a41fd6118589b420ed96272827b} 
+void {\bfseries Activate} (bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Wake up all bodies in the ragdoll. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRagdoll_aa86e5cf49f753abc4ad077440d08faa0}{Is\+Active}} (bool in\+Lock\+Bodies=true) const
+\item 
+\Hypertarget{classRagdoll_add1a811191c5e75e489598594123e85b}\label{classRagdoll_add1a811191c5e75e489598594123e85b} 
+void {\bfseries Set\+Group\+ID} (Collision\+Group\+::\+Group\+ID in\+Group\+ID, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Set the group ID on all bodies in the ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a535e76f7fb7bfee484d82570a3066ae7}\label{classRagdoll_a535e76f7fb7bfee484d82570a3066ae7} 
+void {\bfseries Set\+Pose} (const \mbox{\hyperlink{classSkeletonPose}{Skeleton\+Pose}} \&in\+Pose, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Set the ragdoll to a pose (calls Body\+Interface\+::\+Set\+Position\+And\+Rotation to instantly move the ragdoll) \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a789ec3bece447ec849e7ecb109c15a9c}\label{classRagdoll_a789ec3bece447ec849e7ecb109c15a9c} 
+void {\bfseries Set\+Pose} (\mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Root\+Offset, const \mbox{\hyperlink{classMat44}{Mat44}} \texorpdfstring{$\ast$}{*}in\+Joint\+Matrices, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Lower level version of Set\+Pose that directly takes the world space joint matrices. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_aeb6b26fdc0eefbb815af1d06c9e5da69}\label{classRagdoll_aeb6b26fdc0eefbb815af1d06c9e5da69} 
+void {\bfseries Get\+Pose} (\mbox{\hyperlink{classSkeletonPose}{Skeleton\+Pose}} \&out\+Pose, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Get the ragdoll pose (uses the world transform of the bodies to calculate the pose) \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a9c9a6d0791b776f4360d0cd9ddfc6f84}\label{classRagdoll_a9c9a6d0791b776f4360d0cd9ddfc6f84} 
+void {\bfseries Get\+Pose} (\mbox{\hyperlink{classVec3}{RVec3}} \&out\+Root\+Offset, \mbox{\hyperlink{classMat44}{Mat44}} \texorpdfstring{$\ast$}{*}out\+Joint\+Matrices, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Lower level version of Get\+Pose that directly returns the world space joint matrices. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a5708fad69260914b0fdfd6d80a834d23}\label{classRagdoll_a5708fad69260914b0fdfd6d80a834d23} 
+void {\bfseries Drive\+To\+Pose\+Using\+Kinematics} (const \mbox{\hyperlink{classSkeletonPose}{Skeleton\+Pose}} \&in\+Pose, float in\+Delta\+Time, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Drive the ragdoll to a specific pose by setting velocities on each of the bodies so that it will reach in\+Pose in in\+Delta\+Time. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a1a25f99af9c3a3d8eb7a069143db34e6}\label{classRagdoll_a1a25f99af9c3a3d8eb7a069143db34e6} 
+void {\bfseries Drive\+To\+Pose\+Using\+Kinematics} (\mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Root\+Offset, const \mbox{\hyperlink{classMat44}{Mat44}} \texorpdfstring{$\ast$}{*}in\+Joint\+Matrices, float in\+Delta\+Time, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Lower level version of Drive\+To\+Pose\+Using\+Kinematics that directly takes the world space joint matrices. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a367f16f5385eb377e5419d12457c22c6}\label{classRagdoll_a367f16f5385eb377e5419d12457c22c6} 
+void {\bfseries Drive\+To\+Pose\+Using\+Motors} (const \mbox{\hyperlink{classSkeletonPose}{Skeleton\+Pose}} \&in\+Pose)
+\begin{DoxyCompactList}\small\item\em Drive the ragdoll to a specific pose by activating the motors on each constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a8ba64ad182563d9110980155b86538bc}\label{classRagdoll_a8ba64ad182563d9110980155b86538bc} 
+void {\bfseries Set\+Linear\+And\+Angular\+Velocity} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Linear\+Velocity, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Angular\+Velocity, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em \doxylink{classControl}{Control} the linear and velocity of all bodies in the ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_ac0b96e2a568868b67792889d26137ec8}\label{classRagdoll_ac0b96e2a568868b67792889d26137ec8} 
+void {\bfseries Set\+Linear\+Velocity} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Linear\+Velocity, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Set the world space linear velocity of all bodies in the ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_abcf8c32f6b7cbdf98bc29e2bf7075ba7}\label{classRagdoll_abcf8c32f6b7cbdf98bc29e2bf7075ba7} 
+void {\bfseries Add\+Linear\+Velocity} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Linear\+Velocity, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Add a world space velocity (in m/s) to all bodies in the ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a5ea2bcad36c7346ffd9a81dee6ab03d1}\label{classRagdoll_a5ea2bcad36c7346ffd9a81dee6ab03d1} 
+void {\bfseries Add\+Impulse} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Impulse, bool in\+Lock\+Bodies=true)
+\begin{DoxyCompactList}\small\item\em Add impulse to all bodies of the ragdoll (center of mass of each of them) \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_ab6ccff7d0aee7c9931a308c722614fff}\label{classRagdoll_ab6ccff7d0aee7c9931a308c722614fff} 
+void {\bfseries Get\+Root\+Transform} (\mbox{\hyperlink{classVec3}{RVec3}} \&out\+Position, \mbox{\hyperlink{classQuat}{Quat}} \&out\+Rotation, bool in\+Lock\+Bodies=true) const
+\begin{DoxyCompactList}\small\item\em Get the position and orientation of the root of the ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a6395143c1655e5272eccdf0895d57c53}\label{classRagdoll_a6395143c1655e5272eccdf0895d57c53} 
+size\+\_\+t {\bfseries Get\+Body\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get number of bodies in the ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_ac57cdfcd77dc9dce4679fcb45012083a}\label{classRagdoll_ac57cdfcd77dc9dce4679fcb45012083a} 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries Get\+Body\+ID} (int in\+Body\+Index) const
+\begin{DoxyCompactList}\small\item\em Access a body ID. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a98603396696b276256ffe74283a26fca}\label{classRagdoll_a98603396696b276256ffe74283a26fca} 
+const Array$<$ \mbox{\hyperlink{classBodyID}{Body\+ID}} $>$ \& {\bfseries Get\+Body\+IDs} () const
+\begin{DoxyCompactList}\small\item\em Access to the array of body IDs. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a4aed9348c613c386d5cf32c25e3931f2}\label{classRagdoll_a4aed9348c613c386d5cf32c25e3931f2} 
+size\+\_\+t {\bfseries Get\+Constraint\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get number of constraints in the ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a86b347f11599361d0cf8bddcacad4295}\label{classRagdoll_a86b347f11599361d0cf8bddcacad4295} 
+\mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Constraint} (int in\+Constraint\+Index)
+\begin{DoxyCompactList}\small\item\em Access a constraint by index. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a001b9a360f16a8a24d7cc547c763bbd8}\label{classRagdoll_a001b9a360f16a8a24d7cc547c763bbd8} 
+const \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Constraint} (int in\+Constraint\+Index) const
+\begin{DoxyCompactList}\small\item\em Access a constraint by index. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_a8ab1cc3715aafa05d4b04647c54282a3}\label{classRagdoll_a8ab1cc3715aafa05d4b04647c54282a3} 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries Get\+World\+Space\+Bounds} (bool in\+Lock\+Bodies=true) const
+\begin{DoxyCompactList}\small\item\em Get world space bounding box for all bodies of the ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdoll_adf2f2237288c30779260c4b1e744a76d}\label{classRagdoll_adf2f2237288c30779260c4b1e744a76d} 
+const \mbox{\hyperlink{classRagdollSettings}{Ragdoll\+Settings}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Ragdoll\+Settings} () const
+\begin{DoxyCompactList}\small\item\em Get the settings object that created this ragdoll. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Ragdoll $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRagdoll_af287d5dd184fd0349ba44a279f6cacdf}\label{classRagdoll_af287d5dd184fd0349ba44a279f6cacdf} 
+class \mbox{\hyperlink{classRagdoll_af287d5dd184fd0349ba44a279f6cacdf}{Ragdoll\+Settings}}
+\begin{DoxyCompactList}\small\item\em For \doxylink{classRagdollSettings_a6f5c2dd947c77b071431f91a1f1b6251}{Ragdoll\+Settings\+::\+Create\+Ragdoll} function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Ragdoll $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Ragdoll $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Ragdoll $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Runtime ragdoll information. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRagdoll_aa86e5cf49f753abc4ad077440d08faa0}\label{classRagdoll_aa86e5cf49f753abc4ad077440d08faa0} 
+\index{Ragdoll@{Ragdoll}!IsActive@{IsActive}}
+\index{IsActive@{IsActive}!Ragdoll@{Ragdoll}}
+\doxysubsubsection{\texorpdfstring{IsActive()}{IsActive()}}
+{\footnotesize\ttfamily bool Ragdoll\+::\+Is\+Active (\begin{DoxyParamCaption}\item[{bool}]{in\+Lock\+Bodies = {\ttfamily true} }\end{DoxyParamCaption}) const}
+
+Check if one or more of the bodies in the ragdoll are active. Note that this involves locking the bodies (if in\+Lock\+Bodies is true) and looping over them. An alternative and possibly faster way could be to install a \doxylink{classBodyActivationListener}{Body\+Activation\+Listener} and count the number of active bodies of a ragdoll as they\textquotesingle{}re activated / deactivated (basically check if the body that activates / deactivates is in \doxylink{classRagdoll_a98603396696b276256ffe74283a26fca}{Get\+Body\+IDs()} and increment / decrement a counter). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Ragdoll/Ragdoll.\+h\end{DoxyCompactItemize}

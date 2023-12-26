@@ -1,0 +1,170 @@
+\doxysection{Large\+Island\+Splitter.\+h}
+\hypertarget{LargeIslandSplitter_8h_source}{}\label{LargeIslandSplitter_8h_source}\index{includes/jolt/Physics/LargeIslandSplitter.h@{includes/jolt/Physics/LargeIslandSplitter.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2023\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Atomics.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBody}{Body}};}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyID}{BodyID}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIslandBuilder}{IslandBuilder}};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTempAllocator}{TempAllocator}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classConstraint}{Constraint}};}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyManager}{BodyManager}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classContactConstraintManager}{ContactConstraintManager}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCalculateSolverSteps}{CalculateSolverSteps}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLargeIslandSplitter}{LargeIslandSplitter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{using\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }SplitMask\ =\ uint32;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ cNumSplits\ =\ \textcolor{keyword}{sizeof}(SplitMask)\ *\ 8;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ cNonParallelSplitIdx\ =\ cNumSplits\ -\/\ 1;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \mbox{\hyperlink{classLargeIslandSplitter_a86a79602d9b93ec4a0c5837465a70b0a}{cLargeIslandTreshold}}\ =\ 128;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68}{EStatus}}}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a01811fa00be6bc53249ea970efb0cc9f}{WaitingForBatch}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a39b684c3a6067a4e201699e906bd4af1}{BatchRetrieved}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a6d9a123e6f06ce621f7ad5f18f9392c4}{AllBatchesDone}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structLargeIslandSplitter_1_1Split}{Split}}}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ GetNumContacts()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split_a6a88a677ec69868a94fbb451ab253342}{mContactBufferEnd}}\ -\/\ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split_aeace1bcbc7c914f22476358a9851daba}{mContactBufferBegin}};\ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ GetNumConstraints()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split_af7738261a4e5e40816c3be9db89b6500}{mConstraintBufferEnd}}\ -\/\ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split_a28c42cf9312a3e37c131ebdc1ad81479}{mConstraintBufferBegin}};\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ GetNumItems()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ GetNumContacts()\ +\ GetNumConstraints();\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split_aeace1bcbc7c914f22476358a9851daba}{mContactBufferBegin}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split_a6a88a677ec69868a94fbb451ab253342}{mContactBufferEnd}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split_a28c42cf9312a3e37c131ebdc1ad81479}{mConstraintBufferBegin}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split_af7738261a4e5e40816c3be9db89b6500}{mConstraintBufferEnd}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLargeIslandSplitter_1_1Splits}{Splits}}}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ GetNumSplits()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_aaa044adfe3331a9c96f75921e35f44be}{mNumSplits}};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ GetConstraintsInSplit(uint\ inSplitIndex,\ uint32\ \&outConstraintsBegin,\ uint32\ \&outConstraintsEnd)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split}{Split}}\ \&split\ =\ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_aa3d8218f5eefc7a12e3d884f8a52034f}{mSplits}}[inSplitIndex];}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ outConstraintsBegin\ =\ split.\mbox{\hyperlink{structLargeIslandSplitter_1_1Split_a28c42cf9312a3e37c131ebdc1ad81479}{mConstraintBufferBegin}};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ outConstraintsEnd\ =\ split.\mbox{\hyperlink{structLargeIslandSplitter_1_1Split_af7738261a4e5e40816c3be9db89b6500}{mConstraintBufferEnd}};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ GetContactsInSplit(uint\ inSplitIndex,\ uint32\ \&outContactsBegin,\ uint32\ \&outContactsEnd)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split}{Split}}\ \&split\ =\ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_aa3d8218f5eefc7a12e3d884f8a52034f}{mSplits}}[inSplitIndex];}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ outContactsBegin\ =\ split.\mbox{\hyperlink{structLargeIslandSplitter_1_1Split_aeace1bcbc7c914f22476358a9851daba}{mContactBufferBegin}};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ outContactsEnd\ =\ split.\mbox{\hyperlink{structLargeIslandSplitter_1_1Split_a6a88a677ec69868a94fbb451ab253342}{mContactBufferEnd}};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a0acc44089e5c254ca53a07d6aa80ffc8}{ResetStatus}}()}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_ab22709004602365875473ce64ee5cd22}{mStatus}}.store(StatusItemMask,\ memory\_order\_relaxed);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a42483726c98f92ac6b1c915da0fa8868}{StartFirstBatch}}()}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ split\_index\ =\ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_aaa044adfe3331a9c96f75921e35f44be}{mNumSplits}}\ >\ 0?\ 0\ :\ cNonParallelSplitIdx;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_ab22709004602365875473ce64ee5cd22}{mStatus}}.store(uint64(split\_index)\ <<\ StatusSplitShift,\ memory\_order\_release);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68}{EStatus}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a97948c337623e05418394955a56a7041}{FetchNextBatch}}(uint32\ \&outConstraintsBegin,\ uint32\ \&outConstraintsEnd,\ uint32\ \&outContactsBegin,\ uint32\ \&outContactsEnd,\ \textcolor{keywordtype}{bool}\ \&outFirstIteration);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a44bf9c63b7a2e97e385d4fb5160735ae}{MarkBatchProcessed}}(uint\ inNumProcessed,\ \textcolor{keywordtype}{bool}\ \&outLastIteration,\ \textcolor{keywordtype}{bool}\ \&outFinalBatch);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ EIterationStatus\ :\ uint64}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ StatusIterationMask\ \ \ \ \ =\ 0xffff000000000000,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ StatusIterationShift\ \ \ \ =\ 48,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ StatusSplitMask\ \ \ \ \ \ \ \ \ =\ 0x0000ffff00000000,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ StatusSplitShift\ \ \ \ \ \ \ \ =\ 32,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ StatusItemMask\ \ \ \ \ \ \ \ \ \ =\ 0x00000000ffffffff,}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \ \ sGetIteration(uint64\ inStatus)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ int((inStatus\ \&\ StatusIterationMask)\ >>\ StatusIterationShift);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint\ \ sGetSplit(uint64\ inStatus)}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ uint((inStatus\ \&\ StatusSplitMask)\ >>\ StatusSplitShift);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint\ \ sGetItem(uint64\ inStatus)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ uint(inStatus\ \&\ StatusItemMask);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structLargeIslandSplitter_1_1Split}{Split}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_aa3d8218f5eefc7a12e3d884f8a52034f}{mSplits}}[cNumSplits];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a7ba0459819cd7fefc065ed06d30086ae}{mIslandIndex}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_aaa044adfe3331a9c96f75921e35f44be}{mNumSplits}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a451c0785aed49009ee33316d5269495d}{mNumIterations}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_ac4a0f32e15cb93e1c6c9e6570885664b}{mNumVelocitySteps}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a3da2470ccef44323ffb4fc2cf90efbf4}{mNumPositionSteps}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ atomic<uint64>\ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_ab22709004602365875473ce64ee5cd22}{mStatus}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a39339a4cb247742be9ae64489c2758e7}{mItemsProcessed}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_a6453331c5fb852bb201b04f14dc9a281}{\string~LargeIslandSplitter}}();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_a6423724ea978d94f3faff78bb5a5965d}{Prepare}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classIslandBuilder}{IslandBuilder}}\ \&inIslandBuilder,\ uint32\ inNumActiveBodies,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00140\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_abdd73c85801b06752d297cf36df1b44f}{AssignSplit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ *inBody1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ *inBody2);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_a1b2ef7ebff94911ee008f25f6c0c741b}{AssignToNonParallelSplit}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ *inBody);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_a0e0435f6f000b574ec4e9649400f38cd}{SplitIsland}}(uint32\ inIslandIndex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classIslandBuilder}{IslandBuilder}}\ \&inIslandBuilder,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ \&inBodyManager,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classContactConstraintManager}{ContactConstraintManager}}\ \&inContactManager,\ \mbox{\hyperlink{classConstraint}{Constraint}}\ **inActiveConstraints,\ \mbox{\hyperlink{classCalculateSolverSteps}{CalculateSolverSteps}}\ \&ioStepsCalculator);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68}{EStatus}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_a47f81f800bdb0870c8569a5734303d4e}{FetchNextBatch}}(uint\ \&outSplitIslandIndex,\ uint32\ *\&outConstraintsBegin,\ uint32\ *\&outConstraintsEnd,\ uint32\ *\&outContactsBegin,\ uint32\ *\&outContactsEnd,\ \textcolor{keywordtype}{bool}\ \&outFirstIteration);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_a2934ec09e8492356eab6360ba6091fb4}{MarkBatchProcessed}}(uint\ inSplitIslandIndex,\ \textcolor{keyword}{const}\ uint32\ *inConstraintsBegin,\ \textcolor{keyword}{const}\ uint32\ *inConstraintsEnd,\ \textcolor{keyword}{const}\ uint32\ *inContactsBegin,\ \textcolor{keyword}{const}\ uint32\ *inContactsEnd,\ \textcolor{keywordtype}{bool}\ \&outLastIteration,\ \textcolor{keywordtype}{bool}\ \&outFinalBatch);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_a9c0c434f77d1e58d2fce4fbe9247236e}{GetIslandIndex}}(uint\ inSplitIslandIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inSplitIslandIndex\ <\ mNumSplitIslands);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSplitIslands[inSplitIslandIndex].\mbox{\hyperlink{classLargeIslandSplitter_1_1Splits_a7ba0459819cd7fefc065ed06d30086ae}{mIslandIndex}};}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_acf4099c9cd655a77a1c7331724608d22}{PrepareForSolvePositions}}();}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter_ac5d0857609c5c1375dd9cd78a5f6148a}{Reset}}(\mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ cSplitCombineTreshold\ =\ 32;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ cBatchSize\ =\ 16;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumActiveBodies\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ SplitMask\ *\ \ \ \ \ \ \ \ \ \ \ \ \ mSplitMasks\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContactAndConstaintsSplitIdx\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContactAndConstraintIndices\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContactAndConstraintsSize\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \ \ \ \ mContactAndConstraintsNextFree\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumSplitIslands\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ Splits\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSplitIslands\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00182\ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \ \ \ \ mNextSplitIsland\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

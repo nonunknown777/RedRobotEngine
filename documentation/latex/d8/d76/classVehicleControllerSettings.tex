@@ -1,0 +1,140 @@
+\doxysection{Vehicle\+Controller\+Settings Class Reference}
+\hypertarget{classVehicleControllerSettings}{}\label{classVehicleControllerSettings}\index{VehicleControllerSettings@{VehicleControllerSettings}}
+
+
+Basic settings object for interface that controls acceleration / decelleration of the vehicle.  
+
+
+
+
+{\ttfamily \#include $<$Vehicle\+Controller.\+h$>$}
+
+
+
+Inheritance diagram for Vehicle\+Controller\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/dfa/classVehicleControllerSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Vehicle\+Controller\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/dad/classVehicleControllerSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classVehicleControllerSettings_a8508baa59b73af00f019d542166a88cc}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const =0
+\begin{DoxyCompactList}\small\item\em Saves the contents of the controller settings in binary form to in\+Stream. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classVehicleControllerSettings_a5ef4840b667224faf60f1d3cc2b048e1}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)=0
+\begin{DoxyCompactList}\small\item\em Restore the contents of the controller settings in binary form from in\+Stream. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classVehicleControllerSettings_a463f96865e70f8ebecaa95b4e71a4c4d}{Construct\+Controller}} (\mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&in\+Constraint) const =0
+\begin{DoxyCompactList}\small\item\em Create an instance of the vehicle controller class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Controller\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Controller\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Controller\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Controller\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Basic settings object for interface that controls acceleration / decelleration of the vehicle. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVehicleControllerSettings_a463f96865e70f8ebecaa95b4e71a4c4d}\label{classVehicleControllerSettings_a463f96865e70f8ebecaa95b4e71a4c4d} 
+\index{VehicleControllerSettings@{VehicleControllerSettings}!ConstructController@{ConstructController}}
+\index{ConstructController@{ConstructController}!VehicleControllerSettings@{VehicleControllerSettings}}
+\doxysubsubsection{\texorpdfstring{ConstructController()}{ConstructController()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}} \texorpdfstring{$\ast$}{*} Vehicle\+Controller\+Settings\+::\+Construct\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&}]{in\+Constraint }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Create an instance of the vehicle controller class. 
+
+
+
+Implemented in \mbox{\hyperlink{classMotorcycleControllerSettings_ae836ea8fe7db306f1729dfd2b6b182b5}{Motorcycle\+Controller\+Settings}}, \mbox{\hyperlink{classTrackedVehicleControllerSettings_ab581efa67282f3b51f3c6adf483d46bd}{Tracked\+Vehicle\+Controller\+Settings}}, and \mbox{\hyperlink{classWheeledVehicleControllerSettings_af3941131c455ac04a9e8fa5f32c396fa}{Wheeled\+Vehicle\+Controller\+Settings}}.
+
+\Hypertarget{classVehicleControllerSettings_a5ef4840b667224faf60f1d3cc2b048e1}\label{classVehicleControllerSettings_a5ef4840b667224faf60f1d3cc2b048e1} 
+\index{VehicleControllerSettings@{VehicleControllerSettings}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!VehicleControllerSettings@{VehicleControllerSettings}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Vehicle\+Controller\+Settings\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Restore the contents of the controller settings in binary form from in\+Stream. 
+
+
+
+Implemented in \mbox{\hyperlink{classMotorcycleControllerSettings_af8e61d858921dcd9d8c00e038bbb4f93}{Motorcycle\+Controller\+Settings}}, \mbox{\hyperlink{classTrackedVehicleControllerSettings_a505dc78c416fe75f10e933ce704d3a26}{Tracked\+Vehicle\+Controller\+Settings}}, and \mbox{\hyperlink{classWheeledVehicleControllerSettings_ac550379503d05394162fbd0b62e2c5bb}{Wheeled\+Vehicle\+Controller\+Settings}}.
+
+\Hypertarget{classVehicleControllerSettings_a8508baa59b73af00f019d542166a88cc}\label{classVehicleControllerSettings_a8508baa59b73af00f019d542166a88cc} 
+\index{VehicleControllerSettings@{VehicleControllerSettings}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!VehicleControllerSettings@{VehicleControllerSettings}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Vehicle\+Controller\+Settings\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Saves the contents of the controller settings in binary form to in\+Stream. 
+
+
+
+Implemented in \mbox{\hyperlink{classMotorcycleControllerSettings_abeb3dfe518bdde3e0916c2fe39d8f213}{Motorcycle\+Controller\+Settings}}, \mbox{\hyperlink{classTrackedVehicleControllerSettings_a9d090a44e05552e8f9259e9f6fe3beed}{Tracked\+Vehicle\+Controller\+Settings}}, and \mbox{\hyperlink{classWheeledVehicleControllerSettings_a082ba64362bccd244ca6c03c55982c83}{Wheeled\+Vehicle\+Controller\+Settings}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Vehicle/Vehicle\+Controller.\+h\end{DoxyCompactItemize}

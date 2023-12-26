@@ -1,0 +1,126 @@
+\doxysection{Sweep.\+hpp}
+\hypertarget{Sweep_8hpp_source}{}\label{Sweep_8hpp_source}\index{includes/playrho/Common/Sweep.hpp@{includes/playrho/Common/Sweep.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2006-\/2009\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_SWEEP\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_SWEEP\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Position.hpp>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Settings.hpp>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Vector2.hpp>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }d2\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_adb1aa8f6c8499543c3f4d3d66f41c772}{Sweep}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_acf1df6304ccecb14a24851247b7b4b95}{Sweep}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}\&\ copy)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_ae1649f8ea4cb33ae29c42d360bb6ad18}{Sweep}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}}\ p0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}}\ p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\ lc\ =\ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\{0\_m,\ 0\_m\},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ a0\ =\ 0)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_afd1e30ab1f1cfc33d1cef14028815fcb}{pos0}}\{p0\},\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_ab5e2f463dbb73884d939921442975d70}{pos1}}\{p1\},\ localCenter\{lc\},\ alpha0\{a0\}}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ assert(a0\ >=\ 0);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ assert(a0\ <\ 1);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_aa4b480968972751dbf46cfb31bb77974}{Sweep}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}}\ p,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\ lc\ =\ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\{0\_m,\ 0\_m\})}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}\{p,\ p,\ lc,\ 0\}}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_abd3fb7d9c09928fe51e69a769de06de0}{GetLocalCenter}}()\ const\ noexcept}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ localCenter;}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_abd658cc8007c20e90bbc9cf765678a40}{GetAlpha0}}()\ const\ noexcept}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ alpha0;}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_a3597bd76c2b89f3b7f217692071fde47}{Advance0}}(\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ alpha)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_ae33673e4b1eb0ef92645e37d380c4af4}{ResetAlpha0}}()\ noexcept;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_afd1e30ab1f1cfc33d1cef14028815fcb}{pos0}};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_ab5e2f463dbb73884d939921442975d70}{pos1}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ private:}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\ localCenter\ =\ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\{0\_m,\ 0\_m\};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ alpha0\ =\ 0;}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_a3597bd76c2b89f3b7f217692071fde47}{Sweep::Advance0}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ alpha)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ assert(\mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(alpha));}
+\DoxyCodeLine{00117\ \ \ \ \ assert(alpha\ >=\ 0);}
+\DoxyCodeLine{00118\ \ \ \ \ assert(alpha\ <\ 1);}
+\DoxyCodeLine{00119\ \ \ \ \ assert(alpha0\ <\ 1);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ beta\ =\ (alpha\ -\/\ alpha0)\ /\ (1\ -\/\ alpha0);}
+\DoxyCodeLine{00122\ \ \ \ \ pos0\ =\ \mbox{\hyperlink{namespaceplayrho_1_1d2_aaf9f3a11a5c60b5832946d9fb0a43164}{GetPosition}}(pos0,\ pos1,\ beta);}
+\DoxyCodeLine{00123\ \ \ \ \ alpha0\ =\ alpha;}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_ae33673e4b1eb0ef92645e37d380c4af4}{Sweep::ResetAlpha0}}()\ noexcept}
+\DoxyCodeLine{00127\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ alpha0\ =\ 0;}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ Free\ functions...}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_af317b3462727e3832e11d157b7e0b7b4}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}\&\ rhs)}
+\DoxyCodeLine{00136\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_afd1e30ab1f1cfc33d1cef14028815fcb}{pos0}}\ ==\ rhs.\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_afd1e30ab1f1cfc33d1cef14028815fcb}{pos0}}\ \&\&\ \textcolor{comment}{//}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ lhs.\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_ab5e2f463dbb73884d939921442975d70}{pos1}}\ ==\ rhs.\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_ab5e2f463dbb73884d939921442975d70}{pos1}}\ \&\&\ \textcolor{comment}{//}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ lhs.\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_abd3fb7d9c09928fe51e69a769de06de0}{GetLocalCenter}}()\ ==\ rhs.\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_abd3fb7d9c09928fe51e69a769de06de0}{GetLocalCenter}}()\ \&\&\ \textcolor{comment}{//}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ lhs.\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_abd658cc8007c20e90bbc9cf765678a40}{GetAlpha0}}()\ ==\ rhs.\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_abd658cc8007c20e90bbc9cf765678a40}{GetAlpha0}}();}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_af0f08a3cbef074f5f78272c205967888}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}\&\ rhs)}
+\DoxyCodeLine{00146\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ !(lhs\ ==\ rhs);}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \}\ \textcolor{comment}{//\ namespace\ d2}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00155\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep_afce9c1dea61c4ba26d5785f2f20c3bff}{IsValid}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{d2::Sweep}}\&\ value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.pos0)\ \&\&\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.pos1)\ \&\&\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.GetLocalCenter())\ \&\&}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.GetAlpha0());}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_SWEEP\_HPP}}
+
+\end{DoxyCode}

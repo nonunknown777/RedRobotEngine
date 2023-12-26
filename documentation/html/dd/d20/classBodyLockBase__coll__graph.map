@@ -1,0 +1,5 @@
+<map id="BodyLockBase&lt; Write, BodyType &gt;" name="BodyLockBase&lt; Write, BodyType &gt;">
+<area shape="rect" id="Node000001" title="Base class for locking bodies for the duration of the scope of this class (do not use directly)" alt="" coords="5,165,236,359"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="59,5,182,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,133,123,166,118,166,118,133"/>
+</map>

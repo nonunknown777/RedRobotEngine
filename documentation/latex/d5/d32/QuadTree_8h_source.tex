@@ -1,0 +1,300 @@
+\doxysection{Quad\+Tree.\+h}
+\hypertarget{QuadTree_8h_source}{}\label{QuadTree_8h_source}\index{includes/jolt/Physics/Collision/BroadPhase/QuadTree.h@{includes/jolt/Physics/Collision/BroadPhase/QuadTree.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/FixedSizeFreeList.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Atomics.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyManager.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/BroadPhase/BroadPhase.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\#define\ JPH\_DUMP\_BROADPHASE\_TREE}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classQuadTree}{QuadTree}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ Forward\ declare}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{class\ }AtomicNodeID;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{class\ }NodeID}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NodeID()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ NodeID\ \ \ \ sInvalid()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ NodeID(cInvalidNodeIndex);\ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ NodeID\ \ \ \ sFromBodyID(\mbox{\hyperlink{classBodyID}{BodyID}}\ inID)\ \ \ \ \ \ \ \ \ \ \{\ NodeID\ node\_id(inID.\mbox{\hyperlink{classBodyID_aaff1cc7e76b557c1ce750bea2286290c}{GetIndexAndSequenceNumber}}());\ JPH\_ASSERT(node\_id.IsBody());\ \textcolor{keywordflow}{return}\ node\_id;\ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ NodeID\ \ \ \ sFromNodeIndex(uint32\ inIdx)\ \ \ \ \ \ \ \ \{\ NodeID\ node\_id(inIdx\ |\ cIsNode);\ JPH\_ASSERT(node\_id.IsNode());\ \textcolor{keywordflow}{return}\ node\_id;\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsValid()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mID\ !=\ cInvalidNodeIndex;\ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsBody()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (mID\ \&\ cIsNode)\ ==\ 0;\ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsNode()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (mID\ \&\ cIsNode)\ !=\ 0;\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ GetBodyID()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(IsBody());\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classBodyID}{BodyID}}(mID);\ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ \ \ \ \ GetNodeIndex()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(IsNode());\ \textcolor{keywordflow}{return}\ mID\ \&\ \string~cIsNode;\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inRHS)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mID\ ==\ inRHS.\mbox{\hyperlink{classBodyID_aaff1cc7e76b557c1ce750bea2286290c}{GetIndexAndSequenceNumber}}();\ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\textcolor{keyword}{const}\ NodeID\ \&inRHS)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mID\ ==\ inRHS.mID;\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }AtomicNodeID;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ NodeID(uint32\ inID)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mID(inID)\ \{\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint32\ \ \ \ \ cIsNode\ =\ \mbox{\hyperlink{classBodyID_a934cd29a300722fea1f36408f934fb9d}{BodyID::cBroadPhaseBit}};\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mID;}
+\DoxyCodeLine{00064\ \ \ \ \ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(NodeID)\ ==\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classBodyID}{BodyID}}),\ \textcolor{stringliteral}{"{}Body\ id's\ should\ have\ the\ same\ size\ as\ NodeIDs"{}});}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{class\ }AtomicNodeID}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AtomicNodeID()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AtomicNodeID(\textcolor{keyword}{const}\ NodeID\ \&inRHS)\ \ \ \ \ \ \ \ \ \ \ :\ mID(inRHS.mID)\ \{\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ NodeID\ \&inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \{\ mID\ =\ inRHS.mID;\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ NodeID\ ()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ NodeID(mID);\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsValid()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mID\ !=\ cInvalidNodeIndex;\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mID\ ==\ inRHS.\mbox{\hyperlink{classBodyID_aaff1cc7e76b557c1ce750bea2286290c}{GetIndexAndSequenceNumber}}();\ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\textcolor{keyword}{const}\ NodeID\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mID\ ==\ inRHS.mID;\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ CompareExchange(NodeID\ inOld,\ NodeID\ inNew)\ \{\ \textcolor{keywordflow}{return}\ mID.compare\_exchange\_strong(inOld.mID,\ inNew.mID);\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ mID;}
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{class\ }Node}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Node(\textcolor{keywordtype}{bool}\ inIsChanged);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetNodeBounds(\mbox{\hyperlink{classAABox}{AABox}}\ \&outBounds)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetChildBounds(\textcolor{keywordtype}{int}\ inChildIndex,\ \mbox{\hyperlink{classAABox}{AABox}}\ \&outBounds)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetChildBounds(\textcolor{keywordtype}{int}\ inChildIndex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBounds);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateChildBounds(\textcolor{keywordtype}{int}\ inChildIndex);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EncapsulateChildBounds(\textcolor{keywordtype}{int}\ inChildIndex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBounds);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ atomic<float>\ \ \ \ \ \ \ \ \ \ \ mBoundsMinX[4];}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ atomic<float>\ \ \ \ \ \ \ \ \ \ \ mBoundsMinY[4];}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ atomic<float>\ \ \ \ \ \ \ \ \ \ \ mBoundsMinZ[4];}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ atomic<float>\ \ \ \ \ \ \ \ \ \ \ mBoundsMaxX[4];}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ atomic<float>\ \ \ \ \ \ \ \ \ \ \ mBoundsMaxY[4];}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ atomic<float>\ \ \ \ \ \ \ \ \ \ \ mBoundsMaxZ[4];}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ AtomicNodeID\ \ \ \ \ \ \ \ \ \ \ \ mChildNodeID[4];}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ mParentNodeIndex\ =\ cInvalidNodeIndex;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ mIsChanged;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Padding\ to\ align\ to\ 124\ bytes}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPadding\ =\ 0;}
+\DoxyCodeLine{00139\ \ \ \ \ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Maximum\ size\ of\ the\ stack\ during\ tree\ walk}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ cStackSize\ =\ 128;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(atomic<float>)\ ==\ 4,\ \textcolor{stringliteral}{"{}Assuming\ that\ an\ atomic\ doesn't\ add\ any\ additional\ storage"{}});}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(atomic<uint32>)\ ==\ 4,\ \textcolor{stringliteral}{"{}Assuming\ that\ an\ atomic\ doesn't\ add\ any\ additional\ storage"{}});}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{static\_assert}(is\_trivially\_destructible<Node>(),\ \textcolor{stringliteral}{"{}Assuming\ that\ we\ don't\ have\ a\ destructor"{}});}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classFixedSizeFreeList}{Allocator}}\ =\ \mbox{\hyperlink{classFixedSizeFreeList}{FixedSizeFreeList<Node>}};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{static\_assert}(Allocator::ObjectStorageSize\ ==\ 128,\ \textcolor{stringliteral}{"{}Node\ should\ be\ 128\ bytes"{}});}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structQuadTree_1_1Tracking}{Tracking}}}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structQuadTree_1_1Tracking_ace40c7c746daea352249919d962f3fc5}{Tracking}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structQuadTree_1_1Tracking}{Tracking}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structQuadTree_1_1Tracking}{Tracking}}\ \&inRHS)\ :\ mBroadPhaseLayer(inRHS.mBroadPhaseLayer.load()),\ mObjectLayer(inRHS.mObjectLayer.load()),\ mBodyLocation(inRHS.mBodyLocation.load())\ \{\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint32\ \ \ \ \ cInvalidBodyLocation\ =\ 0xffffffff;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ atomic<BroadPhaseLayer::Type>\ mBroadPhaseLayer\ =\ (BroadPhaseLayer::Type)cBroadPhaseLayerInvalid;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ atomic<ObjectLayer>\ \ \ \ \ mObjectLayer\ =\ cObjectLayerInvalid;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ mBodyLocation\ \{\ cInvalidBodyLocation\ \};}
+\DoxyCodeLine{00167\ \ \ \ \ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{using\ }TrackingVector\ =\ Array<Tracking>;}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a236dde2058a3ccf2babbe4a289327b30}{\string~QuadTree}}();}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#if\ defined(JPH\_EXTERNAL\_PROFILE)\ ||\ defined(JPH\_PROFILE\_ENABLED)}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetName(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName)\ \ \ \ \ \ \ \ \ \{\ mName\ =\ inName;\ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \ \ \ \ \ \ \ \ GetName()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mName;\ \}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_EXTERNAL\_PROFILE\ ||\ JPH\_PROFILE\_ENABLED}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a0f40b5da772779a14a6d6aedd28ae8a0}{HasBodies}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumBodies\ !=\ 0;\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a92ac4f8879ce137be588d0c9f1d0582c}{IsDirty}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mIsDirty;\ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_aa88f08218784b62ffdf8596c74f690d6}{CanBeUpdated}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mFreeNodeBatch.mNumObjects\ ==\ 0;\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a61023e566be172a288dfcd728118ec46}{Init}}(\mbox{\hyperlink{classFixedSizeFreeList}{Allocator}}\ \&inAllocator);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structQuadTree_1_1UpdateState}{UpdateState}}}
+\DoxyCodeLine{00193\ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ NodeID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structQuadTree_1_1UpdateState_a66a138d55a9cfc44fd213bdace17b4a6}{mRootNodeID}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00195\ \ \ \ \ \};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a6e7b9e3242b2af8c7ba11d9b6eeb0d64}{DiscardOldTree}}();}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a809502262f3bd9d11318763758ae6e7e}{GetBounds}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_ad819632f6a3b9912462c731eb017cd4f}{UpdatePrepare}}(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ TrackingVector\ \&ioTracking,\ \mbox{\hyperlink{structQuadTree_1_1UpdateState}{UpdateState}}\ \&outUpdateState,\ \textcolor{keywordtype}{bool}\ inFullRebuild);}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateFinalize(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structQuadTree_1_1UpdateState}{UpdateState}}\ \&inUpdateState);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structQuadTree_1_1AddState}{AddState}}}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ NodeID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLeafID\ =\ NodeID::sInvalid();}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLeafBounds;}
+\DoxyCodeLine{00213\ \ \ \ \ \};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a79ce6a7e423da6a09ff4be8e7f6d453c}{AddBodiesPrepare}}(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ TrackingVector\ \&ioTracking,\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber,\ \mbox{\hyperlink{structQuadTree_1_1AddState}{AddState}}\ \&outState);}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_aaf165671ff225afec0336dca906f9219}{AddBodiesFinalize}}(TrackingVector\ \&ioTracking,\ \textcolor{keywordtype}{int}\ inNumberBodies,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structQuadTree_1_1AddState}{AddState}}\ \&inState);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a3f04fc0ab8ec76c39e7e4ac4679e6ffa}{AddBodiesAbort}}(TrackingVector\ \&ioTracking,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structQuadTree_1_1AddState}{AddState}}\ \&inState);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_ae87cda722c454860d1566a6c5f4b11dc}{RemoveBodies}}(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ TrackingVector\ \&ioTracking,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a903406946b47220890c1a2091a5c38ad}{NotifyBodiesAABBChanged}}(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a0f4c8a4eaa9c665153582c4a1e974457}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRayCast}{RayCast}}\ \&inRay,\ \mbox{\hyperlink{classCollisionCollector}{RayCastBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a894acaffc70d6ef992626359b3c65284}{CollideAABox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_ab83e557e1224ba241789ce7d7da982de}{CollideSphere}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inCenter,\ \textcolor{keywordtype}{float}\ inRadius,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_ab5538217d4a9a42986da28d64b65740d}{CollidePoint}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a3bcf63c8fc180d29f75794e979399756}{CollideOrientedBox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classOrientedBox}{OrientedBox}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_aa28951f663c136f9b3faee823393cc1b}{CastAABox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structAABoxCast}{AABoxCast}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree_a1752afb7a82b6ca130cfbad4f4f02c4e}{FindCollidingPairs}}(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inActiveBodies,\ \textcolor{keywordtype}{int}\ inNumActiveBodies,\ \textcolor{keywordtype}{float}\ inSpeculativeContactDistance,\ \mbox{\hyperlink{classCollisionCollector}{BodyPairCollector}}\ \&ioPairCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerPairFilter}{ObjectLayerPairFilter}}\ \&inObjectLayerPairFilter)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#ifdef\ JPH\_TRACK\_BROADPHASE\_STATS}}
+\DoxyCodeLine{00256\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTicks100Pct()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReportStats(uint64\ inTicks100Pct)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_TRACK\_BROADPHASE\_STATS}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint32\ \ \ \ \ \ \ \ \ cInvalidNodeIndex\ =\ 0xffffffff;\ \ \ \ \ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ cLargeFloat;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ cInvalidBounds;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{struct\ }RootNode}
+\DoxyCodeLine{00270\ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ NodeID\ \ \ \ \ \ \ \ \ \ \ GetNodeID()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ NodeID::sFromNodeIndex(mIndex);\ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ mIndex\ \{\ cInvalidNodeIndex\ \};}
+\DoxyCodeLine{00276\ \ \ \ \ \};}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetBodyLocation(\textcolor{keyword}{const}\ TrackingVector\ \&inTracking,\ \mbox{\hyperlink{classBodyID}{BodyID}}\ inBodyID,\ uint32\ \&outNodeIdx,\ uint32\ \&outChildIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetBodyLocation(TrackingVector\ \&ioTracking,\ \mbox{\hyperlink{classBodyID}{BodyID}}\ inBodyID,\ uint32\ inNodeIdx,\ uint32\ inChildIdx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sInvalidateBodyLocation(TrackingVector\ \&ioTracking,\ \mbox{\hyperlink{classBodyID}{BodyID}}\ inBodyID);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00284\ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{const}\ RootNode\ \&\ GetCurrentRoot()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mRootNode[mRootNodeIndex];\ \}}
+\DoxyCodeLine{00285\ \ \ \ \ JPH\_INLINE\ RootNode\ \&\ \ \ \ \ \ \ GetCurrentRoot()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mRootNode[mRootNodeIndex];\ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetNodeOrBodyBounds(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ NodeID\ inNodeID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MarkNodeAndParentsChanged(uint32\ inNodeIndex);}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WidenAndMarkNodeAndParentsChanged(uint32\ inNodeIndex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inNewBounds);}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keyword}{inline}\ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AllocateNode(\textcolor{keywordtype}{bool}\ inIsChanged);}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TryInsertLeaf(TrackingVector\ \&ioTracking,\ \textcolor{keywordtype}{int}\ inNodeIndex,\ NodeID\ inLeafID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inLeafBounds,\ \textcolor{keywordtype}{int}\ inLeafNumBodies);}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TryCreateNewRoot(TrackingVector\ \&ioTracking,\ atomic<uint32>\ \&ioRootNodeIndex,\ NodeID\ inLeafID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inLeafBounds,\ \textcolor{keywordtype}{int}\ inLeafNumBodies);}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00306\ \ \ \ \ NodeID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BuildTree(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ TrackingVector\ \&ioTracking,\ NodeID\ *ioNodeIDs,\ \textcolor{keywordtype}{int}\ inNumber,\ uint\ inMaxDepthMarkChanged,\ \mbox{\hyperlink{classAABox}{AABox}}\ \&outBounds);}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sPartition(NodeID\ *ioNodeIDs,\ \mbox{\hyperlink{classVec3}{Vec3}}\ *ioNodeCenters,\ \textcolor{keywordtype}{int}\ inNumber,\ \textcolor{keywordtype}{int}\ \&outMidPoint);}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sPartition4(NodeID\ *ioNodeIDs,\ \mbox{\hyperlink{classVec3}{Vec3}}\ *ioNodeCenters,\ \textcolor{keywordtype}{int}\ inBegin,\ \textcolor{keywordtype}{int}\ inEnd,\ \textcolor{keywordtype}{int}\ *outSplit);}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidateTree(\textcolor{keyword}{const}\ BodyVector\ \&inBodies,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking,\ uint32\ inNodeIndex,\ uint32\ inNumExpectedBodies)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#ifdef\ JPH\_DUMP\_BROADPHASE\_TREE}}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DumpTree(\textcolor{keyword}{const}\ NodeID\ \&inRoot,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inFileNamePrefix)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#ifdef\ JPH\_TRACK\_BROADPHASE\_STATS}}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{mutable}\ Mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStatsMutex;}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keyword}{struct\ }Stat}
+\DoxyCodeLine{00333\ \ \ \ \ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumQueries\ =\ 0;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNodesVisited\ =\ 0;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodiesVisited\ =\ 0;}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHitsReported\ =\ 0;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTotalTicks\ =\ 0;}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollectorTicks\ =\ 0;}
+\DoxyCodeLine{00340\ \ \ \ \ \};}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keyword}{using\ }LayerToStats\ =\ UnorderedMap<String,\ Stat>;}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00345\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTicks100Pct(\textcolor{keyword}{const}\ LayerToStats\ \&inLayer)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReportStats(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName,\ \textcolor{keyword}{const}\ LayerToStats\ \&inLayer,\ uint64\ inTicks100Pct)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keyword}{mutable}\ LayerToStats\ \ \ \ \ \ \ \ mCastRayStats;}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{mutable}\ LayerToStats\ \ \ \ \ \ \ \ mCollideAABoxStats;}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{mutable}\ LayerToStats\ \ \ \ \ \ \ \ mCollideSphereStats;}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{mutable}\ LayerToStats\ \ \ \ \ \ \ \ mCollidePointStats;}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{mutable}\ LayerToStats\ \ \ \ \ \ \ \ mCollideOrientedBoxStats;}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{mutable}\ LayerToStats\ \ \ \ \ \ \ \ mCastAABoxStats;}
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_TRACK\_BROADPHASE\_STATS}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00359\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMaxTreeDepth(\textcolor{keyword}{const}\ NodeID\ \&inNodeID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Visitor>}
+\DoxyCodeLine{00363\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ WalkTree(\textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ TrackingVector\ \&inTracking,\ Visitor\ \&ioVisitor\ JPH\_IF\_TRACK\_BROADPHASE\_STATS(,\ LayerToStats\ \&ioStats))\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#if\ defined(JPH\_EXTERNAL\_PROFILE)\ ||\ defined(JPH\_PROFILE\_ENABLED)}}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mName\ =\ \textcolor{stringliteral}{"{}Layer"{}};}
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_EXTERNAL\_PROFILE\ ||\ JPH\_PROFILE\_ENABLED}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00371\ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumBodies\ \{\ 0\ \};}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00375\ \ \ \ \ RootNode\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRootNode[2];}
+\DoxyCodeLine{00376\ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ \ \ \ \ mRootNodeIndex\ \{\ 0\ \};}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00379\ \ \ \ \ Allocator\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAllocator\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00382\ \ \ \ \ Allocator::Batch\ \ \ \ \ \ \ \ \ \ \ \ mFreeNodeBatch;}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00385\ \ \ \ \ atomic<bool>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mIsDirty\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00386\ \};}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

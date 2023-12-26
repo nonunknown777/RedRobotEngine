@@ -1,0 +1,65 @@
+\doxysection{Any\+Hit\+Collision\+Collector\texorpdfstring{$<$}{<} Collector\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classAnyHitCollisionCollector}{}\label{classAnyHitCollisionCollector}\index{AnyHitCollisionCollector$<$ CollectorType $>$@{AnyHitCollisionCollector$<$ CollectorType $>$}}
+
+
+Simple implementation that collects any hit.  
+
+
+
+
+{\ttfamily \#include $<$Collision\+Collector\+Impl.\+h$>$}
+
+
+
+Inheritance diagram for Any\+Hit\+Collision\+Collector\texorpdfstring{$<$}{<} Collector\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{d0/d8b/classAnyHitCollisionCollector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Any\+Hit\+Collision\+Collector\texorpdfstring{$<$}{<} Collector\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{d3/df7/classAnyHitCollisionCollector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAnyHitCollisionCollector_a77d0831cb582d968272a2216e99fd9db}\label{classAnyHitCollisionCollector_a77d0831cb582d968272a2216e99fd9db} 
+using {\bfseries Result\+Type} = typename Collector\+Type\+::\+Result\+Type
+\begin{DoxyCompactList}\small\item\em Redeclare Result\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAnyHitCollisionCollector_a037964d4624c351fe863295ebe465c91}\label{classAnyHitCollisionCollector_a037964d4624c351fe863295ebe465c91} 
+virtual void {\bfseries Reset} () override
+\item 
+\Hypertarget{classAnyHitCollisionCollector_a405568a565f6b818c6fd08a14983b921}\label{classAnyHitCollisionCollector_a405568a565f6b818c6fd08a14983b921} 
+virtual void {\bfseries Add\+Hit} (const \mbox{\hyperlink{classAnyHitCollisionCollector_a77d0831cb582d968272a2216e99fd9db}{Result\+Type}} \&in\+Result) override
+\item 
+\Hypertarget{classAnyHitCollisionCollector_a91c5757d891295842942599a359fdf36}\label{classAnyHitCollisionCollector_a91c5757d891295842942599a359fdf36} 
+bool {\bfseries Had\+Hit} () const
+\begin{DoxyCompactList}\small\item\em Check if this collector has had a hit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAnyHitCollisionCollector_a97c636d4025873517dae7ade6fc362c5}\label{classAnyHitCollisionCollector_a97c636d4025873517dae7ade6fc362c5} 
+\mbox{\hyperlink{classAnyHitCollisionCollector_a77d0831cb582d968272a2216e99fd9db}{Result\+Type}} {\bfseries m\+Hit}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Collector\+Type$>$\newline
+class Any\+Hit\+Collision\+Collector$<$ Collector\+Type $>$}
+Simple implementation that collects any hit. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Collision\+Collector\+Impl.\+h\end{DoxyCompactItemize}

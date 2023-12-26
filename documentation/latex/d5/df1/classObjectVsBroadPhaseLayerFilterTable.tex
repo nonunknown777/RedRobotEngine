@@ -1,0 +1,90 @@
+\doxysection{Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table Class Reference}
+\hypertarget{classObjectVsBroadPhaseLayerFilterTable}{}\label{classObjectVsBroadPhaseLayerFilterTable}\index{ObjectVsBroadPhaseLayerFilterTable@{ObjectVsBroadPhaseLayerFilterTable}}
+
+
+{\ttfamily \#include $<$Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table.\+h$>$}
+
+
+
+Inheritance diagram for Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{df/d53/classObjectVsBroadPhaseLayerFilterTable__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{d8/de5/classObjectVsBroadPhaseLayerFilterTable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilterTable_afc97e0c90982e30a48f249562d2b8886}{Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table}} (const \mbox{\hyperlink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}} \&in\+Broad\+Phase\+Layer\+Interface, uint in\+Num\+Broad\+Phase\+Layers, const \mbox{\hyperlink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter}} \&in\+Object\+Layer\+Pair\+Filter, uint in\+Num\+Object\+Layers)
+\item 
+virtual bool \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilterTable_afe9699576b8dc801762a73e7d5244ff6}{Should\+Collide}} (Object\+Layer in\+Layer1, \mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}} in\+Layer2) const override
+\begin{DoxyCompactList}\small\item\em Returns true if an object layer should collide with a broadphase layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{Object\+Vs\+Broad\+Phase\+Layer\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Object\+Vs\+Broad\+Phase\+Layer\+Filter} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that determines if an object layer can collide with a broadphase layer. This implementation uses a table and constructs itself from an \doxylink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter} and a \doxylink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classObjectVsBroadPhaseLayerFilterTable_afc97e0c90982e30a48f249562d2b8886}\label{classObjectVsBroadPhaseLayerFilterTable_afc97e0c90982e30a48f249562d2b8886} 
+\index{ObjectVsBroadPhaseLayerFilterTable@{ObjectVsBroadPhaseLayerFilterTable}!ObjectVsBroadPhaseLayerFilterTable@{ObjectVsBroadPhaseLayerFilterTable}}
+\index{ObjectVsBroadPhaseLayerFilterTable@{ObjectVsBroadPhaseLayerFilterTable}!ObjectVsBroadPhaseLayerFilterTable@{ObjectVsBroadPhaseLayerFilterTable}}
+\doxysubsubsection{\texorpdfstring{ObjectVsBroadPhaseLayerFilterTable()}{ObjectVsBroadPhaseLayerFilterTable()}}
+{\footnotesize\ttfamily JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table\+::\+Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}} \&}]{in\+Broad\+Phase\+Layer\+Interface,  }\item[{uint}]{in\+Num\+Broad\+Phase\+Layers,  }\item[{const \mbox{\hyperlink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter}} \&}]{in\+Object\+Layer\+Pair\+Filter,  }\item[{uint}]{in\+Num\+Object\+Layers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct the table 
+\begin{DoxyParams}{Parameters}
+{\em in\+Broad\+Phase\+Layer\+Interface} & The broad phase layer interface that maps object layers to broad phase layers \\
+\hline
+{\em in\+Num\+Broad\+Phase\+Layers} & Number of broad phase layers \\
+\hline
+{\em in\+Object\+Layer\+Pair\+Filter} & The object layer pair filter that determines which object layers can collide \\
+\hline
+{\em in\+Num\+Object\+Layers} & Number of object layers \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classObjectVsBroadPhaseLayerFilterTable_afe9699576b8dc801762a73e7d5244ff6}\label{classObjectVsBroadPhaseLayerFilterTable_afe9699576b8dc801762a73e7d5244ff6} 
+\index{ObjectVsBroadPhaseLayerFilterTable@{ObjectVsBroadPhaseLayerFilterTable}!ShouldCollide@{ShouldCollide}}
+\index{ShouldCollide@{ShouldCollide}!ObjectVsBroadPhaseLayerFilterTable@{ObjectVsBroadPhaseLayerFilterTable}}
+\doxysubsubsection{\texorpdfstring{ShouldCollide()}{ShouldCollide()}}
+{\footnotesize\ttfamily virtual bool Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table\+::\+Should\+Collide (\begin{DoxyParamCaption}\item[{Object\+Layer}]{in\+Layer1,  }\item[{\mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}}}]{in\+Layer2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns true if an object layer should collide with a broadphase layer. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter_a6004607941fda1b8c6a88471440e0e86}{Object\+Vs\+Broad\+Phase\+Layer\+Filter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Broad\+Phase/Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Table.\+h\end{DoxyCompactItemize}

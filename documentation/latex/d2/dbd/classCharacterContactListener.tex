@@ -1,0 +1,101 @@
+\doxysection{Character\+Contact\+Listener Class Reference}
+\hypertarget{classCharacterContactListener}{}\label{classCharacterContactListener}\index{CharacterContactListener@{CharacterContactListener}}
+
+
+This class receives callbacks when a virtual character hits something.  
+
+
+
+
+{\ttfamily \#include $<$Character\+Virtual.\+h$>$}
+
+
+
+Collaboration diagram for Character\+Contact\+Listener\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{de/da6/classCharacterContactListener__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCharacterContactListener_a1cbf56ca2333e878c3d7da75b9dfc0ba}\label{classCharacterContactListener_a1cbf56ca2333e878c3d7da75b9dfc0ba} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Character\+Contact\+Listener} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCharacterContactListener_a861889d3b1f2349eb1726ebfd979bf53}{On\+Adjust\+Body\+Velocity}} (const \mbox{\hyperlink{classCharacterVirtual}{Character\+Virtual}} \texorpdfstring{$\ast$}{*}in\+Character, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{Vec3}} \&io\+Linear\+Velocity, \mbox{\hyperlink{classVec3}{Vec3}} \&io\+Angular\+Velocity)
+\item 
+\Hypertarget{classCharacterContactListener_a46fc7a819cf904aa3db5cf1648f21530}\label{classCharacterContactListener_a46fc7a819cf904aa3db5cf1648f21530} 
+virtual bool {\bfseries On\+Contact\+Validate} (const \mbox{\hyperlink{classCharacterVirtual}{Character\+Virtual}} \texorpdfstring{$\ast$}{*}in\+Character, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID2, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2)
+\begin{DoxyCompactList}\small\item\em Checks if a character can collide with specified body. Return true if the contact is valid. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCharacterContactListener_a07550deec345e7d94ca05afdd341b11d}{On\+Contact\+Added}} (const \mbox{\hyperlink{classCharacterVirtual}{Character\+Virtual}} \texorpdfstring{$\ast$}{*}in\+Character, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID2, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Contact\+Position, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Contact\+Normal, \mbox{\hyperlink{classCharacterContactSettings}{Character\+Contact\+Settings}} \&io\+Settings)
+\item 
+virtual void \mbox{\hyperlink{classCharacterContactListener_a4d1a8b09ee3a923d4aa7bc53aec160b6}{On\+Contact\+Solve}} (const \mbox{\hyperlink{classCharacterVirtual}{Character\+Virtual}} \texorpdfstring{$\ast$}{*}in\+Character, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID2, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Contact\+Position, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Contact\+Normal, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Contact\+Velocity, const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}in\+Contact\+Material, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Character\+Velocity, \mbox{\hyperlink{classVec3}{Vec3}} \&io\+New\+Character\+Velocity)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class receives callbacks when a virtual character hits something. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCharacterContactListener_a861889d3b1f2349eb1726ebfd979bf53}\label{classCharacterContactListener_a861889d3b1f2349eb1726ebfd979bf53} 
+\index{CharacterContactListener@{CharacterContactListener}!OnAdjustBodyVelocity@{OnAdjustBodyVelocity}}
+\index{OnAdjustBodyVelocity@{OnAdjustBodyVelocity}!CharacterContactListener@{CharacterContactListener}}
+\doxysubsubsection{\texorpdfstring{OnAdjustBodyVelocity()}{OnAdjustBodyVelocity()}}
+{\footnotesize\ttfamily virtual void Character\+Contact\+Listener\+::\+On\+Adjust\+Body\+Velocity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCharacterVirtual}{Character\+Virtual}} \texorpdfstring{$\ast$}{*}}]{in\+Character,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{io\+Linear\+Velocity,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{io\+Angular\+Velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Callback to adjust the velocity of a body as seen by the character. Can be adjusted to e.\+g. implement a conveyor belt or an inertial dampener system of a sci-\/fi space ship. Note that in\+Body2 is locked during the callback so you can read its properties freely. \Hypertarget{classCharacterContactListener_a07550deec345e7d94ca05afdd341b11d}\label{classCharacterContactListener_a07550deec345e7d94ca05afdd341b11d} 
+\index{CharacterContactListener@{CharacterContactListener}!OnContactAdded@{OnContactAdded}}
+\index{OnContactAdded@{OnContactAdded}!CharacterContactListener@{CharacterContactListener}}
+\doxysubsubsection{\texorpdfstring{OnContactAdded()}{OnContactAdded()}}
+{\footnotesize\ttfamily virtual void Character\+Contact\+Listener\+::\+On\+Contact\+Added (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCharacterVirtual}{Character\+Virtual}} \texorpdfstring{$\ast$}{*}}]{in\+Character,  }\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body\+ID2,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID2,  }\item[{\mbox{\hyperlink{classVec3}{RVec3\+Arg}}}]{in\+Contact\+Position,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Contact\+Normal,  }\item[{\mbox{\hyperlink{classCharacterContactSettings}{Character\+Contact\+Settings}} \&}]{io\+Settings }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Called whenever the character collides with a body. Returns true if the contact can push the character. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Character} & \doxylink{classCharacter}{Character} that is being solved \\
+\hline
+{\em in\+Body\+ID2} & \doxylink{classBody}{Body} ID of body that is being hit \\
+\hline
+{\em in\+Sub\+Shape\+ID2} & Sub shape ID of shape that is being hit \\
+\hline
+{\em in\+Contact\+Position} & World space contact position \\
+\hline
+{\em in\+Contact\+Normal} & World space contact normal \\
+\hline
+{\em io\+Settings} & Settings returned by the contact callback to indicate how the character should behave \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classCharacterContactListener_a4d1a8b09ee3a923d4aa7bc53aec160b6}\label{classCharacterContactListener_a4d1a8b09ee3a923d4aa7bc53aec160b6} 
+\index{CharacterContactListener@{CharacterContactListener}!OnContactSolve@{OnContactSolve}}
+\index{OnContactSolve@{OnContactSolve}!CharacterContactListener@{CharacterContactListener}}
+\doxysubsubsection{\texorpdfstring{OnContactSolve()}{OnContactSolve()}}
+{\footnotesize\ttfamily virtual void Character\+Contact\+Listener\+::\+On\+Contact\+Solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCharacterVirtual}{Character\+Virtual}} \texorpdfstring{$\ast$}{*}}]{in\+Character,  }\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body\+ID2,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID2,  }\item[{\mbox{\hyperlink{classVec3}{RVec3\+Arg}}}]{in\+Contact\+Position,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Contact\+Normal,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Contact\+Velocity,  }\item[{const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}}]{in\+Contact\+Material,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Character\+Velocity,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{io\+New\+Character\+Velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Called whenever a contact is being used by the solver. Allows the listener to override the resulting character velocity (e.\+g. by preventing sliding along certain surfaces). 
+\begin{DoxyParams}{Parameters}
+{\em in\+Character} & \doxylink{classCharacter}{Character} that is being solved \\
+\hline
+{\em in\+Body\+ID2} & \doxylink{classBody}{Body} ID of body that is being hit \\
+\hline
+{\em in\+Sub\+Shape\+ID2} & Sub shape ID of shape that is being hit \\
+\hline
+{\em in\+Contact\+Position} & World space contact position \\
+\hline
+{\em in\+Contact\+Normal} & World space contact normal \\
+\hline
+{\em in\+Contact\+Velocity} & World space velocity of contact point (e.\+g. for a moving platform) \\
+\hline
+{\em in\+Contact\+Material} & \doxylink{structMaterial}{Material} of contact point \\
+\hline
+{\em in\+Character\+Velocity} & World space velocity of the character prior to hitting this contact \\
+\hline
+{\em io\+New\+Character\+Velocity} & Contains the calculated world space velocity of the character after hitting this contact, this velocity slides along the surface of the contact. Can be modified by the listener to provide an alternative velocity. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Character/Character\+Virtual.\+h\end{DoxyCompactItemize}

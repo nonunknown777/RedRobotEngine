@@ -1,0 +1,85 @@
+\doxysection{Result\texorpdfstring{$<$}{<} Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classResult}{}\label{classResult}\index{Result$<$ Type $>$@{Result$<$ Type $>$}}
+
+
+Helper class that either contains a valid result or an error.  
+
+
+
+
+{\ttfamily \#include $<$Result.\+h$>$}
+
+
+
+Collaboration diagram for Result\texorpdfstring{$<$}{<} Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{d7/d3d/classResult__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classResult_a48ea3c542aca44533bbe0467ce7edb32}\label{classResult_a48ea3c542aca44533bbe0467ce7edb32} 
+{\bfseries Result} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a0cb5b79fcbc7a428276cec91bfc794cb}\label{classResult_a0cb5b79fcbc7a428276cec91bfc794cb} 
+{\bfseries Result} (const \mbox{\hyperlink{classResult}{Result}}$<$ Type $>$ \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_ad9e9e7780434af5bdfe5652c0b621862}\label{classResult_ad9e9e7780434af5bdfe5652c0b621862} 
+{\bfseries Result} (\mbox{\hyperlink{classResult}{Result}}$<$ Type $>$ \&\&in\+RHS) noexcept
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_ace4aa7515162bb6ca532d3be78150328}\label{classResult_ace4aa7515162bb6ca532d3be78150328} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Result} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_acc819aa9c4d980d9a06b48cce8bc2d9a}\label{classResult_acc819aa9c4d980d9a06b48cce8bc2d9a} 
+\mbox{\hyperlink{classResult}{Result}}$<$ Type $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{classResult}{Result}}$<$ Type $>$ \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Copy assignment. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_acc2f80e7cd0157e8428e1039bea3be9c}\label{classResult_acc2f80e7cd0157e8428e1039bea3be9c} 
+\mbox{\hyperlink{classResult}{Result}}$<$ Type $>$ \& {\bfseries operator=} (\mbox{\hyperlink{classResult}{Result}}$<$ Type $>$ \&\&in\+RHS) noexcept
+\begin{DoxyCompactList}\small\item\em Move assignment. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a14eed4aba60f359e04f44980adcf6125}\label{classResult_a14eed4aba60f359e04f44980adcf6125} 
+void {\bfseries Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear result or error. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a596c71aec4992abce2ecda10cf827573}\label{classResult_a596c71aec4992abce2ecda10cf827573} 
+bool {\bfseries Is\+Empty} () const
+\begin{DoxyCompactList}\small\item\em Checks if the result is still uninitialized. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a06b7e3b8ea77cb4b1fc5ecfa45494167}\label{classResult_a06b7e3b8ea77cb4b1fc5ecfa45494167} 
+bool {\bfseries Is\+Valid} () const
+\begin{DoxyCompactList}\small\item\em Checks if the result is valid. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_ab3d845db638a6a51467760867bfc472a}\label{classResult_ab3d845db638a6a51467760867bfc472a} 
+const Type \& {\bfseries Get} () const
+\begin{DoxyCompactList}\small\item\em Get the result value. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a2d4677e046c9d429f9a512342bdd479b}\label{classResult_a2d4677e046c9d429f9a512342bdd479b} 
+void {\bfseries Set} (const Type \&in\+Result)
+\begin{DoxyCompactList}\small\item\em Set the result value. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a2e5e698448fcf24d455121278715015e}\label{classResult_a2e5e698448fcf24d455121278715015e} 
+void {\bfseries Set} (Type \&\&in\+Result)
+\begin{DoxyCompactList}\small\item\em Set the result value (move value) \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a2de3e8315a673e4fc3e627eafad42586}\label{classResult_a2de3e8315a673e4fc3e627eafad42586} 
+bool {\bfseries Has\+Error} () const
+\begin{DoxyCompactList}\small\item\em Check if we had an error. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a3d0fc76c48e6db9cf5918dcc248ee4cb}\label{classResult_a3d0fc76c48e6db9cf5918dcc248ee4cb} 
+const String \& {\bfseries Get\+Error} () const
+\begin{DoxyCompactList}\small\item\em Get the error value. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_a22ac380ffc00f33d49466729d22241b0}\label{classResult_a22ac380ffc00f33d49466729d22241b0} 
+void {\bfseries Set\+Error} (const char \texorpdfstring{$\ast$}{*}in\+Error)
+\begin{DoxyCompactList}\small\item\em Set an error value. \end{DoxyCompactList}\item 
+\Hypertarget{classResult_ad71493b9c42c291fed54ffd80f9b75ab}\label{classResult_ad71493b9c42c291fed54ffd80f9b75ab} 
+void {\bfseries Set\+Error} (const string\+\_\+view \&in\+Error)
+\item 
+\Hypertarget{classResult_a07ab82eb7f68bae977f6d50dde14dc1f}\label{classResult_a07ab82eb7f68bae977f6d50dde14dc1f} 
+void {\bfseries Set\+Error} (String \&\&in\+Error)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Type$>$\newline
+class Result$<$ Type $>$}
+Helper class that either contains a valid result or an error. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Result.\+h\end{DoxyCompactItemize}

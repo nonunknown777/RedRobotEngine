@@ -19,6 +19,10 @@ void Node::_unhandled_input(InputEvent event) {
 
 }
 
+void Node::_draw() {
+    
+}
+
 void Node::add_child(Node *node)
 {
     if (node->parent != nullptr) {

@@ -1,0 +1,5 @@
+<map id="PhysicsScene::ConnectedConstraint" name="PhysicsScene::ConnectedConstraint">
+<area shape="rect" id="Node000001" title="A constraint and how it is connected to the bodies in the scene." alt="" coords="5,370,251,482"/>
+<area shape="rect" id="Node000002" href="$d8/d9d/classRefConst.html" title=" " alt="" coords="22,5,234,305"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,305,131,354,125,354,125,305"/>
+</map>

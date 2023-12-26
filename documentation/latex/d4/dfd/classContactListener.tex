@@ -1,0 +1,65 @@
+\doxysection{Contact\+Listener Class Reference}
+\hypertarget{classContactListener}{}\label{classContactListener}\index{ContactListener@{ContactListener}}
+
+
+{\ttfamily \#include $<$Contact\+Listener.\+h$>$}
+
+
+
+Collaboration diagram for Contact\+Listener\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{d4/ded/classContactListener__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classContactListener_a577b31dbf6d6e5a6ada2864a0b3f70bd}\label{classContactListener_a577b31dbf6d6e5a6ada2864a0b3f70bd} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Contact\+Listener} ()=default
+\begin{DoxyCompactList}\small\item\em Ensure virtual destructor. \end{DoxyCompactList}\item 
+virtual Validate\+Result \mbox{\hyperlink{classContactListener_abb704483e4e1f2eba7109b504afdf482}{On\+Contact\+Validate}} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Base\+Offset, const \mbox{\hyperlink{classCollideShapeResult}{Collide\+Shape\+Result}} \&in\+Collision\+Result)
+\item 
+virtual void \mbox{\hyperlink{classContactListener_aeb1d7908c8556ce24448ac572d7ad944}{On\+Contact\+Added}} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classContactManifold}{Contact\+Manifold}} \&in\+Manifold, \mbox{\hyperlink{classContactSettings}{Contact\+Settings}} \&io\+Settings)
+\item 
+virtual void \mbox{\hyperlink{classContactListener_aa11e4d0107c2764e1c7e04eef72cb404}{On\+Contact\+Persisted}} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classContactManifold}{Contact\+Manifold}} \&in\+Manifold, \mbox{\hyperlink{classContactSettings}{Contact\+Settings}} \&io\+Settings)
+\item 
+virtual void \mbox{\hyperlink{classContactListener_aef8f0cac1d560622743420afcd1ce17a}{On\+Contact\+Removed}} (const \mbox{\hyperlink{classSubShapeIDPair}{Sub\+Shape\+IDPair}} \&in\+Sub\+Shape\+Pair)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A listener class that receives collision contact events. It can be registered with the \doxylink{classContactConstraintManager}{Contact\+Constraint\+Manager} (or \doxylink{classPhysicsSystem}{Physics\+System}). Note that contact listener callbacks are called from multiple threads at the same time when all bodies are locked, you\textquotesingle{}re only allowed to read from the bodies and you can\textquotesingle{}t change physics state. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classContactListener_aeb1d7908c8556ce24448ac572d7ad944}\label{classContactListener_aeb1d7908c8556ce24448ac572d7ad944} 
+\index{ContactListener@{ContactListener}!OnContactAdded@{OnContactAdded}}
+\index{OnContactAdded@{OnContactAdded}!ContactListener@{ContactListener}}
+\doxysubsubsection{\texorpdfstring{OnContactAdded()}{OnContactAdded()}}
+{\footnotesize\ttfamily virtual void Contact\+Listener\+::\+On\+Contact\+Added (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{const \mbox{\hyperlink{classContactManifold}{Contact\+Manifold}} \&}]{in\+Manifold,  }\item[{\mbox{\hyperlink{classContactSettings}{Contact\+Settings}} \&}]{io\+Settings }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Called whenever a new contact point is detected. Note that this callback is called when all bodies are locked, so don\textquotesingle{}t use any locking functions! \doxylink{classBody}{Body} 1 and 2 will be sorted such that body 1 ID \texorpdfstring{$<$}{<} body 2 ID, so body 1 may not be dynamic. Note that only active bodies will report contacts, as soon as a body goes to sleep the contacts between that body and all other bodies will receive an On\+Contact\+Removed callback, if this is the case then \doxylink{classBody_ae172c10ebdda3e473ae54f7e35c62cd1}{Body\+::\+Is\+Active()} will return false during the callback. When contacts are added, the constraint solver has not run yet, so the collision impulse is unknown at that point. The velocities of in\+Body1 and in\+Body2 are the velocities before the contact has been resolved, so you can use this to estimate the collision impulse to e.\+g. determine the volume of the impact sound to play (see\+: Estimate\+Collision\+Response). \Hypertarget{classContactListener_aa11e4d0107c2764e1c7e04eef72cb404}\label{classContactListener_aa11e4d0107c2764e1c7e04eef72cb404} 
+\index{ContactListener@{ContactListener}!OnContactPersisted@{OnContactPersisted}}
+\index{OnContactPersisted@{OnContactPersisted}!ContactListener@{ContactListener}}
+\doxysubsubsection{\texorpdfstring{OnContactPersisted()}{OnContactPersisted()}}
+{\footnotesize\ttfamily virtual void Contact\+Listener\+::\+On\+Contact\+Persisted (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{const \mbox{\hyperlink{classContactManifold}{Contact\+Manifold}} \&}]{in\+Manifold,  }\item[{\mbox{\hyperlink{classContactSettings}{Contact\+Settings}} \&}]{io\+Settings }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Called whenever a contact is detected that was also detected last update. Note that this callback is called when all bodies are locked, so don\textquotesingle{}t use any locking functions! \doxylink{classBody}{Body} 1 and 2 will be sorted such that body 1 ID \texorpdfstring{$<$}{<} body 2 ID, so body 1 may not be dynamic. If the structure of the shape of a body changes between simulation steps (e.\+g. by adding/removing a child shape of a compound shape), it is possible that the same sub shape ID used to identify the removed child shape is now reused for a different child shape. The physics system cannot detect this, so may send a \textquotesingle{}contact persisted\textquotesingle{} callback even though the contact is now on a different child shape. You can detect this by keeping the old shape (before adding/removing a part) around until the next \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update} (when the On\+Contact\+Persisted callbacks are triggered) and resolving the sub shape ID against both the old and new shape to see if they still refer to the same child shape. \Hypertarget{classContactListener_aef8f0cac1d560622743420afcd1ce17a}\label{classContactListener_aef8f0cac1d560622743420afcd1ce17a} 
+\index{ContactListener@{ContactListener}!OnContactRemoved@{OnContactRemoved}}
+\index{OnContactRemoved@{OnContactRemoved}!ContactListener@{ContactListener}}
+\doxysubsubsection{\texorpdfstring{OnContactRemoved()}{OnContactRemoved()}}
+{\footnotesize\ttfamily virtual void Contact\+Listener\+::\+On\+Contact\+Removed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSubShapeIDPair}{Sub\+Shape\+IDPair}} \&}]{in\+Sub\+Shape\+Pair }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Called whenever a contact was detected last update but is not detected anymore. Note that this callback is called when all bodies are locked, so don\textquotesingle{}t use any locking functions! Note that we\textquotesingle{}re using \doxylink{classBodyID}{Body\+ID}\textquotesingle{}s since the bodies may have been removed at the time of callback. \doxylink{classBody}{Body} 1 and 2 will be sorted such that body 1 ID \texorpdfstring{$<$}{<} body 2 ID, so body 1 may not be dynamic. The sub shape ID were created in the previous simulation step too, so if the structure of a shape changes (e.\+g. by adding/removing a child shape of a compound shape), the sub shape ID may not be valid / may not point to the same sub shape anymore. If you want to know if this is the last contact between the two bodies, use \doxylink{classPhysicsSystem_ad8f5849a90549504d9f1705c324a9a83}{Physics\+System\+::\+Were\+Bodies\+In\+Contact}. \Hypertarget{classContactListener_abb704483e4e1f2eba7109b504afdf482}\label{classContactListener_abb704483e4e1f2eba7109b504afdf482} 
+\index{ContactListener@{ContactListener}!OnContactValidate@{OnContactValidate}}
+\index{OnContactValidate@{OnContactValidate}!ContactListener@{ContactListener}}
+\doxysubsubsection{\texorpdfstring{OnContactValidate()}{OnContactValidate()}}
+{\footnotesize\ttfamily virtual Validate\+Result Contact\+Listener\+::\+On\+Contact\+Validate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{RVec3\+Arg}}}]{in\+Base\+Offset,  }\item[{const \mbox{\hyperlink{classCollideShapeResult}{Collide\+Shape\+Result}} \&}]{in\+Collision\+Result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Called after detecting a collision between a body pair, but before calling On\+Contact\+Added and before adding the contact constraint. If the function returns false, the contact will not be added and any other contacts between this body pair will not be processed. This function will only be called once per \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update} per body pair and may not be called again the next update if a contact persists and no new contact pairs between sub shapes are found. This is a rather expensive time to reject a contact point since a lot of the collision detection has happened already, make sure you filter out the majority of undesired body pairs through the \doxylink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter} that is registered on the \doxylink{classPhysicsSystem}{Physics\+System}. Note that this callback is called when all bodies are locked, so don\textquotesingle{}t use any locking functions! The order of body 1 and 2 is undefined, but when one of the two bodies is dynamic it will be body 1. The collision result (in\+Collision\+Result) is reported relative to in\+Base\+Offset. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Contact\+Listener.\+h\end{DoxyCompactItemize}

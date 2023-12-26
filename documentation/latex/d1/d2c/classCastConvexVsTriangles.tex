@@ -1,0 +1,99 @@
+\doxysection{Cast\+Convex\+Vs\+Triangles Class Reference}
+\hypertarget{classCastConvexVsTriangles}{}\label{classCastConvexVsTriangles}\index{CastConvexVsTriangles@{CastConvexVsTriangles}}
+
+
+Collision detection helper that casts a convex object vs one or more triangles.  
+
+
+
+
+{\ttfamily \#include $<$Cast\+Convex\+Vs\+Triangles.\+h$>$}
+
+
+
+Collaboration diagram for Cast\+Convex\+Vs\+Triangles\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/d34/classCastConvexVsTriangles__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCastConvexVsTriangles_a1fbd908499290d19bcfa05a5a4f42667}{Cast\+Convex\+Vs\+Triangles}} (const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&in\+Shape\+Cast, const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&in\+Shape\+Cast\+Settings, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&io\+Collector)
+\item 
+void \mbox{\hyperlink{classCastConvexVsTriangles_a50f5c573fd6198c72639e72cde71ca96}{Cast}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V0, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V2, uint8 in\+Active\+Edges, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCastConvexVsTriangles_ade82995516a037d9229d24150ccc2020}\label{classCastConvexVsTriangles_ade82995516a037d9229d24150ccc2020} 
+const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \& {\bfseries m\+Shape\+Cast}
+\item 
+\Hypertarget{classCastConvexVsTriangles_aecef46503b69985f8ce93474d7d9a59a}\label{classCastConvexVsTriangles_aecef46503b69985f8ce93474d7d9a59a} 
+const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \& {\bfseries m\+Shape\+Cast\+Settings}
+\item 
+\Hypertarget{classCastConvexVsTriangles_abd1a020012d0dc31bf29f954c42da71b}\label{classCastConvexVsTriangles_abd1a020012d0dc31bf29f954c42da71b} 
+const \mbox{\hyperlink{classMat44}{Mat44}} \& {\bfseries m\+Center\+Of\+Mass\+Transform2}
+\item 
+\Hypertarget{classCastConvexVsTriangles_a888e9e6de829076e3e90e5c3b414aaff}\label{classCastConvexVsTriangles_a888e9e6de829076e3e90e5c3b414aaff} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Scale}
+\item 
+\Hypertarget{classCastConvexVsTriangles_ac22fb7d322f54265651f5a46ea07a070}\label{classCastConvexVsTriangles_ac22fb7d322f54265651f5a46ea07a070} 
+\mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} {\bfseries m\+Sub\+Shape\+IDCreator1}
+\item 
+\Hypertarget{classCastConvexVsTriangles_aa541b629f013a34846b0b497e991b679}\label{classCastConvexVsTriangles_aa541b629f013a34846b0b497e991b679} 
+\mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \& {\bfseries m\+Collector}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Collision detection helper that casts a convex object vs one or more triangles. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCastConvexVsTriangles_a1fbd908499290d19bcfa05a5a4f42667}\label{classCastConvexVsTriangles_a1fbd908499290d19bcfa05a5a4f42667} 
+\index{CastConvexVsTriangles@{CastConvexVsTriangles}!CastConvexVsTriangles@{CastConvexVsTriangles}}
+\index{CastConvexVsTriangles@{CastConvexVsTriangles}!CastConvexVsTriangles@{CastConvexVsTriangles}}
+\doxysubsubsection{\texorpdfstring{CastConvexVsTriangles()}{CastConvexVsTriangles()}}
+{\footnotesize\ttfamily Cast\+Convex\+Vs\+Triangles\+::\+Cast\+Convex\+Vs\+Triangles (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&}]{in\+Shape\+Cast,  }\item[{const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&}]{in\+Shape\+Cast\+Settings,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform2,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator1,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&}]{io\+Collector }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em in\+Shape\+Cast} & The shape to cast against the triangles and its start and direction \\
+\hline
+{\em in\+Shape\+Cast\+Settings} & Settings for performing the cast \\
+\hline
+{\em in\+Scale} & Local space scale for the shape to cast against. \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform2} & Is the center of mass transform of shape 2 (excluding scale), this is used to provide a transform to the shape cast result so that local quantities can be transformed into world space. \\
+\hline
+{\em in\+Sub\+Shape\+IDCreator1} & Class that tracks the current sub shape ID for the casting shape \\
+\hline
+{\em io\+Collector} & The collector that receives the results. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCastConvexVsTriangles_a50f5c573fd6198c72639e72cde71ca96}\label{classCastConvexVsTriangles_a50f5c573fd6198c72639e72cde71ca96} 
+\index{CastConvexVsTriangles@{CastConvexVsTriangles}!Cast@{Cast}}
+\index{Cast@{Cast}!CastConvexVsTriangles@{CastConvexVsTriangles}}
+\doxysubsubsection{\texorpdfstring{Cast()}{Cast()}}
+{\footnotesize\ttfamily void Cast\+Convex\+Vs\+Triangles\+::\+Cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V0,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V2,  }\item[{uint8}]{in\+Active\+Edges,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID2 }\end{DoxyParamCaption})}
+
+Cast convex object with a single triangle 
+\begin{DoxyParams}{Parameters}
+{\em in\+V0,in\+V1,in\+V2} & CCW triangle vertices \\
+\hline
+{\em in\+Active\+Edges} & bit 0 = edge v0..v1 is active, bit 1 = edge v1..v2 is active, bit 2 = edge v2..v0 is active An active edge is an edge that is not connected to another triangle in such a way that it is impossible to collide with the edge \\
+\hline
+{\em in\+Sub\+Shape\+ID2} & The sub shape ID for the triangle \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Cast\+Convex\+Vs\+Triangles.\+h\end{DoxyCompactItemize}

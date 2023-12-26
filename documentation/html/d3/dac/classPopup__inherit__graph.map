@@ -1,0 +1,11 @@
+<map id="Popup" name="Popup">
+<area shape="rect" id="Node000001" title=" " alt="" coords="37,699,124,811"/>
+<area shape="rect" id="Node000005" href="$d8/d7f/classPopupMenu.html" title=" " alt="" coords="19,859,142,992"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="83,826,83,859,78,859,78,826"/>
+<area shape="rect" id="Node000002" href="$dc/dc4/classWindow.html" title=" " alt="" coords="31,517,130,651"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,666,83,699,78,699,78,666"/>
+<area shape="rect" id="Node000003" href="$da/d87/classViewport.html" title=" " alt="" coords="28,379,133,469"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,484,83,518,78,518,78,484"/>
+<area shape="rect" id="Node000004" href="$df/dd0/classNode.html" title=" " alt="" coords="5,5,156,331"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="83,345,83,379,78,379,78,345"/>
+</map>

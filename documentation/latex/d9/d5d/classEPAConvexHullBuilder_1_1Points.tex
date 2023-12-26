@@ -1,0 +1,136 @@
+\doxysection{EPAConvex\+Hull\+Builder\+::Points Class Reference}
+\hypertarget{classEPAConvexHullBuilder_1_1Points}{}\label{classEPAConvexHullBuilder_1_1Points}\index{EPAConvexHullBuilder::Points@{EPAConvexHullBuilder::Points}}
+
+
+Specialized points list that allows direct access to the size.  
+
+
+
+
+{\ttfamily \#include $<$EPAConvex\+Hull\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for EPAConvex\+Hull\+Builder\+::Points\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{d0/d67/classEPAConvexHullBuilder_1_1Points__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for EPAConvex\+Hull\+Builder\+::Points\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{d1/d5b/classEPAConvexHullBuilder_1_1Points__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Points_a5b85570fd72e9b7e9575981fe7464383}\label{classEPAConvexHullBuilder_1_1Points_a5b85570fd72e9b7e9575981fe7464383} 
+size\+\_\+type \& {\bfseries Get\+Size\+Ref} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaticArray}{Static\+Array$<$ T, N $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Static\+Array} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+{\bfseries Static\+Array} (std\+::initializer\+\_\+list$<$ T $>$ in\+List)
+\begin{DoxyCompactList}\small\item\em Constructor from initializer list. \end{DoxyCompactList}\item 
+{\bfseries Static\+Array} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Static\+Array} ()
+\begin{DoxyCompactList}\small\item\em Destruct all elements. \end{DoxyCompactList}\item 
+void {\bfseries clear} ()
+\begin{DoxyCompactList}\small\item\em Destruct all elements and set length to zero. \end{DoxyCompactList}\item 
+void {\bfseries push\+\_\+back} (const T \&in\+Element)
+\begin{DoxyCompactList}\small\item\em Add element to the back of the array. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class... A$>$ }\\void {\bfseries emplace\+\_\+back} (A \&\&... in\+Element)
+\begin{DoxyCompactList}\small\item\em Construct element at the back of the array. \end{DoxyCompactList}\item 
+void {\bfseries pop\+\_\+back} ()
+\begin{DoxyCompactList}\small\item\em Remove element from the back of the array. \end{DoxyCompactList}\item 
+bool {\bfseries empty} () const
+\begin{DoxyCompactList}\small\item\em Returns true if there are no elements in the array. \end{DoxyCompactList}\item 
+size\+\_\+type {\bfseries size} () const
+\begin{DoxyCompactList}\small\item\em Returns amount of elements in the array. \end{DoxyCompactList}\item 
+size\+\_\+type {\bfseries capacity} () const
+\begin{DoxyCompactList}\small\item\em Returns maximum amount of elements the array can hold. \end{DoxyCompactList}\item 
+void {\bfseries resize} (size\+\_\+type in\+New\+Size)
+\begin{DoxyCompactList}\small\item\em Resize array to new length. \end{DoxyCompactList}\item 
+const\+\_\+iterator {\bfseries begin} () const
+\begin{DoxyCompactList}\small\item\em Iterators. \end{DoxyCompactList}\item 
+const\+\_\+iterator {\bfseries end} () const
+\item 
+iterator {\bfseries begin} ()
+\item 
+iterator {\bfseries end} ()
+\item 
+const T \texorpdfstring{$\ast$}{*} {\bfseries data} () const
+\item 
+T \texorpdfstring{$\ast$}{*} {\bfseries data} ()
+\item 
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type in\+Idx)
+\begin{DoxyCompactList}\small\item\em Access element. \end{DoxyCompactList}\item 
+const T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type in\+Idx) const
+\item 
+T \& {\bfseries at} (size\+\_\+type in\+Idx)
+\begin{DoxyCompactList}\small\item\em Access element. \end{DoxyCompactList}\item 
+const T \& {\bfseries at} (size\+\_\+type in\+Idx) const
+\item 
+const T \& {\bfseries front} () const
+\begin{DoxyCompactList}\small\item\em First element in the array. \end{DoxyCompactList}\item 
+T \& {\bfseries front} ()
+\item 
+const T \& {\bfseries back} () const
+\begin{DoxyCompactList}\small\item\em Last element in the array. \end{DoxyCompactList}\item 
+T \& {\bfseries back} ()
+\item 
+void {\bfseries erase} (const\+\_\+iterator in\+Iter)
+\begin{DoxyCompactList}\small\item\em Remove one element from the array. \end{DoxyCompactList}\item 
+void {\bfseries erase} (const\+\_\+iterator in\+Begin, const\+\_\+iterator in\+End)
+\begin{DoxyCompactList}\small\item\em Remove multiple element from the array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$uint M$>$ }\\\mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, M $>$ \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Assignment operator with static array of different max length. \end{DoxyCompactList}\item 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Comparing arrays. \end{DoxyCompactList}\item 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \&in\+RHS) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classStaticArray}{Static\+Array$<$ T, N $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries value\+\_\+type} = T
+\item 
+using {\bfseries size\+\_\+type} = uint
+\item 
+using {\bfseries const\+\_\+iterator} = const T \texorpdfstring{$\ast$}{*}
+\item 
+using {\bfseries iterator} = T \texorpdfstring{$\ast$}{*}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classStaticArray}{Static\+Array$<$ T, N $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint {\bfseries Capacity} = N
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaticArray}{Static\+Array$<$ T, N $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+type {\bfseries m\+Size} = 0
+\item 
+\mbox{\hyperlink{structStaticArray_1_1Storage}{Storage}} {\bfseries m\+Elements} \mbox{[}N\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Specialized points list that allows direct access to the size. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/EPAConvex\+Hull\+Builder.\+h\end{DoxyCompactItemize}

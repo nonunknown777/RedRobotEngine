@@ -1,0 +1,86 @@
+\doxysection{Ray\+Sphere.\+h}
+\hypertarget{RaySphere_8h_source}{}\label{RaySphere_8h_source}\index{includes/jolt/Geometry/RaySphere.h@{includes/jolt/Geometry/RaySphere.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Math/FindRoot.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ JPH\_INLINE\ \textcolor{keywordtype}{float}\ RaySphere(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inSphereCenter,\ \textcolor{keywordtype}{float}\ inSphereRadius)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Solve:\ |RayOrigin\ +\ fraction\ *\ RayDirection\ -\/\ SphereCenter|\string^2\ =\ SphereRadius\string^2\ for\ fraction}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ center\_origin\ =\ inRayOrigin\ -\/\ inSphereCenter;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ a\ =\ inRayDirection.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ b\ =\ 2.0f\ *\ inRayDirection.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(center\_origin);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ c\ =\ center\_origin.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}()\ -\/\ inSphereRadius\ *\ inSphereRadius;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ fraction1,\ fraction2;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (FindRoot(a,\ b,\ c,\ fraction1,\ fraction2)\ ==\ 0)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ c\ <=\ 0.0f?\ 0.0f\ :\ FLT\_MAX;\ \textcolor{comment}{//\ Return\ if\ origin\ is\ inside\ the\ sphere}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Sort\ so\ that\ the\ smallest\ is\ first}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (fraction1\ >\ fraction2)}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_abbaf30d44caa739e24d21d763b90030c}{swap}}(fraction1,\ fraction2);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Test\ solution\ with\ lowest\ fraction,\ this\ will\ be\ the\ ray\ entering\ the\ sphere}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (fraction1\ >=\ 0.0f)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fraction1;\ \textcolor{comment}{//\ Sphere\ is\ before\ the\ ray\ start}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Test\ solution\ with\ highest\ fraction,\ this\ will\ be\ the\ ray\ leaving\ the\ sphere}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (fraction2\ >=\ 0.0f)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0f;\ \textcolor{comment}{//\ We\ start\ inside\ the\ sphere}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ No\ solution}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ FLT\_MAX;}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00054\ JPH\_INLINE\ \textcolor{keywordtype}{int}\ RaySphere(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inSphereCenter,\ \textcolor{keywordtype}{float}\ inSphereRadius,\ \textcolor{keywordtype}{float}\ \&outMinFraction,\ \textcolor{keywordtype}{float}\ \&outMaxFraction)}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Solve:\ |RayOrigin\ +\ fraction\ *\ RayDirection\ -\/\ SphereCenter|\string^2\ =\ SphereRadius\string^2\ for\ fraction}}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ center\_origin\ =\ inRayOrigin\ -\/\ inSphereCenter;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{float}\ a\ =\ inRayDirection.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{float}\ b\ =\ 2.0f\ *\ inRayDirection.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(center\_origin);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{float}\ c\ =\ center\_origin.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}()\ -\/\ inSphereRadius\ *\ inSphereRadius;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ fraction1,\ fraction2;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{switch}\ (FindRoot(a,\ b,\ c,\ fraction1,\ fraction2))}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ <=\ 0.0f)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Origin\ inside\ sphere}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ outMinFraction\ =\ outMaxFraction\ =\ 0.0f;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Origin\ outside\ of\ the\ sphere}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ray\ is\ touching\ the\ sphere}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ outMinFraction\ =\ outMaxFraction\ =\ fraction1;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ray\ enters\ and\ exits\ the\ sphere}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sort\ so\ that\ the\ smallest\ is\ first}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fraction1\ >\ fraction2)}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_abbaf30d44caa739e24d21d763b90030c}{swap}}(fraction1,\ fraction2);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ outMinFraction\ =\ fraction1;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ outMaxFraction\ =\ fraction2;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2;}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

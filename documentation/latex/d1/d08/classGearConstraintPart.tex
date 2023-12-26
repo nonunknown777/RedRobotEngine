@@ -1,0 +1,148 @@
+\doxysection{Gear\+Constraint\+Part Class Reference}
+\hypertarget{classGearConstraintPart}{}\label{classGearConstraintPart}\index{GearConstraintPart@{GearConstraintPart}}
+
+
+{\ttfamily \#include $<$Gear\+Constraint\+Part.\+h$>$}
+
+
+
+Collaboration diagram for Gear\+Constraint\+Part\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{d2/dcf/classGearConstraintPart__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGearConstraintPart_aa3a9c219aa2baf19edc577265ae2404f}{Calculate\+Constraint\+Properties}} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Hinge\+Axis1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Hinge\+Axis2, float in\+Ratio)
+\item 
+\Hypertarget{classGearConstraintPart_ab05807faf3573b42a9a7a0a280aed05c}\label{classGearConstraintPart_ab05807faf3573b42a9a7a0a280aed05c} 
+void {\bfseries Deactivate} ()
+\begin{DoxyCompactList}\small\item\em Deactivate this constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classGearConstraintPart_a5e5f8097c8a062b98d9bedcfa37859c5}\label{classGearConstraintPart_a5e5f8097c8a062b98d9bedcfa37859c5} 
+bool {\bfseries Is\+Active} () const
+\begin{DoxyCompactList}\small\item\em Check if constraint is active. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGearConstraintPart_a3886e068476d7e0d700dcec934ac6250}{Warm\+Start}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, float in\+Warm\+Start\+Impulse\+Ratio)
+\item 
+bool \mbox{\hyperlink{classGearConstraintPart_a59066c4f97a31d73d74dc5ec277ca43e}{Solve\+Velocity\+Constraint}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Hinge\+Axis1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Hinge\+Axis2, float in\+Ratio)
+\item 
+\Hypertarget{classGearConstraintPart_a0884cffe567c6cfe93e555996ba8bad9}\label{classGearConstraintPart_a0884cffe567c6cfe93e555996ba8bad9} 
+float {\bfseries Get\+Total\+Lambda} () const
+\begin{DoxyCompactList}\small\item\em Return lagrange multiplier. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGearConstraintPart_ad9da946340f02066a9031124bec183af}{Solve\+Position\+Constraint}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, float inC, float in\+Baumgarte) const
+\item 
+\Hypertarget{classGearConstraintPart_afa8089c72687df9833186a2078cd1aa5}\label{classGearConstraintPart_afa8089c72687df9833186a2078cd1aa5} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Save state of this constraint part. \end{DoxyCompactList}\item 
+\Hypertarget{classGearConstraintPart_ad3fc3cde9a29f5bbbba7db738f5715a3}\label{classGearConstraintPart_ad3fc3cde9a29f5bbbba7db738f5715a3} 
+void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore state of this constraint part. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classConstraint}{Constraint} that constrains two rotations using a gear (rotating in opposite direction)
+
+\doxylink{classConstraint}{Constraint} equation\+:
+
+C = Rotation1(t) + r Rotation2(t)
+
+Derivative\+:
+
+d/dt C = 0 \texorpdfstring{$<$}{<}=\texorpdfstring{$>$}{>} w1 . a + r w2 . b = 0
+
+Jacobian\+:
+
+\[J = \begin{bmatrix}0 & a^T & 0 & r b^T\end{bmatrix}\]
+
+Used terms (here and below, everything in world space)\+:~\newline
+a = axis around which body 1 rotates (normalized).~\newline
+b = axis along which body 2 slides (normalized).~\newline
+Rotation1(t) = rotation around a of body 1.~\newline
+Rotation2(t) = rotation around b of body 2.~\newline
+r = ratio between rotation for body 1 and 2.~\newline
+v = \mbox{[}v1, w1, v2, w2\mbox{]}.~\newline
+v1, v2 = linear velocity of body 1 and 2.~\newline
+w1, w2 = angular velocity of body 1 and 2.~\newline
+M = mass matrix, a diagonal matrix of the mass and inertia with diagonal \mbox{[}m1, I1, m2, I2\mbox{]}.~\newline
+ $K^{-1} = \left( J M^{-1} J^T \right)^{-1}$ = effective mass.~\newline
+ $\beta$ = baumgarte constant. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGearConstraintPart_aa3a9c219aa2baf19edc577265ae2404f}\label{classGearConstraintPart_aa3a9c219aa2baf19edc577265ae2404f} 
+\index{GearConstraintPart@{GearConstraintPart}!CalculateConstraintProperties@{CalculateConstraintProperties}}
+\index{CalculateConstraintProperties@{CalculateConstraintProperties}!GearConstraintPart@{GearConstraintPart}}
+\doxysubsubsection{\texorpdfstring{CalculateConstraintProperties()}{CalculateConstraintProperties()}}
+{\footnotesize\ttfamily void Gear\+Constraint\+Part\+::\+Calculate\+Constraint\+Properties (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Hinge\+Axis1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Hinge\+Axis2,  }\item[{float}]{in\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate properties used during the functions below 
+\begin{DoxyParams}{Parameters}
+{\em in\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em in\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+World\+Space\+Hinge\+Axis1} & The axis around which body 1 rotates \\
+\hline
+{\em in\+World\+Space\+Hinge\+Axis2} & The axis around which body 2 rotates \\
+\hline
+{\em in\+Ratio} & The ratio between rotation and translation \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGearConstraintPart_ad9da946340f02066a9031124bec183af}\label{classGearConstraintPart_ad9da946340f02066a9031124bec183af} 
+\index{GearConstraintPart@{GearConstraintPart}!SolvePositionConstraint@{SolvePositionConstraint}}
+\index{SolvePositionConstraint@{SolvePositionConstraint}!GearConstraintPart@{GearConstraintPart}}
+\doxysubsubsection{\texorpdfstring{SolvePositionConstraint()}{SolvePositionConstraint()}}
+{\footnotesize\ttfamily bool Gear\+Constraint\+Part\+::\+Solve\+Position\+Constraint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{float}]{inC,  }\item[{float}]{in\+Baumgarte }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iteratively update the position constraint. Makes sure C(...) == 0. 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em inC} & Value of the constraint equation (C) \\
+\hline
+{\em in\+Baumgarte} & Baumgarte constant (fraction of the error to correct) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGearConstraintPart_a59066c4f97a31d73d74dc5ec277ca43e}\label{classGearConstraintPart_a59066c4f97a31d73d74dc5ec277ca43e} 
+\index{GearConstraintPart@{GearConstraintPart}!SolveVelocityConstraint@{SolveVelocityConstraint}}
+\index{SolveVelocityConstraint@{SolveVelocityConstraint}!GearConstraintPart@{GearConstraintPart}}
+\doxysubsubsection{\texorpdfstring{SolveVelocityConstraint()}{SolveVelocityConstraint()}}
+{\footnotesize\ttfamily bool Gear\+Constraint\+Part\+::\+Solve\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Hinge\+Axis1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Hinge\+Axis2,  }\item[{float}]{in\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iteratively update the velocity constraint. Makes sure d/dt C(...) = 0, where C is the constraint equation. 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+World\+Space\+Hinge\+Axis1} & The axis around which body 1 rotates \\
+\hline
+{\em in\+World\+Space\+Hinge\+Axis2} & The axis around which body 2 rotates \\
+\hline
+{\em in\+Ratio} & The ratio between rotation and translation \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGearConstraintPart_a3886e068476d7e0d700dcec934ac6250}\label{classGearConstraintPart_a3886e068476d7e0d700dcec934ac6250} 
+\index{GearConstraintPart@{GearConstraintPart}!WarmStart@{WarmStart}}
+\index{WarmStart@{WarmStart}!GearConstraintPart@{GearConstraintPart}}
+\doxysubsubsection{\texorpdfstring{WarmStart()}{WarmStart()}}
+{\footnotesize\ttfamily void Gear\+Constraint\+Part\+::\+Warm\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{float}]{in\+Warm\+Start\+Impulse\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Must be called from the Warm\+Start\+Velocity\+Constraint call to apply the previous frame\textquotesingle{}s impulses 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+Warm\+Start\+Impulse\+Ratio} & Ratio of new step to old time step (dt\+\_\+new / dt\+\_\+old) for scaling the lagrange multiplier of the previous frame \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/\+Constraint\+Part/Gear\+Constraint\+Part.\+h\end{DoxyCompactItemize}

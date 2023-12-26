@@ -1,0 +1,180 @@
+\doxysection{Mesh\+Shape.\+h}
+\hypertarget{MeshShape_8h_source}{}\label{MeshShape_8h_source}\index{includes/jolt/Physics/Collision/Shape/MeshShape.h@{includes/jolt/Physics/Collision/Shape/MeshShape.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/Shape.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/PhysicsMaterial.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/ByteBuffer.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/Triangle.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/IndexedTriangle.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Renderer/DebugRenderer.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classConvexShape}{ConvexShape}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classMeshShapeSettings}{MeshShapeSettings}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classShapeSettings}{ShapeSettings}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classMeshShapeSettings}{MeshShapeSettings}})}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShapeSettings}{MeshShapeSettings}}()\ =\ default;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShapeSettings}{MeshShapeSettings}}(const\ TriangleList\ \&inTriangles,\ PhysicsMaterialList\ inMaterials\ =\ PhysicsMaterialList());}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShapeSettings}{MeshShapeSettings}}(VertexList\ inVertices,\ IndexedTriangleList\ inTriangles,\ PhysicsMaterialList\ inMaterials\ =\ PhysicsMaterialList());}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sanitize();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ See:\ ShapeSettings}}
+\DoxyCodeLine{00038\ \ \ \ \ virtual\ \mbox{\hyperlink{classResult}{ShapeResult}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ Create()\ const\ override;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \ \ \ \ VertexList\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTriangleVertices;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \ \ \ \ IndexedTriangleList\ \ \ \ \ \ \ \ \ \ \ \ \ mIndexedTriangles;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ PhysicsMaterialList\ \ \ \ \ \ \ \ \ \ \ \ \ mMaterials;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00055\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxTrianglesPerLeaf\ =\ 8;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mActiveEdgeCosThresholdAngle\ =\ 0.996195f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cos(5\ degrees)}}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classMeshShape}{MeshShape}}\ final\ :\ public\ \mbox{\hyperlink{classShape}{Shape}}}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a1a765e94540451cae2d8d01e44f3cf14}{MeshShape}}()\ :\ \mbox{\hyperlink{classShape}{Shape}}(EShapeType::\mbox{\hyperlink{structMesh}{Mesh}},\ EShapeSubType::\mbox{\hyperlink{structMesh}{Mesh}})\ \{\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape}{MeshShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMeshShapeSettings}{MeshShapeSettings}}\ \&inSettings,\ ShapeResult\ \&outResult);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::MustBeStatic}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a99a0706d71a876e3fd589a09a438f84f}{MustBeStatic}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetLocalBounds}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a1a06579408631103f0c3a818257206af}{GetLocalBounds}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSubShapeIDBitsRecursive}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{virtual}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_ad51e6a08a7dded5b85aaf0986d9d91c8}{GetSubShapeIDBitsRecursive}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetInnerRadius}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a7c2e775c8d2691c71de1243732dc702a}{GetInnerRadius}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ 0.0f;\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetMassProperties}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMassProperties}{MassProperties}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a30ed200176c0ea7fd266b603eeeafb08}{GetMassProperties}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetMaterial}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ *\ \ \mbox{\hyperlink{classMeshShape_a5315b817d2bc59f46dc12a3f866c3e55}{GetMaterial}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{const}\ PhysicsMaterialList\ \&\ \ \ \ \ \mbox{\hyperlink{classMeshShape_abc932809f3332fac2caafb8cb9ff6daf}{GetMaterialList}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMaterials;\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00098\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_affe7babd3e7126cb8cb089b7a33d3410}{GetMaterialIndex}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSurfaceNormal}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a861b244602557cd41eebd43ce10f394a}{GetSurfaceNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLocalSurfacePosition)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSupportingFace}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_ae383522bf8094fe69a7014a9680a0a05}{GetSupportingFace}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classStaticArray}{SupportingFace}}\ \&outVertices)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::Draw}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Draw(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer,\ \mbox{\hyperlink{classMat44}{RMat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keywordtype}{bool}\ inUseMaterialColors,\ \textcolor{keywordtype}{bool}\ inDrawWireframe)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::CastRay}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_ab41d1d3d7e87a34181ef200459595d23}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRayCast}{RayCast}}\ \&inRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classRayCastResult}{RayCastResult}}\ \&ioHit)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_ae427a5628b73366a79eaae85530a7297}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRayCast}{RayCast}}\ \&inRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayCastSettings}{RayCastSettings}}\ \&inRayCastSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classCollisionCollector}{CastRayCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const}\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a74b948e3c2bf5b3a477872695b313d88}{CollidePoint}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classCollisionCollector}{CollidePointCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const}\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::ColideSoftBodyVertices}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a339a4df97c6005c44bd900cc4b229969}{CollideSoftBodyVertices}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classSoftBodyVertex}{SoftBodyVertex}}\ *ioVertices,\ uint\ inNumVertices,\ \textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDisplacementDueToGravity,\ \textcolor{keywordtype}{int}\ inCollidingShapeIndex)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetTrianglesStart}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a2a76a621e6aac6644ca7495db6ec47e8}{GetTrianglesStart}}(\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{GetTrianglesContext}}\ \&ioContext,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPositionCOM,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetTrianglesNext}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a19a5806854fc318d1a2ed799ab8b8ea2}{GetTrianglesNext}}(\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{GetTrianglesContext}}\ \&ioContext,\ \textcolor{keywordtype}{int}\ inMaxTrianglesRequested,\ \mbox{\hyperlink{classFloat3}{Float3}}\ *outTriangleVertices,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ **outMaterials\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSubmergedVolume}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetSubmergedVolume(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPlane}{Plane}}\ \&inSurface,\ \textcolor{keywordtype}{float}\ \&outTotalVolume,\ \textcolor{keywordtype}{float}\ \&outSubmergedVolume,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outCenterOfBuoyancy\ JPH\_IF\_DEBUG\_RENDERER(,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset))\textcolor{keyword}{\ const\ override\ }\{\ JPH\_ASSERT(\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Not\ supported"{}});\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ See\ Shape}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a01085db9da86bd6390c31ebfed1df913}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveMaterialState(PhysicsMaterialList\ \&outMaterials)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a39cb46e1799a9c0ade3a05155176599b}{RestoreMaterialState}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRefConst}{PhysicsMaterialRefC}}\ *inMaterials,\ uint\ inNumMaterials)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetStats}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{structShape_1_1Stats}{Stats}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a1384c44e0aa5374019034c69deaf8b76}{GetStats}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetVolume}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetVolume()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Settings}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDrawTriangleGroups;}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDrawTriangleOutlines;}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ Register\ shape\ functions\ with\ the\ registry}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sRegister();}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::RestoreBinaryState}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMeshShape_a4fb64d0b3ec999aab2253bacd96a00d1}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{struct\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }MSGetTrianglesContext;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ NumTriangleBits\ =\ 3;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ MaxTrianglesPerLeaf\ =\ 1\ <<\ NumTriangleBits;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sFindActiveEdges(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMeshShapeSettings}{MeshShapeSettings}}\ \&inSettings,\ IndexedTriangleList\ \&ioIndices);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Visitor>}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WalkTree(Visitor\ \&ioVisitor)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Visitor>}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WalkTreePerTriangle(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ Visitor\ \&ioVisitor)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DecodeSubShapeID(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\&outTriangleBlock,\ uint32\ \&outTriangleIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//\ Helper\ functions\ called\ by\ CollisionDispatch}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCollideConvexVsMesh(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale2,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}}\ \&inCollideShapeSettings,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter);}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCollideSphereVsMesh(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale2,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}}\ \&inCollideShapeSettings,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter);}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCastConvexVsMesh(\textcolor{keyword}{const}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}\ \&inShapeCast,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&inShapeCastSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&ioCollector);}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCastSphereVsMesh(\textcolor{keyword}{const}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}\ \&inShapeCast,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&inShapeCastSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&ioCollector);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00183\ \ \ \ \ PhysicsMaterialList\ \ \ \ \ \ \ \ \ \ \ \ \ mMaterials;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTree;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{enum}\ ETriangleFlags}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ FLAGS\_MATERIAL\_BITS\ \ \ \ \ \ \ \ \ =\ 5,}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ FLAGS\_MATERIAL\_MASK\ \ \ \ \ \ \ \ \ =\ (1\ <<\ FLAGS\_MATERIAL\_BITS)\ -\/\ 1,}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ FLAGS\_ACTIVE\_EGDE\_SHIFT\ \ \ \ \ =\ FLAGS\_MATERIAL\_BITS,}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ FLAGS\_ACTIVE\_EDGE\_BITS\ \ \ \ \ \ =\ 3,}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ FLAGS\_ACTIVE\_EDGE\_MASK\ \ \ \ \ \ =\ (1\ <<\ FLAGS\_ACTIVE\_EDGE\_BITS)\ -\/\ 1}
+\DoxyCodeLine{00198\ \ \ \ \ \};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{mutable}\ \mbox{\hyperlink{classRef}{DebugRenderer::GeometryRef}}\ \ \ \ mGeometry;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCachedTrianglesColoredPerGroup\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCachedUseMaterialColors\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00205\ \};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,75 @@
+\doxysection{LFHMAllocator\+Context Class Reference}
+\hypertarget{classLFHMAllocatorContext}{}\label{classLFHMAllocatorContext}\index{LFHMAllocatorContext@{LFHMAllocatorContext}}
+
+
+{\ttfamily \#include $<$Lock\+Free\+Hash\+Map.\+h$>$}
+
+
+
+Inheritance diagram for LFHMAllocator\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{d6/d92/classLFHMAllocatorContext__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for LFHMAllocator\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{d5/da4/classLFHMAllocatorContext__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classLFHMAllocatorContext_a4937e72fe7c08c45687b9deb3c3dba32}\label{classLFHMAllocatorContext_a4937e72fe7c08c45687b9deb3c3dba32} 
+{\bfseries LFHMAllocator\+Context} (\mbox{\hyperlink{classLFHMAllocator}{LFHMAllocator}} \&in\+Allocator, uint32 in\+Block\+Size)
+\begin{DoxyCompactList}\small\item\em Construct a new allocator context. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classLFHMAllocatorContext_afc85e525f6ca72b286aea4cdf693ac7f}{Allocate}} (uint32 in\+Size, uint32 in\+Alignment, uint32 \&out\+Write\+Offset)
+\begin{DoxyCompactList}\small\item\em Allocate data block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Allocator context object for a lock free hash map that allocates a larger memory block at once and hands it out in smaller portions. This avoids contention on the atomic LFHMAllocator\+::m\+Write\+Offset. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classLFHMAllocatorContext_afc85e525f6ca72b286aea4cdf693ac7f}\label{classLFHMAllocatorContext_afc85e525f6ca72b286aea4cdf693ac7f} 
+\index{LFHMAllocatorContext@{LFHMAllocatorContext}!Allocate@{Allocate}}
+\index{Allocate@{Allocate}!LFHMAllocatorContext@{LFHMAllocatorContext}}
+\doxysubsubsection{\texorpdfstring{Allocate()}{Allocate()}}
+{\footnotesize\ttfamily bool LFHMAllocator\+Context\+::\+Allocate (\begin{DoxyParamCaption}\item[{uint32}]{in\+Size,  }\item[{uint32}]{in\+Alignment,  }\item[{uint32 \&}]{out\+Write\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Allocate data block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Size} & Size of block to allocate. \\
+\hline
+{\em in\+Alignment} & Alignment of block to allocate. \\
+\hline
+{\em out\+Write\+Offset} & Offset in buffer where block is located \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if allocation succeeded 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Lock\+Free\+Hash\+Map.\+h\item 
+includes/jolt/\+Core/Lock\+Free\+Hash\+Map.\+inl\end{DoxyCompactItemize}

@@ -1,0 +1,188 @@
+\doxysection{Object\+Stream\+In Class Reference}
+\hypertarget{classObjectStreamIn}{}\label{classObjectStreamIn}\index{ObjectStreamIn@{ObjectStreamIn}}
+
+
+{\ttfamily \#include $<$Object\+Stream\+In.\+h$>$}
+
+
+
+Inheritance diagram for Object\+Stream\+In\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d7/d33/classObjectStreamIn__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object\+Stream\+In\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/db7/classObjectStreamIn__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStreamIn_aefafcdd9389ca4f08e6d966ced1dcffa}\label{classObjectStreamIn_aefafcdd9389ca4f08e6d966ced1dcffa} 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Read\+Object} (istream \&in\+Stream, T \texorpdfstring{$\ast$}{*}\&out\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to read an object from a stream. \end{DoxyCompactList}\item 
+\Hypertarget{classObjectStreamIn_aaa03094c441e2189fde008fa0cab5c9f}\label{classObjectStreamIn_aaa03094c441e2189fde008fa0cab5c9f} 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Read\+Object} (istream \&in\+Stream, \mbox{\hyperlink{classRef}{Ref}}$<$ T $>$ \&out\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to read an object from a stream (reference counting pointer version) \end{DoxyCompactList}\item 
+\Hypertarget{classObjectStreamIn_a9eb8ce4c6197d5589bb984e5599c59c9}\label{classObjectStreamIn_a9eb8ce4c6197d5589bb984e5599c59c9} 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Read\+Object} (const char \texorpdfstring{$\ast$}{*}in\+File\+Name, T \texorpdfstring{$\ast$}{*}\&out\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to read an object from a file. \end{DoxyCompactList}\item 
+\Hypertarget{classObjectStreamIn_af0d35e52cfcbba526cb92f2f703c0ae7}\label{classObjectStreamIn_af0d35e52cfcbba526cb92f2f703c0ae7} 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Read\+Object} (const char \texorpdfstring{$\ast$}{*}in\+File\+Name, \mbox{\hyperlink{classRef}{Ref}}$<$ T $>$ \&out\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to read an object from a file (reference counting pointer version) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Serialization operations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStreamIn_af192dd2e7103ba17cf40d13bed1ee123}\label{classObjectStreamIn_af192dd2e7103ba17cf40d13bed1ee123} 
+istream \& {\bfseries m\+Stream}
+\item 
+\Hypertarget{classObjectStreamIn_a25483a52f49c350e7d439f7965180558}\label{classObjectStreamIn_a25483a52f49c350e7d439f7965180558} 
+void \texorpdfstring{$\ast$}{*} {\bfseries Read} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI)
+\item 
+\Hypertarget{classObjectStreamIn_a27fa5f9b8e00504d57a6440c81b3f6ff}\label{classObjectStreamIn_a27fa5f9b8e00504d57a6440c81b3f6ff} 
+void \texorpdfstring{$\ast$}{*} {\bfseries Read\+Object} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}\&out\+RTTI)
+\item 
+\Hypertarget{classObjectStreamIn_aba38d15deacd14fb875da3b6d4a8f2d3}\label{classObjectStreamIn_aba38d15deacd14fb875da3b6d4a8f2d3} 
+bool {\bfseries Read\+RTTI} ()
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamIn_a11c8669af3b1bea80f764813a2973f8d}{Read\+Class\+Data}} (const char \texorpdfstring{$\ast$}{*}in\+Class\+Name, void \texorpdfstring{$\ast$}{*}in\+Instance) override
+\item 
+\Hypertarget{classObjectStreamIn_a9918789956492451260e1af1fa1c2db8}\label{classObjectStreamIn_a9918789956492451260e1af1fa1c2db8} 
+bool {\bfseries Read\+Class\+Data} (const Class\+Description \&in\+Class\+Desc, void \texorpdfstring{$\ast$}{*}in\+Instance)
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamIn_abc7e88c40efa2dac3ea9cd9d0f5f87b7}{Read\+Pointer\+Data}} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Pointer, int in\+Ref\+Count\+Offset=-\/1) override
+\item 
+\Hypertarget{classObjectStreamIn_af6fad54cdc53d20f00a438c2b41af54b}\label{classObjectStreamIn_af6fad54cdc53d20f00a438c2b41af54b} 
+bool {\bfseries Skip\+Attribute\+Data} (int in\+Array\+Depth, EOSData\+Type in\+Data\+Type, const char \texorpdfstring{$\ast$}{*}in\+Class\+Name)
+\item 
+\Hypertarget{classObjectStreamIn_aab105e2ead02c81f3f5b737463a9631d}\label{classObjectStreamIn_aab105e2ead02c81f3f5b737463a9631d} 
+{\bfseries Object\+Stream\+In} (istream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classObjectStreamIn_a138fd6d8cc26d1d87f53c83da4cae9b9}\label{classObjectStreamIn_a138fd6d8cc26d1d87f53c83da4cae9b9} 
+static bool {\bfseries Get\+Info} (istream \&in\+Stream, \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} \&out\+Type, int \&out\+Version, int \&out\+Revision)
+\begin{DoxyCompactList}\small\item\em Determine the type and version of an object stream. \end{DoxyCompactList}\item 
+\Hypertarget{classObjectStreamIn_ac224fcbf0e768140c8c98c55fbf7ddfe}\label{classObjectStreamIn_ac224fcbf0e768140c8c98c55fbf7ddfe} 
+static \mbox{\hyperlink{classObjectStreamIn}{Object\+Stream\+In}} \texorpdfstring{$\ast$}{*} {\bfseries Open} (istream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Static constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}\label{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e} 
+enum class \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} \{ {\bfseries Text}
+, {\bfseries Binary}
+ \}
+\begin{DoxyCompactList}\small\item\em Stream type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool {\bfseries Read\+Data\+Type} (EOSData\+Type \&out\+Type)=0
+\item 
+virtual bool {\bfseries Read\+Name} (String \&out\+Name)=0
+\item 
+virtual bool {\bfseries Read\+Identifier} (\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} \&out\+Identifier)=0
+\item 
+virtual bool {\bfseries Read\+Count} (uint32 \&out\+Count)=0
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (uint8 \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (uint16 \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (int \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (uint32 \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (uint64 \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (float \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (double \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (bool \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (String \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (\mbox{\hyperlink{classFloat3}{Float3}} \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (\mbox{\hyperlink{classDouble3}{Double3}} \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (\mbox{\hyperlink{classVec3}{Vec3}} \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (\mbox{\hyperlink{classDVec3}{DVec3}} \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (\mbox{\hyperlink{classVec4}{Vec4}} \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (\mbox{\hyperlink{classQuat}{Quat}} \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (\mbox{\hyperlink{classMat44}{Mat44}} \&out\+Primitive)=0
+\item 
+virtual bool {\bfseries Read\+Primitive\+Data} (\mbox{\hyperlink{classDMat44}{DMat44}} \&out\+Primitive)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Identifier} = uint32
+\begin{DoxyCompactList}\small\item\em Identifier for objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Object\+Stream} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int {\bfseries s\+Version} = 1
+\item 
+static constexpr int {\bfseries s\+Revision} = 0
+\item 
+static constexpr \mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} {\bfseries s\+Null\+Identifier} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classObjectStreamIn}{Object\+Stream\+In} contains all logic for reading an object from disk. It is the base class for the text and binary input streams (\doxylink{classObjectStreamTextIn}{Object\+Stream\+Text\+In} and \doxylink{classObjectStreamBinaryIn}{Object\+Stream\+Binary\+In}). 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classObjectStreamIn_a11c8669af3b1bea80f764813a2973f8d}\label{classObjectStreamIn_a11c8669af3b1bea80f764813a2973f8d} 
+\index{ObjectStreamIn@{ObjectStreamIn}!ReadClassData@{ReadClassData}}
+\index{ReadClassData@{ReadClassData}!ObjectStreamIn@{ObjectStreamIn}}
+\doxysubsubsection{\texorpdfstring{ReadClassData()}{ReadClassData()}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+In\+::\+Read\+Class\+Data (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{in\+Class\+Name,  }\item[{void \texorpdfstring{$\ast$}{*}}]{in\+Instance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamIn_abc7e88c40efa2dac3ea9cd9d0f5f87b7}\label{classObjectStreamIn_abc7e88c40efa2dac3ea9cd9d0f5f87b7} 
+\index{ObjectStreamIn@{ObjectStreamIn}!ReadPointerData@{ReadPointerData}}
+\index{ReadPointerData@{ReadPointerData}!ObjectStreamIn@{ObjectStreamIn}}
+\doxysubsubsection{\texorpdfstring{ReadPointerData()}{ReadPointerData()}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+In\+::\+Read\+Pointer\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}}]{in\+RTTI,  }\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{in\+Pointer,  }\item[{int}]{in\+Ref\+Count\+Offset = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Object\+Stream/Object\+Stream\+In.\+h\end{DoxyCompactItemize}

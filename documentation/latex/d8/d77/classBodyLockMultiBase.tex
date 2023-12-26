@@ -1,0 +1,66 @@
+\doxysection{Body\+Lock\+Multi\+Base\texorpdfstring{$<$}{<} Write, Body\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classBodyLockMultiBase}{}\label{classBodyLockMultiBase}\index{BodyLockMultiBase$<$ Write, BodyType $>$@{BodyLockMultiBase$<$ Write, BodyType $>$}}
+
+
+Base class for locking multiple bodies for the duration of the scope of this class (do not use directly)  
+
+
+
+
+{\ttfamily \#include $<$Body\+Lock\+Multi.\+h$>$}
+
+
+
+Inheritance diagram for Body\+Lock\+Multi\+Base\texorpdfstring{$<$}{<} Write, Body\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{df/d63/classBodyLockMultiBase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Body\+Lock\+Multi\+Base\texorpdfstring{$<$}{<} Write, Body\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{d9/d23/classBodyLockMultiBase__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyLockMultiBase_aed093a87a311d01a99c7818f4e766570}\label{classBodyLockMultiBase_aed093a87a311d01a99c7818f4e766570} 
+using {\bfseries Mutex\+Mask} = \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{Body\+Lock\+Interface\+::\+Mutex\+Mask}}
+\begin{DoxyCompactList}\small\item\em Redefine Mutex\+Mask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyLockMultiBase_a64d2906481b4018d8394f0d8cb199cc8}\label{classBodyLockMultiBase_a64d2906481b4018d8394f0d8cb199cc8} 
+{\bfseries Body\+Lock\+Multi\+Base} (const \mbox{\hyperlink{classBodyLockInterface}{Body\+Lock\+Interface}} \&in\+Body\+Lock\+Interface, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}in\+Body\+IDs, int in\+Number)
+\begin{DoxyCompactList}\small\item\em Constructor will lock the bodies. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockMultiBase_a609defeb89fbcc31c19ee6af88844601}\label{classBodyLockMultiBase_a609defeb89fbcc31c19ee6af88844601} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Body\+Lock\+Multi\+Base} ()
+\begin{DoxyCompactList}\small\item\em Destructor will unlock the bodies. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockMultiBase_a4598ff93b693a8679203b4fc72965786}\label{classBodyLockMultiBase_a4598ff93b693a8679203b4fc72965786} 
+Body\+Type \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body} (int in\+Body\+Index) const
+\begin{DoxyCompactList}\small\item\em Access the body (returns null if body was not properly locked) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$bool Write, class Body\+Type$>$\newline
+class Body\+Lock\+Multi\+Base$<$ Write, Body\+Type $>$}
+Base class for locking multiple bodies for the duration of the scope of this class (do not use directly) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Body/Body\+Lock\+Multi.\+h\end{DoxyCompactItemize}

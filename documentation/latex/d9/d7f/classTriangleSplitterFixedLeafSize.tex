@@ -1,0 +1,120 @@
+\doxysection{Triangle\+Splitter\+Fixed\+Leaf\+Size Class Reference}
+\hypertarget{classTriangleSplitterFixedLeafSize}{}\label{classTriangleSplitterFixedLeafSize}\index{TriangleSplitterFixedLeafSize@{TriangleSplitterFixedLeafSize}}
+
+
+{\ttfamily \#include $<$Triangle\+Splitter\+Fixed\+Leaf\+Size.\+h$>$}
+
+
+
+Inheritance diagram for Triangle\+Splitter\+Fixed\+Leaf\+Size\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{df/d15/classTriangleSplitterFixedLeafSize__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Triangle\+Splitter\+Fixed\+Leaf\+Size\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{d2/dce/classTriangleSplitterFixedLeafSize__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTriangleSplitterFixedLeafSize_a549605ef07dfd2fc018a9c2134419cc3}\label{classTriangleSplitterFixedLeafSize_a549605ef07dfd2fc018a9c2134419cc3} 
+{\bfseries Triangle\+Splitter\+Fixed\+Leaf\+Size} (const Vertex\+List \&in\+Vertices, const Indexed\+Triangle\+List \&in\+Triangles, uint in\+Leaf\+Size, uint in\+Min\+Num\+Bins=8, uint in\+Max\+Num\+Bins=128, uint in\+Num\+Triangles\+Per\+Bin=6)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTriangleSplitterFixedLeafSize_a6d3cb63db9a9f4d5f48fc0db60ef4717}{Get\+Stats}} (\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Stats}} \&out\+Stats) const override
+\begin{DoxyCompactList}\small\item\em Get stats of splitter. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classTriangleSplitterFixedLeafSize_aafd670c95fb58d3cedc9481d0b519881}{Split}} (const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&in\+Triangles, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Left, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Right) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Triangle\+Splitter} (const Vertex\+List \&in\+Vertices, const Indexed\+Triangle\+List \&in\+Triangles)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Triangle\+Splitter} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} {\bfseries Get\+Initial\+Range} () const
+\begin{DoxyCompactList}\small\item\em \doxylink{structTriangleSplitter_1_1Range}{Range} of triangles to start with. \end{DoxyCompactList}\item 
+const Vertex\+List \& {\bfseries Get\+Vertices} () const
+\begin{DoxyCompactList}\small\item\em Get the list of vertices. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classIndexedTriangle}{Indexed\+Triangle}} \& {\bfseries Get\+Triangle} (uint in\+Idx) const
+\begin{DoxyCompactList}\small\item\em Get triangle by index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Split\+Internal} (const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&in\+Triangles, uint in\+Dimension, float in\+Split, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Left, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Right)
+\begin{DoxyCompactList}\small\item\em Helper function to split triangles based on dimension and split value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+const Vertex\+List \& {\bfseries m\+Vertices}
+\begin{DoxyCompactList}\small\item\em Vertices of the indexed triangles. \end{DoxyCompactList}\item 
+const Indexed\+Triangle\+List \& {\bfseries m\+Triangles}
+\begin{DoxyCompactList}\small\item\em Unsorted triangles. \end{DoxyCompactList}\item 
+Array$<$ \mbox{\hyperlink{classFloat3}{Float3}} $>$ {\bfseries m\+Centroids}
+\begin{DoxyCompactList}\small\item\em Unsorted centroids of triangles. \end{DoxyCompactList}\item 
+Array$<$ uint $>$ {\bfseries m\+Sorted\+Triangle\+Idx}
+\begin{DoxyCompactList}\small\item\em Indices to sort triangles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Same as \doxylink{classTriangleSplitterBinning}{Triangle\+Splitter\+Binning}, but ensuring that leaves have a fixed amount of triangles The resulting tree should be suitable for processing on GPU where we want all threads to process an equal amount of triangles 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTriangleSplitterFixedLeafSize_a6d3cb63db9a9f4d5f48fc0db60ef4717}\label{classTriangleSplitterFixedLeafSize_a6d3cb63db9a9f4d5f48fc0db60ef4717} 
+\index{TriangleSplitterFixedLeafSize@{TriangleSplitterFixedLeafSize}!GetStats@{GetStats}}
+\index{GetStats@{GetStats}!TriangleSplitterFixedLeafSize@{TriangleSplitterFixedLeafSize}}
+\doxysubsubsection{\texorpdfstring{GetStats()}{GetStats()}}
+{\footnotesize\ttfamily virtual void Triangle\+Splitter\+Fixed\+Leaf\+Size\+::\+Get\+Stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Stats}} \&}]{out\+Stats }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get stats of splitter. 
+
+
+
+Implements \mbox{\hyperlink{classTriangleSplitter_ad58e7ea8a806e7e9df8ea5117ff2ebe8}{Triangle\+Splitter}}.
+
+\Hypertarget{classTriangleSplitterFixedLeafSize_aafd670c95fb58d3cedc9481d0b519881}\label{classTriangleSplitterFixedLeafSize_aafd670c95fb58d3cedc9481d0b519881} 
+\index{TriangleSplitterFixedLeafSize@{TriangleSplitterFixedLeafSize}!Split@{Split}}
+\index{Split@{Split}!TriangleSplitterFixedLeafSize@{TriangleSplitterFixedLeafSize}}
+\doxysubsubsection{\texorpdfstring{Split()}{Split()}}
+{\footnotesize\ttfamily virtual bool Triangle\+Splitter\+Fixed\+Leaf\+Size\+::\+Split (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{in\+Triangles,  }\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{out\+Left,  }\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{out\+Right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Split triangles into two groups left and right, returns false if no split could be made 
+\begin{DoxyParams}{Parameters}
+{\em in\+Triangles} & The range of triangles (in m\+Sorted\+Triangle\+Idx) to process \\
+\hline
+{\em out\+Left} & On return this will contain the ranges for the left subpart. m\+Sorted\+Triangle\+Idx may have been shuffled. \\
+\hline
+{\em out\+Right} & On return this will contain the ranges for the right subpart. m\+Sorted\+Triangle\+Idx may have been shuffled. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true when a split was found 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTriangleSplitter_ad9cb9d125c24255c964427e186e5076e}{Triangle\+Splitter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Triangle\+Splitter/Triangle\+Splitter\+Fixed\+Leaf\+Size.\+h\end{DoxyCompactItemize}

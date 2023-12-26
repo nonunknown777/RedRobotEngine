@@ -1,0 +1,9 @@
+<map id="BroadPhaseLayerInterface" name="BroadPhaseLayerInterface">
+<area shape="rect" id="Node000001" title="Interface that the application should implement to allow mapping object layers to broadphase layers." alt="" coords="131,165,349,277"/>
+<area shape="rect" id="Node000003" href="$d3/df4/classBroadPhaseLayerInterfaceMask.html" title=" " alt="" coords="5,325,224,497"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,291,173,327,169,324,193,288"/>
+<area shape="rect" id="Node000004" href="$d5/d2b/classBroadPhaseLayerInterfaceTable.html" title=" " alt="" coords="249,327,482,495"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="287,288,312,326,308,329,282,291"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="179,5,301,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="243,133,243,166,237,166,237,133"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="BodyFilter" name="BodyFilter">
+<area shape="rect" id="Node000001" title="Class function to filter out bodies, returns true if test should collide with body." alt="" coords="116,165,287,277"/>
+<area shape="rect" id="Node000003" href="$df/d62/classIgnoreMultipleBodiesFilter.html" title="A simple body filter implementation that ignores multiple, specified bodies." alt="" coords="5,325,189,459"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="162,292,140,327,135,324,157,289"/>
+<area shape="rect" id="Node000004" href="$d3/d21/classIgnoreSingleBodyFilter.html" title="A simple body filter implementation that ignores a single, specified body." alt="" coords="214,347,397,437"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="245,289,281,346,276,348,241,292"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="140,5,263,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,133,204,166,199,166,199,133"/>
+</map>

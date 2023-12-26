@@ -1,0 +1,34 @@
+\doxysection{Vehicle\+Anti\+Roll\+Bar.\+h}
+\hypertarget{VehicleAntiRollBar_8h_source}{}\label{VehicleAntiRollBar_8h_source}\index{includes/jolt/Physics/Vehicle/VehicleAntiRollBar.h@{includes/jolt/Physics/Vehicle/VehicleAntiRollBar.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableObject.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StreamIn.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StreamOut.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classVehicleAntiRollBar}{VehicleAntiRollBar}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_NON\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classVehicleAntiRollBar}{VehicleAntiRollBar}})}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ void\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveBinaryState(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ const;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreBinaryState(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLeftWheel\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRightWheel\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStiffness\ =\ 1000.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,184 @@
+\doxysection{Wheel Class Reference}
+\hypertarget{classWheel}{}\label{classWheel}\index{Wheel@{Wheel}}
+
+
+Base class for runtime data for a wheel, each \doxylink{classVehicleController}{Vehicle\+Controller} can implement a derived class of this.  
+
+
+
+
+{\ttfamily \#include $<$Wheel.\+h$>$}
+
+
+
+Inheritance diagram for Wheel\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/d40/classWheel__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Wheel\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/dab/classWheel__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWheel_a55c9838f85b9ab494355bf7be274013f}\label{classWheel_a55c9838f85b9ab494355bf7be274013f} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Wheel} (const \mbox{\hyperlink{classWheelSettings}{Wheel\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor / destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_ab93b1087453249915b72e74733ea2af3}\label{classWheel_ab93b1087453249915b72e74733ea2af3} 
+const \mbox{\hyperlink{classWheelSettings}{Wheel\+Settings}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Settings} () const
+\begin{DoxyCompactList}\small\item\em Get settings for the wheel. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_ad2da83076a68424179c3928b123c086c}\label{classWheel_ad2da83076a68424179c3928b123c086c} 
+float {\bfseries Get\+Angular\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Get the angular velocity (rad/s) for this wheel, note that positive means the wheel is rotating such that the car moves forward. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a244412d3b7d9216cdf7d8f364d128b60}\label{classWheel_a244412d3b7d9216cdf7d8f364d128b60} 
+void {\bfseries Set\+Angular\+Velocity} (float in\+Vel)
+\begin{DoxyCompactList}\small\item\em Update the angular velocity (rad/s) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a06226466b8c4ff0f65ae329bb3b7a3b2}\label{classWheel_a06226466b8c4ff0f65ae329bb3b7a3b2} 
+float {\bfseries Get\+Rotation\+Angle} () const
+\begin{DoxyCompactList}\small\item\em Get the current rotation angle of the wheel in radians \mbox{[}0, 2 pi\mbox{]}. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_aaa68b8841db1daed297d8c64ed19bef2}\label{classWheel_aaa68b8841db1daed297d8c64ed19bef2} 
+void {\bfseries Set\+Rotation\+Angle} (float in\+Angle)
+\begin{DoxyCompactList}\small\item\em Set the current rotation angle of the wheel in radians \mbox{[}0, 2 pi\mbox{]}. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a1972924bef7c43ef8544a7ba2dc28c07}\label{classWheel_a1972924bef7c43ef8544a7ba2dc28c07} 
+float {\bfseries Get\+Steer\+Angle} () const
+\begin{DoxyCompactList}\small\item\em Get the current steer angle of the wheel in radians \mbox{[}-\/pi, pi\mbox{]}, positive is to the left. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a7efe681ffa418ed0e1724fbc1fef7ec8}\label{classWheel_a7efe681ffa418ed0e1724fbc1fef7ec8} 
+void {\bfseries Set\+Steer\+Angle} (float in\+Angle)
+\begin{DoxyCompactList}\small\item\em Set the current steer angle of the wheel in radians \mbox{[}-\/pi, pi\mbox{]}. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_ad5ab9bb3ed8151044ad41de572945eac}\label{classWheel_ad5ab9bb3ed8151044ad41de572945eac} 
+bool {\bfseries Has\+Contact} () const
+\begin{DoxyCompactList}\small\item\em Returns true if the wheel is touching an object. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_acc31f12c9bf9049d98397fc721219d10}\label{classWheel_acc31f12c9bf9049d98397fc721219d10} 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries Get\+Contact\+Body\+ID} () const
+\begin{DoxyCompactList}\small\item\em Returns the body ID of the body that this wheel is touching. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a4ed45e80dae82a05fe3a07bd8f81d96f}\label{classWheel_a4ed45e80dae82a05fe3a07bd8f81d96f} 
+\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} {\bfseries Get\+Contact\+Sub\+Shape\+ID} () const
+\begin{DoxyCompactList}\small\item\em Returns the sub shape ID where we\textquotesingle{}re contacting the body. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_afe7cd7933c99164aefd66c9d5fe2a3eb}\label{classWheel_afe7cd7933c99164aefd66c9d5fe2a3eb} 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries Get\+Contact\+Position} () const
+\begin{DoxyCompactList}\small\item\em Returns the current contact position in world space (note by the time you call this the vehicle has moved) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a909988d11cc3e43ba357a1f9b1d4f101}\label{classWheel_a909988d11cc3e43ba357a1f9b1d4f101} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Contact\+Point\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Velocity of the contact point (m / s, not relative to the wheel but in world space) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_aaff3b5c0de2d6becbebbdbd886b2c7cf}\label{classWheel_aaff3b5c0de2d6becbebbdbd886b2c7cf} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Contact\+Normal} () const
+\begin{DoxyCompactList}\small\item\em Returns the current contact mormal in world space (note by the time you call this the vehicle has moved) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a4f4df6da668a8f3d147ee53a3c46910c}\label{classWheel_a4f4df6da668a8f3d147ee53a3c46910c} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Contact\+Longitudinal} () const
+\begin{DoxyCompactList}\small\item\em Returns longitudinal direction (direction along the wheel relative to floor) in world space (note by the time you call this the vehicle has moved) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a23056c4f6164ec0b1e7a0448a54135c3}\label{classWheel_a23056c4f6164ec0b1e7a0448a54135c3} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Contact\+Lateral} () const
+\begin{DoxyCompactList}\small\item\em Returns lateral direction (sideways direction) in world space (note by the time you call this the vehicle has moved) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_ad03e749022ce451237c8731a7b59eb79}\label{classWheel_ad03e749022ce451237c8731a7b59eb79} 
+float {\bfseries Get\+Suspension\+Length} () const
+\begin{DoxyCompactList}\small\item\em Get the length of the suspension for a wheel (m) relative to the suspension attachment point (hard point) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a61eabff8238d2b284c9a286309e05806}\label{classWheel_a61eabff8238d2b284c9a286309e05806} 
+bool {\bfseries Has\+Hit\+Hard\+Point} () const
+\begin{DoxyCompactList}\small\item\em Check if the suspension hit its upper limit. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_af1a126080ae277a8b3578b8f3f6854e7}\label{classWheel_af1a126080ae277a8b3578b8f3f6854e7} 
+float {\bfseries Get\+Suspension\+Lambda} () const
+\begin{DoxyCompactList}\small\item\em Get the total impulse (N s) that was applied by the suspension. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_acb42426249dba7e845b7ea288cda99dd}\label{classWheel_acb42426249dba7e845b7ea288cda99dd} 
+float {\bfseries Get\+Longitudinal\+Lambda} () const
+\begin{DoxyCompactList}\small\item\em Get total impulse (N s) applied along the forward direction of the wheel. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a3a6c1824707b2851548c01bb3bcaceec}\label{classWheel_a3a6c1824707b2851548c01bb3bcaceec} 
+float {\bfseries Get\+Lateral\+Lambda} () const
+\begin{DoxyCompactList}\small\item\em Get total impulse (N s) applied along the sideways direction of the wheel. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_aca0c965685dee3f84fb830d76a4a00ba}\label{classWheel_aca0c965685dee3f84fb830d76a4a00ba} 
+bool {\bfseries Solve\+Longitudinal\+Constraint\+Part} (const \mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&in\+Constraint, float in\+Min\+Impulse, float in\+Max\+Impulse)
+\begin{DoxyCompactList}\small\item\em Internal function that should only be called by the controller. Used to apply impulses in the forward direction of the vehicle. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a155778dd99828ddbcc6b4e34305b40f5}\label{classWheel_a155778dd99828ddbcc6b4e34305b40f5} 
+bool {\bfseries Solve\+Lateral\+Constraint\+Part} (const \mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&in\+Constraint, float in\+Min\+Impulse, float in\+Max\+Impulse)
+\begin{DoxyCompactList}\small\item\em Internal function that should only be called by the controller. Used to apply impulses in the sideways direction of the vehicle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWheel_a024cd676398378408f174ebdd8fefd6c}\label{classWheel_a024cd676398378408f174ebdd8fefd6c} 
+\mbox{\hyperlink{classRefConst}{Ref\+Const}}$<$ \mbox{\hyperlink{classWheelSettings}{Wheel\+Settings}} $>$ {\bfseries m\+Settings}
+\begin{DoxyCompactList}\small\item\em Configuration settings for this wheel. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a53ae6143cfd91eba78398b03f427c7ed}\label{classWheel_a53ae6143cfd91eba78398b03f427c7ed} 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries m\+Contact\+Body\+ID}
+\begin{DoxyCompactList}\small\item\em ID of body for ground. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_af93d7137c196e5dc6107963bdc06c5ba}\label{classWheel_af93d7137c196e5dc6107963bdc06c5ba} 
+\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} {\bfseries m\+Contact\+Sub\+Shape\+ID}
+\begin{DoxyCompactList}\small\item\em Sub shape ID for ground. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_acb44fa757ea9d2447e1b2de4f65954ca}\label{classWheel_acb44fa757ea9d2447e1b2de4f65954ca} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Contact\+Body} = nullptr
+\begin{DoxyCompactList}\small\item\em \doxylink{classBody}{Body} for ground. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a49fc75e7639dbf0a484ccd9bf1968ae4}\label{classWheel_a49fc75e7639dbf0a484ccd9bf1968ae4} 
+float {\bfseries m\+Suspension\+Length}
+\begin{DoxyCompactList}\small\item\em Current length of the suspension. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_ac30ace148260fc1280c40224cb51c34f}\label{classWheel_ac30ace148260fc1280c40224cb51c34f} 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries m\+Contact\+Position}
+\begin{DoxyCompactList}\small\item\em Position of the contact point between wheel and ground. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a7d348b3098f9316f308173fe87c81783}\label{classWheel_a7d348b3098f9316f308173fe87c81783} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Contact\+Point\+Velocity}
+\begin{DoxyCompactList}\small\item\em Velocity of the contact point (m / s, not relative to the wheel but in world space) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a1e753efe90d09796fa717079a15b6b59}\label{classWheel_a1e753efe90d09796fa717079a15b6b59} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Contact\+Normal}
+\begin{DoxyCompactList}\small\item\em Normal of the contact point between wheel and ground. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a452fc2b42bb7fb3ffb296008ff19ff84}\label{classWheel_a452fc2b42bb7fb3ffb296008ff19ff84} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Contact\+Longitudinal}
+\begin{DoxyCompactList}\small\item\em \doxylink{classVector}{Vector} perpendicular to normal in the forward direction. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_ad8cea661025b8c99b3fbd07f67880ebb}\label{classWheel_ad8cea661025b8c99b3fbd07f67880ebb} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Contact\+Lateral}
+\begin{DoxyCompactList}\small\item\em \doxylink{classVector}{Vector} perpendicular to normal and longitudinal direction in the right direction. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_aa6aeace443bfd6580ad54a938342ac67}\label{classWheel_aa6aeace443bfd6580ad54a938342ac67} 
+Real {\bfseries m\+Axle\+Plane\+Constant}
+\begin{DoxyCompactList}\small\item\em Constant for the contact plane of the axle, defined as Contact\+Normal . (World\+Space\+Suspension\+Point + Suspension\+Length \texorpdfstring{$\ast$}{*} World\+Space\+Suspension\+Direction) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a201340ce33a37ff9eb3cc26cf8ae4cc8}\label{classWheel_a201340ce33a37ff9eb3cc26cf8ae4cc8} 
+float {\bfseries m\+Anti\+Roll\+Bar\+Impulse} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Amount of impulse applied to the suspension from the anti-\/rollbars. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_ae6d6847e2825c5e6b1f3203d8fe559fa}\label{classWheel_ae6d6847e2825c5e6b1f3203d8fe559fa} 
+float {\bfseries m\+Steer\+Angle} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Rotation around the suspension direction, positive is to the left. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a240115cc48bddcf81b10c426c3802fe7}\label{classWheel_a240115cc48bddcf81b10c426c3802fe7} 
+float {\bfseries m\+Angular\+Velocity} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Rotation speed of wheel, positive when the wheels cause the vehicle to move forwards (rad/s) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_ad21c087228b643377f809e61c14fdf1d}\label{classWheel_ad21c087228b643377f809e61c14fdf1d} 
+float {\bfseries m\+Angle} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Current rotation of the wheel (rad, \mbox{[}0, 2 pi\mbox{]}) \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a9e9df1e9246d38363edc02b9d1c81ef4}\label{classWheel_a9e9df1e9246d38363edc02b9d1c81ef4} 
+\mbox{\hyperlink{classAxisConstraintPart}{Axis\+Constraint\+Part}} {\bfseries m\+Suspension\+Part}
+\begin{DoxyCompactList}\small\item\em Controls movement up/down along the contact normal. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a568fed5d0dd04fd63020e9253801a34c}\label{classWheel_a568fed5d0dd04fd63020e9253801a34c} 
+\mbox{\hyperlink{classAxisConstraintPart}{Axis\+Constraint\+Part}} {\bfseries m\+Suspension\+Max\+Up\+Part}
+\begin{DoxyCompactList}\small\item\em Adds a hard limit when reaching the minimal suspension length. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_aad04d9e83a92376fb5ef078fbc1577bc}\label{classWheel_aad04d9e83a92376fb5ef078fbc1577bc} 
+\mbox{\hyperlink{classAxisConstraintPart}{Axis\+Constraint\+Part}} {\bfseries m\+Longitudinal\+Part}
+\begin{DoxyCompactList}\small\item\em Controls movement forward/backward. \end{DoxyCompactList}\item 
+\Hypertarget{classWheel_a3e466a6ec5a4dc839c86586fb0e0dd6c}\label{classWheel_a3e466a6ec5a4dc839c86586fb0e0dd6c} 
+\mbox{\hyperlink{classAxisConstraintPart}{Axis\+Constraint\+Part}} {\bfseries m\+Lateral\+Part}
+\begin{DoxyCompactList}\small\item\em Controls movement sideways (slip) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWheel_a30b73bf12f0dea921ce21318d08cb7c0}\label{classWheel_a30b73bf12f0dea921ce21318d08cb7c0} 
+class {\bfseries Vehicle\+Constraint}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for runtime data for a wheel, each \doxylink{classVehicleController}{Vehicle\+Controller} can implement a derived class of this. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Vehicle/Wheel.\+h\end{DoxyCompactItemize}

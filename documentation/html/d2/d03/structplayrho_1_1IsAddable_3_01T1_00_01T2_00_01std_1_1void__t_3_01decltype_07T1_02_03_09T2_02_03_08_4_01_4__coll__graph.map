@@ -1,0 +1,5 @@
+<map id="playrho::IsAddable&lt; T1, T2, std::void_t&lt; decltype(T1{}+T2{})&gt; &gt;" name="playrho::IsAddable&lt; T1, T2, std::void_t&lt; decltype(T1{}+T2{})&gt; &gt;">
+<area shape="rect" id="Node000001" title="Template specializing for addable types." alt="" coords="5,123,212,227"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="57,5,160,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,90,111,123,106,123,106,90"/>
+</map>

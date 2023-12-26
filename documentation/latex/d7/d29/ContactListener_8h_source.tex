@@ -1,0 +1,76 @@
+\doxysection{Contact\+Listener.\+h}
+\hypertarget{ContactListener_8h_source}{}\label{ContactListener_8h_source}\index{includes/jolt/Physics/Collision/ContactListener.h@{includes/jolt/Physics/Collision/ContactListener.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/SubShapeIDPair.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StaticArray.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBody}{Body}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCollideShapeResult}{CollideShapeResult}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classStaticArray}{ContactPoints}}\ =\ \mbox{\hyperlink{classStaticArray}{StaticArray<Vec3,\ 64>}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classContactManifold}{ContactManifold}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classContactManifold}{ContactManifold}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactManifold_a48787ecfb82e124dfa8cd1de71ed8027}{SwapShapes}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \{\ \mbox{\hyperlink{classContactManifold_a7411bc12e55f88b3e2855fe8dc57a05e}{mBaseOffset}},\ -\/\mbox{\hyperlink{classContactManifold_ab90dc956aa8b9936495992212fa64487}{mWorldSpaceNormal}},\ \mbox{\hyperlink{classContactManifold_add2819f7131894b379fd2c6f4b90099a}{mPenetrationDepth}},\ mSubShapeID2,\ \mbox{\hyperlink{classContactManifold_ad02e3fa2a71653627234207197f2038a}{mSubShapeID1}},\ \mbox{\hyperlink{classContactManifold_a82c0a5937e977e8ce4169d39e1a3d64c}{mRelativeContactPointsOn2}},\ \mbox{\hyperlink{classContactManifold_ab878d752ba8167d0e1292ddded15f153}{mRelativeContactPointsOn1}}\ \};\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactManifold_a1112cfe6df7934c56e585d5985d2870a}{GetWorldSpaceContactPointOn1}}(uint\ inIndex)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classContactManifold_a7411bc12e55f88b3e2855fe8dc57a05e}{mBaseOffset}}\ +\ \mbox{\hyperlink{classContactManifold_ab878d752ba8167d0e1292ddded15f153}{mRelativeContactPointsOn1}}[inIndex];\ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ GetWorldSpaceContactPointOn2(uint\ inIndex)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classContactManifold_a7411bc12e55f88b3e2855fe8dc57a05e}{mBaseOffset}}\ +\ \mbox{\hyperlink{classContactManifold_a82c0a5937e977e8ce4169d39e1a3d64c}{mRelativeContactPointsOn2}}[inIndex];\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactManifold_a7411bc12e55f88b3e2855fe8dc57a05e}{mBaseOffset}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactManifold_ab90dc956aa8b9936495992212fa64487}{mWorldSpaceNormal}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactManifold_add2819f7131894b379fd2c6f4b90099a}{mPenetrationDepth}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactManifold_ad02e3fa2a71653627234207197f2038a}{mSubShapeID1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSubShapeID2;}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classStaticArray}{ContactPoints}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactManifold_ab878d752ba8167d0e1292ddded15f153}{mRelativeContactPointsOn1}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classStaticArray}{ContactPoints}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactManifold_a82c0a5937e977e8ce4169d39e1a3d64c}{mRelativeContactPointsOn2}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classContactSettings}{ContactSettings}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_a7a6722d38f6dd9f504412e3663400a2d}{mCombinedFriction}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_ade2482177e9dd9c8596a4a1cc6338979}{mCombinedRestitution}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_a6b2c4b599362d4e3837120571af2c3ce}{mInvMassScale1}}\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_aaf521121674ff2c72b762c87bfabed11}{mInvInertiaScale1}}\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_a37639a208ebcf5ca37462c3689c73828}{mInvMassScale2}}\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_a699874a8c427e9861a83b993c55b1ee8}{mInvInertiaScale2}}\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_a1c5f448521399a40a9384dcc1aa1474f}{mIsSensor}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_a42f0680fb14771132aab269491c217ff}{mRelativeLinearSurfaceVelocity}}\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings_a5f18a7a0fa71d91b1bd75481ea549de9}{mRelativeAngularSurfaceVelocity}}\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();\ }
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{enum\ class}\ ValidateResult}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ AcceptAllContactsForThisBodyPair,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ AcceptContact,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ RejectContact,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ RejectAllContactsForThisBodyPair\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classContactListener}{ContactListener}}}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactListener_a577b31dbf6d6e5a6ada2864a0b3f70bd}{\string~ContactListener}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{virtual}\ ValidateResult\ \ \mbox{\hyperlink{classContactListener_abb704483e4e1f2eba7109b504afdf482}{OnContactValidate}}([[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ [[maybe\_unused]]\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeResult}{CollideShapeResult}}\ \&inCollisionResult)\ \{\ \textcolor{keywordflow}{return}\ ValidateResult::AcceptAllContactsForThisBodyPair;\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactListener_aeb1d7908c8556ce24448ac572d7ad944}{OnContactAdded}}([[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classContactManifold}{ContactManifold}}\ \&inManifold,\ [[maybe\_unused]]\ \mbox{\hyperlink{classContactSettings}{ContactSettings}}\ \&ioSettings)\ \{\ \textcolor{comment}{/*\ Do\ nothing\ */}\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactListener_aa11e4d0107c2764e1c7e04eef72cb404}{OnContactPersisted}}([[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classContactManifold}{ContactManifold}}\ \&inManifold,\ [[maybe\_unused]]\ \mbox{\hyperlink{classContactSettings}{ContactSettings}}\ \&ioSettings)\ \{\ \textcolor{comment}{/*\ Do\ nothing\ */}\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactListener_aef8f0cac1d560622743420afcd1ce17a}{OnContactRemoved}}([[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}\ \&inSubShapePair)\ \{\ \textcolor{comment}{/*\ Do\ nothing\ */}\ \}}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,13 @@
+<map id="ObjectStreamIn" name="ObjectStreamIn">
+<area shape="rect" id="Node000001" title=" " alt="" coords="104,1147,280,1515"/>
+<area shape="rect" id="Node000005" href="$d1/dda/classObjectStreamBinaryIn.html" title="Implementation of ObjectStream binary input stream." alt="" coords="5,1563,184,1867"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="144,1529,136,1564,130,1562,139,1528"/>
+<area shape="rect" id="Node000006" href="$d7/dcb/classObjectStreamTextIn.html" title="Implementation of ObjectStream text input stream." alt="" coords="209,1563,373,1867"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="246,1528,254,1562,249,1564,240,1529"/>
+<area shape="rect" id="Node000002" href="$d4/d5d/classIObjectStreamIn.html" title="Interface class for reading from an object stream." alt="" coords="113,325,271,1099"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,1114,195,1147,189,1147,189,1114"/>
+<area shape="rect" id="Node000003" href="$d6/db1/classObjectStream.html" title="Base class for object stream input and output streams." alt="" coords="124,165,260,277"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="195,292,195,326,189,326,189,292"/>
+<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="131,5,253,117"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="195,133,195,166,189,166,189,133"/>
+</map>

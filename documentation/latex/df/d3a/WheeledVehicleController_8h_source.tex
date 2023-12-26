@@ -1,0 +1,161 @@
+\doxysection{Wheeled\+Vehicle\+Controller.\+h}
+\hypertarget{WheeledVehicleController_8h_source}{}\label{WheeledVehicleController_8h_source}\index{includes/jolt/Physics/Vehicle/WheeledVehicleController.h@{includes/jolt/Physics/Vehicle/WheeledVehicleController.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Vehicle/VehicleConstraint.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Vehicle/VehicleController.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Vehicle/VehicleEngine.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Vehicle/VehicleTransmission.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Vehicle/VehicleDifferential.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Core/LinearCurve.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classWheelSettingsWV}{WheelSettingsWV}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classWheelSettings}{WheelSettings}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classWheelSettingsWV}{WheelSettingsWV}})}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheelSettingsWV}{WheelSettingsWV}}();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ See:\ WheelSettings}}
+\DoxyCodeLine{00028\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveBinaryState(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ const\ override;}
+\DoxyCodeLine{00029\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreBinaryState(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ override;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInertia\ =\ 0.9f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAngularDamping\ =\ 0.2f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxSteerAngle\ =\ DegreesToRadians(70.0f);\ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classLinearCurve}{LinearCurve}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLongitudinalFriction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classLinearCurve}{LinearCurve}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLateralFriction;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxBrakeTorque\ =\ 1500.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxHandBrakeTorque\ =\ 4000.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classWheelWV}{WheelWV}}\ :\ public\ \mbox{\hyperlink{classWheel}{Wheel}}}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheelWV_a70b8c28efe81bdd38d39726b47dbf6cf}{WheelWV}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classWheelSettingsWV}{WheelSettingsWV}}\ \&inWheel);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classWheelSettingsWV}{WheelSettingsWV}}\ *\ \ \ \ \ \ \mbox{\hyperlink{classWheelWV_a3c72a249175961c0cb86b691b2980d06}{GetSettings}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classWheelSettingsWV}{WheelSettingsWV}}\ *\textcolor{keyword}{>}(mSettings.GetPtr());\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheelWV_a8d82611fb63ebf51e726d0aff2db4cab}{ApplyTorque}}(\textcolor{keywordtype}{float}\ inTorque,\ \textcolor{keywordtype}{float}\ inDeltaTime)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ mAngularVelocity\ +=\ inTorque\ *\ inDeltaTime\ /\ GetSettings()-\/>mInertia;}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheelWV_a5ac5b89c371660f4899a5fd4062599cb}{Update}}(uint\ inWheelIndex,\ \textcolor{keywordtype}{float}\ inDeltaTime,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inConstraint);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLongitudinalSlip\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLateralSlip\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCombinedLongitudinalFriction\ =\ 0.0f;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCombinedLateralFriction\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBrakeImpulse\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classWheeledVehicleControllerSettings}{WheeledVehicleControllerSettings}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVehicleControllerSettings}{VehicleControllerSettings}}}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classWheeledVehicleControllerSettings}{WheeledVehicleControllerSettings}})}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ See:\ VehicleControllerSettings}}
+\DoxyCodeLine{00078\ \ \ \ \ virtual\ \mbox{\hyperlink{classVehicleController}{VehicleController}}\ *\ \ \ \ ConstructController(\mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inConstraint)\ const\ override;}
+\DoxyCodeLine{00079\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveBinaryState(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ const\ override;}
+\DoxyCodeLine{00080\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreBinaryState(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ override;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classVehicleEngineSettings}{VehicleEngineSettings}}\ \ \ \ \ \ mEngine;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classVehicleTransmissionSettings}{VehicleTransmissionSettings}}\ \ mTransmission;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ Array<\mbox{\hyperlink{classVehicleDifferentialSettings}{VehicleDifferentialSettings}}>\ mDifferentials;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDifferentialLimitedSlipRatio\ =\ 1.4f;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classWheeledVehicleController}{WheeledVehicleController}}\ :\ public\ \mbox{\hyperlink{classVehicleController}{VehicleController}}}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00092\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_adc59fdfb7b5b8cfc42c6656b8fd3c988}{WheeledVehicleController}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classWheeledVehicleControllerSettings}{WheeledVehicleControllerSettings}}\ \&inSettings,\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inConstraint);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classWheeledVehicleController_ac37470c3ca61d99d2ab55e6c851410d0}{Differentials}}\ =\ Array<VehicleDifferentialSettings>;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a3a3b66c895677f66890ddde7b5e6f9ba}{SetDriverInput}}(\textcolor{keywordtype}{float}\ inForward,\ \textcolor{keywordtype}{float}\ inRight,\ \textcolor{keywordtype}{float}\ inBrake,\ \textcolor{keywordtype}{float}\ inHandBrake)\ \{\ mForwardInput\ =\ inForward;\ mRightInput\ =\ inRight;\ mBrakeInput\ =\ inBrake;\ mHandBrakeInput\ =\ inHandBrake;\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a219dd9b901cf12dc8e8a6eb2fa8d6915}{SetForwardInput}}(\textcolor{keywordtype}{float}\ inForward)\ \ \ \ \ \ \ \ \ \{\ mForwardInput\ =\ inForward;\ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetForwardInput()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mForwardInput;\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_aec55421b09ff5dc8421e133c01561da1}{SetRightInput}}(\textcolor{keywordtype}{float}\ inRight)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mRightInput\ =\ inRight;\ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetRightInput()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mRightInput;\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a274d8e6bb7aca40c3f3d467de6f744eb}{SetBrakeInput}}(\textcolor{keywordtype}{float}\ inBrake)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mBrakeInput\ =\ inBrake;\ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetBrakeInput()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBrakeInput;\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a7d48f4399fa3ed50e559b12017664510}{SetHandBrakeInput}}(\textcolor{keywordtype}{float}\ inHandBrake)\ \ \ \ \ \ \ \{\ mHandBrakeInput\ =\ inHandBrake;\ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetHandBrakeInput()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mHandBrakeInput;\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleEngine}{VehicleEngine}}\ \&\ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a459374f72146ee0bfe05ead3151d346c}{GetEngine}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mEngine;\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{classVehicleEngine}{VehicleEngine}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_acf0f3be1d9270518b59691310c28769b}{GetEngine}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mEngine;\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleTransmission}{VehicleTransmission}}\ \&\ \ \mbox{\hyperlink{classWheeledVehicleController_a3a14cc53afb7a84709927cd9b5fc863b}{GetTransmission}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mTransmission;\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{classVehicleTransmission}{VehicleTransmission}}\ \&\ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a8c3ab1fdbdcec9b95237e2b727c378ac}{GetTransmission}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mTransmission;\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classWheeledVehicleController_ac37470c3ca61d99d2ab55e6c851410d0}{Differentials}}\ \&\ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a7364b136c27cf5330968729518859a1d}{GetDifferentials}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mDifferentials;\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_ac37470c3ca61d99d2ab55e6c851410d0}{Differentials}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_abc5128d2c64bd0081380279ed025e2ed}{GetDifferentials}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mDifferentials;\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a54518ef2b442bd0a1fe7a871d36d167f}{GetDifferentialLimitedSlipRatio}}()\textcolor{keyword}{\ const\ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mDifferentialLimitedSlipRatio;\ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetDifferentialLimitedSlipRatio(\textcolor{keywordtype}{float}\ inV)\ \ \{\ mDifferentialLimitedSlipRatio\ =\ inV;\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a0ef079b5815d391cedacbceb40105c6f}{GetWheelSpeedAtClutch}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetRPMMeter(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition,\ \textcolor{keywordtype}{float}\ inSize)\ \{\ mRPMMeterPosition\ =\ inPosition;\ mRPMMeterSize\ =\ inSize;\ \}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ See:\ VehicleController}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classWheel}{Wheel}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConstructWheel(\textcolor{keyword}{const}\ \mbox{\hyperlink{classWheelSettings}{WheelSettings}}\ \&inWheel)\textcolor{keyword}{\ const\ override\ }\{\ JPH\_ASSERT(IsKindOf(\&inWheel,\ JPH\_RTTI(\mbox{\hyperlink{classWheelSettingsWV}{WheelSettingsWV}})));\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classWheelWV}{WheelWV}}(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classWheelSettingsWV}{WheelSettingsWV}}\ \&\textcolor{keyword}{>}(inWheel));\ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AllowSleep()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PreCollide(\textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PostCollide(\textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolveLongitudinalAndLateralConstraints(\textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Draw(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ Control\ information}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mForwardInput\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRightInput\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBrakeInput\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHandBrakeInput\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ Simluation\ information}}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{classVehicleEngine}{VehicleEngine}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a4f7bcd7200890610de12f3eb207541e5}{mEngine}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classVehicleTransmission}{VehicleTransmission}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a22bd29e8d76290ee6fbfb10b8c207f83}{mTransmission}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_ac37470c3ca61d99d2ab55e6c851410d0}{Differentials}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_a3d1069e60f64ca74c667e120f06d34bf}{mDifferentials}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classWheeledVehicleController_aa389a6d0e57e4eb69c7d238be20c6575}{mDifferentialLimitedSlipRatio}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPreviousDeltaTime\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ Debug\ settings}}
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRPMMeterPosition\ \{\ 0,\ 1,\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRPMMeterSize\ =\ 0.5f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00184\ \};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

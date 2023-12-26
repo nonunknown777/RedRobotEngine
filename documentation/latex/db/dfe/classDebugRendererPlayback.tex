@@ -1,0 +1,44 @@
+\doxysection{Debug\+Renderer\+Playback Class Reference}
+\hypertarget{classDebugRendererPlayback}{}\label{classDebugRendererPlayback}\index{DebugRendererPlayback@{DebugRendererPlayback}}
+
+
+Class that can read a recorded stream from \doxylink{classDebugRendererRecorder}{Debug\+Renderer\+Recorder} and plays it back trough a \doxylink{classDebugRenderer}{Debug\+Renderer}.  
+
+
+
+
+{\ttfamily \#include $<$Debug\+Renderer\+Playback.\+h$>$}
+
+
+
+Collaboration diagram for Debug\+Renderer\+Playback\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{d4/d24/classDebugRendererPlayback__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDebugRendererPlayback_a33c8fd5a6bbdf90c9710f5aa625ac6a4}\label{classDebugRendererPlayback_a33c8fd5a6bbdf90c9710f5aa625ac6a4} 
+{\bfseries Debug\+Renderer\+Playback} (\mbox{\hyperlink{classDebugRenderer}{Debug\+Renderer}} \&in\+Renderer)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classDebugRendererPlayback_adf9c7713f5d00dcb183d02b146d8b40a}\label{classDebugRendererPlayback_adf9c7713f5d00dcb183d02b146d8b40a} 
+void {\bfseries Parse} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Parse a stream of frames. \end{DoxyCompactList}\item 
+\Hypertarget{classDebugRendererPlayback_afd7aac14421906d07df334e1d3a8f31c}\label{classDebugRendererPlayback_afd7aac14421906d07df334e1d3a8f31c} 
+uint {\bfseries Get\+Num\+Frames} () const
+\begin{DoxyCompactList}\small\item\em Get the number of parsed frames. \end{DoxyCompactList}\item 
+\Hypertarget{classDebugRendererPlayback_a7253cd6ee053738333ffada2a28c5d70}\label{classDebugRendererPlayback_a7253cd6ee053738333ffada2a28c5d70} 
+void {\bfseries Draw\+Frame} (uint in\+Frame\+Number) const
+\begin{DoxyCompactList}\small\item\em Draw a frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that can read a recorded stream from \doxylink{classDebugRendererRecorder}{Debug\+Renderer\+Recorder} and plays it back trough a \doxylink{classDebugRenderer}{Debug\+Renderer}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Renderer/Debug\+Renderer\+Playback.\+h\end{DoxyCompactItemize}

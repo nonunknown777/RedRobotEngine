@@ -1,0 +1,72 @@
+\doxysection{Vehicle\+Engine\+Settings Class Reference}
+\hypertarget{classVehicleEngineSettings}{}\label{classVehicleEngineSettings}\index{VehicleEngineSettings@{VehicleEngineSettings}}
+
+
+Generic properties for a vehicle engine.  
+
+
+
+
+{\ttfamily \#include $<$Vehicle\+Engine.\+h$>$}
+
+
+
+Inheritance diagram for Vehicle\+Engine\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{d1/d53/classVehicleEngineSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Vehicle\+Engine\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{de/d91/classVehicleEngineSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVehicleEngineSettings_aa326151c7c343427669a4790b84d7697}\label{classVehicleEngineSettings_aa326151c7c343427669a4790b84d7697} 
+{\bfseries Vehicle\+Engine\+Settings} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleEngineSettings_a82b4677535f7f39e68081227caf4b547}\label{classVehicleEngineSettings_a82b4677535f7f39e68081227caf4b547} 
+void {\bfseries Save\+Binary\+State} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the contents in binary form to in\+Stream. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleEngineSettings_a07beafb1531780053169dbc05283ed26}\label{classVehicleEngineSettings_a07beafb1531780053169dbc05283ed26} 
+void {\bfseries Restore\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restores the contents in binary form to in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVehicleEngineSettings_a406aada0f8bcbf536d743de1f8f77329}\label{classVehicleEngineSettings_a406aada0f8bcbf536d743de1f8f77329} 
+float {\bfseries m\+Max\+Torque} = 500.\+0f
+\begin{DoxyCompactList}\small\item\em Max amount of torque (Nm) that the engine can deliver. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleEngineSettings_a0ac03e624a16d07af8d20dee5a1924bb}\label{classVehicleEngineSettings_a0ac03e624a16d07af8d20dee5a1924bb} 
+float {\bfseries m\+Min\+RPM} = 1000.\+0f
+\begin{DoxyCompactList}\small\item\em Min amount of revolutions per minute (rpm) the engine can produce without stalling. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleEngineSettings_a68b6fa14900e23076bb25b3280fef3c5}\label{classVehicleEngineSettings_a68b6fa14900e23076bb25b3280fef3c5} 
+float {\bfseries m\+Max\+RPM} = 6000.\+0f
+\begin{DoxyCompactList}\small\item\em Max amount of revolutions per minute (rpm) the engine can generate. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleEngineSettings_a2aa42e9f8a1eabe44171c7b2344661f0}\label{classVehicleEngineSettings_a2aa42e9f8a1eabe44171c7b2344661f0} 
+\mbox{\hyperlink{classLinearCurve}{Linear\+Curve}} {\bfseries m\+Normalized\+Torque}
+\begin{DoxyCompactList}\small\item\em Curve that describes a ratio of the max torque the engine can produce vs the fraction of the max RPM of the engine. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleEngineSettings_abe75cc5c2522753f6f5e4ffc6035a183}\label{classVehicleEngineSettings_abe75cc5c2522753f6f5e4ffc6035a183} 
+float {\bfseries m\+Inertia} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em Moment of inertia (kg m\texorpdfstring{$^\wedge$}{\string^}2) of the engine. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleEngineSettings_a721c1a1f97766d41844a337ca4ba1e0b}\label{classVehicleEngineSettings_a721c1a1f97766d41844a337ca4ba1e0b} 
+float {\bfseries m\+Angular\+Damping} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Angular damping factor of the wheel\+: dw/dt = -\/c \texorpdfstring{$\ast$}{*} w. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generic properties for a vehicle engine. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Vehicle/Vehicle\+Engine.\+h\end{DoxyCompactItemize}

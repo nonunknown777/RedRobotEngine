@@ -1,0 +1,92 @@
+\doxysection{AABBTree\+Builder.\+h}
+\hypertarget{AABBTreeBuilder_8h_source}{}\label{AABBTreeBuilder_8h_source}\index{includes/jolt/AABBTree/AABBTreeBuilder.h@{includes/jolt/AABBTree/AABBTreeBuilder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/TriangleSplitter/TriangleSplitter.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/AABox.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAABBTreeBuilderStats}{AABBTreeBuilderStats}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{structTriangleSplitter_1_1Stats}{TriangleSplitter::Stats}}\ \ \mbox{\hyperlink{structAABBTreeBuilderStats_ab1b2df872750bdff4622582ab59b1aa3}{mSplitterStats}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_a3864a59872b7d9ae1241a9e2d9561b04}{mSAHCost}}\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_aa59fbfa1cd92eb27ca7c1e13c4d28163}{mMinDepth}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_a5722b3c6619dc1793e79e902685aaaa5}{mMaxDepth}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_ab3bb28a53eb8276008b3be628713ab4e}{mNodeCount}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_a62c8f089af5a357cf40d50d27961ee1b}{mLeafNodeCount}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_a567b593b4f4bb7cdc2977a2a624da662}{mMaxTrianglesPerLeaf}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_a18bfd03d4c5760089e7a6900965a7dc1}{mTreeMinTrianglesPerLeaf}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_aee50ad973c7fe3651d81dcd0377b5299}{mTreeMaxTrianglesPerLeaf}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAABBTreeBuilderStats_a7d0f12dbcbee2af06c05d40ae3df5f93}{mTreeAvgTrianglesPerLeaf}}\ =\ 0.0f;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classAABBTreeBuilder}{AABBTreeBuilder}}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{Node}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a7588e58e1d598787ed2d4a23d18e187b}{Node}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{\string~Node}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ab9f14f78dc59d08126ca910121c173e0}{GetTriangleCount}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ uint(mTriangles.size());\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ae10ed18604852aa130a4770fe72c9240}{HasChildren}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mChild[0]\ !=\ \textcolor{keyword}{nullptr}\ ||\ mChild[1]\ !=\ \textcolor{keyword}{nullptr};\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a22a2cb2691825e2935516c36bc936875}{GetMinDepth}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_aef9d9d0695306595e4b6f16b2b47e60c}{GetMaxDepth}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ae1245ceb7193257c465b0916c9c19f10}{GetNodeCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a26388038bedeaa6f463327ca1542fb06}{GetLeafNodeCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ad4227473a354d52097ead61c6fa8d992}{GetTriangleCountInTree}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a03a6ef7fe1cfc46cb4cb85d49c0188ed}{GetTriangleCountPerNode}}(\textcolor{keywordtype}{float}\ \&outAverage,\ uint\ \&outMin,\ uint\ \&outMax)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_af66f1c559bb11897ba3d2d996b931e5d}{CalculateSAHCost}}(\textcolor{keywordtype}{float}\ inCostTraversal,\ \textcolor{keywordtype}{float}\ inCostLeaf)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a8babc5943488e1ca48b9768c647f599a}{GetNChildren}}(uint\ inN,\ Array<const\ Node\ *>\ \&outChildren)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ IndexedTriangleList\ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4ddf63bc140eacd04b11913f745b2e2f}{mTriangles}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{Node}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ mChild[2];}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAABBTreeBuilder}{AABBTreeBuilder}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateSAHCostInternal(\textcolor{keywordtype}{float}\ inCostTraversalDivSurfaceArea,\ \textcolor{keywordtype}{float}\ inCostLeafDivSurfaceArea)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTriangleCountPerNodeInternal(\textcolor{keywordtype}{float}\ \&outAverage,\ uint\ \&outAverageDivisor,\ uint\ \&outMin,\ uint\ \&outMax)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00095\ \ \ \ \ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_a3a44b40e58b23523baab7698ed9eb117}{AABBTreeBuilder}}(\mbox{\hyperlink{classTriangleSplitter}{TriangleSplitter}}\ \&inSplitter,\ uint\ inMaxTrianglesPerLeaf\ =\ 16);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{Node}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_a3fec017db6c7a042e72e228690f90140}{Build}}(\mbox{\hyperlink{structAABBTreeBuilderStats}{AABBTreeBuilderStats}}\ \&outStats);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{Node}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BuildInternal(\textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleSplitter_1_1Range}{TriangleSplitter::Range}}\ \&inTriangles);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classTriangleSplitter}{TriangleSplitter}}\ \&\ \ \ \ \ \ mTriangleSplitter;}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxTrianglesPerLeaf;}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

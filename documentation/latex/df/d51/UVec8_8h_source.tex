@@ -1,0 +1,85 @@
+\doxysection{UVec8.\+h}
+\hypertarget{UVec8_8h_source}{}\label{UVec8_8h_source}\index{includes/jolt/Math/UVec8.h@{includes/jolt/Math/UVec8.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Vec8.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classUVec8}{UVec8}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec8_a01713cf88c3edb46c73aca8927447be3}{UVec8}}()\ =\ \textcolor{keywordflow}{default};\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec8}{UVec8}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \&inRHS)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00018\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec8}{UVec8}}(\_\_m256i\ inRHS)\ :\ mValue(inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec8}{UVec8}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inLo,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inHi);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00025\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ inV2);\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sReplicate(uint32\ inV);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sSplatX(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sSplatY(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sSplatZ(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sEquals(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sSelect(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inControl);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sOr(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sXor(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sAnd(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ JPH\_INLINE\ uint32\ \ \ \ \ \ \ \ \ \ \ operator\ []\ (uint\ inCoordinate)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(inCoordinate\ <\ 8);\ \textcolor{keywordflow}{return}\ mU32[inCoordinate];\ \}}
+\DoxyCodeLine{00056\ \ \ \ \ JPH\_INLINE\ uint32\ \&\ \ \ \ \ \ \ \ \ operator\ []\ (uint\ inCoordinate)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inCoordinate\ <\ 8);\ \textcolor{keywordflow}{return}\ mU32[inCoordinate];\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\ SwizzleX,\ u\textcolor{keywordtype}{int}32\ SwizzleY,\ u\textcolor{keywordtype}{int}32\ SwizzleZ,\ u\textcolor{keywordtype}{int}32\ SwizzleW>}
+\DoxyCodeLine{00060\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec8_a2e355553378c7ecbac97bf9a52760f20}{Swizzle}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ TestAnyTrue()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ TestAllTrue()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \ \ \ \ \ \ \ \ \ \ LowerVec4()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \ \ \ \ \ \ \ \ \ \ UpperVec4()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ ToFloat()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00079\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec8_af26e70e8e238b9765bc5ab12b817e5d1}{LogicalShiftLeft}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00083\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec8_a4d13b9d84a398e856caf4f072483bf0d}{LogicalShiftRight}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00087\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec8_a49a21bc576313ae676fb2064904ed506}{ArithmeticShiftRight}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \_\_m256i\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mValue;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mU32[8];}
+\DoxyCodeLine{00093\ \ \ \ \ \};}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{static\_assert}(is\_trivial<UVec8>(),\ \textcolor{stringliteral}{"{}Is\ supposed\ to\ be\ a\ trivial\ type!"{}});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#include\ "{}UVec8.inl"{}}}
+
+\end{DoxyCode}

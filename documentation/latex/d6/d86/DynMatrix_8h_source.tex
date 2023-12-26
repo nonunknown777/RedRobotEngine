@@ -1,0 +1,33 @@
+\doxysection{Dyn\+Matrix.\+h}
+\hypertarget{DynMatrix_8h_source}{}\label{DynMatrix_8h_source}\index{includes/jolt/Math/DynMatrix.h@{includes/jolt/Math/DynMatrix.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2022\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classDynMatrix}{DynMatrix}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDynMatrix_a0cb3ea3a8ccc5abca8edbbe6b8d22031}{DynMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDynMatrix}{DynMatrix}}\ \&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDynMatrix}{DynMatrix}}(uint\ inRows,\ uint\ inCols)\ \ \ \ \ \ \ \ \ \ \ \ :\ mRows(inRows),\ mCols(inCols)\ \{\ mElements.resize(inRows\ *\ inCols);\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ operator\ ()\ (uint\ inRow,\ uint\ inCol)\textcolor{keyword}{\ const\ \ }\{\ JPH\_ASSERT(inRow\ <\ mRows\ \&\&\ inCol\ <\ mCols);\ \textcolor{keywordflow}{return}\ mElements[inRow\ *\ mCols\ +\ inCol];\ \}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ \&\ \ \ \ \ \ \ \ \ operator\ ()\ (uint\ inRow,\ uint\ inCol)\ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inRow\ <\ mRows\ \&\&\ inCol\ <\ mCols);\ \textcolor{keywordflow}{return}\ mElements[inRow\ *\ mCols\ +\ inCol];\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDynMatrix_a14b89bcd36316ecbf0fd94ea6a7d255e}{GetCols}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mCols;\ \}}
+\DoxyCodeLine{00023\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ GetRows()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mRows;\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ mRows;}
+\DoxyCodeLine{00027\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ mCols;}
+\DoxyCodeLine{00028\ \ \ \ \ Array<float>\ \ \ \ mElements;}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

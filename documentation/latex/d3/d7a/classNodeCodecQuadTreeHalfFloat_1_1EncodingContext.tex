@@ -1,0 +1,55 @@
+\doxysection{Node\+Codec\+Quad\+Tree\+Half\+Float\texorpdfstring{$<$}{<} Alignment \texorpdfstring{$>$}{>}\+::Encoding\+Context Class Reference}
+\hypertarget{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext}{}\label{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext}\index{NodeCodecQuadTreeHalfFloat$<$ Alignment $>$::EncodingContext@{NodeCodecQuadTreeHalfFloat$<$ Alignment $>$::EncodingContext}}
+
+
+This class encodes and compresses quad tree nodes.  
+
+
+
+
+{\ttfamily \#include $<$Node\+Codec\+Quad\+Tree\+Half\+Float.\+h$>$}
+
+
+
+Collaboration diagram for Node\+Codec\+Quad\+Tree\+Half\+Float\texorpdfstring{$<$}{<} Alignment \texorpdfstring{$>$}{>}\+::Encoding\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{d8/d31/classNodeCodecQuadTreeHalfFloat_1_1EncodingContext__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a743407baa5c478e69bb3f36dcd4b0e5e}\label{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a743407baa5c478e69bb3f36dcd4b0e5e} 
+uint {\bfseries Get\+Pessimistic\+Memory\+Estimate} (uint in\+Node\+Count) const
+\begin{DoxyCompactList}\small\item\em Get an upper bound on the amount of bytes needed for a node tree with in\+Node\+Count nodes. \end{DoxyCompactList}\item 
+uint \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_ac621a13ec8689e7cc9ff1fb995115874}{Node\+Allocate}} (const \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTree\+Builder\+::\+Node}} \texorpdfstring{$\ast$}{*}in\+Node, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Node\+Bounds\+Min, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Node\+Bounds\+Max, Array$<$ const \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTree\+Builder\+::\+Node}} \texorpdfstring{$\ast$}{*} $>$ \&io\+Children, \mbox{\hyperlink{classVec3}{Vec3}} out\+Child\+Bounds\+Min\mbox{[}\mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a5a852e30e37f354078911cdefdcc846c}{Num\+Children\+Per\+Node}}\mbox{]}, \mbox{\hyperlink{classVec3}{Vec3}} out\+Child\+Bounds\+Max\mbox{[}\mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a5a852e30e37f354078911cdefdcc846c}{Num\+Children\+Per\+Node}}\mbox{]}, \mbox{\hyperlink{classByteBuffer}{Byte\+Buffer}} \&io\+Buffer, const char \texorpdfstring{$\ast$}{*}\&out\+Error) const
+\item 
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a500c6a27c04555f154c00b5ad85654d3}\label{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a500c6a27c04555f154c00b5ad85654d3} 
+bool {\bfseries Node\+Finalize} (const \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTree\+Builder\+::\+Node}} \texorpdfstring{$\ast$}{*}in\+Node, uint in\+Node\+Start, uint in\+Num\+Children, const uint \texorpdfstring{$\ast$}{*}in\+Children\+Node\+Start, const uint \texorpdfstring{$\ast$}{*}in\+Children\+Triangles\+Start, \mbox{\hyperlink{classByteBuffer}{Byte\+Buffer}} \&io\+Buffer, const char \texorpdfstring{$\ast$}{*}\&out\+Error) const
+\begin{DoxyCompactList}\small\item\em Once all nodes have been added, this call finalizes all nodes by patching in the offsets of the child nodes (that were added after the node itself was added) \end{DoxyCompactList}\item 
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a744d6e02ea549980927d888129f8fc79}\label{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a744d6e02ea549980927d888129f8fc79} 
+bool {\bfseries Finalize} (\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Header}{Header}} \texorpdfstring{$\ast$}{*}out\+Header, const \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTree\+Builder\+::\+Node}} \texorpdfstring{$\ast$}{*}in\+Root, uint in\+Root\+Node\+Start, uint in\+Root\+Triangles\+Start, const char \texorpdfstring{$\ast$}{*}\&out\+Error) const
+\begin{DoxyCompactList}\small\item\em Once all nodes have been finalized, this will finalize the header of the nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$int Alignment$>$\newline
+class Node\+Codec\+Quad\+Tree\+Half\+Float$<$ Alignment $>$\+::\+Encoding\+Context}
+This class encodes and compresses quad tree nodes. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_ac621a13ec8689e7cc9ff1fb995115874}\label{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_ac621a13ec8689e7cc9ff1fb995115874} 
+\index{NodeCodecQuadTreeHalfFloat$<$ Alignment $>$::EncodingContext@{NodeCodecQuadTreeHalfFloat$<$ Alignment $>$::EncodingContext}!NodeAllocate@{NodeAllocate}}
+\index{NodeAllocate@{NodeAllocate}!NodeCodecQuadTreeHalfFloat$<$ Alignment $>$::EncodingContext@{NodeCodecQuadTreeHalfFloat$<$ Alignment $>$::EncodingContext}}
+\doxysubsubsection{\texorpdfstring{NodeAllocate()}{NodeAllocate()}}
+{\footnotesize\ttfamily template$<$int Alignment$>$ \\
+uint \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat}{Node\+Codec\+Quad\+Tree\+Half\+Float}}$<$ Alignment $>$\+::\+Encoding\+Context\+::\+Node\+Allocate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTree\+Builder\+::\+Node}} \texorpdfstring{$\ast$}{*}}]{in\+Node,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Node\+Bounds\+Min,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Node\+Bounds\+Max,  }\item[{Array$<$ const \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTree\+Builder\+::\+Node}} \texorpdfstring{$\ast$}{*} $>$ \&}]{io\+Children,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}}}]{out\+Child\+Bounds\+Min\mbox{[}\+Num\+Children\+Per\+Node\mbox{]},  }\item[{\mbox{\hyperlink{classVec3}{Vec3}}}]{out\+Child\+Bounds\+Max\mbox{[}\+Num\+Children\+Per\+Node\mbox{]},  }\item[{\mbox{\hyperlink{classByteBuffer}{Byte\+Buffer}} \&}]{io\+Buffer,  }\item[{const char \texorpdfstring{$\ast$}{*}\&}]{out\+Error }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allocate a new node for in\+Node. Algorithm can modify the order of io\+Children to indicate in which order children should be compressed Algorithm can enlarge the bounding boxes of the children during compression and returns these in out\+Child\+Bounds\+Min, out\+Child\+Bounds\+Max in\+Node\+Bounds\+Min, in\+Node\+Bounds\+Max is the bounding box if in\+Node possibly widened by compressing the parent node Returns uint(-\/1) on error and reports the error in out\+Error 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+AABBTree/\+Node\+Codec/Node\+Codec\+Quad\+Tree\+Half\+Float.\+h\end{DoxyCompactItemize}

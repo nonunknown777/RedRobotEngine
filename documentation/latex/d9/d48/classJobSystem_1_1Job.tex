@@ -1,0 +1,91 @@
+\doxysection{Job\+System\+::Job Class Reference}
+\hypertarget{classJobSystem_1_1Job}{}\label{classJobSystem_1_1Job}\index{JobSystem::Job@{JobSystem::Job}}
+
+
+A class that contains information for a single unit of work.  
+
+
+
+
+{\ttfamily \#include $<$Job\+System.\+h$>$}
+
+
+
+Collaboration diagram for Job\+System\+::Job\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{d3/da9/classJobSystem_1_1Job__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJobSystem_1_1Job_a50f9de63538bb632101548fef86258e1}\label{classJobSystem_1_1Job_a50f9de63538bb632101548fef86258e1} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Job} (const char \texorpdfstring{$\ast$}{*}in\+Job\+Name, \mbox{\hyperlink{classColor}{Color\+Arg}} in\+Color, \mbox{\hyperlink{classJobSystem}{Job\+System}} \texorpdfstring{$\ast$}{*}in\+Job\+System, const \mbox{\hyperlink{classJobSystem_ae31ef61a509934f03d4705aec19c61f5}{Job\+Function}} \&in\+Job\+Function, uint32 in\+Num\+Dependencies)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classJobSystem_1_1Job_aa3922bb7442e7e778cec6a8ea984f454}\label{classJobSystem_1_1Job_aa3922bb7442e7e778cec6a8ea984f454} 
+\mbox{\hyperlink{classJobSystem}{Job\+System}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Job\+System} ()
+\begin{DoxyCompactList}\small\item\em Get the jobs system to which this job belongs. \end{DoxyCompactList}\item 
+\Hypertarget{classJobSystem_1_1Job_ac6b5861562063d42cfa3c68f45c12b2d}\label{classJobSystem_1_1Job_ac6b5861562063d42cfa3c68f45c12b2d} 
+void {\bfseries Add\+Ref} ()
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+\Hypertarget{classJobSystem_1_1Job_a46cad8e24ec8ff788b41e8aea53a2e27}\label{classJobSystem_1_1Job_a46cad8e24ec8ff788b41e8aea53a2e27} 
+void {\bfseries Release} ()
+\item 
+\Hypertarget{classJobSystem_1_1Job_a7686a4762d0dfe746f0b46edfcae3d6d}\label{classJobSystem_1_1Job_a7686a4762d0dfe746f0b46edfcae3d6d} 
+void {\bfseries Add\+Dependency} (int in\+Count)
+\begin{DoxyCompactList}\small\item\em Add to the dependency counter. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classJobSystem_1_1Job_a59a4638f7edcbfd30f47f096f0f984f1}{Remove\+Dependency}} (int in\+Count)
+\item 
+void \mbox{\hyperlink{classJobSystem_1_1Job_ae4411bbad4af5361b85db233bd0adb43}{Remove\+Dependency\+And\+Queue}} (int in\+Count)
+\item 
+\Hypertarget{classJobSystem_1_1Job_a83a4dee7e40f01cab6eafbafa53a4efc}\label{classJobSystem_1_1Job_a83a4dee7e40f01cab6eafbafa53a4efc} 
+bool {\bfseries Set\+Barrier} (\mbox{\hyperlink{classJobSystem_1_1Barrier}{Barrier}} \texorpdfstring{$\ast$}{*}in\+Barrier)
+\begin{DoxyCompactList}\small\item\em Set the job barrier that this job belongs to and returns false if this was not possible because the job already finished. \end{DoxyCompactList}\item 
+\Hypertarget{classJobSystem_1_1Job_a51718f809ac43edfcd1a3ae87acc2bd4}\label{classJobSystem_1_1Job_a51718f809ac43edfcd1a3ae87acc2bd4} 
+uint32 {\bfseries Execute} ()
+\begin{DoxyCompactList}\small\item\em Run the job function, returns the number of dependencies that this job still has or c\+Executing\+State or c\+Done\+State. \end{DoxyCompactList}\item 
+\Hypertarget{classJobSystem_1_1Job_aaa223bb40f3b9a54e69440ae309a661f}\label{classJobSystem_1_1Job_aaa223bb40f3b9a54e69440ae309a661f} 
+bool {\bfseries Can\+Be\+Executed} () const
+\begin{DoxyCompactList}\small\item\em Test if the job can be executed. \end{DoxyCompactList}\item 
+\Hypertarget{classJobSystem_1_1Job_abd9fad54e1b18a2a0c9795e86e222875}\label{classJobSystem_1_1Job_abd9fad54e1b18a2a0c9795e86e222875} 
+bool {\bfseries Is\+Done} () const
+\begin{DoxyCompactList}\small\item\em Test if the job finished executing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJobSystem_1_1Job_add5d0be4f40149e9b66ebaf3ed99f96b}\label{classJobSystem_1_1Job_add5d0be4f40149e9b66ebaf3ed99f96b} 
+static constexpr uint32 {\bfseries c\+Executing\+State} = 0xe0e0e0e0
+\begin{DoxyCompactList}\small\item\em Value of m\+Num\+Dependencies when job is executing. \end{DoxyCompactList}\item 
+\Hypertarget{classJobSystem_1_1Job_aa36ca70b191d31c36707cf642167b926}\label{classJobSystem_1_1Job_aa36ca70b191d31c36707cf642167b926} 
+static constexpr uint32 {\bfseries c\+Done\+State} = 0xd0d0d0d0
+\begin{DoxyCompactList}\small\item\em Value of m\+Num\+Dependencies when job is done executing. \end{DoxyCompactList}\item 
+\Hypertarget{classJobSystem_1_1Job_a0d1be0a8e2bcb376eee7915050b17739}\label{classJobSystem_1_1Job_a0d1be0a8e2bcb376eee7915050b17739} 
+static constexpr intptr\+\_\+t {\bfseries c\+Barrier\+Done\+State} = \texorpdfstring{$\sim$}{\string~}intptr\+\_\+t(0)
+\begin{DoxyCompactList}\small\item\em Value to use when the barrier has been triggered. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that contains information for a single unit of work. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classJobSystem_1_1Job_a59a4638f7edcbfd30f47f096f0f984f1}\label{classJobSystem_1_1Job_a59a4638f7edcbfd30f47f096f0f984f1} 
+\index{JobSystem::Job@{JobSystem::Job}!RemoveDependency@{RemoveDependency}}
+\index{RemoveDependency@{RemoveDependency}!JobSystem::Job@{JobSystem::Job}}
+\doxysubsubsection{\texorpdfstring{RemoveDependency()}{RemoveDependency()}}
+{\footnotesize\ttfamily bool Job\+System\+::\+Job\+::\+Remove\+Dependency (\begin{DoxyParamCaption}\item[{int}]{in\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove from the dependency counter. Returns true whenever the dependency counter reaches zero and if it does it is no longer valid to call the Add\+Dependency/\+Remove\+Dependency functions. \Hypertarget{classJobSystem_1_1Job_ae4411bbad4af5361b85db233bd0adb43}\label{classJobSystem_1_1Job_ae4411bbad4af5361b85db233bd0adb43} 
+\index{JobSystem::Job@{JobSystem::Job}!RemoveDependencyAndQueue@{RemoveDependencyAndQueue}}
+\index{RemoveDependencyAndQueue@{RemoveDependencyAndQueue}!JobSystem::Job@{JobSystem::Job}}
+\doxysubsubsection{\texorpdfstring{RemoveDependencyAndQueue()}{RemoveDependencyAndQueue()}}
+{\footnotesize\ttfamily void Job\+System\+::\+Job\+::\+Remove\+Dependency\+And\+Queue (\begin{DoxyParamCaption}\item[{int}]{in\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove from the dependency counter. \doxylink{classJobSystem_1_1Job}{Job} will be queued whenever the dependency counter reaches zero and if it does it is no longer valid to call the Add\+Dependency/\+Remove\+Dependency functions. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Job\+System.\+h\item 
+includes/jolt/\+Core/Job\+System.\+inl\end{DoxyCompactItemize}

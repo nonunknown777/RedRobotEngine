@@ -1,0 +1,71 @@
+\doxysection{Object\+Layer\+Pair\+Filter Class Reference}
+\hypertarget{classObjectLayerPairFilter}{}\label{classObjectLayerPairFilter}\index{ObjectLayerPairFilter@{ObjectLayerPairFilter}}
+
+
+Filter class to test if two objects can collide based on their object layer. Used while finding collision pairs.  
+
+
+
+
+{\ttfamily \#include $<$Object\+Layer.\+h$>$}
+
+
+
+Inheritance diagram for Object\+Layer\+Pair\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/dad/classObjectLayerPairFilter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object\+Layer\+Pair\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{df/d1d/classObjectLayerPairFilter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectLayerPairFilter_aa5eb712c7da546d32b812ed018c714bb}\label{classObjectLayerPairFilter_aa5eb712c7da546d32b812ed018c714bb} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Object\+Layer\+Pair\+Filter} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classObjectLayerPairFilter_a81cbe75cceb74bc262199206ac129c88}{Should\+Collide}} (Object\+Layer in\+Layer1, Object\+Layer in\+Layer2) const
+\begin{DoxyCompactList}\small\item\em Returns true if two layers can collide. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Filter class to test if two objects can collide based on their object layer. Used while finding collision pairs. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classObjectLayerPairFilter_a81cbe75cceb74bc262199206ac129c88}\label{classObjectLayerPairFilter_a81cbe75cceb74bc262199206ac129c88} 
+\index{ObjectLayerPairFilter@{ObjectLayerPairFilter}!ShouldCollide@{ShouldCollide}}
+\index{ShouldCollide@{ShouldCollide}!ObjectLayerPairFilter@{ObjectLayerPairFilter}}
+\doxysubsubsection{\texorpdfstring{ShouldCollide()}{ShouldCollide()}}
+{\footnotesize\ttfamily virtual bool Object\+Layer\+Pair\+Filter\+::\+Should\+Collide (\begin{DoxyParamCaption}\item[{Object\+Layer}]{in\+Layer1,  }\item[{Object\+Layer}]{in\+Layer2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns true if two layers can collide. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classObjectLayerPairFilterMask_a23e66d271d3cfa3977432941f767e994}{Object\+Layer\+Pair\+Filter\+Mask}}, and \mbox{\hyperlink{classObjectLayerPairFilterTable_a77261471bc7057de4c292e22c645d718}{Object\+Layer\+Pair\+Filter\+Table}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Object\+Layer.\+h\end{DoxyCompactItemize}

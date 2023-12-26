@@ -1,0 +1,136 @@
+\doxysection{Block\+Allocator.\+hpp}
+\hypertarget{BlockAllocator_8hpp_source}{}\label{BlockAllocator_8hpp_source}\index{includes/playrho/Common/BlockAllocator.hpp@{includes/playrho/Common/BlockAllocator.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2006-\/2009\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_BLOCKALLOCATOR\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_BLOCKALLOCATOR\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Settings.hpp>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\ =\ std::size\_t;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_a30d1ffdd655947d098207ef826e44e8f}{AllocatorBlockSizes}}[]\ =}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ 16,\ 32,\ 64,\ 96,\ 128,\ 160,\ 192,\ 224,\ 256,\ 320,\ 384,\ 448,\ 512,\ 640,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_a81416ab2b8d29effab799523726c9cef}{ChunkSize}}\ =\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\{16\ *\ 1024\};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_a5aa7655c98fb927d7bc7a2fc936ec6cc}{GetMaxBlockSize}}()\ noexcept}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_a30d1ffdd655947d098207ef826e44e8f}{AllocatorBlockSizes}}[size(\mbox{\hyperlink{classplayrho_1_1BlockAllocator_a30d1ffdd655947d098207ef826e44e8f}{AllocatorBlockSizes}})\ -\/\ 1];}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ab7c12c70d3cb3bc9f8a896efb4d301fd}{GetChunkArrayIncrement}}()\ noexcept}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\{128\};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}(\mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{\string~BlockAllocator}}()\ noexcept;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ operator=\ (const\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ other)\ =\ delete;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ operator=\ (\mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\&\ other)\ =\ delete;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ Allocate(\mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\ n);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ template\ <typename\ T>}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ T*\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_afdabf1afcee5bf1fd5d18784cca47dd1}{AllocateArray}}(\mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\ n)}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T*\textcolor{keyword}{>}(\mbox{\hyperlink{classplayrho_1_1BlockAllocator_abbb25555e5d25ed67a4748136ff7b8ed}{Allocate}}(n\ *\ \textcolor{keyword}{sizeof}(T)));}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_a06536ee49cdb1a8c2f79de7522c8bd33}{Free}}(\textcolor{keywordtype}{void}*\ p,\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\ n);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_a12d8426f4a31b8ed042b2a62699d04e4}{Clear}}();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_a8bec3ad25a09721b7e4ec1bac8b4325c}{GetChunkCount}}()\ const\ noexcept}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_chunkCount;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }Chunk;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }Block;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\ m\_chunkCount\ =\ 0;\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{size\_type}}\ m\_chunkSpace\ =\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ab7c12c70d3cb3bc9f8a896efb4d301fd}{GetChunkArrayIncrement}}();\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ Chunk*\ m\_chunks;\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ Block*\ m\_freeLists[size(\mbox{\hyperlink{classplayrho_1_1BlockAllocator_a30d1ffdd655947d098207ef826e44e8f}{AllocatorBlockSizes}})];\ }
+\DoxyCodeLine{00117\ \ \ \ \ \};}
+\DoxyCodeLine{00118\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceplayrho_a02f6b57cf0f7bc53f9339381007d9b84}{Delete}}(\textcolor{keyword}{const}\ T*\ p,\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ allocator)}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ p-\/>\string~T();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ allocator.\mbox{\hyperlink{classplayrho_1_1BlockAllocator_a06536ee49cdb1a8c2f79de7522c8bd33}{Free}}(\textcolor{keyword}{const\_cast<}T*\textcolor{keyword}{>}(p),\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1BlockDeallocator}{BlockDeallocator}}}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1BlockDeallocator_a605c69aa30125de98e51e6ef94df25dd}{size\_type}}\ =\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator_ae039f1fd9e0cdafe92d108cf5dc3d663}{BlockAllocator::size\_type}};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator}{BlockDeallocator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_a147dbe714e39709d7264135610f1759c}{BlockDeallocator}}(\mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}*\ a,\ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_a605c69aa30125de98e51e6ef94df25dd}{size\_type}}\ n)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_adc65140a048daae726102b98ef3b7191}{allocator}}\{a\},\ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_ab0c4e625ef174b6bf21fb072cde901b4}{nelem}}\{n\}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_aa73d0ec0e811cdc17fdfabf2ad90f04c}{operator()}}(\textcolor{keywordtype}{void}\ *p)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_adc65140a048daae726102b98ef3b7191}{allocator}}-\/>\mbox{\hyperlink{classplayrho_1_1BlockAllocator_a06536ee49cdb1a8c2f79de7522c8bd33}{Free}}(p,\ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_ab0c4e625ef174b6bf21fb072cde901b4}{nelem}});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}*\ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_adc65140a048daae726102b98ef3b7191}{allocator}};\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_a605c69aa30125de98e51e6ef94df25dd}{size\_type}}\ \mbox{\hyperlink{structplayrho_1_1BlockDeallocator_ab0c4e625ef174b6bf21fb072cde901b4}{nelem}};\ }
+\DoxyCodeLine{00151\ \ \ \ \ \};}
+\DoxyCodeLine{00152\ \ \ \ \ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ b)}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&a\ ==\ \&b;}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1BlockAllocator}{BlockAllocator}}\&\ b)}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&a\ !=\ \&b;}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ }
+\DoxyCodeLine{00165\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_BLOCKALLOCATOR\_HPP}}
+
+\end{DoxyCode}

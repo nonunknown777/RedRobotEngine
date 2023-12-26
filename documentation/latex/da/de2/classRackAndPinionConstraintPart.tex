@@ -1,0 +1,148 @@
+\doxysection{Rack\+And\+Pinion\+Constraint\+Part Class Reference}
+\hypertarget{classRackAndPinionConstraintPart}{}\label{classRackAndPinionConstraintPart}\index{RackAndPinionConstraintPart@{RackAndPinionConstraintPart}}
+
+
+{\ttfamily \#include $<$Rack\+And\+Pinion\+Constraint\+Part.\+h$>$}
+
+
+
+Collaboration diagram for Rack\+And\+Pinion\+Constraint\+Part\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{d8/d7c/classRackAndPinionConstraintPart__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classRackAndPinionConstraintPart_a02dfafdb136417f096927cc6cca34b3c}{Calculate\+Constraint\+Properties}} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Hinge\+Axis, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Slider\+Axis, float in\+Ratio)
+\item 
+\Hypertarget{classRackAndPinionConstraintPart_ae283f92c8107a3ce86212c2885f4ea5f}\label{classRackAndPinionConstraintPart_ae283f92c8107a3ce86212c2885f4ea5f} 
+void {\bfseries Deactivate} ()
+\begin{DoxyCompactList}\small\item\em Deactivate this constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classRackAndPinionConstraintPart_aecf166daf465d11438885115f506d1b6}\label{classRackAndPinionConstraintPart_aecf166daf465d11438885115f506d1b6} 
+bool {\bfseries Is\+Active} () const
+\begin{DoxyCompactList}\small\item\em Check if constraint is active. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRackAndPinionConstraintPart_a8dbe4e1891bffacf4575ddabd1df9699}{Warm\+Start}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, float in\+Warm\+Start\+Impulse\+Ratio)
+\item 
+bool \mbox{\hyperlink{classRackAndPinionConstraintPart_a34c658b3b5b4a4fd6e2072e48f625f6f}{Solve\+Velocity\+Constraint}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Hinge\+Axis, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Slider\+Axis, float in\+Ratio)
+\item 
+\Hypertarget{classRackAndPinionConstraintPart_a87e64ffdc1897211336d35bc8077ebcc}\label{classRackAndPinionConstraintPart_a87e64ffdc1897211336d35bc8077ebcc} 
+float {\bfseries Get\+Total\+Lambda} () const
+\begin{DoxyCompactList}\small\item\em Return lagrange multiplier. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRackAndPinionConstraintPart_acbff5e3cb39103c349d9a2a3866a8475}{Solve\+Position\+Constraint}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, float inC, float in\+Baumgarte) const
+\item 
+\Hypertarget{classRackAndPinionConstraintPart_ac4c35753b0bb3f976c7fdf4ec88f3ffe}\label{classRackAndPinionConstraintPart_ac4c35753b0bb3f976c7fdf4ec88f3ffe} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Save state of this constraint part. \end{DoxyCompactList}\item 
+\Hypertarget{classRackAndPinionConstraintPart_ad761890faa43dd0c459e5a6869b10f7f}\label{classRackAndPinionConstraintPart_ad761890faa43dd0c459e5a6869b10f7f} 
+void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore state of this constraint part. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classConstraint}{Constraint} that constrains a rotation to a translation
+
+\doxylink{classConstraint}{Constraint} equation\+:
+
+C = Theta(t) -\/ r d(t)
+
+Derivative\+:
+
+d/dt C = 0 \texorpdfstring{$<$}{<}=\texorpdfstring{$>$}{>} w1 . a -\/ r v2 . b = 0
+
+Jacobian\+:
+
+\[J = \begin{bmatrix}0 & a^T & -r b^T & 0\end{bmatrix}\]
+
+Used terms (here and below, everything in world space)\+:~\newline
+a = axis around which body 1 rotates (normalized).~\newline
+b = axis along which body 2 slides (normalized).~\newline
+Theta(t) = rotation around a of body 1.~\newline
+d(t) = distance body 2 slides.~\newline
+r = ratio between rotation and translation.~\newline
+v = \mbox{[}v1, w1, v2, w2\mbox{]}.~\newline
+v1, v2 = linear velocity of body 1 and 2.~\newline
+w1, w2 = angular velocity of body 1 and 2.~\newline
+M = mass matrix, a diagonal matrix of the mass and inertia with diagonal \mbox{[}m1, I1, m2, I2\mbox{]}.~\newline
+ $K^{-1} = \left( J M^{-1} J^T \right)^{-1}$ = effective mass.~\newline
+ $\beta$ = baumgarte constant. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRackAndPinionConstraintPart_a02dfafdb136417f096927cc6cca34b3c}\label{classRackAndPinionConstraintPart_a02dfafdb136417f096927cc6cca34b3c} 
+\index{RackAndPinionConstraintPart@{RackAndPinionConstraintPart}!CalculateConstraintProperties@{CalculateConstraintProperties}}
+\index{CalculateConstraintProperties@{CalculateConstraintProperties}!RackAndPinionConstraintPart@{RackAndPinionConstraintPart}}
+\doxysubsubsection{\texorpdfstring{CalculateConstraintProperties()}{CalculateConstraintProperties()}}
+{\footnotesize\ttfamily void Rack\+And\+Pinion\+Constraint\+Part\+::\+Calculate\+Constraint\+Properties (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Hinge\+Axis,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Slider\+Axis,  }\item[{float}]{in\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate properties used during the functions below 
+\begin{DoxyParams}{Parameters}
+{\em in\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em in\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+World\+Space\+Hinge\+Axis} & The axis around which body 1 rotates \\
+\hline
+{\em in\+World\+Space\+Slider\+Axis} & The axis along which body 2 slides \\
+\hline
+{\em in\+Ratio} & The ratio between rotation and translation \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRackAndPinionConstraintPart_acbff5e3cb39103c349d9a2a3866a8475}\label{classRackAndPinionConstraintPart_acbff5e3cb39103c349d9a2a3866a8475} 
+\index{RackAndPinionConstraintPart@{RackAndPinionConstraintPart}!SolvePositionConstraint@{SolvePositionConstraint}}
+\index{SolvePositionConstraint@{SolvePositionConstraint}!RackAndPinionConstraintPart@{RackAndPinionConstraintPart}}
+\doxysubsubsection{\texorpdfstring{SolvePositionConstraint()}{SolvePositionConstraint()}}
+{\footnotesize\ttfamily bool Rack\+And\+Pinion\+Constraint\+Part\+::\+Solve\+Position\+Constraint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{float}]{inC,  }\item[{float}]{in\+Baumgarte }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iteratively update the position constraint. Makes sure C(...) == 0. 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em inC} & Value of the constraint equation (C) \\
+\hline
+{\em in\+Baumgarte} & Baumgarte constant (fraction of the error to correct) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRackAndPinionConstraintPart_a34c658b3b5b4a4fd6e2072e48f625f6f}\label{classRackAndPinionConstraintPart_a34c658b3b5b4a4fd6e2072e48f625f6f} 
+\index{RackAndPinionConstraintPart@{RackAndPinionConstraintPart}!SolveVelocityConstraint@{SolveVelocityConstraint}}
+\index{SolveVelocityConstraint@{SolveVelocityConstraint}!RackAndPinionConstraintPart@{RackAndPinionConstraintPart}}
+\doxysubsubsection{\texorpdfstring{SolveVelocityConstraint()}{SolveVelocityConstraint()}}
+{\footnotesize\ttfamily bool Rack\+And\+Pinion\+Constraint\+Part\+::\+Solve\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Hinge\+Axis,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Slider\+Axis,  }\item[{float}]{in\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iteratively update the velocity constraint. Makes sure d/dt C(...) = 0, where C is the constraint equation. 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+World\+Space\+Hinge\+Axis} & The axis around which body 1 rotates \\
+\hline
+{\em in\+World\+Space\+Slider\+Axis} & The axis along which body 2 slides \\
+\hline
+{\em in\+Ratio} & The ratio between rotation and translation \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRackAndPinionConstraintPart_a8dbe4e1891bffacf4575ddabd1df9699}\label{classRackAndPinionConstraintPart_a8dbe4e1891bffacf4575ddabd1df9699} 
+\index{RackAndPinionConstraintPart@{RackAndPinionConstraintPart}!WarmStart@{WarmStart}}
+\index{WarmStart@{WarmStart}!RackAndPinionConstraintPart@{RackAndPinionConstraintPart}}
+\doxysubsubsection{\texorpdfstring{WarmStart()}{WarmStart()}}
+{\footnotesize\ttfamily void Rack\+And\+Pinion\+Constraint\+Part\+::\+Warm\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{float}]{in\+Warm\+Start\+Impulse\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Must be called from the Warm\+Start\+Velocity\+Constraint call to apply the previous frame\textquotesingle{}s impulses 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+Warm\+Start\+Impulse\+Ratio} & Ratio of new step to old time step (dt\+\_\+new / dt\+\_\+old) for scaling the lagrange multiplier of the previous frame \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/\+Constraint\+Part/Rack\+And\+Pinion\+Constraint\+Part.\+h\end{DoxyCompactItemize}

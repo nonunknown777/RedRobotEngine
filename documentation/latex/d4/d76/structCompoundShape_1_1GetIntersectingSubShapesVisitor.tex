@@ -1,0 +1,36 @@
+\doxysection{Compound\+Shape\+::Get\+Intersecting\+Sub\+Shapes\+Visitor\texorpdfstring{$<$}{<} Box\+Type \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structCompoundShape_1_1GetIntersectingSubShapesVisitor}{}\label{structCompoundShape_1_1GetIntersectingSubShapesVisitor}\index{CompoundShape::GetIntersectingSubShapesVisitor$<$ BoxType $>$@{CompoundShape::GetIntersectingSubShapesVisitor$<$ BoxType $>$}}
+
+
+Collaboration diagram for Compound\+Shape\+::Get\+Intersecting\+Sub\+Shapes\+Visitor\texorpdfstring{$<$}{<} Box\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{d4/d33/structCompoundShape_1_1GetIntersectingSubShapesVisitor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a0f676ecd2951cd9c1abd7d3ebfa24561}\label{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a0f676ecd2951cd9c1abd7d3ebfa24561} 
+JPH\+\_\+\+INLINE {\bfseries Get\+Intersecting\+Sub\+Shapes\+Visitor} (const Box\+Type \&in\+Box, uint \texorpdfstring{$\ast$}{*}out\+Sub\+Shape\+Indices, int in\+Max\+Sub\+Shape\+Indices)
+\item 
+\Hypertarget{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a0747547a9895a7dc598391e602ae67e6}\label{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a0747547a9895a7dc598391e602ae67e6} 
+JPH\+\_\+\+INLINE bool {\bfseries Should\+Abort} () const
+\begin{DoxyCompactList}\small\item\em Returns true when collision detection should abort because the buffer is full. \end{DoxyCompactList}\item 
+\Hypertarget{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a0271b87f4c7610b317b82a77d7d255c6}\label{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a0271b87f4c7610b317b82a77d7d255c6} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec4}{UVec4}} {\bfseries Test\+Bounds} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MinX, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MinY, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MinZ, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MaxX, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MaxY, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MaxZ) const
+\begin{DoxyCompactList}\small\item\em Tests the box vs 4 bounding boxes, returns true for the ones that intersect. \end{DoxyCompactList}\item 
+\Hypertarget{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a611d2a998517551ba3d1ad3355033135}\label{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a611d2a998517551ba3d1ad3355033135} 
+JPH\+\_\+\+INLINE void {\bfseries Visit\+Shape} (const \mbox{\hyperlink{structCompoundShape_1_1SubShape}{Sub\+Shape}} \&in\+Sub\+Shape, uint32 in\+Sub\+Shape\+Index)
+\begin{DoxyCompactList}\small\item\em Records a hit. \end{DoxyCompactList}\item 
+\Hypertarget{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a61d8a2add21106dc7b21b46cab11bc93}\label{structCompoundShape_1_1GetIntersectingSubShapesVisitor_a61d8a2add21106dc7b21b46cab11bc93} 
+JPH\+\_\+\+INLINE int {\bfseries Get\+Num\+Results} () const
+\begin{DoxyCompactList}\small\item\em Get the number of indices that were found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Compound\+Shape.\+h\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Compound\+Shape\+Visitors.\+h\end{DoxyCompactItemize}

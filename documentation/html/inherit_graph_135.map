@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d6/d7d/classMotionProperties.html" title="The Body class only keeps track of state for static bodies, the MotionProperties class keeps the addi..." alt="" coords="5,5,138,33"/>
+<area shape="rect" id="Node000001" href="$d5/dfe/classSoftBodyMotionProperties.html" title="This class contains the runtime information of a soft body." alt="" coords="186,5,376,33"/>
+<area shape="poly" id="edge13_Node000000_Node000001" title=" " alt="" coords="153,17,185,17,185,22,153,22"/>
+</map>

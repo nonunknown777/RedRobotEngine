@@ -1,0 +1,130 @@
+\doxysection{Collide\+Convex\+Vs\+Triangles Class Reference}
+\hypertarget{classCollideConvexVsTriangles}{}\label{classCollideConvexVsTriangles}\index{CollideConvexVsTriangles@{CollideConvexVsTriangles}}
+
+
+Collision detection helper that collides a convex object vs one or more triangles.  
+
+
+
+
+{\ttfamily \#include $<$Collide\+Convex\+Vs\+Triangles.\+h$>$}
+
+
+
+Collaboration diagram for Collide\+Convex\+Vs\+Triangles\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d15/classCollideConvexVsTriangles__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCollideConvexVsTriangles_a28c8e33528ac8b895e2cfa71e37238e1}{Collide\+Convex\+Vs\+Triangles}} (const \mbox{\hyperlink{classConvexShape}{Convex\+Shape}} \texorpdfstring{$\ast$}{*}in\+Shape1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale2, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform1, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID1, const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \&in\+Collide\+Shape\+Settings, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \&io\+Collector)
+\item 
+void \mbox{\hyperlink{classCollideConvexVsTriangles_ab9cbc3709c7d17d812ca1eba57f8f436}{Collide}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V0, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V2, uint8 in\+Active\+Edges, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollideConvexVsTriangles_a69acefd643423ee75a0ba2177d0973a8}\label{classCollideConvexVsTriangles_a69acefd643423ee75a0ba2177d0973a8} 
+const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \& {\bfseries m\+Collide\+Shape\+Settings}
+\begin{DoxyCompactList}\small\item\em Settings for this collision operation. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a3f3d24787366a4941beaba991c5649c9}\label{classCollideConvexVsTriangles_a3f3d24787366a4941beaba991c5649c9} 
+\mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \& {\bfseries m\+Collector}
+\begin{DoxyCompactList}\small\item\em The collector that will receive the results. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a323951ad9eea3102241913f2fc38184b}\label{classCollideConvexVsTriangles_a323951ad9eea3102241913f2fc38184b} 
+const \mbox{\hyperlink{classConvexShape}{Convex\+Shape}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Shape1}
+\begin{DoxyCompactList}\small\item\em The shape that we\textquotesingle{}re colliding with. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a147a2531a2e1a590e84349ea90143d84}\label{classCollideConvexVsTriangles_a147a2531a2e1a590e84349ea90143d84} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Scale1}
+\begin{DoxyCompactList}\small\item\em The scale of the shape (in shape local space) of the shape we\textquotesingle{}re colliding with. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a13228a63f38c3ba1b6cf83671456f6e5}\label{classCollideConvexVsTriangles_a13228a63f38c3ba1b6cf83671456f6e5} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Scale2}
+\begin{DoxyCompactList}\small\item\em The scale of the shape (in shape local space) of the shape we\textquotesingle{}re colliding against. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a8dc5e32b75220d7216387f253d1356c6}\label{classCollideConvexVsTriangles_a8dc5e32b75220d7216387f253d1356c6} 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries m\+Transform1}
+\begin{DoxyCompactList}\small\item\em \doxylink{structTransform}{Transform} of the shape we\textquotesingle{}re colliding with. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_aae5e07005177f17412f4102c2a8440b6}\label{classCollideConvexVsTriangles_aae5e07005177f17412f4102c2a8440b6} 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries m\+Transform2\+To1}
+\begin{DoxyCompactList}\small\item\em \doxylink{structTransform}{Transform} that takes a point in space of the colliding shape to the shape we\textquotesingle{}re colliding with. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a596f47c1410024dc4b388fbe734bf8a7}\label{classCollideConvexVsTriangles_a596f47c1410024dc4b388fbe734bf8a7} 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries m\+Bounds\+Of1}
+\begin{DoxyCompactList}\small\item\em Bounds of the colliding shape in local space. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a97a9af3d0958130bfbcbce4b5f3c81ae}\label{classCollideConvexVsTriangles_a97a9af3d0958130bfbcbce4b5f3c81ae} 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries m\+Bounds\+Of1\+In\+Space\+Of2}
+\begin{DoxyCompactList}\small\item\em Bounds of the colliding shape in space of shape we\textquotesingle{}re colliding with. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_ac938fe2d5f06a8acc3dca0ea0034d7d1}\label{classCollideConvexVsTriangles_ac938fe2d5f06a8acc3dca0ea0034d7d1} 
+\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} {\bfseries m\+Sub\+Shape\+ID1}
+\begin{DoxyCompactList}\small\item\em Sub shape ID of colliding shape. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a031ebb813c9dbe4a24299bc474bc264b}\label{classCollideConvexVsTriangles_a031ebb813c9dbe4a24299bc474bc264b} 
+float {\bfseries m\+Scale\+Sign2}
+\begin{DoxyCompactList}\small\item\em Sign of the scale of object 2, -\/1 if object is inside out, 1 if not. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a02e46e4e5290250e02a6937168ccec6b}\label{classCollideConvexVsTriangles_a02e46e4e5290250e02a6937168ccec6b} 
+\mbox{\hyperlink{classConvexShape_1_1SupportBuffer}{Convex\+Shape\+::\+Support\+Buffer}} {\bfseries m\+Buffer\+Ex\+Cvx\+Radius}
+\begin{DoxyCompactList}\small\item\em Buffer that holds the support function data excluding convex radius. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a9783d040f7efa2ebd16d4ac12790156c}\label{classCollideConvexVsTriangles_a9783d040f7efa2ebd16d4ac12790156c} 
+\mbox{\hyperlink{classConvexShape_1_1SupportBuffer}{Convex\+Shape\+::\+Support\+Buffer}} {\bfseries m\+Buffer\+Inc\+Cvx\+Radius}
+\begin{DoxyCompactList}\small\item\em Buffer that holds the support function data including convex radius. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_ab7f021a387977244b9bf2364c2e0f1b9}\label{classCollideConvexVsTriangles_ab7f021a387977244b9bf2364c2e0f1b9} 
+const \mbox{\hyperlink{classConvexShape_1_1Support}{Convex\+Shape\+::\+Support}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Shape1\+Ex\+Cvx\+Radius} = nullptr
+\begin{DoxyCompactList}\small\item\em Actual support function object excluding convex radius. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideConvexVsTriangles_a76b3b285e2401983415ad2183e501655}\label{classCollideConvexVsTriangles_a76b3b285e2401983415ad2183e501655} 
+const \mbox{\hyperlink{classConvexShape_1_1Support}{Convex\+Shape\+::\+Support}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Shape1\+Inc\+Cvx\+Radius} = nullptr
+\begin{DoxyCompactList}\small\item\em Actual support function object including convex radius. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Collision detection helper that collides a convex object vs one or more triangles. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCollideConvexVsTriangles_a28c8e33528ac8b895e2cfa71e37238e1}\label{classCollideConvexVsTriangles_a28c8e33528ac8b895e2cfa71e37238e1} 
+\index{CollideConvexVsTriangles@{CollideConvexVsTriangles}!CollideConvexVsTriangles@{CollideConvexVsTriangles}}
+\index{CollideConvexVsTriangles@{CollideConvexVsTriangles}!CollideConvexVsTriangles@{CollideConvexVsTriangles}}
+\doxysubsubsection{\texorpdfstring{CollideConvexVsTriangles()}{CollideConvexVsTriangles()}}
+{\footnotesize\ttfamily Collide\+Convex\+Vs\+Triangles\+::\+Collide\+Convex\+Vs\+Triangles (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classConvexShape}{Convex\+Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale2,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform1,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform2,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID1,  }\item[{const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \&}]{in\+Collide\+Shape\+Settings,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \&}]{io\+Collector }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em in\+Shape1} & The convex shape to collide against triangles \\
+\hline
+{\em in\+Scale1} & Local space scale for the convex object \\
+\hline
+{\em in\+Scale2} & Local space scale for the triangles \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform1} & \doxylink{structTransform}{Transform} that takes the center of mass of 1 into world space \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform2} & \doxylink{structTransform}{Transform} that takes the center of mass of 2 into world space \\
+\hline
+{\em in\+Sub\+Shape\+ID1} & Sub shape ID of the convex object \\
+\hline
+{\em in\+Collide\+Shape\+Settings} & Settings for the collide shape query \\
+\hline
+{\em io\+Collector} & The collector that will receive the results \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCollideConvexVsTriangles_ab9cbc3709c7d17d812ca1eba57f8f436}\label{classCollideConvexVsTriangles_ab9cbc3709c7d17d812ca1eba57f8f436} 
+\index{CollideConvexVsTriangles@{CollideConvexVsTriangles}!Collide@{Collide}}
+\index{Collide@{Collide}!CollideConvexVsTriangles@{CollideConvexVsTriangles}}
+\doxysubsubsection{\texorpdfstring{Collide()}{Collide()}}
+{\footnotesize\ttfamily void Collide\+Convex\+Vs\+Triangles\+::\+Collide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V0,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V2,  }\item[{uint8}]{in\+Active\+Edges,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID2 }\end{DoxyParamCaption})}
+
+Collide convex object with a single triangle 
+\begin{DoxyParams}{Parameters}
+{\em in\+V0,in\+V1,in\+V2} & CCW triangle vertices \\
+\hline
+{\em in\+Active\+Edges} & bit 0 = edge v0..v1 is active, bit 1 = edge v1..v2 is active, bit 2 = edge v2..v0 is active An active edge is an edge that is not connected to another triangle in such a way that it is impossible to collide with the edge \\
+\hline
+{\em in\+Sub\+Shape\+ID2} & The sub shape ID for the triangle \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Collide\+Convex\+Vs\+Triangles.\+h\end{DoxyCompactItemize}

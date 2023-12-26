@@ -1,0 +1,228 @@
+\doxysection{Character\+Base Class Reference}
+\hypertarget{classCharacterBase}{}\label{classCharacterBase}\index{CharacterBase@{CharacterBase}}
+
+
+Base class for character class.  
+
+
+
+
+{\ttfamily \#include $<$Character\+Base.\+h$>$}
+
+
+
+Inheritance diagram for Character\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d6/ddd/classCharacterBase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Character\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/dc4/classCharacterBase__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77e}{EGround\+State}} \{ \mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea2b9beed57034f5727573d7ded76cf777}{On\+Ground}}
+, \mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea50f80f8d96a6d65de73ba8a6b9910761}{On\+Steep\+Ground}}
+, \mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea9ed2d871602556951e39f3cebd08d6cb}{Not\+Supported}}
+, \mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77eaee4e669a07b061d70b9b79dfed9cb5e7}{In\+Air}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCharacterBase_acaaef1f5403ea2d099e7c967b4144d88}\label{classCharacterBase_acaaef1f5403ea2d099e7c967b4144d88} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Character\+Base} (const \mbox{\hyperlink{classCharacterBaseSettings}{Character\+Base\+Settings}} \texorpdfstring{$\ast$}{*}in\+Settings, \mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \texorpdfstring{$\ast$}{*}in\+System)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_a5e0ba80e28b9e012acf7b8c1fa605ef5}\label{classCharacterBase_a5e0ba80e28b9e012acf7b8c1fa605ef5} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Character\+Base} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_a0c2099dfbf12c1bd6f839a3eda5c9726}\label{classCharacterBase_a0c2099dfbf12c1bd6f839a3eda5c9726} 
+void {\bfseries Set\+Max\+Slope\+Angle} (float in\+Max\+Slope\+Angle)
+\begin{DoxyCompactList}\small\item\em Set the maximum angle of slope that character can still walk on (radians) \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_aa7d43079f3b6c40c3fa1ccc30a8682bf}\label{classCharacterBase_aa7d43079f3b6c40c3fa1ccc30a8682bf} 
+float {\bfseries Get\+Cos\+Max\+Slope\+Angle} () const
+\item 
+\Hypertarget{classCharacterBase_a46d5822b95a5e771adc1e33f1f9b891c}\label{classCharacterBase_a46d5822b95a5e771adc1e33f1f9b891c} 
+void {\bfseries Set\+Up} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Up)
+\begin{DoxyCompactList}\small\item\em Set the up vector for the character. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_a2a437049ade0a3ab8ab7aeafb64f5163}\label{classCharacterBase_a2a437049ade0a3ab8ab7aeafb64f5163} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Up} () const
+\item 
+\Hypertarget{classCharacterBase_a87e7e3bcc174d5e498844dcac7f7f173}\label{classCharacterBase_a87e7e3bcc174d5e498844dcac7f7f173} 
+bool {\bfseries Is\+Slope\+Too\+Steep} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Normal) const
+\begin{DoxyCompactList}\small\item\em Check if the normal of the ground surface is too steep to walk on. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_afe046cfb3333be1fcb186f42821ddb19}\label{classCharacterBase_afe046cfb3333be1fcb186f42821ddb19} 
+const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Shape} () const
+\begin{DoxyCompactList}\small\item\em Get the current shape that the character is using. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Character\+Base $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCharacterBase_a81bc8467b27c4ba067de8f71a8fdb5f1}\label{classCharacterBase_a81bc8467b27c4ba067de8f71a8fdb5f1} 
+static const char \texorpdfstring{$\ast$}{*} {\bfseries s\+To\+String} (\mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77e}{EGround\+State}} in\+State)
+\begin{DoxyCompactList}\small\item\em Debug function to convert enum values to string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Character\+Base $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties of the ground this character is standing on}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCharacterBase_ac6c3f8f7a2492d0c0f2eac85a9cc5a01}\label{classCharacterBase_ac6c3f8f7a2492d0c0f2eac85a9cc5a01} 
+\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \texorpdfstring{$\ast$}{*} {\bfseries m\+System}
+\item 
+\Hypertarget{classCharacterBase_a5c10220e06a8a5bb274a4b02c28cb0b6}\label{classCharacterBase_a5c10220e06a8a5bb274a4b02c28cb0b6} 
+\mbox{\hyperlink{classRefConst}{Ref\+Const}}$<$ \mbox{\hyperlink{classShape}{Shape}} $>$ {\bfseries m\+Shape}
+\item 
+\Hypertarget{classCharacterBase_a5f637f449a17fb6a1b10297764de48b4}\label{classCharacterBase_a5f637f449a17fb6a1b10297764de48b4} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Up}
+\item 
+\Hypertarget{classCharacterBase_ae9fb45e5980787c5f7f718f6e7703797}\label{classCharacterBase_ae9fb45e5980787c5f7f718f6e7703797} 
+\mbox{\hyperlink{classPlane}{Plane}} {\bfseries m\+Supporting\+Volume}
+\item 
+\Hypertarget{classCharacterBase_a9da1e29d9257f3cce909487da437a0c9}\label{classCharacterBase_a9da1e29d9257f3cce909487da437a0c9} 
+float {\bfseries m\+Cos\+Max\+Slope\+Angle}
+\item 
+\Hypertarget{classCharacterBase_a1cf96842849baa268527dfa548219510}\label{classCharacterBase_a1cf96842849baa268527dfa548219510} 
+\mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77e}{EGround\+State}} {\bfseries m\+Ground\+State} = \mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77eaee4e669a07b061d70b9b79dfed9cb5e7}{EGround\+State\+::\+In\+Air}}
+\item 
+\Hypertarget{classCharacterBase_a893268ea23759f36ebe8e317a54afa7e}\label{classCharacterBase_a893268ea23759f36ebe8e317a54afa7e} 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries m\+Ground\+Body\+ID}
+\item 
+\Hypertarget{classCharacterBase_afa16450cf4dc265231e0f616aa5eeec9}\label{classCharacterBase_afa16450cf4dc265231e0f616aa5eeec9} 
+\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} {\bfseries m\+Ground\+Body\+Sub\+Shape\+ID}
+\item 
+\Hypertarget{classCharacterBase_a2b9e9d8616bb0c7c8cb6ba59f5c7bf8a}\label{classCharacterBase_a2b9e9d8616bb0c7c8cb6ba59f5c7bf8a} 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries m\+Ground\+Position} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()
+\item 
+\Hypertarget{classCharacterBase_a3537f13f2e427573266d9f591f1aadf3}\label{classCharacterBase_a3537f13f2e427573266d9f591f1aadf3} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Ground\+Normal} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3\+::s\+Zero}}()
+\item 
+\Hypertarget{classCharacterBase_add543ae2333820dbf77e23009dfe4367}\label{classCharacterBase_add543ae2333820dbf77e23009dfe4367} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Ground\+Velocity} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3\+::s\+Zero}}()
+\item 
+\Hypertarget{classCharacterBase_a2586c1571ba8e5adc511d71f413de2c1}\label{classCharacterBase_a2586c1571ba8e5adc511d71f413de2c1} 
+\mbox{\hyperlink{classRefConst}{Ref\+Const}}$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$ {\bfseries m\+Ground\+Material} = \mbox{\hyperlink{classPhysicsMaterial_af53a233202a9b9e828cc7dcc346cf28f}{Physics\+Material\+::s\+Default}}
+\item 
+\Hypertarget{classCharacterBase_acf9a8bdf6fa420d9615206d196794135}\label{classCharacterBase_acf9a8bdf6fa420d9615206d196794135} 
+uint64 {\bfseries m\+Ground\+User\+Data} = 0
+\item 
+\Hypertarget{classCharacterBase_a32bda1f36a6c2ba0eb1fec77dfcbb078}\label{classCharacterBase_a32bda1f36a6c2ba0eb1fec77dfcbb078} 
+static constexpr float {\bfseries c\+No\+Max\+Slope\+Angle} = 0.\+9999f
+\item 
+\Hypertarget{classCharacterBase_ab8ce7589bd0e97901030bceeda7a513b}\label{classCharacterBase_ab8ce7589bd0e97901030bceeda7a513b} 
+\mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77e}{EGround\+State}} {\bfseries Get\+Ground\+State} () const
+\begin{DoxyCompactList}\small\item\em Current ground state. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_a700e706b9c1710409fc16c6f9a083e0b}\label{classCharacterBase_a700e706b9c1710409fc16c6f9a083e0b} 
+bool {\bfseries Is\+Supported} () const
+\begin{DoxyCompactList}\small\item\em Returns true if the player is supported by normal or steep ground. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_a0ecc9be497c5fc46bef4277a734a691a}\label{classCharacterBase_a0ecc9be497c5fc46bef4277a734a691a} 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries Get\+Ground\+Position} () const
+\begin{DoxyCompactList}\small\item\em Get the contact point with the ground. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_adde62ba706430b59595bb8d56731eaa8}\label{classCharacterBase_adde62ba706430b59595bb8d56731eaa8} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Ground\+Normal} () const
+\begin{DoxyCompactList}\small\item\em Get the contact normal with the ground. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_a692578285569b48d19d53684360a5656}\label{classCharacterBase_a692578285569b48d19d53684360a5656} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Ground\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Velocity in world space of ground. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_ac4771494235c54165b6b4c9ad64dcdc8}\label{classCharacterBase_ac4771494235c54165b6b4c9ad64dcdc8} 
+const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Ground\+Material} () const
+\begin{DoxyCompactList}\small\item\em \doxylink{structMaterial}{Material} that the character is standing on. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_ab677215920d0b4cd10874b3a56a35026}\label{classCharacterBase_ab677215920d0b4cd10874b3a56a35026} 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries Get\+Ground\+Body\+ID} () const
+\begin{DoxyCompactList}\small\item\em \doxylink{classBodyID}{Body\+ID} of the object the character is standing on. Note may have been removed! \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_a2ab264ce1b5888134b38177f71a81f91}\label{classCharacterBase_a2ab264ce1b5888134b38177f71a81f91} 
+\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} {\bfseries Get\+Ground\+Sub\+Shape\+ID} () const
+\begin{DoxyCompactList}\small\item\em Sub part of the body that we\textquotesingle{}re standing on. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_ae8c2a236d46c2e362021c1ab3364c432}\label{classCharacterBase_ae8c2a236d46c2e362021c1ab3364c432} 
+uint64 {\bfseries Get\+Ground\+User\+Data} () const
+\begin{DoxyCompactList}\small\item\em User data value of the body that we\textquotesingle{}re standing on. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterBase_ad05135b1e0f83e6e487d1068f73ec4f0}\label{classCharacterBase_ad05135b1e0f83e6e487d1068f73ec4f0} 
+virtual void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\item 
+\Hypertarget{classCharacterBase_ae121a8bb8fef758d0885d42c13900bb7}\label{classCharacterBase_ae121a8bb8fef758d0885d42c13900bb7} 
+virtual void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Character\+Base $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Character\+Base $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for character class. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77e}\label{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77e} 
+\index{CharacterBase@{CharacterBase}!EGroundState@{EGroundState}}
+\index{EGroundState@{EGroundState}!CharacterBase@{CharacterBase}}
+\doxysubsubsection{\texorpdfstring{EGroundState}{EGroundState}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77e}{Character\+Base\+::\+EGround\+State}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OnGround@{OnGround}!CharacterBase@{CharacterBase}}\index{CharacterBase@{CharacterBase}!OnGround@{OnGround}}}\Hypertarget{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea2b9beed57034f5727573d7ded76cf777}\label{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea2b9beed57034f5727573d7ded76cf777} 
+On\+Ground&\doxylink{classCharacter}{Character} is on the ground and can move freely. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OnSteepGround@{OnSteepGround}!CharacterBase@{CharacterBase}}\index{CharacterBase@{CharacterBase}!OnSteepGround@{OnSteepGround}}}\Hypertarget{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea50f80f8d96a6d65de73ba8a6b9910761}\label{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea50f80f8d96a6d65de73ba8a6b9910761} 
+On\+Steep\+Ground&\doxylink{classCharacter}{Character} is on a slope that is too steep and can\textquotesingle{}t climb up any further. The caller should start applying downward velocity if sliding from the slope is desired. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NotSupported@{NotSupported}!CharacterBase@{CharacterBase}}\index{CharacterBase@{CharacterBase}!NotSupported@{NotSupported}}}\Hypertarget{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea9ed2d871602556951e39f3cebd08d6cb}\label{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77ea9ed2d871602556951e39f3cebd08d6cb} 
+Not\+Supported&\doxylink{classCharacter}{Character} is touching an object, but is not supported by it and should fall. The Get\+Ground\+XXX functions will return information about the touched object. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InAir@{InAir}!CharacterBase@{CharacterBase}}\index{CharacterBase@{CharacterBase}!InAir@{InAir}}}\Hypertarget{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77eaee4e669a07b061d70b9b79dfed9cb5e7}\label{classCharacterBase_a82dfb80348cdbf3a08f97d54b225f77eaee4e669a07b061d70b9b79dfed9cb5e7} 
+In\+Air&\doxylink{classCharacter}{Character} is in the air and is not touching anything. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Character/Character\+Base.\+h\end{DoxyCompactItemize}

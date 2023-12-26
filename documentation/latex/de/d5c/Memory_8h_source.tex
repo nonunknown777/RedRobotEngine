@@ -1,0 +1,59 @@
+\doxysection{Memory.\+h}
+\hypertarget{Memory_8h_source}{}\label{Memory_8h_source}\index{includes/jolt/Core/Memory.h@{includes/jolt/Core/Memory.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ JPH\_DISABLE\_CUSTOM\_ALLOCATOR}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Normal\ memory\ allocation,\ must\ be\ at\ least\ 8\ byte\ aligned\ on\ 32\ bit\ platform\ and\ 16\ byte\ aligned\ on\ 64\ bit\ platform}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ }AllocateFunction\ =\ \textcolor{keywordtype}{void}\ *(*)(\textcolor{keywordtype}{size\_t}\ inSize);}
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }FreeFunction\ =\ void\ (*)(\textcolor{keywordtype}{void}\ *inBlock);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Aligned\ memory\ allocation}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ }AlignedAllocateFunction\ =\ \textcolor{keywordtype}{void}\ *(*)(\textcolor{keywordtype}{size\_t}\ inSize,\ \textcolor{keywordtype}{size\_t}\ inAlignment);}
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }AlignedFreeFunction\ =\ void\ (*)(\textcolor{keywordtype}{void}\ *inBlock);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ User\ defined\ allocation\ /\ free\ functions}}
+\DoxyCodeLine{00020\ JPH\_EXPORT\ \textcolor{keyword}{extern}\ AllocateFunction\ Allocate;}
+\DoxyCodeLine{00021\ JPH\_EXPORT\ \textcolor{keyword}{extern}\ FreeFunction\ Free;}
+\DoxyCodeLine{00022\ JPH\_EXPORT\ \textcolor{keyword}{extern}\ AlignedAllocateFunction\ AlignedAllocate;}
+\DoxyCodeLine{00023\ JPH\_EXPORT\ \textcolor{keyword}{extern}\ AlignedFreeFunction\ AlignedFree;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ JPH\_EXPORT\ \textcolor{keywordtype}{void}\ RegisterDefaultAllocator();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ JPH\_OVERRIDE\_NEW\_DELETE\ \(\backslash\)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ JPH\_INLINE\ void\ *operator\ new\ (size\_t\ inCount)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ return\ JPH::Allocate(inCount);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ \ JPH\_INLINE\ void\ operator\ delete\ (void\ *inPointer)\ noexcept\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH::Free(inPointer);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ JPH\_INLINE\ void\ *operator\ new[]\ (size\_t\ inCount)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ return\ JPH::Allocate(inCount);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ JPH\_INLINE\ void\ operator\ delete[]\ (void\ *inPointer)\ noexcept\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH::Free(inPointer);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ JPH\_INLINE\ void\ *operator\ new\ (size\_t\ inCount,\ std::align\_val\_t\ inAlignment)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ return\ JPH::AlignedAllocate(inCount,\ static\_cast<size\_t>(inAlignment));\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ JPH\_INLINE\ void\ operator\ delete\ (void\ *inPointer,\ [[maybe\_unused]]\ std::align\_val\_t\ inAlignment)\ noexcept\ \ \ \{\ JPH::AlignedFree(inPointer);\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ JPH\_INLINE\ void\ *operator\ new[]\ (size\_t\ inCount,\ std::align\_val\_t\ inAlignment)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ return\ JPH::AlignedAllocate(inCount,\ static\_cast<size\_t>(inAlignment));\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ JPH\_INLINE\ void\ operator\ delete[]\ (void\ *inPointer,\ [[maybe\_unused]]\ std::align\_val\_t\ inAlignment)\ noexcept\ \{\ JPH::AlignedFree(inPointer);\ \}}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ Directly\ define\ the\ allocation\ functions}}
+\DoxyCodeLine{00042\ JPH\_EXPORT\ \textcolor{keywordtype}{void}\ *Allocate(\textcolor{keywordtype}{size\_t}\ inSize);}
+\DoxyCodeLine{00043\ JPH\_EXPORT\ \textcolor{keywordtype}{void}\ Free(\textcolor{keywordtype}{void}\ *inBlock);}
+\DoxyCodeLine{00044\ JPH\_EXPORT\ \textcolor{keywordtype}{void}\ *AlignedAllocate(\textcolor{keywordtype}{size\_t}\ inSize,\ \textcolor{keywordtype}{size\_t}\ inAlignment);}
+\DoxyCodeLine{00045\ JPH\_EXPORT\ \textcolor{keywordtype}{void}\ AlignedFree(\textcolor{keywordtype}{void}\ *inBlock);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ Don't\ implement\ allocator\ registering}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ RegisterDefaultAllocator()\ \{\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Don't\ override\ new/delete}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ JPH\_OVERRIDE\_NEW\_DELETE}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !JPH\_DISABLE\_CUSTOM\_ALLOCATOR}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

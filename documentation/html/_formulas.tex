@@ -1,0 +1,212 @@
+\documentclass{article}
+\usepackage{ifthen}
+\usepackage{epsfig}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{newunicodechar}
+  \makeatletter
+    \def\doxynewunicodechar#1#2{%
+    \@tempswafalse
+    \edef\nuc@tempa{\detokenize{#1}}%
+    \if\relax\nuc@tempa\relax
+      \nuc@emptyargerr
+    \else
+      \edef\@tempb{\expandafter\@car\nuc@tempa\@nil}%
+      \nuc@check
+      \if@tempswa
+        \@namedef{u8:\nuc@tempa}{#2}%
+      \fi
+    \fi
+  }
+  \makeatother
+  \doxynewunicodechar{⁻}{${}^{-}$}% Superscript minus
+  \doxynewunicodechar{²}{${}^{2}$}% Superscript two
+  \doxynewunicodechar{³}{${}^{3}$}% Superscript three
+
+\pagestyle{empty}
+\begin{document}
+$result = this^T \: inV$
+\pagebreak
+
+$A \: v = \lambda \: v$
+\pagebreak
+
+$\lambda$
+\pagebreak
+
+$inA \: x^2 + inB \: x + inC = 0$
+\pagebreak
+
+$inV1 \otimes inV2$
+\pagebreak
+
+$A \times B = \text{sCrossProduct}(A) \: B$
+\pagebreak
+
+$ML(q) \: p = q \: p$
+\pagebreak
+
+$MR(q) \: p = p \: q$
+\pagebreak
+
+$result = this^T \: inM$
+\pagebreak
+
+$result = this \: inM^T$
+\pagebreak
+
+$\pi$
+\pagebreak
+
+$[-\pi, \pi]$
+\pagebreak
+
+$inV^3$
+\pagebreak
+
+$q = w + x \: i + y \: j + z \: k$
+\pagebreak
+
+$q = [w, v] = [w, x, y, z]$
+\pagebreak
+
+$[0, \pi]$
+\pagebreak
+
+$|v|^2$
+\pagebreak
+
+$|v|$
+\pagebreak
+
+\[q = q_{swing} \: q_{twist}\]
+\pagebreak
+
+$q_{twist}$
+\pagebreak
+
+\[q_{twist} = \frac{[q_w, q_{ijk} \cdot v \: v]}{\left|[q_w, q_{ijk} \cdot v \: v]\right|}\]
+\pagebreak
+
+\[q_{swing} = q \: q_{twist}^* \]
+\pagebreak
+
+$q_{twist}^*$
+\pagebreak
+
+$q = q_{swing} \: q_{twist}$
+\pagebreak
+
+$q_{swing} \: \hat{x} = q_{twist} \: \hat{y} = q_{twist} \: \hat{z} = 0$
+\pagebreak
+
+$q_{swing}$
+\pagebreak
+
+$\in [0, \pi]$
+\pagebreak
+
+$\in [0, 2 \pi]$
+\pagebreak
+
+$VelocityCOM = Velocity - AngularVelocity \times ShapeCOM$
+\pagebreak
+
+$R \: D \: R^{-1}$
+\pagebreak
+
+$2/5 \: m \: r^2$
+\pagebreak
+
+$I_{body}^{-1} = R \: D \: R^{-1}$
+\pagebreak
+
+$I_{body}^{-1}$
+\pagebreak
+
+$I^{-1}$
+\pagebreak
+
+$I_{world}^{-1}$
+\pagebreak
+
+\[C = \theta(t) - \theta_{min}\]
+\pagebreak
+
+\[J = \begin{bmatrix}0 & -a^T & 0 & a^T\end{bmatrix}\]
+\pagebreak
+
+$K^{-1} = \left( J M^{-1} J^T \right)^{-1}$
+\pagebreak
+
+$\beta$
+\pagebreak
+
+\[C = (p_2 - p_1) \cdot n\]
+\pagebreak
+
+\[J = \begin{bmatrix} -n^T & (-(r_1 + u) \times n)^T & n^T & (r_2 \times n)^T \end{bmatrix}\]
+\pagebreak
+
+\[C = \begin{bmatrix} (p_2 - p_1) \cdot n_1 \\ (p_2 - p_1) \cdot n_2\end{bmatrix}\]
+\pagebreak
+
+\[J^T = \begin{bmatrix}
+-n_1                    & -n_2                  \\
+-(r_1 + u) \times n_1   & -(r_1 + u) \times n_2 \\
+n_1                     & n_2                   \\
+r_2 \times n_1          & r_2 \times n_2
+\end{bmatrix}\]
+\pagebreak
+
+\[J = \begin{bmatrix}0 & a^T & 0 & r b^T\end{bmatrix}\]
+\pagebreak
+
+\[C = \begin{bmatrix}a_1 \cdot b_2 \\ a_1 \cdot c_2\end{bmatrix}\]
+\pagebreak
+
+\[J = \begin{bmatrix}
+0   & -b_2 \times a_1   & 0     & b_2 \times a_1    \\
+0   & -c_2 \times a_1   & 0     & c2 \times a_1
+\end{bmatrix}\]
+\pagebreak
+
+\[C = (x_1 + r_1 - f_1) . n_1 + r (x_2 + r_2 - f_2) \cdot n_2\]
+\pagebreak
+
+\[dC/dt = (v_1 + w_1 \times r_1) \cdot n_1 + (x_1 + r_1 - f_1) \cdot d n_1/dt + r (v_2 + w_2 \times r_2) \cdot n_2 + r (x_2 + r_2 - f_2) \cdot d n_2/dt\]
+\pagebreak
+
+\[(v_1 + w_1 \times r_1) \cdot n_1 + r (v_2 + w_2 \times r_2) \cdot n_2\]
+\pagebreak
+
+\[= v_1 \cdot n_1 + r_1 \times n_1 \cdot w_1 + r v_2 \cdot n_2 + r r_2 \times n_2 \cdot w_2\]
+\pagebreak
+
+\[J = \begin{bmatrix}n_1 & r_1 \times n_1 & r n_2 & r r_2 \times n_2\end{bmatrix}\]
+\pagebreak
+
+\[K = m_1^{-1} + r_1 \times n_1 I_1^{-1} r_1 \times n_1 + r^2 m_2^{-1} + r^2 r_2 \times n_2 I_2^{-1} r_2 \times n_2\]
+\pagebreak
+
+\[C = p_2 - p_1\]
+\pagebreak
+
+\[J^T = \begin{bmatrix}-E & r1x & E & -r2x^T\end{bmatrix}
+= \begin{bmatrix}-E^T \\ r1x^T \\ E^T \\ -r2x^T\end{bmatrix}
+= \begin{bmatrix}-E \\ -r1x \\ E \\ r2x\end{bmatrix}\]
+\pagebreak
+
+\[J = \begin{bmatrix}0 & a^T & -r b^T & 0\end{bmatrix}\]
+\pagebreak
+
+\[C = \begin{bmatrix}\Delta\theta_x, \Delta\theta_y, \Delta\theta_z\end{bmatrix}\]
+\pagebreak
+
+\[J = \begin{bmatrix}0 & -E & 0 & E\end{bmatrix}\]
+\pagebreak
+
+$\in [-\pi, \pi]$
+\pagebreak
+
+\end{document}

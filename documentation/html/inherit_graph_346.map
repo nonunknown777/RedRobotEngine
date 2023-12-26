@@ -1,0 +1,25 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,467,117,495"/>
+<area shape="rect" id="Node000001" href="$d9/de1/structplayrho_1_1HasType_3_01T_00_01std_1_1tuple_3_01T_00_01Ts_8_8_8_01_4_01_4.html" title="Has&#45;type trait true class." alt="" coords="202,5,375,50"/>
+<area shape="poly" id="edge276_Node000000_Node000001" title=" " alt="" coords="63,452,75,363,96,246,125,134,143,91,163,61,180,47,200,37,203,42,183,51,167,64,147,93,130,136,101,247,80,363,68,452"/>
+<area shape="rect" id="Node000002" href="$de/db9/structplayrho_1_1IsAddable_3_01T1_00_01T2_00_01std_1_1void__t_3_01decltype_07T1_02_03_09T2_02_03_08_4_01_4.html" title="Template specializing for addable types." alt="" coords="181,74,396,136"/>
+<area shape="poly" id="edge277_Node000000_Node000002" title=" " alt="" coords="60,451,66,389,81,307,94,264,112,222,134,181,163,146,179,133,182,137,167,150,139,184,116,224,99,266,86,309,71,390,66,452"/>
+<area shape="rect" id="Node000003" href="$d0/dea/structplayrho_1_1IsArithmetic_3_01T_00_01std_1_1void__t_3_01decltype_07T_02_03_09T_02_03_08_00_0e30487095fcbd3150b7b99d467763a14.html" title="Template specialization for valid/acceptable &quot;arithmetic&quot; types." alt="" coords="192,160,385,256"/>
+<area shape="poly" id="edge278_Node000000_Node000003" title=" " alt="" coords="67,451,80,411,99,362,127,311,163,266,190,244,193,248,167,270,131,314,104,364,85,413,72,453"/>
+<area shape="rect" id="Node000004" href="$d9/db5/structplayrho_1_1IsDivisable_3_01T1_00_01T2_00_01std_1_1void__t_3_01decltype_07T1_02_03_2T2_02_03_08_4_01_4.html" title="Template specializing for divisable types." alt="" coords="190,280,387,341"/>
+<area shape="poly" id="edge279_Node000000_Node000004" title=" " alt="" coords="76,452,112,401,136,374,163,351,188,336,191,341,166,355,139,378,116,404,80,455"/>
+<area shape="rect" id="Node000005" href="$dc/d99/structplayrho_1_1IsEqualityComparable_3_01T1_00_01T2_00_01std_1_1void__t_3_01decltype_07T1_02_03_0a_0aT2_02_03_08_4_01_4.html" title="Template specialization for equality comparable types." alt="" coords="177,365,400,427"/>
+<area shape="poly" id="edge280_Node000000_Node000005" title=" " alt="" coords="108,458,164,436,194,424,196,429,166,441,110,463"/>
+<area shape="rect" id="Node000006" href="$d6/d05/structplayrho_1_1IsInequalityComparable_3_01T1_00_01T2_00_01std_1_1void__t_3_01decltype_07T1_02_03_01_9_0aT2_02_03_08_4_01_4.html" title="Template specialization for inequality comparable types." alt="" coords="172,450,405,512"/>
+<area shape="poly" id="edge281_Node000000_Node000006" title=" " alt="" coords="133,478,171,478,171,484,133,484"/>
+<area shape="rect" id="Node000007" href="$d4/d35/structplayrho_1_1IsMatrix_3_01Vector_3_01Vector_3_01T_00_01N_01_4_00_01M_01_4_01_4.html" title="Trait class specialization for checking if type is a matrix type." alt="" coords="214,536,363,597"/>
+<area shape="poly" id="edge282_Node000000_Node000007" title=" " alt="" coords="110,499,166,521,215,539,213,544,164,526,108,504"/>
+<area shape="rect" id="Node000008" href="$dd/d0f/structplayrho_1_1IsMultipliable_3_01T1_00_01T2_00_01std_1_1void__t_3_01decltype_07T1_02_03_01_5T2_02_03_08_4_01_4.html" title="Template specializing for multipliable types." alt="" coords="187,621,390,683"/>
+<area shape="poly" id="edge283_Node000000_Node000008" title=" " alt="" coords="80,507,116,558,139,584,166,607,188,620,185,624,163,611,136,588,112,561,76,510"/>
+<area shape="rect" id="Node000009" href="$d2/d76/structplayrho_1_1IsSquareMatrix_3_01Vector_3_01Vector_3_01T_00_01M_01_4_00_01M_01_4_01_4.html" title="Trait class specialization for checking if type is a square matrix type." alt="" coords="200,706,377,768"/>
+<area shape="poly" id="edge284_Node000000_Node000009" title=" " alt="" coords="71,509,83,550,102,599,130,649,166,692,201,714,199,719,163,696,125,652,97,601,78,552,66,511"/>
+<area shape="rect" id="Node000010" href="$dc/d56/structplayrho_1_1IsVector_3_01Vector_3_01T_00_01N_01_4_01_4.html" title="Trait class specialization for checking if type is a Vector type.." alt="" coords="218,792,359,837"/>
+<area shape="poly" id="edge285_Node000000_Node000010" title=" " alt="" coords="66,510,73,567,89,639,102,677,119,713,140,748,166,778,191,794,219,804,217,809,188,799,163,782,136,751,114,716,97,679,84,640,68,568,61,511"/>
+<area shape="rect" id="Node000011" href="$d7/dd4/structplayrho_1_1detail_1_1IsIterableImpl_3_01T_00_01std_1_1void__t_3_01decltype_07begin_07std_13619530b21097a509a6589d454070d72.html" title="Low&#45;level implementation of the is&#45;iterable true value trait." alt="" coords="165,861,412,1008"/>
+<area shape="poly" id="edge286_Node000000_Node000011" title=" " alt="" coords="67,510,73,576,90,663,120,759,141,805,167,847,176,859,172,862,162,851,136,807,115,761,85,665,68,577,61,511"/>
+</map>

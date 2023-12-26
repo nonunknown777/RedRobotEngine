@@ -10,7 +10,7 @@ public:
     Panel(std::string name = "Panel");
     ~Panel();
 
-    StyleBoxFlat* style_box_flat;
+    StyleBox* panel;
 
     void _draw() override;
 

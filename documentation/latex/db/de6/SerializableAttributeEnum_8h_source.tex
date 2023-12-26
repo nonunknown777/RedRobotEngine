@@ -1,0 +1,62 @@
+\doxysection{Serializable\+Attribute\+Enum.\+h}
+\hypertarget{SerializableAttributeEnum_8h_source}{}\label{SerializableAttributeEnum_8h_source}\index{includes/jolt/ObjectStream/SerializableAttributeEnum.h@{includes/jolt/ObjectStream/SerializableAttributeEnum.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableAttribute.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/ObjectStream.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Macros\ to\ add\ properties\ to\ be\ serialized}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ MemberType>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ AddSerializableAttributeEnum(\mbox{\hyperlink{classRTTI}{RTTI}}\ \&inRTTI,\ uint\ inOffset,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ inRTTI.\mbox{\hyperlink{classRTTI_a5672a76cf4f12f280889d711341b2b32}{AddAttribute}}(\mbox{\hyperlink{classSerializableAttribute}{SerializableAttribute}}(inName,\ inOffset,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ []()\ -\/>\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ [](\textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ [[maybe\_unused]]\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inArrayDepth\ ==\ 0\ \&\&\ inDataType\ ==\ EOSDataType::T\_uint32;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ [](\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ \textcolor{keywordtype}{void}\ *inObject)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ temporary;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (OSReadData(ioStream,\ temporary))}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{reinterpret\_cast<}MemberType\ *\textcolor{keyword}{>}(inObject)\ =\ \textcolor{keyword}{static\_cast<}MemberType\textcolor{keyword}{>}(temporary);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ [](\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inObject)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(MemberType)\ <=\ \textcolor{keyword}{sizeof}(uint32));}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ temporary\ =\ uint32(*\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }MemberType\ *\textcolor{keyword}{>}(inObject));}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ OSWriteData(ioStream,\ temporary);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ [](\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ ioStream.WriteDataType(EOSDataType::T\_uint32);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ JPH\_ADD\_ENUM\_ATTRIBUTE\_WITH\_ALIAS}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ JPH\_ADD\_ENUM\_ATTRIBUTE\_WITH\_ALIAS(class\_name,\ member\_name,\ alias\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \ AddSerializableAttributeEnum<decltype(class\_name::member\_name)>(inRTTI,\ offsetof(class\_name,\ member\_name),\ alias\_name);}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ JPH\_ADD\_ENUM\_ATTRIBUTE}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ JPH\_ADD\_ENUM\_ATTRIBUTE(class\_name,\ member\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ JPH\_ADD\_ENUM\_ATTRIBUTE\_WITH\_ALIAS(class\_name,\ member\_name,\ \#member\_name);}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,56 @@
+\doxysection{Triangle Class Reference}
+\hypertarget{classTriangle}{}\label{classTriangle}\index{Triangle@{Triangle}}
+
+
+A simple triangle and its material.  
+
+
+
+
+{\ttfamily \#include $<$Triangle.\+h$>$}
+
+
+
+Collaboration diagram for Triangle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{da/d98/classTriangle__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTriangle_ab77028569270c58b230bade2e050f0e8}\label{classTriangle_ab77028569270c58b230bade2e050f0e8} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Triangle} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classTriangle_aadcfe7dea066a7d1d35d2a6757891a48}\label{classTriangle_aadcfe7dea066a7d1d35d2a6757891a48} 
+{\bfseries Triangle} (const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+V1, const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+V2, const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+V3)
+\item 
+\Hypertarget{classTriangle_af9b36142778df50bf58383e29bd1b8e6}\label{classTriangle_af9b36142778df50bf58383e29bd1b8e6} 
+{\bfseries Triangle} (const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+V1, const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+V2, const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+V3, uint32 in\+Material\+Index)
+\item 
+\Hypertarget{classTriangle_ad12125ba229387f758ec414d3014550f}\label{classTriangle_ad12125ba229387f758ec414d3014550f} 
+{\bfseries Triangle} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V3)
+\item 
+\Hypertarget{classTriangle_a680a9a904aaad1f8a495f8ec667fbf70}\label{classTriangle_a680a9a904aaad1f8a495f8ec667fbf70} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Centroid} () const
+\begin{DoxyCompactList}\small\item\em Get center of triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTriangle_add833346b63769a08d6d868195c9b6a5}\label{classTriangle_add833346b63769a08d6d868195c9b6a5} 
+\mbox{\hyperlink{classFloat3}{Float3}} {\bfseries mV} \mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em Vertices. \end{DoxyCompactList}\item 
+\Hypertarget{classTriangle_a7f441edf952be97bf6110750c69b620a}\label{classTriangle_a7f441edf952be97bf6110750c69b620a} 
+uint32 {\bfseries m\+Material\+Index} = 0
+\begin{DoxyCompactList}\small\item\em Follows mV\mbox{[}3\mbox{]} so that we can read mV as 4 vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A simple triangle and its material. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Triangle.\+h\end{DoxyCompactItemize}

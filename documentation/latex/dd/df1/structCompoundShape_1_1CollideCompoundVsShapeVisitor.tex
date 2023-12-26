@@ -1,0 +1,71 @@
+\doxysection{Compound\+Shape\+::Collide\+Compound\+Vs\+Shape\+Visitor Struct Reference}
+\hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor}{}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor}\index{CompoundShape::CollideCompoundVsShapeVisitor@{CompoundShape::CollideCompoundVsShapeVisitor}}
+
+
+Collaboration diagram for Compound\+Shape\+::Collide\+Compound\+Vs\+Shape\+Visitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/dd3/structCompoundShape_1_1CollideCompoundVsShapeVisitor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_aadc26efc419ef5f50163fcbb07d7d404}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_aadc26efc419ef5f50163fcbb07d7d404} 
+JPH\+\_\+\+INLINE {\bfseries Collide\+Compound\+Vs\+Shape\+Visitor} (const \mbox{\hyperlink{classCompoundShape}{Compound\+Shape}} \texorpdfstring{$\ast$}{*}in\+Shape1, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale2, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform1, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator2, const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \&in\+Collide\+Shape\+Settings, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter)
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a135fbf1825c7dfbfc0556005b92bc5c1}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a135fbf1825c7dfbfc0556005b92bc5c1} 
+JPH\+\_\+\+INLINE bool {\bfseries Should\+Abort} () const
+\begin{DoxyCompactList}\small\item\em Returns true when collision detection should abort because it\textquotesingle{}s not possible to find a better hit. \end{DoxyCompactList}\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_af43a759ff857d5f3ee1246425e146851}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_af43a759ff857d5f3ee1246425e146851} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec4}{UVec4}} {\bfseries Test\+Bounds} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MinX, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MinY, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MinZ, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MaxX, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MaxY, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Bounds\+MaxZ) const
+\begin{DoxyCompactList}\small\item\em Tests the bounds of shape 2 vs 4 bounding boxes, returns true for the ones that intersect. \end{DoxyCompactList}\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_af575d07fd175a53c7c9039c9b91a060a}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_af575d07fd175a53c7c9039c9b91a060a} 
+JPH\+\_\+\+INLINE void {\bfseries Visit\+Shape} (const \mbox{\hyperlink{structCompoundShape_1_1SubShape}{Sub\+Shape}} \&in\+Sub\+Shape, uint32 in\+Sub\+Shape\+Index)
+\begin{DoxyCompactList}\small\item\em Test the shape against a single subshape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a350f11e56d89c4f9200163a131f3f444}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a350f11e56d89c4f9200163a131f3f444} 
+const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \& {\bfseries m\+Collide\+Shape\+Settings}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a0baf1b449eed819cb072a676d72398cd}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a0baf1b449eed819cb072a676d72398cd} 
+\mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \& {\bfseries m\+Collector}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_af4eac4c381d05d1c7cfb1512a2f202f7}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_af4eac4c381d05d1c7cfb1512a2f202f7} 
+const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Shape2}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a7b3698ab299d4e1f2881337c09892cd5}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a7b3698ab299d4e1f2881337c09892cd5} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Scale1}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a80a7872b09611c352c0c02cf18a0fa67}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a80a7872b09611c352c0c02cf18a0fa67} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Scale2}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a10a2d8ac67f9978eeacf09dae77c894b}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a10a2d8ac67f9978eeacf09dae77c894b} 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries m\+Transform1}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a3e53fc715eeb683b4b753c43923f5839}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a3e53fc715eeb683b4b753c43923f5839} 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries m\+Transform2}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_ade932f2552ec9da071d7c588fd4bde34}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_ade932f2552ec9da071d7c588fd4bde34} 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries m\+Bounds\+Of2\+In\+Space\+Of1}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_afd4c304df5e719a22c21e479fbfffa32}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_afd4c304df5e719a22c21e479fbfffa32} 
+\mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} {\bfseries m\+Sub\+Shape\+IDCreator1}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a7d54b29e53e0fb097be48c090307afa2}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a7d54b29e53e0fb097be48c090307afa2} 
+\mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} {\bfseries m\+Sub\+Shape\+IDCreator2}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a5b0a740a68fd32de56518ab00e2d5afa}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a5b0a740a68fd32de56518ab00e2d5afa} 
+uint {\bfseries m\+Sub\+Shape\+Bits}
+\item 
+\Hypertarget{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a63d01e5f27bd4944b066e6a33c3f4698}\label{structCompoundShape_1_1CollideCompoundVsShapeVisitor_a63d01e5f27bd4944b066e6a33c3f4698} 
+const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \& {\bfseries m\+Shape\+Filter}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Compound\+Shape\+Visitors.\+h\end{DoxyCompactItemize}

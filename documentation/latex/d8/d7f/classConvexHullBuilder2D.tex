@@ -1,0 +1,129 @@
+\doxysection{Convex\+Hull\+Builder2D Class Reference}
+\hypertarget{classConvexHullBuilder2D}{}\label{classConvexHullBuilder2D}\index{ConvexHullBuilder2D@{ConvexHullBuilder2D}}
+
+
+A convex hull builder that tries to create 2D hulls as accurately as possible. Used for offline processing.  
+
+
+
+
+{\ttfamily \#include $<$Convex\+Hull\+Builder2\+D.\+h$>$}
+
+
+
+Inheritance diagram for Convex\+Hull\+Builder2D\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{de/de5/classConvexHullBuilder2D__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Convex\+Hull\+Builder2D\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{dd/d78/classConvexHullBuilder2D__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0}{EResult}} \{ \mbox{\hyperlink{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0a505a83f220c02df2f85c3810cd9ceb38}{Success}}
+, \mbox{\hyperlink{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0a7cc57ee56f4f29991173f4efa7a469e9}{Max\+Vertices\+Reached}}
+ \}
+\begin{DoxyCompactList}\small\item\em \doxylink{classResult}{Result} enum that indicates how the hull got created. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder2D_a73280989dea747d4ec494b260e85222c}\label{classConvexHullBuilder2D_a73280989dea747d4ec494b260e85222c} 
+using {\bfseries Positions} = Array$<$ \mbox{\hyperlink{classVec3}{Vec3}} $>$
+\item 
+\Hypertarget{classConvexHullBuilder2D_a5827b465379b2d68b9bf2e6968565df5}\label{classConvexHullBuilder2D_a5827b465379b2d68b9bf2e6968565df5} 
+using {\bfseries Edges} = Array$<$ int $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classConvexHullBuilder2D_ab299706e0b4a473b763116a31ff234c8}{Convex\+Hull\+Builder2D}} (const Positions \&in\+Positions)
+\item 
+\Hypertarget{classConvexHullBuilder2D_a9fd6172b0d35d0f66114514b6a8a31b0}\label{classConvexHullBuilder2D_a9fd6172b0d35d0f66114514b6a8a31b0} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Convex\+Hull\+Builder2D} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0}{EResult}} \mbox{\hyperlink{classConvexHullBuilder2D_a4cf0c9d194da4f84820bf37d7f80c44d}{Initialize}} (int in\+Idx1, int in\+Idx2, int in\+Idx3, int in\+Max\+Vertices, float in\+Tolerance, Edges \&out\+Edges)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A convex hull builder that tries to create 2D hulls as accurately as possible. Used for offline processing. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0}\label{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0} 
+\index{ConvexHullBuilder2D@{ConvexHullBuilder2D}!EResult@{EResult}}
+\index{EResult@{EResult}!ConvexHullBuilder2D@{ConvexHullBuilder2D}}
+\doxysubsubsection{\texorpdfstring{EResult}{EResult}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0}{Convex\+Hull\+Builder2\+D\+::\+EResult}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+\doxylink{classResult}{Result} enum that indicates how the hull got created. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Success@{Success}!ConvexHullBuilder2D@{ConvexHullBuilder2D}}\index{ConvexHullBuilder2D@{ConvexHullBuilder2D}!Success@{Success}}}\Hypertarget{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0a505a83f220c02df2f85c3810cd9ceb38}\label{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0a505a83f220c02df2f85c3810cd9ceb38} 
+Success&Hull building finished successfully. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxVerticesReached@{MaxVerticesReached}!ConvexHullBuilder2D@{ConvexHullBuilder2D}}\index{ConvexHullBuilder2D@{ConvexHullBuilder2D}!MaxVerticesReached@{MaxVerticesReached}}}\Hypertarget{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0a7cc57ee56f4f29991173f4efa7a469e9}\label{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0a7cc57ee56f4f29991173f4efa7a469e9} 
+Max\+Vertices\+Reached&Hull building finished successfully, but the desired accuracy was not reached because the max vertices limit was reached. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classConvexHullBuilder2D_ab299706e0b4a473b763116a31ff234c8}\label{classConvexHullBuilder2D_ab299706e0b4a473b763116a31ff234c8} 
+\index{ConvexHullBuilder2D@{ConvexHullBuilder2D}!ConvexHullBuilder2D@{ConvexHullBuilder2D}}
+\index{ConvexHullBuilder2D@{ConvexHullBuilder2D}!ConvexHullBuilder2D@{ConvexHullBuilder2D}}
+\doxysubsubsection{\texorpdfstring{ConvexHullBuilder2D()}{ConvexHullBuilder2D()}}
+{\footnotesize\ttfamily Convex\+Hull\+Builder2\+D\+::\+Convex\+Hull\+Builder2D (\begin{DoxyParamCaption}\item[{const Positions \&}]{in\+Positions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em in\+Positions} & Positions used to make the hull. Uses X and Y component of \doxylink{classVec3}{Vec3} only! \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classConvexHullBuilder2D_a4cf0c9d194da4f84820bf37d7f80c44d}\label{classConvexHullBuilder2D_a4cf0c9d194da4f84820bf37d7f80c44d} 
+\index{ConvexHullBuilder2D@{ConvexHullBuilder2D}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!ConvexHullBuilder2D@{ConvexHullBuilder2D}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classConvexHullBuilder2D_a249cc4fd8288bd1cf447d3d820e9dcd0}{EResult}} Convex\+Hull\+Builder2\+D\+::\+Initialize (\begin{DoxyParamCaption}\item[{int}]{in\+Idx1,  }\item[{int}]{in\+Idx2,  }\item[{int}]{in\+Idx3,  }\item[{int}]{in\+Max\+Vertices,  }\item[{float}]{in\+Tolerance,  }\item[{Edges \&}]{out\+Edges }\end{DoxyParamCaption})}
+
+Takes all positions as provided by the constructor and use them to build a hull Any points that are closer to the hull than in\+Tolerance will be discarded 
+\begin{DoxyParams}{Parameters}
+{\em in\+Idx1,in\+Idx2,in\+Idx3} & The indices to use as initial hull (in any order) \\
+\hline
+{\em in\+Max\+Vertices} & Max vertices to allow in the hull. Specify INT\+\_\+\+MAX if there is no limit. \\
+\hline
+{\em in\+Tolerance} & Max distance that a point is allowed to be outside of the hull \\
+\hline
+{\em out\+Edges} & On success this will contain the list of indices that form the hull (counter clockwise) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code that reports if the hull was created or not 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Convex\+Hull\+Builder2\+D.\+h\end{DoxyCompactItemize}

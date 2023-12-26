@@ -1,0 +1,64 @@
+\doxysection{playrho\+::Non\+Positive\+Checker\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structplayrho_1_1NonPositiveChecker}{}\label{structplayrho_1_1NonPositiveChecker}\index{playrho::NonPositiveChecker$<$ T $>$@{playrho::NonPositiveChecker$<$ T $>$}}
+
+
+Non-\/positive constrained value checker.  
+
+
+
+
+{\ttfamily \#include $<$Non\+Positive.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Non\+Positive\+Checker\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{d8/d1c/structplayrho_1_1NonPositiveChecker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structplayrho_1_1NonPositiveChecker_a07046e0e81c760ef5f5553977fe02a23}\label{structplayrho_1_1NonPositiveChecker_a07046e0e81c760ef5f5553977fe02a23} 
+using {\bfseries exception\+\_\+type} = std\+::invalid\+\_\+argument
+\begin{DoxyCompactList}\small\item\em Exception type possibly thrown by this checker. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structplayrho_1_1NonPositiveChecker_abb753b1143dcbf9c329617b807ee218b}\label{structplayrho_1_1NonPositiveChecker_abb753b1143dcbf9c329617b807ee218b} 
+constexpr auto {\bfseries operator()} () noexcept -\/$>$ decltype(static\+\_\+cast$<$ T $>$(0))
+\begin{DoxyCompactList}\small\item\em Valid value supplying functor. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{structplayrho_1_1NonPositiveChecker_a67dc0ee578fe0f2e3a7c1aad32fbe62c}{operator()}} (const T \&v) -\/$>$ decltype(!(v$<$=static\+\_\+cast$<$ T $>$(0)), T\{v\})
+\begin{DoxyCompactList}\small\item\em Value checking functor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct playrho\+::\+Non\+Positive\+Checker$<$ T $>$}
+Non-\/positive constrained value checker. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structplayrho_1_1NonPositiveChecker_a67dc0ee578fe0f2e3a7c1aad32fbe62c}\label{structplayrho_1_1NonPositiveChecker_a67dc0ee578fe0f2e3a7c1aad32fbe62c} 
+\index{playrho::NonPositiveChecker$<$ T $>$@{playrho::NonPositiveChecker$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!playrho::NonPositiveChecker$<$ T $>$@{playrho::NonPositiveChecker$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr auto \mbox{\hyperlink{structplayrho_1_1NonPositiveChecker}{playrho\+::\+Non\+Positive\+Checker}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{const T \&}]{v }\end{DoxyParamCaption}) -\/$>$ decltype(!(v $<$= static\+\_\+cast$<$T$>$(0)), T\{v\})     \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Value checking functor. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em exception\+\_\+type} & if given value is not valid. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Non\+Positive.\+hpp\end{DoxyCompactItemize}

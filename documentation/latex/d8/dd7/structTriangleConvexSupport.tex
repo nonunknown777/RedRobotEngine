@@ -1,0 +1,53 @@
+\doxysection{Triangle\+Convex\+Support Struct Reference}
+\hypertarget{structTriangleConvexSupport}{}\label{structTriangleConvexSupport}\index{TriangleConvexSupport@{TriangleConvexSupport}}
+
+
+Class that wraps a triangle so that it can used with convex collision detection.  
+
+
+
+
+{\ttfamily \#include $<$Convex\+Support.\+h$>$}
+
+
+
+Collaboration diagram for Triangle\+Convex\+Support\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{da/d41/structTriangleConvexSupport__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structTriangleConvexSupport_aff7b77e932e636e0fe582cd01c5c05fa}\label{structTriangleConvexSupport_aff7b77e932e636e0fe582cd01c5c05fa} 
+{\bfseries Triangle\+Convex\+Support} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V3)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{structTriangleConvexSupport_ac824e6c13d9702af6699e7ba4beccb4c}\label{structTriangleConvexSupport_ac824e6c13d9702af6699e7ba4beccb4c} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Support} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction) const
+\begin{DoxyCompactList}\small\item\em Calculate the support vector for this convex shape. \end{DoxyCompactList}\item 
+\Hypertarget{structTriangleConvexSupport_ab06eab6917e292cdf749432e50ac9159}\label{structTriangleConvexSupport_ab06eab6917e292cdf749432e50ac9159} 
+{\footnotesize template$<$class VERTEX\+\_\+\+ARRAY $>$ }\\void {\bfseries Get\+Supporting\+Face} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, VERTEX\+\_\+\+ARRAY \&out\+Vertices) const
+\begin{DoxyCompactList}\small\item\em Get the vertices of the face that faces in\+Direction the most. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structTriangleConvexSupport_a50d0969071796932f1e6463f44d6265d}\label{structTriangleConvexSupport_a50d0969071796932f1e6463f44d6265d} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+V1}
+\begin{DoxyCompactList}\small\item\em The three vertices of the triangle. \end{DoxyCompactList}\item 
+\Hypertarget{structTriangleConvexSupport_af687a449850628811fad039fe5d7e308}\label{structTriangleConvexSupport_af687a449850628811fad039fe5d7e308} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+V2}
+\item 
+\Hypertarget{structTriangleConvexSupport_a9ffeaa522b588040a0e6ccb36904ec99}\label{structTriangleConvexSupport_a9ffeaa522b588040a0e6ccb36904ec99} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+V3}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that wraps a triangle so that it can used with convex collision detection. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Convex\+Support.\+h\end{DoxyCompactItemize}

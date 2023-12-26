@@ -1,0 +1,178 @@
+\doxysection{Indexing\+Named\+Type.\+hpp}
+\hypertarget{IndexingNamedType_8hpp_source}{}\label{IndexingNamedType_8hpp_source}\index{includes/playrho/Common/IndexingNamedType.hpp@{includes/playrho/Common/IndexingNamedType.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Based\ on\ work\ by\ Jonathan\ Boccara\ and\ Jonathan\ Müller.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_INDEXINGNAMEDTYPE\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_INDEXINGNAMEDTYPE\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <functional>}\ \textcolor{comment}{//\ for\ std::hash}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <type\_traits>}\ \textcolor{comment}{//\ for\ std::is\_nothrow\_default\_constructible}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Tag>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\ =\ T;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a892cfd05d866e1abb9af247c65ebb6df}{IndexingNamedType}}()}
+\DoxyCodeLine{00048\ \ \ \ \ noexcept(\mbox{\hyperlink{namespacestd}{std}}::is\_nothrow\_default\_constructible<\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}>::value):\ value\_\{\}\ \{\}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a3a345acf416a0b32e28a87ee929b65f1}{IndexingNamedType}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\&\ value)}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{noexcept}(std::is\_nothrow\_copy\_constructible<underlying\_type>::value):\ value\_(value)\ \{\}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a3d2b448e6586f75c688e887340a8eedd}{IndexingNamedType}}(\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\&\&\ value)}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{noexcept}(std::is\_nothrow\_move\_constructible<underlying\_type>::value):}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ value\_(\mbox{\hyperlink{namespacestd}{std}}::move(value))\ \{\}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \textcolor{keyword}{operator}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\&()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value\_;}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \textcolor{keyword}{operator}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\&()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value\_;}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\&\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}()\ noexcept}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value\_;}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\ \textcolor{keyword}{const}\&\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a6bda1c5b4714875c8cc05b4c759a201e}{get}}()\ const\ noexcept}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value\_;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2e21d574919f686373b0b82f9d35ef98}{swap}}(\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ a,\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ b)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::swap;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2e21d574919f686373b0b82f9d35ef98}{swap}}(\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\&\textcolor{keyword}{>}(a),\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a2ed01bf69779b0880b5092c6bbad560b}{underlying\_type}}\&\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a1219971355b53a396aadfb666f8d663f}{operator==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ rhs)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}()\ ==\ rhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}();}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a7fc38b3b9704801b3675cf1a002ad7e5}{operator!=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ rhs)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}()\ !=\ rhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}();}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a16b5aef0f779b655555dfbf0078ca0b5}{operator<\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ rhs)}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}()\ <\ rhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}();}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a8ec128feccdf41a973ec8a828f879919}{operator>\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ rhs)}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}()\ >\ rhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}();}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a0d791ea9f12cadd7cc5461f9faf7b084}{operator<=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ rhs)}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}()\ <=\ rhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}();}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a3d99fc15f9494510cac6473350bf5d35}{operator>=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ rhs)}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}()\ >=\ rhs.\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_ae5c600a3a5a2a9d59d9c41e5d7a196f3}{get}}();}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00127\ \ \ \ \ friend\ ::std::size\_t\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType_a901b8a220621944bbaeb9368355580be}{hash}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ return\ ::std::hash(v.get());}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1underlying__type}{underlying\_type}}\ value\_;\ }
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{static\_assert}(std::is\_default\_constructible<IndexingNamedType<int,\ struct\ Test>>::value,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00137\ \textcolor{keyword}{static\_assert}(std::is\_nothrow\_copy\_constructible<IndexingNamedType<int,\ struct\ Test>>::value,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00138\ \textcolor{keyword}{static\_assert}(std::is\_nothrow\_move\_constructible<IndexingNamedType<int,\ struct\ Test>>::value,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Tag>}
+\DoxyCodeLine{00142\ [[deprecated(\textcolor{stringliteral}{"{}Use\ to\_underlying\ instead"{}})]]}
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ T\&\ \mbox{\hyperlink{namespaceplayrho_1_1detail_a213f05bccf68b8d481a0bd617bb45371}{UnderlyingValue}}(\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType<T,\ Tag>}}\&\ o)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\&\textcolor{keyword}{>}(o);}
+\DoxyCodeLine{00146\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Tag>}
+\DoxyCodeLine{00150\ [[deprecated(\textcolor{stringliteral}{"{}Use\ to\_underlying\ instead"{}})]]}
+\DoxyCodeLine{00151\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ T\&\ \mbox{\hyperlink{namespaceplayrho_1_1detail_a213f05bccf68b8d481a0bd617bb45371}{UnderlyingValue}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{IndexingNamedType<T,\ Tag>}}\&\ o)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }T\&\textcolor{keyword}{>}(o);}
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \}\ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Enable\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00160\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1underlying__type}{underlying\_type}}\ \{\};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00164\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1underlying__type}{underlying\_type}}<T,\ \mbox{\hyperlink{namespacestd}{std}}::enable\_if\_t<std::is\_enum\_v<T>>>}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{using\ }type\ =\ std::underlying\_type\_t<T>;}
+\DoxyCodeLine{00167\ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ Tag>}
+\DoxyCodeLine{00171\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1underlying__type}{underlying\_type}}<detail::IndexingNamedType<T,\ Tag>>}
+\DoxyCodeLine{00172\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{using\ }type\ =\ T;}
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00178\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_a79f10d34cd7e0d7f7cbbafb638373818}{underlying\_type\_t}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structplayrho_1_1underlying__type}{underlying\_type<T>::type}};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00183\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_abcf5bea73a392ad1b2be520e79fb9b4a}{to\_underlying}}(T\ value)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{namespaceplayrho_a79f10d34cd7e0d7f7cbbafb638373818}{underlying\_type\_t<T>}}}
+\DoxyCodeLine{00184\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespaceplayrho_a79f10d34cd7e0d7f7cbbafb638373818}{underlying\_type\_t<T>}}\textcolor{keyword}{>}(value);}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}\ \{}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Tag>}
+\DoxyCodeLine{00195\ \textcolor{keyword}{struct\ }hash<::\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{playrho::detail::IndexingNamedType}}<T,\ Tag>>}
+\DoxyCodeLine{00196\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ ::std::size\_t\ \mbox{\hyperlink{structstd_1_1hash_3_1_1playrho_1_1detail_1_1IndexingNamedType_3_01T_00_01Tag_01_4_01_4_aa13ca1029751c40580cb84fb502a3905}{operator()}}(const\ ::playrho::detail::IndexingNamedType<T,\ Tag>\&\ v)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ return\ ::std::hash<T>()(v.get());;}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \}\ \textcolor{comment}{//\ namespace\ std}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_INDEXINGNAMEDTYPE\_HPP}}
+
+\end{DoxyCode}

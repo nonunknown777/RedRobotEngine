@@ -1,0 +1,80 @@
+\doxysection{Vehicle\+Engine.\+h}
+\hypertarget{VehicleEngine_8h_source}{}\label{VehicleEngine_8h_source}\index{includes/jolt/Physics/Vehicle/VehicleEngine.h@{includes/jolt/Physics/Vehicle/VehicleEngine.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableObject.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/LinearCurve.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StreamIn.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StreamOut.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/StateRecorder.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}};}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classVehicleEngineSettings}{VehicleEngineSettings}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_NON\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classVehicleEngineSettings}{VehicleEngineSettings}})}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngineSettings}{VehicleEngineSettings}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveBinaryState(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ const;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreBinaryState(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxTorque\ =\ 500.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinRPM\ =\ 1000.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxRPM\ =\ 6000.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classLinearCurve}{LinearCurve}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mNormalizedTorque;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInertia\ =\ 0.5f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAngularDamping\ =\ 0.2f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classVehicleEngine}{VehicleEngine}}\ :\ public\ \mbox{\hyperlink{classVehicleEngineSettings}{VehicleEngineSettings}}}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \ cAngularVelocityToRPM\ =\ 60.0f\ /\ (2.0f\ *\ JPH\_PI);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_a10cc014bfd4c08086fc83ef73948c7ba}{ClampRPM}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mCurrentRPM\ =\ Clamp(mCurrentRPM,\ mMinRPM,\ mMaxRPM);\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_ac1f11f381d186b50721cbc058931a2b5}{GetCurrentRPM}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mCurrentRPM;\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_ab37d0e87f872355e595960fa18510861}{SetCurrentRPM}}(\textcolor{keywordtype}{float}\ inRPM)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mCurrentRPM\ =\ inRPM;\ ClampRPM();\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_ae6735223f4b1d1fc898309e671504731}{GetAngularVelocity}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mCurrentRPM\ /\ cAngularVelocityToRPM;\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_a22815f9d97cb6318b0b6a3df66e0f6d5}{GetTorque}}(\textcolor{keywordtype}{float}\ inAcceleration)\textcolor{keyword}{\ const\ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ inAcceleration\ *\ mMaxTorque\ *\ mNormalizedTorque.\mbox{\hyperlink{classLinearCurve_a24eda4be408b24e5dfeba9bf94edb295}{GetValue}}(mCurrentRPM\ /\ mMaxRPM);\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_af916ceb8c4a323cee68c72465627901e}{ApplyTorque}}(\textcolor{keywordtype}{float}\ inTorque,\ \textcolor{keywordtype}{float}\ inDeltaTime);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_ad61683b9088153079e3e47334c2caf1a}{ApplyDamping}}(\textcolor{keywordtype}{float}\ inDeltaTime);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Function\ that\ converts\ RPM\ to\ an\ angle\ in\ radians\ for\ debugging\ purposes}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConvertRPMToAngle(\textcolor{keywordtype}{float}\ inRPM)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (-\/0.75f\ +\ 1.5f\ *\ inRPM\ /\ mMaxRPM)\ *\ JPH\_PI;\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawRPM(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inForward,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inUp,\ \textcolor{keywordtype}{float}\ inSize,\ \textcolor{keywordtype}{float}\ inShiftDownRPM,\ \textcolor{keywordtype}{float}\ inShiftUpRPM)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_a542f9131ecce2c3f41526c44759b913b}{AllowSleep}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mCurrentRPM\ <=\ 1.01f\ *\ mMinRPM;\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleEngine_a14fa6274b90508346dedcc3e21864204}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCurrentRPM\ =\ mMinRPM;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

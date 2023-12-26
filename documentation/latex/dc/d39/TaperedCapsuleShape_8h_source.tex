@@ -1,0 +1,124 @@
+\doxysection{Tapered\+Capsule\+Shape.\+h}
+\hypertarget{TaperedCapsuleShape_8h_source}{}\label{TaperedCapsuleShape_8h_source}\index{includes/jolt/Physics/Collision/Shape/TaperedCapsuleShape.h@{includes/jolt/Physics/Collision/Shape/TaperedCapsuleShape.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/ConvexShape.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Renderer/DebugRenderer.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classTaperedCapsuleShapeSettings}{TaperedCapsuleShapeSettings}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classConvexShapeSettings}{ConvexShapeSettings}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classTaperedCapsuleShapeSettings}{TaperedCapsuleShapeSettings}})}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShapeSettings}{TaperedCapsuleShapeSettings}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShapeSettings}{TaperedCapsuleShapeSettings}}(\textcolor{keywordtype}{float}\ inHalfHeightOfTaperedCylinder,\ \textcolor{keywordtype}{float}\ inTopRadius,\ \textcolor{keywordtype}{float}\ inBottomRadius,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ *inMaterial\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsValid()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mTopRadius\ >\ 0.0f\ \&\&\ mBottomRadius\ >\ 0.0f\ \&\&\ mHalfHeightOfTaperedCylinder\ >=\ 0.0f;\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsSphere()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ See:\ ShapeSettings}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classResult}{ShapeResult}}\ \ \ \ \ \ \mbox{\hyperlink{classShapeSettings_a21e53b5758542a5527c7941d61d838fa}{Create}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHalfHeightOfTaperedCylinder\ =\ 0.0f;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTopRadius\ =\ 0.0f;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBottomRadius\ =\ 0.0f;}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classTaperedCapsuleShape}{TaperedCapsuleShape}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classConvexShape}{ConvexShape}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_a26e7343399e7002fa535d95b208d6d55}{TaperedCapsuleShape}}()\ :\ \mbox{\hyperlink{classConvexShape}{ConvexShape}}(EShapeSubType::TaperedCapsule)\ \{\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape}{TaperedCapsuleShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classTaperedCapsuleShapeSettings}{TaperedCapsuleShapeSettings}}\ \&inSettings,\ ShapeResult\ \&outResult);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetCenterOfMass}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_a66f2f00aa6cbbc1fe683d15993c3e736}{GetCenterOfMass}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mCenterOfMass;\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetLocalBounds}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_ada0bbcd8f70c7c18e09a8185f0f450a6}{GetLocalBounds}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetWorldSpaceBounds}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_ae9c5343d9a9bb51855f98b5557fd7ad6}{GetWorldSpaceBounds}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classShape_a9f8379fa338802436700b86a07fab3be}{Shape::GetWorldSpaceBounds}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetInnerRadius}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_a84f84f37f87624d107b363e1fe0f54a6}{GetInnerRadius}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ min(mTopRadius,\ mBottomRadius);\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetMassProperties}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMassProperties}{MassProperties}}\ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_aa6f6b11d297d6d1718e40178593de984}{GetMassProperties}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSurfaceNormal}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_ae03839bd0f177593d53b609f3cab6fb5}{GetSurfaceNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLocalSurfacePosition)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSupportingFace}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_a3fd08ddcdcd7a52fd7af7a57f3a8b4c9}{GetSupportingFace}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classStaticArray}{SupportingFace}}\ \&outVertices)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ See\ ConvexShape::GetSupportFunction}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classConvexShape_1_1Support}{Support}}\ *\ \ \mbox{\hyperlink{classTaperedCapsuleShape_a4a821960c6dbdc347d955d0b7cd2dfdc}{GetSupportFunction}}(\mbox{\hyperlink{classConvexShape_a4cd6e2f87f30d108faf1f119dd73a06b}{ESupportMode}}\ inMode,\ \mbox{\hyperlink{classConvexShape_1_1SupportBuffer}{SupportBuffer}}\ \&inBuffer,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::ColideSoftBodyVertices}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_a6aa78a29bcce107171d1a5c265ebf69b}{CollideSoftBodyVertices}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classSoftBodyVertex}{SoftBodyVertex}}\ *ioVertices,\ uint\ inNumVertices,\ \textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDisplacementDueToGravity,\ \textcolor{keywordtype}{int}\ inCollidingShapeIndex)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::Draw}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ Draw(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer,\ \mbox{\hyperlink{classMat44}{RMat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keywordtype}{bool}\ inUseMaterialColors,\ \textcolor{keywordtype}{bool}\ inDrawWireframe)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::TransformShape}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_ad18452b9b9146b08847c6314c2641f90}{TransformShape}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classCollisionCollector}{TransformedShapeCollector}}\ \&ioCollector)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ See\ Shape}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_a651ae368a61300a7b807c43f9b57e6ab}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetStats}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{structShape_1_1Stats}{Stats}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_a5f3e2462c74c498511d4b010797ddbab}{GetStats}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structShape_1_1Stats}{Stats}}(\textcolor{keyword}{sizeof}(*\textcolor{keyword}{this}),\ 0);\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetVolume}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ GetVolume()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ GetLocalBounds().GetVolume();\ \}\ \textcolor{comment}{//\ Volume\ is\ approximate!}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::IsValidScale}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_a65030d1d2cc099c8862d2a49112cc131}{IsValidScale}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ Register\ shape\ functions\ with\ the\ registry}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ sRegister();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::RestoreBinaryState}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTaperedCapsuleShape_aa5a077883ebd73a2376dec228e87e296}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Class\ for\ GetSupportFunction}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }TaperedCapsule;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetInertiaApproximation()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCenterOfMass\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTopRadius\ =\ 0.0f;}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBottomRadius\ =\ 0.0f;}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTopCenter\ =\ 0.0f;}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBottomCenter\ =\ 0.0f;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConvexRadius\ =\ 0.0f;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSinAlpha\ =\ 0.0f;}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTanAlpha\ =\ 0.0f;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{mutable}\ \mbox{\hyperlink{classRef}{DebugRenderer::GeometryRef}}\ mGeometry;}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,23 @@
+<map id="SoftBodyUpdateContext" name="SoftBodyUpdateContext">
+<area shape="rect" id="Node000001" title="Temporary data used by the update of a soft body." alt="" coords="801,1376,1014,1552"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="69,261,192,373"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,388,81,463,54,558,30,668,13,788,9,912,13,974,22,1035,37,1095,57,1152,84,1207,118,1258,136,1278,162,1296,231,1330,318,1360,417,1385,520,1407,623,1425,802,1449,801,1454,623,1430,519,1412,415,1390,316,1365,229,1335,159,1301,133,1282,113,1262,79,1210,52,1154,31,1096,17,1036,8,975,4,912,8,787,24,667,48,557,75,461,101,386"/>
+<area shape="rect" id="Node000003" href="$d7/d80/classBody.html" title=" " alt="" coords="128,702,370,1237"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="145,387,203,702,198,703,140,388"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="371,1174,408,1222,449,1269,493,1312,541,1350,599,1383,662,1409,725,1429,785,1443,784,1448,724,1434,660,1414,597,1388,538,1354,490,1316,445,1273,404,1226,367,1178"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="371,916,389,937,396,969,393,993,384,1010,379,1008,388,991,391,969,384,939,367,920"/>
+<area shape="rect" id="Node000004" href="$d5/dfe/classSoftBodyMotionProperties.html" title="This class contains the runtime information of a soft body." alt="" coords="525,828,706,1111"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="593,1111,591,1171,597,1234,612,1295,625,1324,641,1350,670,1382,706,1407,745,1426,785,1440,784,1445,743,1431,703,1411,667,1386,637,1354,620,1326,607,1297,591,1235,586,1171,588,1110"/>
+<area shape="rect" id="Node000005" href="$d6/d7d/classMotionProperties.html" title="The Body class only keeps track of state for static bodies, the MotionProperties class keeps the addi..." alt="" coords="507,5,724,629"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="618,644,618,828,613,828,613,644"/>
+<area shape="rect" id="Node000006" href="$de/d0e/classMat44.html" title="Holds a 4x4 matrix of floats, but supports also operations on the 3x3 upper left part of the matrix." alt="" coords="731,711,911,1228"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="780,1227,787,1291,804,1351,808,1360,803,1362,799,1353,781,1292,775,1228"/>
+<area shape="rect" id="Node000007" href="$d9/de4/classVec3.html" title=" " alt="" coords="935,679,1096,1260"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="1013,1261,1003,1308,989,1353,985,1362,980,1360,984,1351,997,1306,1007,1259"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1171,935,1300,1004"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="1247,1003,1260,1073,1266,1165,1263,1215,1254,1264,1237,1311,1212,1354,1175,1391,1130,1419,1081,1439,1031,1452,1030,1447,1079,1434,1127,1414,1172,1387,1208,1350,1233,1309,1249,1263,1257,1214,1260,1165,1254,1074,1242,1004"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1324,935,1438,1004"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="1388,1004,1392,1075,1387,1168,1379,1218,1364,1267,1342,1313,1312,1354,1293,1369,1266,1383,1196,1409,1114,1430,1031,1446,1030,1441,1113,1424,1195,1404,1264,1379,1290,1365,1308,1350,1338,1310,1359,1265,1373,1217,1382,1168,1387,1075,1383,1004"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1563,935,1692,1004"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="1638,1003,1649,1075,1653,1121,1652,1169,1647,1219,1635,1268,1615,1314,1585,1354,1547,1381,1491,1403,1423,1421,1345,1435,1181,1453,1031,1462,1031,1457,1180,1448,1344,1430,1422,1416,1490,1398,1544,1376,1582,1350,1610,1311,1630,1266,1642,1218,1647,1169,1647,1121,1644,1076,1633,1004"/>
+</map>

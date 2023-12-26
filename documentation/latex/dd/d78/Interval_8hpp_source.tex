@@ -1,0 +1,252 @@
+\doxysection{Interval.\+hpp}
+\hypertarget{Interval_8hpp_source}{}\label{Interval_8hpp_source}\index{includes/playrho/Common/Interval.hpp@{includes/playrho/Common/Interval.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_INTERVAL\_HPP}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_INTERVAL\_HPP}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/NonNegative.hpp>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\ =\ T;}
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1Interval_aa866ea1ceb4bd34b4cb87ed352407ddd}{limits}}\ =\ std::numeric\_limits<value\_type>;}
+\DoxyCodeLine{00050\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\ \mbox{\hyperlink{classplayrho_1_1Interval_a170e5b2b32b935dd223777fa92d89014}{GetLowest}}()\ noexcept}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (limits::has\_infinity)?\ -\/limits::infinity():\ limits::lowest();}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\ \mbox{\hyperlink{classplayrho_1_1Interval_aa3c4f39b89d6d069336294dddd699ace}{GetHighest}}()\ noexcept}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (limits::has\_infinity)?\ limits::infinity():\ limits::max();}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_aa211c2ffb0d1562ce962d7180a0aae03}{Interval}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00072\ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_a074f10f433f625c70092cf1ab265bc25}{Interval}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_a4071753242d3c3559f6dd8c4ebe4238e}{Interval}}(\mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\&\ other)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classplayrho_1_1Interval_a43c16855f11c783e19354422e2fa6803}{Interval}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\&\ v)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Interval_aa211c2ffb0d1562ce962d7180a0aae03}{Interval}}(pair\_type\{v,\ v\})}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_a952bb61807438fef2bf879463a0a06cd}{Interval}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\&\ b)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Interval_aa211c2ffb0d1562ce962d7180a0aae03}{Interval}}(std::minmax(a,\ b))}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_a4792761058cdb51068e3b130c83488e9}{Interval}}(\textcolor{keyword}{const}\ std::initializer\_list<T>\ ilist)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Interval_aa211c2ffb0d1562ce962d7180a0aae03}{Interval}}(std::minmax(ilist))}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Interval}{\string~Interval}}()\ noexcept\ =\ default;}
+\DoxyCodeLine{00107\ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ operator=\ (const\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ other)\ =\ default;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ operator=\ (\mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\&\ other)\ =\ default;}
+\DoxyCodeLine{00117\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ constexpr\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ \mbox{\hyperlink{classplayrho_1_1Interval_a4799e816dd42b3a750ec3467cbfd053f}{Move}}(const\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\&\ v)\ noexcept}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ m\_min\ +=\ v;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ m\_max\ +=\ v;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\ \mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}()\ const\ noexcept}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_min;}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\ \mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}()\ const\ noexcept}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_max;}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ \mbox{\hyperlink{classplayrho_1_1Interval_a67bf1b4f5ffb37b632eded83f58dbe49}{Include}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ m\_min\ =\ std::min(v,\ \mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}());}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ m\_max\ =\ std::max(v,\ \mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}());}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ \mbox{\hyperlink{classplayrho_1_1Interval_addcb7671805c77586f0e06b18f69486a}{Include}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ m\_min\ =\ std::min(v.GetMin(),\ \mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}());}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ m\_max\ =\ std::max(v.GetMax(),\ \mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}());}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ \mbox{\hyperlink{classplayrho_1_1Interval_a589ff3448c51a757491d91c796180c11}{Intersect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00167\ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ min\ =\ std::max(v.GetMin(),\ \mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}());}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ max\ =\ std::min(v.GetMax(),\ \mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}());}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ (min\ <=\ max)?\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\{pair\_type\{min,\ max\}\}:\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\{\};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ \mbox{\hyperlink{classplayrho_1_1Interval_ab13554c13f52e3611d11eb692d5c7329}{Expand}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00182\ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ <\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\{\})}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ m\_min\ +=\ v;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ m\_max\ +=\ v;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval}}\&\ \mbox{\hyperlink{classplayrho_1_1Interval_a4cdbc52b19cd9d3813aefd8a132ab151}{ExpandEqually}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{NonNegative<value\_type>}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ amount\ =\ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\{v\};}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ m\_min\ -\/=\ amount;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ m\_max\ +=\ amount;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{using\ }pair\_type\ =\ std::pair<value\_type,\ value\_type>;}
+\DoxyCodeLine{00214\ \ \ \ \ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classplayrho_1_1Interval_aa211c2ffb0d1562ce962d7180a0aae03}{Interval}}(pair\_type\ pair)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ m\_min\{std::get<0>(pair)\},\ m\_max\{std::get<1>(pair)\}}
+\DoxyCodeLine{00218\ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\ m\_min\ =\ \mbox{\hyperlink{classplayrho_1_1Interval_aa3c4f39b89d6d069336294dddd699ace}{GetHighest}}();\ }
+\DoxyCodeLine{00223\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Interval_af3f2912d491535ecbe0f8b03da2357b7}{value\_type}}\ m\_max\ =\ \mbox{\hyperlink{classplayrho_1_1Interval_a170e5b2b32b935dd223777fa92d89014}{GetLowest}}();\ }
+\DoxyCodeLine{00224\ \};}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00232\ \textcolor{keyword}{constexpr}\ T\ \mbox{\hyperlink{namespaceplayrho_a0f5ae61330e0553509baa283129e8e53}{GetSize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00233\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{return}\ v.GetMax()\ -\/\ v.GetMin();}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00242\ \textcolor{keyword}{constexpr}\ T\ \mbox{\hyperlink{classplayrho_1_1Interval_a6ddf94310b3145c842e6365e3ec69226}{GetCenter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00243\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{comment}{//\ Rounding\ may\ cause\ issues...}}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ (v.GetMin()\ +\ v.GetMax())\ /\ 2;}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00250\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00251\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1Interval_a3eff0342e8a7b5e15dcf232d7f28f961}{IsIntersecting}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ b)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00252\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ maxOfMins\ =\ std::max(a.GetMin(),\ b.GetMin());}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ minOfMaxs\ =\ std::min(a.GetMax(),\ b.GetMax());}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{return}\ minOfMaxs\ >=\ maxOfMins;}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00260\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00261\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\ \mbox{\hyperlink{classplayrho_1_1Interval_a4baf1dd76711ae5151d0ee07a8b345d0}{GetIntersection}}(\mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ b)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00262\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{return}\ a.Intersect(b);}
+\DoxyCodeLine{00264\ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00267\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00268\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a537b76dc4bd198e60d148282e032533c}{IsEntirelyBefore}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ b)}
+\DoxyCodeLine{00269\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{return}\ a.\mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}()\ <\ b.\mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}();}
+\DoxyCodeLine{00271\ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00274\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00275\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_abc6f0d8de107567baafd2ff6770ded72}{IsEntirelyAfter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ b)}
+\DoxyCodeLine{00276\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{return}\ a.\mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}()\ >\ b.\mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}();}
+\DoxyCodeLine{00278\ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00281\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00282\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a32133337daeb0dd2b8b5a78f42a8a526}{IsEntirelyEnclosing}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ b)}
+\DoxyCodeLine{00283\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{return}\ a.\mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}()\ <=\ b.\mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}()\ \&\&\ a.\mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}()\ >=\ b.\mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}();}
+\DoxyCodeLine{00285\ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00291\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00292\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ b)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00293\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordflow}{return}\ (a.GetMin()\ ==\ b.GetMin())\ \&\&\ (a.GetMax()\ ==\ b.GetMax());}
+\DoxyCodeLine{00295\ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00301\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00302\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ b)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00303\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordflow}{return}\ !(a\ ==\ b);}
+\DoxyCodeLine{00305\ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00317\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00318\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a4e50b7f361b27adaf57e0b275b849cb2}{operator<\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00319\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordflow}{return}\ (lhs.GetMin()\ <\ rhs.GetMin())\ ||}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ (lhs.GetMin()\ ==\ rhs.GetMin()\ \&\&\ lhs.GetMax()\ <\ rhs.GetMax());}
+\DoxyCodeLine{00322\ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00329\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00330\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a17f5c3cf62f38463edf89ddc5bf05b80}{operator<=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00331\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordflow}{return}\ (lhs.GetMin()\ <\ rhs.GetMin())\ ||}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ (lhs.GetMin()\ ==\ rhs.GetMin()\ \&\&\ lhs.GetMax()\ <=\ rhs.GetMax());}
+\DoxyCodeLine{00334\ \}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00341\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00342\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_aab6a70eaafe3d414d9ebb561150a5ae0}{operator>\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00343\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordflow}{return}\ (lhs.GetMin()\ >\ rhs.GetMin())\ ||}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ (lhs.GetMin()\ ==\ rhs.GetMin()\ \&\&\ lhs.GetMax()\ >\ rhs.GetMax());}
+\DoxyCodeLine{00346\ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00353\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00354\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a5c18729fd53f4bb5275874c8cd1eb644}{operator>=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00355\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordflow}{return}\ (lhs.GetMin()\ >\ rhs.GetMin())\ ||}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ (lhs.GetMin()\ ==\ rhs.GetMin()\ \&\&\ lhs.GetMax()\ >=\ rhs.GetMax());}
+\DoxyCodeLine{00358\ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00361\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00362\ ::std::ostream\&\ \mbox{\hyperlink{namespaceplayrho_acc045bd4bbb560077978ce21cd20c49f}{operator<<\ }}(::std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Interval}{Interval<T>}}\&\ value)}
+\DoxyCodeLine{00363\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordflow}{return}\ os\ <<\ \textcolor{charliteral}{'\{'}\ <<\ value.\mbox{\hyperlink{classplayrho_1_1Interval_a383d8880c22e2b84af21ef3ec17df785}{GetMin}}()\ <<\ \textcolor{stringliteral}{"{}..."{}}\ <<\ value.\mbox{\hyperlink{classplayrho_1_1Interval_a0e105e9e1d8703aa7072cc055a8954e9}{GetMax}}()\ <<\ \textcolor{charliteral}{'\}'};}
+\DoxyCodeLine{00365\ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_INTERVAL\_HPP}}
+
+\end{DoxyCode}

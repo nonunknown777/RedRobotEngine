@@ -1,0 +1,129 @@
+\doxysection{Collision\+Dispatch Class Reference}
+\hypertarget{classCollisionDispatch}{}\label{classCollisionDispatch}\index{CollisionDispatch@{CollisionDispatch}}
+
+
+Dispatch function, main function to handle collisions between shapes.  
+
+
+
+
+{\ttfamily \#include $<$Collision\+Dispatch.\+h$>$}
+
+
+
+Collaboration diagram for Collision\+Dispatch\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{d0/d2a/classCollisionDispatch__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollisionDispatch_ad1a72bfcb8688f4eaf881aad847c2319}\label{classCollisionDispatch_ad1a72bfcb8688f4eaf881aad847c2319} 
+using {\bfseries Collide\+Shape} = void(\texorpdfstring{$\ast$}{*})(const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape1, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale2, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform1, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator2, const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \&in\+Collide\+Shape\+Settings, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter)
+\begin{DoxyCompactList}\small\item\em Function that collides 2 shapes (see s\+Collide\+Shape\+Vs\+Shape) \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionDispatch_a9b0ecb3f10cdac7c5cf648cb2fa0b8e8}\label{classCollisionDispatch_a9b0ecb3f10cdac7c5cf648cb2fa0b8e8} 
+using {\bfseries Cast\+Shape} = void(\texorpdfstring{$\ast$}{*})(const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&in\+Shape\+Cast, const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&in\+Shape\+Cast\+Settings, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator2, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&io\+Collector)
+\begin{DoxyCompactList}\small\item\em Function that casts a shape vs another shape (see s\+Cast\+Shape\+Vs\+Shape\+Local\+Space) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classCollisionDispatch_a29634d08db5d24ce7c0d5c44b547c075}{s\+Collide\+Shape\+Vs\+Shape}} (const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape1, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale2, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform1, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator2, const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \&in\+Collide\+Shape\+Settings, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter=\{ \})
+\item 
+static void \mbox{\hyperlink{classCollisionDispatch_a684c783f79569805d64cd436800b1d2a}{s\+Cast\+Shape\+Vs\+Shape\+Local\+Space}} (const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&in\+Shape\+Cast\+Local, const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&in\+Shape\+Cast\+Settings, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator2, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&io\+Collector)
+\item 
+static void \mbox{\hyperlink{classCollisionDispatch_a50ed5fc6de2aa13d6f48ab29f6cf0b7f}{s\+Cast\+Shape\+Vs\+Shape\+World\+Space}} (const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&in\+Shape\+Cast\+World, const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&in\+Shape\+Cast\+Settings, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator2, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&io\+Collector)
+\item 
+\Hypertarget{classCollisionDispatch_a7e20a4c171571a66b1f45ba963dc8777}\label{classCollisionDispatch_a7e20a4c171571a66b1f45ba963dc8777} 
+static void {\bfseries s\+Init} ()
+\begin{DoxyCompactList}\small\item\em Initialize all collision functions with a function that asserts and returns no collision. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionDispatch_a20d56fd7360a0b72be7803eef2d616ed}\label{classCollisionDispatch_a20d56fd7360a0b72be7803eef2d616ed} 
+static void {\bfseries s\+Register\+Collide\+Shape} (EShape\+Sub\+Type in\+Type1, EShape\+Sub\+Type in\+Type2, \mbox{\hyperlink{classCollisionDispatch_ad1a72bfcb8688f4eaf881aad847c2319}{Collide\+Shape}} in\+Function)
+\begin{DoxyCompactList}\small\item\em Register a collide shape function in the collision table. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionDispatch_a211b05424a9e6e7bff777af77edad6be}\label{classCollisionDispatch_a211b05424a9e6e7bff777af77edad6be} 
+static void {\bfseries s\+Register\+Cast\+Shape} (EShape\+Sub\+Type in\+Type1, EShape\+Sub\+Type in\+Type2, \mbox{\hyperlink{classCollisionDispatch_a9b0ecb3f10cdac7c5cf648cb2fa0b8e8}{Cast\+Shape}} in\+Function)
+\begin{DoxyCompactList}\small\item\em Register a cast shape function in the collision table. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionDispatch_a7b25cea2f3ba4541b78d5932fe490c91}\label{classCollisionDispatch_a7b25cea2f3ba4541b78d5932fe490c91} 
+static void {\bfseries s\+Reversed\+Collide\+Shape} (const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape1, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale2, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform1, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator2, const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \&in\+Collide\+Shape\+Settings, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter)
+\begin{DoxyCompactList}\small\item\em An implementation of Collide\+Shape that swaps in\+Shape1 and in\+Shape2 and swaps the result back, can be registered if the collision function only exists the other way around. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionDispatch_a2f394c2678ee42c69b1c5b256c4b34ae}\label{classCollisionDispatch_a2f394c2678ee42c69b1c5b256c4b34ae} 
+static void {\bfseries s\+Reversed\+Cast\+Shape} (const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&in\+Shape\+Cast, const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&in\+Shape\+Cast\+Settings, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator2, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&io\+Collector)
+\begin{DoxyCompactList}\small\item\em An implementation of Cast\+Shape that swaps in\+Shape1 and in\+Shape2 and swaps the result back, can be registered if the collision function only exists the other way around. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Dispatch function, main function to handle collisions between shapes. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCollisionDispatch_a684c783f79569805d64cd436800b1d2a}\label{classCollisionDispatch_a684c783f79569805d64cd436800b1d2a} 
+\index{CollisionDispatch@{CollisionDispatch}!sCastShapeVsShapeLocalSpace@{sCastShapeVsShapeLocalSpace}}
+\index{sCastShapeVsShapeLocalSpace@{sCastShapeVsShapeLocalSpace}!CollisionDispatch@{CollisionDispatch}}
+\doxysubsubsection{\texorpdfstring{sCastShapeVsShapeLocalSpace()}{sCastShapeVsShapeLocalSpace()}}
+{\footnotesize\ttfamily static void Collision\+Dispatch\+::s\+Cast\+Shape\+Vs\+Shape\+Local\+Space (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&}]{in\+Shape\+Cast\+Local,  }\item[{const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&}]{in\+Shape\+Cast\+Settings,  }\item[{const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform2,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator1,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator2,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&}]{io\+Collector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Cast a shape againt this shape, passes any hits found to io\+Collector. Note\+: This version takes the shape cast in local space relative to the center of mass of in\+Shape, take a look at s\+Cast\+Shape\+Vs\+Shape\+World\+Space if you have a shape cast in world space. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Shape\+Cast\+Local} & The shape to cast against the other shape and its start and direction. \\
+\hline
+{\em in\+Shape\+Cast\+Settings} & Settings for performing the cast \\
+\hline
+{\em in\+Shape} & The shape to cast against. \\
+\hline
+{\em in\+Scale} & Local space scale for the shape to cast against. \\
+\hline
+{\em in\+Shape\+Filter} & allows selectively disabling collisions between pairs of (sub) shapes. \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform2} & Is the center of mass transform of shape 2 (excluding scale), this is used to provide a transform to the shape cast result so that local hit result quantities can be transformed into world space. \\
+\hline
+{\em in\+Sub\+Shape\+IDCreator1} & Class that tracks the current sub shape ID for the casting shape \\
+\hline
+{\em in\+Sub\+Shape\+IDCreator2} & Class that tracks the current sub shape ID for the shape we\textquotesingle{}re casting against \\
+\hline
+{\em io\+Collector} & The collector that receives the results. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classCollisionDispatch_a50ed5fc6de2aa13d6f48ab29f6cf0b7f}\label{classCollisionDispatch_a50ed5fc6de2aa13d6f48ab29f6cf0b7f} 
+\index{CollisionDispatch@{CollisionDispatch}!sCastShapeVsShapeWorldSpace@{sCastShapeVsShapeWorldSpace}}
+\index{sCastShapeVsShapeWorldSpace@{sCastShapeVsShapeWorldSpace}!CollisionDispatch@{CollisionDispatch}}
+\doxysubsubsection{\texorpdfstring{sCastShapeVsShapeWorldSpace()}{sCastShapeVsShapeWorldSpace()}}
+{\footnotesize\ttfamily static void Collision\+Dispatch\+::s\+Cast\+Shape\+Vs\+Shape\+World\+Space (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&}]{in\+Shape\+Cast\+World,  }\item[{const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&}]{in\+Shape\+Cast\+Settings,  }\item[{const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform2,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator1,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator2,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&}]{io\+Collector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+See\+: s\+Cast\+Shape\+Vs\+Shape\+Local\+Space. The only difference is that the shape cast (in\+Shape\+Cast\+World) is provided in world space. Note\+: A shape cast contains the center of mass start of the shape, if you have the world transform of the shape you probably want to construct it using \doxylink{structShapeCastT_a0195f56ecbe283d8e393f1564d864823}{Shape\+Cast\+::s\+From\+World\+Transform}. \Hypertarget{classCollisionDispatch_a29634d08db5d24ce7c0d5c44b547c075}\label{classCollisionDispatch_a29634d08db5d24ce7c0d5c44b547c075} 
+\index{CollisionDispatch@{CollisionDispatch}!sCollideShapeVsShape@{sCollideShapeVsShape}}
+\index{sCollideShapeVsShape@{sCollideShapeVsShape}!CollisionDispatch@{CollisionDispatch}}
+\doxysubsubsection{\texorpdfstring{sCollideShapeVsShape()}{sCollideShapeVsShape()}}
+{\footnotesize\ttfamily static void Collision\+Dispatch\+::s\+Collide\+Shape\+Vs\+Shape (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape1,  }\item[{const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale2,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform1,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform2,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator1,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator2,  }\item[{const \mbox{\hyperlink{classCollideShapeSettings}{Collide\+Shape\+Settings}} \&}]{in\+Collide\+Shape\+Settings,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Collide 2 shapes and pass any collision on to io\+Collector 
+\begin{DoxyParams}{Parameters}
+{\em in\+Shape1} & The first shape \\
+\hline
+{\em in\+Shape2} & The second shape \\
+\hline
+{\em in\+Scale1} & Local space scale of shape 1 \\
+\hline
+{\em in\+Scale2} & Local space scale of shape 2 \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform1} & \doxylink{structTransform}{Transform} to transform center of mass of shape 1 into world space \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform2} & \doxylink{structTransform}{Transform} to transform center of mass of shape 2 into world space \\
+\hline
+{\em in\+Sub\+Shape\+IDCreator1} & Class that tracks the current sub shape ID for shape 1 \\
+\hline
+{\em in\+Sub\+Shape\+IDCreator2} & Class that tracks the current sub shape ID for shape 2 \\
+\hline
+{\em in\+Collide\+Shape\+Settings} & Options for the Collide\+Shape test \\
+\hline
+{\em io\+Collector} & The collector that receives the results. \\
+\hline
+{\em in\+Shape\+Filter} & allows selectively disabling collisions between pairs of (sub) shapes. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Collision\+Dispatch.\+h\end{DoxyCompactItemize}

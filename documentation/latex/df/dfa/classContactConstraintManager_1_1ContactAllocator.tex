@@ -1,0 +1,71 @@
+\doxysection{Contact\+Constraint\+Manager\+::Contact\+Allocator Class Reference}
+\hypertarget{classContactConstraintManager_1_1ContactAllocator}{}\label{classContactConstraintManager_1_1ContactAllocator}\index{ContactConstraintManager::ContactAllocator@{ContactConstraintManager::ContactAllocator}}
+
+
+Contacts are allocated in a lock free hash map.  
+
+
+
+
+{\ttfamily \#include $<$Contact\+Constraint\+Manager.\+h$>$}
+
+
+
+Inheritance diagram for Contact\+Constraint\+Manager\+::Contact\+Allocator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{d1/d0e/classContactConstraintManager_1_1ContactAllocator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Contact\+Constraint\+Manager\+::Contact\+Allocator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{de/d45/classContactConstraintManager_1_1ContactAllocator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classContactConstraintManager_1_1ContactAllocator_a4937e72fe7c08c45687b9deb3c3dba32}\label{classContactConstraintManager_1_1ContactAllocator_a4937e72fe7c08c45687b9deb3c3dba32} 
+{\bfseries LFHMAllocator\+Context} (\mbox{\hyperlink{classLFHMAllocator}{LFHMAllocator}} \&in\+Allocator, uint32 in\+Block\+Size)
+\begin{DoxyCompactList}\small\item\em Construct a new allocator context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classLFHMAllocatorContext}{LFHMAllocator\+Context}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries LFHMAllocator\+Context} (\mbox{\hyperlink{classLFHMAllocator}{LFHMAllocator}} \&in\+Allocator, uint32 in\+Block\+Size)
+\begin{DoxyCompactList}\small\item\em Construct a new allocator context. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classLFHMAllocatorContext_afc85e525f6ca72b286aea4cdf693ac7f}{Allocate}} (uint32 in\+Size, uint32 in\+Alignment, uint32 \&out\+Write\+Offset)
+\begin{DoxyCompactList}\small\item\em Allocate data block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classContactConstraintManager_1_1ContactAllocator_a1f988bcee137591463666032293d8357}\label{classContactConstraintManager_1_1ContactAllocator_a1f988bcee137591463666032293d8357} 
+uint {\bfseries m\+Num\+Body\+Pairs} = 0
+\begin{DoxyCompactList}\small\item\em Total number of body pairs added using this allocator. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_1_1ContactAllocator_a7a95eb0a19e0b32c637eadf107977c3c}\label{classContactConstraintManager_1_1ContactAllocator_a7a95eb0a19e0b32c637eadf107977c3c} 
+uint {\bfseries m\+Num\+Manifolds} = 0
+\begin{DoxyCompactList}\small\item\em Total number of manifolds added using this allocator. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_1_1ContactAllocator_a1968130257ab4041d6e18c676869fdd3}\label{classContactConstraintManager_1_1ContactAllocator_a1968130257ab4041d6e18c676869fdd3} 
+EPhysics\+Update\+Error {\bfseries m\+Errors} = EPhysics\+Update\+Error\+::\+None
+\begin{DoxyCompactList}\small\item\em Errors reported on this allocator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contacts are allocated in a lock free hash map. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Contact\+Constraint\+Manager.\+h\end{DoxyCompactItemize}

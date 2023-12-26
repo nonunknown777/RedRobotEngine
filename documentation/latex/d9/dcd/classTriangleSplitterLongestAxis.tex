@@ -1,0 +1,125 @@
+\doxysection{Triangle\+Splitter\+Longest\+Axis Class Reference}
+\hypertarget{classTriangleSplitterLongestAxis}{}\label{classTriangleSplitterLongestAxis}\index{TriangleSplitterLongestAxis@{TriangleSplitterLongestAxis}}
+
+
+Splitter using center of bounding box with longest axis.  
+
+
+
+
+{\ttfamily \#include $<$Triangle\+Splitter\+Longest\+Axis.\+h$>$}
+
+
+
+Inheritance diagram for Triangle\+Splitter\+Longest\+Axis\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{d2/db2/classTriangleSplitterLongestAxis__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Triangle\+Splitter\+Longest\+Axis\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{d0/d56/classTriangleSplitterLongestAxis__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTriangleSplitterLongestAxis_ae09faae47ce045ed763df4f1facd3dfe}\label{classTriangleSplitterLongestAxis_ae09faae47ce045ed763df4f1facd3dfe} 
+{\bfseries Triangle\+Splitter\+Longest\+Axis} (const Vertex\+List \&in\+Vertices, const Indexed\+Triangle\+List \&in\+Triangles)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTriangleSplitterLongestAxis_a45cde2072d3a6c30b46c6afa0e9bec51}{Get\+Stats}} (\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Stats}} \&out\+Stats) const override
+\begin{DoxyCompactList}\small\item\em Get stats of splitter. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classTriangleSplitterLongestAxis_a2750dc8e1447d6d4753d1f89f58e9840}{Split}} (const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&in\+Triangles, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Left, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Right) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Triangle\+Splitter} (const Vertex\+List \&in\+Vertices, const Indexed\+Triangle\+List \&in\+Triangles)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Triangle\+Splitter} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} {\bfseries Get\+Initial\+Range} () const
+\begin{DoxyCompactList}\small\item\em \doxylink{structTriangleSplitter_1_1Range}{Range} of triangles to start with. \end{DoxyCompactList}\item 
+const Vertex\+List \& {\bfseries Get\+Vertices} () const
+\begin{DoxyCompactList}\small\item\em Get the list of vertices. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classIndexedTriangle}{Indexed\+Triangle}} \& {\bfseries Get\+Triangle} (uint in\+Idx) const
+\begin{DoxyCompactList}\small\item\em Get triangle by index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Split\+Internal} (const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&in\+Triangles, uint in\+Dimension, float in\+Split, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Left, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Right)
+\begin{DoxyCompactList}\small\item\em Helper function to split triangles based on dimension and split value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+const Vertex\+List \& {\bfseries m\+Vertices}
+\begin{DoxyCompactList}\small\item\em Vertices of the indexed triangles. \end{DoxyCompactList}\item 
+const Indexed\+Triangle\+List \& {\bfseries m\+Triangles}
+\begin{DoxyCompactList}\small\item\em Unsorted triangles. \end{DoxyCompactList}\item 
+Array$<$ \mbox{\hyperlink{classFloat3}{Float3}} $>$ {\bfseries m\+Centroids}
+\begin{DoxyCompactList}\small\item\em Unsorted centroids of triangles. \end{DoxyCompactList}\item 
+Array$<$ uint $>$ {\bfseries m\+Sorted\+Triangle\+Idx}
+\begin{DoxyCompactList}\small\item\em Indices to sort triangles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Splitter using center of bounding box with longest axis. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTriangleSplitterLongestAxis_a45cde2072d3a6c30b46c6afa0e9bec51}\label{classTriangleSplitterLongestAxis_a45cde2072d3a6c30b46c6afa0e9bec51} 
+\index{TriangleSplitterLongestAxis@{TriangleSplitterLongestAxis}!GetStats@{GetStats}}
+\index{GetStats@{GetStats}!TriangleSplitterLongestAxis@{TriangleSplitterLongestAxis}}
+\doxysubsubsection{\texorpdfstring{GetStats()}{GetStats()}}
+{\footnotesize\ttfamily virtual void Triangle\+Splitter\+Longest\+Axis\+::\+Get\+Stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Stats}} \&}]{out\+Stats }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get stats of splitter. 
+
+
+
+Implements \mbox{\hyperlink{classTriangleSplitter_ad58e7ea8a806e7e9df8ea5117ff2ebe8}{Triangle\+Splitter}}.
+
+\Hypertarget{classTriangleSplitterLongestAxis_a2750dc8e1447d6d4753d1f89f58e9840}\label{classTriangleSplitterLongestAxis_a2750dc8e1447d6d4753d1f89f58e9840} 
+\index{TriangleSplitterLongestAxis@{TriangleSplitterLongestAxis}!Split@{Split}}
+\index{Split@{Split}!TriangleSplitterLongestAxis@{TriangleSplitterLongestAxis}}
+\doxysubsubsection{\texorpdfstring{Split()}{Split()}}
+{\footnotesize\ttfamily virtual bool Triangle\+Splitter\+Longest\+Axis\+::\+Split (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{in\+Triangles,  }\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{out\+Left,  }\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{out\+Right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Split triangles into two groups left and right, returns false if no split could be made 
+\begin{DoxyParams}{Parameters}
+{\em in\+Triangles} & The range of triangles (in m\+Sorted\+Triangle\+Idx) to process \\
+\hline
+{\em out\+Left} & On return this will contain the ranges for the left subpart. m\+Sorted\+Triangle\+Idx may have been shuffled. \\
+\hline
+{\em out\+Right} & On return this will contain the ranges for the right subpart. m\+Sorted\+Triangle\+Idx may have been shuffled. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true when a split was found 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTriangleSplitter_ad9cb9d125c24255c964427e186e5076e}{Triangle\+Splitter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Triangle\+Splitter/Triangle\+Splitter\+Longest\+Axis.\+h\end{DoxyCompactItemize}

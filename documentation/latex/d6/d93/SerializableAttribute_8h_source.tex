@@ -1,0 +1,100 @@
+\doxysection{Serializable\+Attribute.\+h}
+\hypertarget{SerializableAttribute_8h_source}{}\label{SerializableAttribute_8h_source}\index{includes/jolt/ObjectStream/SerializableAttribute.h@{includes/jolt/ObjectStream/SerializableAttribute.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRTTI}{RTTI}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}};}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ EOSDataType}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ Declare,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ Object,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ Instance,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ Pointer,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ Array,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ Basic\ types\ (primitives)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_DECLARE\_PRIMITIVE(name)\ T\_\#\#name,}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ This\ file\ uses\ the\ JPH\_DECLARE\_PRIMITIVE\ macro\ to\ define\ all\ types}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/ObjectStream/ObjectStreamTypes.h>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Error\ values\ for\ read\ functions}}
+\DoxyCodeLine{00030\ \ \ \ \ Invalid,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSerializableAttribute}{SerializableAttribute}}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classSerializableAttribute_af7f01caef8726c642aaeb8ce7016c97a}{pGetMemberPrimitiveType}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *\ (*)();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }pIsType\ =\ bool\ (*)(\textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }pReadData\ =\ bool\ (*)(\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ \textcolor{keywordtype}{void}\ *inObject);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }pWriteData\ =\ void\ (*)(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inObject);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }pWriteDataType\ =\ void\ (*)(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_ab8ee3ad5a95fdf86aec0422cac3b7a42}{SerializableAttribute}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName,\ uint\ inMemberOffset,\ \mbox{\hyperlink{classSerializableAttribute_af7f01caef8726c642aaeb8ce7016c97a}{pGetMemberPrimitiveType}}\ inGetMemberPrimitiveType,\ pIsType\ inIsType,\ pReadData\ inReadData,\ pWriteData\ inWriteData,\ pWriteDataType\ inWriteDataType)\ :\ mName(inName),\ mMemberOffset(inMemberOffset),\ mGetMemberPrimitiveType(inGetMemberPrimitiveType),\ mIsType(inIsType),\ mReadData(inReadData),\ mWriteData(inWriteData),\ mWriteDataType(inWriteDataType)\ \{\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_ae8a205bb6313394469d97affd2964046}{SerializableAttribute}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSerializableAttribute}{SerializableAttribute}}\ \&inOther,\ \textcolor{keywordtype}{int}\ inBaseOffset)\ :\ mName(inOther.mName),\ mMemberOffset(inOther.mMemberOffset\ +\ inBaseOffset),\ mGetMemberPrimitiveType(inOther.mGetMemberPrimitiveType),\ mIsType(inOther.mIsType),\ mReadData(inOther.mReadData),\ mWriteData(inOther.mWriteData),\ mWriteDataType(inOther.mWriteDataType)\ \{\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_a9ce63d609aeb2c8fcdff058957d4644f}{SetName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mName\ =\ inName;\ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetName()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mName;\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ T\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_a835cd7db4edd6bd36f2130e9498122c2}{GetMemberPointer}}(\textcolor{keywordtype}{void}\ *inObject)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(\textcolor{keyword}{reinterpret\_cast<}uint8\ *\textcolor{keyword}{>}(inObject)\ +\ mMemberOffset);\ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\ *\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_a835cd7db4edd6bd36f2130e9498122c2}{GetMemberPointer}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inObject)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }T\ *\textcolor{keyword}{>}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint8\ *\textcolor{keyword}{>}(inObject)\ +\ mMemberOffset);\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_a6738344c9c5ddbf28680db6511dda210}{GetMemberPrimitiveType}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mGetMemberPrimitiveType();}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_ab928f1de1446823484b4437a79214924}{IsType}}(\textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mIsType(inArrayDepth,\ inDataType,\ inClassName);}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_ad8b999830598842432441df6647be298}{ReadData}}(\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ \textcolor{keywordtype}{void}\ *inObject)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mReadData(ioStream,\ GetMemberPointer<void>(inObject));}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_a2d75640f1636e85a47da938b71b3a736}{WriteData}}(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inObject)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ mWriteData(ioStream,\ GetMemberPointer<void>(inObject));}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_a30c9f23371b5552485ebf5bfea47afef}{WriteDataType}}(\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ mWriteDataType(ioStream);}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ Name\ of\ the\ attribute}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mName;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Offset\ of\ the\ member\ relative\ to\ the\ class}}
+\DoxyCodeLine{00095\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMemberOffset;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ In\ case\ this\ attribute\ contains\ an\ RTTI\ type,\ return\ it\ (note\ that\ a\ Array<sometype>\ will\ return\ the\ rtti\ of\ sometype)}}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classSerializableAttribute_af7f01caef8726c642aaeb8ce7016c97a}{pGetMemberPrimitiveType}}\ \ \ \ \ \ mGetMemberPrimitiveType;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ Serialization\ operations}}
+\DoxyCodeLine{00101\ \ \ \ \ pIsType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mIsType;}
+\DoxyCodeLine{00102\ \ \ \ \ pReadData\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mReadData;}
+\DoxyCodeLine{00103\ \ \ \ \ pWriteData\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWriteData;}
+\DoxyCodeLine{00104\ \ \ \ \ pWriteDataType\ \ \ \ \ \ \ \ \ \ \ \ \ \ mWriteDataType;}
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

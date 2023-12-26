@@ -1,0 +1,323 @@
+\doxysection{Templates.\+hpp}
+\hypertarget{Templates_8hpp_source}{}\label{Templates_8hpp_source}\index{includes/playrho/Common/Templates.hpp@{includes/playrho/Common/Templates.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_TEMPLATES\_HPP}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_TEMPLATES\_HPP}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <PlayRho/Defines.hpp>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Bring\ standard\ customization\ points\ into\ the\ namespace...}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{using\ }std::begin;}
+\DoxyCodeLine{00038\ \textcolor{keyword}{using\ }std::end;}
+\DoxyCodeLine{00039\ \textcolor{keyword}{using\ }std::cbegin;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{using\ }std::cend;}
+\DoxyCodeLine{00041\ \textcolor{keyword}{using\ }std::size;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{using\ }std::empty;}
+\DoxyCodeLine{00043\ \textcolor{keyword}{using\ }std::data;}
+\DoxyCodeLine{00044\ \textcolor{keyword}{using\ }std::swap;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1detail_1_1IsIterableImpl}{IsIterableImpl}}:\ std::false\_type\ \{\};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1detail_1_1IsIterableImpl}{IsIterableImpl}}<T,\ \mbox{\hyperlink{namespacestd}{std}}::void\_t<}
+\DoxyCodeLine{00055\ \ \ \ \ decltype(begin(std::declval<T>())),}
+\DoxyCodeLine{00056\ \ \ \ \ decltype(end(std::declval<T>())),}
+\DoxyCodeLine{00057\ \ \ \ \ decltype(++std::declval<decltype(begin(std::declval<T\&>()))\&>()),}
+\DoxyCodeLine{00058\ \ \ \ \ decltype(*begin(std::declval<T>()))}
+\DoxyCodeLine{00059\ \ \ \ \ >>:}
+\DoxyCodeLine{00060\ \ \ \ \ std::true\_type}
+\DoxyCodeLine{00061\ \{\};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3}{max\_size}}(\textcolor{keyword}{const}\ T\&\ arg)\ -\/>\ \textcolor{keyword}{decltype}(arg.max\_size())}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ arg.max\_size();}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00072\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_1_1detail_a9c6ef61517707043fb5fd0891647687f}{IsFull}}(\textcolor{keyword}{const}\ T\&\ arg)\ -\/>\ \textcolor{keyword}{decltype}(size(arg)\ ==\ \mbox{\hyperlink{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3}{max\_size}}(arg))}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ size(arg)\ ==\ \mbox{\hyperlink{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3}{max\_size}}(arg);}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ Data(T\&\ v)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ using\ ::playrho::data;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ data(v);}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00089\ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ Size(T\&\ v)}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ using\ ::playrho::size;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ size(v);}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}\ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00096\ \ \ \ \ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}<\textcolor{keyword}{class}...\ T>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceplayrho_a465a2b892f4effbc98c1b2468d6eb56a}{NOT\_USED}}(T\&\&...)\{\}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00105\ \textcolor{keyword}{constexpr}\ T\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept}
+\DoxyCodeLine{00106\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(T)\ ==\ 0,\ \textcolor{stringliteral}{"{}No\ available\ specialization"{}});}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00113\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(\textcolor{keyword}{const}\ T\&\ value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ Note:\ This\ is\ not\ necessarily\ a\ no-\/op!!\ But\ it\ is\ a\ "{}constexpr"{}.}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ From\ http://en.cppreference.com/w/cpp/numeric/math/isnan:}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ \ \ "{}Another\ way\ to\ test\ if\ a\ floating-\/point\ value\ is\ NaN\ is}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ \ \ \ to\ compare\ it\ with\ itself:}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ bool\ is\_nan(double\ x)\ \{\ return\ x\ !=\ x;\ \}}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ So\ for\ all\ T,\ for\ which\ isnan()\ is\ implemented,\ this\ should\ work}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ correctly\ and\ quite\ usefully!}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ ==\ value;}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ GetInvalid\ template\ specializations.}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00132\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ std::numeric\_limits<float>::signaling\_NaN();}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00139\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ std::numeric\_limits<double>::signaling\_NaN();}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00146\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept}
+\DoxyCodeLine{00147\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{return}\ std::numeric\_limits<long\ double>::signaling\_NaN();}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00153\ \textcolor{keyword}{constexpr}\ std::size\_t\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept}
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ IsValid\ template\ specializations.}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00162\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(\textcolor{keyword}{const}\ std::size\_t\&\ value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00163\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ !=\ GetInvalid<std::size\_t>();}
+\DoxyCodeLine{00165\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ Other\ templates.}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00173\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsEqualityComparable}{IsEqualityComparable}}:\ std::false\_type\ \{\};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2>}
+\DoxyCodeLine{00177\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsEqualityComparable}{IsEqualityComparable}}<T1,\ T2,\ \mbox{\hyperlink{namespacestd}{std}}::void\_t<decltype(T1\{\}\ ==\ T2\{\})>\ >:\ std::true\_type\ \{\};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00181\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsInequalityComparable}{IsInequalityComparable}}:\ std::false\_type\ \{\};}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2>}
+\DoxyCodeLine{00185\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsInequalityComparable}{IsInequalityComparable}}<T1,\ T2,\ \mbox{\hyperlink{namespacestd}{std}}::void\_t<decltype(T1\{\}\ !=\ T2\{\})>\ >:\ std::true\_type\ \{\};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2\ =\ T1,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00189\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsAddable}{IsAddable}}:\ std::false\_type\ \{\};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00192\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2>}
+\DoxyCodeLine{00193\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsAddable}{IsAddable}}<T1,\ T2,\ \mbox{\hyperlink{namespacestd}{std}}::void\_t<decltype(T1\{\}\ +\ T2\{\})>\ >:\ std::true\_type\ \{\};}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00197\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsMultipliable}{IsMultipliable}}:\ std::false\_type\ \{\};}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00200\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2>}
+\DoxyCodeLine{00201\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsMultipliable}{IsMultipliable}}<T1,\ T2,\ \mbox{\hyperlink{namespacestd}{std}}::void\_t<decltype(T1\{\}\ *\ T2\{\})>\ >:\ std::true\_type\ \{\};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00204\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00205\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsDivisable}{IsDivisable}}:\ std::false\_type\ \{\};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2>}
+\DoxyCodeLine{00209\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsDivisable}{IsDivisable}}<T1,\ T2,\ \mbox{\hyperlink{namespacestd}{std}}::void\_t<decltype(T1\{\}\ /\ T2\{\})>\ >:\ std::true\_type\ \{\};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsArithmetic}{IsArithmetic}}:\ std::false\_type\ \{\};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00218\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00219\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsArithmetic}{IsArithmetic}}<T,\ \mbox{\hyperlink{namespacestd}{std}}::void\_t<}
+\DoxyCodeLine{00220\ \ \ \ \ decltype(T\{\}\ +\ T\{\}),\ decltype(T\{\}\ -\/\ T\{\}),\ decltype(T\{\}\ *\ T\{\}),\ decltype(T\{\}\ /\ T\{\})}
+\DoxyCodeLine{00221\ >\ >:\ std::true\_type\ \{\};}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00225\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_a4708d38a866c6ebc70da3939d5edc8dc}{IsIterable}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structplayrho_1_1detail_1_1IsIterableImpl}{detail::IsIterableImpl<T>}};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Tuple>}
+\DoxyCodeLine{00232\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1HasType}{HasType}};}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00238\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00239\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1HasType}{HasType}}<T,\ \mbox{\hyperlink{namespacestd}{std}}::tuple<>>\ :\ std::false\_type\ \{\};}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00245\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Ts>}
+\DoxyCodeLine{00246\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1HasType}{HasType}}<T,\ \mbox{\hyperlink{namespacestd}{std}}::tuple<T,\ Ts...>>\ :\ std::true\_type\ \{\};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00252\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}...\ Ts>}
+\DoxyCodeLine{00253\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1HasType}{HasType}}<T,\ \mbox{\hyperlink{namespacestd}{std}}::tuple<U,\ Ts...>>\ :\ \mbox{\hyperlink{structplayrho_1_1HasType}{HasType}}<T,\ std::tuple<Ts...>>\ \{\};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00261\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Tuple>}
+\DoxyCodeLine{00262\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_a592a9fb888eae63605b73b61c61ccd17}{TupleContainsType}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structplayrho_1_1HasType}{HasType<T,\ Tuple>::type}};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00266\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3}{detail::max\_size}};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00270\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_1_1detail_a9c6ef61517707043fb5fd0891647687f}{detail::IsFull}};}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00276\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00277\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1LexicographicalLess}{LexicographicalLess}}}
+\DoxyCodeLine{00278\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1LexicographicalLess_ab4454a1648e777f056ce57450746c7a9}{operator()}}(\textcolor{keyword}{const}\ T\&\ lhs,\ \textcolor{keyword}{const}\ T\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00282\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::less;}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ElementType\ =\ \textcolor{keyword}{decltype}(*begin(lhs));}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::lexicographical\_compare(begin(lhs),\ end(lhs),\ begin(rhs),\ end(rhs),}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ less<ElementType>\{\});}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \};}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00294\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00295\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1LexicographicalGreater}{LexicographicalGreater}}}
+\DoxyCodeLine{00296\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1LexicographicalGreater_ac790375bb1a9eea06b81487d672a67c2}{operator()}}(\textcolor{keyword}{const}\ T\&\ lhs,\ \textcolor{keyword}{const}\ T\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00300\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::greater;}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ElementType\ =\ \textcolor{keyword}{decltype}(*begin(lhs));}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::lexicographical\_compare(begin(lhs),\ end(lhs),\ begin(rhs),\ end(rhs),}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ greater<ElementType>\{\});}
+\DoxyCodeLine{00305\ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \};}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00312\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00313\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1LexicographicalLessEqual}{LexicographicalLessEqual}}}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1LexicographicalLessEqual_a6c13e9bc94c64eeef2925b870caf7863}{operator()}}(\textcolor{keyword}{const}\ T\&\ lhs,\ \textcolor{keyword}{const}\ T\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00318\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::mismatch;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::less;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::get;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ElementType\ =\ \textcolor{keyword}{decltype}(*begin(lhs));}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ lhsEnd\ =\ end(lhs);}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ diff\ =\ mismatch(begin(lhs),\ lhsEnd,\ begin(rhs),\ end(rhs));}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (get<0>(diff)\ ==\ lhsEnd)\ ||\ less<ElementType>\{\}(*get<0>(diff),\ *get<1>(diff));}
+\DoxyCodeLine{00326\ \ \ \ \ \}}
+\DoxyCodeLine{00327\ \};}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00333\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00334\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1LexicographicalGreaterEqual}{LexicographicalGreaterEqual}}}
+\DoxyCodeLine{00335\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1LexicographicalGreaterEqual_a6227678953085394aa7480fec8977542}{operator()}}(\textcolor{keyword}{const}\ T\&\ lhs,\ \textcolor{keyword}{const}\ T\&\ rhs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00339\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::mismatch;}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::greater;}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::get;}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ElementType\ =\ \textcolor{keyword}{decltype}(*begin(lhs));}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ lhsEnd\ =\ end(lhs);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ diff\ =\ mismatch(begin(lhs),\ lhsEnd,\ begin(rhs),\ end(rhs));}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (get<0>(diff)\ ==\ lhsEnd)\ ||\ greater<ElementType>\{\}(*get<0>(diff),\ *get<1>(diff));}
+\DoxyCodeLine{00347\ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \};}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00353\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00354\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ad559996a9d085eb07a18b5b88525761f}{EraseFirst}}(T\&\ container,\ \textcolor{keyword}{const}\ U\&\ value)\ -\/>}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{decltype}(container.erase(find(begin(container),\ end(container),\ value))\ !=\ end(container))}
+\DoxyCodeLine{00356\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ endIt\ =\ end(container);}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ it\ =\ find(begin(container),\ endIt,\ value);}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ !=\ endIt)\ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ container.erase(it);}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00364\ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00370\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00371\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aa5b77298f0fc2a2ae88ececbc3fb23d1}{EraseAll}}(T\&\ container,\ \textcolor{keyword}{const}\ U\&\ value)\ -\/>}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keyword}{decltype}(distance(container.erase(remove(begin(container),\ end(container),\ value),\ end(container)),\ end(container)))}
+\DoxyCodeLine{00373\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ itEnd\ =\ end(container);}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ it\ =\ remove(begin(container),\ itEnd,\ value);}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ count\ =\ distance(it,\ itEnd);}
+\DoxyCodeLine{00377\ \ \ \ \ container.erase(it,\ itEnd);}
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{00379\ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00385\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00386\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1HasFunctor}{HasFunctor}}\ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::integral\_constant<T,\ false>::value,}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Second\ template\ parameter\ needs\ to\ be\ of\ function\ type."{}});}
+\DoxyCodeLine{00389\ \};}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00395\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Type,\ \textcolor{keyword}{typename}\ Return,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00396\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1HasFunctor}{HasFunctor}}<Type,\ Return(Args...)>\ \{}
+\DoxyCodeLine{00397\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ check(T*)}
+\DoxyCodeLine{00401\ \ \ \ \ -\/>\ \textcolor{keyword}{typename}\ std::is\_same<decltype(std::declval<T>()(std::declval<Args>()...)),Return>::type;}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}>}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::false\_type\ check(...);}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keyword}{using\ }type\ =\ \textcolor{keyword}{decltype}(check<Type>(0));}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ value\ =\ type::value;}
+\DoxyCodeLine{00413\ \};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00417\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Type,\ \textcolor{keyword}{typename}\ Return>}
+\DoxyCodeLine{00418\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1HasFunctor}{HasNullaryFunctor}}\ =\ \mbox{\hyperlink{structplayrho_1_1HasFunctor}{HasFunctor}}<Type,Return()>;}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00422\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Type,\ \textcolor{keyword}{typename}\ Return,\ \textcolor{keyword}{typename}\ Arg>}
+\DoxyCodeLine{00423\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1HasFunctor}{HasUnaryFunctor}}\ =\ \mbox{\hyperlink{structplayrho_1_1HasFunctor}{HasFunctor}}<Type,Return(Arg)>;}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_TEMPLATES\_HPP}}
+
+\end{DoxyCode}

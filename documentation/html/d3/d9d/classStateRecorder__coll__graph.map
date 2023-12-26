@@ -1,0 +1,10 @@
+<map id="StateRecorder" name="StateRecorder">
+<area shape="rect" id="Node000001" title=" " alt="" coords="63,475,191,608"/>
+<area shape="rect" id="Node000002" href="$da/db6/classStreamIn.html" title="Simple binary input stream." alt="" coords="5,165,112,427"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,440,111,474,106,476,96,442"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="65,5,188,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="109,132,99,166,94,165,104,131"/>
+<area shape="rect" id="Node000004" href="$dd/d39/classStreamOut.html" title="Simple binary output stream." alt="" coords="136,176,253,416"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="149,131,162,175,157,177,144,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,431,147,476,142,474,155,429"/>
+</map>

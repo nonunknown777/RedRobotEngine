@@ -1,0 +1,267 @@
+\doxysection{playrho\+::Vector\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structplayrho_1_1Vector}{}\label{structplayrho_1_1Vector}\index{playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}}
+
+
+\doxylink{structplayrho_1_1Vector}{Vector}.  
+
+
+
+
+{\ttfamily \#include $<$Vector.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Vector\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{d8/d1b/structplayrho_1_1Vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}\label{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f} 
+using {\bfseries value\+\_\+type} = T
+\begin{DoxyCompactList}\small\item\em Value type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}\label{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc} 
+using {\bfseries size\+\_\+type} = std\+::size\+\_\+t
+\begin{DoxyCompactList}\small\item\em Size type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a0807d5f6ad7825293d92e8a6e0242734}\label{structplayrho_1_1Vector_a0807d5f6ad7825293d92e8a6e0242734} 
+using {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\begin{DoxyCompactList}\small\item\em Difference type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd}\label{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd} 
+using {\bfseries reference} = \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\+\_\+type}} \&
+\begin{DoxyCompactList}\small\item\em Reference type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314}\label{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314} 
+using {\bfseries const\+\_\+reference} = const \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\+\_\+type}} \&
+\begin{DoxyCompactList}\small\item\em Constant reference type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a55cf503243bd308dc9961ba0970ab6ca}\label{structplayrho_1_1Vector_a55cf503243bd308dc9961ba0970ab6ca} 
+using {\bfseries pointer} = \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\+\_\+type}} \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Pointer type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_adb95a88a8f0a112b81be5904979fd1c7}\label{structplayrho_1_1Vector_adb95a88a8f0a112b81be5904979fd1c7} 
+using {\bfseries const\+\_\+pointer} = const \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\+\_\+type}} \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Constant pointer type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}\label{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84} 
+using {\bfseries iterator} = \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\+\_\+type}} \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Iterator type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}\label{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd} 
+using {\bfseries const\+\_\+iterator} = const \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\+\_\+type}} \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Constant iterator type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68}\label{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68} 
+using {\bfseries reverse\+\_\+iterator} = std\+::reverse\+\_\+iterator$<$ \mbox{\hyperlink{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}{iterator}} $>$
+\begin{DoxyCompactList}\small\item\em Reverse iterator type. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}\label{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f} 
+using {\bfseries const\+\_\+reverse\+\_\+iterator} = std\+::reverse\+\_\+iterator$<$ \mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\+\_\+iterator}} $>$
+\begin{DoxyCompactList}\small\item\em Constant reverse iterator type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_aa368db46827a37158002ac586f3f55c2}{Vector}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a64e86fe825332bc262819c5edbc4115f}\label{structplayrho_1_1Vector_a64e86fe825332bc262819c5edbc4115f} 
+{\footnotesize template$<$typename... Tail$>$ }\\constexpr {\bfseries Vector} (std\+::enable\+\_\+if\+\_\+t$<$ sizeof...(Tail)+1==N, T $>$ head, Tail... tail) noexcept
+\begin{DoxyCompactList}\small\item\em Initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_abe95a16ab6212c279f33f263fbc41dcd}\label{structplayrho_1_1Vector_abe95a16ab6212c279f33f263fbc41dcd} 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}} {\bfseries max\+\_\+size} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the max size. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}\label{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5} 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}} {\bfseries size} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the size. \end{DoxyCompactList}\item 
+constexpr bool \mbox{\hyperlink{structplayrho_1_1Vector_a980a432612de0373e65255df5b1f86d2}{empty}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Whether empty. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a640fd6dd0af7123b6e8b47feceaf5375}\label{structplayrho_1_1Vector_a640fd6dd0af7123b6e8b47feceaf5375} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}{iterator}} {\bfseries begin} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets a "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a9b2981be03a89e12d9783d08d941c5bd}\label{structplayrho_1_1Vector_a9b2981be03a89e12d9783d08d941c5bd} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}{iterator}} {\bfseries end} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets an "{}end"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a0e4e393aa9b3999b5e7bcd756c7ce88e}\label{structplayrho_1_1Vector_a0e4e393aa9b3999b5e7bcd756c7ce88e} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\+\_\+iterator}} {\bfseries begin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_af101191765d6e6e8ea67d2365d190cc4}\label{structplayrho_1_1Vector_af101191765d6e6e8ea67d2365d190cc4} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\+\_\+iterator}} {\bfseries end} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets an "{}end"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a9bebd544f9cb7bb77c8f2600bd194c8f}\label{structplayrho_1_1Vector_a9bebd544f9cb7bb77c8f2600bd194c8f} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\+\_\+iterator}} {\bfseries cbegin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_ae2cae3925bba1dc9890cb171491b5c8c}\label{structplayrho_1_1Vector_ae2cae3925bba1dc9890cb171491b5c8c} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\+\_\+iterator}} {\bfseries cend} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets an "{}end"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a820156d1e812484e5962b33ada91027a}\label{structplayrho_1_1Vector_a820156d1e812484e5962b33ada91027a} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68}{reverse\+\_\+iterator}} {\bfseries rbegin} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a0de188288645c01c7a0d5663f3ba1624}\label{structplayrho_1_1Vector_a0de188288645c01c7a0d5663f3ba1624} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68}{reverse\+\_\+iterator}} {\bfseries rend} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}end"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_ab8f7823fbdb7a68dcc009294228f0b9f}\label{structplayrho_1_1Vector_ab8f7823fbdb7a68dcc009294228f0b9f} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\+\_\+reverse\+\_\+iterator}} {\bfseries crbegin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a7516a64e5f7a1463fb12f7b6f880ffb5}\label{structplayrho_1_1Vector_a7516a64e5f7a1463fb12f7b6f880ffb5} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\+\_\+reverse\+\_\+iterator}} {\bfseries crend} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}end"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a324c2160a22774e96726fbaa148c552f}\label{structplayrho_1_1Vector_a324c2160a22774e96726fbaa148c552f} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\+\_\+reverse\+\_\+iterator}} {\bfseries rbegin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}begin"{} iterator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a7e1b4d33490c25fd9f0c5a9031ebf823}\label{structplayrho_1_1Vector_a7e1b4d33490c25fd9f0c5a9031ebf823} 
+\mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\+\_\+reverse\+\_\+iterator}} {\bfseries rend} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reverse "{}end"{} iterator. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd}{reference}} \mbox{\hyperlink{structplayrho_1_1Vector_a4cf7068d7d3c4ea1a2c6859ffd7e749b}{operator\mbox{[}$\,$\mbox{]}}} (\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}} pos) noexcept
+\begin{DoxyCompactList}\small\item\em Gets a reference to the requested element. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314}{const\+\_\+reference}} \mbox{\hyperlink{structplayrho_1_1Vector_aa90e470ba330d396ba83db1dc29b9522}{operator\mbox{[}$\,$\mbox{]}}} (\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}} pos) const noexcept
+\begin{DoxyCompactList}\small\item\em Gets a constant reference to the requested element. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd}{reference}} \mbox{\hyperlink{structplayrho_1_1Vector_a96eefa7a8f43dddee954f5cda427d1f8}{at}} (\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}} pos)
+\begin{DoxyCompactList}\small\item\em Gets a reference to the requested element. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314}{const\+\_\+reference}} \mbox{\hyperlink{structplayrho_1_1Vector_ac4fa1827bdfc14cc0c2c1778394f7b70}{at}} (\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}} pos) const
+\begin{DoxyCompactList}\small\item\em Gets a constant reference to the requested element. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_a88f495a57b2564bd76d45d515486617c}\label{structplayrho_1_1Vector_a88f495a57b2564bd76d45d515486617c} 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a55cf503243bd308dc9961ba0970ab6ca}{pointer}} {\bfseries data} () noexcept
+\begin{DoxyCompactList}\small\item\em Direct access to data. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1Vector_ac0ee63043ed80188d8e400b7de4668aa}\label{structplayrho_1_1Vector_ac0ee63043ed80188d8e400b7de4668aa} 
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_adb95a88a8f0a112b81be5904979fd1c7}{const\+\_\+pointer}} {\bfseries data} () const noexcept
+\begin{DoxyCompactList}\small\item\em Direct access to data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\+\_\+type}} \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}} \mbox{[}N? N\+:1\mbox{]}
+\begin{DoxyCompactList}\small\item\em Elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T, std\+::size\+\_\+t N$>$\newline
+struct playrho\+::\+Vector$<$ T, N $>$}
+\doxylink{structplayrho_1_1Vector}{Vector}. 
+
+This is a {\ttfamily constexpr} and constructor enhanced {\ttfamily std\+::array}-\/like template class for types supporting the +, -\/, \texorpdfstring{$\ast$}{*}, / arithmetic operators ("{}arithmetic types"{} as defined by the {\ttfamily \doxylink{structplayrho_1_1IsArithmetic}{Is\+Arithmetic}} type trait) that itself comes with non-\/member arithmetic operator support making \doxylink{structplayrho_1_1Vector}{Vector} instances arithmetic types as well. \begin{DoxyNote}{Note}
+This type is trivially default constructible -\/ i.\+e. default construction performs no actions (no initialization). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structplayrho_1_1IsArithmetic}{Is\+Arithmetic}, \doxylink{group__VectorTraitsGroup}{Vector Traits} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structplayrho_1_1Vector_aa368db46827a37158002ac586f3f55c2}\label{structplayrho_1_1Vector_aa368db46827a37158002ac586f3f55c2} 
+\index{playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}!Vector@{Vector}}
+\index{Vector@{Vector}!playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{Vector()}{Vector()}}
+{\footnotesize\ttfamily template$<$typename T , std\+::size\+\_\+t N$>$ \\
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector}{playrho\+::\+Vector}}$<$ T, N $>$\mbox{\hyperlink{classVector}{\+::\+Vector}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [default]}}
+
+
+
+Default constructor. 
+
+\begin{DoxyNote}{Note}
+Defaulted explicitly. 
+
+This constructor performs no action. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structplayrho_1_1Vector_a96eefa7a8f43dddee954f5cda427d1f8}\label{structplayrho_1_1Vector_a96eefa7a8f43dddee954f5cda427d1f8} 
+\index{playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}!at@{at}}
+\index{at@{at}!playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , std\+::size\+\_\+t N$>$ \\
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd}{reference}} \mbox{\hyperlink{structplayrho_1_1Vector}{playrho\+::\+Vector}}$<$ T, N $>$\+::at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}}}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Gets a reference to the requested element. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classplayrho_1_1InvalidArgument}{Invalid\+Argument}} & if given a position that\textquotesingle{}s \texorpdfstring{$>$}{>}= \doxylink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size()}. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{structplayrho_1_1Vector_ac4fa1827bdfc14cc0c2c1778394f7b70}\label{structplayrho_1_1Vector_ac4fa1827bdfc14cc0c2c1778394f7b70} 
+\index{playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}!at@{at}}
+\index{at@{at}!playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , std\+::size\+\_\+t N$>$ \\
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314}{const\+\_\+reference}} \mbox{\hyperlink{structplayrho_1_1Vector}{playrho\+::\+Vector}}$<$ T, N $>$\+::at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}}}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Gets a constant reference to the requested element. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \doxylink{classplayrho_1_1InvalidArgument}{Invalid\+Argument}} & if given a position that\textquotesingle{}s \texorpdfstring{$>$}{>}= \doxylink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size()}. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{structplayrho_1_1Vector_a980a432612de0373e65255df5b1f86d2}\label{structplayrho_1_1Vector_a980a432612de0373e65255df5b1f86d2} 
+\index{playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}!empty@{empty}}
+\index{empty@{empty}!playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily template$<$typename T , std\+::size\+\_\+t N$>$ \\
+constexpr bool \mbox{\hyperlink{structplayrho_1_1Vector}{playrho\+::\+Vector}}$<$ T, N $>$\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Whether empty. 
+
+\begin{DoxyNote}{Note}
+Always false for N \texorpdfstring{$>$}{>} 0. 
+\end{DoxyNote}
+\Hypertarget{structplayrho_1_1Vector_aa90e470ba330d396ba83db1dc29b9522}\label{structplayrho_1_1Vector_aa90e470ba330d396ba83db1dc29b9522} 
+\index{playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T , std\+::size\+\_\+t N$>$ \\
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314}{const\+\_\+reference}} \mbox{\hyperlink{structplayrho_1_1Vector}{playrho\+::\+Vector}}$<$ T, N $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}}}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a constant reference to the requested element. 
+
+\begin{DoxyNote}{Note}
+No bounds checking is performed. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Behavior is undefined if given a position equal to or greater than \doxylink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size()}. 
+\end{DoxyWarning}
+\Hypertarget{structplayrho_1_1Vector_a4cf7068d7d3c4ea1a2c6859ffd7e749b}\label{structplayrho_1_1Vector_a4cf7068d7d3c4ea1a2c6859ffd7e749b} 
+\index{playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T , std\+::size\+\_\+t N$>$ \\
+constexpr \mbox{\hyperlink{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd}{reference}} \mbox{\hyperlink{structplayrho_1_1Vector}{playrho\+::\+Vector}}$<$ T, N $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\+\_\+type}}}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a reference to the requested element. 
+
+\begin{DoxyNote}{Note}
+No bounds checking is performed. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Behavior is undefined if given a position equal to or greater than \doxylink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size()}. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}\label{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0} 
+\index{playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}!elements@{elements}}
+\index{elements@{elements}!playrho::Vector$<$ T, N $>$@{playrho::Vector$<$ T, N $>$}}
+\doxysubsubsection{\texorpdfstring{elements}{elements}}
+{\footnotesize\ttfamily template$<$typename T , std\+::size\+\_\+t N$>$ \\
+\mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\+\_\+type}} \mbox{\hyperlink{structplayrho_1_1Vector}{playrho\+::\+Vector}}$<$ T, N $>$\+::elements\mbox{[}N? N\+:1\mbox{]}}
+
+
+
+Elements. 
+
+Array of N elements unless N is 0 in which case this is an array of 1 element. \begin{DoxyWarning}{Warning}
+Don\textquotesingle{}t access this directly! 
+
+Data is not initialized on default construction. This is intentional to avoid any performance overhead that default initialization might incur. 
+\end{DoxyWarning}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Vector.\+hpp\end{DoxyCompactItemize}

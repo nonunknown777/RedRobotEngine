@@ -1,0 +1,93 @@
+\doxysection{Broad\+Phase\+Layer\+Interface\+Mask Class Reference}
+\hypertarget{classBroadPhaseLayerInterfaceMask}{}\label{classBroadPhaseLayerInterfaceMask}\index{BroadPhaseLayerInterfaceMask@{BroadPhaseLayerInterfaceMask}}
+
+
+{\ttfamily \#include $<$Broad\+Phase\+Layer\+Interface\+Mask.\+h$>$}
+
+
+
+Inheritance diagram for Broad\+Phase\+Layer\+Interface\+Mask\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{db/dee/classBroadPhaseLayerInterfaceMask__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Broad\+Phase\+Layer\+Interface\+Mask\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{d9/dcc/classBroadPhaseLayerInterfaceMask__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBroadPhaseLayerInterfaceMask_a91a0c2af42acacfefdb8901fc1bc9696}\label{classBroadPhaseLayerInterfaceMask_a91a0c2af42acacfefdb8901fc1bc9696} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Broad\+Phase\+Layer\+Interface\+Mask} (uint in\+Num\+Broad\+Phase\+Layers)
+\item 
+\Hypertarget{classBroadPhaseLayerInterfaceMask_a01a9ec0c57462e3cda401b73edbf3573}\label{classBroadPhaseLayerInterfaceMask_a01a9ec0c57462e3cda401b73edbf3573} 
+void {\bfseries Configure\+Layer} (\mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}} in\+Broad\+Phase\+Layer, uint32 in\+Groups\+To\+Include, uint32 in\+Groups\+To\+Exclude)
+\item 
+virtual uint \mbox{\hyperlink{classBroadPhaseLayerInterfaceMask_a5c4d1d6ac5321a8bd30ddd54be36f24d}{Get\+Num\+Broad\+Phase\+Layers}} () const override
+\begin{DoxyCompactList}\small\item\em Return the number of broadphase layers there are. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}} \mbox{\hyperlink{classBroadPhaseLayerInterfaceMask_a75300021e8d32e840ec8eb0d4a292b5a}{Get\+Broad\+Phase\+Layer}} (Object\+Layer in\+Layer) const override
+\begin{DoxyCompactList}\small\item\em Convert an object layer to the corresponding broadphase layer. \end{DoxyCompactList}\item 
+\Hypertarget{classBroadPhaseLayerInterfaceMask_ae96ef540e10bbd5d1dbed4260d8d179a}\label{classBroadPhaseLayerInterfaceMask_ae96ef540e10bbd5d1dbed4260d8d179a} 
+bool {\bfseries Should\+Collide} (Object\+Layer in\+Layer1, \mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}} in\+Layer2) const
+\begin{DoxyCompactList}\small\item\em Returns true if an object layer should collide with a broadphase layer, this function is being called from \doxylink{classObjectVsBroadPhaseLayerFilterMask}{Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Mask}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Broad\+Phase\+Layer\+Interface} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface} implementation. This defines a mapping between object and broadphase layers. This implementation works together with \doxylink{classObjectLayerPairFilterMask}{Object\+Layer\+Pair\+Filter\+Mask} and \doxylink{classObjectVsBroadPhaseLayerFilterMask}{Object\+Vs\+Broad\+Phase\+Layer\+Filter\+Mask}. A broadphase layer is suitable for an object if its group \& in\+Groups\+To\+Include is not zero and its group \& in\+Groups\+To\+Exclude is zero. The broadphase layers are iterated from lowest to highest value and the first one that matches is taken. If none match then it takes the last layer. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBroadPhaseLayerInterfaceMask_a75300021e8d32e840ec8eb0d4a292b5a}\label{classBroadPhaseLayerInterfaceMask_a75300021e8d32e840ec8eb0d4a292b5a} 
+\index{BroadPhaseLayerInterfaceMask@{BroadPhaseLayerInterfaceMask}!GetBroadPhaseLayer@{GetBroadPhaseLayer}}
+\index{GetBroadPhaseLayer@{GetBroadPhaseLayer}!BroadPhaseLayerInterfaceMask@{BroadPhaseLayerInterfaceMask}}
+\doxysubsubsection{\texorpdfstring{GetBroadPhaseLayer()}{GetBroadPhaseLayer()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}} Broad\+Phase\+Layer\+Interface\+Mask\+::\+Get\+Broad\+Phase\+Layer (\begin{DoxyParamCaption}\item[{Object\+Layer}]{in\+Layer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Convert an object layer to the corresponding broadphase layer. 
+
+
+
+Implements \mbox{\hyperlink{classBroadPhaseLayerInterface_a5007c9b9beab5c16af36e89b48cd06cb}{Broad\+Phase\+Layer\+Interface}}.
+
+\Hypertarget{classBroadPhaseLayerInterfaceMask_a5c4d1d6ac5321a8bd30ddd54be36f24d}\label{classBroadPhaseLayerInterfaceMask_a5c4d1d6ac5321a8bd30ddd54be36f24d} 
+\index{BroadPhaseLayerInterfaceMask@{BroadPhaseLayerInterfaceMask}!GetNumBroadPhaseLayers@{GetNumBroadPhaseLayers}}
+\index{GetNumBroadPhaseLayers@{GetNumBroadPhaseLayers}!BroadPhaseLayerInterfaceMask@{BroadPhaseLayerInterfaceMask}}
+\doxysubsubsection{\texorpdfstring{GetNumBroadPhaseLayers()}{GetNumBroadPhaseLayers()}}
+{\footnotesize\ttfamily virtual uint Broad\+Phase\+Layer\+Interface\+Mask\+::\+Get\+Num\+Broad\+Phase\+Layers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Return the number of broadphase layers there are. 
+
+
+
+Implements \mbox{\hyperlink{classBroadPhaseLayerInterface_a3eeb469199592955036a5b24633b8f53}{Broad\+Phase\+Layer\+Interface}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Broad\+Phase/Broad\+Phase\+Layer\+Interface\+Mask.\+h\end{DoxyCompactItemize}

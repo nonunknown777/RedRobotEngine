@@ -1,0 +1,81 @@
+\doxysection{Vehicle\+Controller.\+h}
+\hypertarget{VehicleController_8h_source}{}\label{VehicleController_8h_source}\index{includes/jolt/Physics/Vehicle/VehicleController.h@{includes/jolt/Physics/Vehicle/VehicleController.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableObject.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StreamIn.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StreamOut.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Renderer/DebugRenderer.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVehicleController}{VehicleController}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classWheelSettings}{WheelSettings}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classWheel}{Wheel}};}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStateRecorder}{StateRecorder}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classVehicleControllerSettings}{VehicleControllerSettings}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSerializableObject}{SerializableObject}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}<VehicleControllerSettings>}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_ABSTRACT(JPH\_EXPORT,\ \mbox{\hyperlink{classVehicleControllerSettings}{VehicleControllerSettings}})}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveBinaryState(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ const\ =\ 0;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreBinaryState(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ =\ 0;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ virtual\ \mbox{\hyperlink{classVehicleController}{VehicleController}}\ *\ \ \ \ ConstructController(\mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inConstraint)\ const\ =\ 0;}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classVehicleController}{VehicleController}}\ :\ public\ \mbox{\hyperlink{classRefTarget}{RefTarget}}<\mbox{\hyperlink{classVehicleController}{VehicleController}}>,\ public\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleController_ad5cad3b5a580aaf05e36e4c350db37cb}{VehicleController}}(\mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inConstraint)\ :\ mConstraint(inConstraint)\ \{\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleController}{\string~VehicleController}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ The\ functions\ below\ are\ only\ for\ the\ VehicleConstraint}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ new\ instance\ of\ wheel}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classWheel}{Wheel}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConstructWheel(\textcolor{keyword}{const}\ \mbox{\hyperlink{classWheelSettings}{WheelSettings}}\ \&inWheel)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ If\ the\ vehicle\ is\ allowed\ to\ go\ to\ sleep}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AllowSleep()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Called\ before\ the\ wheel\ probes\ have\ been\ done}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PreCollide(\textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem)\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Called\ after\ the\ wheel\ probes\ have\ been\ done}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PostCollide(\textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem)\ =\ 0;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Solve\ longitudinal\ and\ lateral\ constraint\ parts\ for\ all\ of\ the\ wheels}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolveLongitudinalAndLateralConstraints(\textcolor{keywordtype}{float}\ inDeltaTime)\ =\ 0;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Saving\ state\ for\ replay}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ =\ 0;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ Drawing\ interface}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Draw(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleController_af93ef5080e32c5558d6b594da7080896}{mConstraint}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

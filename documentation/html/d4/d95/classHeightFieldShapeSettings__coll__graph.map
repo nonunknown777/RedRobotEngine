@@ -1,0 +1,19 @@
+<map id="HeightFieldShapeSettings" name="HeightFieldShapeSettings">
+<area shape="rect" id="Node000001" title="Class that constructs a HeightFieldShape." alt="" coords="263,1364,500,1707"/>
+<area shape="rect" id="Node000002" href="$d6/d55/classShapeSettings.html" title=" " alt="" coords="250,957,355,1026"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,1040,359,1364,354,1365,307,1041"/>
+<area shape="rect" id="Node000003" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="5,460,171,529"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,541,291,956,286,958,106,544"/>
+<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,91,149,203"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="91,218,91,460,85,460,85,218"/>
+<area shape="rect" id="Node000005" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="195,374,410,614"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="305,629,305,957,300,957,300,629"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="238,112,367,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="305,181,305,357,300,357,300,181"/>
+<area shape="rect" id="Node000007" href="$d8/dce/classResult.html" title=" " alt="" coords="435,353,611,636"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="437,621,425,637,394,668,381,682,369,702,344,763,327,828,315,889,309,940,304,940,310,888,321,827,339,762,364,699,377,679,390,665,421,634,433,618"/>
+<area shape="rect" id="Node000008" href="$d5/d7f/classRef.html" title=" " alt="" coords="449,5,596,288"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="525,288,525,336,520,336,520,288"/>
+<area shape="rect" id="Node000009" href="$d9/de4/classVec3.html" title=" " alt="" coords="379,701,541,1282"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="421,1282,411,1348,406,1347,415,1282"/>
+</map>

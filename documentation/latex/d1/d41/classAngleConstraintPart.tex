@@ -1,0 +1,199 @@
+\doxysection{Angle\+Constraint\+Part Class Reference}
+\hypertarget{classAngleConstraintPart}{}\label{classAngleConstraintPart}\index{AngleConstraintPart@{AngleConstraintPart}}
+
+
+{\ttfamily \#include $<$Angle\+Constraint\+Part.\+h$>$}
+
+
+
+Collaboration diagram for Angle\+Constraint\+Part\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{de/d8d/classAngleConstraintPart__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{Calculate\+Constraint\+Properties}} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Axis, float in\+Bias=0.\+0f)
+\item 
+void \mbox{\hyperlink{classAngleConstraintPart_ace82e23e9129e1c30c93134a2d75504e}{Calculate\+Constraint\+Properties\+With\+Frequency\+And\+Damping}} (float in\+Delta\+Time, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Axis, float in\+Bias, float inC, float in\+Frequency, float in\+Damping)
+\item 
+void \mbox{\hyperlink{classAngleConstraintPart_a13c8d05c1aef17b2edc81da4ea754404}{Calculate\+Constraint\+Properties\+With\+Stiffness\+And\+Damping}} (float in\+Delta\+Time, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Axis, float in\+Bias, float inC, float in\+Stiffness, float in\+Damping)
+\item 
+\Hypertarget{classAngleConstraintPart_ac8eb562a067ed5596aca09e04ffc32d1}\label{classAngleConstraintPart_ac8eb562a067ed5596aca09e04ffc32d1} 
+void {\bfseries Calculate\+Constraint\+Properties\+With\+Settings} (float in\+Delta\+Time, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Axis, float in\+Bias, float inC, const \mbox{\hyperlink{classSpringSettings}{Spring\+Settings}} \&in\+Spring\+Settings)
+\begin{DoxyCompactList}\small\item\em Selects one of the above functions based on the spring settings. \end{DoxyCompactList}\item 
+\Hypertarget{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}\label{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840} 
+void {\bfseries Deactivate} ()
+\begin{DoxyCompactList}\small\item\em Deactivate this constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classAngleConstraintPart_a470e2813d397af02acc6bf8e8373431c}\label{classAngleConstraintPart_a470e2813d397af02acc6bf8e8373431c} 
+bool {\bfseries Is\+Active} () const
+\begin{DoxyCompactList}\small\item\em Check if constraint is active. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAngleConstraintPart_a8b54544706a1005ac865db7c445b76f1}{Warm\+Start}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, float in\+Warm\+Start\+Impulse\+Ratio)
+\item 
+bool \mbox{\hyperlink{classAngleConstraintPart_aab9cd08fa77ca04f5ab6a6d5cfd78538}{Solve\+Velocity\+Constraint}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+World\+Space\+Axis, float in\+Min\+Lambda, float in\+Max\+Lambda)
+\item 
+\Hypertarget{classAngleConstraintPart_af482295498d9ca4f6fcdd0c034d0fb90}\label{classAngleConstraintPart_af482295498d9ca4f6fcdd0c034d0fb90} 
+float {\bfseries Get\+Total\+Lambda} () const
+\begin{DoxyCompactList}\small\item\em Return lagrange multiplier. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAngleConstraintPart_a11bb8ed0daf36021dc407fd13cbfde90}{Solve\+Position\+Constraint}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, float inC, float in\+Baumgarte) const
+\item 
+\Hypertarget{classAngleConstraintPart_ab75081badd77c6854423f45825ff36ce}\label{classAngleConstraintPart_ab75081badd77c6854423f45825ff36ce} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Save state of this constraint part. \end{DoxyCompactList}\item 
+\Hypertarget{classAngleConstraintPart_a80bd3ee7db86967d1a55100ab244d01c}\label{classAngleConstraintPart_a80bd3ee7db86967d1a55100ab244d01c} 
+void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore state of this constraint part. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classConstraint}{Constraint} that constrains rotation along 1 axis
+
+Based on\+: "{}\+Constraints Derivation for Rigid Body Simulation in 3\+D"{} -\/ Daniel Chappuis, see section 2.\+4.\+5
+
+\doxylink{classConstraint}{Constraint} equation (eq 108)\+:
+
+\[C = \theta(t) - \theta_{min}\]
+
+Jacobian (eq 109)\+:
+
+\[J = \begin{bmatrix}0 & -a^T & 0 & a^T\end{bmatrix}\]
+
+Used terms (here and below, everything in world space)\+:~\newline
+a = axis around which rotation is constrained (normalized).~\newline
+x1, x2 = center of mass for the bodies.~\newline
+v = \mbox{[}v1, w1, v2, w2\mbox{]}.~\newline
+v1, v2 = linear velocity of body 1 and 2.~\newline
+w1, w2 = angular velocity of body 1 and 2.~\newline
+M = mass matrix, a diagonal matrix of the mass and inertia with diagonal \mbox{[}m1, I1, m2, I2\mbox{]}.~\newline
+ $K^{-1} = \left( J M^{-1} J^T \right)^{-1}$ = effective mass.~\newline
+b = velocity bias.~\newline
+ $\beta$ = baumgarte constant. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}\label{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4} 
+\index{AngleConstraintPart@{AngleConstraintPart}!CalculateConstraintProperties@{CalculateConstraintProperties}}
+\index{CalculateConstraintProperties@{CalculateConstraintProperties}!AngleConstraintPart@{AngleConstraintPart}}
+\doxysubsubsection{\texorpdfstring{CalculateConstraintProperties()}{CalculateConstraintProperties()}}
+{\footnotesize\ttfamily void Angle\+Constraint\+Part\+::\+Calculate\+Constraint\+Properties (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Axis,  }\item[{float}]{in\+Bias = {\ttfamily 0.0f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate properties used during the functions below 
+\begin{DoxyParams}{Parameters}
+{\em in\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em in\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+World\+Space\+Axis} & The axis of rotation along which the constraint acts (normalized) Set the following terms to zero if you don\textquotesingle{}t want to drive the constraint to zero with a spring\+: \\
+\hline
+{\em in\+Bias} & Bias term (b) for the constraint impulse\+: lambda = J v + b \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAngleConstraintPart_ace82e23e9129e1c30c93134a2d75504e}\label{classAngleConstraintPart_ace82e23e9129e1c30c93134a2d75504e} 
+\index{AngleConstraintPart@{AngleConstraintPart}!CalculateConstraintPropertiesWithFrequencyAndDamping@{CalculateConstraintPropertiesWithFrequencyAndDamping}}
+\index{CalculateConstraintPropertiesWithFrequencyAndDamping@{CalculateConstraintPropertiesWithFrequencyAndDamping}!AngleConstraintPart@{AngleConstraintPart}}
+\doxysubsubsection{\texorpdfstring{CalculateConstraintPropertiesWithFrequencyAndDamping()}{CalculateConstraintPropertiesWithFrequencyAndDamping()}}
+{\footnotesize\ttfamily void Angle\+Constraint\+Part\+::\+Calculate\+Constraint\+Properties\+With\+Frequency\+And\+Damping (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Axis,  }\item[{float}]{in\+Bias,  }\item[{float}]{inC,  }\item[{float}]{in\+Frequency,  }\item[{float}]{in\+Damping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate properties used during the functions below 
+\begin{DoxyParams}{Parameters}
+{\em in\+Delta\+Time} & Time step \\
+\hline
+{\em in\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em in\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+World\+Space\+Axis} & The axis of rotation along which the constraint acts (normalized) Set the following terms to zero if you don\textquotesingle{}t want to drive the constraint to zero with a spring\+: \\
+\hline
+{\em in\+Bias} & Bias term (b) for the constraint impulse\+: lambda = J v + b \\
+\hline
+{\em inC} & Value of the constraint equation (C) \\
+\hline
+{\em in\+Frequency} & Oscillation frequency (Hz) \\
+\hline
+{\em in\+Damping} & Damping factor (0 = no damping, 1 = critical damping) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAngleConstraintPart_a13c8d05c1aef17b2edc81da4ea754404}\label{classAngleConstraintPart_a13c8d05c1aef17b2edc81da4ea754404} 
+\index{AngleConstraintPart@{AngleConstraintPart}!CalculateConstraintPropertiesWithStiffnessAndDamping@{CalculateConstraintPropertiesWithStiffnessAndDamping}}
+\index{CalculateConstraintPropertiesWithStiffnessAndDamping@{CalculateConstraintPropertiesWithStiffnessAndDamping}!AngleConstraintPart@{AngleConstraintPart}}
+\doxysubsubsection{\texorpdfstring{CalculateConstraintPropertiesWithStiffnessAndDamping()}{CalculateConstraintPropertiesWithStiffnessAndDamping()}}
+{\footnotesize\ttfamily void Angle\+Constraint\+Part\+::\+Calculate\+Constraint\+Properties\+With\+Stiffness\+And\+Damping (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Axis,  }\item[{float}]{in\+Bias,  }\item[{float}]{inC,  }\item[{float}]{in\+Stiffness,  }\item[{float}]{in\+Damping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate properties used during the functions below 
+\begin{DoxyParams}{Parameters}
+{\em in\+Delta\+Time} & Time step \\
+\hline
+{\em in\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em in\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+World\+Space\+Axis} & The axis of rotation along which the constraint acts (normalized) Set the following terms to zero if you don\textquotesingle{}t want to drive the constraint to zero with a spring\+: \\
+\hline
+{\em in\+Bias} & Bias term (b) for the constraint impulse\+: lambda = J v + b \\
+\hline
+{\em inC} & Value of the constraint equation (C) \\
+\hline
+{\em in\+Stiffness} & Spring stiffness k. \\
+\hline
+{\em in\+Damping} & Spring damping coefficient c. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAngleConstraintPart_a11bb8ed0daf36021dc407fd13cbfde90}\label{classAngleConstraintPart_a11bb8ed0daf36021dc407fd13cbfde90} 
+\index{AngleConstraintPart@{AngleConstraintPart}!SolvePositionConstraint@{SolvePositionConstraint}}
+\index{SolvePositionConstraint@{SolvePositionConstraint}!AngleConstraintPart@{AngleConstraintPart}}
+\doxysubsubsection{\texorpdfstring{SolvePositionConstraint()}{SolvePositionConstraint()}}
+{\footnotesize\ttfamily bool Angle\+Constraint\+Part\+::\+Solve\+Position\+Constraint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{float}]{inC,  }\item[{float}]{in\+Baumgarte }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iteratively update the position constraint. Makes sure C(...) == 0. 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em inC} & Value of the constraint equation (C) \\
+\hline
+{\em in\+Baumgarte} & Baumgarte constant (fraction of the error to correct) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAngleConstraintPart_aab9cd08fa77ca04f5ab6a6d5cfd78538}\label{classAngleConstraintPart_aab9cd08fa77ca04f5ab6a6d5cfd78538} 
+\index{AngleConstraintPart@{AngleConstraintPart}!SolveVelocityConstraint@{SolveVelocityConstraint}}
+\index{SolveVelocityConstraint@{SolveVelocityConstraint}!AngleConstraintPart@{AngleConstraintPart}}
+\doxysubsubsection{\texorpdfstring{SolveVelocityConstraint()}{SolveVelocityConstraint()}}
+{\footnotesize\ttfamily bool Angle\+Constraint\+Part\+::\+Solve\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+World\+Space\+Axis,  }\item[{float}]{in\+Min\+Lambda,  }\item[{float}]{in\+Max\+Lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iteratively update the velocity constraint. Makes sure d/dt C(...) = 0, where C is the constraint equation. 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+World\+Space\+Axis} & The axis of rotation along which the constraint acts (normalized) \\
+\hline
+{\em in\+Min\+Lambda} & Minimum angular impulse to apply (N m s) \\
+\hline
+{\em in\+Max\+Lambda} & Maximum angular impulse to apply (N m s) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAngleConstraintPart_a8b54544706a1005ac865db7c445b76f1}\label{classAngleConstraintPart_a8b54544706a1005ac865db7c445b76f1} 
+\index{AngleConstraintPart@{AngleConstraintPart}!WarmStart@{WarmStart}}
+\index{WarmStart@{WarmStart}!AngleConstraintPart@{AngleConstraintPart}}
+\doxysubsubsection{\texorpdfstring{WarmStart()}{WarmStart()}}
+{\footnotesize\ttfamily void Angle\+Constraint\+Part\+::\+Warm\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{float}]{in\+Warm\+Start\+Impulse\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Must be called from the Warm\+Start\+Velocity\+Constraint call to apply the previous frame\textquotesingle{}s impulses 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+Warm\+Start\+Impulse\+Ratio} & Ratio of new step to old time step (dt\+\_\+new / dt\+\_\+old) for scaling the lagrange multiplier of the previous frame \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/\+Constraint\+Part/Angle\+Constraint\+Part.\+h\end{DoxyCompactItemize}

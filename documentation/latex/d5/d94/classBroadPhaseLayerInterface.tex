@@ -1,0 +1,87 @@
+\doxysection{Broad\+Phase\+Layer\+Interface Class Reference}
+\hypertarget{classBroadPhaseLayerInterface}{}\label{classBroadPhaseLayerInterface}\index{BroadPhaseLayerInterface@{BroadPhaseLayerInterface}}
+
+
+Interface that the application should implement to allow mapping object layers to broadphase layers.  
+
+
+
+
+{\ttfamily \#include $<$Broad\+Phase\+Layer.\+h$>$}
+
+
+
+Inheritance diagram for Broad\+Phase\+Layer\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d06/classBroadPhaseLayerInterface__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Broad\+Phase\+Layer\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{d0/d93/classBroadPhaseLayerInterface__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBroadPhaseLayerInterface_aefc74492347f08d653121e2f4af91e59}\label{classBroadPhaseLayerInterface_aefc74492347f08d653121e2f4af91e59} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Broad\+Phase\+Layer\+Interface} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual uint \mbox{\hyperlink{classBroadPhaseLayerInterface_a3eeb469199592955036a5b24633b8f53}{Get\+Num\+Broad\+Phase\+Layers}} () const =0
+\begin{DoxyCompactList}\small\item\em Return the number of broadphase layers there are. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}} \mbox{\hyperlink{classBroadPhaseLayerInterface_a5007c9b9beab5c16af36e89b48cd06cb}{Get\+Broad\+Phase\+Layer}} (Object\+Layer in\+Layer) const =0
+\begin{DoxyCompactList}\small\item\em Convert an object layer to the corresponding broadphase layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface that the application should implement to allow mapping object layers to broadphase layers. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBroadPhaseLayerInterface_a5007c9b9beab5c16af36e89b48cd06cb}\label{classBroadPhaseLayerInterface_a5007c9b9beab5c16af36e89b48cd06cb} 
+\index{BroadPhaseLayerInterface@{BroadPhaseLayerInterface}!GetBroadPhaseLayer@{GetBroadPhaseLayer}}
+\index{GetBroadPhaseLayer@{GetBroadPhaseLayer}!BroadPhaseLayerInterface@{BroadPhaseLayerInterface}}
+\doxysubsubsection{\texorpdfstring{GetBroadPhaseLayer()}{GetBroadPhaseLayer()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}} Broad\+Phase\+Layer\+Interface\+::\+Get\+Broad\+Phase\+Layer (\begin{DoxyParamCaption}\item[{Object\+Layer}]{in\+Layer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Convert an object layer to the corresponding broadphase layer. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseLayerInterfaceMask_a75300021e8d32e840ec8eb0d4a292b5a}{Broad\+Phase\+Layer\+Interface\+Mask}}, and \mbox{\hyperlink{classBroadPhaseLayerInterfaceTable_a0606a1dec4b344e326ed643f97929d2f}{Broad\+Phase\+Layer\+Interface\+Table}}.
+
+\Hypertarget{classBroadPhaseLayerInterface_a3eeb469199592955036a5b24633b8f53}\label{classBroadPhaseLayerInterface_a3eeb469199592955036a5b24633b8f53} 
+\index{BroadPhaseLayerInterface@{BroadPhaseLayerInterface}!GetNumBroadPhaseLayers@{GetNumBroadPhaseLayers}}
+\index{GetNumBroadPhaseLayers@{GetNumBroadPhaseLayers}!BroadPhaseLayerInterface@{BroadPhaseLayerInterface}}
+\doxysubsubsection{\texorpdfstring{GetNumBroadPhaseLayers()}{GetNumBroadPhaseLayers()}}
+{\footnotesize\ttfamily virtual uint Broad\+Phase\+Layer\+Interface\+::\+Get\+Num\+Broad\+Phase\+Layers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Return the number of broadphase layers there are. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseLayerInterfaceMask_a5c4d1d6ac5321a8bd30ddd54be36f24d}{Broad\+Phase\+Layer\+Interface\+Mask}}, and \mbox{\hyperlink{classBroadPhaseLayerInterfaceTable_a0b15a05cfa5251b19bd3f1e5c14b38f3}{Broad\+Phase\+Layer\+Interface\+Table}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Broad\+Phase/Broad\+Phase\+Layer.\+h\end{DoxyCompactItemize}

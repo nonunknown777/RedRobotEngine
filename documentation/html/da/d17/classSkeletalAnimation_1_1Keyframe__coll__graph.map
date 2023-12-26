@@ -1,0 +1,11 @@
+<map id="SkeletalAnimation::Keyframe" name="SkeletalAnimation::Keyframe">
+<area shape="rect" id="Node000001" title="Contains the state of a single joint at a particular time." alt="" coords="145,2586,285,2673"/>
+<area shape="rect" id="Node000002" href="$d1/d68/classSkeletalAnimation_1_1JointState.html" title="Constains the current state of a joint, a local space transformation relative to its parent joint." alt="" coords="145,2429,285,2537"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,2552,218,2586,213,2586,213,2552"/>
+<area shape="rect" id="Node000003" href="$d6/de1/classQuat.html" title=" " alt="" coords="7,630,168,2364"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,2362,133,2403,139,2414,134,2416,129,2406,111,2364"/>
+<area shape="rect" id="Node000004" href="$dd/ddc/classVec4.html" title=" " alt="" coords="5,5,169,565"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="90,565,90,613,85,613,85,565"/>
+<area shape="rect" id="Node000005" href="$d9/de4/classVec3.html" title=" " alt="" coords="192,1206,353,1788"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="258,1787,222,2412,217,2412,253,1787"/>
+</map>

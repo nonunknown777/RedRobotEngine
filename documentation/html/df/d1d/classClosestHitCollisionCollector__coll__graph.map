@@ -1,0 +1,5 @@
+<map id="ClosestHitCollisionCollector&lt; CollectorType &gt;" name="ClosestHitCollisionCollector&lt; CollectorType &gt;">
+<area shape="rect" id="Node000001" title="Simple implementation that collects the closest / deepest hit." alt="" coords="5,123,199,252"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="51,5,153,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,90,105,123,99,123,99,90"/>
+</map>

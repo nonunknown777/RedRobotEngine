@@ -1,0 +1,82 @@
+\doxysection{Convex\+Hull\+Builder\+::Face Class Reference}
+\hypertarget{classConvexHullBuilder_1_1Face}{}\label{classConvexHullBuilder_1_1Face}\index{ConvexHullBuilder::Face@{ConvexHullBuilder::Face}}
+
+
+Class that holds the information of one face.  
+
+
+
+
+{\ttfamily \#include $<$Convex\+Hull\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for Convex\+Hull\+Builder\+::Face\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{dc/d4d/classConvexHullBuilder_1_1Face__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Convex\+Hull\+Builder\+::Face\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/df9/classConvexHullBuilder_1_1Face__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_a1645cd1d7b609dbb3cb8afdeb8bd2439}\label{classConvexHullBuilder_1_1Face_a1645cd1d7b609dbb3cb8afdeb8bd2439} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries \texorpdfstring{$\sim$}{\string~}\+Face} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_ad7bd1a953fcc40b6987a3d51c90f61ce}\label{classConvexHullBuilder_1_1Face_ad7bd1a953fcc40b6987a3d51c90f61ce} 
+void {\bfseries Initialize} (int in\+Idx0, int in\+Idx1, int in\+Idx2, const \mbox{\hyperlink{classVec3}{Vec3}} \texorpdfstring{$\ast$}{*}in\+Positions)
+\begin{DoxyCompactList}\small\item\em Initialize a face with three indices. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_a96233d9beb894b8c85c834b13868a4e1}\label{classConvexHullBuilder_1_1Face_a96233d9beb894b8c85c834b13868a4e1} 
+void {\bfseries Calculate\+Normal\+And\+Centroid} (const \mbox{\hyperlink{classVec3}{Vec3}} \texorpdfstring{$\ast$}{*}in\+Positions)
+\begin{DoxyCompactList}\small\item\em Calculates the centroid and normal for this face. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_ab6cda375e944b9d24410dab0ee120c4e}\label{classConvexHullBuilder_1_1Face_ab6cda375e944b9d24410dab0ee120c4e} 
+bool {\bfseries Is\+Facing} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position) const
+\begin{DoxyCompactList}\small\item\em Check if face in\+Face is facing in\+Position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_ad9d4de58a7e80db8bcff6ffe1f88326b}\label{classConvexHullBuilder_1_1Face_ad9d4de58a7e80db8bcff6ffe1f88326b} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Normal}
+\begin{DoxyCompactList}\small\item\em Normal of this face, length is 2 times area of face. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_aac39b755e92c80eff3b7a24ccfc54306}\label{classConvexHullBuilder_1_1Face_aac39b755e92c80eff3b7a24ccfc54306} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Centroid}
+\begin{DoxyCompactList}\small\item\em Center of the face. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_af009d8104d2c16039128bd10007cdeac}\label{classConvexHullBuilder_1_1Face_af009d8104d2c16039128bd10007cdeac} 
+Conflict\+List {\bfseries m\+Conflict\+List}
+\begin{DoxyCompactList}\small\item\em Positions associated with this edge (that are closest to this edge). The last position in the list is the point that is furthest away from the face. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_a6c4d1af7b20e96a40a47b541c509bd1e}\label{classConvexHullBuilder_1_1Face_a6c4d1af7b20e96a40a47b541c509bd1e} 
+\mbox{\hyperlink{classConvexHullBuilder_1_1Edge}{Edge}} \texorpdfstring{$\ast$}{*} {\bfseries m\+First\+Edge} = nullptr
+\begin{DoxyCompactList}\small\item\em First edge of this face. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_acefff13e1b81ab41edd158c68132c797}\label{classConvexHullBuilder_1_1Face_acefff13e1b81ab41edd158c68132c797} 
+float {\bfseries m\+Furthest\+Point\+Distance\+Sq} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Squared distance of furtest point from the conflict list to the face. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Face_abf031b64af208beebf2e41403b7869bf}\label{classConvexHullBuilder_1_1Face_abf031b64af208beebf2e41403b7869bf} 
+bool {\bfseries m\+Removed} = false
+\begin{DoxyCompactList}\small\item\em Flag that indicates that face has been removed (face will be freed later) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that holds the information of one face. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Convex\+Hull\+Builder.\+h\end{DoxyCompactItemize}

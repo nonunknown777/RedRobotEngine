@@ -1,0 +1,11 @@
+<map id="BroadPhase" name="BroadPhase">
+<area shape="rect" id="Node000001" title="Used to do coarse collision detection operations to quickly prune out bodies that will not collide." alt="" coords="138,411,306,693"/>
+<area shape="rect" id="Node000004" href="$db/d8a/classBroadPhaseBruteForce.html" title="Test BroadPhase implementation that does not do anything to speed up the operations...." alt="" coords="5,741,217,1067"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="176,708,165,742,160,741,171,706"/>
+<area shape="rect" id="Node000005" href="$dc/d25/classBroadPhaseQuadTree.html" title="Fast SIMD based quad tree BroadPhase that is multithreading aware and tries to do a minimal amount of..." alt="" coords="241,763,427,1045"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="274,706,292,762,287,764,269,708"/>
+<area shape="rect" id="Node000002" href="$db/d46/classBroadPhaseQuery.html" title=" " alt="" coords="141,165,303,363"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,378,225,411,219,411,219,378"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="161,5,283,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="225,132,225,165,219,165,219,132"/>
+</map>

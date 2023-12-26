@@ -1,0 +1,220 @@
+\doxysection{DVec3.\+h}
+\hypertarget{DVec3_8h_source}{}\label{DVec3_8h_source}\index{includes/jolt/Math/DVec3.h@{includes/jolt/Math/DVec3.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Double3.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }[[nodiscard]]\ alignas(JPH\_DVECTOR\_ALIGNMENT)\ \mbox{\hyperlink{classDVec3}{DVec3}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ Underlying\ vector\ type}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_AVX)}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{using\ }Type\ =\ \_\_m256d;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{using\ }TypeArg\ =\ \_\_m256d;}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }Type\ =\ \textcolor{keyword}{struct\ }\{\ \_\_m128d\ mLow,\ mHigh;\ \};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{using\ }TypeArg\ =\ \textcolor{keyword}{const}\ Type\ \&;}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{using\ }Type\ =\ float64x2x2\_t;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{using\ }TypeArg\ =\ \textcolor{keyword}{const}\ Type\ \&;}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{using\ }Type\ =\ \textcolor{keyword}{struct\ }\{\ \textcolor{keywordtype}{double}\ mData[4];\ \};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{using\ }TypeArg\ =\ \textcolor{keyword}{const}\ Type\ \&;}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Argument\ type}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classDVec3}{ArgType}}\ =\ \mbox{\hyperlink{classDVec3}{DVec3Arg}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3_a8dee0ba62485a3b2fe924f1fa582c269}{DVec3}}()\ =\ \textcolor{keywordflow}{default};\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3}{DVec3}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&inRHS)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&inRHS)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00040\ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3}{DVec3}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRHS);}
+\DoxyCodeLine{00041\ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3}{DVec3}}(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inRHS);}
+\DoxyCodeLine{00042\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3}{DVec3}}(TypeArg\ inRHS)\ :\ mValue(inRHS)\ \ \ \ \ \ \ \ \ \ \ \{\ CheckW();\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3}{DVec3}}(\textcolor{keywordtype}{double}\ inX,\ \textcolor{keywordtype}{double}\ inY,\ \textcolor{keywordtype}{double}\ inZ);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{explicit}\ JPH\_INLINE\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3}{DVec3}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDouble3}{Double3}}\ \&inV);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sZero();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3_a6c8bccdc7a9dfb0897f00b73284db110}{sAxisX}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDVec3}{DVec3}}(1,\ 0,\ 0);\ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sAxisY()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDVec3}{DVec3}}(0,\ 1,\ 0);\ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sAxisZ()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDVec3}{DVec3}}(0,\ 0,\ 1);\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sReplicate(\textcolor{keywordtype}{double}\ inV);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sNaN();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sLoadDouble3Unsafe(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDouble3}{Double3}}\ \&inV);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ StoreDouble3(\mbox{\hyperlink{classDouble3}{Double3}}\ *outV)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \mbox{\hyperlink{classVec3}{Vec3}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ PrepareRoundToZero()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ PrepareRoundToInf()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ ToVec3RoundDown()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ ToVec3RoundUp()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sMin(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sMax(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sClamp(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inMin,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inMax);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sEquals(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sLess(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sLessOrEqual(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sGreater(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sGreaterOrEqual(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sFusedMultiplyAdd(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inMul1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inMul2,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inAdd);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sSelect(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inControl);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sOr(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sXor(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ sAnd(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTrues()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ TestAnyTrue()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00131\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ TestAllTrue()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_AVX)}}
+\DoxyCodeLine{00135\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_ab3e04e5a4114da6ae7e7f7d35b518330}{GetX}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \_mm\_cvtsd\_f64(\_mm256\_castpd256\_pd128(mValue));\ \}}
+\DoxyCodeLine{00136\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_ada620d50076462db1b38f041765c6703}{GetY}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mF64[1];\ \}}
+\DoxyCodeLine{00137\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_a08af7fd395b7290fd20b22d842cfcf67}{GetZ}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mF64[2];\ \}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00139\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_ab3e04e5a4114da6ae7e7f7d35b518330}{GetX}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \_mm\_cvtsd\_f64(mValue.mLow);\ \}}
+\DoxyCodeLine{00140\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_ada620d50076462db1b38f041765c6703}{GetY}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mF64[1];\ \}}
+\DoxyCodeLine{00141\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_a08af7fd395b7290fd20b22d842cfcf67}{GetZ}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \_mm\_cvtsd\_f64(mValue.mHigh);\ \}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00143\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_ab3e04e5a4114da6ae7e7f7d35b518330}{GetX}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ vgetq\_lane\_f64(mValue.val[0],\ 0);\ \}}
+\DoxyCodeLine{00144\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_ada620d50076462db1b38f041765c6703}{GetY}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ vgetq\_lane\_f64(mValue.val[0],\ 1);\ \}}
+\DoxyCodeLine{00145\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_a08af7fd395b7290fd20b22d842cfcf67}{GetZ}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ vgetq\_lane\_f64(mValue.val[1],\ 0);\ \}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00147\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3_afb533f92f55c1e9dc3e7eece73e87dda}{GetX}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mF64[0];\ \}}
+\DoxyCodeLine{00148\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ GetY()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mF64[1];\ \}}
+\DoxyCodeLine{00149\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_a08af7fd395b7290fd20b22d842cfcf67}{GetZ}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mF64[2];\ \}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00153\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3_af2ffc0234f93a9ba535204d9b35ecb8f}{SetX}}(\textcolor{keywordtype}{double}\ inX)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mF64[0]\ =\ inX;\ \}}
+\DoxyCodeLine{00154\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetY(\textcolor{keywordtype}{double}\ inY)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mF64[1]\ =\ inY;\ \}}
+\DoxyCodeLine{00155\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetZ(\textcolor{keywordtype}{double}\ inZ)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mF64[2]\ =\ mF64[3]\ =\ inZ;\ \}\ \textcolor{comment}{//\ Assure\ Z\ and\ W\ are\ the\ same}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00158\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ operator\ []\ (uint\ inCoordinate)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(inCoordinate\ <\ 3);\ \textcolor{keywordflow}{return}\ mF64[inCoordinate];\ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00161\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDVec3_a5563e51b263bc4c08fcfbc2babd3a7a5}{SetComponent}}(uint\ inCoordinate,\ \textcolor{keywordtype}{double}\ inValue)\ \{\ JPH\_ASSERT(inCoordinate\ <\ 3);\ mF64[inCoordinate]\ =\ inValue;\ mValue\ =\ sFixW(mValue);\ \}\ \textcolor{comment}{//\ Assure\ Z\ and\ W\ are\ the\ same}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00164\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00165\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ inV2);\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00168\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsClose(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2,\ \textcolor{keywordtype}{double}\ inMaxDistSq\ =\ 1.0e-\/24)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00171\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsNearZero(\textcolor{keywordtype}{double}\ inMaxDistSq\ =\ 1.0e-\/24)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00174\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsNormalized(\textcolor{keywordtype}{double}\ inTolerance\ =\ 1.0e-\/12)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsNaN()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00180\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00183\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\textcolor{keywordtype}{double}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{friend}\ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ operator\ *\ (\textcolor{keywordtype}{double}\ inV1,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00189\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ /\ (\textcolor{keywordtype}{double}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00192\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&\ \ \ \ \ \ \ \ \ operator\ *=\ (\textcolor{keywordtype}{double}\ inV2);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00195\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&\ \ \ \ \ \ \ \ \ operator\ *=\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00198\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&\ \ \ \ \ \ \ \ \ operator\ /=\ (\textcolor{keywordtype}{double}\ inV2);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00201\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ +\ (\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00204\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ +\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00207\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&\ \ \ \ \ \ \ \ \ operator\ +=\ (\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00210\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&\ \ \ \ \ \ \ \ \ operator\ +=\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00213\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ -\/\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00216\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ -\/\ (\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00219\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ -\/\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00222\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&\ \ \ \ \ \ \ \ \ operator\ -\/=\ (\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2);}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00225\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&\ \ \ \ \ \ \ \ \ operator\ -\/=\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00228\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ operator\ /\ (\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00231\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ Abs()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00234\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ Reciprocal()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00237\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__Math_ga804d55e7545685ee9841c239bdac7c8f}{Cross}}(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00240\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__Math_ga451c8554a408d41df85a41650e0ada93}{Dot}}(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00243\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ LengthSq()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00246\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00249\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ Normalized()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00252\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ Sqrt()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00255\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \ \ \ \ \ \ \ \ \ \ GetSign()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{friend}\ ostream\ \&\ \ \ \ \ \ \ \ \ \ \ \ operator\ <<\ (ostream\ \&inStream,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inV)}
+\DoxyCodeLine{00259\ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ inStream\ <<\ inV.mF64[0]\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ inV.mF64[1]\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ inV.mF64[2];}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inStream;}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00265\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ CheckW()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ Type\ \ \ \ \ \ sFixW(TypeArg\ inValue);}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \ cTrue\ =\ BitCast<double>(\string~uint64(0));}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \ cFalse\ =\ 0.0;}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{00275\ \ \ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ Type\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mValue;}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mF64[4];}
+\DoxyCodeLine{00278\ \ \ \ \ \};}
+\DoxyCodeLine{00279\ \};}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{keyword}{static\_assert}(is\_trivial<DVec3>(),\ \textcolor{stringliteral}{"{}Is\ supposed\ to\ be\ a\ trivial\ type!"{}});}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#include\ "{}DVec3.inl"{}}}
+
+\end{DoxyCode}

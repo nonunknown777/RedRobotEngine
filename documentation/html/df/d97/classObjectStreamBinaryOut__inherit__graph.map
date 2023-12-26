@@ -1,0 +1,11 @@
+<map id="ObjectStreamBinaryOut" name="ObjectStreamBinaryOut">
+<area shape="rect" id="Node000001" title="Implementation of ObjectStream binary output stream." alt="" coords="5,1648,196,1952"/>
+<area shape="rect" id="Node000002" href="$d4/d53/classObjectStreamOut.html" title=" " alt="" coords="37,1275,165,1600"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,1615,103,1648,98,1648,98,1615"/>
+<area shape="rect" id="Node000003" href="$dc/d8a/classIObjectStreamOut.html" title="Interface class for writing to an object stream." alt="" coords="20,325,181,1227"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,1241,103,1275,98,1275,98,1241"/>
+<area shape="rect" id="Node000004" href="$d6/db1/classObjectStream.html" title="Base class for object stream input and output streams." alt="" coords="33,165,169,277"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="103,292,103,326,98,326,98,292"/>
+<area shape="rect" id="Node000005" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="39,5,162,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="103,133,103,166,98,166,98,133"/>
+</map>

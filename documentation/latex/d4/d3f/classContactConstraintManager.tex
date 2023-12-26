@@ -1,0 +1,310 @@
+\doxysection{Contact\+Constraint\+Manager Class Reference}
+\hypertarget{classContactConstraintManager}{}\label{classContactConstraintManager}\index{ContactConstraintManager@{ContactConstraintManager}}
+
+
+Inheritance diagram for Contact\+Constraint\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{d3/d86/classContactConstraintManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Contact\+Constraint\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{de/d92/classContactConstraintManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}}
+\begin{DoxyCompactList}\small\item\em Contacts are allocated in a lock free hash map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Combine\+Function}} = float(\texorpdfstring{$\ast$}{*})(const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2)
+\item 
+\Hypertarget{classContactConstraintManager_a5d7bb30c442d466ba19b92f8b5ffb754}\label{classContactConstraintManager_a5d7bb30c442d466ba19b92f8b5ffb754} 
+using {\bfseries Body\+Pair\+Handle} = void \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Handle used to keep track of the current body pair. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classContactConstraintManager_a2a8c670a72926f354448dbbf557bfe52}\label{classContactConstraintManager_a2a8c670a72926f354448dbbf557bfe52} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Contact\+Constraint\+Manager} (const \mbox{\hyperlink{structPhysicsSettings}{Physics\+Settings}} \&in\+Physics\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classContactConstraintManager_a8225433cfdf9f63fa149fdac25e0a263}{Init}} (uint in\+Max\+Body\+Pairs, uint in\+Max\+Contact\+Constraints)
+\item 
+\Hypertarget{classContactConstraintManager_acf262d3235f4eea01cd2aa8a9a3bfe83}\label{classContactConstraintManager_acf262d3235f4eea01cd2aa8a9a3bfe83} 
+void {\bfseries Set\+Contact\+Listener} (\mbox{\hyperlink{classContactListener}{Contact\+Listener}} \texorpdfstring{$\ast$}{*}in\+Listener)
+\begin{DoxyCompactList}\small\item\em Listener that is notified whenever a contact point between two bodies is added/updated/removed. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_a7aa47c7b4d7470e83735deb74eae608d}\label{classContactConstraintManager_a7aa47c7b4d7470e83735deb74eae608d} 
+\mbox{\hyperlink{classContactListener}{Contact\+Listener}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Contact\+Listener} () const
+\item 
+void \mbox{\hyperlink{classContactConstraintManager_aae82d70c097d2c5a514faebd73ee4873}{Set\+Combine\+Friction}} (\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Combine\+Function}} in\+Combine\+Friction)
+\item 
+\Hypertarget{classContactConstraintManager_a2f9d4fe92f6b8a2952b51acb10f55258}\label{classContactConstraintManager_a2f9d4fe92f6b8a2952b51acb10f55258} 
+\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Combine\+Function}} {\bfseries Get\+Combine\+Friction} () const
+\item 
+void \mbox{\hyperlink{classContactConstraintManager_ae324c787f7d2ab43ed3adb13d3e7f24e}{Set\+Combine\+Restitution}} (\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Combine\+Function}} in\+Combine\+Restitution)
+\item 
+\Hypertarget{classContactConstraintManager_a3e9f74aa49c583d6656430fa421326ab}\label{classContactConstraintManager_a3e9f74aa49c583d6656430fa421326ab} 
+\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Combine\+Function}} {\bfseries Get\+Combine\+Restitution} () const
+\item 
+\Hypertarget{classContactConstraintManager_a50938b07679f8a97fff61e98a209c87c}\label{classContactConstraintManager_a50938b07679f8a97fff61e98a209c87c} 
+uint32 {\bfseries Get\+Max\+Constraints} () const
+\begin{DoxyCompactList}\small\item\em Get the max number of contact constraints that are allowed. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_a4abd47f225871f02cd3a0c964106439d}\label{classContactConstraintManager_a4abd47f225871f02cd3a0c964106439d} 
+Validate\+Result {\bfseries Validate\+Contact\+Point} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Base\+Offset, const \mbox{\hyperlink{classCollideShapeResult}{Collide\+Shape\+Result}} \&in\+Collision\+Result) const
+\begin{DoxyCompactList}\small\item\em Check with the listener if in\+Body1 and in\+Body2 could collide, returns false if not. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_a56fbdeb8c26a568919d431973830111a}\label{classContactConstraintManager_a56fbdeb8c26a568919d431973830111a} 
+void {\bfseries Prepare\+Constraint\+Buffer} (\mbox{\hyperlink{classPhysicsUpdateContext}{Physics\+Update\+Context}} \texorpdfstring{$\ast$}{*}in\+Context)
+\begin{DoxyCompactList}\small\item\em Sets up the constraint buffer. Should be called before starting collision detection. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_ae52944ca4945e6255a0f31794cf2aed5}\label{classContactConstraintManager_ae52944ca4945e6255a0f31794cf2aed5} 
+\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} {\bfseries Get\+Contact\+Allocator} ()
+\begin{DoxyCompactList}\small\item\em Get a new allocator context for storing contacts. Note that you should call this once and then add multiple contacts using the context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classContactConstraintManager_ac438b9748b641a504658e700f0e43305}{Get\+Contacts\+From\+Cache}} (\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} \&io\+Contact\+Allocator, \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, bool \&out\+Pair\+Handled, bool \&out\+Constraint\+Created)
+\item 
+\mbox{\hyperlink{classContactConstraintManager_a5d7bb30c442d466ba19b92f8b5ffb754}{Body\+Pair\+Handle}} \mbox{\hyperlink{classContactConstraintManager_aaa6427e8042739b370e9145d5efc8644}{Add\+Body\+Pair}} (\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} \&io\+Contact\+Allocator, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2)
+\item 
+bool \mbox{\hyperlink{classContactConstraintManager_ad54fa2fc8b0cbc1cd6cb5c5846e781be}{Add\+Contact\+Constraint}} (\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} \&io\+Contact\+Allocator, \mbox{\hyperlink{classContactConstraintManager_a5d7bb30c442d466ba19b92f8b5ffb754}{Body\+Pair\+Handle}} in\+Body\+Pair, \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classContactManifold}{Contact\+Manifold}} \&in\+Manifold)
+\item 
+void \mbox{\hyperlink{classContactConstraintManager_a3b9cf92154e49319463950b66e692f56}{Finalize\+Contact\+Cache\+And\+Call\+Contact\+Point\+Removed\+Callbacks}} (uint in\+Expected\+Num\+Body\+Pairs, uint in\+Expected\+Num\+Manifolds)
+\item 
+bool \mbox{\hyperlink{classContactConstraintManager_a46532b93dfd2edb0b45be8e5af4a7111}{Were\+Bodies\+In\+Contact}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body1\+ID, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body2\+ID) const
+\item 
+\Hypertarget{classContactConstraintManager_aad540014a518a8f5942842e1a347447f}\label{classContactConstraintManager_aad540014a518a8f5942842e1a347447f} 
+uint32 {\bfseries Get\+Num\+Constraints} () const
+\begin{DoxyCompactList}\small\item\em Get the number of contact constraints that were found. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_af45077f4de2c4ec57ebecf450e9b88f0}\label{classContactConstraintManager_af45077f4de2c4ec57ebecf450e9b88f0} 
+void {\bfseries Sort\+Contacts} (uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End) const
+\begin{DoxyCompactList}\small\item\em Sort contact constraints deterministically. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_a81dea14ac1bd33f74a07085690095403}\label{classContactConstraintManager_a81dea14ac1bd33f74a07085690095403} 
+void {\bfseries Get\+Affected\+Bodies} (uint32 in\+Constraint\+Idx, const \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}\&out\+Body1, const \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}\&out\+Body2) const
+\begin{DoxyCompactList}\small\item\em Get the affected bodies for a given constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_ad6622dfe6d7cdd1b109cac47ea1adae7}\label{classContactConstraintManager_ad6622dfe6d7cdd1b109cac47ea1adae7} 
+{\footnotesize template$<$class Motion\+Properties\+Callback $>$ }\\void {\bfseries Warm\+Start\+Velocity\+Constraints} (const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End, float in\+Warm\+Start\+Impulse\+Ratio, Motion\+Properties\+Callback \&io\+Callback)
+\begin{DoxyCompactList}\small\item\em Apply last frame\textquotesingle{}s impulses as an initial guess for this frame\textquotesingle{}s impulses. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classContactConstraintManager_a6be90138088b291b35baed7974887729}{Solve\+Velocity\+Constraints}} (const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End)
+\item 
+\Hypertarget{classContactConstraintManager_ac825a74176ec59d9e2995e67fc8d43c1}\label{classContactConstraintManager_ac825a74176ec59d9e2995e67fc8d43c1} 
+void {\bfseries Store\+Applied\+Impulses} (const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End) const
+\begin{DoxyCompactList}\small\item\em Save back the lambdas to the contact cache for the next warm start. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classContactConstraintManager_a45d8cb39a9e2a3644149661f4e01d2bd}{Solve\+Position\+Constraints}} (const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End)
+\item 
+\Hypertarget{classContactConstraintManager_a3ede12b173e9c63f9421176573661b27}\label{classContactConstraintManager_a3ede12b173e9c63f9421176573661b27} 
+void {\bfseries Recycle\+Constraint\+Buffer} ()
+\begin{DoxyCompactList}\small\item\em Recycle the constraint buffer. Should be called between collision simulation steps. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_a08550dcab7e85e7f82fcc0c7658baa32}\label{classContactConstraintManager_a08550dcab7e85e7f82fcc0c7658baa32} 
+void {\bfseries Finish\+Constraint\+Buffer} ()
+\begin{DoxyCompactList}\small\item\em Terminate the constraint buffer. Should be called after simulation ends. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classContactConstraintManager_a95c132f19384bb01d869331e9faf3757}{On\+CCDContact\+Added}} (\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} \&io\+Contact\+Allocator, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classContactManifold}{Contact\+Manifold}} \&in\+Manifold, \mbox{\hyperlink{classContactSettings}{Contact\+Settings}} \&out\+Settings)
+\item 
+\Hypertarget{classContactConstraintManager_a09b5daefc89dca1489be3afa077cfcc0}\label{classContactConstraintManager_a09b5daefc89dca1489be3afa077cfcc0} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream, const \mbox{\hyperlink{classStateRecorderFilter}{State\+Recorder\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter) const
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+\Hypertarget{classContactConstraintManager_a2bc5cc8b8d36cf641dc4217fed0e63f6}\label{classContactConstraintManager_a2bc5cc8b8d36cf641dc4217fed0e63f6} 
+bool {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. Returns false when failed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classContactConstraintManager_a18911ccd070e4d6d0d3c74605c0d211c}\label{classContactConstraintManager_a18911ccd070e4d6d0d3c74605c0d211c} 
+static const int {\bfseries Max\+Contact\+Points} = 4
+\begin{DoxyCompactList}\small\item\em Max 4 contact points are needed for a stable manifold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}\label{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56} 
+\index{ContactConstraintManager@{ContactConstraintManager}!CombineFunction@{CombineFunction}}
+\index{CombineFunction@{CombineFunction}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{CombineFunction}{CombineFunction}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Contact\+Constraint\+Manager\+::\+Combine\+Function}} =  float (\texorpdfstring{$\ast$}{*})(const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2)}
+
+Callback function to combine the restitution or friction of two bodies Note that when merging manifolds (when \doxylink{structPhysicsSettings_af715e8c12331e908a82768501d09db97}{Physics\+Settings\+::m\+Use\+Manifold\+Reduction} is true) you will only get a callback for the merged manifold. It is not possible in that case to get all sub shape ID pairs that were colliding, you\textquotesingle{}ll get the first encountered pair. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classContactConstraintManager_aaa6427e8042739b370e9145d5efc8644}\label{classContactConstraintManager_aaa6427e8042739b370e9145d5efc8644} 
+\index{ContactConstraintManager@{ContactConstraintManager}!AddBodyPair@{AddBodyPair}}
+\index{AddBodyPair@{AddBodyPair}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{AddBodyPair()}{AddBodyPair()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classContactConstraintManager_a5d7bb30c442d466ba19b92f8b5ffb754}{Body\+Pair\+Handle}} Contact\+Constraint\+Manager\+::\+Add\+Body\+Pair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} \&}]{io\+Contact\+Allocator,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2 }\end{DoxyParamCaption})}
+
+Create a handle for a colliding body pair so that contact constraints can be added between them. Needs to be called once per body pair per frame before calling Add\+Contact\+Constraint. \Hypertarget{classContactConstraintManager_ad54fa2fc8b0cbc1cd6cb5c5846e781be}\label{classContactConstraintManager_ad54fa2fc8b0cbc1cd6cb5c5846e781be} 
+\index{ContactConstraintManager@{ContactConstraintManager}!AddContactConstraint@{AddContactConstraint}}
+\index{AddContactConstraint@{AddContactConstraint}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{AddContactConstraint()}{AddContactConstraint()}}
+{\footnotesize\ttfamily bool Contact\+Constraint\+Manager\+::\+Add\+Contact\+Constraint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} \&}]{io\+Contact\+Allocator,  }\item[{\mbox{\hyperlink{classContactConstraintManager_a5d7bb30c442d466ba19b92f8b5ffb754}{Body\+Pair\+Handle}}}]{in\+Body\+Pair,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{const \mbox{\hyperlink{classContactManifold}{Contact\+Manifold}} \&}]{in\+Manifold }\end{DoxyParamCaption})}
+
+Add a contact constraint for this frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em io\+Contact\+Allocator} & The allocator that reserves memory for the contacts \\
+\hline
+{\em in\+Body\+Pair} & The handle for the contact cache for this body pair \\
+\hline
+{\em in\+Body1} & The first body that is colliding \\
+\hline
+{\em in\+Body2} & The second body that is colliding \\
+\hline
+{\em in\+Manifold} & The manifold that describes the collision \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a contact constraint was created (can be false in the case of a sensor)
+\end{DoxyReturn}
+This is using the approach described in \textquotesingle{}Modeling and Solving Constraints\textquotesingle{} by Erin Catto presented at GDC 2009 (and later years with slight modifications). We\textquotesingle{}re using the formulas from slide 50 -\/ 53 combined.
+
+Euler velocity integration\+:
+
+v1\textquotesingle{} = v1 + M\texorpdfstring{$^\wedge$}{\string^}-\/1 P
+
+Impulse\+:
+
+P = J\texorpdfstring{$^\wedge$}{\string^}T lambda
+
+\doxylink{classConstraint}{Constraint} force\+:
+
+lambda = -\/K\texorpdfstring{$^\wedge$}{\string^}-\/1 J v1
+
+Inverse effective mass\+:
+
+K = J M\texorpdfstring{$^\wedge$}{\string^}-\/1 J\texorpdfstring{$^\wedge$}{\string^}T
+
+\doxylink{classConstraint}{Constraint} equation (limits movement in 1 axis)\+:
+
+C = (p2 -\/ p1) . n
+
+Jacobian (for position constraint)
+
+J = \mbox{[}-\/n, -\/r1 x n, n, r2 x n\mbox{]}
+
+n = contact normal (pointing away from body 1). p1, p2 = positions of collision on body 1 and 2. r1, r2 = contact point relative to center of mass of body 1 and body 2 (r1 = p1 -\/ x1, r2 = p2 -\/ x2). v1, v2 = (linear velocity, angular velocity)\+: 6 vectors containing linear and angular velocity for body 1 and 2. M = mass matrix, a diagonal matrix of the mass and inertia with diagonal \mbox{[}m1, I1, m2, I2\mbox{]}. \Hypertarget{classContactConstraintManager_a3b9cf92154e49319463950b66e692f56}\label{classContactConstraintManager_a3b9cf92154e49319463950b66e692f56} 
+\index{ContactConstraintManager@{ContactConstraintManager}!FinalizeContactCacheAndCallContactPointRemovedCallbacks@{FinalizeContactCacheAndCallContactPointRemovedCallbacks}}
+\index{FinalizeContactCacheAndCallContactPointRemovedCallbacks@{FinalizeContactCacheAndCallContactPointRemovedCallbacks}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{FinalizeContactCacheAndCallContactPointRemovedCallbacks()}{FinalizeContactCacheAndCallContactPointRemovedCallbacks()}}
+{\footnotesize\ttfamily void Contact\+Constraint\+Manager\+::\+Finalize\+Contact\+Cache\+And\+Call\+Contact\+Point\+Removed\+Callbacks (\begin{DoxyParamCaption}\item[{uint}]{in\+Expected\+Num\+Body\+Pairs,  }\item[{uint}]{in\+Expected\+Num\+Manifolds }\end{DoxyParamCaption})}
+
+Finalizes the contact cache, the contact cache that was generated during the calls to Add\+Contact\+Constraint in this update will be used from now on to read from. After finalizing the contact cache, the contact removed callbacks will be called. in\+Expected\+Num\+Body\+Pairs / in\+Expected\+Num\+Manifolds are the amount of body pairs / manifolds found in the previous step and is used to determine the amount of buckets the contact cache hash map will use in the next update. \Hypertarget{classContactConstraintManager_ac438b9748b641a504658e700f0e43305}\label{classContactConstraintManager_ac438b9748b641a504658e700f0e43305} 
+\index{ContactConstraintManager@{ContactConstraintManager}!GetContactsFromCache@{GetContactsFromCache}}
+\index{GetContactsFromCache@{GetContactsFromCache}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{GetContactsFromCache()}{GetContactsFromCache()}}
+{\footnotesize\ttfamily void Contact\+Constraint\+Manager\+::\+Get\+Contacts\+From\+Cache (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} \&}]{io\+Contact\+Allocator,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{bool \&}]{out\+Pair\+Handled,  }\item[{bool \&}]{out\+Constraint\+Created }\end{DoxyParamCaption})}
+
+Check if the contact points from the previous frame are reusable and if so copy them. When the cache was usable and the pair has been handled\+: out\+Pair\+Handled = true. When a contact constraint was produced\+: out\+Constraint\+Created = true. \Hypertarget{classContactConstraintManager_a8225433cfdf9f63fa149fdac25e0a263}\label{classContactConstraintManager_a8225433cfdf9f63fa149fdac25e0a263} 
+\index{ContactConstraintManager@{ContactConstraintManager}!Init@{Init}}
+\index{Init@{Init}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Contact\+Constraint\+Manager\+::\+Init (\begin{DoxyParamCaption}\item[{uint}]{in\+Max\+Body\+Pairs,  }\item[{uint}]{in\+Max\+Contact\+Constraints }\end{DoxyParamCaption})}
+
+Initialize the system. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Max\+Body\+Pairs} & Maximum amount of body pairs to process (anything else will fall through the world), this number should generally be much higher than the max amount of contact points as there will be lots of bodies close that are not actually touching \\
+\hline
+{\em in\+Max\+Contact\+Constraints} & Maximum amount of contact constraints to process (anything else will fall through the world) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classContactConstraintManager_a95c132f19384bb01d869331e9faf3757}\label{classContactConstraintManager_a95c132f19384bb01d869331e9faf3757} 
+\index{ContactConstraintManager@{ContactConstraintManager}!OnCCDContactAdded@{OnCCDContactAdded}}
+\index{OnCCDContactAdded@{OnCCDContactAdded}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{OnCCDContactAdded()}{OnCCDContactAdded()}}
+{\footnotesize\ttfamily void Contact\+Constraint\+Manager\+::\+On\+CCDContact\+Added (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{Contact\+Allocator}} \&}]{io\+Contact\+Allocator,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{const \mbox{\hyperlink{classContactManifold}{Contact\+Manifold}} \&}]{in\+Manifold,  }\item[{\mbox{\hyperlink{classContactSettings}{Contact\+Settings}} \&}]{out\+Settings }\end{DoxyParamCaption})}
+
+Called by continuous collision detection to notify the contact listener that a contact was added 
+\begin{DoxyParams}{Parameters}
+{\em io\+Contact\+Allocator} & The allocator that reserves memory for the contacts \\
+\hline
+{\em in\+Body1} & The first body that is colliding \\
+\hline
+{\em in\+Body2} & The second body that is colliding \\
+\hline
+{\em in\+Manifold} & The manifold that describes the collision \\
+\hline
+{\em out\+Settings} & The calculated contact settings (may be overridden by the contact listener) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classContactConstraintManager_aae82d70c097d2c5a514faebd73ee4873}\label{classContactConstraintManager_aae82d70c097d2c5a514faebd73ee4873} 
+\index{ContactConstraintManager@{ContactConstraintManager}!SetCombineFriction@{SetCombineFriction}}
+\index{SetCombineFriction@{SetCombineFriction}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{SetCombineFriction()}{SetCombineFriction()}}
+{\footnotesize\ttfamily void Contact\+Constraint\+Manager\+::\+Set\+Combine\+Friction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Combine\+Function}}}]{in\+Combine\+Friction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the function that combines the friction of two bodies and returns it Default method is the geometric mean\+: sqrt(friction1 \texorpdfstring{$\ast$}{*} friction2). \Hypertarget{classContactConstraintManager_ae324c787f7d2ab43ed3adb13d3e7f24e}\label{classContactConstraintManager_ae324c787f7d2ab43ed3adb13d3e7f24e} 
+\index{ContactConstraintManager@{ContactConstraintManager}!SetCombineRestitution@{SetCombineRestitution}}
+\index{SetCombineRestitution@{SetCombineRestitution}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{SetCombineRestitution()}{SetCombineRestitution()}}
+{\footnotesize\ttfamily void Contact\+Constraint\+Manager\+::\+Set\+Combine\+Restitution (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Combine\+Function}}}]{in\+Combine\+Restitution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the function that combines the restitution of two bodies and returns it Default method is max(restitution1, restitution1) \Hypertarget{classContactConstraintManager_a45d8cb39a9e2a3644149661f4e01d2bd}\label{classContactConstraintManager_a45d8cb39a9e2a3644149661f4e01d2bd} 
+\index{ContactConstraintManager@{ContactConstraintManager}!SolvePositionConstraints@{SolvePositionConstraints}}
+\index{SolvePositionConstraints@{SolvePositionConstraints}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{SolvePositionConstraints()}{SolvePositionConstraints()}}
+{\footnotesize\ttfamily bool Contact\+Constraint\+Manager\+::\+Solve\+Position\+Constraints (\begin{DoxyParamCaption}\item[{const uint32 \texorpdfstring{$\ast$}{*}}]{in\+Constraint\+Idx\+Begin,  }\item[{const uint32 \texorpdfstring{$\ast$}{*}}]{in\+Constraint\+Idx\+End }\end{DoxyParamCaption})}
+
+Solve position constraints. This is using the approach described in \textquotesingle{}Modeling and Solving Constraints\textquotesingle{} by Erin Catto presented at GDC 2007. On slide 78 it is suggested to split up the Baumgarte stabilization for positional drift so that it does not actually add to the momentum. We combine an Euler velocity integrate + a position integrate and then discard the velocity change.
+
+\doxylink{classConstraint}{Constraint} force\+:
+
+lambda = -\/K\texorpdfstring{$^\wedge$}{\string^}-\/1 b
+
+Baumgarte stabilization\+:
+
+b = beta / dt C
+
+beta = baumgarte stabilization factor. dt = delta time. \Hypertarget{classContactConstraintManager_a6be90138088b291b35baed7974887729}\label{classContactConstraintManager_a6be90138088b291b35baed7974887729} 
+\index{ContactConstraintManager@{ContactConstraintManager}!SolveVelocityConstraints@{SolveVelocityConstraints}}
+\index{SolveVelocityConstraints@{SolveVelocityConstraints}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{SolveVelocityConstraints()}{SolveVelocityConstraints()}}
+{\footnotesize\ttfamily bool Contact\+Constraint\+Manager\+::\+Solve\+Velocity\+Constraints (\begin{DoxyParamCaption}\item[{const uint32 \texorpdfstring{$\ast$}{*}}]{in\+Constraint\+Idx\+Begin,  }\item[{const uint32 \texorpdfstring{$\ast$}{*}}]{in\+Constraint\+Idx\+End }\end{DoxyParamCaption})}
+
+Solve velocity constraints, when almost nothing changes this should only apply very small impulses since we\textquotesingle{}re warm starting with the total impulse applied in the last frame above.
+
+Friction wise we\textquotesingle{}re using the Coulomb friction model which says that\+:
+
+\texorpdfstring{$\vert$}{|}\+F\+\_\+\+T\texorpdfstring{$\vert$}{|} \texorpdfstring{$<$}{<}= mu \texorpdfstring{$\vert$}{|}\+F\+\_\+\+N\texorpdfstring{$\vert$}{|}
+
+Where F\+\_\+T is the tangential force, F\+\_\+N is the normal force and mu is the friction coefficient
+
+In impulse terms this becomes\+:
+
+\texorpdfstring{$\vert$}{|}lambda\+\_\+\+T\texorpdfstring{$\vert$}{|} \texorpdfstring{$<$}{<}= mu \texorpdfstring{$\vert$}{|}lambda\+\_\+\+N\texorpdfstring{$\vert$}{|}
+
+And the constraint that needs to be applied is exactly the same as a non penetration constraint except that we use a tangent instead of a normal. The tangent should point in the direction of the tangential velocity of the point\+:
+
+J = \mbox{[}-\/T, -\/r1 x T, T, r2 x T\mbox{]}
+
+Where T is the tangent.
+
+See slide 42 and 43.
+
+Restitution is implemented as a velocity bias (see slide 41)\+:
+
+b = e v\+\_\+n\texorpdfstring{$^\wedge$}{\string^}-\/
+
+e = the restitution coefficient, v\+\_\+n\texorpdfstring{$^\wedge$}{\string^}-\/ is the normal velocity prior to the collision
+
+Restitution is only applied when v\+\_\+n\texorpdfstring{$^\wedge$}{\string^}-\/ is large enough and the points are moving towards collision \Hypertarget{classContactConstraintManager_a46532b93dfd2edb0b45be8e5af4a7111}\label{classContactConstraintManager_a46532b93dfd2edb0b45be8e5af4a7111} 
+\index{ContactConstraintManager@{ContactConstraintManager}!WereBodiesInContact@{WereBodiesInContact}}
+\index{WereBodiesInContact@{WereBodiesInContact}!ContactConstraintManager@{ContactConstraintManager}}
+\doxysubsubsection{\texorpdfstring{WereBodiesInContact()}{WereBodiesInContact()}}
+{\footnotesize\ttfamily bool Contact\+Constraint\+Manager\+::\+Were\+Bodies\+In\+Contact (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body1\+ID,  }\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body2\+ID }\end{DoxyParamCaption}) const}
+
+Check if 2 bodies were in contact during the last simulation step. Since contacts are only detected between active bodies, at least one of the bodies must be active. Uses the read collision cache to determine if 2 bodies are in contact. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Contact\+Constraint\+Manager.\+h\end{DoxyCompactItemize}

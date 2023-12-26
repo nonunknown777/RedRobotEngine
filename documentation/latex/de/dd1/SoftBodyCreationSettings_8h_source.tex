@@ -1,0 +1,69 @@
+\doxysection{Soft\+Body\+Creation\+Settings.\+h}
+\hypertarget{SoftBodyCreationSettings_8h_source}{}\label{SoftBodyCreationSettings_8h_source}\index{includes/jolt/Physics/SoftBody/SoftBodyCreationSettings.h@{includes/jolt/Physics/SoftBody/SoftBodyCreationSettings.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2023\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/SoftBody/SoftBodySharedSettings.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ObjectLayer.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/CollisionGroup.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableObject.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StreamUtils.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_NON\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}})}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}}()\ =\ default;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}}(const\ \mbox{\hyperlink{classSoftBodySharedSettings}{SoftBodySharedSettings}}\ *inSettings,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ ObjectLayer\ inObjectLayer)\ :\ mSettings(inSettings),\ mPosition(inPosition),\ mRotation(inRotation),\ mObjectLayer(inObjectLayer)\ \{\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyCreationSettings_a85c901c0830e24d6d663e90ab5d109e1}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyCreationSettings_a735fee6e846a7eab45f817ef8bf6688d}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }GroupFilterToIDMap\ =\ StreamUtils::ObjectToIDMap<GroupFilter>;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{using\ }IDToGroupFilterMap\ =\ StreamUtils::IDToObjectMap<GroupFilter>;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }SharedSettingsToIDMap\ =\ SoftBodySharedSettings::SharedSettingsToIDMap;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{using\ }IDToSharedSettingsMap\ =\ SoftBodySharedSettings::IDToSharedSettingsMap;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }MaterialToIDMap\ =\ StreamUtils::ObjectToIDMap<PhysicsMaterial>;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }IDToMaterialMap\ =\ StreamUtils::IDToObjectMap<PhysicsMaterial>;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyCreationSettings_aad762e491883987d0023fd7613b3642b}{SaveWithChildren}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream,\ SharedSettingsToIDMap\ *ioSharedSettingsMap,\ MaterialToIDMap\ *ioMaterialMap,\ GroupFilterToIDMap\ *ioGroupFilterMap)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classResult}{SBCSResult}}\ =\ \mbox{\hyperlink{classResult}{Result<SoftBodyCreationSettings>}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classResult}{SBCSResult}}\ \mbox{\hyperlink{classSoftBodyCreationSettings_a7b200e88abd6d6d8e9bc7e20332179bb}{sRestoreWithChildren}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream,\ IDToSharedSettingsMap\ \&ioSharedSettingsMap,\ IDToMaterialMap\ \&ioMaterialMap,\ IDToGroupFilterMap\ \&ioGroupFilterMap);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classRefConst}{RefConst<SoftBodySharedSettings>}}\ \mbox{\hyperlink{classSoftBodyCreationSettings_ad5221bd51bf042c883473a55ab0b3956}{mSettings}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mPosition\ \{\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3::sZero}}()\ \};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRotation\ \{\ \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat::sIdentity}}()\ \};\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ mUserData\ =\ 0;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ ObjectLayer\ \ \ \ \ \ \ \ \ mObjectLayer\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classCollisionGroup}{CollisionGroup}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyCreationSettings_af0f54d456a3f22e36ad6c1c429b9ee4c}{mCollisionGroup}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumIterations\ =\ 5;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLinearDamping\ =\ 0.1f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxLinearVelocity\ =\ 500.0f;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRestitution\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mFriction\ =\ 0.2f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPressure\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGravityFactor\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUpdatePosition\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMakeRotationIdentity\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAllowSleeping\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

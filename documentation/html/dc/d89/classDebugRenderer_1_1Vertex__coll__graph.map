@@ -1,0 +1,10 @@
+<map id="DebugRenderer::Vertex" name="DebugRenderer::Vertex">
+<area shape="rect" id="Node000001" title="Vertex format used by the triangle renderer." alt="" coords="117,733,281,802"/>
+<area shape="rect" id="Node000002" href="$d9/ded/classFloat3.html" title="Class that holds 3 floats. Used as a storage class. Convert to Vec3 for calculations." alt="" coords="5,208,119,448"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,448,62,511,72,578,91,645,120,707,130,720,125,723,116,710,86,647,67,579,57,511,53,448"/>
+<area shape="rect" id="Node000003" href="$d4/d9c/classFloat2.html" title="Class that holds 2 floats, used as a storage class mainly." alt="" coords="143,229,256,427"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,426,202,716,197,716,197,426"/>
+<area shape="rect" id="Node000004" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="280,5,431,651"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="282,651,254,710,247,721,242,718,249,707,278,648"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="432,261,442,270,450,284,455,304,457,328,454,360,445,382,440,380,449,359,452,328,450,304,445,286,438,273,429,265"/>
+</map>

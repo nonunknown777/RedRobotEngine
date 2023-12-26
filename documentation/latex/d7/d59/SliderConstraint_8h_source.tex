@@ -1,0 +1,182 @@
+\doxysection{Slider\+Constraint.\+h}
+\hypertarget{SliderConstraint_8h_source}{}\label{SliderConstraint_8h_source}\index{includes/jolt/Physics/Constraints/SliderConstraint.h@{includes/jolt/Physics/Constraints/SliderConstraint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/TwoBodyConstraint.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/MotorSettings.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/DualAxisConstraintPart.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/RotationEulerConstraintPart.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/AxisConstraintPart.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classSliderConstraintSettings}{SliderConstraintSettings}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classTwoBodyConstraintSettings}{TwoBodyConstraintSettings}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classSliderConstraintSettings}{SliderConstraintSettings}})}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ See:\ ConstraintSettings::SaveBinaryState}}
+\DoxyCodeLine{00022\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveBinaryState(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ const\ override;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00026\ \ \ \ \ virtual\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}\ *\ \ \ \ Create(\mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2)\ const\ override;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetSliderAxis(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inSliderAxis);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ EConstraintSpace\ \ \ \ \ \ \ \ \ \ \ \ mSpace\ =\ EConstraintSpace::WorldSpace;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAutoDetectPoint\ =\ false;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPoint1\ =\ \mbox{\hyperlink{classVec3}{RVec3}}::sZero();}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSliderAxis1\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sAxisX();}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNormalAxis1\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sAxisY();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPoint2\ =\ \mbox{\hyperlink{classVec3}{RVec3}}::sZero();}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSliderAxis2\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sAxisX();}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNormalAxis2\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sAxisY();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitsMin\ =\ -\/FLT\_MAX;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitsMax\ =\ FLT\_MAX;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitsSpringSettings;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxFrictionForce\ =\ 0.0f;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classMotorSettings}{MotorSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mMotorSettings;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ protected:}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ See:\ ConstraintSettings::RestoreBinaryState}}
+\DoxyCodeLine{00063\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreBinaryState(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ override;}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classSliderConstraint}{SliderConstraint}}\ final\ :\ public\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_a5487b5ab651ac0883adaf27f1b4195b1}{SliderConstraint}}(\mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSliderConstraintSettings}{SliderConstraintSettings}}\ \&inSettings);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ Generic\ interface\ of\ a\ constraint}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ EConstraintSubType\ \ \mbox{\hyperlink{classSliderConstraint_a4655336347868e54cf484f9f43a830fe}{GetSubType}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ EConstraintSubType::Slider;\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_ae3d692a38c5b8be48996f396b36d4398}{NotifyShapeChanged}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDeltaCOM)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetupVelocityConstraint(\textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WarmStartVelocityConstraint(\textcolor{keywordtype}{float}\ inWarmStartImpulseRatio)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolveVelocityConstraint(\textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolvePositionConstraint(\textcolor{keywordtype}{float}\ inDeltaTime,\ \textcolor{keywordtype}{float}\ inBaumgarte)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraint(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraintLimits(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_a0c7b38d23cf54230e4ccc64897d80493}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_add8cc10bab6a66f3b7a0c95c505a1b2c}{RestoreState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classRef}{Ref<ConstraintSettings>}}\ \mbox{\hyperlink{classSliderConstraint_a8110ff5d5b678afe268e3b96a432db5c}{GetConstraintSettings}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ See:\ TwoBodyConstraint}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_a2847eab86d86f30e86bea7515d56bae7}{GetConstraintToBody1Matrix}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_a37c4d14c36a7ab4eb0f8a7179fc4e0cd}{GetConstraintToBody2Matrix}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_ac30befccebcc95bcaaab4ff784f3867f}{GetCurrentPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_a029801fabc3867da63ede853dea7627f}{SetMaxFrictionForce}}(\textcolor{keywordtype}{float}\ inFrictionForce)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mMaxFrictionForce\ =\ inFrictionForce;\ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMaxFrictionForce()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMaxFrictionForce;\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classMotorSettings}{MotorSettings}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_ad920e0c8e131f4c9e3eae8be918daea2}{GetMotorSettings}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mMotorSettings;\ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMotorSettings}{MotorSettings}}\ \&\ \ \ \ \ \ GetMotorSettings()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMotorSettings;\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Motor\ controls}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMotorState(EMotorState\ inState)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inState\ ==\ EMotorState::Off\ ||\ mMotorSettings.\mbox{\hyperlink{classMotorSettings_a86075f9a0d21b35897e7f6f7e9c50fbc}{IsValid}}());\ mMotorState\ =\ inState;\ \}}
+\DoxyCodeLine{00107\ \ \ \ \ EMotorState\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMotorState()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMotorState;\ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetTargetVelocity(\textcolor{keywordtype}{float}\ inVelocity)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mTargetVelocity\ =\ inVelocity;\ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTargetVelocity()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mTargetVelocity;\ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetTargetPosition(\textcolor{keywordtype}{float}\ inPosition)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mTargetPosition\ =\ mHasLimits?\ Clamp(inPosition,\ mLimitsMin,\ mLimitsMax)\ :\ inPosition;\ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTargetPosition()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mTargetPosition;\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_afef30c98d651fe84367f252c3f88b21f}{SetLimits}}(\textcolor{keywordtype}{float}\ inLimitsMin,\ \textcolor{keywordtype}{float}\ inLimitsMax);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetLimitsMin()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLimitsMin;\ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetLimitsMax()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLimitsMax;\ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HasLimits()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mHasLimits;\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\ \&\ \ \ \ \ \ \ \ \mbox{\hyperlink{classSliderConstraint_acb556b36d40cbc06845355442e62b32b}{GetLimitsSpringSettings}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLimitsSpringSettings;\ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\ \&\ \ \ \ \ \ \ \ \ \ GetLimitsSpringSettings()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mLimitsSpringSettings;\ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetLimitsSpringSettings(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\ \&inLimitsSpringSettings)\ \{\ mLimitsSpringSettings\ =\ inLimitsSpringSettings;\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector<2>}}\ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaPosition()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPositionConstraintPart.GetTotalLambda();\ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaPositionLimits()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPositionLimitsConstraintPart.GetTotalLambda();\ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaRotation()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mRotationConstraintPart.GetTotalLambda();\ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalLambdaMotor()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMotorConstraintPart.GetTotalLambda();\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Internal\ helper\ function\ to\ calculate\ the\ values\ below}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateR1R2U(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation2);}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateSlidingAxisAndPosition(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation1);}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculatePositionConstraintProperties(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation2);}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculatePositionLimitsConstraintProperties(\textcolor{keywordtype}{float}\ inDeltaTime);}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateMotorConstraintProperties(\textcolor{keywordtype}{float}\ inDeltaTime);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ CONFIGURATION\ PROPERTIES\ FOLLOW}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ Local\ space\ constraint\ positions}}
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpacePosition1;}
+\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpacePosition2;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Local\ space\ sliding\ direction}}
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpaceSliderAxis1;}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ Local\ space\ normals\ to\ the\ sliding\ direction\ (in\ body\ 1\ space)}}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpaceNormal1;}
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLocalSpaceNormal2;}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ Inverse\ of\ initial\ rotation\ from\ body\ 1\ to\ body\ 2\ in\ body\ 1\ space}}
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInvInitialOrientation;}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ Slider\ limits}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHasLimits;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitsMin;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitsMax;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ Soft\ constraint\ limits}}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{classSpringSettings}{SpringSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLimitsSpringSettings;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{//\ Friction}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxFrictionForce;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ Motor\ controls}}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{classMotorSettings}{MotorSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mMotorSettings;}
+\DoxyCodeLine{00167\ \ \ \ \ EMotorState\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMotorState\ =\ EMotorState::Off;}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTargetVelocity\ =\ 0.0f;}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTargetPosition\ =\ 0.0f;}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ RUN\ TIME\ PROPERTIES\ FOLLOW}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{//\ Positions\ where\ the\ point\ constraint\ acts\ on\ (middle\ point\ between\ center\ of\ masses)}}
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mR1;}
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mR2;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//\ X2\ +\ R2\ -\/\ X1\ -\/\ R1}}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mU;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ World\ space\ sliding\ direction}}
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSliderAxis;}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//\ Normals\ to\ the\ slider\ axis}}
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mN1;}
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mN2;}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ Distance\ along\ the\ slide\ axis}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mD\ =\ 0.0f;}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//\ The\ constraint\ parts}}
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart}{DualAxisConstraintPart}}\ \ \ \ \ \ \ \ mPositionConstraintPart;}
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{classRotationEulerConstraintPart}{RotationEulerConstraintPart}}\ \ mRotationConstraintPart;}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{classAxisConstraintPart}{AxisConstraintPart}}\ \ \ \ \ \ \ \ \ \ \ \ mPositionLimitsConstraintPart;}
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{classAxisConstraintPart}{AxisConstraintPart}}\ \ \ \ \ \ \ \ \ \ \ \ mMotorConstraintPart;}
+\DoxyCodeLine{00195\ \};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,394 @@
+\doxysection{Object\+Stream\+Binary\+Out Class Reference}
+\hypertarget{classObjectStreamBinaryOut}{}\label{classObjectStreamBinaryOut}\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+
+
+Implementation of \doxylink{classObjectStream}{Object\+Stream} binary output stream.  
+
+
+
+
+{\ttfamily \#include $<$Object\+Stream\+Binary\+Out.\+h$>$}
+
+
+
+Inheritance diagram for Object\+Stream\+Binary\+Out\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{df/d97/classObjectStreamBinaryOut__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object\+Stream\+Binary\+Out\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d9/d34/classObjectStreamBinaryOut__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStreamBinaryOut_abcd28b65fc2040d9f9041761e069087d}\label{classObjectStreamBinaryOut_abcd28b65fc2040d9f9041761e069087d} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Object\+Stream\+Binary\+Out} (ostream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Constructor and destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classObjectStreamOut}{Object\+Stream\+Out}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Write} (const void \texorpdfstring{$\ast$}{*}in\+Object, const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Write\+Object} (const void \texorpdfstring{$\ast$}{*}in\+Object)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Queue\+RTTI} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Write\+RTTI} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamOut_a7587194ec9799fc886575fde7399311a}{Write\+Class\+Data}} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI, const void \texorpdfstring{$\ast$}{*}in\+Instance) override
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamOut_af561adf53ccb631a1f4eacf5ac4babb8}{Write\+Pointer\+Data}} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI, const void \texorpdfstring{$\ast$}{*}in\+Pointer) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Hint\+Next\+Item} ()
+\item 
+virtual void {\bfseries Hint\+Indent\+Up} ()
+\item 
+virtual void {\bfseries Hint\+Indent\+Down} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Output type specific operations}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a2b94cd2df2805783aa1e236c9a80aa4e}{Write\+Data\+Type}} (EOSData\+Type in\+Type) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a22b1eaf6d7a49b4657d26680a18d3fed}{Write\+Name}} (const char \texorpdfstring{$\ast$}{*}in\+Name) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_ae2a03e297872e455eaf7caa6f70e8175}{Write\+Identifier}} (\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} in\+Identifier) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_ac730f06e6ca03bdfef00eebdfe8ebb9c}{Write\+Count}} (uint32 in\+Count) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_aa58d4c4799d776e40564c7663f91aab9}{Write\+Primitive\+Data}} (const uint8 \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a194fe2939fa0053352090c69bf4795e5}{Write\+Primitive\+Data}} (const uint16 \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_ac221920fc986a7e5fe4b6ee8f067fad8}{Write\+Primitive\+Data}} (const int \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a6372c6185e9fdd2f724d3dedb39462af}{Write\+Primitive\+Data}} (const uint32 \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a0cafa6c6ad6f9a5966f03f5b3f72ab98}{Write\+Primitive\+Data}} (const uint64 \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a188fa3bcf95d9363257c865c68a59bb8}{Write\+Primitive\+Data}} (const float \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a782408be2e85f92dca2c2120cb9139ea}{Write\+Primitive\+Data}} (const double \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a4f824a6f68bec04df01ab21139c6ffa4}{Write\+Primitive\+Data}} (const bool \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a93338e399d1a68ad44bfeb758cc0871e}{Write\+Primitive\+Data}} (const String \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_adb9a952cccd7a98f6de88f0980f5ef3d}{Write\+Primitive\+Data}} (const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a93cd8adf50289e138b7dceca01368cfe}{Write\+Primitive\+Data}} (const \mbox{\hyperlink{classDouble3}{Double3}} \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a14cdcd0fc0db1645a429651f5c7c5dc4}{Write\+Primitive\+Data}} (const \mbox{\hyperlink{classVec3}{Vec3}} \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a4e946faa517069f2a948daef8d7a795d}{Write\+Primitive\+Data}} (const \mbox{\hyperlink{classDVec3}{DVec3}} \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a19fcfbe6cb99c377ecea2b4e50226045}{Write\+Primitive\+Data}} (const \mbox{\hyperlink{classVec4}{Vec4}} \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a259fa22101d766d6e43f6eda5e6a8863}{Write\+Primitive\+Data}} (const \mbox{\hyperlink{classQuat}{Quat}} \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a816f76e48591b61906a9136a26e237a4}{Write\+Primitive\+Data}} (const \mbox{\hyperlink{classMat44}{Mat44}} \&in\+Primitive) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamBinaryOut_a0dc3717a6cd2c74f849155bb1ad80d02}{Write\+Primitive\+Data}} (const \mbox{\hyperlink{classDMat44}{DMat44}} \&in\+Primitive) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}\label{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e} 
+enum class \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} \{ {\bfseries Text}
+, {\bfseries Binary}
+ \}
+\begin{DoxyCompactList}\small\item\em Stream type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classObjectStreamOut}{Object\+Stream\+Out}}}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Write\+Object} (ostream \&in\+Stream, \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{Object\+Stream\+::\+EStream\+Type}} in\+Type, const T \&in\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to write an object to a stream. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Write\+Object} (const char \texorpdfstring{$\ast$}{*}in\+File\+Name, \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{Object\+Stream\+::\+EStream\+Type}} in\+Type, const T \&in\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to write an object to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Identifier} = uint32
+\begin{DoxyCompactList}\small\item\em Identifier for objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classObjectStreamOut}{Object\+Stream\+Out}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Object\+Stream\+Out} (ostream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Object\+Stream} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classObjectStreamOut}{Object\+Stream\+Out}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classObjectStreamOut}{Object\+Stream\+Out}} \texorpdfstring{$\ast$}{*} {\bfseries Open} (\mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} in\+Type, ostream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Static constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classObjectStreamOut}{Object\+Stream\+Out}}}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& {\bfseries m\+Stream}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int {\bfseries s\+Version} = 1
+\item 
+static constexpr int {\bfseries s\+Revision} = 0
+\item 
+static constexpr \mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} {\bfseries s\+Null\+Identifier} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of \doxylink{classObjectStream}{Object\+Stream} binary output stream. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classObjectStreamBinaryOut_ac730f06e6ca03bdfef00eebdfe8ebb9c}\label{classObjectStreamBinaryOut_ac730f06e6ca03bdfef00eebdfe8ebb9c} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WriteCount@{WriteCount}}
+\index{WriteCount@{WriteCount}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WriteCount()}{WriteCount()}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Count (\begin{DoxyParamCaption}\item[{uint32}]{in\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a2b94cd2df2805783aa1e236c9a80aa4e}\label{classObjectStreamBinaryOut_a2b94cd2df2805783aa1e236c9a80aa4e} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WriteDataType@{WriteDataType}}
+\index{WriteDataType@{WriteDataType}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WriteDataType()}{WriteDataType()}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Data\+Type (\begin{DoxyParamCaption}\item[{EOSData\+Type}]{in\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_ae2a03e297872e455eaf7caa6f70e8175}\label{classObjectStreamBinaryOut_ae2a03e297872e455eaf7caa6f70e8175} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WriteIdentifier@{WriteIdentifier}}
+\index{WriteIdentifier@{WriteIdentifier}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WriteIdentifier()}{WriteIdentifier()}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Identifier (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}}}]{in\+Identifier }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a22b1eaf6d7a49b4657d26680a18d3fed}\label{classObjectStreamBinaryOut_a22b1eaf6d7a49b4657d26680a18d3fed} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WriteName@{WriteName}}
+\index{WriteName@{WriteName}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WriteName()}{WriteName()}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Name (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{in\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a4f824a6f68bec04df01ab21139c6ffa4}\label{classObjectStreamBinaryOut_a4f824a6f68bec04df01ab21139c6ffa4} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const bool \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a0dc3717a6cd2c74f849155bb1ad80d02}\label{classObjectStreamBinaryOut_a0dc3717a6cd2c74f849155bb1ad80d02} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDMat44}{DMat44}} \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a782408be2e85f92dca2c2120cb9139ea}\label{classObjectStreamBinaryOut_a782408be2e85f92dca2c2120cb9139ea} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [3/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const double \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a93cd8adf50289e138b7dceca01368cfe}\label{classObjectStreamBinaryOut_a93cd8adf50289e138b7dceca01368cfe} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [4/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDouble3}{Double3}} \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a4e946faa517069f2a948daef8d7a795d}\label{classObjectStreamBinaryOut_a4e946faa517069f2a948daef8d7a795d} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [5/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDVec3}{DVec3}} \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a188fa3bcf95d9363257c865c68a59bb8}\label{classObjectStreamBinaryOut_a188fa3bcf95d9363257c865c68a59bb8} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [6/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const float \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_adb9a952cccd7a98f6de88f0980f5ef3d}\label{classObjectStreamBinaryOut_adb9a952cccd7a98f6de88f0980f5ef3d} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [7/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classFloat3}{Float3}} \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_ac221920fc986a7e5fe4b6ee8f067fad8}\label{classObjectStreamBinaryOut_ac221920fc986a7e5fe4b6ee8f067fad8} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [8/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const int \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a816f76e48591b61906a9136a26e237a4}\label{classObjectStreamBinaryOut_a816f76e48591b61906a9136a26e237a4} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [9/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMat44}{Mat44}} \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a259fa22101d766d6e43f6eda5e6a8863}\label{classObjectStreamBinaryOut_a259fa22101d766d6e43f6eda5e6a8863} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [10/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classQuat}{Quat}} \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a93338e399d1a68ad44bfeb758cc0871e}\label{classObjectStreamBinaryOut_a93338e399d1a68ad44bfeb758cc0871e} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [11/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const String \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a194fe2939fa0053352090c69bf4795e5}\label{classObjectStreamBinaryOut_a194fe2939fa0053352090c69bf4795e5} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [12/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const uint16 \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a6372c6185e9fdd2f724d3dedb39462af}\label{classObjectStreamBinaryOut_a6372c6185e9fdd2f724d3dedb39462af} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [13/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const uint32 \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a0cafa6c6ad6f9a5966f03f5b3f72ab98}\label{classObjectStreamBinaryOut_a0cafa6c6ad6f9a5966f03f5b3f72ab98} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [14/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const uint64 \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_aa58d4c4799d776e40564c7663f91aab9}\label{classObjectStreamBinaryOut_aa58d4c4799d776e40564c7663f91aab9} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [15/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const uint8 \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a14cdcd0fc0db1645a429651f5c7c5dc4}\label{classObjectStreamBinaryOut_a14cdcd0fc0db1645a429651f5c7c5dc4} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [16/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVec3}{Vec3}} \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamBinaryOut_a19fcfbe6cb99c377ecea2b4e50226045}\label{classObjectStreamBinaryOut_a19fcfbe6cb99c377ecea2b4e50226045} 
+\index{ObjectStreamBinaryOut@{ObjectStreamBinaryOut}!WritePrimitiveData@{WritePrimitiveData}}
+\index{WritePrimitiveData@{WritePrimitiveData}!ObjectStreamBinaryOut@{ObjectStreamBinaryOut}}
+\doxysubsubsection{\texorpdfstring{WritePrimitiveData()}{WritePrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [17/17]}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Binary\+Out\+::\+Write\+Primitive\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVec4}{Vec4}} \&}]{in\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Object\+Stream/Object\+Stream\+Binary\+Out.\+h\end{DoxyCompactItemize}

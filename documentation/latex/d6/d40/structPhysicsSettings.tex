@@ -1,0 +1,156 @@
+\doxysection{Physics\+Settings Struct Reference}
+\hypertarget{structPhysicsSettings}{}\label{structPhysicsSettings}\index{PhysicsSettings@{PhysicsSettings}}
+
+
+Collaboration diagram for Physics\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{df/dd8/structPhysicsSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE int \mbox{\hyperlink{structPhysicsSettings_a4b51fef768d4839927757e9b3ae65177}{m\+Max\+In\+Flight\+Body\+Pairs}} = 16384
+\item 
+\Hypertarget{structPhysicsSettings_a646cc49b1095c6c682189ba15d4de67f}\label{structPhysicsSettings_a646cc49b1095c6c682189ba15d4de67f} 
+int {\bfseries m\+Step\+Listeners\+Batch\+Size} = 8
+\begin{DoxyCompactList}\small\item\em How many Physics\+Step\+Listeners to notify in 1 batch. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_af9a3ca565935d36351a646e82ffe0867}\label{structPhysicsSettings_af9a3ca565935d36351a646e82ffe0867} 
+int {\bfseries m\+Step\+Listener\+Batches\+Per\+Job} = 1
+\begin{DoxyCompactList}\small\item\em How many step listener batches are needed before spawning another job (set to INT\+\_\+\+MAX if no parallelism is desired) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_ae1969d17d76a46e36471e1289d02355f}\label{structPhysicsSettings_ae1969d17d76a46e36471e1289d02355f} 
+float {\bfseries m\+Baumgarte} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Baumgarte stabilization factor (how much of the position error to \textquotesingle{}fix\textquotesingle{} in 1 update) (unit\+: dimensionless, 0 = nothing, 1 = 100\%) \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structPhysicsSettings_a9d7cb8a2c982e6c63e4def8fcd88d7fb}{m\+Speculative\+Contact\+Distance}} = 0.\+02f
+\item 
+\Hypertarget{structPhysicsSettings_a9aff2f46a311da4e48974dce7e3b4cee}\label{structPhysicsSettings_a9aff2f46a311da4e48974dce7e3b4cee} 
+float {\bfseries m\+Penetration\+Slop} = 0.\+02f
+\begin{DoxyCompactList}\small\item\em How much bodies are allowed to sink into eachother (unit\+: meters) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_ab5580db2e8580b84eb6be01a24cc54c4}\label{structPhysicsSettings_ab5580db2e8580b84eb6be01a24cc54c4} 
+float {\bfseries m\+Linear\+Cast\+Threshold} = 0.\+75f
+\begin{DoxyCompactList}\small\item\em Fraction of its inner radius a body must move per step to enable casting for the Linear\+Cast motion quality. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_aa5090787a0d12a9e7519da9e752de0e7}\label{structPhysicsSettings_aa5090787a0d12a9e7519da9e752de0e7} 
+float {\bfseries m\+Linear\+Cast\+Max\+Penetration} = 0.\+25f
+\begin{DoxyCompactList}\small\item\em Fraction of its inner radius a body may penetrate another body for the Linear\+Cast motion quality. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_ae045877d52a061978eb78569b96b0b62}\label{structPhysicsSettings_ae045877d52a061978eb78569b96b0b62} 
+float {\bfseries m\+Manifold\+Tolerance\+Sq} = 1.\+0e-\/6f
+\begin{DoxyCompactList}\small\item\em Max squared distance to use to determine if two points are on the same plane for determining the contact manifold between two shape faces (unit\+: meter\texorpdfstring{$^\wedge$}{\string^}2) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_a85f7318d995294af04d6a5c0fe0d01a6}\label{structPhysicsSettings_a85f7318d995294af04d6a5c0fe0d01a6} 
+float {\bfseries m\+Max\+Penetration\+Distance} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Maximum distance to correct in a single iteration when solving position constraints (unit\+: meters) \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structPhysicsSettings_a739d00b8a125095ee04c70981244f1be}{m\+Body\+Pair\+Cache\+Max\+Delta\+Position\+Sq}} = Square(0.\+001f)
+\begin{DoxyCompactList}\small\item\em Maximum relative delta position for body pairs to be able to reuse collision results from last frame (units\+: meter\texorpdfstring{$^\wedge$}{\string^}2) \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structPhysicsSettings_ac56cd29f1987d79e105e5bf443254c3e}{m\+Body\+Pair\+Cache\+Cos\+Max\+Delta\+Rotation\+Div2}} = 0.\+99984769515639123915701155881391f
+\begin{DoxyCompactList}\small\item\em Maximum relative delta orientation for body pairs to be able to reuse collision results from last frame, stored as cos(max angle / 2) \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structPhysicsSettings_aefc600483ad1234713fbd572f80f00da}{m\+Contact\+Normal\+Cos\+Max\+Delta\+Rotation}} = 0.\+99619469809174553229501040247389f
+\begin{DoxyCompactList}\small\item\em Maximum angle between normals that allows manifolds between different sub shapes of the same body pair to be combined. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structPhysicsSettings_a69350ac3ff30bca78c45d402938a3ebf}{m\+Contact\+Point\+Preserve\+Lambda\+Max\+Dist\+Sq}} = Square(0.\+01f)
+\begin{DoxyCompactList}\small\item\em Maximum allowed distance between old and new contact point to preserve contact forces for warm start (units\+: meter\texorpdfstring{$^\wedge$}{\string^}2) \end{DoxyCompactList}\item 
+uint \mbox{\hyperlink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{m\+Num\+Velocity\+Steps}} = 10
+\item 
+\Hypertarget{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}\label{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb} 
+uint {\bfseries m\+Num\+Position\+Steps} = 2
+\begin{DoxyCompactList}\small\item\em Number of solver position iterations to run. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_a3f68f35ad1244421ad126d3db5a617f3}\label{structPhysicsSettings_a3f68f35ad1244421ad126d3db5a617f3} 
+float {\bfseries m\+Min\+Velocity\+For\+Restitution} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Minimal velocity needed before a collision can be elastic (unit\+: m) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_a0bd7d6eb98c547488f874a9577fff451}\label{structPhysicsSettings_a0bd7d6eb98c547488f874a9577fff451} 
+float {\bfseries m\+Time\+Before\+Sleep} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em Time before object is allowed to go to sleep (unit\+: seconds) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_aae6093b99380ed5b72f5af1cc6529785}\label{structPhysicsSettings_aae6093b99380ed5b72f5af1cc6529785} 
+float {\bfseries m\+Point\+Velocity\+Sleep\+Threshold} = 0.\+03f
+\begin{DoxyCompactList}\small\item\em Velocity of points on bounding box of object below which an object can be considered sleeping (unit\+: m/s) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_aee2d7c40a127dc9c347d3b84b24ab4e3}\label{structPhysicsSettings_aee2d7c40a127dc9c347d3b84b24ab4e3} 
+bool {\bfseries m\+Deterministic\+Simulation} = true
+\begin{DoxyCompactList}\small\item\em By default the simulation is deterministic, it is possible to turn this off by setting this setting to false. This will make the simulation run faster but it will no longer be deterministic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ These variables are mainly for debugging purposes, they allow turning on/off certain subsystems. You probably want to leave them alone.}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structPhysicsSettings_ad477a1ff8add4e1f8684b131c1485480}\label{structPhysicsSettings_ad477a1ff8add4e1f8684b131c1485480} 
+bool {\bfseries m\+Constraint\+Warm\+Start} = true
+\begin{DoxyCompactList}\small\item\em Whether or not to use warm starting for constraints (initially applying previous frames impulses) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_a5a6d3286936ff2f74d1cf106e8ebf3f6}\label{structPhysicsSettings_a5a6d3286936ff2f74d1cf106e8ebf3f6} 
+bool {\bfseries m\+Use\+Body\+Pair\+Contact\+Cache} = true
+\begin{DoxyCompactList}\small\item\em Whether or not to use the body pair cache, which removes the need for narrow phase collision detection when orientation between two bodies didn\textquotesingle{}t change. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_af715e8c12331e908a82768501d09db97}\label{structPhysicsSettings_af715e8c12331e908a82768501d09db97} 
+bool {\bfseries m\+Use\+Manifold\+Reduction} = true
+\begin{DoxyCompactList}\small\item\em Whether or not to reduce manifolds with similar contact normals into one contact manifold (see description at \doxylink{classBody_a8c24ff0c08f1a31fc57d01420f9cae8b}{Body\+::\+Set\+Use\+Manifold\+Reduction}) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_ad391d29bbd9cd0cc0ce6358adb501e97}\label{structPhysicsSettings_ad391d29bbd9cd0cc0ce6358adb501e97} 
+bool {\bfseries m\+Use\+Large\+Island\+Splitter} = true
+\begin{DoxyCompactList}\small\item\em If we split up large islands into smaller parallel batches of work (to improve performance) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_a5386b79ed560a23cdbe06482b5a58de6}\label{structPhysicsSettings_a5386b79ed560a23cdbe06482b5a58de6} 
+bool {\bfseries m\+Allow\+Sleeping} = true
+\begin{DoxyCompactList}\small\item\em If objects can go to sleep or not. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsSettings_ad5b9533124cc07d57c5dd7ff050caba7}\label{structPhysicsSettings_ad5b9533124cc07d57c5dd7ff050caba7} 
+bool {\bfseries m\+Check\+Active\+Edges} = true
+\begin{DoxyCompactList}\small\item\em When false, we prevent collision against non-\/active (shared) edges. Mainly for debugging the algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structPhysicsSettings_ac56cd29f1987d79e105e5bf443254c3e}\label{structPhysicsSettings_ac56cd29f1987d79e105e5bf443254c3e} 
+\index{PhysicsSettings@{PhysicsSettings}!mBodyPairCacheCosMaxDeltaRotationDiv2@{mBodyPairCacheCosMaxDeltaRotationDiv2}}
+\index{mBodyPairCacheCosMaxDeltaRotationDiv2@{mBodyPairCacheCosMaxDeltaRotationDiv2}!PhysicsSettings@{PhysicsSettings}}
+\doxysubsubsection{\texorpdfstring{mBodyPairCacheCosMaxDeltaRotationDiv2}{mBodyPairCacheCosMaxDeltaRotationDiv2}}
+{\footnotesize\ttfamily float Physics\+Settings\+::m\+Body\+Pair\+Cache\+Cos\+Max\+Delta\+Rotation\+Div2 = 0.\+99984769515639123915701155881391f}
+
+
+
+Maximum relative delta orientation for body pairs to be able to reuse collision results from last frame, stored as cos(max angle / 2) 
+
+cos(2 degrees / 2) \Hypertarget{structPhysicsSettings_a739d00b8a125095ee04c70981244f1be}\label{structPhysicsSettings_a739d00b8a125095ee04c70981244f1be} 
+\index{PhysicsSettings@{PhysicsSettings}!mBodyPairCacheMaxDeltaPositionSq@{mBodyPairCacheMaxDeltaPositionSq}}
+\index{mBodyPairCacheMaxDeltaPositionSq@{mBodyPairCacheMaxDeltaPositionSq}!PhysicsSettings@{PhysicsSettings}}
+\doxysubsubsection{\texorpdfstring{mBodyPairCacheMaxDeltaPositionSq}{mBodyPairCacheMaxDeltaPositionSq}}
+{\footnotesize\ttfamily float Physics\+Settings\+::m\+Body\+Pair\+Cache\+Max\+Delta\+Position\+Sq = Square(0.\+001f)}
+
+
+
+Maximum relative delta position for body pairs to be able to reuse collision results from last frame (units\+: meter\texorpdfstring{$^\wedge$}{\string^}2) 
+
+1 mm \Hypertarget{structPhysicsSettings_aefc600483ad1234713fbd572f80f00da}\label{structPhysicsSettings_aefc600483ad1234713fbd572f80f00da} 
+\index{PhysicsSettings@{PhysicsSettings}!mContactNormalCosMaxDeltaRotation@{mContactNormalCosMaxDeltaRotation}}
+\index{mContactNormalCosMaxDeltaRotation@{mContactNormalCosMaxDeltaRotation}!PhysicsSettings@{PhysicsSettings}}
+\doxysubsubsection{\texorpdfstring{mContactNormalCosMaxDeltaRotation}{mContactNormalCosMaxDeltaRotation}}
+{\footnotesize\ttfamily float Physics\+Settings\+::m\+Contact\+Normal\+Cos\+Max\+Delta\+Rotation = 0.\+99619469809174553229501040247389f}
+
+
+
+Maximum angle between normals that allows manifolds between different sub shapes of the same body pair to be combined. 
+
+cos(5 degree) \Hypertarget{structPhysicsSettings_a69350ac3ff30bca78c45d402938a3ebf}\label{structPhysicsSettings_a69350ac3ff30bca78c45d402938a3ebf} 
+\index{PhysicsSettings@{PhysicsSettings}!mContactPointPreserveLambdaMaxDistSq@{mContactPointPreserveLambdaMaxDistSq}}
+\index{mContactPointPreserveLambdaMaxDistSq@{mContactPointPreserveLambdaMaxDistSq}!PhysicsSettings@{PhysicsSettings}}
+\doxysubsubsection{\texorpdfstring{mContactPointPreserveLambdaMaxDistSq}{mContactPointPreserveLambdaMaxDistSq}}
+{\footnotesize\ttfamily float Physics\+Settings\+::m\+Contact\+Point\+Preserve\+Lambda\+Max\+Dist\+Sq = Square(0.\+01f)}
+
+
+
+Maximum allowed distance between old and new contact point to preserve contact forces for warm start (units\+: meter\texorpdfstring{$^\wedge$}{\string^}2) 
+
+1 cm \Hypertarget{structPhysicsSettings_a4b51fef768d4839927757e9b3ae65177}\label{structPhysicsSettings_a4b51fef768d4839927757e9b3ae65177} 
+\index{PhysicsSettings@{PhysicsSettings}!mMaxInFlightBodyPairs@{mMaxInFlightBodyPairs}}
+\index{mMaxInFlightBodyPairs@{mMaxInFlightBodyPairs}!PhysicsSettings@{PhysicsSettings}}
+\doxysubsubsection{\texorpdfstring{mMaxInFlightBodyPairs}{mMaxInFlightBodyPairs}}
+{\footnotesize\ttfamily JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE int Physics\+Settings\+::m\+Max\+In\+Flight\+Body\+Pairs = 16384}
+
+Size of body pairs array, corresponds to the maximum amount of potential body pairs that can be in flight at any time. Setting this to a low value will use less memory but slow down simulation as threads may run out of narrow phase work. \Hypertarget{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}\label{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad} 
+\index{PhysicsSettings@{PhysicsSettings}!mNumVelocitySteps@{mNumVelocitySteps}}
+\index{mNumVelocitySteps@{mNumVelocitySteps}!PhysicsSettings@{PhysicsSettings}}
+\doxysubsubsection{\texorpdfstring{mNumVelocitySteps}{mNumVelocitySteps}}
+{\footnotesize\ttfamily uint Physics\+Settings\+::m\+Num\+Velocity\+Steps = 10}
+
+Number of solver velocity iterations to run Note that this needs to be \texorpdfstring{$>$}{>}= 2 in order for friction to work (friction is applied using the non-\/penetration impulse from the previous iteration) \Hypertarget{structPhysicsSettings_a9d7cb8a2c982e6c63e4def8fcd88d7fb}\label{structPhysicsSettings_a9d7cb8a2c982e6c63e4def8fcd88d7fb} 
+\index{PhysicsSettings@{PhysicsSettings}!mSpeculativeContactDistance@{mSpeculativeContactDistance}}
+\index{mSpeculativeContactDistance@{mSpeculativeContactDistance}!PhysicsSettings@{PhysicsSettings}}
+\doxysubsubsection{\texorpdfstring{mSpeculativeContactDistance}{mSpeculativeContactDistance}}
+{\footnotesize\ttfamily float Physics\+Settings\+::m\+Speculative\+Contact\+Distance = 0.\+02f}
+
+Radius around objects inside which speculative contact points will be detected. Note that if this is too big you will get ghost collisions as speculative contacts are based on the closest points during the collision detection step which may not be the actual closest points by the time the two objects hit (unit\+: meters) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/Physics\+Settings.\+h\end{DoxyCompactItemize}

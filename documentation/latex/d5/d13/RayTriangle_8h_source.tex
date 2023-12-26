@@ -1,0 +1,161 @@
+\doxysection{Ray\+Triangle.\+h}
+\hypertarget{RayTriangle_8h_source}{}\label{RayTriangle_8h_source}\index{includes/jolt/Geometry/RayTriangle.h@{includes/jolt/Geometry/RayTriangle.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00011\ JPH\_INLINE\ \textcolor{keywordtype}{float}\ RayTriangle(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV0,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ Epsilon}}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ epsilon\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0e-\/12f);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ Zero\ \&\ one}}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ zero\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ one\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0f);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Find\ vectors\ for\ two\ edges\ sharing\ inV0}}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ e1\ =\ inV1\ -\/\ inV0;}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ e2\ =\ inV2\ -\/\ inV0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Begin\ calculating\ determinant\ -\/\ also\ used\ to\ calculate\ u\ parameter}}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ p\ =\ inDirection.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(e2);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ if\ determinant\ is\ near\ zero,\ ray\ lies\ in\ plane\ of\ triangle}}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ det\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(e1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(p));}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ determinant\ is\ near\ zero}}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ det\_near\_zero\ =\ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(det.\mbox{\hyperlink{classVec3_a60c863c1cdad322a1af54e77a4af8f02}{Abs}}(),\ epsilon);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ When\ the\ determinant\ is\ near\ zero,\ set\ it\ to\ one\ to\ avoid\ dividing\ by\ zero}}
+\DoxyCodeLine{00034\ \ \ \ \ det\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(det,\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0f),\ det\_near\_zero);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Calculate\ distance\ from\ inV0\ to\ ray\ origin}}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ s\ =\ inOrigin\ -\/\ inV0;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Calculate\ u\ parameter}}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ u\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(s.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(p))\ /\ det;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Prepare\ to\ test\ v\ parameter}}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ s.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(e1);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Calculate\ v\ parameter}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(inDirection.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(q))\ /\ det;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Get\ intersection\ point}}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(e2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(q))\ /\ det;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ there\ is\ an\ intersection}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_intersection\ =}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ det\_near\_zero,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(u,\ zero)}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(v,\ zero),}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(u\ +\ v,\ one)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(t,\ zero)}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ Select\ intersection\ point\ or\ FLT\_MAX\ based\ on\ if\ there\ is\ an\ intersection\ or\ not}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(t,\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(FLT\_MAX),\ no\_intersection).\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}();}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ JPH\_INLINE\ \mbox{\hyperlink{classVec4}{Vec4}}\ RayTriangle4(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV0X,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV0Y,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV0Z,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV1X,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV1Y,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV1Z,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV2X,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV2Y,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV2Z)}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ Epsilon}}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ epsilon\ =\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(1.0e-\/12f);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ Zero}}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ zero\ =\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ Find\ vectors\ for\ two\ edges\ sharing\ inV0}}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ e1x\ =\ inV1X\ -\/\ inV0X;}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ e1y\ =\ inV1Y\ -\/\ inV0Y;}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ e1z\ =\ inV1Z\ -\/\ inV0Z;}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ e2x\ =\ inV2X\ -\/\ inV0X;}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ e2y\ =\ inV2Y\ -\/\ inV0Y;}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ e2z\ =\ inV2Z\ -\/\ inV0Z;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ Get\ direction\ vector\ components}}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ dx\ =\ inDirection.\mbox{\hyperlink{classVec3_a1b03f087ce2755a85ccba4ba56f1e64b}{SplatX}}();}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ dy\ =\ inDirection.\mbox{\hyperlink{classVec3_aad5b4211a6d98be56362559eefd9b029}{SplatY}}();}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ dz\ =\ inDirection.\mbox{\hyperlink{classVec3_a81f4448e17219aafda0e3b886709d1f4}{SplatZ}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ Begin\ calculating\ determinant\ -\/\ also\ used\ to\ calculate\ u\ parameter}}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ px\ =\ dy\ *\ e2z\ -\/\ dz\ *\ e2y;}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ py\ =\ dz\ *\ e2x\ -\/\ dx\ *\ e2z;}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ pz\ =\ dx\ *\ e2y\ -\/\ dy\ *\ e2x;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ if\ determinant\ is\ near\ zero,\ ray\ lies\ in\ plane\ of\ triangle}}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ det\ =\ e1x\ *\ px\ +\ e1y\ *\ py\ +\ e1z\ *\ pz;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Get\ sign\ bit\ for\ determinant\ and\ make\ positive}}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ det\_sign\ =\ \mbox{\hyperlink{classVec4_a1b0f06643e493c801cdd07a18ff8b2dd}{Vec4::sAnd}}(det,\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(0x80000000).ReinterpretAsFloat());}
+\DoxyCodeLine{00107\ \ \ \ \ det\ =\ \mbox{\hyperlink{classVec4_a31e9dd5a7d6d4dc05efb55a36a8e80d9}{Vec4::sXor}}(det,\ det\_sign);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ Check\ which\ determinants\ are\ near\ zero}}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ det\_near\_zero\ =\ \mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(det,\ epsilon);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Set\ components\ of\ the\ determinant\ to\ 1\ that\ are\ near\ zero\ to\ avoid\ dividing\ by\ zero}}
+\DoxyCodeLine{00113\ \ \ \ \ det\ =\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(det,\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(1.0f),\ det\_near\_zero);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ Calculate\ distance\ from\ inV0\ to\ ray\ origin}}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ sx\ =\ inOrigin.\mbox{\hyperlink{classVec3_a1b03f087ce2755a85ccba4ba56f1e64b}{SplatX}}()\ -\/\ inV0X;}
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ sy\ =\ inOrigin.\mbox{\hyperlink{classVec3_aad5b4211a6d98be56362559eefd9b029}{SplatY}}()\ -\/\ inV0Y;}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ sz\ =\ inOrigin.\mbox{\hyperlink{classVec3_a81f4448e17219aafda0e3b886709d1f4}{SplatZ}}()\ -\/\ inV0Z;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ Calculate\ u\ parameter\ and\ flip\ sign\ if\ determinant\ was\ negative}}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ u\ =\ \mbox{\hyperlink{classVec4_a31e9dd5a7d6d4dc05efb55a36a8e80d9}{Vec4::sXor}}(sx\ *\ px\ +\ sy\ *\ py\ +\ sz\ *\ pz,\ det\_sign);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ Prepare\ to\ test\ v\ parameter}}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ qx\ =\ sy\ *\ e1z\ -\/\ sz\ *\ e1y;}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ qy\ =\ sz\ *\ e1x\ -\/\ sx\ *\ e1z;}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ qz\ =\ sx\ *\ e1y\ -\/\ sy\ *\ e1x;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ Calculate\ v\ parameter\ and\ flip\ sign\ if\ determinant\ was\ negative}}
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ v\ =\ \mbox{\hyperlink{classVec4_a31e9dd5a7d6d4dc05efb55a36a8e80d9}{Vec4::sXor}}(dx\ *\ qx\ +\ dy\ *\ qy\ +\ dz\ *\ qz,\ det\_sign);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Get\ intersection\ point\ and\ flip\ sign\ if\ determinant\ was\ negative}}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\ =\ \mbox{\hyperlink{classVec4_a31e9dd5a7d6d4dc05efb55a36a8e80d9}{Vec4::sXor}}(e2x\ *\ qx\ +\ e2y\ *\ qy\ +\ e2z\ *\ qz,\ det\_sign);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ there\ is\ an\ intersection}}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_intersection\ =}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ det\_near\_zero,}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(u,\ zero)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(v,\ zero),}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4_a0f083eb84bb57838bafaa1074a5c292e}{Vec4::sGreater}}(u\ +\ v,\ det)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(t,\ zero)}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ Select\ intersection\ point\ or\ FLT\_MAX\ based\ on\ if\ there\ is\ an\ intersection\ or\ not}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(t\ /\ det,\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(FLT\_MAX),\ no\_intersection);}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

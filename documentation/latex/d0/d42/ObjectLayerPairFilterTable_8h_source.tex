@@ -1,0 +1,76 @@
+\doxysection{Object\+Layer\+Pair\+Filter\+Table.\+h}
+\hypertarget{ObjectLayerPairFilterTable_8h_source}{}\label{ObjectLayerPairFilterTable_8h_source}\index{includes/jolt/Physics/Collision/ObjectLayerPairFilterTable.h@{includes/jolt/Physics/Collision/ObjectLayerPairFilterTable.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2023\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ObjectLayer.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classObjectLayerPairFilterTable}{ObjectLayerPairFilterTable}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classObjectLayerPairFilter}{ObjectLayerPairFilter}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetBit(ObjectLayer\ inLayer1,\ ObjectLayer\ inLayer2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ store\ the\ lower\ left\ half\ only,\ so\ swap\ the\ inputs\ when\ trying\ to\ access\ the\ top\ right\ half}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inLayer1\ >\ inLayer2)}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ swap(inLayer1,\ inLayer2);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inLayer2\ <\ mNumObjectLayers);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ at\ which\ bit\ the\ entry\ for\ this\ pair\ resides}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ use\ the\ fact\ that\ a\ row\ always\ starts\ at\ inLayer2\ *\ (inLayer2\ +\ 1)\ /\ 2}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (this\ is\ the\ amount\ of\ bits\ needed\ to\ store\ a\ table\ of\ inLayer2\ entries)}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (inLayer2\ *\ (inLayer2\ +\ 1))\ /\ 2\ +\ inLayer1;}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectLayerPairFilterTable_a374488a93f35824127860cab6452136b}{ObjectLayerPairFilterTable}}(uint\ inNumObjectLayers)\ :}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ mNumObjectLayers(inNumObjectLayers)}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ By\ default\ nothing\ collides}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ the\ first\ layer\ we\ only\ need\ to\ store\ 1\ bit,\ for\ the\ second\ 2\ bits,\ for\ the\ third\ 3\ bits,\ etc.}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ use\ the\ formula\ Sum\_i=1\string^N\ i\ =\ N\ *\ (N\ +\ 1)\ /\ 2\ to\ calculate\ the\ size\ of\ the\ table}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ table\_size\ =\ (inNumObjectLayers\ *\ (inNumObjectLayers\ +\ 1)\ /\ 2\ +\ 7)\ /\ 8;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ mTable.resize(table\_size,\ 0);}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectLayerPairFilterTable_a1f1540757a584e5409d8dd8f6d8c64b4}{GetNumObjectLayers}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mNumObjectLayers;}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectLayerPairFilterTable_a24646de71a6a06550b0db5addf81b78e}{DisableCollision}}(ObjectLayer\ inLayer1,\ ObjectLayer\ inLayer2)}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ uint\ bit\ =\ GetBit(inLayer1,\ inLayer2);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ mTable[bit\ >>\ 3]\ \&=\ (0xff\ \string^\ (1\ <<\ (bit\ \&\ 0b111)));}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectLayerPairFilterTable_a92530da6280163ab73c27304dd911167}{EnableCollision}}(ObjectLayer\ inLayer1,\ ObjectLayer\ inLayer2)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ uint\ bit\ =\ GetBit(inLayer1,\ inLayer2);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ mTable[bit\ >>\ 3]\ |=\ 1\ <<\ (bit\ \&\ 0b111);}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectLayerPairFilterTable_a77261471bc7057de4c292e22c645d718}{ShouldCollide}}(ObjectLayer\ inObject1,\ ObjectLayer\ inObject2)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ if\ the\ bit\ is\ set\ for\ this\ group\ pair}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ uint\ bit\ =\ GetBit(inObject1,\ inObject2);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (mTable[bit\ >>\ 3]\ \&\ (1\ <<\ (bit\ \&\ 0b111)))\ !=\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumObjectLayers;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ Array<uint8>\ \ \ \ \ \ \ \ \ \ \ \ mTable;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

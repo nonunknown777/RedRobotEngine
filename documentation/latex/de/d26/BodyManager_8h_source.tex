@@ -1,0 +1,289 @@
+\doxysection{Body\+Manager.\+h}
+\hypertarget{BodyManager_8h_source}{}\label{BodyManager_8h_source}\index{includes/jolt/Physics/Body/BodyManager.h@{includes/jolt/Physics/Body/BodyManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/Body.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Mutex.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/MutexArray.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Classes}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyCreationSettings}{BodyCreationSettings}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}};}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyActivationListener}{BodyActivationListener}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStateRecorderFilter}{StateRecorderFilter}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysicsSettings}{PhysicsSettings}};}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}};}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }BodyDrawFilter;}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{using\ }BodyVector\ =\ Array<Body\ *>;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{using\ }BodyIDVector\ =\ Array<BodyID>;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_aa4febc2d607766e3aad3cf25dbcc4fd4}{\string~BodyManager}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a2d0f5cce4bc65b5dd60e79edc37fd0d9}{Init}}(uint\ inMaxBodies,\ uint\ inNumBodyMutexes,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerInterface}{BroadPhaseLayerInterface}}\ \&inLayerInterface);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a28e008be233691bbccef7d17e20d113d}{GetNumBodies}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ad54b2a378ee3653de2130da1ab3f69a5}{GetMaxBodies}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ uint(mBodies.capacity());\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structBodyManager_1_1BodyStats}{BodyStats}}}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumBodies\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxBodies\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumBodiesStatic\ \ \ \ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumBodiesDynamic\ \ \ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumActiveBodiesDynamic\ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumBodiesKinematic\ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumActiveBodiesKinematic\ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumSoftBodies\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumActiveSoftBodies\ \ \ \ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{structBodyManager_1_1BodyStats}{BodyStats}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a814d6b104c5b6109ac45eb6039bca28d}{GetBodyStats}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ab90b6879d9b21e0301102dd1f5791cb2}{AllocateBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyCreationSettings}{BodyCreationSettings}}\ \&inBodyCreationSettings)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a003634616068c3e51029c38e77de7fec}{AllocateSoftBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}}\ \&inSoftBodyCreationSettings)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ac9b3fea305ee74fb2cb1d70d4773aee0}{FreeBody}}(\mbox{\hyperlink{classBody}{Body}}\ *inBody)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_aa7e0cc82ef6c860655af523205fd9cb6}{AddBody}}(\mbox{\hyperlink{classBody}{Body}}\ *ioBody);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ad8c3c4c7e6257244b81cfa8bc590149b}{AddBodyWithCustomID}}(\mbox{\hyperlink{classBody}{Body}}\ *ioBody,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a2a65ea34748b9f3f354d4325f905ab1c}{RemoveBodies}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber,\ \mbox{\hyperlink{classBody}{Body}}\ **outBodies);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a5c0cc30ec7f2c4a5bcd1119906a6632e}{DestroyBodies}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_aecdc4718d0c9ccf33f9eaf2a42c6ab79}{ActivateBodies}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ac8e13efcbe3e2fab505e2c9047f9d2ef}{DeactivateBodies}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_af449412eb723ffe93a193d9b9aa86f3b}{SetMotionQuality}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody,\ EMotionQuality\ inMotionQuality);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_aae54df1753149fbac33cb8ea6f930da7}{GetActiveBodies}}(EBodyType\ inType,\ BodyIDVector\ \&outBodyIDs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ac646f95e699a7d4525d65407ee3bea69}{GetActiveBodiesUnsafe}}(EBodyType\ inType)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mActiveBodies[int(inType)];\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_afc847edf3623bce165d4c872f0dc4d68}{GetNumActiveBodies}}(EBodyType\ inType)\textcolor{keyword}{\ const\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumActiveBodies[int(inType)];\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a462f40b51e2bbdae500c62584d0376be}{GetNumActiveCCDBodies}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumActiveCCDBodies;\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a5f4202f0ef087177b642a93c13d82d9a}{SetBodyActivationListener}}(\mbox{\hyperlink{classBodyActivationListener}{BodyActivationListener}}\ *inListener);}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classBodyActivationListener}{BodyActivationListener}}\ *\ \ \ \ \ \ GetBodyActivationListener()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mActivationListener;\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a2a95afcef6b2166321d1ba21dce19158}{sIsValidBodyPointer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ *inBody)\ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ (uintptr\_t(inBody)\ \&\ cIsFreedBody)\ ==\ 0;\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{const}\ BodyVector\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ac6c6a208195a666e62fc3bd9c4456bfa}{GetBodies}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodies;\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00124\ \ \ \ \ BodyVector\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ace4bb400f2a6b4f17e04aa10134dee4f}{GetBodies}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mBodies;\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_aa65000b18f18a1d02bf432446dff7c05}{GetBodyIDs}}(BodyIDVector\ \&outBodies)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ae89bc88048a56cbf21d70e78ec142a18}{GetBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inID)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ *mBodies[inID.\mbox{\hyperlink{classBodyID_ae7455ec3e8eec8ec963fb99ea4176fd6}{GetIndex}}()];\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a2ac7db2095cb425b04bdad508e2acc4f}{GetBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inID)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *mBodies[inID.\mbox{\hyperlink{classBodyID_ae7455ec3e8eec8ec963fb99ea4176fd6}{GetIndex}}()];\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ac441f5d6015c113423972740f3e2815f}{TryGetBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inID)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ uint32\ idx\ =\ inID.\mbox{\hyperlink{classBodyID_ae7455ec3e8eec8ec963fb99ea4176fd6}{GetIndex}}();}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (idx\ >=\ mBodies.size())}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ *body\ =\ mBodies[idx];}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sIsValidBodyPointer(body)\ \&\&\ body-\/>\mbox{\hyperlink{classBody_ab76a68b10378fdc8eb6572b995a0d7d7}{GetID}}()\ ==\ inID)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ body;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a57535e1d1645cc00b57fb7e8ecccc259}{TryGetBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inID)}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ uint32\ idx\ =\ inID.\mbox{\hyperlink{classBodyID_ae7455ec3e8eec8ec963fb99ea4176fd6}{GetIndex}}();}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (idx\ >=\ mBodies.size())}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *body\ =\ mBodies[idx];}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sIsValidBodyPointer(body)\ \&\&\ body-\/>\mbox{\hyperlink{classBody_ab76a68b10378fdc8eb6572b995a0d7d7}{GetID}}()\ ==\ inID)}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ body;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00164\ \ \ \ \ SharedMutex\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a608703b173fa10233dfd617150a2db67}{GetMutexForBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inID)\textcolor{keyword}{\ const\ \ }\{\ \textcolor{keywordflow}{return}\ mBodyMutexes.GetMutexByObjectIndex(inID.\mbox{\hyperlink{classBodyID_ae7455ec3e8eec8ec963fb99ea4176fd6}{GetIndex}}());\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{MutexMask}}\ =\ uint64;}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{MutexMask}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetAllBodiesMutexMask()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyMutexes.GetNumMutexes()\ ==\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{MutexMask}})\ *\ 8?\ \string~\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{MutexMask}}(0)\ :\ (\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{MutexMask}}(1)\ <<\ mBodyMutexes.GetNumMutexes())\ -\/\ 1;\ \}}
+\DoxyCodeLine{00172\ \ \ \ \ MutexMask\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMutexMask(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodies,\ \textcolor{keywordtype}{int}\ inNumber)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockRead(MutexMask\ inMutexMask)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockRead(MutexMask\ inMutexMask)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockWrite(MutexMask\ inMutexMask)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockWrite(MutexMask\ inMutexMask)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a425eaf59b68a237d6821267ed1474f35}{LockAllBodies}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a5bfccfc12e83e13bc8ed0ceacff6ccc3}{UnlockAllBodies}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ae42a0183320aaebe459af6b0cc937daf}{SetBodyObjectLayerInternal}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody,\ ObjectLayer\ inLayer)\textcolor{keyword}{\ const\ }\{\ ioBody.mObjectLayer\ =\ inLayer;\ ioBody.mBroadPhaseLayer\ =\ mBroadPhaseLayerInterface-\/>GetBroadPhaseLayer(inLayer);\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a2d9975b3a1fb311c3956820eae65b7ce}{InvalidateContactCacheForBody}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a4e5f1bfab762cd561b21320d97ef0594}{ValidateContactCacheForAllBodies}}();}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_a5fcbaca9d9a52129a56451ce519e9598}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classStateRecorderFilter}{StateRecorderFilter}}\ *inFilter)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_af64512a91a78f48a75c5cead5552e281}{RestoreState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ab1eb2a2bbf12bbe839475093826b6ceb}{SaveBodyState}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody,\ \mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyManager_ad1de147dfb454f5963629a98489c1159}{RestoreBodyState}}(\mbox{\hyperlink{classBody}{Body}}\ \&inBody,\ \mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2}{EShapeColor}}}
+\DoxyCodeLine{00207\ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ InstanceColor,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ ShapeTypeColor,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ MotionTypeColor,\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ SleepColor,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ IslandColor,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ MaterialColor,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{struct\ }DrawSettings}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawGetSupportFunction\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawSupportDirection\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawGetSupportingFace\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawShape\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawShapeWireframe\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ EShapeColor\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawShapeColor\ =\ EShapeColor::MotionTypeColor;\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawBoundingBox\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawCenterOfMassTransform\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawWorldTransform\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawVelocity\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawMassAndInertia\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawSleepStats\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawSoftBodyVertices\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawSoftBodyEdgeConstraints\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawSoftBodyVolumeConstraints\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawSoftBodyPredictedBounds\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00236\ \ \ \ \ \};}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Draw(\textcolor{keyword}{const}\ DrawSettings\ \&inSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysicsSettings}{PhysicsSettings}}\ \&inPhysicsSettings,\ \mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer,\ \textcolor{keyword}{const}\ BodyDrawFilter\ *inBodyFilter\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetActiveBodiesLocked(\textcolor{keywordtype}{bool}\ inLocked)\ \ \ \ \ \ \ \ \{\ mActiveBodiesLocked\ =\ inLocked;\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{class\ }GrantActiveBodiesAccess}
+\DoxyCodeLine{00248\ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ GrantActiveBodiesAccess(\textcolor{keywordtype}{bool}\ inAllowActivation,\ \textcolor{keywordtype}{bool}\ inAllowDeactivation)}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(!sGetOverrideAllowActivation());}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ sSetOverrideAllowActivation(inAllowActivation);}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(!sGetOverrideAllowDeactivation());}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ sSetOverrideAllowDeactivation(inAllowDeactivation);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \string~GrantActiveBodiesAccess()}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ sSetOverrideAllowActivation(\textcolor{keyword}{false});}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ sSetOverrideAllowDeactivation(\textcolor{keyword}{false});}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \};}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidateActiveBodyBounds();}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_DEBUG}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#ifdef\ JPH\_COMPILER\_CLANG}}
+\DoxyCodeLine{00275\ \ \ \ \ \_\_attribute\_\_((no\_sanitize(\textcolor{stringliteral}{"{}implicit-\/conversion"{}})))\ \textcolor{comment}{//\ We\ intentionally\ overflow\ the\ uint8\ sequence\ number}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{inline}\ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetNextSequenceNumber(\textcolor{keywordtype}{int}\ inBodyIndex)\ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ ++mBodySequenceNumbers[inBodyIndex];\ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddBodyToActiveBodies(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody);}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RemoveBodyFromActiveBodies(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody);}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00286\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RemoveBodyInternal(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ sDeleteBody(\mbox{\hyperlink{classBody}{Body}}\ *inBody);}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#if\ defined(\_DEBUG)\ \&\&\ defined(JPH\_ENABLE\_ASSERTS)}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidateFreeList()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ defined(\_DEBUG)\ \&\&\ \_defined(JPH\_ENABLE\_ASSERTS)}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00297\ \ \ \ \ BodyVector\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodies;}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00300\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumBodies\ =\ 0;}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uintptr\_t\ \ \ \ \ \ cBodyIDFreeListEnd\ =\ \string~uintptr\_t(0);}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uintptr\_t\ \ \ \ \ \ cIsFreedBody\ =\ uintptr\_t(1);}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ \ \ \ \ cFreedBodyIndexShift\ =\ 1;}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00312\ \ \ \ \ uintptr\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyIDFreeListStart\ =\ cBodyIDFreeListEnd;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{mutable}\ Mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodiesMutex;}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{using\ }BodyMutexes\ =\ \mbox{\hyperlink{classMutexArray}{MutexArray<SharedMutex>}};}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{mutable}\ BodyMutexes\ \ \ \ \ \ \ \ \ \ \ \ \ mBodyMutexes;}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00322\ \ \ \ \ Array<uint8>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodySequenceNumbers;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{mutable}\ Mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mActiveBodiesMutex;}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00328\ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mActiveBodies[cBodyTypeCount]\ =\ \{\ \};}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00331\ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumActiveBodies[cBodyTypeCount]\ =\ \{\ \};}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00334\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumActiveCCDBodies\ =\ 0;}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{mutable}\ Mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodiesCacheInvalidMutex;}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00340\ \ \ \ \ BodyIDVector\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodiesCacheInvalid;}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00343\ \ \ \ \ \mbox{\hyperlink{classBodyActivationListener}{BodyActivationListener}}\ *\ \ \ \ \ \ mActivationListener\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerInterface}{BroadPhaseLayerInterface}}\ *mBroadPhaseLayerInterface\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sGetOverrideAllowActivation();}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sSetOverrideAllowActivation(\textcolor{keywordtype}{bool}\ inValue);}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sGetOverrideAllowDeactivation();}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sSetOverrideAllowDeactivation(\textcolor{keywordtype}{bool}\ inValue);}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mActiveBodiesLocked\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00358\ \};}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

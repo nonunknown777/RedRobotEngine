@@ -1,0 +1,110 @@
+\doxysection{Constraint\+Manager Class Reference}
+\hypertarget{classConstraintManager}{}\label{classConstraintManager}\index{ConstraintManager@{ConstraintManager}}
+
+
+A constraint manager manages all constraints of the same type.  
+
+
+
+
+{\ttfamily \#include $<$Constraint\+Manager.\+h$>$}
+
+
+
+Inheritance diagram for Constraint\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{d7/d1a/classConstraintManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Constraint\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{d5/d12/classConstraintManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE void \mbox{\hyperlink{classConstraintManager_a6e17842ac52a025acf12b3df38118ce6}{Add}} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Constraints, int in\+Number)
+\item 
+void \mbox{\hyperlink{classConstraintManager_acb16102f8700cbe29811d38abf913d0a}{Remove}} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Constraint, int in\+Number)
+\item 
+\Hypertarget{classConstraintManager_a28696554e9f5f7b0b2169fa523e80440}\label{classConstraintManager_a28696554e9f5f7b0b2169fa523e80440} 
+Constraints {\bfseries Get\+Constraints} () const
+\begin{DoxyCompactList}\small\item\em Get a list of all constraints. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_acd910b293c763c5c5a6f7c29a37721fb}\label{classConstraintManager_acd910b293c763c5c5a6f7c29a37721fb} 
+uint32 {\bfseries Get\+Num\+Constraints} () const
+\begin{DoxyCompactList}\small\item\em Get total number of constraints. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_a6620266366dc35c2bf3877530a0d0c2a}\label{classConstraintManager_a6620266366dc35c2bf3877530a0d0c2a} 
+void {\bfseries Get\+Active\+Constraints} (uint32 in\+Start\+Constraint\+Idx, uint32 in\+End\+Constraint\+Idx, \mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+Active\+Constraints, uint32 \&out\+Num\+Active\+Constraints) const
+\begin{DoxyCompactList}\small\item\em Determine the active constraints of a subset of the constraints. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_a77ead63fb9a81614e3a9bede90fbe730}\label{classConstraintManager_a77ead63fb9a81614e3a9bede90fbe730} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream, const \mbox{\hyperlink{classStateRecorderFilter}{State\+Recorder\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter) const
+\begin{DoxyCompactList}\small\item\em Save state of constraints. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_aa6041abc2a70cc411e4d814c9dbf43f2}\label{classConstraintManager_aa6041abc2a70cc411e4d814c9dbf43f2} 
+bool {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore the state of constraints. Returns false if failed. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_ae8d4baabaedc6f26b774d40b71b6bf85}\label{classConstraintManager_ae8d4baabaedc6f26b774d40b71b6bf85} 
+void {\bfseries Lock\+All\+Constraints} ()
+\begin{DoxyCompactList}\small\item\em Lock all constraints. This should only be done during \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update()}. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_aef2a29f192caeb1209dfc1a6db0afb96}\label{classConstraintManager_aef2a29f192caeb1209dfc1a6db0afb96} 
+void {\bfseries Unlock\+All\+Constraints} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classConstraintManager_ad743cb989fd7243a2aa0564703c1b7c9}\label{classConstraintManager_ad743cb989fd7243a2aa0564703c1b7c9} 
+static void {\bfseries s\+Build\+Islands} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Active\+Constraints, uint32 in\+Num\+Active\+Constraints, \mbox{\hyperlink{classIslandBuilder}{Island\+Builder}} \&io\+Builder, \mbox{\hyperlink{classBodyManager}{Body\+Manager}} \&in\+Body\+Manager)
+\begin{DoxyCompactList}\small\item\em Link bodies to form islands. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_a4b4bd8e35deae81f6cbba8d3c89c892b}\label{classConstraintManager_a4b4bd8e35deae81f6cbba8d3c89c892b} 
+static void {\bfseries s\+Sort\+Constraints} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Active\+Constraints, uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End)
+\begin{DoxyCompactList}\small\item\em In order to have a deterministic simulation, we need to sort the constraints of an island before solving them. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_a417c20431052a7db4f3d01aedb4a63e6}\label{classConstraintManager_a417c20431052a7db4f3d01aedb4a63e6} 
+static void {\bfseries s\+Setup\+Velocity\+Constraints} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Active\+Constraints, uint32 in\+Num\+Active\+Constraints, float in\+Delta\+Time)
+\begin{DoxyCompactList}\small\item\em Prior to solving the velocity constraints, you must call Setup\+Velocity\+Constraints once to precalculate values that are independent of velocity. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_a61255495750b9a9f50e40417f62db323}\label{classConstraintManager_a61255495750b9a9f50e40417f62db323} 
+{\footnotesize template$<$class Constraint\+Callback $>$ }\\static void {\bfseries s\+Warm\+Start\+Velocity\+Constraints} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Active\+Constraints, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End, float in\+Warm\+Start\+Impulse\+Ratio, Constraint\+Callback \&io\+Callback)
+\begin{DoxyCompactList}\small\item\em Apply last frame\textquotesingle{}s impulses, must be called prior to Solve\+Velocity\+Constraints. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_a465fce865fea85c8f2bc0e813d4dcabe}\label{classConstraintManager_a465fce865fea85c8f2bc0e813d4dcabe} 
+static bool {\bfseries s\+Solve\+Velocity\+Constraints} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Active\+Constraints, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End, float in\+Delta\+Time)
+\begin{DoxyCompactList}\small\item\em This function is called multiple times to iteratively come to a solution that meets all velocity constraints. \end{DoxyCompactList}\item 
+\Hypertarget{classConstraintManager_a3c372364c0bc6defb92e8d3b0851b0fa}\label{classConstraintManager_a3c372364c0bc6defb92e8d3b0851b0fa} 
+static bool {\bfseries s\+Solve\+Position\+Constraints} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Active\+Constraints, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraint\+Idx\+End, float in\+Delta\+Time, float in\+Baumgarte)
+\begin{DoxyCompactList}\small\item\em This function is called multiple times to iteratively come to a solution that meets all position constraints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A constraint manager manages all constraints of the same type. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classConstraintManager_a6e17842ac52a025acf12b3df38118ce6}\label{classConstraintManager_a6e17842ac52a025acf12b3df38118ce6} 
+\index{ConstraintManager@{ConstraintManager}!Add@{Add}}
+\index{Add@{Add}!ConstraintManager@{ConstraintManager}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE void Constraint\+Manager\+::\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{in\+Constraints,  }\item[{int}]{in\+Number }\end{DoxyParamCaption})}
+
+Add a new constraint. This is thread safe. Note that the in\+Constraints array is allowed to have nullptrs, these will be ignored. \Hypertarget{classConstraintManager_acb16102f8700cbe29811d38abf913d0a}\label{classConstraintManager_acb16102f8700cbe29811d38abf913d0a} 
+\index{ConstraintManager@{ConstraintManager}!Remove@{Remove}}
+\index{Remove@{Remove}!ConstraintManager@{ConstraintManager}}
+\doxysubsubsection{\texorpdfstring{Remove()}{Remove()}}
+{\footnotesize\ttfamily void Constraint\+Manager\+::\+Remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{in\+Constraint,  }\item[{int}]{in\+Number }\end{DoxyParamCaption})}
+
+Remove a constraint. This is thread safe. Note that the in\+Constraints array is allowed to have nullptrs, these will be ignored. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Constraint\+Manager.\+h\end{DoxyCompactItemize}

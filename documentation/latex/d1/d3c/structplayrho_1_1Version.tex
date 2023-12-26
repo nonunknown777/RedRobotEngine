@@ -1,0 +1,90 @@
+\doxysection{playrho\+::Version Struct Reference}
+\hypertarget{structplayrho_1_1Version}{}\label{structplayrho_1_1Version}\index{playrho::Version@{playrho::Version}}
+
+
+\doxylink{structplayrho_1_1Version}{Version} numbering scheme.  
+
+
+
+
+{\ttfamily \#include $<$Version.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Version\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{d9/d08/structplayrho_1_1Version__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}\label{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac} 
+using {\bfseries Revnum} = std\+::int32\+\_\+t
+\begin{DoxyCompactList}\small\item\em Revision number type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}} \mbox{\hyperlink{structplayrho_1_1Version_a5e92cad7b20b19f8efc5ea4801bb6f53}{major}}
+\begin{DoxyCompactList}\small\item\em Major version number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}} \mbox{\hyperlink{structplayrho_1_1Version_abb97e498445e0c35f20f37fbe82cf800}{minor}}
+\begin{DoxyCompactList}\small\item\em Minor version number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}} \mbox{\hyperlink{structplayrho_1_1Version_a44abbe204a839327b55036549ef3b7eb}{revision}}
+\begin{DoxyCompactList}\small\item\em Revision version number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{structplayrho_1_1Version}{Version} numbering scheme. 
+
+\doxylink{structplayrho_1_1Version}{Version} class for numbering the Play\+Rho library releases. Follows Semantic Versioning 2.\+0.\+0. \begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Software_versioning}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Software\+\_\+versioning}} 
+
+\href{https://semver.org}{\texttt{ https\+://semver.\+org}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structplayrho_1_1Version_a5e92cad7b20b19f8efc5ea4801bb6f53}\label{structplayrho_1_1Version_a5e92cad7b20b19f8efc5ea4801bb6f53} 
+\index{playrho::Version@{playrho::Version}!major@{major}}
+\index{major@{major}!playrho::Version@{playrho::Version}}
+\doxysubsubsection{\texorpdfstring{major}{major}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}} playrho\+::\+Version\+::major}
+
+
+
+Major version number. 
+
+Changed to represent significant changes. Specifically this field is incremented when backwards incompatible changes are introduced to the public API. The minor and revision fields are reset to 0 when this field is incremented. \begin{DoxyNote}{Note}
+Started at 0. 
+\end{DoxyNote}
+\Hypertarget{structplayrho_1_1Version_abb97e498445e0c35f20f37fbe82cf800}\label{structplayrho_1_1Version_abb97e498445e0c35f20f37fbe82cf800} 
+\index{playrho::Version@{playrho::Version}!minor@{minor}}
+\index{minor@{minor}!playrho::Version@{playrho::Version}}
+\doxysubsubsection{\texorpdfstring{minor}{minor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}} playrho\+::\+Version\+::minor}
+
+
+
+Minor version number. 
+
+Changed to represent incremental changes. Specifically this field is incremented when new, backwards compatible functionality is introduced to the public API, or when any public API functionality is marked as deprecated. \Hypertarget{structplayrho_1_1Version_a44abbe204a839327b55036549ef3b7eb}\label{structplayrho_1_1Version_a44abbe204a839327b55036549ef3b7eb} 
+\index{playrho::Version@{playrho::Version}!revision@{revision}}
+\index{revision@{revision}!playrho::Version@{playrho::Version}}
+\doxysubsubsection{\texorpdfstring{revision}{revision}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}} playrho\+::\+Version\+::revision}
+
+
+
+Revision version number. 
+
+Changed to represent bug fixes. \begin{DoxyNote}{Note}
+Also known as the patch version. 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Version.\+hpp\end{DoxyCompactItemize}

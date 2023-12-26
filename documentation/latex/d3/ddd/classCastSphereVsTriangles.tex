@@ -1,0 +1,105 @@
+\doxysection{Cast\+Sphere\+Vs\+Triangles Class Reference}
+\hypertarget{classCastSphereVsTriangles}{}\label{classCastSphereVsTriangles}\index{CastSphereVsTriangles@{CastSphereVsTriangles}}
+
+
+Collision detection helper that casts a sphere vs one or more triangles.  
+
+
+
+
+{\ttfamily \#include $<$Cast\+Sphere\+Vs\+Triangles.\+h$>$}
+
+
+
+Collaboration diagram for Cast\+Sphere\+Vs\+Triangles\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d77/classCastSphereVsTriangles__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCastSphereVsTriangles_a962760abd1146feac412856c2ca4cf1b}{Cast\+Sphere\+Vs\+Triangles}} (const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&in\+Shape\+Cast, const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&in\+Shape\+Cast\+Settings, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform2, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator1, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&io\+Collector)
+\item 
+void \mbox{\hyperlink{classCastSphereVsTriangles_ade8de510194b2a8bed2474f3b9605a80}{Cast}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V0, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+V2, uint8 in\+Active\+Edges, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCastSphereVsTriangles_a97177eb99d17fdaba69e79d5a1e6be9b}\label{classCastSphereVsTriangles_a97177eb99d17fdaba69e79d5a1e6be9b} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Start}
+\begin{DoxyCompactList}\small\item\em Starting location of the sphere. \end{DoxyCompactList}\item 
+\Hypertarget{classCastSphereVsTriangles_a55eca94a671eb829c77a28ea4ce2c38a}\label{classCastSphereVsTriangles_a55eca94a671eb829c77a28ea4ce2c38a} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Direction}
+\begin{DoxyCompactList}\small\item\em Direction and length of movement of sphere. \end{DoxyCompactList}\item 
+\Hypertarget{classCastSphereVsTriangles_ad228cdb4784b5a3ad14b6ba38c296d34}\label{classCastSphereVsTriangles_ad228cdb4784b5a3ad14b6ba38c296d34} 
+float {\bfseries m\+Radius}
+\begin{DoxyCompactList}\small\item\em Scaled radius of sphere. \end{DoxyCompactList}\item 
+\Hypertarget{classCastSphereVsTriangles_aedd22f079116eb249e674bb2350b283e}\label{classCastSphereVsTriangles_aedd22f079116eb249e674bb2350b283e} 
+const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \& {\bfseries m\+Shape\+Cast\+Settings}
+\item 
+\Hypertarget{classCastSphereVsTriangles_a03488d3918d45962d2b31d3b14e16f46}\label{classCastSphereVsTriangles_a03488d3918d45962d2b31d3b14e16f46} 
+const \mbox{\hyperlink{classMat44}{Mat44}} \& {\bfseries m\+Center\+Of\+Mass\+Transform2}
+\item 
+\Hypertarget{classCastSphereVsTriangles_ab317c8a940b4398351ccb4e3f4477688}\label{classCastSphereVsTriangles_ab317c8a940b4398351ccb4e3f4477688} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Scale}
+\item 
+\Hypertarget{classCastSphereVsTriangles_a24ea3c9bbd79ad02885b38316b1e38cd}\label{classCastSphereVsTriangles_a24ea3c9bbd79ad02885b38316b1e38cd} 
+\mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} {\bfseries m\+Sub\+Shape\+IDCreator1}
+\item 
+\Hypertarget{classCastSphereVsTriangles_a8764255c552586baff1eb0790b7e30ca}\label{classCastSphereVsTriangles_a8764255c552586baff1eb0790b7e30ca} 
+\mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \& {\bfseries m\+Collector}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Collision detection helper that casts a sphere vs one or more triangles. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCastSphereVsTriangles_a962760abd1146feac412856c2ca4cf1b}\label{classCastSphereVsTriangles_a962760abd1146feac412856c2ca4cf1b} 
+\index{CastSphereVsTriangles@{CastSphereVsTriangles}!CastSphereVsTriangles@{CastSphereVsTriangles}}
+\index{CastSphereVsTriangles@{CastSphereVsTriangles}!CastSphereVsTriangles@{CastSphereVsTriangles}}
+\doxysubsubsection{\texorpdfstring{CastSphereVsTriangles()}{CastSphereVsTriangles()}}
+{\footnotesize\ttfamily Cast\+Sphere\+Vs\+Triangles\+::\+Cast\+Sphere\+Vs\+Triangles (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&}]{in\+Shape\+Cast,  }\item[{const \mbox{\hyperlink{classShapeCastSettings}{Shape\+Cast\+Settings}} \&}]{in\+Shape\+Cast\+Settings,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform2,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator1,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Collector}} \&}]{io\+Collector }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em in\+Shape\+Cast} & The sphere to cast against the triangles and its start and direction \\
+\hline
+{\em in\+Shape\+Cast\+Settings} & Settings for performing the cast \\
+\hline
+{\em in\+Scale} & Local space scale for the shape to cast against. \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform2} & Is the center of mass transform of shape 2 (excluding scale), this is used to provide a transform to the shape cast result so that local quantities can be transformed into world space. \\
+\hline
+{\em in\+Sub\+Shape\+IDCreator1} & Class that tracks the current sub shape ID for the casting shape \\
+\hline
+{\em io\+Collector} & The collector that receives the results. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCastSphereVsTriangles_ade8de510194b2a8bed2474f3b9605a80}\label{classCastSphereVsTriangles_ade8de510194b2a8bed2474f3b9605a80} 
+\index{CastSphereVsTriangles@{CastSphereVsTriangles}!Cast@{Cast}}
+\index{Cast@{Cast}!CastSphereVsTriangles@{CastSphereVsTriangles}}
+\doxysubsubsection{\texorpdfstring{Cast()}{Cast()}}
+{\footnotesize\ttfamily void Cast\+Sphere\+Vs\+Triangles\+::\+Cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V0,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+V2,  }\item[{uint8}]{in\+Active\+Edges,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID2 }\end{DoxyParamCaption})}
+
+Cast sphere with a single triangle 
+\begin{DoxyParams}{Parameters}
+{\em in\+V0,in\+V1,in\+V2} & CCW triangle vertices \\
+\hline
+{\em in\+Active\+Edges} & bit 0 = edge v0..v1 is active, bit 1 = edge v1..v2 is active, bit 2 = edge v2..v0 is active An active edge is an edge that is not connected to another triangle in such a way that it is impossible to collide with the edge \\
+\hline
+{\em in\+Sub\+Shape\+ID2} & The sub shape ID for the triangle \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Cast\+Sphere\+Vs\+Triangles.\+h\end{DoxyCompactItemize}

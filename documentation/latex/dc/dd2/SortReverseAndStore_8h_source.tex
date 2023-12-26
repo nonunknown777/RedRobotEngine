@@ -1,0 +1,43 @@
+\doxysection{Sort\+Reverse\+And\+Store.\+h}
+\hypertarget{SortReverseAndStore_8h_source}{}\label{SortReverseAndStore_8h_source}\index{includes/jolt/Physics/Collision/SortReverseAndStore.h@{includes/jolt/Physics/Collision/SortReverseAndStore.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00015\ JPH\_INLINE\ \textcolor{keywordtype}{int}\ SortReverseAndStore(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inValues,\ \textcolor{keywordtype}{float}\ inMaxValue,\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \&ioIdentifiers,\ \textcolor{keywordtype}{float}\ *outValues)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Sort\ so\ that\ highest\ values\ are\ first\ (we\ want\ to\ first\ process\ closer\ hits\ and\ we\ process\ stack\ top\ to\ bottom)}}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classVec4_a5474af2152aa33e6b02048aa2b279ece}{Vec4::sSort4Reverse}}(inValues,\ ioIdentifiers);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Count\ how\ many\ results\ are\ less\ than\ the\ max\ value}}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ closer\ =\ \mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(inValues,\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inMaxValue));}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_results\ =\ closer.\mbox{\hyperlink{classUVec4_a1b44f57941f0fd3237bc0c6ff638e91e}{CountTrues}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Shift\ the\ values\ so\ that\ only\ the\ ones\ that\ are\ less\ than\ max\ are\ kept}}
+\DoxyCodeLine{00025\ \ \ \ \ inValues\ =\ inValues.\mbox{\hyperlink{classVec4_a7f8f1783b5b18997ce18f3ed92c34aa2}{ReinterpretAsInt}}().\mbox{\hyperlink{classUVec4_a8d9ff8b435e5475505c944e96d872b2b}{ShiftComponents4Minus}}(num\_results).\mbox{\hyperlink{classUVec4_af399ef91439555b5264eec1790537547}{ReinterpretAsFloat}}();}
+\DoxyCodeLine{00026\ \ \ \ \ ioIdentifiers\ =\ ioIdentifiers.\mbox{\hyperlink{classUVec4_a8d9ff8b435e5475505c944e96d872b2b}{ShiftComponents4Minus}}(num\_results);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Store\ the\ values}}
+\DoxyCodeLine{00029\ \ \ \ \ inValues.\mbox{\hyperlink{classVec4_afdfae50fe6a7d86e7d1684fc71be7ed0}{StoreFloat4}}(\textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{classFloat4}{Float4}}\ *\textcolor{keyword}{>}(outValues));}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ num\_results;}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ JPH\_INLINE\ \textcolor{keywordtype}{int}\ CountAndSortTrues(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inValue,\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \&ioIdentifiers)}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Sort\ the\ hits}}
+\DoxyCodeLine{00041\ \ \ \ \ ioIdentifiers\ =\ \mbox{\hyperlink{classUVec4_a2c26ee49875159becb637c976cd7b589}{UVec4::sSort4True}}(inValue,\ ioIdentifiers);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ amount\ of\ hits}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ inValue.\mbox{\hyperlink{classUVec4_a1b44f57941f0fd3237bc0c6ff638e91e}{CountTrues}}();}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,56 @@
+\doxysection{Body\+Pair Struct Reference}
+\hypertarget{structBodyPair}{}\label{structBodyPair}\index{BodyPair@{BodyPair}}
+
+
+Structure that holds a body pair.  
+
+
+
+
+{\ttfamily \#include $<$Body\+Pair.\+h$>$}
+
+
+
+Collaboration diagram for Body\+Pair\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{d4/dab/structBodyPair__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structBodyPair_af07fc6b828c249ac30e5ad5f406016f8}\label{structBodyPair_af07fc6b828c249ac30e5ad5f406016f8} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Body\+Pair} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{structBodyPair_a89d92908491717f39027b1f51a50088c}\label{structBodyPair_a89d92908491717f39027b1f51a50088c} 
+{\bfseries Body\+Pair} (\mbox{\hyperlink{classBodyID}{Body\+ID}} inA, \mbox{\hyperlink{classBodyID}{Body\+ID}} inB)
+\item 
+\Hypertarget{structBodyPair_a9170bf752664d8527564d386e428930a}\label{structBodyPair_a9170bf752664d8527564d386e428930a} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{structBodyPair}{Body\+Pair}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Equals operator. \end{DoxyCompactList}\item 
+\Hypertarget{structBodyPair_a20493f29c36b3f20e8db0e86849e1547}\label{structBodyPair_a20493f29c36b3f20e8db0e86849e1547} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{structBodyPair}{Body\+Pair}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Smaller than operator, used for consistently ordering body pairs. \end{DoxyCompactList}\item 
+\Hypertarget{structBodyPair_a5c584f3eda9897aa691047f585fdde06}\label{structBodyPair_a5c584f3eda9897aa691047f585fdde06} 
+uint64 {\bfseries Get\+Hash} () const
+\begin{DoxyCompactList}\small\item\em Get the hash value of this object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structBodyPair_a9071ec4a6f8552717d3a397528e3b2b8}\label{structBodyPair_a9071ec4a6f8552717d3a397528e3b2b8} 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries m\+BodyA}
+\item 
+\Hypertarget{structBodyPair_aeb1186aac2ffbb99da346a15569f1855}\label{structBodyPair_aeb1186aac2ffbb99da346a15569f1855} 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries m\+BodyB}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure that holds a body pair. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Body/Body\+Pair.\+h\end{DoxyCompactItemize}

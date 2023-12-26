@@ -1,0 +1,21 @@
+<map id="ObjectStream" name="ObjectStream">
+<area shape="rect" id="Node000001" title="Base class for object stream input and output streams." alt="" coords="320,165,456,277"/>
+<area shape="rect" id="Node000003" href="$d4/d5d/classIObjectStreamIn.html" title="Interface class for reading from an object stream." alt="" coords="217,389,375,1163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="379,292,363,390,358,389,374,292"/>
+<area shape="rect" id="Node000007" href="$dc/d8a/classIObjectStreamOut.html" title="Interface class for writing to an object stream." alt="" coords="407,325,569,1227"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="403,292,410,329,405,330,398,293"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="327,5,449,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="391,133,391,166,385,166,385,133"/>
+<area shape="rect" id="Node000004" href="$d4/def/classObjectStreamIn.html" title=" " alt="" coords="203,1275,379,1643"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="296,1178,295,1275,289,1275,290,1178"/>
+<area shape="rect" id="Node000005" href="$d1/dda/classObjectStreamBinaryIn.html" title="Implementation of ObjectStream binary input stream." alt="" coords="5,1872,184,2176"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="211,1658,199,1692,140,1873,135,1871,193,1690,206,1656"/>
+<area shape="rect" id="Node000006" href="$d7/dcb/classObjectStreamTextIn.html" title="Implementation of ObjectStream text input stream." alt="" coords="209,1872,373,2176"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="293,1657,293,1872,288,1872,288,1657"/>
+<area shape="rect" id="Node000008" href="$d4/d53/classObjectStreamOut.html" title=" " alt="" coords="428,1296,556,1621"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="493,1242,494,1296,488,1296,488,1242"/>
+<area shape="rect" id="Node000009" href="$d4/de3/classObjectStreamBinaryOut.html" title="Implementation of ObjectStream binary output stream." alt="" coords="397,1872,587,2176"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="495,1636,495,1872,489,1872,489,1636"/>
+<area shape="rect" id="Node000010" href="$d7/daa/classObjectStreamTextOut.html" title="Implementation of ObjectStream text output stream." alt="" coords="611,1691,786,2357"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="565,1601,602,1690,614,1721,609,1723,598,1692,560,1603"/>
+</map>

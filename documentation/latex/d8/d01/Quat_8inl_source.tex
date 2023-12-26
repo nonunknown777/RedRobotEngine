@@ -1,0 +1,334 @@
+\doxysection{Quat.\+inl}
+\hypertarget{Quat_8inl_source}{}\label{Quat_8inl_source}\index{includes/jolt/Math/Quat.inl@{includes/jolt/Math/Quat.inl}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \mbox{\hyperlink{classQuat}{Quat}}\ Quat::operator\ *\ (\mbox{\hyperlink{classQuat}{QuatArg}}\ inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ Taken\ from:\ http://momchil-\/velikov.blogspot.nl/2013/10/fast-\/sse-\/quternion-\/multiplication.html}}
+\DoxyCodeLine{00011\ \ \ \ \ \_\_m128\ abcd\ =\ \mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.mValue;}
+\DoxyCodeLine{00012\ \ \ \ \ \_\_m128\ xyzw\ =\ inRHS.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.mValue;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \_\_m128\ t0\ =\ \_mm\_shuffle\_ps(abcd,\ abcd,\ \_MM\_SHUFFLE(3,\ 3,\ 3,\ 3));}
+\DoxyCodeLine{00015\ \ \ \ \ \_\_m128\ t1\ =\ \_mm\_shuffle\_ps(xyzw,\ xyzw,\ \_MM\_SHUFFLE(2,\ 3,\ 0,\ 1));}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \_\_m128\ t3\ =\ \_mm\_shuffle\_ps(abcd,\ abcd,\ \_MM\_SHUFFLE(0,\ 0,\ 0,\ 0));}
+\DoxyCodeLine{00018\ \ \ \ \ \_\_m128\ t4\ =\ \_mm\_shuffle\_ps(xyzw,\ xyzw,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \_\_m128\ t5\ =\ \_mm\_shuffle\_ps(abcd,\ abcd,\ \_MM\_SHUFFLE(1,\ 1,\ 1,\ 1));}
+\DoxyCodeLine{00021\ \ \ \ \ \_\_m128\ t6\ =\ \_mm\_shuffle\_ps(xyzw,\ xyzw,\ \_MM\_SHUFFLE(2,\ 0,\ 3,\ 1));}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ [d,d,d,d]\ *\ [z,w,x,y]\ =\ [dz,dw,dx,dy]}}
+\DoxyCodeLine{00024\ \ \ \ \ \_\_m128\ m0\ =\ \_mm\_mul\_ps(t0,\ t1);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ [a,a,a,a]\ *\ [y,x,w,z]\ =\ [ay,ax,aw,az]}}
+\DoxyCodeLine{00027\ \ \ \ \ \_\_m128\ m1\ =\ \_mm\_mul\_ps(t3,\ t4);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ [b,b,b,b]\ *\ [z,x,w,y]\ =\ [bz,bx,bw,by]}}
+\DoxyCodeLine{00030\ \ \ \ \ \_\_m128\ m2\ =\ \_mm\_mul\_ps(t5,\ t6);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ [c,c,c,c]\ *\ [w,z,x,y]\ =\ [cw,cz,cx,cy]}}
+\DoxyCodeLine{00033\ \ \ \ \ \_\_m128\ t7\ =\ \_mm\_shuffle\_ps(abcd,\ abcd,\ \_MM\_SHUFFLE(2,\ 2,\ 2,\ 2));}
+\DoxyCodeLine{00034\ \ \ \ \ \_\_m128\ t8\ =\ \_mm\_shuffle\_ps(xyzw,\ xyzw,\ \_MM\_SHUFFLE(3,\ 2,\ 0,\ 1));}
+\DoxyCodeLine{00035\ \ \ \ \ \_\_m128\ m3\ =\ \_mm\_mul\_ps(t7,\ t8);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ [dz,dw,dx,dy]\ +\ -\/[ay,ax,aw,az]\ =\ [dz+ay,dw-\/ax,dx+aw,dy-\/az]}}
+\DoxyCodeLine{00038\ \ \ \ \ \_\_m128\ e\ =\ \_mm\_addsub\_ps(m0,\ m1);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ [dx+aw,dz+ay,dy-\/az,dw-\/ax]}}
+\DoxyCodeLine{00041\ \ \ \ \ e\ =\ \_mm\_shuffle\_ps(e,\ e,\ \_MM\_SHUFFLE(1,\ 3,\ 0,\ 2));}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ [dx+aw,dz+ay,dy-\/az,dw-\/ax]\ +\ -\/[bz,bx,bw,by]\ =\ [dx+aw+bz,dz+ay-\/bx,dy-\/az+bw,dw-\/ax-\/by]}}
+\DoxyCodeLine{00044\ \ \ \ \ e\ =\ \_mm\_addsub\_ps(e,\ m2);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ [dz+ay-\/bx,dw-\/ax-\/by,dy-\/az+bw,dx+aw+bz]}}
+\DoxyCodeLine{00047\ \ \ \ \ e\ =\ \_mm\_shuffle\_ps(e,\ e,\ \_MM\_SHUFFLE(2,\ 0,\ 1,\ 3));}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ [dz+ay-\/bx,dw-\/ax-\/by,dy-\/az+bw,dx+aw+bz]\ +\ -\/[cw,cz,cx,cy]\ =\ [dz+ay-\/bx+cw,dw-\/ax-\/by-\/cz,dy-\/az+bw+cx,dx+aw+bz-\/cy]}}
+\DoxyCodeLine{00050\ \ \ \ \ e\ =\ \_mm\_addsub\_ps(e,\ m3);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ [dw-\/ax-\/by-\/cz,dz+ay-\/bx+cw,dy-\/az+bw+cx,dx+aw+bz-\/cy]}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4}{Vec4}}(\_mm\_shuffle\_ps(e,\ e,\ \_MM\_SHUFFLE(2,\ 3,\ 1,\ 0))));}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{float}\ lx\ =\ \mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{float}\ ly\ =\ \mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.GetY();}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{float}\ lz\ =\ \mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.GetZ();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{float}\ lw\ =\ \mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.GetW();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{float}\ rx\ =\ inRHS.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ ry\ =\ inRHS.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.GetY();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{float}\ rz\ =\ inRHS.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.GetZ();}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{float}\ rw\ =\ inRHS.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.GetW();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ lw\ *\ rx\ +\ lx\ *\ rw\ +\ ly\ *\ rz\ -\/\ lz\ *\ ry;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ lw\ *\ ry\ -\/\ lx\ *\ rz\ +\ ly\ *\ rw\ +\ lz\ *\ rx;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ lw\ *\ rz\ +\ lx\ *\ ry\ -\/\ ly\ *\ rx\ +\ lz\ *\ rw;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{float}\ w\ =\ lw\ *\ rw\ -\/\ lx\ *\ rx\ -\/\ ly\ *\ ry\ -\/\ lz\ *\ rz;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(x,\ y,\ z,\ w);}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classQuat_a3ac594bf7be610138e90735ae99ff8e9}{Quat::sRotation}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAxis,\ \textcolor{keywordtype}{float}\ inAngle)}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ returns\ [inAxis\ *\ sin(0.5f\ *\ inAngle),\ cos(0.5f\ *\ inAngle)]}}
+\DoxyCodeLine{00077\ \ \ \ \ JPH\_ASSERT(inAxis.\mbox{\hyperlink{classVec3_a2f10743d69960eaac721399e4ede190a}{IsNormalized}}());}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ s,\ c;}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(0.5f\ *\ inAngle).\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(s,\ c);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(\mbox{\hyperlink{classVec4}{Vec4}}(inAxis)\ *\ s,\ c,\ \mbox{\hyperlink{classUVec4}{UVec4}}(0,\ 0,\ 0,\ 0xffffffffU)));}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classQuat_a618a8eb64122263b8c64109f03ac47b5}{Quat::GetAxisAngle}}(\mbox{\hyperlink{classVec3}{Vec3}}\ \&outAxis,\ \textcolor{keywordtype}{float}\ \&outAngle)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00085\ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ w\_pos\ =\ \mbox{\hyperlink{classQuat_a9f563ca8c8a8b71a0aa340d12080c2ef}{EnsureWPositive}}();}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{float}\ abs\_w\ =\ w\_pos.\mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}();}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (abs\_w\ >=\ 1.0f)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ outAxis\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ outAngle\ =\ 0.0f;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ outAngle\ =\ 2.0f\ *\ ACos(abs\_w);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ outAxis\ =\ w\_pos.\mbox{\hyperlink{classQuat_afa7fe10bf8a457fb2d524791ccd79ec4}{GetXYZ}}().\mbox{\hyperlink{classVec3_a6c6409cad56e4e357f73d43cd719ffe8}{NormalizedOr}}(\mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}());}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classQuat_a7e32ae62e2b33bf30ba3c40f9e66bfed}{Quat::sFromTo}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inFrom,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTo)}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ \ \ \ \ Uses\ (inFrom\ =\ v1,\ inTo\ =\ v2):}}
+\DoxyCodeLine{00104\ \textcolor{comment}{}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ \ \ \ angle\ =\ arcos(v1\ .\ v2\ /\ |v1||v2|)}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ \ \ \ \ axis\ =\ normalize(v1\ x\ v2)}}
+\DoxyCodeLine{00107\ \textcolor{comment}{}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ \ \ \ \ \ Quaternion\ is\ then:}}
+\DoxyCodeLine{00109\ \textcolor{comment}{}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ \ \ \ s\ =\ sin(angle\ /\ 2)}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ \ \ \ \ \ x\ =\ axis.x\ *\ s}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ y\ =\ axis.y\ *\ s}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ \ \ \ z\ =\ axis.z\ *\ s}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ \ \ \ w\ =\ cos(angle\ /\ 2)}}
+\DoxyCodeLine{00115\ \textcolor{comment}{}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ \ \ Using\ identities:}}
+\DoxyCodeLine{00117\ \textcolor{comment}{}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ \ \ \ \ sin(2\ *\ a)\ =\ 2\ *\ sin(a)\ *\ cos(a)}}
+\DoxyCodeLine{00119\ \textcolor{comment}{\ \ \ \ \ \ \ \ cos(2\ *\ a)\ =\ cos(a)\string^2\ -\/\ sin(a)\string^2}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ \ \ \ \ \ sin(a)\string^2\ +\ cos(a)\string^2\ =\ 1}}
+\DoxyCodeLine{00121\ \textcolor{comment}{}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ \ \ \ This\ reduces\ to:}}
+\DoxyCodeLine{00123\ \textcolor{comment}{}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ \ \ \ \ \ \ \ x\ =\ (v1\ x\ v2).x}}
+\DoxyCodeLine{00125\ \textcolor{comment}{\ \ \ \ \ \ \ \ y\ =\ (v1\ x\ v2).y}}
+\DoxyCodeLine{00126\ \textcolor{comment}{\ \ \ \ \ \ \ \ z\ =\ (v1\ x\ v2).z}}
+\DoxyCodeLine{00127\ \textcolor{comment}{\ \ \ \ \ \ \ \ w\ =\ |v1||v2|\ +\ v1\ .\ v2}}
+\DoxyCodeLine{00128\ \textcolor{comment}{}}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ \ \ \ \ \ \ which\ then\ needs\ to\ be\ normalized\ because\ the\ whole\ equation\ was\ multiplied\ by\ 2\ cos(angle\ /\ 2)}}
+\DoxyCodeLine{00130\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{float}\ len\_v1\_v2\ =\ sqrt(inFrom.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}()\ *\ inTo.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}());}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{float}\ w\ =\ len\_v1\_v2\ +\ inFrom.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inTo);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ ==\ 0.0f)}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\_v1\_v2\ ==\ 0.0f)}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ either\ of\ the\ vectors\ has\ zero\ length,\ there\ is\ no\ rotation\ and\ we\ return\ identity}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat::sIdentity}}();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ vectors\ are\ perpendicular,\ take\ one\ of\ the\ many\ 180\ degree\ rotations\ that\ exist}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4}{Vec4}}(inFrom.\mbox{\hyperlink{classVec3_a24a96972fdbe04ae9a3e340fd4c39b81}{GetNormalizedPerpendicular}}(),\ 0));}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v\ =\ inFrom.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(inTo);}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4}{Vec4}}(v,\ w)).\mbox{\hyperlink{classVec3_a0f7559f2691ad67826f42ca19916b7a9}{Normalized}}();}
+\DoxyCodeLine{00151\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Random>}
+\DoxyCodeLine{00154\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classQuat_a0686810998da92e9ab857b314b282d91}{Quat::sRandom}}(Random\ \&inRandom)}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ std::uniform\_real\_distribution<float>\ zero\_to\_one(0.0f,\ 1.0f);}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{float}\ x0\ =\ zero\_to\_one(inRandom);}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{float}\ r1\ =\ sqrt(1.0f\ -\/\ x0),\ r2\ =\ sqrt(x0);}
+\DoxyCodeLine{00159\ \ \ \ \ std::uniform\_real\_distribution<float>\ zero\_to\_two\_pi(0.0f,\ 2.0f\ *\ JPH\_PI);}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ s,\ c;}
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(zero\_to\_two\_pi(inRandom),\ zero\_to\_two\_pi(inRandom),\ 0,\ 0).\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(s,\ c);}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(s.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}()\ *\ r1,\ c.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}()\ *\ r1,\ s.GetY()\ *\ r2,\ c.GetY()\ *\ r2);}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classQuat_a1ef2428c09a41f3d0549d216ecfca710}{Quat::sEulerAngles}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAngles)}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ half(0.5f\ *\ inAngles);}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ s,\ c;}
+\DoxyCodeLine{00169\ \ \ \ \ half.\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(s,\ c);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{float}\ cx\ =\ c.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{float}\ sx\ =\ s.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{float}\ cy\ =\ c.GetY();}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{float}\ sy\ =\ s.GetY();}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{float}\ cz\ =\ c.GetZ();}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{float}\ sz\ =\ s.GetZ();}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ cz\ *\ sx\ *\ cy\ -\/\ sz\ *\ cx\ *\ sy,}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ cz\ *\ cx\ *\ sy\ +\ sz\ *\ sx\ *\ cy,}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ sz\ *\ cx\ *\ cy\ -\/\ cz\ *\ sx\ *\ sy,}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ cz\ *\ cx\ *\ cy\ +\ sz\ *\ sx\ *\ sy);}
+\DoxyCodeLine{00183\ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{classQuat_ae0e71415ee746c38c27b04e7dbc9b4ed}{Quat::GetEulerAngles}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{float}\ y\_sq\ =\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}()\ *\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}();}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ X}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{float}\ t0\ =\ 2.0f\ *\ (\mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}()\ *\ \mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}()\ +\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}()\ *\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}());}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{float}\ t1\ =\ 1.0f\ -\/\ 2.0f\ *\ (\mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}()\ *\ \mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}()\ +\ y\_sq);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{comment}{//\ Y}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordtype}{float}\ t2\ =\ 2.0f\ *\ (\mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}()\ *\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}()\ -\/\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}()\ *\ \mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}());}
+\DoxyCodeLine{00195\ \ \ \ \ t2\ =\ t2\ >\ 1.0f?\ 1.0f\ :\ t2;}
+\DoxyCodeLine{00196\ \ \ \ \ t2\ =\ t2\ <\ -\/1.0f?\ -\/1.0f\ :\ t2;}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ Z}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{float}\ t3\ =\ 2.0f\ *\ (\mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}()\ *\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}()\ +\ \mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}()\ *\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}());}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{float}\ t4\ =\ 1.0f\ -\/\ 2.0f\ *\ (y\_sq\ +\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}()\ *\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}());}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(ATan2(t0,\ t1),\ ASin(t2),\ ATan2(t3,\ t4));}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classQuat_aa30f29eff5df0de717de979bf3aae295}{Quat::GetTwist}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAxis)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00206\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ twist(\mbox{\hyperlink{classVec4}{Vec4}}(\mbox{\hyperlink{classQuat_afa7fe10bf8a457fb2d524791ccd79ec4}{GetXYZ}}().\mbox{\hyperlink{classQuat_aa95ff0fd4a249749b023c32a5be3a44f}{Dot}}(inAxis)\ *\ inAxis,\ \mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}()));}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{float}\ twist\_len\ =\ twist.\mbox{\hyperlink{classQuat_a60f30c650e027a892e699c156c7eca67}{LengthSq}}();}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{if}\ (twist\_len\ !=\ 0.0f)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ twist\ /\ sqrt(twist\_len);}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat::sIdentity}}();}
+\DoxyCodeLine{00213\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classQuat_a7bb8b016622e5ad8f361c52f9037f1aa}{Quat::GetSwingTwist}}(\mbox{\hyperlink{classQuat}{Quat}}\ \&outSwing,\ \mbox{\hyperlink{classQuat}{Quat}}\ \&outTwist)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00216\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ \mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}(),\ y\ =\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}(),\ z\ =\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}(),\ w\ =\ \mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}();}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ sqrt(Square(w)\ +\ Square(x));}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{if}\ (s\ !=\ 0.0f)}
+\DoxyCodeLine{00220\ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ outTwist\ =\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(x\ /\ s,\ 0,\ 0,\ w\ /\ s);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ outSwing\ =\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(0,\ (w\ *\ y\ -\/\ x\ *\ z)\ /\ s,\ (w\ *\ z\ +\ x\ *\ y)\ /\ s,\ s);}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00225\ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ both\ x\ and\ w\ are\ zero,\ this\ must\ be\ a\ 180\ degree\ rotation\ around\ either\ y\ or\ z}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ outTwist\ =\ \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat::sIdentity}}();}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ outSwing\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classQuat_a54dc8061046dd6ba3fb3a1965cf7319c}{Quat::LERP}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inDestination,\ \textcolor{keywordtype}{float}\ inFraction)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{float}\ scale0\ =\ 1.0f\ -\/\ inFraction;}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(scale0)\ *\ \mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}\ +\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inFraction)\ *\ inDestination.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}});}
+\DoxyCodeLine{00236\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classQuat_afc3276d69ac8713afddf3cf970c27371}{Quat::SLERP}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inDestination,\ \textcolor{keywordtype}{float}\ inFraction)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00239\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{comment}{//\ Difference\ at\ which\ to\ LERP\ instead\ of\ SLERP}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ delta\ =\ 0.0001f;}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{comment}{//\ Calc\ cosine}}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{float}\ sign\_scale1\ =\ 1.0f;}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{float}\ cos\_omega\ =\ \mbox{\hyperlink{classQuat_aa95ff0fd4a249749b023c32a5be3a44f}{Dot}}(inDestination);}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{//\ Adjust\ signs\ (if\ necessary)}}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{if}\ (cos\_omega\ <\ 0.0f)}
+\DoxyCodeLine{00249\ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ cos\_omega\ =\ -\/cos\_omega;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ sign\_scale1\ =\ -\/1.0f;}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{comment}{//\ Calculate\ coefficients}}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordtype}{float}\ scale0,\ scale1;}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordflow}{if}\ (1.0f\ -\/\ cos\_omega\ >\ delta)}
+\DoxyCodeLine{00257\ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Standard\ case\ (slerp)}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ omega\ =\ ACos(cos\_omega);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ sin\_omega\ =\ Sin(omega);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ scale0\ =\ Sin((1.0f\ -\/\ inFraction)\ *\ omega)\ /\ sin\_omega;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ scale1\ =\ sign\_scale1\ *\ Sin(inFraction\ *\ omega)\ /\ sin\_omega;}
+\DoxyCodeLine{00263\ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Quaternions\ are\ very\ close\ so\ we\ can\ do\ a\ linear\ interpolation}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ scale0\ =\ 1.0f\ -\/\ inFraction;}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ scale1\ =\ sign\_scale1\ *\ inFraction;}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{//\ Interpolate\ between\ the\ two\ quaternions}}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(scale0)\ *\ \mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}\ +\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(scale1)\ *\ inDestination.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}).Normalized();}
+\DoxyCodeLine{00273\ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \mbox{\hyperlink{classVec3}{Vec3}}\ Quat::operator\ *\ (\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00276\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{comment}{//\ Rotating\ a\ vector\ by\ a\ quaternion\ is\ done\ by:\ p'\ =\ q\ *\ p\ *\ q\string^-\/1\ (q\string^-\/1\ =\ conjugated(q)\ for\ a\ unit\ quaternion)}}
+\DoxyCodeLine{00278\ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}((*\textcolor{keyword}{this}\ *\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4}{Vec4}}(inValue,\ 0))\ *\ \mbox{\hyperlink{classQuat_ac69dfd8cdf79a19b8c3f385125ff5ddc}{Conjugated}}()).\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}});}
+\DoxyCodeLine{00280\ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{classQuat_a108350bfce9aa53b1af87fbe2698f6f4}{Quat::InverseRotate}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00283\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00284\ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}((\mbox{\hyperlink{classQuat_ac69dfd8cdf79a19b8c3f385125ff5ddc}{Conjugated}}()\ *\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4}{Vec4}}(inValue,\ 0))\ *\ *\textcolor{keyword}{this}).\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}});}
+\DoxyCodeLine{00286\ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{classQuat_ad591c3ca827733b3be275ffaf808e838}{Quat::RotateAxisX}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00289\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{comment}{//\ This\ is\ *this\ *\ Vec3::sAxisX()\ written\ out:}}
+\DoxyCodeLine{00291\ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ \mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}(),\ y\ =\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}(),\ z\ =\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}(),\ w\ =\ \mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}();}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordtype}{float}\ tx\ =\ 2.0f\ *\ x,\ tw\ =\ 2.0f\ *\ w;}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(tx\ *\ x\ +\ tw\ *\ w\ -\/\ 1.0f,\ tx\ *\ y\ +\ z\ *\ tw,\ tx\ *\ z\ -\/\ y\ *\ tw);}
+\DoxyCodeLine{00295\ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{classQuat_adb1d1a70ed64c0a6fadc849126306706}{Quat::RotateAxisY}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00298\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{comment}{//\ This\ is\ *this\ *\ Vec3::sAxisY()\ written\ out:}}
+\DoxyCodeLine{00300\ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ \mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}(),\ y\ =\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}(),\ z\ =\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}(),\ w\ =\ \mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}();}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordtype}{float}\ ty\ =\ 2.0f\ *\ y,\ tw\ =\ 2.0f\ *\ w;}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(x\ *\ ty\ -\/\ z\ *\ tw,\ tw\ *\ w\ +\ ty\ *\ y\ -\/\ 1.0f,\ x\ *\ tw\ +\ ty\ *\ z);}
+\DoxyCodeLine{00304\ \}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{classQuat_ab226b2147a748e53008556bcf1a3cd76}{Quat::RotateAxisZ}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00307\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{comment}{//\ This\ is\ *this\ *\ Vec3::sAxisZ()\ written\ out:}}
+\DoxyCodeLine{00309\ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ \mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}(),\ y\ =\ \mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}(),\ z\ =\ \mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}(),\ w\ =\ \mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}();}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordtype}{float}\ tz\ =\ 2.0f\ *\ z,\ tw\ =\ 2.0f\ *\ w;}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(x\ *\ tz\ +\ y\ *\ tw,\ y\ *\ tz\ -\/\ x\ *\ tw,\ tw\ *\ w\ +\ tz\ *\ z\ -\/\ 1.0f);}
+\DoxyCodeLine{00313\ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classQuat_ae95e7b6c9f4167b91b674a696c681c6e}{Quat::StoreFloat3}}(\mbox{\hyperlink{classFloat3}{Float3}}\ *outV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00316\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00317\ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00318\ \ \ \ \ \mbox{\hyperlink{classQuat_a9f563ca8c8a8b71a0aa340d12080c2ef}{EnsureWPositive}}().\mbox{\hyperlink{classQuat_afa7fe10bf8a457fb2d524791ccd79ec4}{GetXYZ}}().\mbox{\hyperlink{classVec3_ab22c62c48d2de13947c0cd3413018364}{StoreFloat3}}(outV);}
+\DoxyCodeLine{00319\ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classQuat_a60c11537faec1e7517a957f02afc4b6d}{Quat::sLoadFloat3Unsafe}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat3}{Float3}}\ \&inV)}
+\DoxyCodeLine{00322\ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v\ =\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(inV);}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordtype}{float}\ w\ =\ sqrt(max(1.0f\ -\/\ v.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}(),\ 0.0f));\ \textcolor{comment}{//\ It\ is\ possible\ that\ the\ length\ of\ v\ is\ a\ fraction\ above\ 1,\ and\ we\ don't\ want\ to\ introduce\ NaN's\ in\ that\ case\ so\ we\ clamp\ to\ 0}}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat_aab09b7638f6936a9ad7a1e4ffce606e8}{Quat}}(\mbox{\hyperlink{classVec4}{Vec4}}(v,\ w));}
+\DoxyCodeLine{00326\ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

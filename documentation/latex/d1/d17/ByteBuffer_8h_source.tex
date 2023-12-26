@@ -1,0 +1,73 @@
+\doxysection{Byte\+Buffer.\+h}
+\hypertarget{ByteBuffer_8h_source}{}\label{ByteBuffer_8h_source}\index{includes/jolt/Core/ByteBuffer.h@{includes/jolt/Core/ByteBuffer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/STLAlignedAllocator.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ }ByteBufferVector\ =\ std::vector<uint8,\ STLAlignedAllocator<uint8,\ JPH\_CACHE\_LINE\_SIZE>>;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ :\ \textcolor{keyword}{public}\ ByteBufferVector}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classByteBuffer_ad30809667592e1c5b70ecd023017b692}{Align}}(\textcolor{keywordtype}{size\_t}\ inSize)}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assert\ power\ of\ 2}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ JPH\_ASSERT(IsPowerOf2(inSize));}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ new\ size\ and\ resize\ buffer}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ s\ =\ AlignUp(size(),\ inSize);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ resize(s);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Type>}
+\DoxyCodeLine{00033\ \ \ \ \ Type\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classByteBuffer_a6fc1274ad81be5609f1f1e807be7cf6b}{Allocate}}(\textcolor{keywordtype}{size\_t}\ inSize\ =\ 1)}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reserve\ space}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ s\ =\ size();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ resize(s\ +\ inSize\ *\ \textcolor{keyword}{sizeof}(Type));}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ data\ pointer}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Type\ *data\ =\ \textcolor{keyword}{reinterpret\_cast<}Type\ *\textcolor{keyword}{>}(\&at(s));}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ elements}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (Type\ *d\ =\ data,\ *d\_end\ =\ data\ +\ inSize;\ d\ <\ d\_end;\ ++d)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (d)\ Type;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ pointer}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Type>}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classByteBuffer_ac1f1080abfd6e0dce2133c7781b46fee}{AppendVector}}(\textcolor{keyword}{const}\ Array<Type>\ \&inData)}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ inData.size()\ *\ \textcolor{keyword}{sizeof}(Type);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ uint8\ *data\ =\ Allocate<uint8>(size);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ memcpy(data,\ \&inData[0],\ size);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Type>}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ Type\ *\ \ \ \ \mbox{\hyperlink{classByteBuffer_afc33bc408efa8e38051debb2c4f64aa8}{Get}}(\textcolor{keywordtype}{size\_t}\ inPosition)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }Type\ *\textcolor{keyword}{>}(\&at(inPosition));}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Type>}
+\DoxyCodeLine{00068\ \ \ \ \ Type\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classByteBuffer_a502a857a7380d4ef9cdf880563a426ef}{Get}}(\textcolor{keywordtype}{size\_t}\ inPosition)}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}Type\ *\textcolor{keyword}{>}(\&at(inPosition));}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

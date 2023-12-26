@@ -1,0 +1,79 @@
+\doxysection{Hash\+Combine.\+h}
+\hypertarget{HashCombine_8h_source}{}\label{HashCombine_8h_source}\index{includes/jolt/Core/HashCombine.h@{includes/jolt/Core/HashCombine.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{inline}\ uint64\ HashBytes(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inData,\ uint\ inSize,\ uint64\ inSeed\ =\ 0xcbf29ce484222325UL)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ uint64\ hash\ =\ inSeed;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ uint8\ *data\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint8\ *\textcolor{keyword}{>}(inData);\ data\ <\ reinterpret\_cast<const\ uint8\ *>(inData)\ +\ inSize;\ ++data)}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ hash\ =\ hash\ \string^\ uint64(*data);}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ hash\ =\ hash\ *\ 0x100000001b3UL;}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ hash;}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ uint64\ Hash64(uint64\ inValue)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ uint64\ hash\ =\ inValue;}
+\DoxyCodeLine{00033\ \ \ \ \ hash\ =\ (\string~hash)\ +\ (hash\ <<\ 21);\ \textcolor{comment}{//\ hash\ =\ (hash\ <<\ 21)\ -\/\ hash\ -\/\ 1;}}
+\DoxyCodeLine{00034\ \ \ \ \ hash\ =\ hash\ \string^\ (hash\ >>\ 24);}
+\DoxyCodeLine{00035\ \ \ \ \ hash\ =\ (hash\ +\ (hash\ <<\ 3))\ +\ (hash\ <<\ 8);\ \textcolor{comment}{//\ hash\ *\ 265}}
+\DoxyCodeLine{00036\ \ \ \ \ hash\ =\ hash\ \string^\ (hash\ >>\ 14);}
+\DoxyCodeLine{00037\ \ \ \ \ hash\ =\ (hash\ +\ (hash\ <<\ 2))\ +\ (hash\ <<\ 4);\ \textcolor{comment}{//\ hash\ *\ 21}}
+\DoxyCodeLine{00038\ \ \ \ \ hash\ =\ hash\ \string^\ (hash\ >>\ 28);}
+\DoxyCodeLine{00039\ \ \ \ \ hash\ =\ hash\ +\ (hash\ <<\ 31);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ hash;}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ HashCombineHelper(\textcolor{keywordtype}{size\_t}\ \&ioSeed,\ \textcolor{keyword}{const}\ T\ \&inValue)}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ std::hash<T>\ hasher;}
+\DoxyCodeLine{00049\ \ \ \ \ ioSeed\ \string^=\ hasher(inValue)\ +\ 0x9e3779b9\ +\ (ioSeed\ <<\ 6)\ +\ (ioSeed\ >>\ 2);}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Values>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ HashCombine(std::size\_t\ \&ioSeed,\ Values...\ inValues)}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Hash\ all\ values\ together\ using\ a\ fold\ expression}}
+\DoxyCodeLine{00068\ \ \ \ \ (HashCombineHelper(ioSeed,\ inValues),\ ...);}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ JPH\_SUPPRESS\_WARNING\_PUSH}
+\DoxyCodeLine{00074\ JPH\_CLANG\_SUPPRESS\_WARNING(\textcolor{stringliteral}{"{}-\/Wc++98-\/compat-\/pedantic"{}})}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ JPH\_MAKE\_HASH\_STRUCT(type,\ name,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \ \ struct\ [[nodiscard]]\ name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ std::size\_t\ operator()(const\ type\ \&t)\ const\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ ret\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ ::JPH::HashCombine(ret,\ \_\_VA\_ARGS\_\_);\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ return\ ret;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ \ \ \};}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ JPH\_MAKE\_HASHABLE(type,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \ \ JPH\_SUPPRESS\_WARNING\_PUSH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \ \ JPH\_SUPPRESS\_WARNINGS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ namespace\ std\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ template<>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ JPH\_MAKE\_HASH\_STRUCT(type,\ hash<type>,\ \_\_VA\_ARGS\_\_)\ \(\backslash\)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \ \ JPH\_SUPPRESS\_WARNING\_POP}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ JPH\_SUPPRESS\_WARNING\_POP}
+
+\end{DoxyCode}

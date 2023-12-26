@@ -1,0 +1,260 @@
+\doxysection{Body\+Manager Class Reference}
+\hypertarget{classBodyManager}{}\label{classBodyManager}\index{BodyManager@{BodyManager}}
+
+
+Class that contains all bodies.  
+
+
+
+
+{\ttfamily \#include $<$Body\+Manager.\+h$>$}
+
+
+
+Inheritance diagram for Body\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/db9/classBodyManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Body\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d22/classBodyManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structBodyManager_1_1BodyStats}{Body\+Stats}}
+\begin{DoxyCompactList}\small\item\em Helper struct that counts the number of bodies of each type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2}{EShape\+Color}} \{ \newline
+\mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2a99ee1c53265abeecfe720f4bc3fc44a6}{Instance\+Color}}
+, \mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ae474501d8e6be0d0983214885896073a}{Shape\+Type\+Color}}
+, \mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ac415a727aec99b44707c3555b360c85b}{Motion\+Type\+Color}}
+, \mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ac00cf17870a7f30bd11fb50ca2b66709}{Sleep\+Color}}
+, \newline
+\mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2a3396ca60625ec56b88b34019e16d5121}{Island\+Color}}
+, \mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ae4a9ebce3bde9cd56c2cccdf58d392a0}{Material\+Color}}
+ \}
+\item 
+\Hypertarget{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}\label{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2} 
+using {\bfseries Mutex\+Mask} = uint64
+\begin{DoxyCompactList}\small\item\em Bodies are protected using an array of mutexes (so a fixed number, not 1 per body). Each bit in this mask indicates a locked mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyManager_aa4febc2d607766e3aad3cf25dbcc4fd4}\label{classBodyManager_aa4febc2d607766e3aad3cf25dbcc4fd4} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries \texorpdfstring{$\sim$}{\string~}\+Body\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a2d0f5cce4bc65b5dd60e79edc37fd0d9}\label{classBodyManager_a2d0f5cce4bc65b5dd60e79edc37fd0d9} 
+void {\bfseries Init} (uint in\+Max\+Bodies, uint in\+Num\+Body\+Mutexes, const \mbox{\hyperlink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}} \&in\+Layer\+Interface)
+\begin{DoxyCompactList}\small\item\em Initialize the manager. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a28e008be233691bbccef7d17e20d113d}\label{classBodyManager_a28e008be233691bbccef7d17e20d113d} 
+uint {\bfseries Get\+Num\+Bodies} () const
+\begin{DoxyCompactList}\small\item\em Gets the current amount of bodies that are in the body manager. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ad54b2a378ee3653de2130da1ab3f69a5}\label{classBodyManager_ad54b2a378ee3653de2130da1ab3f69a5} 
+uint {\bfseries Get\+Max\+Bodies} () const
+\begin{DoxyCompactList}\small\item\em Gets the max bodies that we can support. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a814d6b104c5b6109ac45eb6039bca28d}\label{classBodyManager_a814d6b104c5b6109ac45eb6039bca28d} 
+\mbox{\hyperlink{structBodyManager_1_1BodyStats}{Body\+Stats}} {\bfseries Get\+Body\+Stats} () const
+\begin{DoxyCompactList}\small\item\em Get stats about the bodies in the body manager (slow, iterates through all bodies) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ab90b6879d9b21e0301102dd1f5791cb2}\label{classBodyManager_ab90b6879d9b21e0301102dd1f5791cb2} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Allocate\+Body} (const \mbox{\hyperlink{classBodyCreationSettings}{Body\+Creation\+Settings}} \&in\+Body\+Creation\+Settings) const
+\begin{DoxyCompactList}\small\item\em Create a body using creation settings. The returned body will not be part of the body manager yet. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a003634616068c3e51029c38e77de7fec}\label{classBodyManager_a003634616068c3e51029c38e77de7fec} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Allocate\+Soft\+Body} (const \mbox{\hyperlink{classSoftBodyCreationSettings}{Soft\+Body\+Creation\+Settings}} \&in\+Soft\+Body\+Creation\+Settings) const
+\begin{DoxyCompactList}\small\item\em Create a soft body using creation settings. The returned body will not be part of the body manager yet. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ac9b3fea305ee74fb2cb1d70d4773aee0}\label{classBodyManager_ac9b3fea305ee74fb2cb1d70d4773aee0} 
+void {\bfseries Free\+Body} (\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}in\+Body) const
+\begin{DoxyCompactList}\small\item\em Free a body that has not been added to the body manager yet (if it has, use Destroy\+Bodies). \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_aa7e0cc82ef6c860655af523205fd9cb6}\label{classBodyManager_aa7e0cc82ef6c860655af523205fd9cb6} 
+bool {\bfseries Add\+Body} (\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}io\+Body)
+\begin{DoxyCompactList}\small\item\em Add a body to the body manager, assigning it the next available ID. Returns false if no more IDs are available. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ad8c3c4c7e6257244b81cfa8bc590149b}\label{classBodyManager_ad8c3c4c7e6257244b81cfa8bc590149b} 
+bool {\bfseries Add\+Body\+With\+Custom\+ID} (\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}io\+Body, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID)
+\begin{DoxyCompactList}\small\item\em Add a body to the body manager, assigning it a custom ID. Returns false if the ID is not valid. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a2a65ea34748b9f3f354d4325f905ab1c}\label{classBodyManager_a2a65ea34748b9f3f354d4325f905ab1c} 
+void {\bfseries Remove\+Bodies} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}in\+Body\+IDs, int in\+Number, \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+Bodies)
+\begin{DoxyCompactList}\small\item\em Remove a list of bodies from the body manager. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a5c0cc30ec7f2c4a5bcd1119906a6632e}\label{classBodyManager_a5c0cc30ec7f2c4a5bcd1119906a6632e} 
+void {\bfseries Destroy\+Bodies} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}in\+Body\+IDs, int in\+Number)
+\begin{DoxyCompactList}\small\item\em Remove a set of bodies from the body manager and frees them. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBodyManager_aecdc4718d0c9ccf33f9eaf2a42c6ab79}{Activate\+Bodies}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}in\+Body\+IDs, int in\+Number)
+\item 
+void \mbox{\hyperlink{classBodyManager_ac8e13efcbe3e2fab505e2c9047f9d2ef}{Deactivate\+Bodies}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}in\+Body\+IDs, int in\+Number)
+\item 
+\Hypertarget{classBodyManager_af449412eb723ffe93a193d9b9aa86f3b}\label{classBodyManager_af449412eb723ffe93a193d9b9aa86f3b} 
+void {\bfseries Set\+Motion\+Quality} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body, EMotion\+Quality in\+Motion\+Quality)
+\begin{DoxyCompactList}\small\item\em Update the motion quality for a body. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_aae54df1753149fbac33cb8ea6f930da7}\label{classBodyManager_aae54df1753149fbac33cb8ea6f930da7} 
+void {\bfseries Get\+Active\+Bodies} (EBody\+Type in\+Type, Body\+IDVector \&out\+Body\+IDs) const
+\begin{DoxyCompactList}\small\item\em Get copy of the list of active bodies under protection of a lock. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ac646f95e699a7d4525d65407ee3bea69}\label{classBodyManager_ac646f95e699a7d4525d65407ee3bea69} 
+const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Active\+Bodies\+Unsafe} (EBody\+Type in\+Type) const
+\begin{DoxyCompactList}\small\item\em Get the list of active bodies. Note\+: Not thread safe. The active bodies list can change at any moment. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_afc847edf3623bce165d4c872f0dc4d68}\label{classBodyManager_afc847edf3623bce165d4c872f0dc4d68} 
+uint32 {\bfseries Get\+Num\+Active\+Bodies} (EBody\+Type in\+Type) const
+\begin{DoxyCompactList}\small\item\em Get the number of active bodies. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a462f40b51e2bbdae500c62584d0376be}\label{classBodyManager_a462f40b51e2bbdae500c62584d0376be} 
+uint32 {\bfseries Get\+Num\+Active\+CCDBodies} () const
+\begin{DoxyCompactList}\small\item\em Get the number of active bodies that are using continuous collision detection. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a5f4202f0ef087177b642a93c13d82d9a}\label{classBodyManager_a5f4202f0ef087177b642a93c13d82d9a} 
+void {\bfseries Set\+Body\+Activation\+Listener} (\mbox{\hyperlink{classBodyActivationListener}{Body\+Activation\+Listener}} \texorpdfstring{$\ast$}{*}in\+Listener)
+\begin{DoxyCompactList}\small\item\em Listener that is notified whenever a body is activated/deactivated. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a3bb9c3e62332a39fd9ac1eac4c12ca52}\label{classBodyManager_a3bb9c3e62332a39fd9ac1eac4c12ca52} 
+\mbox{\hyperlink{classBodyActivationListener}{Body\+Activation\+Listener}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body\+Activation\+Listener} () const
+\item 
+\Hypertarget{classBodyManager_ac6c6a208195a666e62fc3bd9c4456bfa}\label{classBodyManager_ac6c6a208195a666e62fc3bd9c4456bfa} 
+const Body\+Vector \& {\bfseries Get\+Bodies} () const
+\begin{DoxyCompactList}\small\item\em Get all bodies. Note that this can contain invalid body pointers, call s\+Is\+Valid\+Body\+Pointer to check. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ace4bb400f2a6b4f17e04aa10134dee4f}\label{classBodyManager_ace4bb400f2a6b4f17e04aa10134dee4f} 
+Body\+Vector \& {\bfseries Get\+Bodies} ()
+\begin{DoxyCompactList}\small\item\em Get all bodies. Note that this can contain invalid body pointers, call s\+Is\+Valid\+Body\+Pointer to check. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_aa65000b18f18a1d02bf432446dff7c05}\label{classBodyManager_aa65000b18f18a1d02bf432446dff7c05} 
+void {\bfseries Get\+Body\+IDs} (Body\+IDVector \&out\+Bodies) const
+\begin{DoxyCompactList}\small\item\em Get all body IDs under the protection of a lock. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ae89bc88048a56cbf21d70e78ec142a18}\label{classBodyManager_ae89bc88048a56cbf21d70e78ec142a18} 
+const \mbox{\hyperlink{classBody}{Body}} \& {\bfseries Get\+Body} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+ID) const
+\begin{DoxyCompactList}\small\item\em Access a body (not protected by lock) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a2ac7db2095cb425b04bdad508e2acc4f}\label{classBodyManager_a2ac7db2095cb425b04bdad508e2acc4f} 
+\mbox{\hyperlink{classBody}{Body}} \& {\bfseries Get\+Body} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+ID)
+\begin{DoxyCompactList}\small\item\em Access a body (not protected by lock) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ac441f5d6015c113423972740f3e2815f}\label{classBodyManager_ac441f5d6015c113423972740f3e2815f} 
+const \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Try\+Get\+Body} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+ID) const
+\begin{DoxyCompactList}\small\item\em Access a body, will return a nullptr if the body ID is no longer valid (not protected by lock) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a57535e1d1645cc00b57fb7e8ecccc259}\label{classBodyManager_a57535e1d1645cc00b57fb7e8ecccc259} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Try\+Get\+Body} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+ID)
+\begin{DoxyCompactList}\small\item\em Access a body, will return a nullptr if the body ID is no longer valid (not protected by lock) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a608703b173fa10233dfd617150a2db67}\label{classBodyManager_a608703b173fa10233dfd617150a2db67} 
+Shared\+Mutex \& {\bfseries Get\+Mutex\+For\+Body} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+ID) const
+\begin{DoxyCompactList}\small\item\em Access the mutex for a single body. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a425eaf59b68a237d6821267ed1474f35}\label{classBodyManager_a425eaf59b68a237d6821267ed1474f35} 
+void {\bfseries Lock\+All\+Bodies} () const
+\begin{DoxyCompactList}\small\item\em Lock all bodies. This should only be done during \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update()}. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a5bfccfc12e83e13bc8ed0ceacff6ccc3}\label{classBodyManager_a5bfccfc12e83e13bc8ed0ceacff6ccc3} 
+void {\bfseries Unlock\+All\+Bodies} () const
+\begin{DoxyCompactList}\small\item\em Unlock all bodies. This should only be done during \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update()}. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ae42a0183320aaebe459af6b0cc937daf}\label{classBodyManager_ae42a0183320aaebe459af6b0cc937daf} 
+void {\bfseries Set\+Body\+Object\+Layer\+Internal} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body, Object\+Layer in\+Layer) const
+\begin{DoxyCompactList}\small\item\em Function to update body\textquotesingle{}s layer (should only be called by the \doxylink{classBodyInterface}{Body\+Interface} since it also requires updating the broadphase) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a2d9975b3a1fb311c3956820eae65b7ce}\label{classBodyManager_a2d9975b3a1fb311c3956820eae65b7ce} 
+void {\bfseries Invalidate\+Contact\+Cache\+For\+Body} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body)
+\begin{DoxyCompactList}\small\item\em Set the Body\+::\+EFlags\+::\+Invalidate\+Contact\+Cache flag for the specified body. This means that the collision cache is invalid for any body pair involving that body until the next physics step. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a4e5f1bfab762cd561b21320d97ef0594}\label{classBodyManager_a4e5f1bfab762cd561b21320d97ef0594} 
+void {\bfseries Validate\+Contact\+Cache\+For\+All\+Bodies} ()
+\begin{DoxyCompactList}\small\item\em Reset the Body\+::\+EFlags\+::\+Invalidate\+Contact\+Cache flag for all bodies. All contact pairs in the contact cache will now by valid again. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_a5fcbaca9d9a52129a56451ce519e9598}\label{classBodyManager_a5fcbaca9d9a52129a56451ce519e9598} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream, const \mbox{\hyperlink{classStateRecorderFilter}{State\+Recorder\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter) const
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_af64512a91a78f48a75c5cead5552e281}\label{classBodyManager_af64512a91a78f48a75c5cead5552e281} 
+bool {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. Returns false if failed. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ab1eb2a2bbf12bbe839475093826b6ceb}\label{classBodyManager_ab1eb2a2bbf12bbe839475093826b6ceb} 
+void {\bfseries Save\+Body\+State} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body, \mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Save the state of a single body for replay. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyManager_ad1de147dfb454f5963629a98489c1159}\label{classBodyManager_ad1de147dfb454f5963629a98489c1159} 
+void {\bfseries Restore\+Body\+State} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body, \mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Save the state of a single body for replay. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Batch body mutex access (do not use directly)}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyManager_a4e54107c92d7ac62098e267ab8d16eb2}\label{classBodyManager_a4e54107c92d7ac62098e267ab8d16eb2} 
+\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{Mutex\+Mask}} {\bfseries Get\+All\+Bodies\+Mutex\+Mask} () const
+\item 
+\Hypertarget{classBodyManager_a78b7c3bde7fcacb772ec345fc19f70e3}\label{classBodyManager_a78b7c3bde7fcacb772ec345fc19f70e3} 
+\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{Mutex\+Mask}} {\bfseries Get\+Mutex\+Mask} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}in\+Bodies, int in\+Number) const
+\item 
+\Hypertarget{classBodyManager_ab9fe4438ea3c96fa4b2cbc724f425024}\label{classBodyManager_ab9fe4438ea3c96fa4b2cbc724f425024} 
+void {\bfseries Lock\+Read} (\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{Mutex\+Mask}} in\+Mutex\+Mask) const
+\item 
+\Hypertarget{classBodyManager_a3cfb772a46e7495234f6f14bff09ba99}\label{classBodyManager_a3cfb772a46e7495234f6f14bff09ba99} 
+void {\bfseries Unlock\+Read} (\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{Mutex\+Mask}} in\+Mutex\+Mask) const
+\item 
+\Hypertarget{classBodyManager_a21232e25b634203c299d6192180b6fe6}\label{classBodyManager_a21232e25b634203c299d6192180b6fe6} 
+void {\bfseries Lock\+Write} (\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{Mutex\+Mask}} in\+Mutex\+Mask) const
+\item 
+\Hypertarget{classBodyManager_a27ee56a1128b6d9df49d56ea8308d95b}\label{classBodyManager_a27ee56a1128b6d9df49d56ea8308d95b} 
+void {\bfseries Unlock\+Write} (\mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{Mutex\+Mask}} in\+Mutex\+Mask) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyManager_a2a95afcef6b2166321d1ba21dce19158}\label{classBodyManager_a2a95afcef6b2166321d1ba21dce19158} 
+static bool {\bfseries s\+Is\+Valid\+Body\+Pointer} (const \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}in\+Body)
+\begin{DoxyCompactList}\small\item\em Check if this is a valid body pointer. When a body is freed the memory that the pointer occupies is reused to store a freelist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that contains all bodies. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2}\label{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2} 
+\index{BodyManager@{BodyManager}!EShapeColor@{EShapeColor}}
+\index{EShapeColor@{EShapeColor}!BodyManager@{BodyManager}}
+\doxysubsubsection{\texorpdfstring{EShapeColor}{EShapeColor}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2}{Body\+Manager\+::\+EShape\+Color}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InstanceColor@{InstanceColor}!BodyManager@{BodyManager}}\index{BodyManager@{BodyManager}!InstanceColor@{InstanceColor}}}\Hypertarget{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2a99ee1c53265abeecfe720f4bc3fc44a6}\label{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2a99ee1c53265abeecfe720f4bc3fc44a6} 
+Instance\+Color&Random color per instance. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ShapeTypeColor@{ShapeTypeColor}!BodyManager@{BodyManager}}\index{BodyManager@{BodyManager}!ShapeTypeColor@{ShapeTypeColor}}}\Hypertarget{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ae474501d8e6be0d0983214885896073a}\label{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ae474501d8e6be0d0983214885896073a} 
+Shape\+Type\+Color&Convex = green, scaled = yellow, compound = orange, mesh = red. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MotionTypeColor@{MotionTypeColor}!BodyManager@{BodyManager}}\index{BodyManager@{BodyManager}!MotionTypeColor@{MotionTypeColor}}}\Hypertarget{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ac415a727aec99b44707c3555b360c85b}\label{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ac415a727aec99b44707c3555b360c85b} 
+Motion\+Type\+Color&Static = grey, keyframed = green, dynamic = random color per instance. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SleepColor@{SleepColor}!BodyManager@{BodyManager}}\index{BodyManager@{BodyManager}!SleepColor@{SleepColor}}}\Hypertarget{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ac00cf17870a7f30bd11fb50ca2b66709}\label{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ac00cf17870a7f30bd11fb50ca2b66709} 
+Sleep\+Color&Static = grey, keyframed = green, dynamic = yellow, sleeping = red. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IslandColor@{IslandColor}!BodyManager@{BodyManager}}\index{BodyManager@{BodyManager}!IslandColor@{IslandColor}}}\Hypertarget{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2a3396ca60625ec56b88b34019e16d5121}\label{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2a3396ca60625ec56b88b34019e16d5121} 
+Island\+Color&Static = grey, active = random color per island, sleeping = light grey. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaterialColor@{MaterialColor}!BodyManager@{BodyManager}}\index{BodyManager@{BodyManager}!MaterialColor@{MaterialColor}}}\Hypertarget{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ae4a9ebce3bde9cd56c2cccdf58d392a0}\label{classBodyManager_ae1f52f80ea3133d1b767f007f83350e2ae4a9ebce3bde9cd56c2cccdf58d392a0} 
+Material\+Color&\doxylink{classColor}{Color} as defined by the \doxylink{classPhysicsMaterial}{Physics\+Material} of the shape. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBodyManager_aecdc4718d0c9ccf33f9eaf2a42c6ab79}\label{classBodyManager_aecdc4718d0c9ccf33f9eaf2a42c6ab79} 
+\index{BodyManager@{BodyManager}!ActivateBodies@{ActivateBodies}}
+\index{ActivateBodies@{ActivateBodies}!BodyManager@{BodyManager}}
+\doxysubsubsection{\texorpdfstring{ActivateBodies()}{ActivateBodies()}}
+{\footnotesize\ttfamily void Body\+Manager\+::\+Activate\+Bodies (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{in\+Body\+IDs,  }\item[{int}]{in\+Number }\end{DoxyParamCaption})}
+
+Activate a list of bodies. This function should only be called when an exclusive lock for the bodies are held. \Hypertarget{classBodyManager_ac8e13efcbe3e2fab505e2c9047f9d2ef}\label{classBodyManager_ac8e13efcbe3e2fab505e2c9047f9d2ef} 
+\index{BodyManager@{BodyManager}!DeactivateBodies@{DeactivateBodies}}
+\index{DeactivateBodies@{DeactivateBodies}!BodyManager@{BodyManager}}
+\doxysubsubsection{\texorpdfstring{DeactivateBodies()}{DeactivateBodies()}}
+{\footnotesize\ttfamily void Body\+Manager\+::\+Deactivate\+Bodies (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{in\+Body\+IDs,  }\item[{int}]{in\+Number }\end{DoxyParamCaption})}
+
+Deactivate a list of bodies. This function should only be called when an exclusive lock for the bodies are held. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Body/Body\+Manager.\+h\end{DoxyCompactItemize}

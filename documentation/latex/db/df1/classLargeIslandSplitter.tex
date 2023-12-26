@@ -1,0 +1,130 @@
+\doxysection{Large\+Island\+Splitter Class Reference}
+\hypertarget{classLargeIslandSplitter}{}\label{classLargeIslandSplitter}\index{LargeIslandSplitter@{LargeIslandSplitter}}
+
+
+{\ttfamily \#include $<$Large\+Island\+Splitter.\+h$>$}
+
+
+
+Inheritance diagram for Large\+Island\+Splitter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{db/d25/classLargeIslandSplitter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Large\+Island\+Splitter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{da/d3b/classLargeIslandSplitter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLargeIslandSplitter_1_1Split}{Split}}
+\begin{DoxyCompactList}\small\item\em Describes a split of constraints and contacts. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classLargeIslandSplitter_1_1Splits}{Splits}}
+\begin{DoxyCompactList}\small\item\em Structure that describes the resulting splits from the large island splitter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68}{EStatus}} \{ \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a01811fa00be6bc53249ea970efb0cc9f}{Waiting\+For\+Batch}}
+, \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a39b684c3a6067a4e201699e906bd4af1}{Batch\+Retrieved}}
+, \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a6d9a123e6f06ce621f7ad5f18f9392c4}{All\+Batches\+Done}}
+ \}
+\begin{DoxyCompactList}\small\item\em Status code for retrieving a batch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classLargeIslandSplitter_a6453331c5fb852bb201b04f14dc9a281}\label{classLargeIslandSplitter_a6453331c5fb852bb201b04f14dc9a281} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Large\+Island\+Splitter} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_a6423724ea978d94f3faff78bb5a5965d}\label{classLargeIslandSplitter_a6423724ea978d94f3faff78bb5a5965d} 
+void {\bfseries Prepare} (const \mbox{\hyperlink{classIslandBuilder}{Island\+Builder}} \&in\+Island\+Builder, uint32 in\+Num\+Active\+Bodies, \mbox{\hyperlink{classTempAllocator}{Temp\+Allocator}} \texorpdfstring{$\ast$}{*}in\+Temp\+Allocator)
+\begin{DoxyCompactList}\small\item\em Prepare the island splitter by allocating memory. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_abdd73c85801b06752d297cf36df1b44f}\label{classLargeIslandSplitter_abdd73c85801b06752d297cf36df1b44f} 
+uint {\bfseries Assign\+Split} (const \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}in\+Body2)
+\begin{DoxyCompactList}\small\item\em Assign two bodies to a split. Returns the split index. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_a1b2ef7ebff94911ee008f25f6c0c741b}\label{classLargeIslandSplitter_a1b2ef7ebff94911ee008f25f6c0c741b} 
+uint {\bfseries Assign\+To\+Non\+Parallel\+Split} (const \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}in\+Body)
+\begin{DoxyCompactList}\small\item\em Force a body to be in a non parallel split. Returns the split index. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_a0e0435f6f000b574ec4e9649400f38cd}\label{classLargeIslandSplitter_a0e0435f6f000b574ec4e9649400f38cd} 
+bool {\bfseries Split\+Island} (uint32 in\+Island\+Index, const \mbox{\hyperlink{classIslandBuilder}{Island\+Builder}} \&in\+Island\+Builder, const \mbox{\hyperlink{classBodyManager}{Body\+Manager}} \&in\+Body\+Manager, const \mbox{\hyperlink{classContactConstraintManager}{Contact\+Constraint\+Manager}} \&in\+Contact\+Manager, \mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Active\+Constraints, \mbox{\hyperlink{classCalculateSolverSteps}{Calculate\+Solver\+Steps}} \&io\+Steps\+Calculator)
+\begin{DoxyCompactList}\small\item\em \doxylink{classLargeIslandSplitter_1_1Splits}{Splits} up an island, the created splits will be added to the list of batches and can be fetched with Fetch\+Next\+Batch. Returns false if the island did not need splitting. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_a47f81f800bdb0870c8569a5734303d4e}\label{classLargeIslandSplitter_a47f81f800bdb0870c8569a5734303d4e} 
+\mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68}{EStatus}} {\bfseries Fetch\+Next\+Batch} (uint \&out\+Split\+Island\+Index, uint32 \texorpdfstring{$\ast$}{*}\&out\+Constraints\+Begin, uint32 \texorpdfstring{$\ast$}{*}\&out\+Constraints\+End, uint32 \texorpdfstring{$\ast$}{*}\&out\+Contacts\+Begin, uint32 \texorpdfstring{$\ast$}{*}\&out\+Contacts\+End, bool \&out\+First\+Iteration)
+\begin{DoxyCompactList}\small\item\em Fetch the next batch to process, returns a handle in out\+Split\+Island\+Index that must be provided to Mark\+Batch\+Processed when complete. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_a2934ec09e8492356eab6360ba6091fb4}\label{classLargeIslandSplitter_a2934ec09e8492356eab6360ba6091fb4} 
+void {\bfseries Mark\+Batch\+Processed} (uint in\+Split\+Island\+Index, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraints\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Constraints\+End, const uint32 \texorpdfstring{$\ast$}{*}in\+Contacts\+Begin, const uint32 \texorpdfstring{$\ast$}{*}in\+Contacts\+End, bool \&out\+Last\+Iteration, bool \&out\+Final\+Batch)
+\begin{DoxyCompactList}\small\item\em Mark a batch as processed. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_a9c0c434f77d1e58d2fce4fbe9247236e}\label{classLargeIslandSplitter_a9c0c434f77d1e58d2fce4fbe9247236e} 
+uint32 {\bfseries Get\+Island\+Index} (uint in\+Split\+Island\+Index) const
+\begin{DoxyCompactList}\small\item\em Get the island index of the island that was split for a particular split island index. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_acf4099c9cd655a77a1c7331724608d22}\label{classLargeIslandSplitter_acf4099c9cd655a77a1c7331724608d22} 
+void {\bfseries Prepare\+For\+Solve\+Positions} ()
+\begin{DoxyCompactList}\small\item\em Prepare the island splitter for iterating over the split islands again for position solving. Marks all batches as startable. \end{DoxyCompactList}\item 
+\Hypertarget{classLargeIslandSplitter_ac5d0857609c5c1375dd9cd78a5f6148a}\label{classLargeIslandSplitter_ac5d0857609c5c1375dd9cd78a5f6148a} 
+void {\bfseries Reset} (\mbox{\hyperlink{classTempAllocator}{Temp\+Allocator}} \texorpdfstring{$\ast$}{*}in\+Temp\+Allocator)
+\begin{DoxyCompactList}\small\item\em Reset the island splitter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classLargeIslandSplitter_a5280cc4c5d98d6e65f339c7187c7cc80}\label{classLargeIslandSplitter_a5280cc4c5d98d6e65f339c7187c7cc80} 
+static constexpr uint {\bfseries c\+Num\+Splits} = sizeof(Split\+Mask) \texorpdfstring{$\ast$}{*} 8
+\item 
+\Hypertarget{classLargeIslandSplitter_ada535de30d7ab4bdb2bc630b7b28d81f}\label{classLargeIslandSplitter_ada535de30d7ab4bdb2bc630b7b28d81f} 
+static constexpr uint {\bfseries c\+Non\+Parallel\+Split\+Idx} = c\+Num\+Splits -\/ 1
+\item 
+\Hypertarget{classLargeIslandSplitter_a86a79602d9b93ec4a0c5837465a70b0a}\label{classLargeIslandSplitter_a86a79602d9b93ec4a0c5837465a70b0a} 
+static constexpr uint {\bfseries c\+Large\+Island\+Treshold} = 128
+\begin{DoxyCompactList}\small\item\em If the number of constraints + contacts in an island is larger than this, we will try to split the island. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Assigns bodies in large islands to multiple groups that can run in parallel
+
+This basically implements what is described in\+: High-\/\+Performance Physical Simulations on Next-\/\+Generation Architecture with Many Cores by Chen et al. See\+: \href{http://web.eecs.umich.edu/~msmelyan/papers/physsim_onmanycore_itj.pdf}{\texttt{ http\+://web.\+eecs.\+umich.\+edu/\texorpdfstring{$\sim$}{\string~}msmelyan/papers/physsim\+\_\+onmanycore\+\_\+itj.\+pdf}} section "{}\+PARALLELIZATION METHODOLOGY"{} 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68}\label{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68} 
+\index{LargeIslandSplitter@{LargeIslandSplitter}!EStatus@{EStatus}}
+\index{EStatus@{EStatus}!LargeIslandSplitter@{LargeIslandSplitter}}
+\doxysubsubsection{\texorpdfstring{EStatus}{EStatus}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68}{Large\+Island\+Splitter\+::\+EStatus}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Status code for retrieving a batch. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WaitingForBatch@{WaitingForBatch}!LargeIslandSplitter@{LargeIslandSplitter}}\index{LargeIslandSplitter@{LargeIslandSplitter}!WaitingForBatch@{WaitingForBatch}}}\Hypertarget{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a01811fa00be6bc53249ea970efb0cc9f}\label{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a01811fa00be6bc53249ea970efb0cc9f} 
+Waiting\+For\+Batch&Work is expected to be available later. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BatchRetrieved@{BatchRetrieved}!LargeIslandSplitter@{LargeIslandSplitter}}\index{LargeIslandSplitter@{LargeIslandSplitter}!BatchRetrieved@{BatchRetrieved}}}\Hypertarget{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a39b684c3a6067a4e201699e906bd4af1}\label{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a39b684c3a6067a4e201699e906bd4af1} 
+Batch\+Retrieved&Work is being returned. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AllBatchesDone@{AllBatchesDone}!LargeIslandSplitter@{LargeIslandSplitter}}\index{LargeIslandSplitter@{LargeIslandSplitter}!AllBatchesDone@{AllBatchesDone}}}\Hypertarget{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a6d9a123e6f06ce621f7ad5f18f9392c4}\label{classLargeIslandSplitter_aa7b284b561bd630d6d288bb706439f68a6d9a123e6f06ce621f7ad5f18f9392c4} 
+All\+Batches\+Done&No further work is expected from this. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/Large\+Island\+Splitter.\+h\end{DoxyCompactItemize}

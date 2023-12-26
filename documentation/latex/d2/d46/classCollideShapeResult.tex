@@ -1,0 +1,90 @@
+\doxysection{Collide\+Shape\+Result Class Reference}
+\hypertarget{classCollideShapeResult}{}\label{classCollideShapeResult}\index{CollideShapeResult@{CollideShapeResult}}
+
+
+Class that contains all information of two colliding shapes.  
+
+
+
+
+{\ttfamily \#include $<$Collide\+Shape.\+h$>$}
+
+
+
+Inheritance diagram for Collide\+Shape\+Result\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{db/d84/classCollideShapeResult__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Collide\+Shape\+Result\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d75/classCollideShapeResult__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollideShapeResult_a5cdb68a0447b40ffa2cfd725c1896356}\label{classCollideShapeResult_a5cdb68a0447b40ffa2cfd725c1896356} 
+using {\bfseries Face} = \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classVec3}{Vec3}}, 32 $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollideShapeResult_a7fe57d79718e199535fa4d9601e646ff}\label{classCollideShapeResult_a7fe57d79718e199535fa4d9601e646ff} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Collide\+Shape\+Result} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_a89e76885c988cdc177f121c6bb18801d}\label{classCollideShapeResult_a89e76885c988cdc177f121c6bb18801d} 
+{\bfseries Collide\+Shape\+Result} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Contact\+Point\+On1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Contact\+Point\+On2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Penetration\+Axis, float in\+Penetration\+Depth, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID1, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID2, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID2)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_abe452fa6ddc8670a0c020d5420a92f3b}\label{classCollideShapeResult_abe452fa6ddc8670a0c020d5420a92f3b} 
+float {\bfseries Get\+Early\+Out\+Fraction} () const
+\begin{DoxyCompactList}\small\item\em Function required by the \doxylink{classCollisionCollector}{Collision\+Collector}. A smaller fraction is considered to be a \textquotesingle{}better hit\textquotesingle{}. We use -\/penetration depth to get the hit with the biggest penetration depth. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_a84eb31fb18eea1a96cadad32a3f6fe4e}\label{classCollideShapeResult_a84eb31fb18eea1a96cadad32a3f6fe4e} 
+\mbox{\hyperlink{classCollideShapeResult}{Collide\+Shape\+Result}} {\bfseries Reversed} () const
+\begin{DoxyCompactList}\small\item\em Reverses the hit result, swapping contact point 1 with contact point 2 etc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollideShapeResult_a76dd6be632967ea1f0348eca8155be44}\label{classCollideShapeResult_a76dd6be632967ea1f0348eca8155be44} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Contact\+Point\+On1}
+\begin{DoxyCompactList}\small\item\em Contact point on the surface of shape 1 (in world space or relative to base offset) \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_a2f09d3bbc9e1563c974836c2327f73a7}\label{classCollideShapeResult_a2f09d3bbc9e1563c974836c2327f73a7} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Contact\+Point\+On2}
+\begin{DoxyCompactList}\small\item\em Contact point on the surface of shape 2 (in world space or relative to base offset). If the penetration depth is 0, this will be the same as m\+Contact\+Point\+On1. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_a3704397b8c4c6e39f2bb94bb477a7bc7}\label{classCollideShapeResult_a3704397b8c4c6e39f2bb94bb477a7bc7} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Penetration\+Axis}
+\begin{DoxyCompactList}\small\item\em Direction to move shape 2 out of collision along the shortest path (magnitude is meaningless, in world space). You can use -\/m\+Penetration\+Axis.\+Normalized() as contact normal. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_a940adcfe5fa917a065f5ae65773de013}\label{classCollideShapeResult_a940adcfe5fa917a065f5ae65773de013} 
+float {\bfseries m\+Penetration\+Depth}
+\begin{DoxyCompactList}\small\item\em Penetration depth (move shape 2 by this distance to resolve the collision) \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_a0a62402355f85f878a6444bbcbba31c4}\label{classCollideShapeResult_a0a62402355f85f878a6444bbcbba31c4} 
+\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} {\bfseries m\+Sub\+Shape\+ID1}
+\begin{DoxyCompactList}\small\item\em Sub shape ID that identifies the face on shape 1. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_ab12cb1e36b125a536229698328e30d9a}\label{classCollideShapeResult_ab12cb1e36b125a536229698328e30d9a} 
+\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} {\bfseries m\+Sub\+Shape\+ID2}
+\begin{DoxyCompactList}\small\item\em Sub shape ID that identifies the face on shape 2. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_a22e33232d0af6889b6715dfaa460ebbb}\label{classCollideShapeResult_a22e33232d0af6889b6715dfaa460ebbb} 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries m\+Body\+ID2}
+\begin{DoxyCompactList}\small\item\em \doxylink{classBodyID}{Body\+ID} to which shape 2 belongs to. \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_aa79b80c5eca1d8e7bf57771421bc3acc}\label{classCollideShapeResult_aa79b80c5eca1d8e7bf57771421bc3acc} 
+\mbox{\hyperlink{classStaticArray}{Face}} {\bfseries m\+Shape1\+Face}
+\begin{DoxyCompactList}\small\item\em Colliding face on shape 1 (optional result, in world space or relative to base offset) \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeResult_ae69726442e6d35051405f8d437003316}\label{classCollideShapeResult_ae69726442e6d35051405f8d437003316} 
+\mbox{\hyperlink{classStaticArray}{Face}} {\bfseries m\+Shape2\+Face}
+\begin{DoxyCompactList}\small\item\em Colliding face on shape 2 (optional result, in world space or relative to base offset) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that contains all information of two colliding shapes. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Collide\+Shape.\+h\end{DoxyCompactItemize}

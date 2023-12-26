@@ -1,0 +1,99 @@
+\doxysection{Broad\+Phase\+Quad\+Tree.\+h}
+\hypertarget{BroadPhaseQuadTree_8h_source}{}\label{BroadPhaseQuadTree_8h_source}\index{includes/jolt/Physics/Collision/BroadPhase/BroadPhaseQuadTree.h@{includes/jolt/Physics/Collision/BroadPhase/BroadPhaseQuadTree.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/BroadPhase/QuadTree.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/BroadPhase/BroadPhase.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/PhysicsLock.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classBroadPhaseQuadTree}{BroadPhaseQuadTree}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classBroadPhase}{BroadPhase}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a35605a404e66f80ceb4b22bd7161015b}{\string~BroadPhaseQuadTree}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Implementing\ interface\ of\ BroadPhase\ (see\ BroadPhase\ for\ documentation)}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_ac72ae370274737c01ae1a58b38520eb0}{Init}}(\mbox{\hyperlink{classBodyManager}{BodyManager}}\ *inBodyManager,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerInterface}{BroadPhaseLayerInterface}}\ \&inLayerInterface)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_aee379593c8ce1ee2f801bec78262348a}{Optimize}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a73d4be3eb8e3e6f3342074b1a484027d}{FrameSync}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a045d7982b2bef393a5159ee4fba433a4}{LockModifications}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{structBroadPhase_1_1UpdateState}{UpdateState}}\ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a8faab95d425bd2613b5e8b0b98f0e9f4}{UpdatePrepare}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a0a61be3f02df6acf55ae87c5f49f79ae}{UpdateFinalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structBroadPhase_1_1UpdateState}{UpdateState}}\ \&inUpdateState)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_af766e7fd8a67c5662cc5c287f5a92980}{UnlockModifications}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{AddState}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_aa68e84a08df4f9253dbf242e8b0345d6}{AddBodiesPrepare}}(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a5738a447a85dd4da7afb6e9abc84f057}{AddBodiesFinalize}}(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber,\ \mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{AddState}}\ inAddState)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_ab9cada806786f864c0534021ce4a0dc8}{AddBodiesAbort}}(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber,\ \mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{AddState}}\ inAddState)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_ad44075b1d6b35bee89ca31a4e923767f}{RemoveBodies}}(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a08b302e2c0b0f0c510641715039caa9e}{NotifyBodiesAABBChanged}}(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber,\ \textcolor{keywordtype}{bool}\ inTakeLock)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_aefd3bce6d43726769dc9e4860cc25ac1}{NotifyBodiesLayerChanged}}(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a916963e054fbe6880da1712a83d0c472}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRayCast}{RayCast}}\ \&inRay,\ \mbox{\hyperlink{classCollisionCollector}{RayCastBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a3f6aefd35199485125134146a5420c80}{CollideAABox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_af6fdca693c8976679a13df50e81ad7c1}{CollideSphere}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inCenter,\ \textcolor{keywordtype}{float}\ inRadius,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_ab3c90c295258738025c32cd8a2884b3b}{CollidePoint}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a43e25b18f8f235dee93e471b4f46c067}{CollideOrientedBox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classOrientedBox}{OrientedBox}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a3634d5f1f366a6e59c6150032caee378}{CastAABoxNoLock}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structAABoxCast}{AABoxCast}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a7a56ff5c2602b7e961d5ca1b144263ca}{CastAABox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structAABoxCast}{AABoxCast}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeBodyCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a425fef7a0c8ac0b6be8e7bc6e96675bf}{FindCollidingPairs}}(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioActiveBodies,\ \textcolor{keywordtype}{int}\ inNumActiveBodies,\ \textcolor{keywordtype}{float}\ inSpeculativeContactDistance,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{ObjectVsBroadPhaseLayerFilter}}\ \&inObjectVsBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerPairFilter}{ObjectLayerPairFilter}}\ \&inObjectLayerPairFilter,\ \mbox{\hyperlink{classCollisionCollector}{BodyPairCollector}}\ \&ioPairCollector)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuadTree_a5dc01d628a617cca18a01c6fe7305c37}{GetBounds}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#ifdef\ JPH\_TRACK\_BROADPHASE\_STATS}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ ReportStats()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_TRACK\_BROADPHASE\_STATS}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{struct\ }LayerState}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ *\ \ \ \ \ \ \ \ \ \ mBodyStart\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ *\ \ \ \ \ \ \ \ \ \ mBodyEnd;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structQuadTree_1_1AddState}{QuadTree::AddState}}\ \ \ \ mAddState;}
+\DoxyCodeLine{00058\ \ \ \ \ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }Tracking\ =\ \mbox{\hyperlink{structQuadTree_1_1Tracking}{QuadTree::Tracking}};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{using\ }TrackingVector\ =\ QuadTree::TrackingVector;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00065\ \ \ \ \ PhysicsLockContext\ \ \ \ \ \ mLockContext\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxBodies\ =\ 0;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ TrackingVector\ \ \ \ \ \ \ \ \ \ mTracking;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classFixedSizeFreeList}{QuadTree::Allocator}}\ \ \ \ \ \ mAllocator;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerInterface}{BroadPhaseLayerInterface}}\ *mBroadPhaseLayerInterface\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classQuadTree}{QuadTree}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ mLayers;}
+\DoxyCodeLine{00082\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumLayers;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{struct\ }UpdateStateImpl}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuadTree}{QuadTree}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ mTree;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structQuadTree_1_1UpdateState}{QuadTree::UpdateState}}\ \ mUpdateState;}
+\DoxyCodeLine{00089\ \ \ \ \ \};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(UpdateStateImpl)\ <=\ \textcolor{keyword}{sizeof}(UpdateState));}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{alignof}(UpdateStateImpl)\ <=\ \textcolor{keyword}{alignof}(UpdateState));}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ SharedMutex\ \ \ \ \ \ \ \ \ \ \ \ \ mUpdateMutex;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{mutable}\ SharedMutex\ \ \ \ \ mQueryLocks[2];}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ mQueryLockIdx\ \{\ 0\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00105\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextLayerToUpdate\ =\ 0;}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

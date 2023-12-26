@@ -1,0 +1,225 @@
+\doxysection{Physics\+System.\+h}
+\hypertarget{PhysicsSystem_8h_source}{}\label{PhysicsSystem_8h_source}\index{includes/jolt/Physics/PhysicsSystem.h@{includes/jolt/Physics/PhysicsSystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyInterface.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/NarrowPhaseQuery.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ContactListener.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ContactConstraintManager.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintManager.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/IslandBuilder.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/LargeIslandSplitter.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/PhysicsUpdateContext.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/PhysicsSettings.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJobSystem}{JobSystem}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStateRecorder}{StateRecorder}};}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTempAllocator}{TempAllocator}};}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsStepListener}{PhysicsStepListener}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_aaefedca1b6619cf11f5c45f7f2176148}{PhysicsSystem}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mContactManager(mPhysicsSettings)\ JPH\_IF\_ENABLE\_ASSERTS(,\ mConstraintManager(\&mBodyManager))\ \{\ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem}{\string~PhysicsSystem}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ae578fcd0c58f678156b7cd8b44f811a6}{Init}}(uint\ inMaxBodies,\ uint\ inNumBodyMutexes,\ uint\ inMaxBodyPairs,\ uint\ inMaxContactConstraints,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerInterface}{BroadPhaseLayerInterface}}\ \&inBroadPhaseLayerInterface,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{ObjectVsBroadPhaseLayerFilter}}\ \&inObjectVsBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerPairFilter}{ObjectLayerPairFilter}}\ \&inObjectLayerPairFilter);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ae7c05e21f93638e9b9eb2c52dd6d850f}{SetBodyActivationListener}}(\mbox{\hyperlink{classBodyActivationListener}{BodyActivationListener}}\ *inListener)\ \{\ mBodyManager.SetBodyActivationListener(inListener);\ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classBodyActivationListener}{BodyActivationListener}}\ *\ \ GetBodyActivationListener()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.GetBodyActivationListener();\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ade7967ad5ff4a67d255cc6fb956943c8}{SetContactListener}}(\mbox{\hyperlink{classContactListener}{ContactListener}}\ *inListener)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mContactManager.SetContactListener(inListener);\ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classContactListener}{ContactListener}}\ *\ \ \ \ \ \ \ \ \ \ \ \ GetContactListener()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mContactManager.GetContactListener();\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ae1cc3e726b7e186f642c7da5f6c6a2c2}{SetCombineFriction}}(\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{ContactConstraintManager::CombineFunction}}\ inCombineFriction)\ \{\ mContactManager.SetCombineFriction(inCombineFriction);\ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{ContactConstraintManager::CombineFunction}}\ GetCombineFriction()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mContactManager.GetCombineFriction();\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_aadad532dfda2006fd3b699116e9fed08}{SetCombineRestitution}}(\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{ContactConstraintManager::CombineFunction}}\ inCombineRestition)\ \{\ mContactManager.SetCombineRestitution(inCombineRestition);\ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{ContactConstraintManager::CombineFunction}}\ GetCombineRestitution()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mContactManager.GetCombineRestitution();\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a2f81c29dfb88dd7e0711caffcd2ebc22}{SetPhysicsSettings}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysicsSettings}{PhysicsSettings}}\ \&inSettings)\ \ \ \ \ \ \{\ mPhysicsSettings\ =\ inSettings;\ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysicsSettings}{PhysicsSettings}}\ \&\ \ \ \ \ \ GetPhysicsSettings()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPhysicsSettings;\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyInterface}{BodyInterface}}\ \&\ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a35474557b977d2a03e7b5e7c920bf2ee}{GetBodyInterface}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyInterfaceLocking;\ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classBodyInterface}{BodyInterface}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetBodyInterface()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mBodyInterfaceLocking;\ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyInterface}{BodyInterface}}\ \&\ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a55216f4cfc718d052548baac4ba098d7}{GetBodyInterfaceNoLock}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyInterfaceNoLock;\ \}\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classBodyInterface}{BodyInterface}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a9da48916fec4a9b9af533a84785aa455}{GetBodyInterfaceNoLock}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mBodyInterfaceNoLock;\ \}\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseQuery}{BroadPhaseQuery}}\ \&\ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a3d621cc72c69b73cdcc13bdb3b0dddc4}{GetBroadPhaseQuery}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ *mBroadPhase;\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classNarrowPhaseQuery}{NarrowPhaseQuery}}\ \&\ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a1ced58861f3fbb7cfea901128bb7a84d}{GetNarrowPhaseQuery}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNarrowPhaseQueryLocking;\ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classNarrowPhaseQuery}{NarrowPhaseQuery}}\ \&\ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a472f122c70806d1a2b88fbb441be42e0}{GetNarrowPhaseQueryNoLock}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNarrowPhaseQueryNoLock;\ \}\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a6a1378c13080b5ad3af2c61be87ca40c}{AddConstraint}}(\mbox{\hyperlink{classConstraint}{Constraint}}\ *inConstraint)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mConstraintManager.Add(\&inConstraint,\ 1);\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a7cdf5d375a54ab6d6b29e3944d8e4266}{RemoveConstraint}}(\mbox{\hyperlink{classConstraint}{Constraint}}\ *inConstraint)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mConstraintManager.Remove(\&inConstraint,\ 1);\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ad83534f99aa4e7fc78e6ede84576b59c}{AddConstraints}}(\mbox{\hyperlink{classConstraint}{Constraint}}\ **inConstraints,\ \textcolor{keywordtype}{int}\ inNumber)\ \ \ \ \{\ mConstraintManager.Add(inConstraints,\ inNumber);\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a220ed391139f4ffdb384fe83b44d6439}{RemoveConstraints}}(\mbox{\hyperlink{classConstraint}{Constraint}}\ **inConstraints,\ \textcolor{keywordtype}{int}\ inNumber)\ \ \{\ mConstraintManager.Remove(inConstraints,\ inNumber);\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ Constraints\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a69c9f67351312d43f8e1c1f5d23fdf99}{GetConstraints}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mConstraintManager.GetConstraints();\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ab3cd9f2562f0f051c032b3bc298d9604}{OptimizeBroadPhase}}();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a0964d49514b7447981dcc7438876e988}{AddStepListener}}(\mbox{\hyperlink{classPhysicsStepListener}{PhysicsStepListener}}\ *inListener);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a00aeeff60505f9baa3dd1ffdfe73c2b3}{RemoveStepListener}}(\mbox{\hyperlink{classPhysicsStepListener}{PhysicsStepListener}}\ *inListener);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ \ \ EPhysicsUpdateError\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Update}}(\textcolor{keywordtype}{float}\ inDeltaTime,\ \textcolor{keywordtype}{int}\ inCollisionSteps,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator,\ \mbox{\hyperlink{classJobSystem}{JobSystem}}\ *inJobSystem);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ae13975e609ff125fa02b922795777824}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream,\ EStateRecorderState\ inState\ =\ EStateRecorderState::All,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classStateRecorderFilter}{StateRecorderFilter}}\ *inFilter\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a5c0936f0d1e9cc6f05a100e48a687bb6}{RestoreState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a29255e6d9124402e08319bfbf81b8509}{SaveBodyState}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody,\ \mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a5865e977575ab65a41ce98e098b897cc}{RestoreBodyState}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody,\ \mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ Drawing\ properties}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDrawMotionQualityLinearCast;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawBodies(\textcolor{keyword}{const}\ BodyManager::DrawSettings\ \&inSettings,\ \mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer,\ \textcolor{keyword}{const}\ BodyDrawFilter\ *inBodyFilter\ =\ \textcolor{keyword}{nullptr})\ \{\ mBodyManager.Draw(inSettings,\ mPhysicsSettings,\ inRenderer,\ inBodyFilter);\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraints(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mConstraintManager.DrawConstraints(inRenderer);\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraintLimits(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mConstraintManager.DrawConstraintLimits(inRenderer);\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraintReferenceFrame(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \ \ \ \ \ \ \ \{\ mConstraintManager.DrawConstraintReferenceFrame(inRenderer);\ \}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ad09c12009bbcb0d0e6dbfd9582593be4}{SetGravity}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inGravity)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mGravity\ =\ inGravity;\ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetGravity()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mGravity;\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyLockInterfaceNoLock}{BodyLockInterfaceNoLock}}\ \&\ \ \ \mbox{\hyperlink{classPhysicsSystem_ad381ea5bd5568b20ae05c1229dbff49e}{GetBodyLockInterfaceNoLock}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyLockInterfaceNoLock;\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyLockInterfaceLocking}{BodyLockInterfaceLocking}}\ \&\ \mbox{\hyperlink{classPhysicsSystem_a3ec396058f674026726e59dc7ad20609}{GetBodyLockInterface}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyLockInterfaceLocking;\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{classDefaultBroadPhaseLayerFilter}{DefaultBroadPhaseLayerFilter}}\ \mbox{\hyperlink{classPhysicsSystem_a9473bc5d3e3cd861b58b0db3240b4f1d}{GetDefaultBroadPhaseLayerFilter}}(ObjectLayer\ inLayer)\textcolor{keyword}{\ const\ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDefaultBroadPhaseLayerFilter}{DefaultBroadPhaseLayerFilter}}(*mObjectVsBroadPhaseLayerFilter,\ inLayer);\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{classDefaultObjectLayerFilter}{DefaultObjectLayerFilter}}\ \ \ \ \mbox{\hyperlink{classPhysicsSystem_adaf3b2dbc230ee329461e47f096ef467}{GetDefaultLayerFilter}}(ObjectLayer\ inLayer)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDefaultObjectLayerFilter}{DefaultObjectLayerFilter}}(*mObjectLayerPairFilter,\ inLayer);\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00157\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a25eb1c752bffdd53c2c7cd610f2708f7}{GetNumBodies}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.GetNumBodies();\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00160\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a294887e565856fe5305419aa4432e33e}{GetNumActiveBodies}}(EBodyType\ inType)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.GetNumActiveBodies(inType);\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00163\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a77646a1768d1cfc892b6238bf614ed9f}{GetMaxBodies}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.GetMaxBodies();\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structBodyManager_1_1BodyStats}{BodyStats}}\ =\ \mbox{\hyperlink{structBodyManager_1_1BodyStats}{BodyManager::BodyStats}};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{structBodyManager_1_1BodyStats}{BodyStats}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ad826f67ef4fd3a1457cf9d8d6892d5cb}{GetBodyStats}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.GetBodyStats();\ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a01018de422e55bc7e23a17f318ecdd1f}{GetBodies}}(BodyIDVector\ \&outBodyIDs)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.GetBodyIDs(outBodyIDs);\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_aac0c682798c1fc5c78977b0dc4b24b7d}{GetActiveBodies}}(EBodyType\ inType,\ BodyIDVector\ \&outBodyIDs)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.GetActiveBodies(inType,\ outBodyIDs);\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ae3f5ce308a831074e1e0fff453862584}{GetActiveBodiesUnsafe}}(EBodyType\ inType)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.GetActiveBodiesUnsafe(inType);\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_ad8f5849a90549504d9f1705c324a9a83}{WereBodiesInContact}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBody1ID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBody2ID)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mContactManager.WereBodiesInContact(inBody1ID,\ inBody2ID);\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem_a7f87f05d94f62054d6f3e975b613d2f0}{GetBounds}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBroadPhase-\/>GetBounds();\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#ifdef\ JPH\_TRACK\_BROADPHASE\_STATS}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReportBroadphaseStats()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mBroadPhase-\/>ReportStats();\ \}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_TRACK\_BROADPHASE\_STATS}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{using\ }CCDBody\ =\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody}{PhysicsUpdateContext::Step::CCDBody}};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//\ Various\ job\ entry\ points}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobStepListeners(\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobDetermineActiveConstraints(\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobApplyGravity(\textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobSetupVelocityConstraints(\textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobBuildIslandsFromConstraints(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobFindCollisions(\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep,\ \textcolor{keywordtype}{int}\ inJobIndex);}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobFinalizeIslands(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext);}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobBodySetIslandIndex();}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobSolveVelocityConstraints(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobPreIntegrateVelocity(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobIntegrateVelocity(\textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobPostIntegrateVelocity(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobFindCCDContacts(\textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobResolveCCDContacts(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobContactRemovedCallbacks(\textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobSolvePositionConstraints(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobSoftBodyPrepare(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep);}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobSoftBodyCollide(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobSoftBodySimulate(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ uint\ inThreadIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JobSoftBodyFinalize(\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext);}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TrySpawnJobFindCollisions(\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{using\ }ContactAllocator\ =\ \mbox{\hyperlink{classContactConstraintManager_1_1ContactAllocator}{ContactConstraintManager::ContactAllocator}};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ProcessBodyPair(ContactAllocator\ \&ioContactAllocator,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structBodyPair}{BodyPair}}\ \&inBodyPair);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{class\ }BodiesToSleep;}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CheckSleepAndUpdateBounds(uint32\ inIslandIndex,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *ioContext,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{PhysicsUpdateContext::Step}}\ *ioStep,\ BodiesToSleep\ \&ioBodiesToSleep);}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ cDetermineActiveConstraintsBatchSize\ =\ 64;}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ cSetupVelocityConstraintsBatchSize\ =\ 256;}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ cApplyGravityBatchSize\ =\ 64;}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ cActiveBodiesBatchSize\ =\ 16;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ cIntegrateVelocityBatchSize\ =\ 64;}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ cNarrowPhaseBatchSize\ =\ 16;}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ cNumCCDBodiesPerJob\ =\ 4;}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{ObjectVsBroadPhaseLayerFilter}}\ *mObjectVsBroadPhaseLayerFilter\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerPairFilter}{ObjectLayerPairFilter}}\ *mObjectLayerPairFilter\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00266\ \ \ \ \ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyManager;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{classBodyLockInterfaceNoLock}{BodyLockInterfaceNoLock}}\ \ \ \ \ \ mBodyLockInterfaceNoLock\ \{\ mBodyManager\ \};}
+\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{classBodyLockInterfaceLocking}{BodyLockInterfaceLocking}}\ \ \ \ mBodyLockInterfaceLocking\ \{\ mBodyManager\ \};}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{classBodyInterface}{BodyInterface}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyInterfaceNoLock;}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{classBodyInterface}{BodyInterface}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyInterfaceLocking;}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery}{NarrowPhaseQuery}}\ \ \ \ \ \ \ \ \ \ \ \ mNarrowPhaseQueryNoLock;}
+\DoxyCodeLine{00278\ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery}{NarrowPhaseQuery}}\ \ \ \ \ \ \ \ \ \ \ \ mNarrowPhaseQueryLocking;}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{classBroadPhase}{BroadPhase}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBroadPhase\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00284\ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings}{PhysicsSettings}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mPhysicsSettings;}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00287\ \ \ \ \ \mbox{\hyperlink{classContactConstraintManager}{ContactConstraintManager}}\ \ \ \ mContactManager;}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{classConstraintManager}{ConstraintManager}}\ \ \ \ \ \ \ \ \ \ mConstraintManager;}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{classIslandBuilder}{IslandBuilder}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mIslandBuilder;}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00296\ \ \ \ \ \mbox{\hyperlink{classLargeIslandSplitter}{LargeIslandSplitter}}\ \ \ \ \ \ \ \ \ \ mLargeIslandSplitter;}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00299\ \ \ \ \ Mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStepListenersMutex;}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{using\ }StepListeners\ =\ Array<PhysicsStepListener\ *>;}
+\DoxyCodeLine{00303\ \ \ \ \ StepListeners\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStepListeners;}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00306\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGravity\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(0,\ -\/9.81f,\ 0);}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPreviousStepDeltaTime\ =\ 0.0f;}
+\DoxyCodeLine{00310\ \};}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

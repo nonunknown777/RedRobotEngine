@@ -1,0 +1,5 @@
+<map id="playrho::IsDivisable&lt; T1, T2, std::void_t&lt; decltype(T1{}/T2{})&gt; &gt;" name="playrho::IsDivisable&lt; T1, T2, std::void_t&lt; decltype(T1{}/T2{})&gt; &gt;">
+<area shape="rect" id="Node000001" title="Template specializing for divisable types." alt="" coords="5,123,193,227"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="48,5,151,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,90,102,123,97,123,97,90"/>
+</map>

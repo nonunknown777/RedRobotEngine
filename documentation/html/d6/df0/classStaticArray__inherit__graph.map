@@ -1,0 +1,7 @@
+<map id="StaticArray&lt; T, N &gt;" name="StaticArray&lt; T, N &gt;">
+<area shape="rect" id="Node000001" title="Simple variable length array backed by a fixed size buffer." alt="" coords="145,5,287,331"/>
+<area shape="rect" id="Node000002" href="$d9/d5d/classEPAConvexHullBuilder_1_1Points.html" title="Specialized points list that allows direct access to the size." alt="" coords="5,419,211,506"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,345,126,420,121,419,149,344"/>
+<area shape="rect" id="Node000003" href="$d2/d75/classEPAConvexHullBuilder_1_1TriangleQueue.html" title="Specialized triangles list that keeps them sorted on closest distance to origin." alt="" coords="235,379,415,547"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="284,343,297,378,292,380,279,345"/>
+</map>

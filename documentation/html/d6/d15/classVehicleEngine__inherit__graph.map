@@ -1,0 +1,5 @@
+<map id="VehicleEngine" name="VehicleEngine">
+<area shape="rect" id="Node000001" title="Runtime data for engine." alt="" coords="6,272,185,533"/>
+<area shape="rect" id="Node000002" href="$d0/dbd/classVehicleEngineSettings.html" title="Generic properties for a vehicle engine." alt="" coords="5,5,185,224"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,239,98,272,93,272,93,239"/>
+</map>

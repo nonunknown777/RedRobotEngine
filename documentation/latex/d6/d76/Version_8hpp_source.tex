@@ -1,0 +1,64 @@
+\doxysection{Version.\+hpp}
+\hypertarget{Version_8hpp_source}{}\label{Version_8hpp_source}\index{includes/playrho/Common/Version.hpp@{includes/playrho/Common/Version.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2006-\/2009\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_VERSION\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_VERSION\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <PlayRho/Defines.hpp>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1Version}{Version}}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}}\ =\ std::int32\_t;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}}\ \mbox{\hyperlink{structplayrho_1_1Version_a5e92cad7b20b19f8efc5ea4801bb6f53}{major}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}}\ \mbox{\hyperlink{structplayrho_1_1Version_abb97e498445e0c35f20f37fbe82cf800}{minor}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Version_a23217efbacc179609b7be472819121ac}{Revnum}}\ \mbox{\hyperlink{structplayrho_1_1Version_a44abbe204a839327b55036549ef3b7eb}{revision}};}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==}}(\mbox{\hyperlink{structplayrho_1_1Version}{Version}}\ lhs,\ \mbox{\hyperlink{structplayrho_1_1Version}{Version}}\ rhs)}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{structplayrho_1_1Version_a5e92cad7b20b19f8efc5ea4801bb6f53}{major}}\ ==\ rhs.\mbox{\hyperlink{structplayrho_1_1Version_a5e92cad7b20b19f8efc5ea4801bb6f53}{major}}\ \&\&\ lhs.\mbox{\hyperlink{structplayrho_1_1Version_abb97e498445e0c35f20f37fbe82cf800}{minor}}\ ==\ rhs.\mbox{\hyperlink{structplayrho_1_1Version_abb97e498445e0c35f20f37fbe82cf800}{minor}}\ \&\&\ lhs.\mbox{\hyperlink{structplayrho_1_1Version_a44abbe204a839327b55036549ef3b7eb}{revision}}\ ==\ rhs.\mbox{\hyperlink{structplayrho_1_1Version_a44abbe204a839327b55036549ef3b7eb}{revision}};}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=}}(\mbox{\hyperlink{structplayrho_1_1Version}{Version}}\ lhs,\ \mbox{\hyperlink{structplayrho_1_1Version}{Version}}\ rhs)}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ !(lhs\ ==\ rhs);}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \mbox{\hyperlink{structplayrho_1_1Version}{Version}}\ \mbox{\hyperlink{namespaceplayrho_af43ad5413c876b34dcf8430c045986cc}{GetVersion}}()\ noexcept;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \mbox{\hyperlink{namespacestd}{std}}::\textcolor{keywordtype}{string}\ \mbox{\hyperlink{namespaceplayrho_a66e36c723d641ea2e8dad6e8653f6ffd}{GetBuildDetails}}()\ noexcept;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_VERSION\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,48 @@
+\doxysection{Soft\+Body\+Vertex Class Reference}
+\hypertarget{classSoftBodyVertex}{}\label{classSoftBodyVertex}\index{SoftBodyVertex@{SoftBodyVertex}}
+
+
+{\ttfamily \#include $<$Soft\+Body\+Vertex.\+h$>$}
+
+
+
+Collaboration diagram for Soft\+Body\+Vertex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d2/dfa/classSoftBodyVertex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodyVertex_a43610d9ba8e79136479fd22eb83e3ece}\label{classSoftBodyVertex_a43610d9ba8e79136479fd22eb83e3ece} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Previous\+Position}
+\begin{DoxyCompactList}\small\item\em Position at the previous time step. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyVertex_afad3ccc1b361c0c7607d14cbb0b61660}\label{classSoftBodyVertex_afad3ccc1b361c0c7607d14cbb0b61660} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Position}
+\begin{DoxyCompactList}\small\item\em Position, relative to the center of mass of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyVertex_a5cb33a0b7a5c5085ddffe35daadd784c}\label{classSoftBodyVertex_a5cb33a0b7a5c5085ddffe35daadd784c} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Velocity}
+\begin{DoxyCompactList}\small\item\em Velocity, relative to the center of mass of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyVertex_ad875325c3ade4ca33d6b96716b8a2b07}\label{classSoftBodyVertex_ad875325c3ade4ca33d6b96716b8a2b07} 
+\mbox{\hyperlink{classPlane}{Plane}} {\bfseries m\+Collision\+Plane}
+\begin{DoxyCompactList}\small\item\em Nearest collision plane, relative to the center of mass of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyVertex_a887112c6a59e554fd15aac62b7e84dfe}\label{classSoftBodyVertex_a887112c6a59e554fd15aac62b7e84dfe} 
+int {\bfseries m\+Colliding\+Shape\+Index}
+\begin{DoxyCompactList}\small\item\em Index in the colliding shapes list of the body we may collide with. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyVertex_a8277ada20f83ca568c1e6173720fbf23}\label{classSoftBodyVertex_a8277ada20f83ca568c1e6173720fbf23} 
+float {\bfseries m\+Largest\+Penetration}
+\begin{DoxyCompactList}\small\item\em Used while finding the collision plane, stores the largest penetration found so far. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyVertex_a43d59fd48a3f5955b220d29e2b3bb3f6}\label{classSoftBodyVertex_a43d59fd48a3f5955b220d29e2b3bb3f6} 
+float {\bfseries m\+Inv\+Mass}
+\begin{DoxyCompactList}\small\item\em Inverse mass (1 / mass) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Run time information for a single particle of a soft body Note that at run-\/time you should only modify the inverse mass and/or velocity of a vertex to control the soft body. Modifying the position can lead to missed collisions. The other members are used internally by the soft body solver. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Soft\+Body/Soft\+Body\+Vertex.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,135 @@
+\doxysection{Compound\+Shape\+Settings Class Reference}
+\hypertarget{classCompoundShapeSettings}{}\label{classCompoundShapeSettings}\index{CompoundShapeSettings@{CompoundShapeSettings}}
+
+
+Base class settings to construct a compound shape.  
+
+
+
+
+{\ttfamily \#include $<$Compound\+Shape.\+h$>$}
+
+
+
+Inheritance diagram for Compound\+Shape\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/d07/classCompoundShapeSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Compound\+Shape\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d4c/classCompoundShapeSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCompoundShapeSettings_1_1SubShapeSettings}{Sub\+Shape\+Settings}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCompoundShapeSettings_ac4842f25ad3eada96183eb8a0e1efdac}\label{classCompoundShapeSettings_ac4842f25ad3eada96183eb8a0e1efdac} 
+using {\bfseries Sub\+Shapes} = Array$<$ \mbox{\hyperlink{structCompoundShapeSettings_1_1SubShapeSettings}{Sub\+Shape\+Settings}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Shape\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classShape}{Shape}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCompoundShapeSettings_a203d5072fa51f2c61b999cfb76ed9867}\label{classCompoundShapeSettings_a203d5072fa51f2c61b999cfb76ed9867} 
+{\bfseries Compound\+Shape\+Settings} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. Use Add\+Shape to add the parts. \end{DoxyCompactList}\item 
+\Hypertarget{classCompoundShapeSettings_aeda2764beb7bc3fcb85d957df93a1431}\label{classCompoundShapeSettings_aeda2764beb7bc3fcb85d957df93a1431} 
+void {\bfseries Add\+Shape} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, const \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}} \texorpdfstring{$\ast$}{*}in\+Shape, uint32 in\+User\+Data=0)
+\begin{DoxyCompactList}\small\item\em Add a shape to the compound. \end{DoxyCompactList}\item 
+\Hypertarget{classCompoundShapeSettings_ac0822915d29caf55fc61d749ab4dd10e}\label{classCompoundShapeSettings_ac0822915d29caf55fc61d749ab4dd10e} 
+void {\bfseries Add\+Shape} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, uint32 in\+User\+Data=0)
+\begin{DoxyCompactList}\small\item\em Add a shape to the compound. Variant that uses a concrete shape, which means this object cannot be serialized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classResult}{Shape\+Result}} \mbox{\hyperlink{classShapeSettings_a21e53b5758542a5527c7941d61d838fa}{Create}} () const =0
+\begin{DoxyCompactList}\small\item\em Create a shape according to the settings specified by this object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCompoundShapeSettings_a1fcf910b218527bcd856bf017b8ea6f3}\label{classCompoundShapeSettings_a1fcf910b218527bcd856bf017b8ea6f3} 
+Sub\+Shapes {\bfseries m\+Sub\+Shapes}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+uint64 {\bfseries m\+User\+Data} = 0
+\begin{DoxyCompactList}\small\item\em User data (to be used freely by the application) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries m\+Cached\+Result}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class settings to construct a compound shape. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Compound\+Shape.\+h\end{DoxyCompactItemize}

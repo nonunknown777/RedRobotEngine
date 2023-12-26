@@ -1,0 +1,7 @@
+<map id="CollidePointResult" name="CollidePointResult">
+<area shape="rect" id="Node000001" title="Structure that holds the result of colliding a point against a shape." alt="" coords="138,417,305,486"/>
+<area shape="rect" id="Node000002" href="$df/d4d/classBodyID.html" title="ID of a body. This is a way of reasoning about bodies in a multithreaded simulation while avoiding ra..." alt="" coords="5,5,240,352"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,351,206,400,201,402,183,353"/>
+<area shape="rect" id="Node000003" href="$da/d65/classSubShapeID.html" title="A sub shape id contains a path to an element (usually a triangle or other primitive type) of a compou..." alt="" coords="264,80,379,277"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="318,278,306,337,284,394,276,406,272,403,279,392,301,335,313,277"/>
+</map>

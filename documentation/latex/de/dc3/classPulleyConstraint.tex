@@ -1,0 +1,327 @@
+\doxysection{Pulley\+Constraint Class Reference}
+\hypertarget{classPulleyConstraint}{}\label{classPulleyConstraint}\index{PulleyConstraint@{PulleyConstraint}}
+
+
+A pulley constraint.  
+
+
+
+
+{\ttfamily \#include $<$Pulley\+Constraint.\+h$>$}
+
+
+
+Inheritance diagram for Pulley\+Constraint\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d2/dfd/classPulleyConstraint__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Pulley\+Constraint\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d9/d97/classPulleyConstraint__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPulleyConstraint_a55f564e3f13e75f27ba5210e9943652a}\label{classPulleyConstraint_a55f564e3f13e75f27ba5210e9943652a} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Pulley\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classPulleyConstraintSettings}{Pulley\+Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Construct distance constraint. \end{DoxyCompactList}\item 
+virtual EConstraint\+Sub\+Type \mbox{\hyperlink{classPulleyConstraint_a175acacfe8fcc7518a90d7b29e0ad8eb}{Get\+Sub\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the sub type of a constraint. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPulleyConstraint_a3cf7cf423a10048274133c0dd5997c1a}{Notify\+Shape\+Changed}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Delta\+COM) override
+\item 
+virtual void \mbox{\hyperlink{classPulleyConstraint_a36833d6faaf9f422d1fddba1bbe1be4c}{Setup\+Velocity\+Constraint}} (float in\+Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{classPulleyConstraint_a1d147c81fd6e891dd0a584de796ff942}{Warm\+Start\+Velocity\+Constraint}} (float in\+Warm\+Start\+Impulse\+Ratio) override
+\item 
+virtual bool \mbox{\hyperlink{classPulleyConstraint_a3ded0c430720e8a1e52664c1c994eeef}{Solve\+Velocity\+Constraint}} (float in\+Delta\+Time) override
+\item 
+virtual bool \mbox{\hyperlink{classPulleyConstraint_adaa5a62133cb652e96e831bb3771df13}{Solve\+Position\+Constraint}} (float in\+Delta\+Time, float in\+Baumgarte) override
+\item 
+virtual void \mbox{\hyperlink{classPulleyConstraint_aad87366e5d5e176a82cb8f6eb76d95c3}{Save\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPulleyConstraint_a4532f8d0a7259537f9c15015f57056e3}{Restore\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ \mbox{\hyperlink{classPulleyConstraint_a6786acae066be5cd17153d9d711e1d8e}{Get\+Constraint\+Settings}} () const override
+\begin{DoxyCompactList}\small\item\em Debug function to convert a constraint to its settings, note that this will not save to which bodies the constraint is connected to. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classPulleyConstraint_a8afedbd3de6a5484fda155337ee04b64}{Get\+Constraint\+To\+Body1\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Calculates the transform that transforms from constraint space to body 1 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classPulleyConstraint_aab9c03ae617d8c20d3844f499b33463f}{Get\+Constraint\+To\+Body2\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Calculates the transform that transforms from constraint space to body 2 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. \end{DoxyCompactList}\item 
+\Hypertarget{classPulleyConstraint_a3c250975bff80256a8d79f04bed8aeaa}\label{classPulleyConstraint_a3c250975bff80256a8d79f04bed8aeaa} 
+void {\bfseries Set\+Length} (float in\+Min\+Length, float in\+Max\+Length)
+\begin{DoxyCompactList}\small\item\em Update the minimum and maximum length for the constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classPulleyConstraint_a7736c362467fcdcc9e1922b6847cd77a}\label{classPulleyConstraint_a7736c362467fcdcc9e1922b6847cd77a} 
+float {\bfseries Get\+Min\+Length} () const
+\item 
+\Hypertarget{classPulleyConstraint_aabb79ec76059c338d98d5ca9b2cd2d98}\label{classPulleyConstraint_aabb79ec76059c338d98d5ca9b2cd2d98} 
+float {\bfseries Get\+Max\+Length} () const
+\item 
+\Hypertarget{classPulleyConstraint_a2e6fd4f7a548c5fe09497fd31a27af02}\label{classPulleyConstraint_a2e6fd4f7a548c5fe09497fd31a27af02} 
+float {\bfseries Get\+Current\+Length} () const
+\begin{DoxyCompactList}\small\item\em Get the current length of both segments (multiplied by the ratio for segment 2) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Two\+Body\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classTwoBodyConstraintSettings}{Two\+Body\+Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual EConstraint\+Type \mbox{\hyperlink{classTwoBodyConstraint_a25655ebd463476c1ada660d3a292d3c7}{Get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of a constraint. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classTwoBodyConstraint_a9ec4e14ada31bf5172141c2d50663e76}{Is\+Active}} () const override
+\begin{DoxyCompactList}\small\item\em Solver interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body1} () const
+\begin{DoxyCompactList}\small\item\em Access to the connected bodies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body2} () const
+\item 
+virtual void \mbox{\hyperlink{classTwoBodyConstraint_afca1a46125600fea6ecd15a38ed45790}{Build\+Islands}} (uint32 in\+Constraint\+Index, \mbox{\hyperlink{classIslandBuilder}{Island\+Builder}} \&io\+Builder, \mbox{\hyperlink{classBodyManager}{Body\+Manager}} \&in\+Body\+Manager) override
+\begin{DoxyCompactList}\small\item\em Link bodies that are connected by this constraint in the island builder. \end{DoxyCompactList}\item 
+virtual uint \mbox{\hyperlink{classTwoBodyConstraint_a08db9f012da401e48d5ce4bf404ff6d4}{Build\+Island\+Splits}} (\mbox{\hyperlink{classLargeIslandSplitter}{Large\+Island\+Splitter}} \&io\+Splitter) const override
+\begin{DoxyCompactList}\small\item\em Link bodies that are connected by this constraint in the same split. Returns the split index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classConstraint}{Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Constraint} (const \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Constraint} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraint_a6c75250d651da3854eda9e929193e585}{Get\+Constraint\+Priority}} () const
+\item 
+void {\bfseries Set\+Constraint\+Priority} (uint32 in\+Priority)
+\item 
+void {\bfseries Set\+Num\+Velocity\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Velocity\+Steps\+Override} () const
+\item 
+void {\bfseries Set\+Num\+Position\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Position\+Steps\+Override} () const
+\item 
+void \mbox{\hyperlink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Set\+Enabled}} (bool in\+Enabled)
+\item 
+bool {\bfseries Get\+Enabled} () const
+\begin{DoxyCompactList}\small\item\em Test if a constraint is enabled. \end{DoxyCompactList}\item 
+uint64 {\bfseries Get\+User\+Data} () const
+\begin{DoxyCompactList}\small\item\em Access to the user data, can be used for anything by the application. \end{DoxyCompactList}\item 
+void {\bfseries Set\+User\+Data} (uint64 in\+User\+Data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Get Lagrange multiplier from last physics update (the linear impulse applied to satisfy the constraint)}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPulleyConstraint_adac156b26e519ea9f183609b731b81b5}\label{classPulleyConstraint_adac156b26e519ea9f183609b731b81b5} 
+float {\bfseries Get\+Total\+Lambda\+Position} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classConstraint}{Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries To\+Constraint\+Settings} (\mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} \&out\+Settings) const
+\begin{DoxyCompactList}\small\item\em Helper function to copy settings back to constraint settings for this base class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body1}
+\begin{DoxyCompactList}\small\item\em The two bodies involved. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body2}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A pulley constraint. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPulleyConstraint_a6786acae066be5cd17153d9d711e1d8e}\label{classPulleyConstraint_a6786acae066be5cd17153d9d711e1d8e} 
+\index{PulleyConstraint@{PulleyConstraint}!GetConstraintSettings@{GetConstraintSettings}}
+\index{GetConstraintSettings@{GetConstraintSettings}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintSettings()}{GetConstraintSettings()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ Pulley\+Constraint\+::\+Get\+Constraint\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Debug function to convert a constraint to its settings, note that this will not save to which bodies the constraint is connected to. 
+
+
+
+Implements \mbox{\hyperlink{classConstraint_a2cb32f0fbbc03050fd09c975e01277d2}{Constraint}}.
+
+\Hypertarget{classPulleyConstraint_a8afedbd3de6a5484fda155337ee04b64}\label{classPulleyConstraint_a8afedbd3de6a5484fda155337ee04b64} 
+\index{PulleyConstraint@{PulleyConstraint}!GetConstraintToBody1Matrix@{GetConstraintToBody1Matrix}}
+\index{GetConstraintToBody1Matrix@{GetConstraintToBody1Matrix}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintToBody1Matrix()}{GetConstraintToBody1Matrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMat44}{Mat44}} Pulley\+Constraint\+::\+Get\+Constraint\+To\+Body1\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates the transform that transforms from constraint space to body 1 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraint_a0edd748869643b1c904a7bc1314dad7a}{Two\+Body\+Constraint}}.
+
+\Hypertarget{classPulleyConstraint_aab9c03ae617d8c20d3844f499b33463f}\label{classPulleyConstraint_aab9c03ae617d8c20d3844f499b33463f} 
+\index{PulleyConstraint@{PulleyConstraint}!GetConstraintToBody2Matrix@{GetConstraintToBody2Matrix}}
+\index{GetConstraintToBody2Matrix@{GetConstraintToBody2Matrix}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintToBody2Matrix()}{GetConstraintToBody2Matrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMat44}{Mat44}} Pulley\+Constraint\+::\+Get\+Constraint\+To\+Body2\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates the transform that transforms from constraint space to body 2 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraint_a0966503073a315b6087f10208e8a61ff}{Two\+Body\+Constraint}}.
+
+\Hypertarget{classPulleyConstraint_a175acacfe8fcc7518a90d7b29e0ad8eb}\label{classPulleyConstraint_a175acacfe8fcc7518a90d7b29e0ad8eb} 
+\index{PulleyConstraint@{PulleyConstraint}!GetSubType@{GetSubType}}
+\index{GetSubType@{GetSubType}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{GetSubType()}{GetSubType()}}
+{\footnotesize\ttfamily virtual EConstraint\+Sub\+Type Pulley\+Constraint\+::\+Get\+Sub\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the sub type of a constraint. 
+
+
+
+Implements \mbox{\hyperlink{classConstraint_a632a8161ad49c443c2e3a8b600a730a1}{Constraint}}.
+
+\Hypertarget{classPulleyConstraint_a3cf7cf423a10048274133c0dd5997c1a}\label{classPulleyConstraint_a3cf7cf423a10048274133c0dd5997c1a} 
+\index{PulleyConstraint@{PulleyConstraint}!NotifyShapeChanged@{NotifyShapeChanged}}
+\index{NotifyShapeChanged@{NotifyShapeChanged}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{NotifyShapeChanged()}{NotifyShapeChanged()}}
+{\footnotesize\ttfamily virtual void Pulley\+Constraint\+::\+Notify\+Shape\+Changed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body\+ID,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Delta\+COM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Notify the constraint that the shape of a body has changed and that its center of mass has moved by in\+Delta\+COM. Bodies don\textquotesingle{}t know which constraints are connected to them so the user is responsible for notifying the relevant constraints when a body changes. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Body\+ID} & ID of the body that has changed \\
+\hline
+{\em in\+Delta\+COM} & The delta of the center of mass of the body (shape-\/\texorpdfstring{$>$}{>}Get\+Center\+Of\+Mass() -\/ shape\+\_\+before\+\_\+change-\/\texorpdfstring{$>$}{>}Get\+Center\+Of\+Mass()) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classConstraint_a3072411d2c9da10356f2087cdc02ec70}{Constraint}}.
+
+\Hypertarget{classPulleyConstraint_a4532f8d0a7259537f9c15015f57056e3}\label{classPulleyConstraint_a4532f8d0a7259537f9c15015f57056e3} 
+\index{PulleyConstraint@{PulleyConstraint}!RestoreState@{RestoreState}}
+\index{RestoreState@{RestoreState}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{RestoreState()}{RestoreState()}}
+{\footnotesize\ttfamily virtual void Pulley\+Constraint\+::\+Restore\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Restoring state for replay. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraint_aac3d4c1948f1062a8d7c511eddc92e7b}{Constraint}}.
+
+\Hypertarget{classPulleyConstraint_aad87366e5d5e176a82cb8f6eb76d95c3}\label{classPulleyConstraint_aad87366e5d5e176a82cb8f6eb76d95c3} 
+\index{PulleyConstraint@{PulleyConstraint}!SaveState@{SaveState}}
+\index{SaveState@{SaveState}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{SaveState()}{SaveState()}}
+{\footnotesize\ttfamily virtual void Pulley\+Constraint\+::\+Save\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saving state for replay. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraint_aea8609ddde798f001409dd7c1a5c8b82}{Constraint}}.
+
+\Hypertarget{classPulleyConstraint_a36833d6faaf9f422d1fddba1bbe1be4c}\label{classPulleyConstraint_a36833d6faaf9f422d1fddba1bbe1be4c} 
+\index{PulleyConstraint@{PulleyConstraint}!SetupVelocityConstraint@{SetupVelocityConstraint}}
+\index{SetupVelocityConstraint@{SetupVelocityConstraint}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{SetupVelocityConstraint()}{SetupVelocityConstraint()}}
+{\footnotesize\ttfamily virtual void Pulley\+Constraint\+::\+Setup\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classPulleyConstraint_adaa5a62133cb652e96e831bb3771df13}\label{classPulleyConstraint_adaa5a62133cb652e96e831bb3771df13} 
+\index{PulleyConstraint@{PulleyConstraint}!SolvePositionConstraint@{SolvePositionConstraint}}
+\index{SolvePositionConstraint@{SolvePositionConstraint}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{SolvePositionConstraint()}{SolvePositionConstraint()}}
+{\footnotesize\ttfamily virtual bool Pulley\+Constraint\+::\+Solve\+Position\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time,  }\item[{float}]{in\+Baumgarte }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classPulleyConstraint_a3ded0c430720e8a1e52664c1c994eeef}\label{classPulleyConstraint_a3ded0c430720e8a1e52664c1c994eeef} 
+\index{PulleyConstraint@{PulleyConstraint}!SolveVelocityConstraint@{SolveVelocityConstraint}}
+\index{SolveVelocityConstraint@{SolveVelocityConstraint}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{SolveVelocityConstraint()}{SolveVelocityConstraint()}}
+{\footnotesize\ttfamily virtual bool Pulley\+Constraint\+::\+Solve\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classPulleyConstraint_a1d147c81fd6e891dd0a584de796ff942}\label{classPulleyConstraint_a1d147c81fd6e891dd0a584de796ff942} 
+\index{PulleyConstraint@{PulleyConstraint}!WarmStartVelocityConstraint@{WarmStartVelocityConstraint}}
+\index{WarmStartVelocityConstraint@{WarmStartVelocityConstraint}!PulleyConstraint@{PulleyConstraint}}
+\doxysubsubsection{\texorpdfstring{WarmStartVelocityConstraint()}{WarmStartVelocityConstraint()}}
+{\footnotesize\ttfamily virtual void Pulley\+Constraint\+::\+Warm\+Start\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Warm\+Start\+Impulse\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Pulley\+Constraint.\+h\end{DoxyCompactItemize}

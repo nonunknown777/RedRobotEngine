@@ -1,0 +1,21 @@
+\doxysection{Unordered\+Set.\+h}
+\hypertarget{UnorderedSet_8h_source}{}\label{UnorderedSet_8h_source}\index{includes/jolt/Core/UnorderedSet.h@{includes/jolt/Core/UnorderedSet.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00009\ JPH\_SUPPRESS\_WARNINGS\_STD\_END}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Hash\ =\ std::hash<Key>,\ \textcolor{keyword}{class}\ KeyEqual\ =\ std::equal\_to<Key>>\ \textcolor{keyword}{using\ }UnorderedSet\ =\ std::unordered\_set<Key,\ Hash,\ KeyEqual,\ STLAllocator<Key>>;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

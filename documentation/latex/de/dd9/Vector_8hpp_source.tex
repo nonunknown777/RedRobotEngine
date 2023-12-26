@@ -1,0 +1,431 @@
+\doxysection{Vector.\+hpp}
+\hypertarget{Vector_8hpp_source}{}\label{Vector_8hpp_source}\index{includes/playrho/Common/Vector.hpp@{includes/playrho/Common/Vector.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2006-\/2009\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_VECTOR\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_VECTOR\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/InvalidArgument.hpp>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Real.hpp>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Templates.hpp>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1Vector}{Vector}}}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\_type}}\ =\ T;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\_type}}\ =\ std::size\_t;}
+\DoxyCodeLine{00055\ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a0807d5f6ad7825293d92e8a6e0242734}{difference\_type}}\ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00058\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd}{reference}}\ =\ \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\_type}}\&;}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314}{const\_reference}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\_type}}\&;}
+\DoxyCodeLine{00064\ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a55cf503243bd308dc9961ba0970ab6ca}{pointer}}\ =\ \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\_type}}*;}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_adb95a88a8f0a112b81be5904979fd1c7}{const\_pointer}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\_type}}*;}
+\DoxyCodeLine{00070\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}{iterator}}\ =\ \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\_type}}*;}
+\DoxyCodeLine{00073\ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\_iterator}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\_type}}*;}
+\DoxyCodeLine{00076\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68}{reverse\_iterator}}\ =\ std::reverse\_iterator<iterator>;}
+\DoxyCodeLine{00079\ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\_reverse\_iterator}}\ =\ std::reverse\_iterator<const\_iterator>;}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_aa368db46827a37158002ac586f3f55c2}{Vector}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00087\ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ Tail>}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_a64e86fe825332bc262819c5edbc4115f}{Vector}}(std::enable\_if\_t<\textcolor{keyword}{sizeof}...(Tail)+1\ ==\ N,\ T>\ head,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Tail...\ tail)\ \textcolor{keyword}{noexcept}:\ \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}\{head,\ T(tail)...\}}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\_type}}\ \mbox{\hyperlink{structplayrho_1_1Vector_abe95a16ab6212c279f33f263fbc41dcd}{max\_size}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ N;\ \}}
+\DoxyCodeLine{00098\ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\_type}}\ \mbox{\hyperlink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ N;\ \}}
+\DoxyCodeLine{00101\ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1Vector_a980a432612de0373e65255df5b1f86d2}{empty}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ N\ ==\ 0;\ \}}
+\DoxyCodeLine{00105\ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}{iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a640fd6dd0af7123b6e8b47feceaf5375}{begin}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}{iterator}}(\mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}});\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}{iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a9b2981be03a89e12d9783d08d941c5bd}{end}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a541212ea3d3edf87f5f1ced1a9d3fb84}{iterator}}(\mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}\ +\ N);\ \}}
+\DoxyCodeLine{00111\ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a0e4e393aa9b3999b5e7bcd756c7ce88e}{begin}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\_iterator}}(\mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}});\ \}}
+\DoxyCodeLine{00114\ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_af101191765d6e6e8ea67d2365d190cc4}{end}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\_iterator}}(\mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}\ +\ N);\ \}}
+\DoxyCodeLine{00117\ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a9bebd544f9cb7bb77c8f2600bd194c8f}{cbegin}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a640fd6dd0af7123b6e8b47feceaf5375}{begin}}();\ \}}
+\DoxyCodeLine{00120\ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a01d534d2b418dd90b646a4b9258efcfd}{const\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_ae2cae3925bba1dc9890cb171491b5c8c}{cend}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a9b2981be03a89e12d9783d08d941c5bd}{end}}();\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68}{reverse\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a820156d1e812484e5962b33ada91027a}{rbegin}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68}{reverse\_iterator}}\{\mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}\ +\ N\};\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68}{reverse\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a0de188288645c01c7a0d5663f3ba1624}{rend}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a2134b5edd0c13e27350197a8a0268c68}{reverse\_iterator}}\{\mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}\};\ \}}
+\DoxyCodeLine{00129\ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\_reverse\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_ab8f7823fbdb7a68dcc009294228f0b9f}{crbegin}}()\ const\ noexcept}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\_reverse\_iterator}}\{\mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}\ +\ N\};}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\_reverse\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a7516a64e5f7a1463fb12f7b6f880ffb5}{crend}}()\ const\ noexcept}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\_reverse\_iterator}}\{\mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}\};}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\_reverse\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a324c2160a22774e96726fbaa148c552f}{rbegin}}()\ const\ noexcept}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_ab8f7823fbdb7a68dcc009294228f0b9f}{crbegin}}();}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ }
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a0ed34a0b33733cd906a69be2afeeeb1f}{const\_reverse\_iterator}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a7e1b4d33490c25fd9f0c5a9031ebf823}{rend}}()\ const\ noexcept}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a7516a64e5f7a1463fb12f7b6f880ffb5}{crend}}();}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd}{reference}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a4cf7068d7d3c4ea1a2c6859ffd7e749b}{operator[]}}(\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\_type}}\ pos)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00158\ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ assert(pos\ <\ \mbox{\hyperlink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size}}());}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}[pos];}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314}{const\_reference}}\ \mbox{\hyperlink{structplayrho_1_1Vector_aa90e470ba330d396ba83db1dc29b9522}{operator[]}}(\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\_type}}\ pos)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00167\ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ assert(pos\ <\ \mbox{\hyperlink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size}}());}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}[pos];}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_a1dac8a92ef859aec019358fed5b4badd}{reference}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a96eefa7a8f43dddee954f5cda427d1f8}{at}}(\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\_type}}\ pos)}
+\DoxyCodeLine{00175\ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ >=\ \mbox{\hyperlink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size}}())}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classplayrho_1_1InvalidArgument}{InvalidArgument}}(\textcolor{stringliteral}{"{}Vector::at:\ position\ >=\ size()"{}});}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}[pos];}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_a9da6840475f24afb0745263ad7a20314}{const\_reference}}\ \mbox{\hyperlink{structplayrho_1_1Vector_ac4fa1827bdfc14cc0c2c1778394f7b70}{at}}(\mbox{\hyperlink{structplayrho_1_1Vector_a0bb82780552c224e3736ed516d1c0dfc}{size\_type}}\ pos)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ >=\ \mbox{\hyperlink{structplayrho_1_1Vector_afc4f9041bb89f865b7491149bf0991a5}{size}}())}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classplayrho_1_1InvalidArgument}{InvalidArgument}}(\textcolor{stringliteral}{"{}Vector::at:\ position\ >=\ size()"{}});}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}[pos];}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_a55cf503243bd308dc9961ba0970ab6ca}{pointer}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a88f495a57b2564bd76d45d515486617c}{data}}()\ noexcept}
+\DoxyCodeLine{00196\ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}};}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1Vector_adb95a88a8f0a112b81be5904979fd1c7}{const\_pointer}}\ \mbox{\hyperlink{structplayrho_1_1Vector_ac0ee63043ed80188d8e400b7de4668aa}{data}}()\ const\ noexcept}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}};}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector_a92ca95984a7bf625e8705b97245a7a8f}{value\_type}}\ \mbox{\hyperlink{structplayrho_1_1Vector_a439b81a4f7eb326deec945e632ec37b0}{elements}}[N?\ N:\ 1];\ \textcolor{comment}{//\ Never\ zero\ to\ avoid\ needing\ C++\ extension\ capability.}}
+\DoxyCodeLine{00212\ \};}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00226\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}>}
+\DoxyCodeLine{00227\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsVector}{IsVector}}:\ std::false\_type\ \{\};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00238\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1IsVector}{IsVector}}<\mbox{\hyperlink{structplayrho_1_1Vector}{Vector}}<T,\ N>>:\ std::true\_type\ \{\};}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00245\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00246\ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00248\ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lhs[i]\ !=\ rhs[i])}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00255\ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00259\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00260\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00261\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{return}\ !(lhs\ ==\ rhs);}
+\DoxyCodeLine{00263\ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00267\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00268\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00269\ std::enable\_if\_t<std::is\_same<T,\ \textcolor{keyword}{decltype}(+T\{\})>::value,\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}>}
+\DoxyCodeLine{00270\ \textcolor{keyword}{operator}+\ (\mbox{\hyperlink{classVector}{Vector<T,\ N>}}\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00271\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00273\ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00277\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00278\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00279\ std::enable\_if\_t<std::is\_same<T,\ \textcolor{keyword}{decltype}(-\/T\{\})>::value,\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}>}
+\DoxyCodeLine{00280\ \textcolor{keyword}{operator}-\/\ (\mbox{\hyperlink{classVector}{Vector<T,\ N>}}\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00281\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00283\ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ v[i]\ =\ -\/v[i];}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00287\ \}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00291\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00292\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00293\ std::enable\_if\_t<std::is\_same<T,\ \textcolor{keyword}{decltype}(T\{\}\ +\ T\{\})>::value,\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&>}
+\DoxyCodeLine{00294\ \textcolor{keyword}{operator}+=\ (\mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00295\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00297\ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ lhs[i]\ +=\ rhs[i];}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00301\ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00305\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00306\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00307\ std::enable\_if\_t<std::is\_same<T,\ \textcolor{keyword}{decltype}(T\{\}\ -\/\ T\{\})>::value,\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&>}
+\DoxyCodeLine{00308\ \textcolor{keyword}{operator}-\/=\ (\mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00309\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00311\ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ lhs[i]\ -\/=\ rhs[i];}
+\DoxyCodeLine{00313\ \ \ \ \ \}}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00315\ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00319\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00320\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00321\ std::enable\_if\_t<std::is\_same<T,\ \textcolor{keyword}{decltype}(T\{\}\ +\ T\{\})>::value,\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}>}
+\DoxyCodeLine{00322\ \textcolor{keyword}{operator}+\ (\mbox{\hyperlink{classVector}{Vector<T,\ N>}}\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00323\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ +=\ rhs;}
+\DoxyCodeLine{00325\ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00329\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00330\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00331\ std::enable\_if\_t<std::is\_same<T,\ \textcolor{keyword}{decltype}(T\{\}\ -\/\ T\{\})>::value,\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}>}
+\DoxyCodeLine{00332\ \textcolor{keyword}{operator}-\/\ (\mbox{\hyperlink{classVector}{Vector<T,\ N>}}\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00333\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ -\/=\ rhs;}
+\DoxyCodeLine{00335\ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00339\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00340\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00341\ std::enable\_if\_t<std::is\_same<T1,\ \textcolor{keyword}{decltype}(T1\{\}\ *\ T2\{\})>::value,\ \mbox{\hyperlink{classVector}{Vector<T1,\ N>}}\&>}
+\DoxyCodeLine{00342\ \textcolor{keyword}{operator}*=\ (\mbox{\hyperlink{classVector}{Vector<T1,\ N>}}\&\ lhs,\ \textcolor{keyword}{const}\ T2\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00343\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00345\ \ \ \ \ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ lhs[i]\ *=\ rhs;}
+\DoxyCodeLine{00347\ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00349\ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00353\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00354\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00355\ std::enable\_if\_t<std::is\_same<T1,\ \textcolor{keyword}{decltype}(T1\{\}\ /\ T2\{\})>::value,\ \mbox{\hyperlink{classVector}{Vector<T1,\ N>}}\&>}
+\DoxyCodeLine{00356\ \textcolor{keyword}{operator}/=\ (\mbox{\hyperlink{classVector}{Vector<T1,\ N>}}\&\ lhs,\ \textcolor{keyword}{const}\ T2\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00357\ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ inverseRhs\ =\ Real\{1\}\ /\ rhs;}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00360\ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ lhs[i]\ *=\ inverseRhs;}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00364\ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00384\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2,\ std::size\_t\ A,\ std::size\_t\ B,\ std::size\_t\ C,}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keyword}{typename}\ OT\ =\ \textcolor{keyword}{decltype}(T1\{\}\ *\ T2\{\})>}
+\DoxyCodeLine{00386\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00387\ std::enable\_if\_t<IsMultipliable<T1,\ T2>::value,\ \mbox{\hyperlink{classVector}{Vector}}<\mbox{\hyperlink{classVector}{Vector<OT,\ C>}},\ A>>}
+\DoxyCodeLine{00388\ \textcolor{keyword}{operator}*\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}<\mbox{\hyperlink{classVector}{Vector<T1,\ B>}},\ A>\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}<\mbox{\hyperlink{classVector}{Vector<T2,\ C>}},\ B>\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00389\ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{comment}{//using\ OT\ =\ decltype(T1\{\}\ *\ T2\{\});}}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ \mbox{\hyperlink{classVector}{Vector<Vector<OT,\ C>}},\ A>\{\};}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ a\ =\ \textcolor{keyword}{decltype}(A)\{0\};\ a\ <\ A;\ ++a)}
+\DoxyCodeLine{00393\ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ c\ =\ \textcolor{keyword}{decltype}(C)\{0\};\ c\ <\ C;\ ++c)}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ for\ 2x3\ lhs\ matrix\ *\ 3*2\ rhs\ matrix...\ result\ is\ 2x2\ matrix:}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ result[0][0]\ =\ lhs[0][0]\ *\ rhs[0][0]\ +\ lhs[0][1]\ *\ rhs[1][0]\ +\ lhs[0][2]\ *\ rhs[2][0]}}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ result[0][1]\ =\ lhs[0][0]\ *\ rhs[0][1]\ +\ lhs[0][1]\ *\ rhs[1][1]\ +\ lhs[0][2]\ *\ rhs[2][1]}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ result[1][0]\ =\ lhs[1][0]\ *\ rhs[0][0]\ +\ lhs[1][1]\ *\ rhs[1][0]\ +\ lhs[1][2]\ *\ rhs[2][0]}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ result[1][1]\ =\ lhs[1][0]\ *\ rhs[0][1]\ +\ lhs[1][1]\ *\ rhs[1][1]\ +\ lhs[1][2]\ *\ rhs[2][1]}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ also:\ result[a][c]\ =\ row(lhs,\ a)\ *\ col(rhs,\ c)}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ element\ =\ OT\{\};}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ b\ =\ \textcolor{keyword}{decltype}(B)\{0\};\ b\ <\ B;\ ++b)}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ element\ +=\ lhs[a][b]\ *\ rhs[b][c];}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ result[a][c]\ =\ element;}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \}}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00411\ \}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00420\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2,\ std::size\_t\ A,\ std::size\_t\ B,}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keyword}{typename}\ OT\ =\ \textcolor{keyword}{decltype}(T1\{\}\ *\ T2\{\})>}
+\DoxyCodeLine{00422\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00423\ std::enable\_if\_t<IsMultipliable<T1,\ T2>::value\ \&\&\ !IsVector<T1>::value,\ \mbox{\hyperlink{classVector}{Vector<OT,\ B>}}>}
+\DoxyCodeLine{00424\ \textcolor{keyword}{operator}*\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector}{Vector<T1,\ A>}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector}{Vector}}<\mbox{\hyperlink{structplayrho_1_1Vector}{Vector<T2,\ B>}},\ A>\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00425\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ \mbox{\hyperlink{structplayrho_1_1Vector}{Vector<OT,\ B>}}\{\};}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ b\ =\ \textcolor{keyword}{decltype}(B)\{0\};\ b\ <\ B;\ ++b)}
+\DoxyCodeLine{00428\ \ \ \ \ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ element\ =\ OT\{\};}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ a\ =\ \textcolor{keyword}{decltype}(A)\{0\};\ a\ <\ A;\ ++a)}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ element\ +=\ lhs[a]\ *\ rhs[a][b];}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ result[b]\ =\ element;}
+\DoxyCodeLine{00435\ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00437\ \}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00446\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2,\ std::size\_t\ A,\ std::size\_t\ B,}
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keyword}{typename}\ OT\ =\ \textcolor{keyword}{decltype}(T1\{\}\ *\ T2\{\})>}
+\DoxyCodeLine{00448\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00449\ std::enable\_if\_t<IsMultipliable<T1,\ T2>::value\ \&\&\ !IsVector<T2>::value,\ \mbox{\hyperlink{classVector}{Vector<OT,\ B>}}>}
+\DoxyCodeLine{00450\ \textcolor{keyword}{operator}*\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector}{Vector}}<\mbox{\hyperlink{structplayrho_1_1Vector}{Vector<T1,\ A>}},\ B>\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector}{Vector<T2,\ A>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00451\ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ \mbox{\hyperlink{structplayrho_1_1Vector}{Vector<OT,\ B>}}\{\};}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ b\ =\ \textcolor{keyword}{decltype}(B)\{0\};\ b\ <\ B;\ ++b)}
+\DoxyCodeLine{00454\ \ \ \ \ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ element\ =\ OT\{\};}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ a\ =\ \textcolor{keyword}{decltype}(A)\{0\};\ a\ <\ A;\ ++a)}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ element\ +=\ lhs[b][a]\ *\ rhs[a];}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ result[b]\ =\ element;}
+\DoxyCodeLine{00461\ \ \ \ \ \}}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00463\ \}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00469\ \textcolor{keyword}{template}\ <std::size\_t\ N,\ \textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2,\ \textcolor{keyword}{typename}\ OT\ =\ \textcolor{keyword}{decltype}(T1\{\}\ *\ T2\{\})>}
+\DoxyCodeLine{00470\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00471\ std::enable\_if\_t<IsMultipliable<T1,\ T2>::value\ \&\&\ !IsVector<T1>::value,\ \mbox{\hyperlink{classVector}{Vector<OT,\ N>}}>}
+\DoxyCodeLine{00472\ \textcolor{keyword}{operator}*\ (\textcolor{keyword}{const}\ T1\ s,\ \mbox{\hyperlink{classVector}{Vector<T2,\ N>}}\ a)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00473\ \{}
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{comment}{//\ Can't\ base\ this\ off\ of\ *=\ since\ result\ type\ in\ this\ case\ can\ be\ different}}
+\DoxyCodeLine{00475\ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ \mbox{\hyperlink{classVector}{Vector<OT,\ N>}}\{\};}
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00477\ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ result[i]\ =\ s\ *\ a[i];}
+\DoxyCodeLine{00479\ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00481\ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00487\ \textcolor{keyword}{template}\ <std::size\_t\ N,\ \textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2,\ \textcolor{keyword}{typename}\ OT\ =\ \textcolor{keyword}{decltype}(T1\{\}\ *\ T2\{\})>}
+\DoxyCodeLine{00488\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00489\ std::enable\_if\_t<IsMultipliable<T1,\ T2>::value\ \&\&\ !IsVector<T2>::value,\ \mbox{\hyperlink{classVector}{Vector<OT,\ N>}}>}
+\DoxyCodeLine{00490\ \textcolor{keyword}{operator}*\ (\mbox{\hyperlink{classVector}{Vector<T1,\ N>}}\ a,\ \textcolor{keyword}{const}\ T2\ s)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00491\ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{comment}{//\ Can't\ base\ this\ off\ of\ *=\ since\ result\ type\ in\ this\ case\ can\ be\ different}}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ \mbox{\hyperlink{classVector}{Vector<OT,\ N>}}\{\};}
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00495\ \ \ \ \ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ result[i]\ =\ a[i]\ *\ s;}
+\DoxyCodeLine{00497\ \ \ \ \ \}}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00499\ \}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00503\ \textcolor{keyword}{template}\ <std::size\_t\ N,\ \textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2,\ \textcolor{keyword}{typename}\ OT\ =\ \textcolor{keyword}{decltype}(T1\{\}\ /\ T2\{\})>}
+\DoxyCodeLine{00504\ \textcolor{keyword}{constexpr}}
+\DoxyCodeLine{00505\ std::enable\_if\_t<IsDivisable<T1,\ T2>::value\ \&\&\ !IsVector<T2>::value,\ \mbox{\hyperlink{classVector}{Vector<OT,\ N>}}>}
+\DoxyCodeLine{00506\ \textcolor{keyword}{operator}/\ (\mbox{\hyperlink{classVector}{Vector<T1,\ N>}}\ a,\ \textcolor{keyword}{const}\ T2\ s)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00507\ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{comment}{//\ Can't\ base\ this\ off\ of\ /=\ since\ result\ type\ in\ this\ case\ can\ be\ different}}
+\DoxyCodeLine{00509\ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ \mbox{\hyperlink{classVector}{Vector<OT,\ N>}}\{\};}
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ inverseS\ =\ Real\{1\}\ /\ s;}
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00512\ \ \ \ \ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ result[i]\ =\ a[i]\ *\ inverseS;}
+\DoxyCodeLine{00514\ \ \ \ \ \}}
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00516\ \}}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00520\ \textcolor{keyword}{template}\ <std::\textcolor{keywordtype}{size\_t}\ I,\ std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00521\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classVector_aa10d9373a7aa5e3492fee0877900f738}{get}}(\mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00522\ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keyword}{static\_assert}(I\ <\ N,\ \textcolor{stringliteral}{"{}Index\ out\ of\ bounds\ in\ playrho::get<>\ (playrho::Vector)"{}});}
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{keywordflow}{return}\ v[I];}
+\DoxyCodeLine{00525\ \}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00528\ \textcolor{keyword}{template}\ <std::\textcolor{keywordtype}{size\_t}\ I,\ std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00529\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a79262115e1b77428fd2e0af6f1288d30}{get}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector}{Vector<T,\ N>}}\&\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00530\ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keyword}{static\_assert}(I\ <\ N,\ \textcolor{stringliteral}{"{}Index\ out\ of\ bounds\ in\ playrho::get<>\ (playrho::Vector)"{}});}
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{keywordflow}{return}\ v[I];}
+\DoxyCodeLine{00533\ \}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00537\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00538\ ::std::ostream\&\ \mbox{\hyperlink{namespaceplayrho_acc045bd4bbb560077978ce21cd20c49f}{operator<<\ }}(::std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector<T,\ N>}}\&\ value)}
+\DoxyCodeLine{00539\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}\{"{}};}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{decltype}(N)\{0\};\ i\ <\ N;\ ++i)}
+\DoxyCodeLine{00542\ \ \ \ \ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >\ \textcolor{keyword}{decltype}(N)\{0\})}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{charliteral}{','};}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ os\ <<\ value[i];}
+\DoxyCodeLine{00548\ \ \ \ \ \}}
+\DoxyCodeLine{00549\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}\}"{}};}
+\DoxyCodeLine{00550\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00551\ \}}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}\ \{}
+\DoxyCodeLine{00556\ \ \ \ \ }
+\DoxyCodeLine{00558\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00559\ \ \ \ \ \textcolor{keyword}{class\ }tuple\_size<\ playrho::Vector<T,\ N>\ >:\ \textcolor{keyword}{public}\ std::integral\_constant<std::size\_t,\ N>\ \{\};}
+\DoxyCodeLine{00560\ \ \ \ \ }
+\DoxyCodeLine{00562\ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ I,\ \textcolor{keyword}{class}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00563\ \ \ \ \ \textcolor{keyword}{class\ }tuple\_element<I,\ \mbox{\hyperlink{namespaceplayrho}{playrho}}::\mbox{\hyperlink{classVector}{Vector}}<T,\ N>>}
+\DoxyCodeLine{00564\ \ \ \ \ \{}
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classstd_1_1tuple__element_3_01I_00_01playrho_1_1Vector_3_01T_00_01N_01_4_01_4_a8b0304c7b250c39300ab4ad96e299953}{type}}\ =\ T;}
+\DoxyCodeLine{00568\ \ \ \ \ \};}
+\DoxyCodeLine{00569\ \ \ \ \ }
+\DoxyCodeLine{00570\ \}\ \textcolor{comment}{//\ namespace\ std}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_VECTOR\_HPP}}
+
+\end{DoxyCode}

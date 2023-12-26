@@ -1,0 +1,195 @@
+\doxysection{EPAPenetration\+Depth Class Reference}
+\hypertarget{classEPAPenetrationDepth}{}\label{classEPAPenetrationDepth}\index{EPAPenetrationDepth@{EPAPenetrationDepth}}
+
+
+{\ttfamily \#include $<$EPAPenetration\+Depth.\+h$>$}
+
+
+
+Collaboration diagram for EPAPenetration\+Depth\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{db/d0f/classEPAPenetrationDepth__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0}{EStatus}} \{ \mbox{\hyperlink{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0a0497a652be066f6f966a97fa6c67c9c0}{Not\+Colliding}}
+, \mbox{\hyperlink{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0ae0f4d0dafbcf08dd28d80154056ad0d8}{Colliding}}
+, \mbox{\hyperlink{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0aa2d00c353d1f9a5f07852650030dbd53}{Indeterminate}}
+ \}
+\begin{DoxyCompactList}\small\item\em Return code for Get\+Penetration\+Depth\+Step\+GJK. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename AE , typename BE $>$ }\\\mbox{\hyperlink{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0}{EStatus}} \mbox{\hyperlink{classEPAPenetrationDepth_a903dc39955aae9b4e9eced5a396eb5a7}{Get\+Penetration\+Depth\+Step\+GJK}} (const AE \&in\+AExcluding\+Convex\+Radius, float in\+Convex\+RadiusA, const BE \&in\+BExcluding\+Convex\+Radius, float in\+Convex\+RadiusB, float in\+Tolerance, \mbox{\hyperlink{classVec3}{Vec3}} \&ioV, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+PointA, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+PointB)
+\item 
+{\footnotesize template$<$typename AI , typename BI $>$ }\\bool \mbox{\hyperlink{classEPAPenetrationDepth_acff8a6121c0896e3aabbe3a18019f201}{Get\+Penetration\+Depth\+Step\+EPA}} (const AI \&in\+AIncluding\+Convex\+Radius, const BI \&in\+BIncluding\+Convex\+Radius, float in\+Tolerance, \mbox{\hyperlink{classVec3}{Vec3}} \&outV, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+PointA, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+PointB)
+\item 
+{\footnotesize template$<$typename AE , typename AI , typename BE , typename BI $>$ }\\bool \mbox{\hyperlink{classEPAPenetrationDepth_a8368ab4825b799eb57d6f6cf841087e2}{Get\+Penetration\+Depth}} (const AE \&in\+AExcluding\+Convex\+Radius, const AI \&in\+AIncluding\+Convex\+Radius, float in\+Convex\+RadiusA, const BE \&in\+BExcluding\+Convex\+Radius, const BI \&in\+BIncluding\+Convex\+Radius, float in\+Convex\+RadiusB, float in\+Collision\+Tolerance\+Sq, float in\+Penetration\+Tolerance, \mbox{\hyperlink{classVec3}{Vec3}} \&ioV, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+PointA, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+PointB)
+\item 
+{\footnotesize template$<$typename A , typename B $>$ }\\bool \mbox{\hyperlink{classEPAPenetrationDepth_a37aeff94cc5402fd0a98bb299803f543}{Cast\+Shape}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Start, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, float in\+Collision\+Tolerance, float in\+Penetration\+Tolerance, const A \&inA, const B \&inB, float in\+Convex\+RadiusA, float in\+Convex\+RadiusB, bool in\+Return\+Deepest\+Point, float \&io\+Lambda, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+PointA, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+PointB, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Contact\+Normal)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of Expanding Polytope Algorithm as described in\+:
+
+Proximity Queries and Penetration Depth Computation on 3D Game Objects -\/ Gino van den Bergen
+
+The implementation of this algorithm does not completely follow the article, instead of splitting triangles at each edge as in fig. 7 in the article, we build a convex hull (removing any triangles that are facing the new point, thereby avoiding the problem of getting really oblong triangles as mentioned in the article).
+
+The algorithm roughly works like\+:
+
+
+\begin{DoxyItemize}
+\item Start with a simplex of the Minkowski sum (difference) of two objects that was calculated by GJK
+\item This simplex should contain the origin (or else GJK would have reported\+: no collision)
+\item In cases where the simplex consists of 1 -\/ 3 points, find some extra support points (of the Minkowski sum) to get to at least 4 points
+\item Convert this into a convex hull with non-\/zero volume (which includes the origin)
+\item A\+: Calculate the closest point to the origin for all triangles of the hull and take the closest one
+\item Calculate a new support point (of the Minkowski sum) in this direction and add this point to the convex hull
+\item This will remove all faces that are facing the new point and will create new triangles to fill up the hole
+\item Loop to A until no closer point found
+\item The closest point indicates the position / direction of least penetration 
+\end{DoxyItemize}
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0}\label{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0} 
+\index{EPAPenetrationDepth@{EPAPenetrationDepth}!EStatus@{EStatus}}
+\index{EStatus@{EStatus}!EPAPenetrationDepth@{EPAPenetrationDepth}}
+\doxysubsubsection{\texorpdfstring{EStatus}{EStatus}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0}{EPAPenetration\+Depth\+::\+EStatus}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Return code for Get\+Penetration\+Depth\+Step\+GJK. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NotColliding@{NotColliding}!EPAPenetrationDepth@{EPAPenetrationDepth}}\index{EPAPenetrationDepth@{EPAPenetrationDepth}!NotColliding@{NotColliding}}}\Hypertarget{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0a0497a652be066f6f966a97fa6c67c9c0}\label{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0a0497a652be066f6f966a97fa6c67c9c0} 
+Not\+Colliding&Returned if the objects don\textquotesingle{}t collide, in this case out\+Point\+A/out\+PointB are invalid. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Colliding@{Colliding}!EPAPenetrationDepth@{EPAPenetrationDepth}}\index{EPAPenetrationDepth@{EPAPenetrationDepth}!Colliding@{Colliding}}}\Hypertarget{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0ae0f4d0dafbcf08dd28d80154056ad0d8}\label{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0ae0f4d0dafbcf08dd28d80154056ad0d8} 
+Colliding&Returned if the objects penetrate. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Indeterminate@{Indeterminate}!EPAPenetrationDepth@{EPAPenetrationDepth}}\index{EPAPenetrationDepth@{EPAPenetrationDepth}!Indeterminate@{Indeterminate}}}\Hypertarget{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0aa2d00c353d1f9a5f07852650030dbd53}\label{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0aa2d00c353d1f9a5f07852650030dbd53} 
+Indeterminate&Returned if the objects penetrate further than the convex radius. In this case you need to call Get\+Penetration\+Depth\+Step\+EPA to get the actual penetration depth. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEPAPenetrationDepth_a37aeff94cc5402fd0a98bb299803f543}\label{classEPAPenetrationDepth_a37aeff94cc5402fd0a98bb299803f543} 
+\index{EPAPenetrationDepth@{EPAPenetrationDepth}!CastShape@{CastShape}}
+\index{CastShape@{CastShape}!EPAPenetrationDepth@{EPAPenetrationDepth}}
+\doxysubsubsection{\texorpdfstring{CastShape()}{CastShape()}}
+{\footnotesize\ttfamily template$<$typename A , typename B $>$ \\
+bool EPAPenetration\+Depth\+::\+Cast\+Shape (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Start,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Direction,  }\item[{float}]{in\+Collision\+Tolerance,  }\item[{float}]{in\+Penetration\+Tolerance,  }\item[{const A \&}]{inA,  }\item[{const B \&}]{inB,  }\item[{float}]{in\+Convex\+RadiusA,  }\item[{float}]{in\+Convex\+RadiusB,  }\item[{bool}]{in\+Return\+Deepest\+Point,  }\item[{float \&}]{io\+Lambda,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+PointA,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+PointB,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+Contact\+Normal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Test if a cast shape inA moving from in\+Start to lambda \texorpdfstring{$\ast$}{*} in\+Start.\+Get\+Translation() + in\+Direction where lambda e \mbox{[}0, io\+Lambda\texorpdfstring{$>$}{>} instersects inB
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Start} & Start position and orientation of the convex object \\
+\hline
+{\em in\+Direction} & Direction of the sweep (io\+Lambda \texorpdfstring{$\ast$}{*} in\+Direction determines length) \\
+\hline
+{\em in\+Collision\+Tolerance} & The minimal distance between A and B before they are considered colliding \\
+\hline
+{\em in\+Penetration\+Tolerance} & A factor that determines the accuracy of the result. If the change of the squared distance is less than in\+Tolerance \texorpdfstring{$\ast$}{*} current\+\_\+penetration\+\_\+depth\texorpdfstring{$^\wedge$}{\string^}2 the algorithm will terminate. Should be bigger or equal to FLT\+\_\+\+EPSILON. \\
+\hline
+{\em inA} & The convex object A, must support the Get\+Support(\+Vec3) function. \\
+\hline
+{\em inB} & The convex object B, must support the Get\+Support(\+Vec3) function. \\
+\hline
+{\em in\+Convex\+RadiusA} & The convex radius of A, this will be added on all sides to pad A. \\
+\hline
+{\em in\+Convex\+RadiusB} & The convex radius of B, this will be added on all sides to pad B. \\
+\hline
+{\em in\+Return\+Deepest\+Point} & If the shapes are initially interesecting this determines if the EPA algorithm will run to find the deepest point \\
+\hline
+{\em io\+Lambda} & The max fraction along the sweep, on output updated with the actual collision fraction. \\
+\hline
+{\em out\+PointA} & is the contact point on A \\
+\hline
+{\em out\+PointB} & is the contact point on B \\
+\hline
+{\em out\+Contact\+Normal} & is either the contact normal when the objects are touching or the penetration axis when the objects are penetrating at the start of the sweep (pointing from A to B, length will not be 1)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the a hit was found, in which case io\+Lambda, out\+PointA, out\+PointB and out\+Surface\+Normal are updated. 
+\end{DoxyReturn}
+\Hypertarget{classEPAPenetrationDepth_a8368ab4825b799eb57d6f6cf841087e2}\label{classEPAPenetrationDepth_a8368ab4825b799eb57d6f6cf841087e2} 
+\index{EPAPenetrationDepth@{EPAPenetrationDepth}!GetPenetrationDepth@{GetPenetrationDepth}}
+\index{GetPenetrationDepth@{GetPenetrationDepth}!EPAPenetrationDepth@{EPAPenetrationDepth}}
+\doxysubsubsection{\texorpdfstring{GetPenetrationDepth()}{GetPenetrationDepth()}}
+{\footnotesize\ttfamily template$<$typename AE , typename AI , typename BE , typename BI $>$ \\
+bool EPAPenetration\+Depth\+::\+Get\+Penetration\+Depth (\begin{DoxyParamCaption}\item[{const AE \&}]{in\+AExcluding\+Convex\+Radius,  }\item[{const AI \&}]{in\+AIncluding\+Convex\+Radius,  }\item[{float}]{in\+Convex\+RadiusA,  }\item[{const BE \&}]{in\+BExcluding\+Convex\+Radius,  }\item[{const BI \&}]{in\+BIncluding\+Convex\+Radius,  }\item[{float}]{in\+Convex\+RadiusB,  }\item[{float}]{in\+Collision\+Tolerance\+Sq,  }\item[{float}]{in\+Penetration\+Tolerance,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{ioV,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+PointA,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+PointB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This function combines the GJK and EPA steps and is provided as a convenience function. Note\+: less performant since you\textquotesingle{}re providing all support functions in one go Note 2\+: You need to initialize ioV, see documentation at Get\+Penetration\+Depth\+Step\+GJK! \Hypertarget{classEPAPenetrationDepth_acff8a6121c0896e3aabbe3a18019f201}\label{classEPAPenetrationDepth_acff8a6121c0896e3aabbe3a18019f201} 
+\index{EPAPenetrationDepth@{EPAPenetrationDepth}!GetPenetrationDepthStepEPA@{GetPenetrationDepthStepEPA}}
+\index{GetPenetrationDepthStepEPA@{GetPenetrationDepthStepEPA}!EPAPenetrationDepth@{EPAPenetrationDepth}}
+\doxysubsubsection{\texorpdfstring{GetPenetrationDepthStepEPA()}{GetPenetrationDepthStepEPA()}}
+{\footnotesize\ttfamily template$<$typename AI , typename BI $>$ \\
+bool EPAPenetration\+Depth\+::\+Get\+Penetration\+Depth\+Step\+EPA (\begin{DoxyParamCaption}\item[{const AI \&}]{in\+AIncluding\+Convex\+Radius,  }\item[{const BI \&}]{in\+BIncluding\+Convex\+Radius,  }\item[{float}]{in\+Tolerance,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{outV,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+PointA,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+PointB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculates penetration depth between two objects, second step (the EPA step)
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+AIncluding\+Convex\+Radius} & Object A with convex radius \\
+\hline
+{\em in\+BIncluding\+Convex\+Radius} & Object B with convex radius \\
+\hline
+{\em in\+Tolerance} & A factor that determines the accuracy of the result. If the change of the squared distance is less than in\+Tolerance \texorpdfstring{$\ast$}{*} current\+\_\+penetration\+\_\+depth\texorpdfstring{$^\wedge$}{\string^}2 the algorithm will terminate. Should be bigger or equal to FLT\+\_\+\+EPSILON. \\
+\hline
+{\em outV} & Direction to move B out of collision along the shortest path (magnitude is meaningless) \\
+\hline
+{\em out\+PointA} & Position on A that has the least amount of penetration \\
+\hline
+{\em out\+PointB} & Position on B that has the least amount of penetration Use \texorpdfstring{$\vert$}{|}out\+PointB -\/ out\+Point\+A\texorpdfstring{$\vert$}{|} to get the distance of penetration\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+False if the objects don\textquotesingle{}t collide, in this case out\+Point\+A/out\+PointB are invalid. True if the objects penetrate 
+\end{DoxyReturn}
+\Hypertarget{classEPAPenetrationDepth_a903dc39955aae9b4e9eced5a396eb5a7}\label{classEPAPenetrationDepth_a903dc39955aae9b4e9eced5a396eb5a7} 
+\index{EPAPenetrationDepth@{EPAPenetrationDepth}!GetPenetrationDepthStepGJK@{GetPenetrationDepthStepGJK}}
+\index{GetPenetrationDepthStepGJK@{GetPenetrationDepthStepGJK}!EPAPenetrationDepth@{EPAPenetrationDepth}}
+\doxysubsubsection{\texorpdfstring{GetPenetrationDepthStepGJK()}{GetPenetrationDepthStepGJK()}}
+{\footnotesize\ttfamily template$<$typename AE , typename BE $>$ \\
+\mbox{\hyperlink{classEPAPenetrationDepth_aab59ecfbbefc06c5ac96f9cdc24252d0}{EStatus}} EPAPenetration\+Depth\+::\+Get\+Penetration\+Depth\+Step\+GJK (\begin{DoxyParamCaption}\item[{const AE \&}]{in\+AExcluding\+Convex\+Radius,  }\item[{float}]{in\+Convex\+RadiusA,  }\item[{const BE \&}]{in\+BExcluding\+Convex\+Radius,  }\item[{float}]{in\+Convex\+RadiusB,  }\item[{float}]{in\+Tolerance,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{ioV,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+PointA,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+PointB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculates penetration depth between two objects, first step of two (the GJK step)
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+AExcluding\+Convex\+Radius} & Object A without convex radius. \\
+\hline
+{\em in\+BExcluding\+Convex\+Radius} & Object B without convex radius. \\
+\hline
+{\em in\+Convex\+RadiusA} & Convex radius for A. \\
+\hline
+{\em in\+Convex\+RadiusB} & Convex radius for B. \\
+\hline
+{\em ioV} & Pass in previously returned value or (1, 0, 0). On return this value is changed to direction to move B out of collision along the shortest path (magnitude is meaningless). \\
+\hline
+{\em in\+Tolerance} & Minimal distance before A and B are considered colliding. \\
+\hline
+{\em out\+PointA} & Position on A that has the least amount of penetration. \\
+\hline
+{\em out\+PointB} & Position on B that has the least amount of penetration. Use \texorpdfstring{$\vert$}{|}out\+PointB -\/ out\+Point\+A\texorpdfstring{$\vert$}{|} to get the distance of penetration. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/EPAPenetration\+Depth.\+h\end{DoxyCompactItemize}

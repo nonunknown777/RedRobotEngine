@@ -1,0 +1,57 @@
+\doxysection{Path\+Constraint\+Path\+Hermite.\+h}
+\hypertarget{PathConstraintPathHermite_8h_source}{}\label{PathConstraintPathHermite_8h_source}\index{includes/jolt/Physics/Constraints/PathConstraintPathHermite.h@{includes/jolt/Physics/Constraints/PathConstraintPathHermite.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/PathConstraintPath.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classPathConstraintPathHermite}{PathConstraintPathHermite}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPathConstraintPath}{PathConstraintPath}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classPathConstraintPathHermite}{PathConstraintPathHermite}})}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ See\ PathConstraintPath::GetPathMaxFraction}}
+\DoxyCodeLine{00018\ \ \ \ \ virtual\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ GetPathMaxFraction()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ float(IsLooping()?\ mPoints.size()\ :\ mPoints.size()\ -\/\ 1);\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ See\ PathConstraintPath::GetClosestPoint}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{classPathConstraintPathHermite_a355e9a89e6192c634d7c1c0925977930}{GetClosestPoint}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ See\ PathConstraintPath::GetPointOnPath}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classPathConstraintPathHermite_ae5b4d99107b23d1b725e34a3d56171c1}{GetPointOnPath}}(\textcolor{keywordtype}{float}\ inFraction,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPathPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPathTangent,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPathNormal,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPathBinormal)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPathConstraintPathHermite_a66a08dc34277969fc1f4dc3cbbca9682}{AddPoint}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTangent,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inNormal)\ \ \{\ mPoints.push\_back(\{\ inPosition,\ inTangent,\ inNormal\});\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ See:\ PathConstraintPath::SaveBinaryState}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classPathConstraintPathHermite_ac6ba22cfaad88f9dd1e90e49d62f4919}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPathConstraintPathHermite_1_1Point}{Point}}}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_NON\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{structPathConstraintPathHermite_1_1Point}{Point}})}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ mPosition;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ mTangent;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ mNormal;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ protected:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ See:\ PathConstraintPath::RestoreBinaryState}}
+\DoxyCodeLine{00043\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ RestoreBinaryState(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ override;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ private:}
+\DoxyCodeLine{00047\ \ \ \ \ inline\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ GetIndexAndT(\textcolor{keywordtype}{float}\ inFraction,\ \textcolor{keywordtype}{int}\ \&outIndex,\ \textcolor{keywordtype}{float}\ \&outT)\ const;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ using\ Points\ =\ Array<\mbox{\hyperlink{structPathConstraintPathHermite_1_1Point}{Point}}>;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ Points\ \ \ \ \ \ \ \ \ \ \ \ \ \ mPoints;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,88 @@
+\doxysection{Body\+ID Class Reference}
+\hypertarget{classBodyID}{}\label{classBodyID}\index{BodyID@{BodyID}}
+
+
+ID of a body. This is a way of reasoning about bodies in a multithreaded simulation while avoiding race conditions.  
+
+
+
+
+{\ttfamily \#include $<$Body\+ID.\+h$>$}
+
+
+
+Collaboration diagram for Body\+ID\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{d9/d56/classBodyID__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyID_a43c06446ee70f43cb4516600cb6285f4}\label{classBodyID_a43c06446ee70f43cb4516600cb6285f4} 
+{\bfseries Body\+ID} ()
+\begin{DoxyCompactList}\small\item\em Construct invalid body ID. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a4e601acab1a7ff5d5742673f8bd36530}\label{classBodyID_a4e601acab1a7ff5d5742673f8bd36530} 
+{\bfseries Body\+ID} (uint32 in\+ID)
+\begin{DoxyCompactList}\small\item\em Construct from index and sequence number combined in a single uint32 (use with care!) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a702d36c88f9ee8f41b349330e30b46b7}\label{classBodyID_a702d36c88f9ee8f41b349330e30b46b7} 
+{\bfseries Body\+ID} (uint32 in\+ID, uint8 in\+Sequence\+Number)
+\begin{DoxyCompactList}\small\item\em Construct from index and sequence number. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_ae7455ec3e8eec8ec963fb99ea4176fd6}\label{classBodyID_ae7455ec3e8eec8ec963fb99ea4176fd6} 
+uint32 {\bfseries Get\+Index} () const
+\begin{DoxyCompactList}\small\item\em Get index in body array. \end{DoxyCompactList}\item 
+uint8 \mbox{\hyperlink{classBodyID_af327d342cd7e2a6be188bc836270ba51}{Get\+Sequence\+Number}} () const
+\item 
+\Hypertarget{classBodyID_aaff1cc7e76b557c1ce750bea2286290c}\label{classBodyID_aaff1cc7e76b557c1ce750bea2286290c} 
+uint32 {\bfseries Get\+Index\+And\+Sequence\+Number} () const
+\begin{DoxyCompactList}\small\item\em Returns the index and sequence number combined in an uint32. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a0967deb4e1f200037bf32e14c4fec9e1}\label{classBodyID_a0967deb4e1f200037bf32e14c4fec9e1} 
+bool {\bfseries Is\+Invalid} () const
+\begin{DoxyCompactList}\small\item\em Check if the ID is valid. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a717e575a515906ef45ab9f152175e6f4}\label{classBodyID_a717e575a515906ef45ab9f152175e6f4} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Equals check. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a7bdbfe3abcab2c0d393187423a40c9a4}\label{classBodyID_a7bdbfe3abcab2c0d393187423a40c9a4} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Not equals check. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a198e4c4fe4c671e614e4fa664a004b9d}\label{classBodyID_a198e4c4fe4c671e614e4fa664a004b9d} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Smaller than operator, can be used for sorting bodies. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a97ad33ad13e398831574a7a5bb97e741}\label{classBodyID_a97ad33ad13e398831574a7a5bb97e741} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Greater than operator, can be used for sorting bodies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyID_afdcec75f1be1cceeb20d728bde4d4f83}\label{classBodyID_afdcec75f1be1cceeb20d728bde4d4f83} 
+static JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE constexpr uint32 {\bfseries c\+Invalid\+Body\+ID} = 0xffffffff
+\begin{DoxyCompactList}\small\item\em The value for an invalid body ID. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a934cd29a300722fea1f36408f934fb9d}\label{classBodyID_a934cd29a300722fea1f36408f934fb9d} 
+static constexpr uint32 {\bfseries c\+Broad\+Phase\+Bit} = 0x00800000
+\begin{DoxyCompactList}\small\item\em This bit is used by the broadphase. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_a89af35f2dfe916c6fa348175c3fb131b}\label{classBodyID_a89af35f2dfe916c6fa348175c3fb131b} 
+static constexpr uint32 {\bfseries c\+Max\+Body\+Index} = 0x7fffff
+\begin{DoxyCompactList}\small\item\em Maximum value for body index (also the maximum amount of bodies supported -\/ 1) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyID_ab397b404a7a9ab8ea97bfd5e2e70ce11}\label{classBodyID_ab397b404a7a9ab8ea97bfd5e2e70ce11} 
+static constexpr uint8 {\bfseries c\+Max\+Sequence\+Number} = 0xff
+\begin{DoxyCompactList}\small\item\em Maximum value for the sequence number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+ID of a body. This is a way of reasoning about bodies in a multithreaded simulation while avoiding race conditions. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBodyID_af327d342cd7e2a6be188bc836270ba51}\label{classBodyID_af327d342cd7e2a6be188bc836270ba51} 
+\index{BodyID@{BodyID}!GetSequenceNumber@{GetSequenceNumber}}
+\index{GetSequenceNumber@{GetSequenceNumber}!BodyID@{BodyID}}
+\doxysubsubsection{\texorpdfstring{GetSequenceNumber()}{GetSequenceNumber()}}
+{\footnotesize\ttfamily uint8 Body\+ID\+::\+Get\+Sequence\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get sequence number of body. The sequence number can be used to check if a body ID with the same body index has been reused by another body. It is mainly used in multi threaded situations where a body is removed and its body index is immediately reused by a body created from another thread. Functions querying the broadphase can (after aquiring a body lock) detect that the body has been removed (we assume that this won\textquotesingle{}t happen more than 128 times in a row). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Body/Body\+ID.\+h\end{DoxyCompactItemize}

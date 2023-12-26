@@ -1,0 +1,23 @@
+<map id="ConvexShape" name="ConvexShape">
+<area shape="rect" id="Node000001" title="Base class for all convex shapes. Defines a virtual interface." alt="" coords="591,1000,818,1325"/>
+<area shape="rect" id="Node000005" href="$d6/dcc/classBoxShape.html" title="A box, centered around the origin." alt="" coords="5,1373,169,1699"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="578,1193,483,1219,380,1258,276,1309,227,1340,182,1375,171,1386,167,1382,179,1371,224,1336,273,1305,378,1253,482,1214,576,1187"/>
+<area shape="rect" id="Node000006" href="$d2/d8d/classCapsuleShape.html" title="A capsule, implemented as a line segment with convex radius." alt="" coords="193,1373,392,1699"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="580,1239,491,1302,446,1337,405,1375,394,1387,390,1383,401,1371,443,1333,487,1297,577,1235"/>
+<area shape="rect" id="Node000007" href="$d7/dbb/classConvexHullShape.html" title="A convex hull." alt="" coords="416,1373,599,1699"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="614,1340,595,1375,591,1373,610,1337"/>
+<area shape="rect" id="Node000008" href="$d5/de6/classCylinderShape.html" title="A cylinder." alt="" coords="623,1373,786,1699"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="707,1340,707,1374,702,1374,702,1340"/>
+<area shape="rect" id="Node000009" href="$d7/db5/classSphereShape.html" title=" " alt="" coords="811,1373,993,1699"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="800,1337,819,1373,814,1375,795,1340"/>
+<area shape="rect" id="Node000010" href="$dc/dfd/classTaperedCapsuleShape.html" title="A capsule with different top and bottom radii." alt="" coords="1017,1373,1200,1699"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="832,1233,922,1296,967,1332,1008,1371,1019,1384,1016,1388,1004,1375,963,1336,919,1300,829,1238"/>
+<area shape="rect" id="Node000011" href="$d3/d01/classTriangleShape.html" title="A single triangle, not the most efficient way of creating a world filled with triangles but can be us..." alt="" coords="1224,1373,1407,1699"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="833,1191,923,1219,1023,1257,1123,1308,1170,1338,1214,1371,1226,1382,1222,1386,1211,1375,1167,1342,1120,1312,1021,1262,922,1224,831,1196"/>
+<area shape="rect" id="Node000002" href="$de/d0a/classShape.html" title="Base class for all shapes (collision volume of a body). Defines a virtual interface for collision det..." alt="" coords="599,315,811,952"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="707,967,707,1000,702,1000,702,967"/>
+<area shape="rect" id="Node000003" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="501,5,716,267"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="639,281,646,315,641,316,634,282"/>
+<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="741,80,863,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="791,207,770,315,764,314,786,206"/>
+</map>

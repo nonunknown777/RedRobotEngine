@@ -1,0 +1,86 @@
+\doxysection{Physics\+Settings.\+h}
+\hypertarget{PhysicsSettings_8h_source}{}\label{PhysicsSettings_8h_source}\index{includes/jolt/Physics/PhysicsSettings.h@{includes/jolt/Physics/PhysicsSettings.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ cDefaultCollisionTolerance\ =\ 1.0e-\/4f;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ cDefaultPenetrationTolerance\ =\ 1.0e-\/4f;\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ cDefaultConvexRadius\ =\ 0.05f;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ cCapsuleProjectionSlop\ =\ 0.02f;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ cMaxPhysicsJobs\ =\ 2048;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ cMaxPhysicsBarriers\ =\ 8;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysicsSettings}{PhysicsSettings}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a4b51fef768d4839927757e9b3ae65177}{mMaxInFlightBodyPairs}}\ =\ 16384;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a646cc49b1095c6c682189ba15d4de67f}{mStepListenersBatchSize}}\ =\ 8;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_af9a3ca565935d36351a646e82ffe0867}{mStepListenerBatchesPerJob}}\ =\ 1;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_ae1969d17d76a46e36471e1289d02355f}{mBaumgarte}}\ =\ 0.2f;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a9d7cb8a2c982e6c63e4def8fcd88d7fb}{mSpeculativeContactDistance}}\ =\ 0.02f;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a9aff2f46a311da4e48974dce7e3b4cee}{mPenetrationSlop}}\ =\ 0.02f;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_ab5580db2e8580b84eb6be01a24cc54c4}{mLinearCastThreshold}}\ =\ 0.75f;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_aa5090787a0d12a9e7519da9e752de0e7}{mLinearCastMaxPenetration}}\ =\ 0.25f;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_ae045877d52a061978eb78569b96b0b62}{mManifoldToleranceSq}}\ =\ 1.0e-\/6f;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a85f7318d995294af04d6a5c0fe0d01a6}{mMaxPenetrationDistance}}\ =\ 0.2f;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a739d00b8a125095ee04c70981244f1be}{mBodyPairCacheMaxDeltaPositionSq}}\ =\ Square(0.001f);\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_ac56cd29f1987d79e105e5bf443254c3e}{mBodyPairCacheCosMaxDeltaRotationDiv2}}\ =\ 0.99984769515639123915701155881391f;\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_aefc600483ad1234713fbd572f80f00da}{mContactNormalCosMaxDeltaRotation}}\ =\ 0.99619469809174553229501040247389f;\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a69350ac3ff30bca78c45d402938a3ebf}{mContactPointPreserveLambdaMaxDistSq}}\ =\ Square(0.01f);\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00078\ \ \ \ \ uint\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{mNumVelocitySteps}}\ =\ 10;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \ \ \ \ uint\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{mNumPositionSteps}}\ =\ 2;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a3f68f35ad1244421ad126d3db5a617f3}{mMinVelocityForRestitution}}\ =\ 1.0f;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a0bd7d6eb98c547488f874a9577fff451}{mTimeBeforeSleep}}\ =\ 0.5f;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_aae6093b99380ed5b72f5af1cc6529785}{mPointVelocitySleepThreshold}}\ =\ 0.03f;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_aee2d7c40a127dc9c347d3b84b24ab4e3}{mDeterministicSimulation}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_ad477a1ff8add4e1f8684b131c1485480}{mConstraintWarmStart}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a5a6d3286936ff2f74d1cf106e8ebf3f6}{mUseBodyPairContactCache}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_af715e8c12331e908a82768501d09db97}{mUseManifoldReduction}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_ad391d29bbd9cd0cc0ce6358adb501e97}{mUseLargeIslandSplitter}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_a5386b79ed560a23cdbe06482b5a58de6}{mAllowSleeping}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsSettings_ad5b9533124cc07d57c5dd7ff050caba7}{mCheckActiveEdges}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

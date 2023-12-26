@@ -1,0 +1,128 @@
+\doxysection{Growable\+Stack.\+hpp}
+\hypertarget{GrowableStack_8hpp_source}{}\label{GrowableStack_8hpp_source}\index{includes/playrho/Common/GrowableStack.hpp@{includes/playrho/Common/GrowableStack.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2010\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_GROWABLESTACK\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_GROWABLESTACK\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/DynamicMemory.hpp>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1GrowableStack}{GrowableStack}}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1GrowableStack_a96746e86907cd1053b982e432ce680db}{ElementType}}\ =\ T;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}\ =\ std::size\_t;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7fd71084bf3bf8d63a079ac30dc8bd9c}{GetInitialCapacity}}()\ noexcept}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}(N);}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7cedecdb334d7cd194f7de3fffd8f1d7}{GetBufferGrowthRate}}()\ noexcept}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}\{2\};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack}{GrowableStack}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00057\ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack}{GrowableStack}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack}{GrowableStack}}\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack}{GrowableStack}}(\mbox{\hyperlink{classplayrho_1_1GrowableStack}{GrowableStack}}\&\&\ other)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack}{\string~GrowableStack}}()\ noexcept}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_stack\ !=\ m\_array)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ Free(m\_stack);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ m\_stack\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ GrowableStack\&\ operator=\ (\textcolor{keyword}{const}\ GrowableStack\&\ copy)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ GrowableStack\&\ operator=\ (GrowableStack\&\&\ copy)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00074\ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a9a52c69b5e506bef0d458f1631ca3514}{push}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a96746e86907cd1053b982e432ce680db}{ElementType}}\&\ element)}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_count\ ==\ m\_capacity)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ old\ =\ m\_stack;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ m\_capacity\ *=\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7cedecdb334d7cd194f7de3fffd8f1d7}{GetBufferGrowthRate}}();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ m\_stack\ =\ AllocArray<T>(m\_capacity);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ std::memcpy(m\_stack,\ old,\ m\_count\ *\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (old\ !=\ m\_array)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Free(old);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ *(m\_stack\ +\ m\_count)\ =\ element;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ ++m\_count;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a96746e86907cd1053b982e432ce680db}{ElementType}}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_aca6d1bc59a1ba12492ed2ae2c9974590}{top}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ assert(m\_count\ >\ 0);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_stack[m\_count\ -\/\ 1];}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_abd96c05bbcee5de9e40962a4a62a4bfc}{pop}}()\ noexcept}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ assert(m\_count\ >\ 0);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ -\/-\/m\_count;}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a25c2a5c02fc0760c0e2183ea314df1a5}{size}}()\ const\ noexcept}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_count;}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a2b99feb8c53ba9ded557ce46418f30e6}{capacity}}()\ const\ noexcept}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_capacity;}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1GrowableStack_aad3430a4ab40781e54d31fc902c2c285}{empty}}()\ const\ noexcept}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_count\ ==\ 0;}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a96746e86907cd1053b982e432ce680db}{ElementType}}\ m\_array[N];\ }
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a96746e86907cd1053b982e432ce680db}{ElementType}}*\ m\_stack\ =\ m\_array;\ }
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}\ m\_count\ =\ 0;\ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1GrowableStack_a7d7f4c80b39831539b8f978700087ddc}{CountType}}\ m\_capacity\ =\ N;\ }
+\DoxyCodeLine{00133\ \};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_GROWABLESTACK\_HPP}}
+
+\end{DoxyCode}

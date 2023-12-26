@@ -1,0 +1,84 @@
+\doxysection{Temp\+Allocator\+Malloc Class Reference}
+\hypertarget{classTempAllocatorMalloc}{}\label{classTempAllocatorMalloc}\index{TempAllocatorMalloc@{TempAllocatorMalloc}}
+
+
+{\ttfamily \#include $<$Temp\+Allocator.\+h$>$}
+
+
+
+Inheritance diagram for Temp\+Allocator\+Malloc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{d5/dcd/classTempAllocatorMalloc__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Temp\+Allocator\+Malloc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{db/d0f/classTempAllocatorMalloc__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classTempAllocatorMalloc_a985a35b24e08ce333e10a712578458e6}{Allocate}} (uint in\+Size) override
+\begin{DoxyCompactList}\small\item\em Allocates in\+Size bytes of memory, returned memory address must be JPH\+\_\+\+RVECTOR\+\_\+\+ALIGNMENT byte aligned. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTempAllocatorMalloc_a03b9827f7300d701f22d6ca53ba9d686}{Free}} (void \texorpdfstring{$\ast$}{*}in\+Address, uint in\+Size) override
+\begin{DoxyCompactList}\small\item\em Frees in\+Size bytes of memory located at in\+Address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classTempAllocator}{Temp\+Allocator}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries \texorpdfstring{$\sim$}{\string~}\+Temp\+Allocator} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the \doxylink{classTempAllocator}{Temp\+Allocator} that just falls back to malloc/free Note\+: This can be quite slow when running in the debugger as large memory blocks need to be initialized with 0xcd 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTempAllocatorMalloc_a985a35b24e08ce333e10a712578458e6}\label{classTempAllocatorMalloc_a985a35b24e08ce333e10a712578458e6} 
+\index{TempAllocatorMalloc@{TempAllocatorMalloc}!Allocate@{Allocate}}
+\index{Allocate@{Allocate}!TempAllocatorMalloc@{TempAllocatorMalloc}}
+\doxysubsubsection{\texorpdfstring{Allocate()}{Allocate()}}
+{\footnotesize\ttfamily virtual JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE void \texorpdfstring{$\ast$}{*} Temp\+Allocator\+Malloc\+::\+Allocate (\begin{DoxyParamCaption}\item[{uint}]{in\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Allocates in\+Size bytes of memory, returned memory address must be JPH\+\_\+\+RVECTOR\+\_\+\+ALIGNMENT byte aligned. 
+
+
+
+Implements \mbox{\hyperlink{classTempAllocator_aa62f890910ee965efea7244953f3c65e}{Temp\+Allocator}}.
+
+\Hypertarget{classTempAllocatorMalloc_a03b9827f7300d701f22d6ca53ba9d686}\label{classTempAllocatorMalloc_a03b9827f7300d701f22d6ca53ba9d686} 
+\index{TempAllocatorMalloc@{TempAllocatorMalloc}!Free@{Free}}
+\index{Free@{Free}!TempAllocatorMalloc@{TempAllocatorMalloc}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily virtual void Temp\+Allocator\+Malloc\+::\+Free (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{in\+Address,  }\item[{uint}]{in\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Frees in\+Size bytes of memory located at in\+Address. 
+
+
+
+Implements \mbox{\hyperlink{classTempAllocator_a1d9399cbf93c253a7f03d8ffea249bfe}{Temp\+Allocator}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Temp\+Allocator.\+h\end{DoxyCompactItemize}

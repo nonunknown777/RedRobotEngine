@@ -1,0 +1,13 @@
+<map id="OffsetCenterOfMassShapeSettings" name="OffsetCenterOfMassShapeSettings">
+<area shape="rect" id="Node000001" title="Class that constructs an OffsetCenterOfMassShape." alt="" coords="65,731,325,864"/>
+<area shape="rect" id="Node000002" href="$d8/d27/classDecoratedShapeSettings.html" title="Class that constructs a DecoratedShape." alt="" coords="108,613,281,683"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,698,197,731,192,731,192,698"/>
+<area shape="rect" id="Node000003" href="$d6/d55/classShapeSettings.html" title=" " alt="" coords="131,475,259,565"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="197,581,197,614,192,614,192,581"/>
+<area shape="rect" id="Node000004" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="5,261,171,331"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,343,176,474,171,476,108,345"/>
+<area shape="rect" id="Node000005" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,5,149,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="91,132,91,261,85,261,85,132"/>
+<area shape="rect" id="Node000006" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="195,165,410,427"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="236,441,218,476,214,474,231,439"/>
+</map>

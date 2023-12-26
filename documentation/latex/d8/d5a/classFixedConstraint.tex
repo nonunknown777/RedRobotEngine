@@ -1,0 +1,313 @@
+\doxysection{Fixed\+Constraint Class Reference}
+\hypertarget{classFixedConstraint}{}\label{classFixedConstraint}\index{FixedConstraint@{FixedConstraint}}
+
+
+{\ttfamily \#include $<$Fixed\+Constraint.\+h$>$}
+
+
+
+Inheritance diagram for Fixed\+Constraint\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{df/d17/classFixedConstraint__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Fixed\+Constraint\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d7/df6/classFixedConstraint__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classFixedConstraint_a543015c5f4a7c155e53372b6b759c576}\label{classFixedConstraint_a543015c5f4a7c155e53372b6b759c576} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Fixed\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classFixedConstraintSettings}{Fixed\+Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual EConstraint\+Sub\+Type \mbox{\hyperlink{classFixedConstraint_ae4a226e769a4bab140f41f72a2aff9b5}{Get\+Sub\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the sub type of a constraint. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classFixedConstraint_a9eff1e123f1856e2821008dcf447b242}{Notify\+Shape\+Changed}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Delta\+COM) override
+\item 
+virtual void \mbox{\hyperlink{classFixedConstraint_aebc567e8ba38f2c4796264728f44b882}{Setup\+Velocity\+Constraint}} (float in\+Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{classFixedConstraint_a6b0577d1fef3e908eadd25c1740d5a56}{Warm\+Start\+Velocity\+Constraint}} (float in\+Warm\+Start\+Impulse\+Ratio) override
+\item 
+virtual bool \mbox{\hyperlink{classFixedConstraint_a66a92a448bf8a31bed386a720ee0f130}{Solve\+Velocity\+Constraint}} (float in\+Delta\+Time) override
+\item 
+virtual bool \mbox{\hyperlink{classFixedConstraint_ab860209a1726681890d73c53b533384d}{Solve\+Position\+Constraint}} (float in\+Delta\+Time, float in\+Baumgarte) override
+\item 
+virtual void \mbox{\hyperlink{classFixedConstraint_a642f9f8a31e77d93123cf6c805399780}{Save\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classFixedConstraint_ac8b1b8a9ef43fe05d5f38faa2fcc0b33}{Restore\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ \mbox{\hyperlink{classFixedConstraint_a93bb8668101f811578a71e1e8ef7a742}{Get\+Constraint\+Settings}} () const override
+\begin{DoxyCompactList}\small\item\em Debug function to convert a constraint to its settings, note that this will not save to which bodies the constraint is connected to. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classFixedConstraint_a852ac2a355651a1ba586554d1551bcbc}{Get\+Constraint\+To\+Body1\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Calculates the transform that transforms from constraint space to body 1 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classFixedConstraint_a7782ad778c9f110835e6be7a299bfcc7}{Get\+Constraint\+To\+Body2\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Calculates the transform that transforms from constraint space to body 2 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Two\+Body\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classTwoBodyConstraintSettings}{Two\+Body\+Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual EConstraint\+Type \mbox{\hyperlink{classTwoBodyConstraint_a25655ebd463476c1ada660d3a292d3c7}{Get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of a constraint. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classTwoBodyConstraint_a9ec4e14ada31bf5172141c2d50663e76}{Is\+Active}} () const override
+\begin{DoxyCompactList}\small\item\em Solver interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body1} () const
+\begin{DoxyCompactList}\small\item\em Access to the connected bodies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body2} () const
+\item 
+virtual void \mbox{\hyperlink{classTwoBodyConstraint_afca1a46125600fea6ecd15a38ed45790}{Build\+Islands}} (uint32 in\+Constraint\+Index, \mbox{\hyperlink{classIslandBuilder}{Island\+Builder}} \&io\+Builder, \mbox{\hyperlink{classBodyManager}{Body\+Manager}} \&in\+Body\+Manager) override
+\begin{DoxyCompactList}\small\item\em Link bodies that are connected by this constraint in the island builder. \end{DoxyCompactList}\item 
+virtual uint \mbox{\hyperlink{classTwoBodyConstraint_a08db9f012da401e48d5ce4bf404ff6d4}{Build\+Island\+Splits}} (\mbox{\hyperlink{classLargeIslandSplitter}{Large\+Island\+Splitter}} \&io\+Splitter) const override
+\begin{DoxyCompactList}\small\item\em Link bodies that are connected by this constraint in the same split. Returns the split index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classConstraint}{Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Constraint} (const \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Constraint} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraint_a6c75250d651da3854eda9e929193e585}{Get\+Constraint\+Priority}} () const
+\item 
+void {\bfseries Set\+Constraint\+Priority} (uint32 in\+Priority)
+\item 
+void {\bfseries Set\+Num\+Velocity\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Velocity\+Steps\+Override} () const
+\item 
+void {\bfseries Set\+Num\+Position\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Position\+Steps\+Override} () const
+\item 
+void \mbox{\hyperlink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Set\+Enabled}} (bool in\+Enabled)
+\item 
+bool {\bfseries Get\+Enabled} () const
+\begin{DoxyCompactList}\small\item\em Test if a constraint is enabled. \end{DoxyCompactList}\item 
+uint64 {\bfseries Get\+User\+Data} () const
+\begin{DoxyCompactList}\small\item\em Access to the user data, can be used for anything by the application. \end{DoxyCompactList}\item 
+void {\bfseries Set\+User\+Data} (uint64 in\+User\+Data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Get Lagrange multiplier from last physics update (the linear/angular impulse applied to satisfy the constraint)}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classFixedConstraint_a1f2e160cf0bac4e5a08a10a4db32fe27}\label{classFixedConstraint_a1f2e160cf0bac4e5a08a10a4db32fe27} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Total\+Lambda\+Position} () const
+\item 
+\Hypertarget{classFixedConstraint_a28f17b6379474d45e29faebfef63e670}\label{classFixedConstraint_a28f17b6379474d45e29faebfef63e670} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Total\+Lambda\+Rotation} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classConstraint}{Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries To\+Constraint\+Settings} (\mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} \&out\+Settings) const
+\begin{DoxyCompactList}\small\item\em Helper function to copy settings back to constraint settings for this base class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body1}
+\begin{DoxyCompactList}\small\item\em The two bodies involved. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body2}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A fixed constraint welds two bodies together removing all degrees of freedom between them. This variant uses euler angles for the rotation constraint. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFixedConstraint_a93bb8668101f811578a71e1e8ef7a742}\label{classFixedConstraint_a93bb8668101f811578a71e1e8ef7a742} 
+\index{FixedConstraint@{FixedConstraint}!GetConstraintSettings@{GetConstraintSettings}}
+\index{GetConstraintSettings@{GetConstraintSettings}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintSettings()}{GetConstraintSettings()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ Fixed\+Constraint\+::\+Get\+Constraint\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Debug function to convert a constraint to its settings, note that this will not save to which bodies the constraint is connected to. 
+
+
+
+Implements \mbox{\hyperlink{classConstraint_a2cb32f0fbbc03050fd09c975e01277d2}{Constraint}}.
+
+\Hypertarget{classFixedConstraint_a852ac2a355651a1ba586554d1551bcbc}\label{classFixedConstraint_a852ac2a355651a1ba586554d1551bcbc} 
+\index{FixedConstraint@{FixedConstraint}!GetConstraintToBody1Matrix@{GetConstraintToBody1Matrix}}
+\index{GetConstraintToBody1Matrix@{GetConstraintToBody1Matrix}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintToBody1Matrix()}{GetConstraintToBody1Matrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMat44}{Mat44}} Fixed\+Constraint\+::\+Get\+Constraint\+To\+Body1\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates the transform that transforms from constraint space to body 1 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraint_a0edd748869643b1c904a7bc1314dad7a}{Two\+Body\+Constraint}}.
+
+\Hypertarget{classFixedConstraint_a7782ad778c9f110835e6be7a299bfcc7}\label{classFixedConstraint_a7782ad778c9f110835e6be7a299bfcc7} 
+\index{FixedConstraint@{FixedConstraint}!GetConstraintToBody2Matrix@{GetConstraintToBody2Matrix}}
+\index{GetConstraintToBody2Matrix@{GetConstraintToBody2Matrix}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintToBody2Matrix()}{GetConstraintToBody2Matrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMat44}{Mat44}} Fixed\+Constraint\+::\+Get\+Constraint\+To\+Body2\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates the transform that transforms from constraint space to body 2 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraint_a0966503073a315b6087f10208e8a61ff}{Two\+Body\+Constraint}}.
+
+\Hypertarget{classFixedConstraint_ae4a226e769a4bab140f41f72a2aff9b5}\label{classFixedConstraint_ae4a226e769a4bab140f41f72a2aff9b5} 
+\index{FixedConstraint@{FixedConstraint}!GetSubType@{GetSubType}}
+\index{GetSubType@{GetSubType}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{GetSubType()}{GetSubType()}}
+{\footnotesize\ttfamily virtual EConstraint\+Sub\+Type Fixed\+Constraint\+::\+Get\+Sub\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the sub type of a constraint. 
+
+
+
+Implements \mbox{\hyperlink{classConstraint_a632a8161ad49c443c2e3a8b600a730a1}{Constraint}}.
+
+\Hypertarget{classFixedConstraint_a9eff1e123f1856e2821008dcf447b242}\label{classFixedConstraint_a9eff1e123f1856e2821008dcf447b242} 
+\index{FixedConstraint@{FixedConstraint}!NotifyShapeChanged@{NotifyShapeChanged}}
+\index{NotifyShapeChanged@{NotifyShapeChanged}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{NotifyShapeChanged()}{NotifyShapeChanged()}}
+{\footnotesize\ttfamily virtual void Fixed\+Constraint\+::\+Notify\+Shape\+Changed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body\+ID,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Delta\+COM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Notify the constraint that the shape of a body has changed and that its center of mass has moved by in\+Delta\+COM. Bodies don\textquotesingle{}t know which constraints are connected to them so the user is responsible for notifying the relevant constraints when a body changes. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Body\+ID} & ID of the body that has changed \\
+\hline
+{\em in\+Delta\+COM} & The delta of the center of mass of the body (shape-\/\texorpdfstring{$>$}{>}Get\+Center\+Of\+Mass() -\/ shape\+\_\+before\+\_\+change-\/\texorpdfstring{$>$}{>}Get\+Center\+Of\+Mass()) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classConstraint_a3072411d2c9da10356f2087cdc02ec70}{Constraint}}.
+
+\Hypertarget{classFixedConstraint_ac8b1b8a9ef43fe05d5f38faa2fcc0b33}\label{classFixedConstraint_ac8b1b8a9ef43fe05d5f38faa2fcc0b33} 
+\index{FixedConstraint@{FixedConstraint}!RestoreState@{RestoreState}}
+\index{RestoreState@{RestoreState}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{RestoreState()}{RestoreState()}}
+{\footnotesize\ttfamily virtual void Fixed\+Constraint\+::\+Restore\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Restoring state for replay. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraint_aac3d4c1948f1062a8d7c511eddc92e7b}{Constraint}}.
+
+\Hypertarget{classFixedConstraint_a642f9f8a31e77d93123cf6c805399780}\label{classFixedConstraint_a642f9f8a31e77d93123cf6c805399780} 
+\index{FixedConstraint@{FixedConstraint}!SaveState@{SaveState}}
+\index{SaveState@{SaveState}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{SaveState()}{SaveState()}}
+{\footnotesize\ttfamily virtual void Fixed\+Constraint\+::\+Save\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saving state for replay. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraint_aea8609ddde798f001409dd7c1a5c8b82}{Constraint}}.
+
+\Hypertarget{classFixedConstraint_aebc567e8ba38f2c4796264728f44b882}\label{classFixedConstraint_aebc567e8ba38f2c4796264728f44b882} 
+\index{FixedConstraint@{FixedConstraint}!SetupVelocityConstraint@{SetupVelocityConstraint}}
+\index{SetupVelocityConstraint@{SetupVelocityConstraint}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{SetupVelocityConstraint()}{SetupVelocityConstraint()}}
+{\footnotesize\ttfamily virtual void Fixed\+Constraint\+::\+Setup\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classFixedConstraint_ab860209a1726681890d73c53b533384d}\label{classFixedConstraint_ab860209a1726681890d73c53b533384d} 
+\index{FixedConstraint@{FixedConstraint}!SolvePositionConstraint@{SolvePositionConstraint}}
+\index{SolvePositionConstraint@{SolvePositionConstraint}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{SolvePositionConstraint()}{SolvePositionConstraint()}}
+{\footnotesize\ttfamily virtual bool Fixed\+Constraint\+::\+Solve\+Position\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time,  }\item[{float}]{in\+Baumgarte }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classFixedConstraint_a66a92a448bf8a31bed386a720ee0f130}\label{classFixedConstraint_a66a92a448bf8a31bed386a720ee0f130} 
+\index{FixedConstraint@{FixedConstraint}!SolveVelocityConstraint@{SolveVelocityConstraint}}
+\index{SolveVelocityConstraint@{SolveVelocityConstraint}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{SolveVelocityConstraint()}{SolveVelocityConstraint()}}
+{\footnotesize\ttfamily virtual bool Fixed\+Constraint\+::\+Solve\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classFixedConstraint_a6b0577d1fef3e908eadd25c1740d5a56}\label{classFixedConstraint_a6b0577d1fef3e908eadd25c1740d5a56} 
+\index{FixedConstraint@{FixedConstraint}!WarmStartVelocityConstraint@{WarmStartVelocityConstraint}}
+\index{WarmStartVelocityConstraint@{WarmStartVelocityConstraint}!FixedConstraint@{FixedConstraint}}
+\doxysubsubsection{\texorpdfstring{WarmStartVelocityConstraint()}{WarmStartVelocityConstraint()}}
+{\footnotesize\ttfamily virtual void Fixed\+Constraint\+::\+Warm\+Start\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Warm\+Start\+Impulse\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Fixed\+Constraint.\+h\end{DoxyCompactItemize}

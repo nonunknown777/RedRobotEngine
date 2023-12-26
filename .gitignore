@@ -3,7 +3,10 @@
 
 ## build Executables
 myproject
-
+zengine-debug
+zengine-release
+includes/
+libs/
 ### C++ ###
 # Prerequisites
 *.d

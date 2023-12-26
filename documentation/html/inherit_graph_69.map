@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d2/dab/classDebugRenderer.html" title="Simple triangle renderer for debugging purposes." alt="" coords="5,5,128,33"/>
+<area shape="rect" id="Node000001" href="$d6/de1/classDebugRendererRecorder.html" title="Implementation of DebugRenderer that records the API invocations to be played back later." alt="" coords="176,5,356,33"/>
+<area shape="poly" id="edge10_Node000000_Node000001" title=" " alt="" coords="143,17,175,17,175,22,143,22"/>
+</map>

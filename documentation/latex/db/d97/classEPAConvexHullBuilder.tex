@@ -1,0 +1,127 @@
+\doxysection{EPAConvex\+Hull\+Builder Class Reference}
+\hypertarget{classEPAConvexHullBuilder}{}\label{classEPAConvexHullBuilder}\index{EPAConvexHullBuilder@{EPAConvexHullBuilder}}
+
+
+A convex hull builder specifically made for the EPA penetration depth calculation. It trades accuracy for speed and will simply abort of the hull forms defects due to numerical precision problems.  
+
+
+
+
+{\ttfamily \#include $<$EPAConvex\+Hull\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for EPAConvex\+Hull\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{da/d35/classEPAConvexHullBuilder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for EPAConvex\+Hull\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{d8/d0b/classEPAConvexHullBuilder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge}{Edge}}
+\begin{DoxyCompactList}\small\item\em Class that holds the information of an edge. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Points}{Points}}
+\begin{DoxyCompactList}\small\item\em Specialized points list that allows direct access to the size. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}
+\begin{DoxyCompactList}\small\item\em Class that holds the information of one triangle. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory}{Triangle\+Factory}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classFactory}{Factory} that creates triangles in a fixed size buffer. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleQueue}{Triangle\+Queue}}
+\begin{DoxyCompactList}\small\item\em Specialized triangles list that keeps them sorted on closest distance to origin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEPAConvexHullBuilder_a469e8ddcebb3e76c06176c9580fc186e}\label{classEPAConvexHullBuilder_a469e8ddcebb3e76c06176c9580fc186e} 
+using {\bfseries Edges} = \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge}{Edge}}, \mbox{\hyperlink{classEPAConvexHullBuilder_a745bd64c5b95a736c502901a1bd3d7c0}{c\+Max\+Edge\+Length}} $>$
+\item 
+\Hypertarget{classEPAConvexHullBuilder_a3fd1bd39cc8988421b7d756fc717ce82}\label{classEPAConvexHullBuilder_a3fd1bd39cc8988421b7d756fc717ce82} 
+using {\bfseries New\+Triangles} = \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classEPAConvexHullBuilder_a745bd64c5b95a736c502901a1bd3d7c0}{c\+Max\+Edge\+Length}} $>$
+\item 
+\Hypertarget{classEPAConvexHullBuilder_a68f076aa07f0793b45b88b34ebbf493f}\label{classEPAConvexHullBuilder_a68f076aa07f0793b45b88b34ebbf493f} 
+using {\bfseries Points\+Base} = \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classVec3}{Vec3}}, \mbox{\hyperlink{classEPAConvexHullBuilder_a6968898ef16408b14c1000bebf2f2576}{c\+Max\+Points}} $>$
+\item 
+\Hypertarget{classEPAConvexHullBuilder_aea0c331a90c44fd535337c5d0841103e}\label{classEPAConvexHullBuilder_aea0c331a90c44fd535337c5d0841103e} 
+using {\bfseries Triangles} = \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classEPAConvexHullBuilder_a4513da2adce7a49aff9314455b8e669d}{c\+Max\+Triangles}} $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEPAConvexHullBuilder_ae55b89fd27a0cab9a97a1475245dec9d}\label{classEPAConvexHullBuilder_ae55b89fd27a0cab9a97a1475245dec9d} 
+{\bfseries EPAConvex\+Hull\+Builder} (const \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Points}{Points}} \&in\+Positions)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_ac6b69723ed9d2c1b815769f9953ef8e7}\label{classEPAConvexHullBuilder_ac6b69723ed9d2c1b815769f9953ef8e7} 
+void {\bfseries Initialize} (int in\+Idx1, int in\+Idx2, int in\+Idx3)
+\begin{DoxyCompactList}\small\item\em Initialize the hull with 3 points. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_a233403c7274da823fb6b96b539dc5f95}\label{classEPAConvexHullBuilder_a233403c7274da823fb6b96b539dc5f95} 
+bool {\bfseries Has\+Next\+Triangle} () const
+\begin{DoxyCompactList}\small\item\em Check if there\textquotesingle{}s another triangle to process from the queue. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_a0b52c132a7365cd272f3ca14a8f25145}\label{classEPAConvexHullBuilder_a0b52c132a7365cd272f3ca14a8f25145} 
+\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}} \texorpdfstring{$\ast$}{*} {\bfseries Peek\+Closest\+Triangle\+In\+Queue} ()
+\begin{DoxyCompactList}\small\item\em Access to the next closest triangle to the origin (won\textquotesingle{}t remove it from the queue). \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_a7095af90fda9266b9ae7258025623499}\label{classEPAConvexHullBuilder_a7095af90fda9266b9ae7258025623499} 
+\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}} \texorpdfstring{$\ast$}{*} {\bfseries Pop\+Closest\+Triangle\+From\+Queue} ()
+\begin{DoxyCompactList}\small\item\em Access to the next closest triangle to the origin and remove it from the queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEPAConvexHullBuilder_aba8a5ac94c67e4c96e5eb533dfca3a83}{Find\+Facing\+Triangle}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position, float \&out\+Best\+Dist\+Sq)
+\item 
+\Hypertarget{classEPAConvexHullBuilder_ae1b6e6eb12d8723eeab4265f9510b7c2}\label{classEPAConvexHullBuilder_ae1b6e6eb12d8723eeab4265f9510b7c2} 
+bool {\bfseries Add\+Point} (\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}} \texorpdfstring{$\ast$}{*}in\+Facing\+Triangle, int in\+Idx, float in\+Closest\+Dist\+Sq, \mbox{\hyperlink{classStaticArray}{New\+Triangles}} \&out\+Triangles)
+\begin{DoxyCompactList}\small\item\em Add a new point to the convex hull. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_a8a5be413b034888eeb3ccc384e1ca9ec}\label{classEPAConvexHullBuilder_a8a5be413b034888eeb3ccc384e1ca9ec} 
+void {\bfseries Free\+Triangle} (\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}} \texorpdfstring{$\ast$}{*}inT)
+\begin{DoxyCompactList}\small\item\em Free a triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEPAConvexHullBuilder_a4513da2adce7a49aff9314455b8e669d}\label{classEPAConvexHullBuilder_a4513da2adce7a49aff9314455b8e669d} 
+static constexpr int {\bfseries c\+Max\+Triangles} = 256
+\begin{DoxyCompactList}\small\item\em Max triangles in hull. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_a6968898ef16408b14c1000bebf2f2576}\label{classEPAConvexHullBuilder_a6968898ef16408b14c1000bebf2f2576} 
+static constexpr int {\bfseries c\+Max\+Points} = \mbox{\hyperlink{classEPAConvexHullBuilder_a4513da2adce7a49aff9314455b8e669d}{c\+Max\+Triangles}} / 2
+\begin{DoxyCompactList}\small\item\em Max number of points in hull. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_a745bd64c5b95a736c502901a1bd3d7c0}\label{classEPAConvexHullBuilder_a745bd64c5b95a736c502901a1bd3d7c0} 
+static constexpr int {\bfseries c\+Max\+Edge\+Length} = 128
+\begin{DoxyCompactList}\small\item\em Max number of edges in Find\+Edge. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_a4aa8fa12b1aa66a498dcca309be791bb}\label{classEPAConvexHullBuilder_a4aa8fa12b1aa66a498dcca309be791bb} 
+static constexpr float {\bfseries c\+Min\+Triangle\+Area} = 1.\+0e-\/10f
+\begin{DoxyCompactList}\small\item\em Minimum area of a triangle before, if smaller than this it will not be added to the priority queue. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d}\label{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d} 
+static constexpr float {\bfseries c\+Barycentric\+Epsilon} = 1.\+0e-\/3f
+\begin{DoxyCompactList}\small\item\em Epsilon value used to determine if a point is in the interior of a triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A convex hull builder specifically made for the EPA penetration depth calculation. It trades accuracy for speed and will simply abort of the hull forms defects due to numerical precision problems. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEPAConvexHullBuilder_aba8a5ac94c67e4c96e5eb533dfca3a83}\label{classEPAConvexHullBuilder_aba8a5ac94c67e4c96e5eb533dfca3a83} 
+\index{EPAConvexHullBuilder@{EPAConvexHullBuilder}!FindFacingTriangle@{FindFacingTriangle}}
+\index{FindFacingTriangle@{FindFacingTriangle}!EPAConvexHullBuilder@{EPAConvexHullBuilder}}
+\doxysubsubsection{\texorpdfstring{FindFacingTriangle()}{FindFacingTriangle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}} \texorpdfstring{$\ast$}{*} EPAConvex\+Hull\+Builder\+::\+Find\+Facing\+Triangle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Position,  }\item[{float \&}]{out\+Best\+Dist\+Sq }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Find the triangle on which in\+Position is the furthest to the front Note this function works as long as all points added have been added with Add\+Point(..., FLT\+\_\+\+MAX). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/EPAConvex\+Hull\+Builder.\+h\end{DoxyCompactItemize}

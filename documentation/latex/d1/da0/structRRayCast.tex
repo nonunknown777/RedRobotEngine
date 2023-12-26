@@ -1,0 +1,59 @@
+\doxysection{RRay\+Cast Struct Reference}
+\hypertarget{structRRayCast}{}\label{structRRayCast}\index{RRayCast@{RRayCast}}
+
+
+Inheritance diagram for RRay\+Cast\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{d1/d85/structRRayCast__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for RRay\+Cast\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{da/d52/structRRayCast__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structRRayCast_a2c5b7e63adeca394564930ff9e6d6205}\label{structRRayCast_a2c5b7e63adeca394564930ff9e6d6205} 
+{\bfseries RRay\+Cast} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray)
+\begin{DoxyCompactList}\small\item\em Convert from \doxylink{structRayCast}{Ray\+Cast}, converts single to double precision. \end{DoxyCompactList}\item 
+\Hypertarget{structRRayCast_a5e8ecad2361e2396e95614c74f1282dd}\label{structRRayCast_a5e8ecad2361e2396e95614c74f1282dd} 
+{\bfseries operator Ray\+Cast} () const
+\begin{DoxyCompactList}\small\item\em Convert to \doxylink{structRayCast}{Ray\+Cast}, which implies casting from double precision to single precision. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structRayCastT}{Ray\+Cast\+T$<$ RVec3, RMat44, RRay\+Cast $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Ray\+CastT} ()=default
+\begin{DoxyCompactList}\small\item\em Constructors. \end{DoxyCompactList}\item 
+{\bfseries Ray\+CastT} (typename Vec\+::\+Arg\+Type in\+Origin, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction)
+\item 
+{\bfseries Ray\+CastT} (const \mbox{\hyperlink{structRayCastT}{Ray\+CastT}}$<$ \mbox{\hyperlink{classVec3}{RVec3}}, \mbox{\hyperlink{classMat44}{RMat44}}, \mbox{\hyperlink{structRRayCast}{RRay\+Cast}} $>$ \&)=default
+\item 
+\mbox{\hyperlink{structRRayCast}{RRay\+Cast}} {\bfseries Transformed} (typename Mat\+::\+Arg\+Type in\+Transform) const
+\begin{DoxyCompactList}\small\item\em \doxylink{structTransform}{Transform} this ray using in\+Transform. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRRayCast}{RRay\+Cast}} {\bfseries Translated} (typename Vec\+::\+Arg\+Type in\+Translation) const
+\begin{DoxyCompactList}\small\item\em Translate ray using in\+Translation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries Get\+Point\+On\+Ray} (float in\+Fraction) const
+\begin{DoxyCompactList}\small\item\em Get point with fraction in\+Fraction on ray (0 = start of ray, 1 = end of ray) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structRayCastT}{Ray\+Cast\+T$<$ RVec3, RMat44, RRay\+Cast $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries m\+Origin}
+\begin{DoxyCompactList}\small\item\em Origin of the ray. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Direction}
+\begin{DoxyCompactList}\small\item\em Direction and length of the ray (anything beyond this length will not be reported as a hit) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Ray\+Cast.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,25 @@
+\doxysection{Register\+Types.\+h}
+\hypertarget{RegisterTypes_8h_source}{}\label{RegisterTypes_8h_source}\index{includes/jolt/RegisterTypes.h@{includes/jolt/RegisterTypes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ JPH\_EXPORT\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ VerifyJoltVersionIDInternal(uint64\ inVersionID);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ VerifyJoltVersionID()\ \{\ \textcolor{keywordflow}{return}\ VerifyJoltVersionIDInternal(JPH\_VERSION\_ID);\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ JPH\_EXPORT\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ RegisterTypesInternal(uint64\ inVersionID);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ JPH\_INLINE\ \textcolor{keywordtype}{void}\ RegisterTypes()\ \{\ RegisterTypesInternal(JPH\_VERSION\_ID);\ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ JPH\_EXPORT\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ UnregisterTypes();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,9 @@
+<map id="ObjectLayerFilter" name="ObjectLayerFilter">
+<area shape="rect" id="Node000001" title="Filter class for object layers." alt="" coords="135,165,294,256"/>
+<area shape="rect" id="Node000003" href="$d4/dfa/classDefaultObjectLayerFilter.html" title="Default filter class that uses the pair filter in combination with a specified layer to filter layers..." alt="" coords="5,304,200,416"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,269,147,306,142,302,170,266"/>
+<area shape="rect" id="Node000004" href="$d9/def/classSpecifiedObjectLayerFilter.html" title="Allows objects from a specific layer only." alt="" coords="225,315,431,405"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="260,266,296,313,292,317,255,269"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="153,5,276,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,133,217,166,212,166,212,133"/>
+</map>

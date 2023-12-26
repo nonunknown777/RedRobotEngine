@@ -1,0 +1,809 @@
+\doxysection{playrho\+::Checked\+Value\texorpdfstring{$<$}{<} Value\+Type, Checker\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classplayrho_1_1CheckedValue}{}\label{classplayrho_1_1CheckedValue}\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+
+
+Checked value.  
+
+
+
+
+{\ttfamily \#include $<$Checked\+Value.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Checked\+Value\texorpdfstring{$<$}{<} Value\+Type, Checker\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{d3/da0/classplayrho_1_1CheckedValue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}\label{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83} 
+using {\bfseries value\+\_\+type} = Value\+Type
+\begin{DoxyCompactList}\small\item\em Value type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1CheckedValue_a7ae70764b405f77fbe3f370170258a3c}\label{classplayrho_1_1CheckedValue_a7ae70764b405f77fbe3f370170258a3c} 
+using {\bfseries remove\+\_\+pointer\+\_\+type} = typename std\+::remove\+\_\+pointer$<$ Value\+Type $>$\+::type
+\begin{DoxyCompactList}\small\item\em Remove pointer type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1CheckedValue_a7cd95d354fce04be2399ae2af61709b8}\label{classplayrho_1_1CheckedValue_a7cd95d354fce04be2399ae2af61709b8} 
+using {\bfseries checker\+\_\+type} = Checker\+Type
+\begin{DoxyCompactList}\small\item\em Checker type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1CheckedValue_a47e37f1a6b29daa6c38d99a9d322dc94}\label{classplayrho_1_1CheckedValue_a47e37f1a6b29daa6c38d99a9d322dc94} 
+{\footnotesize template$<$bool B = Has\+Nullary\+Functor$<$\+Checker\+Type,\+Value\+Type$>$\+::value, typename std\+::enable\+\_\+if\+\_\+t$<$ B, int $>$  = 0$>$ }\\constexpr {\bfseries Checked\+Value} () noexcept(noexcept(Checker\+Type\{\}()))
+\begin{DoxyCompactList}\small\item\em Default constructor available for checker types with acceptable nullary functors. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1CheckedValue_ae90f335daecd90e9c249b4811a0807dc}{Checked\+Value}} (\mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\+\_\+type}} value) noexcept(noexcept(\mbox{\hyperlink{classplayrho_1_1CheckedValue_a7cd95d354fce04be2399ae2af61709b8}{checker\+\_\+type}}\{\}(value)))
+\begin{DoxyCompactList}\small\item\em Initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1CheckedValue_a314230081e7cddd89466ae1a4dffcaf2}\label{classplayrho_1_1CheckedValue_a314230081e7cddd89466ae1a4dffcaf2} 
+constexpr \mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\+\_\+type}} {\bfseries get} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the underlying value. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1CheckedValue_a8dfc68564f17eae760e416e7b45b81b1}{operator value\+\_\+type}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the underlying value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1CheckedValue_a370b7eef86eda2de754d36bc551d0686}\label{classplayrho_1_1CheckedValue_a370b7eef86eda2de754d36bc551d0686} 
+{\footnotesize template$<$typename U  = Value\+Type$>$ }\\constexpr std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+pointer$<$ U $>$\+::value, U $>$ {\bfseries operator-\/$>$} () const
+\begin{DoxyCompactList}\small\item\em Member of pointer operator available for pointer {\ttfamily Value\+Type}. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1CheckedValue_a4061bee0b972adeb643b21400aa001ba}\label{classplayrho_1_1CheckedValue_a4061bee0b972adeb643b21400aa001ba} 
+{\footnotesize template$<$typename U  = Value\+Type$>$ }\\constexpr std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+pointer$<$ U $>$\+::value, \mbox{\hyperlink{classplayrho_1_1CheckedValue_a7ae70764b405f77fbe3f370170258a3c}{remove\+\_\+pointer\+\_\+type}} $>$ \& {\bfseries operator\texorpdfstring{$\ast$}{*}} () const
+\begin{DoxyCompactList}\small\item\em Indirection operator available for pointer {\ttfamily Value\+Type}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Related Symbols}
+(Note that these are not member symbols.) \begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type $>$ }\\auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_acc045bd4bbb560077978ce21cd20c49f}{operator$<$$<$}} (\+::std\+::ostream \&os, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&value) -\/$>$ decltype(os$<$$<$ Value\+Type(value))
+\begin{DoxyCompactList}\small\item\em Constrained value stream output operator for value types which support it. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_ab21e9430d6c13f5645a8a5af6a64a23a}{operator==}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) noexcept(noexcept(std\+::declval$<$ Lhs\+Value\+Type $>$()==std\+::declval$<$ Rhs\+Value\+Type $>$())) -\/$>$ decltype(Lhs\+Value\+Type(lhs)==Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value equality operator for value types which support it. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a0878dcd8f25150f77ebea43e908e3023}{operator!=}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) noexcept(noexcept(std\+::declval$<$ Lhs\+Value\+Type $>$() !=std\+::declval$<$ Rhs\+Value\+Type $>$())) -\/$>$ decltype(Lhs\+Value\+Type(lhs) !=Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value inequality operator for value types which support it. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a17f5c3cf62f38463edf89ddc5bf05b80}{operator$<$=}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) -\/$>$ decltype(Lhs\+Value\+Type(lhs)$<$=Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value less-\/than or equal-\/to operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a5c18729fd53f4bb5275874c8cd1eb644}{operator$>$=}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) -\/$>$ decltype(Lhs\+Value\+Type(lhs) $>$=Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value greater-\/than or equal-\/to operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a4e50b7f361b27adaf57e0b275b849cb2}{operator$<$}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) -\/$>$ decltype(Lhs\+Value\+Type(lhs)$<$ Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value less-\/than operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_aab6a70eaafe3d414d9ebb561150a5ae0}{operator$>$}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) -\/$>$ decltype(Lhs\+Value\+Type(lhs) $>$ Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value greater-\/than operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_ab695c5da4298cd1267ccb84710dc5dc4}{operator\texorpdfstring{$\ast$}{*}}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) -\/$>$ decltype(Lhs\+Value\+Type(lhs) \texorpdfstring{$\ast$}{*}Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a5a5b28003deb87e06a3c9e51f44fb096}{operator/}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) -\/$>$ decltype(Lhs\+Value\+Type(lhs)/Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value division operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_ace19087d3c9f0e9cf7b83eb131626bee}{operator+}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) -\/$>$ decltype(Lhs\+Value\+Type(lhs)+Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_aa918349e3179ab2f97d04b41085d0a48}{operator-\/}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&rhs) -\/$>$ decltype(Lhs\+Value\+Type(lhs) -\/ Rhs\+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_adafba64613de79315803f30e1c800aad}{operator==}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs)==rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_aa8fc70d9f3c91ab4c9afb7730f920243}{operator==}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs==Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_af25888243d04857183fbff9a515bcbfd}{operator!=}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs) !=rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value inequality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a2a6bef32507b31e3d1ae0935a6719e71}{operator!=}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs !=Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value inequality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a3e696d4bb8a0294762be3428301ebbec}{operator$<$=}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs)$<$=rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value less-\/than or equal-\/to operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a55fa5e47ada221e269711dbbf90eedd7}{operator$<$=}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs$<$=Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value less-\/than or equal-\/to operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_abcb14439b5fd9f3daf2b518c786865b7}{operator$>$=}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs) $>$=rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value greater-\/than or equal-\/to operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a092ab700ddc3c1dba9a60a49ce75cf6e}{operator$>$=}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs $>$=Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value greater-\/than or equal-\/to operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_ab9f2a8be4da1677e412b8eabc2146873}{operator$<$}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs)$<$ rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value less-\/than operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a6f64d5e0d888eb6813af5fa103a16b16}{operator$<$}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs$<$ Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value less-\/than operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a3b2ff344394e8157985fe636a85f18d9}{operator$>$}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs) $>$ rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value greater-\/than operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a6ea68ce25d18cda2a9a333fa224f0558}{operator$>$}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs $>$ Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value greater-\/than ooperator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a344c62fec7ff32c28d2a98fb3eff0cee}{operator\texorpdfstring{$\ast$}{*}}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ std\+::enable\+\_\+if\+\_\+t$<$!\mbox{\hyperlink{structplayrho_1_1IsMultipliable}{Is\+Multipliable}}$<$ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$, Other $>$\+::value, decltype(Value\+Type() \texorpdfstring{$\ast$}{*}Other())$>$
+\begin{DoxyCompactList}\small\item\em Constrained value multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a9fcf642b9b09a0117bf6b5d4586fe2cd}{operator\texorpdfstring{$\ast$}{*}}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ std\+::enable\+\_\+if\+\_\+t$<$!\mbox{\hyperlink{structplayrho_1_1IsMultipliable}{Is\+Multipliable}}$<$ Other, \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ $>$\+::value, decltype(Other() \texorpdfstring{$\ast$}{*}Value\+Type())$>$
+\begin{DoxyCompactList}\small\item\em Constrained value multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a21a68e7bc007582c16847ed8615d8c26}{operator/}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs)/rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value division operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a740ddde1b6038fc20e0e763e0eabac6a}{operator/}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs/Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value division operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a687d59516f156855de42eea778eccc49}{operator+}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs)+rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a75202d7d29b1ce5418c1ae4e32c95a08}{operator+}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs+Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_acf1adc96b8c69fa7bb0ce08582f93de7}{operator-\/}} (const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&lhs, const Other \&rhs) -\/$>$ decltype(Value\+Type(lhs) -\/ rhs)
+\begin{DoxyCompactList}\small\item\em Constrained value subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ }\\constexpr auto \mbox{\hyperlink{classplayrho_1_1CheckedValue_a5783466a0028f61a1e70076f410ac4ee}{operator-\/}} (const Other \&lhs, const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&rhs) -\/$>$ decltype(lhs -\/ Value\+Type(rhs))
+\begin{DoxyCompactList}\small\item\em Constrained value subtraction operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Value\+Type, typename Checker\+Type = No\+Op\+Checker$<$\+Value\+Type$>$$>$\newline
+class playrho\+::\+Checked\+Value$<$ Value\+Type, Checker\+Type $>$}
+Checked value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the underlying value that will get checked. \\
+\hline
+{\em Checker\+Type} & Checker type to check or possibly transform values with. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classplayrho_1_1CheckedValue_ae90f335daecd90e9c249b4811a0807dc}\label{classplayrho_1_1CheckedValue_ae90f335daecd90e9c249b4811a0807dc} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!CheckedValue@{CheckedValue}}
+\index{CheckedValue@{CheckedValue}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{CheckedValue()}{CheckedValue()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type  = No\+Op\+Checker$<$\+Value\+Type$>$$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1CheckedValue}{playrho\+::\+Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$\+::\+Checked\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\+\_\+type}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Initializing constructor. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Consider marking this function "{}explicit"{}. \end{DoxyRefDesc}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classplayrho_1_1CheckedValue_a8dfc68564f17eae760e416e7b45b81b1}\label{classplayrho_1_1CheckedValue_a8dfc68564f17eae760e416e7b45b81b1} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator value\_type@{operator value\_type}}
+\index{operator value\_type@{operator value\_type}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator value\_type()}{operator value\_type()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type  = No\+Op\+Checker$<$\+Value\+Type$>$$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1CheckedValue}{playrho\+::\+Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$\+::operator \mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\+\_\+type}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the underlying value. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Consider marking this function "{}explicit"{}. \end{DoxyRefDesc}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classplayrho_1_1CheckedValue_a0878dcd8f25150f77ebea43e908e3023}\label{classplayrho_1_1CheckedValue_a0878dcd8f25150f77ebea43e908e3023} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) != Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value inequality operator for value types which support it. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_af25888243d04857183fbff9a515bcbfd}\label{classplayrho_1_1CheckedValue_af25888243d04857183fbff9a515bcbfd} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) != rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value inequality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a2a6bef32507b31e3d1ae0935a6719e71}\label{classplayrho_1_1CheckedValue_a2a6bef32507b31e3d1ae0935a6719e71} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator!= (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs != Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value inequality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_ab695c5da4298cd1267ccb84710dc5dc4}\label{classplayrho_1_1CheckedValue_ab695c5da4298cd1267ccb84710dc5dc4} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) \texorpdfstring{$\ast$}{*} Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a344c62fec7ff32c28d2a98fb3eff0cee}\label{classplayrho_1_1CheckedValue_a344c62fec7ff32c28d2a98fb3eff0cee} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ std\+::enable\+\_\+if\+\_\+t$<$!\mbox{\hyperlink{structplayrho_1_1IsMultipliable}{Is\+Multipliable}}$<$\mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$Value\+Type, Checker\+Type$>$, Other$>$\+::value, decltype(Value\+Type()\texorpdfstring{$\ast$}{*}Other())$>$ \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a9fcf642b9b09a0117bf6b5d4586fe2cd}\label{classplayrho_1_1CheckedValue_a9fcf642b9b09a0117bf6b5d4586fe2cd} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ std\+::enable\+\_\+if\+\_\+t$<$!\mbox{\hyperlink{structplayrho_1_1IsMultipliable}{Is\+Multipliable}}$<$Other, \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$Value\+Type, Checker\+Type$>$$>$\+::value, decltype(Other()\texorpdfstring{$\ast$}{*}Value\+Type())$>$ \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_ace19087d3c9f0e9cf7b83eb131626bee}\label{classplayrho_1_1CheckedValue_ace19087d3c9f0e9cf7b83eb131626bee} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) + Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value addition operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a687d59516f156855de42eea778eccc49}\label{classplayrho_1_1CheckedValue_a687d59516f156855de42eea778eccc49} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) + rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value addition operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a75202d7d29b1ce5418c1ae4e32c95a08}\label{classplayrho_1_1CheckedValue_a75202d7d29b1ce5418c1ae4e32c95a08} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator+ (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs + Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value addition operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_aa918349e3179ab2f97d04b41085d0a48}\label{classplayrho_1_1CheckedValue_aa918349e3179ab2f97d04b41085d0a48} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) -\/ Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_acf1adc96b8c69fa7bb0ce08582f93de7}\label{classplayrho_1_1CheckedValue_acf1adc96b8c69fa7bb0ce08582f93de7} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) -\/ rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a5783466a0028f61a1e70076f410ac4ee}\label{classplayrho_1_1CheckedValue_a5783466a0028f61a1e70076f410ac4ee} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator-\/ (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs -\/ Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a5a5b28003deb87e06a3c9e51f44fb096}\label{classplayrho_1_1CheckedValue_a5a5b28003deb87e06a3c9e51f44fb096} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) / Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value division operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a21a68e7bc007582c16847ed8615d8c26}\label{classplayrho_1_1CheckedValue_a21a68e7bc007582c16847ed8615d8c26} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) / rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value division operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a740ddde1b6038fc20e0e763e0eabac6a}\label{classplayrho_1_1CheckedValue_a740ddde1b6038fc20e0e763e0eabac6a} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator/ (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs / Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value division operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a4e50b7f361b27adaf57e0b275b849cb2}\label{classplayrho_1_1CheckedValue_a4e50b7f361b27adaf57e0b275b849cb2} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) $<$ Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value less-\/than operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_ab9f2a8be4da1677e412b8eabc2146873}\label{classplayrho_1_1CheckedValue_ab9f2a8be4da1677e412b8eabc2146873} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) $<$ rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value less-\/than operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a6f64d5e0d888eb6813af5fa103a16b16}\label{classplayrho_1_1CheckedValue_a6f64d5e0d888eb6813af5fa103a16b16} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator$<$ (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs $<$ Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value less-\/than operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_acc045bd4bbb560077978ce21cd20c49f}\label{classplayrho_1_1CheckedValue_acc045bd4bbb560077978ce21cd20c49f} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type $>$ \\
+auto operator$<$$<$ (\begin{DoxyParamCaption}\item[{\+::std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{value }\end{DoxyParamCaption}) -\/$>$ decltype(os $<$$<$ Value\+Type(value)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value stream output operator for value types which support it. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a17f5c3cf62f38463edf89ddc5bf05b80}\label{classplayrho_1_1CheckedValue_a17f5c3cf62f38463edf89ddc5bf05b80} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) $<$= Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value less-\/than or equal-\/to operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a3e696d4bb8a0294762be3428301ebbec}\label{classplayrho_1_1CheckedValue_a3e696d4bb8a0294762be3428301ebbec} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) $<$= rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value less-\/than or equal-\/to operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a55fa5e47ada221e269711dbbf90eedd7}\label{classplayrho_1_1CheckedValue_a55fa5e47ada221e269711dbbf90eedd7} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator$<$= (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs $<$= Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value less-\/than or equal-\/to operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_ab21e9430d6c13f5645a8a5af6a64a23a}\label{classplayrho_1_1CheckedValue_ab21e9430d6c13f5645a8a5af6a64a23a} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) == Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value equality operator for value types which support it. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_adafba64613de79315803f30e1c800aad}\label{classplayrho_1_1CheckedValue_adafba64613de79315803f30e1c800aad} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) == rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_aa8fc70d9f3c91ab4c9afb7730f920243}\label{classplayrho_1_1CheckedValue_aa8fc70d9f3c91ab4c9afb7730f920243} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator== (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs == Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_aab6a70eaafe3d414d9ebb561150a5ae0}\label{classplayrho_1_1CheckedValue_aab6a70eaafe3d414d9ebb561150a5ae0} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) $>$ Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value greater-\/than operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a3b2ff344394e8157985fe636a85f18d9}\label{classplayrho_1_1CheckedValue_a3b2ff344394e8157985fe636a85f18d9} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) $>$ rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value greater-\/than operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a6ea68ce25d18cda2a9a333fa224f0558}\label{classplayrho_1_1CheckedValue_a6ea68ce25d18cda2a9a333fa224f0558} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator$>$ (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs $>$ Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value greater-\/than ooperator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a5c18729fd53f4bb5275874c8cd1eb644}\label{classplayrho_1_1CheckedValue_a5c18729fd53f4bb5275874c8cd1eb644} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Lhs\+Value\+Type , typename Lhs\+Checker\+Type , typename Rhs\+Value\+Type , typename Rhs\+Checker\+Type $>$ \\
+constexpr auto operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Lhs\+Value\+Type, Lhs\+Checker\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Rhs\+Value\+Type, Rhs\+Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Lhs\+Value\+Type(lhs) $>$= Rhs\+Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value greater-\/than or equal-\/to operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Lhs\+Value\+Type} & Type of the value used by the left hand side checked value. \\
+\hline
+{\em Lhs\+Checker\+Type} & Type of the checker used by the left hand side checked value. \\
+\hline
+{\em Rhs\+Value\+Type} & Type of the value used by the right hand side checked value. \\
+\hline
+{\em Rhs\+Checker\+Type} & Type of the checker used by the right hand side checked value. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_abcb14439b5fd9f3daf2b518c786865b7}\label{classplayrho_1_1CheckedValue_abcb14439b5fd9f3daf2b518c786865b7} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{lhs,  }\item[{const Other \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(Value\+Type(lhs) $>$= rhs) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value greater-\/than or equal-\/to operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+\Hypertarget{classplayrho_1_1CheckedValue_a092ab700ddc3c1dba9a60a49ce75cf6e}\label{classplayrho_1_1CheckedValue_a092ab700ddc3c1dba9a60a49ce75cf6e} 
+\index{playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!playrho::CheckedValue$<$ ValueType, CheckerType $>$@{playrho::CheckedValue$<$ ValueType, CheckerType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , typename Checker\+Type , typename Other $>$ \\
+constexpr auto operator$>$= (\begin{DoxyParamCaption}\item[{const Other \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ Value\+Type, Checker\+Type $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(lhs $>$= Value\+Type(rhs)) \hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Constrained value greater-\/than or equal-\/to operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Type of the value used by the checked value. \\
+\hline
+{\em Checker\+Type} & Type of the checker used by the checked value. \\
+\hline
+{\em Other} & Type of the other value that this operation will operator with. \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Checked\+Value.\+hpp\end{DoxyCompactItemize}

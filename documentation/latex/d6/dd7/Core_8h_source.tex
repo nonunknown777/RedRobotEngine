@@ -1,0 +1,548 @@
+\doxysection{Core.\+h}
+\hypertarget{Core_8h_source}{}\label{Core_8h_source}\index{includes/jolt/Core/Core.h@{includes/jolt/Core/Core.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Jolt\ library\ version}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ JPH\_VERSION\_MAJOR\ 3}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ JPH\_VERSION\_MINOR\ 0}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ JPH\_VERSION\_PATCH\ 1}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Determine\ which\ features\ the\ library\ was\ compiled\ with}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifdef\ JPH\_DOUBLE\_PRECISION}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_1\ 1}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_1\ 0}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifdef\ JPH\_CROSS\_PLATFORM\_DETERMINISTIC}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_2\ 1}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_2\ 0}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ JPH\_FLOATING\_POINT\_EXCEPTIONS\_ENABLED}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_3\ 1}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_3\ 0}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#ifdef\ JPH\_PROFILE\_ENABLED}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_4\ 1}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_4\ 0}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifdef\ JPH\_EXTERNAL\_PROFILE}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_5\ 1}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_5\ 0}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_6\ 1}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_6\ 0}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifdef\ JPH\_DISABLE\_TEMP\_ALLOCATOR}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_7\ 1}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_7\ 0}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ JPH\_DISABLE\_CUSTOM\_ALLOCATOR}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_8\ 1}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_8\ 0}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#if\ defined(JPH\_OBJECT\_LAYER\_BITS)\ \&\&\ JPH\_OBJECT\_LAYER\_BITS\ ==\ 32}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_9\ 1}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_9\ 0}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_10\ 1}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VERSION\_FEATURE\_BIT\_10\ 0}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ JPH\_VERSION\_FEATURES\ (uint64(JPH\_VERSION\_FEATURE\_BIT\_1)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_2\ <<\ 1)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_3\ <<\ 2)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_4\ <<\ 3)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_5\ <<\ 4)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_6\ <<\ 5)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_7\ <<\ 6)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_8\ <<\ 7)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_9\ <<\ 8)\ |\ (JPH\_VERSION\_FEATURE\_BIT\_10\ <<\ 9))}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ Combine\ the\ version\ and\ features\ in\ a\ single\ ID}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ JPH\_VERSION\_ID\ ((JPH\_VERSION\_FEATURES\ <<\ 24)\ |\ (JPH\_VERSION\_MAJOR\ <<\ 16)\ |\ (JPH\_VERSION\_MINOR\ <<\ 8)\ |\ JPH\_VERSION\_PATCH)}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ Determine\ platform}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#if\ defined(JPH\_PLATFORM\_BLUE)}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ Correct\ define\ already\ defined,\ this\ overrides\ everything\ else}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#elif\ defined(\_WIN32)\ ||\ defined(\_WIN64)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \#include\ <winapifamily.h>}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ \#if\ WINAPI\_FAMILY\ ==\ WINAPI\_FAMILY\_APP}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PLATFORM\_WINDOWS\_UWP\ }\textcolor{comment}{//\ Building\ for\ Universal\ Windows\ Platform}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#elif\ defined(\_\_ANDROID\_\_)\ }\textcolor{comment}{//\ Android\ is\ linux\ too,\ so\ that's\ why\ we\ check\ it\ first}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_PLATFORM\_ANDROID}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#elif\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_PLATFORM\_LINUX}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \ \ \#include\ <TargetConditionals.h>}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(TARGET\_OS\_IPHONE)\ \&\&\ !TARGET\_OS\_IPHONE}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PLATFORM\_MACOS}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PLATFORM\_IOS}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#elif\ defined(\_\_EMSCRIPTEN\_\_)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_PLATFORM\_WASM}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ Platform\ helper\ macros}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifdef\ JPH\_PLATFORM\_ANDROID}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_NOT\_ANDROID(x)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_NOT\_ANDROID(x)\ x}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ Determine\ compiler}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#if\ defined(\_\_clang\_\_)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_COMPILER\_CLANG}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_COMPILER\_GCC}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#elif\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_COMPILER\_MSVC}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#if\ defined(\_\_MINGW64\_\_)\ ||\ defined\ (\_\_MINGW32\_\_)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_COMPILER\_MINGW}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ Detect\ CPU\ architecture}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#if\ defined(\_\_x86\_64\_\_)\ ||\ defined(\_M\_X64)\ ||\ defined(\_\_i386\_\_)\ ||\ defined(\_M\_IX86)}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ X86\ CPU\ architecture}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CPU\_X86}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(\_\_x86\_64\_\_)\ ||\ defined(\_M\_X64)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_CPU\_ADDRESS\_BITS\ 64}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_CPU\_ADDRESS\_BITS\ 32}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_USE\_SSE}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VECTOR\_ALIGNMENT\ 16}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_DVECTOR\_ALIGNMENT\ 32}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ Detect\ enabled\ instruction\ sets}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(\_\_AVX512F\_\_)\ \&\&\ defined(\_\_AVX512VL\_\_)\ \&\&\ defined(\_\_AVX512DQ\_\_)\ \&\&\ !defined(JPH\_USE\_AVX512)}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_AVX512}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\ \ \ \ \#if\ (defined(\_\_AVX2\_\_)\ ||\ defined(JPH\_USE\_AVX512))\ \&\&\ !defined(JPH\_USE\_AVX2)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_AVX2}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ \#if\ (defined(\_\_AVX\_\_)\ ||\ defined(JPH\_USE\_AVX2))\ \&\&\ !defined(JPH\_USE\_AVX)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_AVX}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \ \#if\ (defined(\_\_SSE4\_2\_\_)\ ||\ defined(JPH\_USE\_AVX))\ \&\&\ !defined(JPH\_USE\_SSE4\_2)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_SSE4\_2}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ \#if\ (defined(\_\_SSE4\_1\_\_)\ ||\ defined(JPH\_USE\_SSE4\_2))\ \&\&\ !defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_SSE4\_1}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\ \ \ \ \#if\ (defined(\_\_F16C\_\_)\ ||\ defined(JPH\_USE\_AVX2))\ \&\&\ !defined(JPH\_USE\_F16C)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_F16C}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \#if\ (defined(\_\_LZCNT\_\_)\ ||\ defined(JPH\_USE\_AVX2))\ \&\&\ !defined(JPH\_USE\_LZCNT)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_LZCNT}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ \#if\ (defined(\_\_BMI\_\_)\ ||\ defined(JPH\_USE\_AVX2))\ \&\&\ !defined(JPH\_USE\_TZCNT)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_TZCNT}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ JPH\_CROSS\_PLATFORM\_DETERMINISTIC\ }\textcolor{comment}{//\ FMA\ is\ not\ compatible\ with\ cross\ platform\ determinism}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#if\ defined(JPH\_COMPILER\_CLANG)\ ||\ defined(JPH\_COMPILER\_GCC)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#if\ defined(\_\_FMA\_\_)\ \&\&\ !defined(JPH\_USE\_FMADD)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_USE\_FMADD}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#elif\ defined(JPH\_COMPILER\_MSVC)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#if\ defined(\_\_AVX2\_\_)\ \&\&\ !defined(JPH\_USE\_FMADD)\ }\textcolor{comment}{//\ AVX2\ also\ enables\ fused\ multiply\ add}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_USE\_FMADD}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#error\ Undefined\ compiler}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#elif\ defined(\_\_aarch64\_\_)\ ||\ defined(\_M\_ARM64)\ ||\ defined(\_\_arm\_\_)\ ||\ defined(\_M\_ARM)}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{//\ ARM\ CPU\ architecture}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CPU\_ARM}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(\_\_aarch64\_\_)\ ||\ defined(\_M\_ARM64)}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_CPU\_ADDRESS\_BITS\ 64}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_USE\_NEON}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_VECTOR\_ALIGNMENT\ 16}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_DVECTOR\_ALIGNMENT\ 32}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_CPU\_ADDRESS\_BITS\ 32}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_VECTOR\_ALIGNMENT\ 8\ }\textcolor{comment}{//\ 32-\/bit\ ARM\ does\ not\ support\ aligning\ on\ the\ stack\ on\ 16\ byte\ boundaries}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_DVECTOR\_ALIGNMENT\ 8}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#elif\ defined(JPH\_PLATFORM\_WASM)}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//\ WebAssembly\ CPU\ architecture}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CPU\_WASM}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CPU\_ADDRESS\_BITS\ 32}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_VECTOR\_ALIGNMENT\ 16}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_DVECTOR\_ALIGNMENT\ 32}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_DISABLE\_CUSTOM\_ALLOCATOR}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\ \ \ \ \#error\ Unsupported\ CPU\ architecture}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{comment}{//\ If\ this\ define\ is\ set,\ Jolt\ is\ compiled\ as\ a\ shared\ library}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#ifdef\ JPH\_SHARED\_LIBRARY}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ JPH\_BUILD\_SHARED\_LIBRARY}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ While\ building\ the\ shared\ library,\ we\ must\ export\ these\ symbols}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#ifdef\ JPH\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_EXPORT\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_EXPORT\ \_\_attribute\_\_\ ((visibility\ ("{}default"{})))}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#if\ defined(JPH\_COMPILER\_GCC)}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prevents\ an\ issue\ with\ GCC\ attribute\ parsing\ (see\ https://gcc.gnu.org/bugzilla/show\_bug.cgi?id=69585)}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_EXPORT\_GCC\_BUG\_WORKAROUND\ [[gnu::visibility("{}default"{})]]}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ linking\ against\ Jolt,\ we\ must\ import\ these\ symbols}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#ifdef\ JPH\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_EXPORT\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_EXPORT\ \_\_attribute\_\_\ ((visibility\ ("{}default"{})))}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#if\ defined(JPH\_COMPILER\_GCC)}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prevents\ an\ issue\ with\ GCC\ attribute\ parsing\ (see\ https://gcc.gnu.org/bugzilla/show\_bug.cgi?id=69585)}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#define\ JPH\_EXPORT\_GCC\_BUG\_WORKAROUND\ [[gnu::visibility("{}default"{})]]}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\ If\ the\ define\ is\ not\ set,\ we\ use\ static\ linking\ and\ symbols\ don't\ need\ to\ be\ imported\ or\ exported}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_EXPORT}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#ifndef\ JPH\_EXPORT\_GCC\_BUG\_WORKAROUND}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_EXPORT\_GCC\_BUG\_WORKAROUND\ JPH\_EXPORT}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ Macro\ used\ by\ the\ RTTI\ macros\ to\ not\ export\ a\ function}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ JPH\_NO\_EXPORT}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{comment}{//\ Pragmas\ to\ store\ /\ restore\ the\ warning\ state\ and\ to\ disable\ individual\ warnings}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#ifdef\ JPH\_COMPILER\_CLANG}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#define\ JPH\_PRAGMA(x)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_Pragma(\#x)}}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNING\_PUSH\ \ \ \ \ \ \ JPH\_PRAGMA(clang\ diagnostic\ push)}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNING\_POP\ \ \ \ \ \ \ \ JPH\_PRAGMA(clang\ diagnostic\ pop)}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#define\ JPH\_CLANG\_SUPPRESS\_WARNING(w)\ \ \ JPH\_PRAGMA(clang\ diagnostic\ ignored\ w)}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#if\ \_\_clang\_major\_\_\ >=\ 13}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CLANG\_13\_PLUS\_SUPPRESS\_WARNING(w)\ JPH\_CLANG\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CLANG\_13\_PLUS\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#if\ \_\_clang\_major\_\_\ >=\ 16}}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CLANG\_16\_PLUS\_SUPPRESS\_WARNING(w)\ JPH\_CLANG\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CLANG\_16\_PLUS\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#define\ JPH\_CLANG\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#define\ JPH\_CLANG\_13\_PLUS\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#define\ JPH\_CLANG\_16\_PLUS\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#ifdef\ JPH\_COMPILER\_GCC}}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#define\ JPH\_PRAGMA(x)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_Pragma(\#x)}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNING\_PUSH\ \ \ \ \ \ \ JPH\_PRAGMA(GCC\ diagnostic\ push)}}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNING\_POP\ \ \ \ \ \ \ \ JPH\_PRAGMA(GCC\ diagnostic\ pop)}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#define\ JPH\_GCC\_SUPPRESS\_WARNING(w)\ \ \ \ \ JPH\_PRAGMA(GCC\ diagnostic\ ignored\ w)}}
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#define\ JPH\_GCC\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#ifdef\ JPH\_COMPILER\_MSVC}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#define\ JPH\_PRAGMA(x)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_\_pragma(x)}}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNING\_PUSH\ \ \ \ \ \ \ JPH\_PRAGMA(warning\ (push))}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNING\_POP\ \ \ \ \ \ \ \ JPH\_PRAGMA(warning\ (pop))}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#define\ JPH\_MSVC\_SUPPRESS\_WARNING(w)\ \ \ \ JPH\_PRAGMA(warning\ (disable\ :\ w))}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#if\ \_MSC\_VER\ >=\ 1920\ \&\&\ \_MSC\_VER\ <\ 1930}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_MSVC2019\_SUPPRESS\_WARNING(w)\ JPH\_MSVC\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_MSVC2019\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#define\ JPH\_MSVC\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#define\ JPH\_MSVC2019\_SUPPRESS\_WARNING(w)}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{comment}{//\ Disable\ common\ warnings\ triggered\ by\ Jolt\ when\ compiling\ with\ -\/Wall}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNINGS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wc++98-\/compat"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wc++98-\/compat-\/pedantic"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wfloat-\/equal"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wsign-\/conversion"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wold-\/style-\/cast"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wgnu-\/anonymous-\/struct"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wnested-\/anon-\/types"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wglobal-\/constructors"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wexit-\/time-\/destructors"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wnonportable-\/system-\/include-\/path"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wlanguage-\/extension-\/token"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wunused-\/parameter"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wformat-\/nonliteral"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wcovered-\/switch-\/default"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wcast-\/align"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Winvalid-\/offsetof"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wgnu-\/zero-\/variadic-\/macro-\/arguments"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wdocumentation-\/unknown-\/command"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wctad-\/maybe-\/unsupported"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_13\_PLUS\_SUPPRESS\_WARNING("{}-\/Wdeprecated-\/copy"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_13\_PLUS\_SUPPRESS\_WARNING("{}-\/Wdeprecated-\/copy-\/with-\/dtor"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\ \ \ \ JPH\_CLANG\_16\_PLUS\_SUPPRESS\_WARNING("{}-\/Wunsafe-\/buffer-\/usage"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\ \ \ \ JPH\_IF\_NOT\_ANDROID(JPH\_CLANG\_SUPPRESS\_WARNING("{}-\/Wimplicit-\/int-\/float-\/conversion"{}))\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\ \ \ \ JPH\_GCC\_SUPPRESS\_WARNING("{}-\/Wcomment"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\ \ \ \ JPH\_GCC\_SUPPRESS\_WARNING("{}-\/Winvalid-\/offsetof"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\ \ \ \ JPH\_GCC\_SUPPRESS\_WARNING("{}-\/Wclass-\/memaccess"{})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4619)\ }\textcolor{comment}{/*\ \#pragma\ warning:\ there\ is\ no\ warning\ number\ 'XXXX'\ */}\textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4514)\ }\textcolor{comment}{/*\ 'X'\ :\ unreferenced\ inline\ function\ has\ been\ removed\ */}\textcolor{preprocessor}{\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4710)\ }\textcolor{comment}{/*\ 'X'\ :\ function\ not\ inlined\ */}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4711)\ }\textcolor{comment}{/*\ function\ 'X'\ selected\ for\ automatic\ inline\ expansion\ */}\textcolor{preprocessor}{\ \ \(\backslash\)}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4820)\ }\textcolor{comment}{/*\ 'X':\ 'Y'\ bytes\ padding\ added\ after\ data\ member\ 'Z'\ */}\textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4100)\ }\textcolor{comment}{/*\ 'X'\ :\ unreferenced\ formal\ parameter\ */}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4626)\ }\textcolor{comment}{/*\ 'X'\ :\ assignment\ operator\ was\ implicitly\ defined\ as\ deleted\ because\ a\ base\ class\ assignment\ operator\ is\ inaccessible\ or\ deleted\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(5027)\ }\textcolor{comment}{/*\ 'X'\ :\ move\ assignment\ operator\ was\ implicitly\ defined\ as\ deleted\ because\ a\ base\ class\ move\ assignment\ operator\ is\ inaccessible\ or\ deleted\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4365)\ }\textcolor{comment}{/*\ 'argument'\ :\ conversion\ from\ 'X'\ to\ 'Y',\ signed\ /\ unsigned\ mismatch\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4324)\ }\textcolor{comment}{/*\ 'X'\ :\ structure\ was\ padded\ due\ to\ alignment\ specifier\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4625)\ }\textcolor{comment}{/*\ 'X'\ :\ copy\ constructor\ was\ implicitly\ defined\ as\ deleted\ because\ a\ base\ class\ copy\ constructor\ is\ inaccessible\ or\ deleted\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(5026)\ }\textcolor{comment}{/*\ 'X':\ move\ constructor\ was\ implicitly\ defined\ as\ deleted\ because\ a\ base\ class\ move\ constructor\ is\ inaccessible\ or\ deleted\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4623)\ }\textcolor{comment}{/*\ 'X'\ :\ default\ constructor\ was\ implicitly\ defined\ as\ deleted\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4201)\ }\textcolor{comment}{/*\ nonstandard\ extension\ used:\ nameless\ struct/union\ */}\textcolor{preprocessor}{\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4371)\ }\textcolor{comment}{/*\ 'X':\ layout\ of\ class\ may\ have\ changed\ from\ a\ previous\ version\ of\ the\ compiler\ due\ to\ better\ packing\ of\ member\ 'Y'\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(5045)\ }\textcolor{comment}{/*\ Compiler\ will\ insert\ Spectre\ mitigation\ for\ memory\ load\ if\ /Qspectre\ switch\ specified\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4583)\ }\textcolor{comment}{/*\ 'X':\ destructor\ is\ not\ implicitly\ called\ */}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4582)\ }\textcolor{comment}{/*\ 'X':\ constructor\ is\ not\ implicitly\ called\ */}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(5219)\ }\textcolor{comment}{/*\ implicit\ conversion\ from\ 'X'\ to\ 'Y',\ possible\ loss\ of\ data\ \ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4826)\ }\textcolor{comment}{/*\ Conversion\ from\ 'X\ *'\ to\ 'JPH::uint64'\ is\ sign-\/extended.\ This\ may\ cause\ unexpected\ runtime\ behavior.\ (32-\/bit)\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(5264)\ }\textcolor{comment}{/*\ 'X':\ 'const'\ variable\ is\ not\ used\ */}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4251)\ }\textcolor{comment}{/*\ class\ 'X'\ needs\ to\ have\ DLL-\/interface\ to\ be\ used\ by\ clients\ of\ class\ 'Y'\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4738)\ }\textcolor{comment}{/*\ storing\ 32-\/bit\ float\ result\ in\ memory,\ possible\ loss\ of\ performance\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC2019\_SUPPRESS\_WARNING(5246)\ }\textcolor{comment}{/*\ the\ initialization\ of\ a\ subobject\ should\ be\ wrapped\ in\ braces\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \textcolor{comment}{//\ OS-\/specific\ includes}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#if\ defined(JPH\_PLATFORM\_WINDOWS)}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_BREAKPOINT\ \ \ \ \ \ \_\_debugbreak()}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#elif\ defined(JPH\_PLATFORM\_BLUE)}}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{comment}{//\ Configuration\ for\ a\ popular\ game\ console.}}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{comment}{//\ This\ file\ is\ not\ distributed\ because\ it\ would\ violate\ an\ NDA.}}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{comment}{//\ Creating\ one\ should\ only\ be\ a\ couple\ of\ minutes\ of\ work\ if\ you\ have\ the\ documentation\ for\ the\ platform}}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{comment}{//\ (you\ only\ need\ to\ define\ JPH\_BREAKPOINT,\ JPH\_PLATFORM\_BLUE\_GET\_TICKS,\ JPH\_PLATFORM\_BLUE\_MUTEX*,\ JPH\_PLATFORM\_BLUE\_RWLOCK*\ and\ include\ the\ right\ header).}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Core/PlatformBlue.h>}}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#elif\ defined(JPH\_PLATFORM\_LINUX)\ ||\ defined(JPH\_PLATFORM\_ANDROID)\ ||\ defined(JPH\_PLATFORM\_MACOS)\ ||\ defined(JPH\_PLATFORM\_IOS)}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(JPH\_CPU\_X86)}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_BREAKPOINT\ \ \_\_asm\ volatile\ ("{}int\ \$0x3"{})}}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\ \ \ \ \#elif\ defined(JPH\_CPU\_ARM)}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_BREAKPOINT\ \ \_\_builtin\_trap()}}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#elif\ defined(JPH\_PLATFORM\_WASM)}}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_BREAKPOINT\ \ \ \ \ \ do\ \{\ \}\ while\ (false)\ }\textcolor{comment}{//\ Not\ supported}}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\ \ \ \ \#error\ Unknown\ platform}}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \textcolor{comment}{//\ Crashes\ the\ application}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\#define\ JPH\_CRASH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\ \{\ int\ *ptr\ =\ nullptr;\ *ptr\ =\ 0;\ \}\ while\ (false)}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \textcolor{comment}{//\ Begin\ the\ JPH\ namespace}}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#define\ JPH\_NAMESPACE\_BEGIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\ \ \ \ JPH\_SUPPRESS\_WARNING\_PUSH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\ \ \ \ JPH\_SUPPRESS\_WARNINGS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\ \ \ \ namespace\ JPH\ \{}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \textcolor{comment}{//\ End\ the\ JPH\ namespace}}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#define\ JPH\_NAMESPACE\_END\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\ \ \ \ JPH\_SUPPRESS\_WARNING\_POP}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{comment}{//\ Suppress\ warnings\ generated\ by\ the\ standard\ template\ library}}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\ \ \ \ JPH\_SUPPRESS\_WARNING\_PUSH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4365)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4619)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00363\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4710)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4711)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4820)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00366\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4514)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(5262)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(5264)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\ \ \ \ JPH\_MSVC\_SUPPRESS\_WARNING(4738)}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\#define\ JPH\_SUPPRESS\_WARNINGS\_STD\_END\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\ \ \ \ JPH\_SUPPRESS\_WARNING\_POP}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \textcolor{comment}{//\ Standard\ C++\ includes}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#include\ <float.h>}}
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#include\ <limits.h>}}
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00378\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN}
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00386\ JPH\_SUPPRESS\_WARNINGS\_STD\_END}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\ \ \ \ \#include\ <immintrin.h>}}
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ JPH\_COMPILER\_MSVC}}
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <intrin.h>}}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <arm64\_neon.h>}}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#include\ <arm\_neon.h>}}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \textcolor{comment}{//\ Commonly\ used\ STL\ types}}
+\DoxyCodeLine{00401\ \textcolor{keyword}{using\ }std::pair;}
+\DoxyCodeLine{00402\ \textcolor{keyword}{using\ }std::min;}
+\DoxyCodeLine{00403\ \textcolor{keyword}{using\ }std::max;}
+\DoxyCodeLine{00404\ \textcolor{keyword}{using\ }std::abs;}
+\DoxyCodeLine{00405\ \textcolor{keyword}{using\ }std::sqrt;}
+\DoxyCodeLine{00406\ \textcolor{keyword}{using\ }std::ceil;}
+\DoxyCodeLine{00407\ \textcolor{keyword}{using\ }std::floor;}
+\DoxyCodeLine{00408\ \textcolor{keyword}{using\ }std::trunc;}
+\DoxyCodeLine{00409\ \textcolor{keyword}{using\ }std::round;}
+\DoxyCodeLine{00410\ \textcolor{keyword}{using\ }std::fmod;}
+\DoxyCodeLine{00411\ \textcolor{keyword}{using\ }std::swap;}
+\DoxyCodeLine{00412\ \textcolor{keyword}{using\ }std::size;}
+\DoxyCodeLine{00413\ \textcolor{keyword}{using\ }std::string;}
+\DoxyCodeLine{00414\ \textcolor{keyword}{using\ }std::string\_view;}
+\DoxyCodeLine{00415\ \textcolor{keyword}{using\ }std::function;}
+\DoxyCodeLine{00416\ \textcolor{keyword}{using\ }std::numeric\_limits;}
+\DoxyCodeLine{00417\ \textcolor{keyword}{using\ }std::isfinite;}
+\DoxyCodeLine{00418\ \textcolor{keyword}{using\ }std::isnan;}
+\DoxyCodeLine{00419\ \textcolor{keyword}{using\ }std::is\_trivial;}
+\DoxyCodeLine{00420\ \textcolor{keyword}{using\ }std::is\_trivially\_constructible;}
+\DoxyCodeLine{00421\ \textcolor{keyword}{using\ }std::is\_trivially\_destructible;}
+\DoxyCodeLine{00422\ \textcolor{keyword}{using\ }std::ostream;}
+\DoxyCodeLine{00423\ \textcolor{keyword}{using\ }std::istream;}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \textcolor{comment}{//\ Standard\ types}}
+\DoxyCodeLine{00426\ \textcolor{keyword}{using\ }uint\ =\ \textcolor{keywordtype}{unsigned}\ int;}
+\DoxyCodeLine{00427\ \textcolor{keyword}{using\ }uint8\ =\ std::uint8\_t;}
+\DoxyCodeLine{00428\ \textcolor{keyword}{using\ }uint16\ =\ std::uint16\_t;}
+\DoxyCodeLine{00429\ \textcolor{keyword}{using\ }uint32\ =\ std::uint32\_t;}
+\DoxyCodeLine{00430\ \textcolor{keyword}{using\ }uint64\ =\ std::uint64\_t;}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \textcolor{comment}{//\ Assert\ sizes\ of\ types}}
+\DoxyCodeLine{00433\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(uint)\ >=\ 4,\ \textcolor{stringliteral}{"{}Invalid\ size\ of\ uint"{}});}
+\DoxyCodeLine{00434\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(uint8)\ ==\ 1,\ \textcolor{stringliteral}{"{}Invalid\ size\ of\ uint8"{}});}
+\DoxyCodeLine{00435\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(uint16)\ ==\ 2,\ \textcolor{stringliteral}{"{}Invalid\ size\ of\ uint16"{}});}
+\DoxyCodeLine{00436\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(uint32)\ ==\ 4,\ \textcolor{stringliteral}{"{}Invalid\ size\ of\ uint32"{}});}
+\DoxyCodeLine{00437\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(uint64)\ ==\ 8,\ \textcolor{stringliteral}{"{}Invalid\ size\ of\ uint64"{}});}
+\DoxyCodeLine{00438\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void}\ *)\ ==\ (JPH\_CPU\_ADDRESS\_BITS\ ==\ 64?\ 8\ :\ 4),\ \textcolor{stringliteral}{"{}Invalid\ size\ of\ pointer"{}}\ );}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \textcolor{comment}{//\ Define\ inline\ macro}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\#if\ defined(JPH\_NO\_FORCE\_INLINE)}}
+\DoxyCodeLine{00442\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_INLINE\ inline}}
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\#elif\ defined(JPH\_COMPILER\_CLANG)\ ||\ defined(JPH\_COMPILER\_GCC)}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_INLINE\ \_\_inline\_\_\ \_\_attribute\_\_((always\_inline))}}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\#elif\ defined(JPH\_COMPILER\_MSVC)}}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_INLINE\ \_\_forceinline}}
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\ \ \ \ \#error\ Undefined}}
+\DoxyCodeLine{00449\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \textcolor{comment}{//\ Cache\ line\ size\ (used\ for\ aligning\ to\ cache\ line)}}
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\#ifndef\ JPH\_CACHE\_LINE\_SIZE}}
+\DoxyCodeLine{00453\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_CACHE\_LINE\_SIZE\ 64}}
+\DoxyCodeLine{00454\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \textcolor{comment}{//\ Define\ macro\ to\ get\ current\ function\ name}}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#if\ defined(JPH\_COMPILER\_CLANG)\ ||\ defined(JPH\_COMPILER\_GCC)}}
+\DoxyCodeLine{00458\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_FUNCTION\_NAME\ \ \ \_\_PRETTY\_FUNCTION\_\_}}
+\DoxyCodeLine{00459\ \textcolor{preprocessor}{\#elif\ defined(JPH\_COMPILER\_MSVC)}}
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_FUNCTION\_NAME\ \ \ \_\_FUNCTION\_\_}}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00462\ \textcolor{preprocessor}{\ \ \ \ \#error\ Undefined}}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \textcolor{comment}{//\ Stack\ allocation}}
+\DoxyCodeLine{00466\ \textcolor{preprocessor}{\#define\ JPH\_STACK\_ALLOC(n)\ \ \ \ \ \ alloca(n)}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \textcolor{comment}{//\ Shorthand\ for\ \#ifdef\ \_DEBUG\ /\ \#endif}}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_DEBUG(...)\ \ \ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00471\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_NOT\_DEBUG(...)}}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_DEBUG(...)}}
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_NOT\_DEBUG(...)\ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00475\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \textcolor{comment}{//\ Shorthand\ for\ \#ifdef\ JPH\_FLOATING\_POINT\_EXCEPTIONS\_ENABLED\ /\ \#endif}}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#ifdef\ JPH\_FLOATING\_POINT\_EXCEPTIONS\_ENABLED}}
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_FLOATING\_POINT\_EXCEPTIONS\_ENABLED(...)\ \ \ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00481\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_FLOATING\_POINT\_EXCEPTIONS\_ENABLED(...)}}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \textcolor{comment}{//\ Helper\ macros\ to\ detect\ if\ we're\ running\ in\ single\ or\ double\ precision\ mode}}
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#ifdef\ JPH\_DOUBLE\_PRECISION}}
+\DoxyCodeLine{00486\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_SINGLE\_PRECISION(...)}}
+\DoxyCodeLine{00487\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_SINGLE\_PRECISION\_ELSE(s,\ d)\ d}}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_DOUBLE\_PRECISION(...)\ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_SINGLE\_PRECISION(...)\ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_SINGLE\_PRECISION\_ELSE(s,\ d)\ s}}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_DOUBLE\_PRECISION(...)}}
+\DoxyCodeLine{00493\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \textcolor{comment}{//\ Helper\ macro\ to\ detect\ if\ the\ debug\ renderer\ is\ active}}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_DEBUG\_RENDERER(...)\ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00498\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_NOT\_DEBUG\_RENDERER(...)}}
+\DoxyCodeLine{00499\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00500\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_DEBUG\_RENDERER(...)}}
+\DoxyCodeLine{00501\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_IF\_NOT\_DEBUG\_RENDERER(...)\ \_\_VA\_ARGS\_\_}}
+\DoxyCodeLine{00502\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \textcolor{comment}{//\ Macro\ to\ indicate\ that\ a\ parameter\ /\ variable\ is\ unused}}
+\DoxyCodeLine{00505\ \textcolor{preprocessor}{\#define\ JPH\_UNUSED(x)\ \ \ \ \ \ \ \ \ \ \ (void)x}}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \textcolor{comment}{//\ Macro\ to\ enable\ floating\ point\ precise\ mode\ and\ to\ disable\ fused\ multiply\ add\ instructions}}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\#if\ defined(JPH\_COMPILER\_GCC)\ ||\ defined(JPH\_CROSS\_PLATFORM\_DETERMINISTIC)}}
+\DoxyCodeLine{00509\ \ \ \ \ \textcolor{comment}{//\ We\ compile\ without\ -\/ffast-\/math\ and\ -\/ffp-\/contract=fast,\ so\ we\ don't\ need\ to\ disable\ anything}}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_PRECISE\_MATH\_ON}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_PRECISE\_MATH\_OFF}}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\#elif\ defined(JPH\_COMPILER\_CLANG)}}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{comment}{//\ We\ compile\ without\ -\/ffast-\/math\ because\ pragma\ float\_control(precise,\ on)\ doesn't\ seem\ to\ actually\ negate\ all\ of\ the\ -\/ffast-\/math\ effects\ and\ causes\ the\ unit\ tests\ to\ fail\ (even\ if\ the\ pragma\ is\ added\ to\ all\ files)}}
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{comment}{//\ On\ clang\ 14\ and\ later\ we\ can\ turn\ off\ float\ contraction\ through\ a\ pragma\ (before\ it\ was\ buggy),\ so\ if\ FMA\ is\ on\ we\ can\ disable\ it\ through\ this\ macro}}
+\DoxyCodeLine{00515\ \textcolor{preprocessor}{\ \ \ \ \#if\ (defined(JPH\_CPU\_ARM)\ \&\&\ !defined(JPH\_PLATFORM\_ANDROID)\ \&\&\ \_\_clang\_major\_\_\ >=\ 16)\ ||\ (defined(JPH\_CPU\_X86)\ \&\&\ \_\_clang\_major\_\_\ >=\ 14)}}
+\DoxyCodeLine{00516\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PRECISE\_MATH\_ON\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_Pragma("{}float\_control(precise,\ on,\ push)"{})\ \(\backslash\)}}
+\DoxyCodeLine{00518\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_Pragma("{}clang\ fp\ contract(off)"{})}}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PRECISE\_MATH\_OFF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00520\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_Pragma("{}float\_control(pop)"{})}}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\ \ \ \ \#elif\ \_\_clang\_major\_\_\ >=\ 14\ \&\&\ (defined(JPH\_USE\_FMADD)\ ||\ defined(FP\_FAST\_FMA))}}
+\DoxyCodeLine{00522\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PRECISE\_MATH\_ON\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00523\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_Pragma("{}clang\ fp\ contract(off)"{})}}
+\DoxyCodeLine{00524\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PRECISE\_MATH\_OFF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_Pragma("{}clang\ fp\ contract(on)"{})}}
+\DoxyCodeLine{00526\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00527\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PRECISE\_MATH\_ON}}
+\DoxyCodeLine{00528\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ JPH\_PRECISE\_MATH\_OFF}}
+\DoxyCodeLine{00529\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00530\ \textcolor{preprocessor}{\#elif\ defined(JPH\_COMPILER\_MSVC)}}
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{comment}{//\ Unfortunately\ there\ is\ no\ way\ to\ push\ the\ state\ of\ fp\_contract,\ so\ we\ have\ to\ assume\ it\ was\ turned\ on\ before\ JPH\_PRECISE\_MATH\_ON}}
+\DoxyCodeLine{00532\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_PRECISE\_MATH\_ON\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00533\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_pragma(float\_control(precise,\ on,\ push))\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00534\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_pragma(fp\_contract(off))}}
+\DoxyCodeLine{00535\ \textcolor{preprocessor}{\ \ \ \ \#define\ JPH\_PRECISE\_MATH\_OFF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_pragma(fp\_contract(on))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00537\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_\_pragma(float\_control(pop))}}
+\DoxyCodeLine{00538\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\ \ \ \ \#error\ Undefined}}
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

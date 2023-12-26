@@ -1,0 +1,519 @@
+\doxysection{Tapered\+Capsule\+Shape Class Reference}
+\hypertarget{classTaperedCapsuleShape}{}\label{classTaperedCapsuleShape}\index{TaperedCapsuleShape@{TaperedCapsuleShape}}
+
+
+A capsule with different top and bottom radii.  
+
+
+
+
+{\ttfamily \#include $<$Tapered\+Capsule\+Shape.\+h$>$}
+
+
+
+Inheritance diagram for Tapered\+Capsule\+Shape\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/dcc/classTaperedCapsuleShape__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Tapered\+Capsule\+Shape\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/d48/classTaperedCapsuleShape__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTaperedCapsuleShape_a26e7343399e7002fa535d95b208d6d55}\label{classTaperedCapsuleShape_a26e7343399e7002fa535d95b208d6d55} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Tapered\+Capsule\+Shape} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classTaperedCapsuleShape_a632f3cfdfb0c81974230eee592c47c97}\label{classTaperedCapsuleShape_a632f3cfdfb0c81974230eee592c47c97} 
+{\bfseries Tapered\+Capsule\+Shape} (const \mbox{\hyperlink{classTaperedCapsuleShapeSettings}{Tapered\+Capsule\+Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+virtual \mbox{\hyperlink{classVec3}{Vec3}} \mbox{\hyperlink{classTaperedCapsuleShape_a66f2f00aa6cbbc1fe683d15993c3e736}{Get\+Center\+Of\+Mass}} () const override
+\begin{DoxyCompactList}\small\item\em All shapes are centered around their center of mass. This function returns the center of mass position that needs to be applied to transform the shape to where it was created. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classTaperedCapsuleShape_ada0bbcd8f70c7c18e09a8185f0f450a6}{Get\+Local\+Bounds}} () const override
+\begin{DoxyCompactList}\small\item\em Get local bounding box including convex radius, this box is centered around the center of mass rather than the world transform. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classTaperedCapsuleShape_ae9c5343d9a9bb51855f98b5557fd7ad6}{Get\+World\+Space\+Bounds}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual float \mbox{\hyperlink{classTaperedCapsuleShape_a84f84f37f87624d107b363e1fe0f54a6}{Get\+Inner\+Radius}} () const override
+\item 
+virtual \mbox{\hyperlink{classMassProperties}{Mass\+Properties}} \mbox{\hyperlink{classTaperedCapsuleShape_aa6f6b11d297d6d1718e40178593de984}{Get\+Mass\+Properties}} () const override
+\begin{DoxyCompactList}\small\item\em Calculate the mass and inertia of this shape. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classVec3}{Vec3}} \mbox{\hyperlink{classTaperedCapsuleShape_ae03839bd0f177593d53b609f3cab6fb5}{Get\+Surface\+Normal}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Local\+Surface\+Position) const override
+\item 
+virtual void \mbox{\hyperlink{classTaperedCapsuleShape_a3fd08ddcdcd7a52fd7af7a57f3a8b4c9}{Get\+Supporting\+Face}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classShape_a95d3060318d33c1ef314c5b856a70cb8}{Supporting\+Face}} \&out\+Vertices) const override
+\item 
+virtual const \mbox{\hyperlink{classConvexShape_1_1Support}{Support}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classTaperedCapsuleShape_a4a821960c6dbdc347d955d0b7cd2dfdc}{Get\+Support\+Function}} (\mbox{\hyperlink{classConvexShape_a4cd6e2f87f30d108faf1f119dd73a06b}{ESupport\+Mode}} in\+Mode, \mbox{\hyperlink{classConvexShape_1_1SupportBuffer}{Support\+Buffer}} \&in\+Buffer, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual void \mbox{\hyperlink{classTaperedCapsuleShape_a6aa78a29bcce107171d1a5c265ebf69b}{Collide\+Soft\+Body\+Vertices}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}} \texorpdfstring{$\ast$}{*}io\+Vertices, uint in\+Num\+Vertices, float in\+Delta\+Time, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Displacement\+Due\+To\+Gravity, int in\+Colliding\+Shape\+Index) const override
+\item 
+virtual void \mbox{\hyperlink{classTaperedCapsuleShape_ad18452b9b9146b08847c6314c2641f90}{Transform\+Shape}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&io\+Collector) const override
+\item 
+virtual void \mbox{\hyperlink{classTaperedCapsuleShape_a651ae368a61300a7b807c43f9b57e6ab}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saves the contents of the shape in binary form to in\+Stream. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} \mbox{\hyperlink{classTaperedCapsuleShape_a5f3e2462c74c498511d4b010797ddbab}{Get\+Stats}} () const override
+\begin{DoxyCompactList}\small\item\em Get stats of this shape. Use for logging / data collection purposes only. Does not add values from child shapes, use Get\+Stats\+Recursive for this. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classTaperedCapsuleShape_a7899c1aa1dbb08bd5b79c2b8d01711a0}{Get\+Volume}} () const override
+\item 
+virtual bool \mbox{\hyperlink{classTaperedCapsuleShape_a65030d1d2cc099c8862d2a49112cc131}{Is\+Valid\+Scale}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classTaperedCapsuleShape_a9f8379fa338802436700b86a07fab3be}{Get\+World\+Space\+Bounds}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\item 
+\Hypertarget{classTaperedCapsuleShape_adc0e48fe3e684665c0b4ba3ec9e9ed6b}\label{classTaperedCapsuleShape_adc0e48fe3e684665c0b4ba3ec9e9ed6b} 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries Get\+World\+Space\+Bounds} (\mbox{\hyperlink{classDMat44}{DMat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\begin{DoxyCompactList}\small\item\em Get world space bounds including convex radius. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classConvexShape}{Convex\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Convex\+Shape} (EShape\+Sub\+Type in\+Sub\+Type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Convex\+Shape} (EShape\+Sub\+Type in\+Sub\+Type, const \mbox{\hyperlink{classConvexShapeSettings}{Convex\+Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+{\bfseries Convex\+Shape} (EShape\+Sub\+Type in\+Sub\+Type, const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}in\+Material)
+\item 
+virtual uint \mbox{\hyperlink{classConvexShape_aeda184c70bca8f98105bd58df579eb87}{Get\+Sub\+Shape\+IDBits\+Recursive}} () const override
+\begin{DoxyCompactList}\small\item\em Get the max number of sub shape ID bits that are needed to be able to address any leaf shape in this shape. Used mainly for checking that it is smaller or equal than \doxylink{classSubShapeID_a74d6785fe41b99c0d783fb6e66c39f4d}{Sub\+Shape\+ID\+::\+Max\+Bits}. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classConvexShape_a7a9e29e9a33f123f0ab8b25dd4e04cc0}{Get\+Material}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID) const override
+\begin{DoxyCompactList}\small\item\em Get the material assigned to a particular sub shape ID. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classConvexShape_a1a87c8509b66e43d65e3f1658a1352b8}{Cast\+Ray}} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classRayCastResult}{Ray\+Cast\+Result}} \&io\+Hit) const override
+\item 
+virtual void \mbox{\hyperlink{classConvexShape_a7752585a0d56e5f8577a5452f41fe596}{Cast\+Ray}} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray, const \mbox{\hyperlink{classRayCastSettings}{Ray\+Cast\+Settings}} \&in\+Ray\+Cast\+Settings, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Cast\+Ray\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter=\{ \}) const override
+\item 
+virtual void \mbox{\hyperlink{classConvexShape_a88a5e9b6c6f54900970c2a937c7bfb40}{Collide\+Point}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Collide\+Point\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter=\{ \}) const override
+\item 
+virtual void \mbox{\hyperlink{classConvexShape_af3704ca5bef7b0e09df3d13dd6653567}{Get\+Triangles\+Start}} (\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Get\+Triangles\+Context}} \&io\+Context, const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual int \mbox{\hyperlink{classConvexShape_a1be06e980fe18bde9b8d5f923c7d7e5a}{Get\+Triangles\+Next}} (\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Get\+Triangles\+Context}} \&io\+Context, int in\+Max\+Triangles\+Requested, \mbox{\hyperlink{classFloat3}{Float3}} \texorpdfstring{$\ast$}{*}out\+Triangle\+Vertices, const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+Materials=nullptr) const override
+\item 
+virtual void {\bfseries Get\+Submerged\+Volume} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classPlane}{Plane}} \&in\+Surface, float \&out\+Total\+Volume, float \&out\+Submerged\+Volume, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Center\+Of\+Buoyancy JPH\+\_\+\+IF\+\_\+\+DEBUG\+\_\+\+RENDERER(, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Base\+Offset)) const override
+\item 
+void {\bfseries Set\+Material} (const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}in\+Material)
+\begin{DoxyCompactList}\small\item\em \doxylink{structMaterial}{Material} of the shape. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Material} () const
+\item 
+void {\bfseries Set\+Density} (float in\+Density)
+\begin{DoxyCompactList}\small\item\em Set density of the shape (kg / m\texorpdfstring{$^\wedge$}{\string^}3) \end{DoxyCompactList}\item 
+float {\bfseries Get\+Density} () const
+\begin{DoxyCompactList}\small\item\em Get density of the shape (kg / m\texorpdfstring{$^\wedge$}{\string^}3) \end{DoxyCompactList}\item 
+virtual void {\bfseries Save\+Material\+State} (Physics\+Material\+List \&out\+Materials) const override
+\item 
+virtual void \mbox{\hyperlink{classConvexShape_a31789c2ddb0ad92a8bf39b780e223bb9}{Restore\+Material\+State}} (const \mbox{\hyperlink{classRefConst}{Physics\+Material\+RefC}} \texorpdfstring{$\ast$}{*}in\+Materials, uint in\+Num\+Materials) override
+\begin{DoxyCompactList}\small\item\em Restore the material references after calling s\+Restore\+From\+Binary\+State. Note that the exact same materials need to be provided in the same order as returned by Save\+Material\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Shape} (EShape\+Type in\+Type, EShape\+Sub\+Type in\+Sub\+Type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Shape} (EShape\+Type in\+Type, EShape\+Sub\+Type in\+Sub\+Type, const \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Shape} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+EShape\+Type {\bfseries Get\+Type} () const
+\begin{DoxyCompactList}\small\item\em Get type. \end{DoxyCompactList}\item 
+EShape\+Sub\+Type {\bfseries Get\+Sub\+Type} () const
+\item 
+uint64 {\bfseries Get\+User\+Data} () const
+\begin{DoxyCompactList}\small\item\em User data (to be used freely by the application) \end{DoxyCompactList}\item 
+void {\bfseries Set\+User\+Data} (uint64 in\+User\+Data)
+\item 
+virtual bool \mbox{\hyperlink{classShape_a6abbf113475435c0c694d3199e352c3a}{Must\+Be\+Static}} () const
+\begin{DoxyCompactList}\small\item\em Check if this shape can only be used to create a static body or if it can also be dynamic/kinematic. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries Get\+World\+Space\+Bounds} (\mbox{\hyperlink{classDMat44}{DMat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\begin{DoxyCompactList}\small\item\em Get world space bounds including convex radius. \end{DoxyCompactList}\item 
+virtual uint64 \mbox{\hyperlink{classShape_a29de5bb2f770d7e521f0d939436faa1b}{Get\+Sub\+Shape\+User\+Data}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID) const
+\begin{DoxyCompactList}\small\item\em Get the user data of a particular sub shape ID. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTransformedShape}{Transformed\+Shape}} \mbox{\hyperlink{classShape_a80ec65fef5853ea01cad86e528bdca5d}{Get\+Sub\+Shape\+Transformed\+Shape}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&out\+Remainder) const
+\item 
+virtual void \mbox{\hyperlink{classShape_ab3ab834243d410f4074036264928f0ff}{Get\+Submerged\+Volume}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classPlane}{Plane}} \&in\+Surface, float \&out\+Total\+Volume, float \&out\+Submerged\+Volume, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Center\+Of\+Buoyancy) const =0
+\item 
+virtual void \mbox{\hyperlink{classShape_a878715858fc2494068183d9eb82d16b0}{Collect\+Transformed\+Shapes}} (const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter) const
+\item 
+\mbox{\hyperlink{classResult}{Shape\+Result}} \mbox{\hyperlink{classShape_aca293aaf9bb3c999ad09687e11bfd70f}{Scale\+Shape}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\item 
+virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} \mbox{\hyperlink{classShape_acd7b07e3fae19adc5836905a138552bc}{Get\+Stats\+Recursive}} (Visited\+Shapes \&io\+Visited\+Shapes) const
+\begin{DoxyCompactList}\small\item\em Volume of this shape (m\texorpdfstring{$^\wedge$}{\string^}3). Note that for compound shapes the volume may be incorrect since child shapes can overlap which is not accounted for. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Save\+Material\+State} (Physics\+Material\+List \&out\+Materials) const
+\begin{DoxyCompactList}\small\item\em Outputs the material references that this shape has to out\+Materials. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classShape_a09215d250a425cca2e9b4bed32761bc4}{Save\+Sub\+Shape\+State}} (Shape\+List \&out\+Sub\+Shapes) const
+\begin{DoxyCompactList}\small\item\em Outputs the shape references that this shape has to out\+Sub\+Shapes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classShape_ab4de39f5e4972919f1211ec73520b1d8}{Restore\+Sub\+Shape\+State}} (const \mbox{\hyperlink{classRefConst}{Shape\+RefC}} \texorpdfstring{$\ast$}{*}in\+Sub\+Shapes, uint in\+Num\+Shapes)
+\begin{DoxyCompactList}\small\item\em Restore the shape references after calling s\+Restore\+From\+Binary\+State. Note that the exact same shapes need to be provided in the same order as returned by Save\+Sub\+Shape\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Save\+With\+Children} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream, Shape\+To\+IDMap \&io\+Shape\+Map, Material\+To\+IDMap \&io\+Material\+Map) const
+\begin{DoxyCompactList}\small\item\em Save this shape, all its children and its materials. Pass in an empty map in io\+Shape\+Map / io\+Material\+Map or reuse the same map while saving multiple shapes to the same stream in order to avoid writing duplicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTaperedCapsuleShape_a429ba5a0bd7f2defb923233eac216ccc}\label{classTaperedCapsuleShape_a429ba5a0bd7f2defb923233eac216ccc} 
+static void {\bfseries s\+Register} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classConvexShape}{Convex\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries s\+Register} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classShape}{Shape} of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries s\+Restore\+With\+Children} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream, IDTo\+Shape\+Map \&io\+Shape\+Map, IDTo\+Material\+Map \&io\+Material\+Map)
+\begin{DoxyCompactList}\small\item\em Restore a shape, all its children and materials. Pass in an empty map in io\+Shape\+Map / io\+Material\+Map or reuse the same map while reading multiple shapes from the same stream in order to restore duplicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classTaperedCapsuleShape_aa5a077883ebd73a2376dec228e87e296}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classConvexShape}{Convex\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classConvexShape_a4cd6e2f87f30d108faf1f119dd73a06b}{ESupport\+Mode}} \{ \mbox{\hyperlink{classConvexShape_a4cd6e2f87f30d108faf1f119dd73a06bafc1094532d8eef9e23613fe6846685c1}{Exclude\+Convex\+Radius}}
+, \mbox{\hyperlink{classConvexShape_a4cd6e2f87f30d108faf1f119dd73a06badc738ebd4ba89322ae44c2d1ec8cda9f}{Include\+Convex\+Radius}}
+ \}
+\begin{DoxyCompactList}\small\item\em How the Get\+Support function should behave. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Shape\+Result} = \mbox{\hyperlink{classResult}{Shape\+Settings\+::\+Shape\+Result}}
+\item 
+using {\bfseries Supporting\+Face} = \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classVec3}{Vec3}}, 32 $>$
+\begin{DoxyCompactList}\small\item\em Type definition for a supporting face. \end{DoxyCompactList}\item 
+using {\bfseries Visited\+Shapes} = Unordered\+Set$<$ const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Shape\+To\+IDMap} = Stream\+Utils\+::\+Object\+To\+IDMap$<$ \mbox{\hyperlink{classShape}{Shape}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries IDTo\+Shape\+Map} = Stream\+Utils\+::\+IDTo\+Object\+Map$<$ \mbox{\hyperlink{classShape}{Shape}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Material\+To\+IDMap} = Stream\+Utils\+::\+Object\+To\+IDMap$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries IDTo\+Material\+Map} = Stream\+Utils\+::\+IDTo\+Object\+Map$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int {\bfseries c\+Get\+Triangles\+Min\+Triangles\+Requested} = 32
+\begin{DoxyCompactList}\small\item\em This is the minimum amount of triangles that should be requested through Get\+Triangles\+Next. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries s\+Collide\+Point\+Using\+Ray\+Cast} (const \mbox{\hyperlink{classShape}{Shape}} \&in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Collide\+Point\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter)
+\begin{DoxyCompactList}\small\item\em A fallback version of Collide\+Point that uses a ray cast and counts the number of hits to determine if the point is inside the shape. Odd number of hits means inside, even number of hits means outside. \end{DoxyCompactList}\item 
+static void {\bfseries s\+Collide\+Soft\+Body\+Vertices\+Using\+Ray\+Cast} (const \mbox{\hyperlink{classShape}{Shape}} \&in\+Shape, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}} \texorpdfstring{$\ast$}{*}io\+Vertices, uint in\+Num\+Vertices, float in\+Delta\+Time, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Displacement\+Due\+To\+Gravity, int in\+Colliding\+Shape\+Index)
+\begin{DoxyCompactList}\small\item\em A fallback version of Collide\+Soft\+Body\+Vertices that uses a raycast to collide the vertices with the shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classConvexShape}{Convex\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static const std\+::vector$<$ \mbox{\hyperlink{classVec3}{Vec3}} $>$ {\bfseries s\+Unit\+Sphere\+Triangles}
+\begin{DoxyCompactList}\small\item\em Vertex list that forms a unit sphere. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A capsule with different top and bottom radii. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTaperedCapsuleShape_a6aa78a29bcce107171d1a5c265ebf69b}\label{classTaperedCapsuleShape_a6aa78a29bcce107171d1a5c265ebf69b} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!CollideSoftBodyVertices@{CollideSoftBodyVertices}}
+\index{CollideSoftBodyVertices@{CollideSoftBodyVertices}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{CollideSoftBodyVertices()}{CollideSoftBodyVertices()}}
+{\footnotesize\ttfamily virtual void Tapered\+Capsule\+Shape\+::\+Collide\+Soft\+Body\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{\mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}} \texorpdfstring{$\ast$}{*}}]{io\+Vertices,  }\item[{uint}]{in\+Num\+Vertices,  }\item[{float}]{in\+Delta\+Time,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Displacement\+Due\+To\+Gravity,  }\item[{int}]{in\+Colliding\+Shape\+Index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Collides all vertices of a soft body with this shape and updates \doxylink{classSoftBodyVertex_ad875325c3ade4ca33d6b96716b8a2b07}{Soft\+Body\+Vertex\+::m\+Collision\+Plane}, \doxylink{classSoftBodyVertex_a887112c6a59e554fd15aac62b7e84dfe}{Soft\+Body\+Vertex\+::m\+Colliding\+Shape\+Index} and \doxylink{classSoftBodyVertex_a8277ada20f83ca568c1e6173720fbf23}{Soft\+Body\+Vertex\+::m\+Largest\+Penetration} if a collision with more penetration was found. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Center\+Of\+Mass\+Transform} & Center of mass transform for this shape relative to the vertices. \\
+\hline
+{\em in\+Scale} & The scale to use for this shape \\
+\hline
+{\em io\+Vertices} & The vertices of the soft body \\
+\hline
+{\em in\+Num\+Vertices} & The number of vertices in io\+Vertices \\
+\hline
+{\em in\+Delta\+Time} & Delta time of this time step (can be used to extrapolate the position using the velocity of the particle) \\
+\hline
+{\em in\+Displacement\+Due\+To\+Gravity} & Displacement due to gravity during this time step \\
+\hline
+{\em in\+Colliding\+Shape\+Index} & Value to store in \doxylink{classSoftBodyVertex_a887112c6a59e554fd15aac62b7e84dfe}{Soft\+Body\+Vertex\+::m\+Colliding\+Shape\+Index} when a collision was found \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classShape_ac351f347171376cd988ec415748a78ff}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a66f2f00aa6cbbc1fe683d15993c3e736}\label{classTaperedCapsuleShape_a66f2f00aa6cbbc1fe683d15993c3e736} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetCenterOfMass@{GetCenterOfMass}}
+\index{GetCenterOfMass@{GetCenterOfMass}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetCenterOfMass()}{GetCenterOfMass()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classVec3}{Vec3}} Tapered\+Capsule\+Shape\+::\+Get\+Center\+Of\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+All shapes are centered around their center of mass. This function returns the center of mass position that needs to be applied to transform the shape to where it was created. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classShape_a7e34b0626a40c31db0b2a761922adb1a}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a84f84f37f87624d107b363e1fe0f54a6}\label{classTaperedCapsuleShape_a84f84f37f87624d107b363e1fe0f54a6} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetInnerRadius@{GetInnerRadius}}
+\index{GetInnerRadius@{GetInnerRadius}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetInnerRadius()}{GetInnerRadius()}}
+{\footnotesize\ttfamily virtual float Tapered\+Capsule\+Shape\+::\+Get\+Inner\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the radius of the biggest sphere that fits entirely in the shape. In case this shape consists of multiple sub shapes, it returns the smallest sphere of the parts. This can be used as a measure of how far the shape can be moved without risking going through geometry. 
+
+Implements \mbox{\hyperlink{classShape_a249fa4e0fc7fdd25071be9f45db6a25a}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_ada0bbcd8f70c7c18e09a8185f0f450a6}\label{classTaperedCapsuleShape_ada0bbcd8f70c7c18e09a8185f0f450a6} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetLocalBounds@{GetLocalBounds}}
+\index{GetLocalBounds@{GetLocalBounds}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetLocalBounds()}{GetLocalBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classAABox}{AABox}} Tapered\+Capsule\+Shape\+::\+Get\+Local\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get local bounding box including convex radius, this box is centered around the center of mass rather than the world transform. 
+
+
+
+Implements \mbox{\hyperlink{classShape_a30ea165596e01df087f6e4980ed6b0cb}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_aa6f6b11d297d6d1718e40178593de984}\label{classTaperedCapsuleShape_aa6f6b11d297d6d1718e40178593de984} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetMassProperties@{GetMassProperties}}
+\index{GetMassProperties@{GetMassProperties}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetMassProperties()}{GetMassProperties()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMassProperties}{Mass\+Properties}} Tapered\+Capsule\+Shape\+::\+Get\+Mass\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculate the mass and inertia of this shape. 
+
+
+
+Implements \mbox{\hyperlink{classShape_a00d0953c120d9e175960c9e6629f108f}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a5f3e2462c74c498511d4b010797ddbab}\label{classTaperedCapsuleShape_a5f3e2462c74c498511d4b010797ddbab} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetStats@{GetStats}}
+\index{GetStats@{GetStats}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetStats()}{GetStats()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} Tapered\+Capsule\+Shape\+::\+Get\+Stats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get stats of this shape. Use for logging / data collection purposes only. Does not add values from child shapes, use Get\+Stats\+Recursive for this. 
+
+
+
+Implements \mbox{\hyperlink{classShape_a87ae161e649ab6af75a60fe130dd195b}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a4a821960c6dbdc347d955d0b7cd2dfdc}\label{classTaperedCapsuleShape_a4a821960c6dbdc347d955d0b7cd2dfdc} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetSupportFunction@{GetSupportFunction}}
+\index{GetSupportFunction@{GetSupportFunction}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetSupportFunction()}{GetSupportFunction()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{classConvexShape_1_1Support}{Support}} \texorpdfstring{$\ast$}{*} Tapered\+Capsule\+Shape\+::\+Get\+Support\+Function (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classConvexShape_a4cd6e2f87f30d108faf1f119dd73a06b}{ESupport\+Mode}}}]{in\+Mode,  }\item[{\mbox{\hyperlink{classConvexShape_1_1SupportBuffer}{Support\+Buffer}} \&}]{in\+Buffer,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns an object that provides the Get\+Support function for this shape. in\+Mode determines if this support function includes or excludes the convex radius. of the values returned by the Get\+Support function. This improves numerical accuracy of the results. in\+Scale scales this shape in local space. 
+
+Implements \mbox{\hyperlink{classConvexShape_ae043918f1de4d0049c6cb2a92b545e06}{Convex\+Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a3fd08ddcdcd7a52fd7af7a57f3a8b4c9}\label{classTaperedCapsuleShape_a3fd08ddcdcd7a52fd7af7a57f3a8b4c9} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetSupportingFace@{GetSupportingFace}}
+\index{GetSupportingFace@{GetSupportingFace}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetSupportingFace()}{GetSupportingFace()}}
+{\footnotesize\ttfamily virtual void Tapered\+Capsule\+Shape\+::\+Get\+Supporting\+Face (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Direction,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classShape_a95d3060318d33c1ef314c5b856a70cb8}{Supporting\+Face}} \&}]{out\+Vertices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the vertices of the face that faces in\+Direction the most (includes any convex radius). Note that this function can only return faces of convex shapes or triangles, which is why a sub shape ID to get to that leaf must be provided. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Sub\+Shape\+ID} & Sub shape ID of target shape \\
+\hline
+{\em in\+Direction} & Direction that the face should be facing (in local space to this shape) \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform} & \doxylink{structTransform}{Transform} to transform out\+Vertices with \\
+\hline
+{\em in\+Scale} & Scale of this shape \\
+\hline
+{\em out\+Vertices} & Resulting face. The returned face can be empty if the shape doesn\textquotesingle{}t have polygons to return (e.\+g. because it\textquotesingle{}s a sphere). The face will be returned in world space. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classShape_a4f6591e1a1329278568bc99b035c9928}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_ae03839bd0f177593d53b609f3cab6fb5}\label{classTaperedCapsuleShape_ae03839bd0f177593d53b609f3cab6fb5} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetSurfaceNormal@{GetSurfaceNormal}}
+\index{GetSurfaceNormal@{GetSurfaceNormal}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetSurfaceNormal()}{GetSurfaceNormal()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classVec3}{Vec3}} Tapered\+Capsule\+Shape\+::\+Get\+Surface\+Normal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Local\+Surface\+Position }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the surface normal of a particular sub shape ID and point on surface (all vectors are relative to center of mass for this shape). Note\+: When you have a \doxylink{classCollideShapeResult}{Collide\+Shape\+Result} or \doxylink{classShapeCastResult}{Shape\+Cast\+Result} you should use -\/m\+Penetration\+Axis.\+Normalized() as contact normal as Get\+Surface\+Normal will only return face normals (and not vertex or edge normals). 
+
+Implements \mbox{\hyperlink{classShape_adc7c6aeed1cde2ae1be099a4a5a4bd0c}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a7899c1aa1dbb08bd5b79c2b8d01711a0}\label{classTaperedCapsuleShape_a7899c1aa1dbb08bd5b79c2b8d01711a0} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetVolume@{GetVolume}}
+\index{GetVolume@{GetVolume}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetVolume()}{GetVolume()}}
+{\footnotesize\ttfamily virtual float Tapered\+Capsule\+Shape\+::\+Get\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classShape}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a9f8379fa338802436700b86a07fab3be}\label{classTaperedCapsuleShape_a9f8379fa338802436700b86a07fab3be} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetWorldSpaceBounds@{GetWorldSpaceBounds}}
+\index{GetWorldSpaceBounds@{GetWorldSpaceBounds}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetWorldSpaceBounds()}{GetWorldSpaceBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classAABox}{AABox}} Shape\+::\+Get\+World\+Space\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Get world space bounds including convex radius. This shape is scaled by in\+Scale in local space first. This function can be overridden to return a closer fitting world space bounding box, by default it will just transform what \doxylink{classTaperedCapsuleShape_ada0bbcd8f70c7c18e09a8185f0f450a6}{Get\+Local\+Bounds()} returns. 
+
+Reimplemented from \mbox{\hyperlink{classShape_a9f8379fa338802436700b86a07fab3be}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_ae9c5343d9a9bb51855f98b5557fd7ad6}\label{classTaperedCapsuleShape_ae9c5343d9a9bb51855f98b5557fd7ad6} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!GetWorldSpaceBounds@{GetWorldSpaceBounds}}
+\index{GetWorldSpaceBounds@{GetWorldSpaceBounds}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{GetWorldSpaceBounds()}{GetWorldSpaceBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classAABox}{AABox}} Tapered\+Capsule\+Shape\+::\+Get\+World\+Space\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get world space bounds including convex radius. This shape is scaled by in\+Scale in local space first. This function can be overridden to return a closer fitting world space bounding box, by default it will just transform what \doxylink{classTaperedCapsuleShape_ada0bbcd8f70c7c18e09a8185f0f450a6}{Get\+Local\+Bounds()} returns. 
+
+Reimplemented from \mbox{\hyperlink{classShape_a9f8379fa338802436700b86a07fab3be}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a65030d1d2cc099c8862d2a49112cc131}\label{classTaperedCapsuleShape_a65030d1d2cc099c8862d2a49112cc131} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!IsValidScale@{IsValidScale}}
+\index{IsValidScale@{IsValidScale}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{IsValidScale()}{IsValidScale()}}
+{\footnotesize\ttfamily virtual bool Tapered\+Capsule\+Shape\+::\+Is\+Valid\+Scale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Test if in\+Scale is a valid scale for this shape. Some shapes can only be scaled uniformly, compound shapes cannot handle shapes being rotated and scaled (this would cause shearing), scale can never be zero. When the scale is invalid, the function will return false.
+
+Here\textquotesingle{}s a list of supported scales\+:
+\begin{DoxyItemize}
+\item \doxylink{classSphereShape}{Sphere\+Shape}\+: Scale must be uniform (signs of scale are ignored).
+\item \doxylink{classBoxShape}{Box\+Shape}\+: Any scale supported (signs of scale are ignored).
+\item \doxylink{classTriangleShape}{Triangle\+Shape}\+: Any scale supported when convex radius is zero, otherwise only uniform scale supported.
+\item \doxylink{classCapsuleShape}{Capsule\+Shape}\+: Scale must be uniform (signs of scale are ignored).
+\item \doxylink{classTaperedCapsuleShape}{Tapered\+Capsule\+Shape}\+: Scale must be uniform (sign of Y scale can be used to flip the capsule).
+\item \doxylink{classCylinderShape}{Cylinder\+Shape}\+: Scale must be uniform in XZ plane, Y can scale independently (signs of scale are ignored).
+\item \doxylink{classRotatedTranslatedShape}{Rotated\+Translated\+Shape}\+: Scale must not cause shear in the child shape.
+\item \doxylink{classCompoundShape}{Compound\+Shape}\+: Scale must not cause shear in any of the child shapes. 
+\end{DoxyItemize}
+
+Reimplemented from \mbox{\hyperlink{classShape_a705685386feede5b6e0473ee00f5cdc1}{Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_aa5a077883ebd73a2376dec228e87e296}\label{classTaperedCapsuleShape_aa5a077883ebd73a2376dec228e87e296} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Tapered\+Capsule\+Shape\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConvexShape_a8f76f54dba131bd1d1576427a4113aaf}{Convex\+Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_a651ae368a61300a7b807c43f9b57e6ab}\label{classTaperedCapsuleShape_a651ae368a61300a7b807c43f9b57e6ab} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Tapered\+Capsule\+Shape\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the contents of the shape in binary form to in\+Stream. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConvexShape_aa3ba91d5fa7be3d038928b0d68e553b7}{Convex\+Shape}}.
+
+\Hypertarget{classTaperedCapsuleShape_ad18452b9b9146b08847c6314c2641f90}\label{classTaperedCapsuleShape_ad18452b9b9146b08847c6314c2641f90} 
+\index{TaperedCapsuleShape@{TaperedCapsuleShape}!TransformShape@{TransformShape}}
+\index{TransformShape@{TransformShape}!TaperedCapsuleShape@{TaperedCapsuleShape}}
+\doxysubsubsection{\texorpdfstring{TransformShape()}{TransformShape()}}
+{\footnotesize\ttfamily virtual void Tapered\+Capsule\+Shape\+::\+Transform\+Shape (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&}]{io\+Collector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Transforms this shape and all of its children with in\+Transform, resulting shape(s) are passed to io\+Collector. Note that not all shapes support all transforms (especially true for scaling), the resulting shape will try to match the transform as accurately as possible. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Center\+Of\+Mass\+Transform} & The transform (rotation, translation, scale) that the center of mass of the shape should get \\
+\hline
+{\em io\+Collector} & The transformed shapes will be passed to this collector \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classShape_afad198eea6c3e9e08a5e8f8d646817a0}{Shape}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Tapered\+Capsule\+Shape.\+h\end{DoxyCompactItemize}

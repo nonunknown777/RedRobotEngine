@@ -1,0 +1,175 @@
+\doxysection{Static\+Array\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classStaticArray}{}\label{classStaticArray}\index{StaticArray$<$ T, N $>$@{StaticArray$<$ T, N $>$}}
+
+
+Simple variable length array backed by a fixed size buffer.  
+
+
+
+
+{\ttfamily \#include $<$Static\+Array.\+h$>$}
+
+
+
+Inheritance diagram for Static\+Array\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/df0/classStaticArray__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Static\+Array\texorpdfstring{$<$}{<} T, N \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{d7/da5/classStaticArray__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structStaticArray_1_1Storage}{Storage}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStaticArray_a367362d6d72603626006bf09590b5e73}\label{classStaticArray_a367362d6d72603626006bf09590b5e73} 
+using {\bfseries value\+\_\+type} = T
+\item 
+\Hypertarget{classStaticArray_a69859b5a0e6cd32048fc1f3188982f3b}\label{classStaticArray_a69859b5a0e6cd32048fc1f3188982f3b} 
+using {\bfseries size\+\_\+type} = uint
+\item 
+\Hypertarget{classStaticArray_a4831bf13fa486b656ac85e932a829dc3}\label{classStaticArray_a4831bf13fa486b656ac85e932a829dc3} 
+using {\bfseries const\+\_\+iterator} = const T \texorpdfstring{$\ast$}{*}
+\item 
+\Hypertarget{classStaticArray_a495ba6aabb5a08ba1a06add667182f12}\label{classStaticArray_a495ba6aabb5a08ba1a06add667182f12} 
+using {\bfseries iterator} = T \texorpdfstring{$\ast$}{*}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStaticArray_a0b1020145a67d2f11ef8b6e21e56efda}\label{classStaticArray_a0b1020145a67d2f11ef8b6e21e56efda} 
+{\bfseries Static\+Array} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a4289f014eadc8aa60ff6785dabe32f11}\label{classStaticArray_a4289f014eadc8aa60ff6785dabe32f11} 
+{\bfseries Static\+Array} (std\+::initializer\+\_\+list$<$ T $>$ in\+List)
+\begin{DoxyCompactList}\small\item\em Constructor from initializer list. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a9be0006e3a1a001893645dbd5b34b355}\label{classStaticArray_a9be0006e3a1a001893645dbd5b34b355} 
+{\bfseries Static\+Array} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_afa25bd44899d047990eb77e996031756}\label{classStaticArray_afa25bd44899d047990eb77e996031756} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Static\+Array} ()
+\begin{DoxyCompactList}\small\item\em Destruct all elements. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a2cac2948666824fe7fee27bcf845f17b}\label{classStaticArray_a2cac2948666824fe7fee27bcf845f17b} 
+void {\bfseries clear} ()
+\begin{DoxyCompactList}\small\item\em Destruct all elements and set length to zero. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a1117d7fa5ecfe22248396f1632d842cb}\label{classStaticArray_a1117d7fa5ecfe22248396f1632d842cb} 
+void {\bfseries push\+\_\+back} (const T \&in\+Element)
+\begin{DoxyCompactList}\small\item\em Add element to the back of the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a80c134d64d82df7e26efc48dc629389f}\label{classStaticArray_a80c134d64d82df7e26efc48dc629389f} 
+{\footnotesize template$<$class... A$>$ }\\void {\bfseries emplace\+\_\+back} (A \&\&... in\+Element)
+\begin{DoxyCompactList}\small\item\em Construct element at the back of the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_aed109d7f64345b6e7e956bd80de27387}\label{classStaticArray_aed109d7f64345b6e7e956bd80de27387} 
+void {\bfseries pop\+\_\+back} ()
+\begin{DoxyCompactList}\small\item\em Remove element from the back of the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a90462c290631eb3139ea41b91a14f99a}\label{classStaticArray_a90462c290631eb3139ea41b91a14f99a} 
+bool {\bfseries empty} () const
+\begin{DoxyCompactList}\small\item\em Returns true if there are no elements in the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}\label{classStaticArray_aea449055e7dab910eca1a4af05d53b6f} 
+size\+\_\+type {\bfseries size} () const
+\begin{DoxyCompactList}\small\item\em Returns amount of elements in the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a1313d0f5827afac5751b7a0a6fc23f83}\label{classStaticArray_a1313d0f5827afac5751b7a0a6fc23f83} 
+size\+\_\+type {\bfseries capacity} () const
+\begin{DoxyCompactList}\small\item\em Returns maximum amount of elements the array can hold. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_af90fb922a70be2d41cc70b243cbc4c64}\label{classStaticArray_af90fb922a70be2d41cc70b243cbc4c64} 
+void {\bfseries resize} (size\+\_\+type in\+New\+Size)
+\begin{DoxyCompactList}\small\item\em Resize array to new length. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a671ecdfc35c476a8efd5b11536a1712f}\label{classStaticArray_a671ecdfc35c476a8efd5b11536a1712f} 
+const\+\_\+iterator {\bfseries begin} () const
+\begin{DoxyCompactList}\small\item\em Iterators. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_acc8368b80a4756c0ea7f5354dad6b2df}\label{classStaticArray_acc8368b80a4756c0ea7f5354dad6b2df} 
+const\+\_\+iterator {\bfseries end} () const
+\item 
+\Hypertarget{classStaticArray_a39b29025d859bb426416085c054dfb89}\label{classStaticArray_a39b29025d859bb426416085c054dfb89} 
+iterator {\bfseries begin} ()
+\item 
+\Hypertarget{classStaticArray_a26023a8948ef582b35b2d808f95915b4}\label{classStaticArray_a26023a8948ef582b35b2d808f95915b4} 
+iterator {\bfseries end} ()
+\item 
+\Hypertarget{classStaticArray_a7698b4e3e7cf608eeba5a48f25c284d9}\label{classStaticArray_a7698b4e3e7cf608eeba5a48f25c284d9} 
+const T \texorpdfstring{$\ast$}{*} {\bfseries data} () const
+\item 
+\Hypertarget{classStaticArray_a28fd92f5eed107bfaef2e94f23ce4f12}\label{classStaticArray_a28fd92f5eed107bfaef2e94f23ce4f12} 
+T \texorpdfstring{$\ast$}{*} {\bfseries data} ()
+\item 
+\Hypertarget{classStaticArray_a94028ccdb4d9f55f0ada779b03be8e55}\label{classStaticArray_a94028ccdb4d9f55f0ada779b03be8e55} 
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type in\+Idx)
+\begin{DoxyCompactList}\small\item\em Access element. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_aba42dce13b07203fafa2135d8ef06581}\label{classStaticArray_aba42dce13b07203fafa2135d8ef06581} 
+const T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type in\+Idx) const
+\item 
+\Hypertarget{classStaticArray_a83ed073e3ed2248da10cef0277beeb23}\label{classStaticArray_a83ed073e3ed2248da10cef0277beeb23} 
+T \& {\bfseries at} (size\+\_\+type in\+Idx)
+\begin{DoxyCompactList}\small\item\em Access element. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_af9191dafffff11ec4008b9378fd4dd05}\label{classStaticArray_af9191dafffff11ec4008b9378fd4dd05} 
+const T \& {\bfseries at} (size\+\_\+type in\+Idx) const
+\item 
+\Hypertarget{classStaticArray_aa0626580d53d352633f0a1f5af5ecb12}\label{classStaticArray_aa0626580d53d352633f0a1f5af5ecb12} 
+const T \& {\bfseries front} () const
+\begin{DoxyCompactList}\small\item\em First element in the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a519467de065745ac462b4bb3878ef8a3}\label{classStaticArray_a519467de065745ac462b4bb3878ef8a3} 
+T \& {\bfseries front} ()
+\item 
+\Hypertarget{classStaticArray_a6b5e0b0984bd82a6f09660206a1b4914}\label{classStaticArray_a6b5e0b0984bd82a6f09660206a1b4914} 
+const T \& {\bfseries back} () const
+\begin{DoxyCompactList}\small\item\em Last element in the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_ab423e08f9f4dedd513bb61b9fec4e326}\label{classStaticArray_ab423e08f9f4dedd513bb61b9fec4e326} 
+T \& {\bfseries back} ()
+\item 
+\Hypertarget{classStaticArray_a61742c51d0d5ab0a7a4593e1f907bc2b}\label{classStaticArray_a61742c51d0d5ab0a7a4593e1f907bc2b} 
+void {\bfseries erase} (const\+\_\+iterator in\+Iter)
+\begin{DoxyCompactList}\small\item\em Remove one element from the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a8160d86021d1033d74e9e434458517ef}\label{classStaticArray_a8160d86021d1033d74e9e434458517ef} 
+void {\bfseries erase} (const\+\_\+iterator in\+Begin, const\+\_\+iterator in\+End)
+\begin{DoxyCompactList}\small\item\em Remove multiple element from the array. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a9c1a2dbce480923942dbce2f3492eb3c}\label{classStaticArray_a9c1a2dbce480923942dbce2f3492eb3c} 
+\mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a07d7915d51d4ad8a3191756fdb6bfc4d}\label{classStaticArray_a07d7915d51d4ad8a3191756fdb6bfc4d} 
+{\footnotesize template$<$uint M$>$ }\\\mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, M $>$ \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Assignment operator with static array of different max length. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_a81a62786704d57f04e8a63c188259e34}\label{classStaticArray_a81a62786704d57f04e8a63c188259e34} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Comparing arrays. \end{DoxyCompactList}\item 
+\Hypertarget{classStaticArray_ac8d17328522928bec933dc594245c895}\label{classStaticArray_ac8d17328522928bec933dc594245c895} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ T, N $>$ \&in\+RHS) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStaticArray_a3266e60197f5c0faa753dd24dc2ef491}\label{classStaticArray_a3266e60197f5c0faa753dd24dc2ef491} 
+static constexpr uint {\bfseries Capacity} = N
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStaticArray_ae10f00d23245f312c77e053defaa925e}\label{classStaticArray_ae10f00d23245f312c77e053defaa925e} 
+size\+\_\+type {\bfseries m\+Size} = 0
+\item 
+\Hypertarget{classStaticArray_a86389c0d1eb544f4c0e202693eff70ba}\label{classStaticArray_a86389c0d1eb544f4c0e202693eff70ba} 
+\mbox{\hyperlink{structStaticArray_1_1Storage}{Storage}} {\bfseries m\+Elements} \mbox{[}N\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T, uint N$>$\newline
+class Static\+Array$<$ T, N $>$}
+Simple variable length array backed by a fixed size buffer. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Static\+Array.\+h\end{DoxyCompactItemize}

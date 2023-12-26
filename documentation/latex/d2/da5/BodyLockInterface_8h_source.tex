@@ -1,0 +1,123 @@
+\doxysection{Body\+Lock\+Interface.\+h}
+\hypertarget{BodyLockInterface_8h_source}{}\label{BodyLockInterface_8h_source}\index{includes/jolt/Physics/Body/BodyLockInterface.h@{includes/jolt/Physics/Body/BodyLockInterface.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/Body.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyManager.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/PhysicsLock.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Mutex.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyLockInterface}{BodyLockInterface}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ =\ \mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{BodyManager::MutexMask}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyLockInterface_a502df83afc4e8e8e77d7a8b2993c1f8e}{BodyLockInterface}}(\mbox{\hyperlink{classBodyManager}{BodyManager}}\ \&inBodyManager)\ \ \ \ \ \ \ :\ mBodyManager(inBodyManager)\ \{\ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyLockInterface}{\string~BodyLockInterface}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ SharedMutex\ *\ \ \ \ \ \ \ LockRead(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockRead(SharedMutex\ *inMutex)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ SharedMutex\ *\ \ \ \ \ \ \ LockWrite(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockWrite(SharedMutex\ *inMutex)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyLockInterface_a76bee9cac091824dea84407a94a557f6}{GetAllBodiesMutexMask}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mBodyManager.GetAllBodiesMutexMask();}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ \ \ \ \ \ \ \ \ \ GetMutexMask(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodies,\ \textcolor{keywordtype}{int}\ inNumber)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockRead(\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockRead(\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockWrite(\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockWrite(\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyLockInterface_a69aba1e1549e9bc55c1ccd4b68cc171a}{TryGetBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyManager.\mbox{\hyperlink{classBodyManager_ac441f5d6015c113423972740f3e2815f}{TryGetBody}}(inBodyID);\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyManager;}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyLockInterfaceNoLock}{BodyLockInterfaceNoLock}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classBodyLockInterface}{BodyLockInterface}}}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classBodyLockInterface_a502df83afc4e8e8e77d7a8b2993c1f8e}{BodyLockInterface::BodyLockInterface}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ SharedMutex\ *\ \ \ \ \ \ \ LockRead([[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\textcolor{keyword}{\ const\ override\ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};\ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockRead([[maybe\_unused]]\ SharedMutex\ *inMutex)\textcolor{keyword}{\ const\ override\ \ \ \ }\{\ \textcolor{comment}{/*\ Nothing\ to\ do\ */}\ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ SharedMutex\ *\ \ \ \ \ \ \ LockWrite([[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};\ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockWrite([[maybe\_unused]]\ SharedMutex\ *inMutex)\textcolor{keyword}{\ const\ override\ \ \ }\{\ \textcolor{comment}{/*\ Nothing\ to\ do\ */}\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ \ \ \ \ \ \ \ \ \ GetMutexMask([[maybe\_unused]]\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodies,\ [[maybe\_unused]]\ \textcolor{keywordtype}{int}\ inNumber)\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockRead([[maybe\_unused]]\ \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ }\{\ \textcolor{comment}{/*\ Nothing\ to\ do\ */}\ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockRead([[maybe\_unused]]\ \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\textcolor{keyword}{\ const\ override\ \ }\{\ \textcolor{comment}{/*\ Nothing\ to\ do\ */}\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockWrite([[maybe\_unused]]\ \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\textcolor{keyword}{\ const\ override\ \ \ }\{\ \textcolor{comment}{/*\ Nothing\ to\ do\ */}\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockWrite([[maybe\_unused]]\ \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{comment}{/*\ Nothing\ to\ do\ */}\ \}}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyLockInterfaceLocking}{BodyLockInterfaceLocking}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classBodyLockInterface}{BodyLockInterface}}}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classBodyLockInterface_a502df83afc4e8e8e77d7a8b2993c1f8e}{BodyLockInterface::BodyLockInterface}};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ SharedMutex\ *\ \ \ \ \ \ \ LockRead(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ SharedMutex\ \&mutex\ =\ mBodyManager.\mbox{\hyperlink{classBodyManager_a608703b173fa10233dfd617150a2db67}{GetMutexForBody}}(inBodyID);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ PhysicsLock::sLockShared(mutex\ JPH\_IF\_ENABLE\_ASSERTS(,\ \&mBodyManager,\ EPhysicsLockTypes::PerBody));}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&mutex;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockRead(SharedMutex\ *inMutex)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ PhysicsLock::sUnlockShared(*inMutex\ JPH\_IF\_ENABLE\_ASSERTS(,\ \&mBodyManager,\ EPhysicsLockTypes::PerBody));}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{virtual}\ SharedMutex\ *\ \ \ \ \ \ \ LockWrite(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ SharedMutex\ \&mutex\ =\ mBodyManager.\mbox{\hyperlink{classBodyManager_a608703b173fa10233dfd617150a2db67}{GetMutexForBody}}(inBodyID);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ PhysicsLock::sLock(mutex\ JPH\_IF\_ENABLE\_ASSERTS(,\ \&mBodyManager,\ EPhysicsLockTypes::PerBody));}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&mutex;}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockWrite(SharedMutex\ *inMutex)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ PhysicsLock::sUnlock(*inMutex\ JPH\_IF\_ENABLE\_ASSERTS(,\ \&mBodyManager,\ EPhysicsLockTypes::PerBody));}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ \ \ \ \ \ \ \ \ \ GetMutexMask(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodies,\ \textcolor{keywordtype}{int}\ inNumber)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mBodyManager.GetMutexMask(inBodies,\ inNumber);}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockRead(\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ mBodyManager.LockRead(inMutexMask);}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockRead(\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ mBodyManager.UnlockRead(inMutexMask);}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockWrite(\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ mBodyManager.LockWrite(inMutexMask);}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlockWrite(\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{MutexMask}}\ inMutexMask)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ mBodyManager.UnlockWrite(inMutexMask);}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

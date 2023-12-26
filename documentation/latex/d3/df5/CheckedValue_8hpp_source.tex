@@ -1,0 +1,358 @@
+\doxysection{Checked\+Value.\+hpp}
+\hypertarget{CheckedValue_8hpp_source}{}\label{CheckedValue_8hpp_source}\index{includes/playrho/Common/CheckedValue.hpp@{includes/playrho/Common/CheckedValue.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_CHECKEDVALUE\_HPP}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_CHECKEDVALUE\_HPP}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Templates.hpp>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <utility>}\ \textcolor{comment}{//\ for\ std::declval}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1NoOpChecker}{NoOpChecker}}}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structplayrho_1_1NoOpChecker_a1b553920e30aec03fa96ed53a7c72e03}{operator()}}()\ noexcept\ -\/>\ decltype(T())}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T();}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structplayrho_1_1NoOpChecker_a697a97ad27962527a8b0dcedb915e5c1}{operator()}}(T\ v)\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keyword}{decltype}(T(v))}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType\ =\ NoOpChecker<ValueType>>}
+\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue}}}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{structplayrho_1_1HasFunctor}{HasUnaryFunctor<CheckerType,\ ValueType,\ ValueType>::value}},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Checker\ type\ doesn't\ provide\ acceptable\ unary\ functor!"{}});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\_type}}\ =\ ValueType;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1CheckedValue_a7ae70764b405f77fbe3f370170258a3c}{remove\_pointer\_type}}\ =\ \textcolor{keyword}{typename}\ std::remove\_pointer<ValueType>::type;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1CheckedValue_a7cd95d354fce04be2399ae2af61709b8}{checker\_type}}\ =\ CheckerType;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ template\ <bool\ B\ =\ HasNullaryFunctor<CheckerType,ValueType>::value,\ \textcolor{keyword}{typename}\ std::enable\_if\_t<B,\ int>\ =\ 0>}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue_a47e37f1a6b29daa6c38d99a9d322dc94}{CheckedValue}}()\ noexcept(noexcept(CheckerType\{\}())):\ m\_value\{CheckerType\{\}()\}}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue_ae90f335daecd90e9c249b4811a0807dc}{CheckedValue}}(\mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\_type}}\ value)\ \textcolor{keyword}{noexcept}(\textcolor{keyword}{noexcept}(\mbox{\hyperlink{classplayrho_1_1CheckedValue_a7cd95d354fce04be2399ae2af61709b8}{checker\_type}}\{\}(value))):}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ m\_value\{CheckerType\{\}(value)\}}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\_type}}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue_a314230081e7cddd89466ae1a4dffcaf2}{get}}()\ const\ noexcept}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_value;}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\_type}}\ ()\ const\ noexcept}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_value;}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U\ =\ ValueType>}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::enable\_if\_t<std::is\_pointer<U>::value,\ U>\ \mbox{\hyperlink{classplayrho_1_1CheckedValue_a370b7eef86eda2de754d36bc551d0686}{operator-\/>\ }}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_value;}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ U\ =\ ValueType>}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{constexpr}\ std::enable\_if\_t<std::is\_pointer<U>::value,\ \mbox{\hyperlink{classplayrho_1_1CheckedValue_a7ae70764b405f77fbe3f370170258a3c}{remove\_pointer\_type}}>\&}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1CheckedValue_a4061bee0b972adeb643b21400aa001ba}{operator*\ }}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *m\_value;}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1CheckedValue_a17d253593c24e29ef16cec75c1878c83}{value\_type}}\ m\_value;\ }
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ Common\ operations.}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType>}
+\DoxyCodeLine{00128\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue_acc045bd4bbb560077978ce21cd20c49f}{operator<<}}(::std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ value)\ -\/>}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{decltype}(os\ <<\ ValueType(value))}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ os\ <<\ ValueType(value);}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{noexcept}(\textcolor{keyword}{noexcept}(std::declval<LhsValueType>()\ ==\ std::declval<RhsValueType>()))}
+\DoxyCodeLine{00144\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ ==\ RhsValueType(rhs))}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ ==\ RhsValueType(rhs);}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00156\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{noexcept}(\textcolor{keyword}{noexcept}(std::declval<LhsValueType>()\ !=\ std::declval<RhsValueType>()))}
+\DoxyCodeLine{00159\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ !=\ RhsValueType(rhs))}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ !=\ RhsValueType(rhs);}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00171\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a17f5c3cf62f38463edf89ddc5bf05b80}{operator<=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00173\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ <=\ RhsValueType(rhs))}
+\DoxyCodeLine{00174\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ <=\ RhsValueType(rhs);}
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00185\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a5c18729fd53f4bb5275874c8cd1eb644}{operator>=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00187\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ >=\ RhsValueType(rhs))}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ >=\ RhsValueType(rhs);}
+\DoxyCodeLine{00190\ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00199\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a4e50b7f361b27adaf57e0b275b849cb2}{operator<\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00201\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ <\ RhsValueType(rhs))}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ <\ RhsValueType(rhs);}
+\DoxyCodeLine{00204\ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00212\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00213\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aab6a70eaafe3d414d9ebb561150a5ae0}{operator>\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00215\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ >\ RhsValueType(rhs))}
+\DoxyCodeLine{00216\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ >\ RhsValueType(rhs);}
+\DoxyCodeLine{00218\ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00226\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00227\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab695c5da4298cd1267ccb84710dc5dc4}{operator*\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00229\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ *\ RhsValueType(rhs))}
+\DoxyCodeLine{00230\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ *\ RhsValueType(rhs);}
+\DoxyCodeLine{00232\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00240\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00241\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a5a5b28003deb87e06a3c9e51f44fb096}{operator/\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00243\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ /\ RhsValueType(rhs))}
+\DoxyCodeLine{00244\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ /\ RhsValueType(rhs);}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00254\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00255\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab0007f3b80a0bc77615b4566b5860111}{operator+\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00257\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ +\ RhsValueType(rhs))}
+\DoxyCodeLine{00258\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ +\ RhsValueType(rhs);}
+\DoxyCodeLine{00260\ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00268\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LhsValueType,\ \textcolor{keyword}{typename}\ LhsCheckerType,\ \textcolor{keyword}{typename}\ RhsValueType,\ \textcolor{keyword}{typename}\ RhsCheckerType>}
+\DoxyCodeLine{00269\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aa918349e3179ab2f97d04b41085d0a48}{operator-\/\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<LhsValueType,\ LhsCheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<RhsValueType,\ RhsCheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00271\ -\/>\ \textcolor{keyword}{decltype}(LhsValueType(lhs)\ -\/\ RhsValueType(rhs))}
+\DoxyCodeLine{00272\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordflow}{return}\ LhsValueType(lhs)\ -\/\ RhsValueType(rhs);}
+\DoxyCodeLine{00274\ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00281\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00282\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00284\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ ==\ rhs)}
+\DoxyCodeLine{00285\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ ==\ rhs;}
+\DoxyCodeLine{00287\ \}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00294\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00295\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00297\ -\/>\ \textcolor{keyword}{decltype}(lhs\ ==\ ValueType(rhs))}
+\DoxyCodeLine{00298\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ ==\ ValueType(rhs);}
+\DoxyCodeLine{00300\ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00307\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00308\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00310\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ !=\ rhs)}
+\DoxyCodeLine{00311\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ !=\ rhs;}
+\DoxyCodeLine{00313\ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00320\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00321\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00323\ -\/>\ \textcolor{keyword}{decltype}(lhs\ !=\ ValueType(rhs))}
+\DoxyCodeLine{00324\ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ !=\ ValueType(rhs);}
+\DoxyCodeLine{00326\ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00333\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00334\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a17f5c3cf62f38463edf89ddc5bf05b80}{operator<=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00336\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ <=\ rhs)}
+\DoxyCodeLine{00337\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ <=\ rhs;}
+\DoxyCodeLine{00339\ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00346\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00347\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a17f5c3cf62f38463edf89ddc5bf05b80}{operator<=\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00349\ -\/>\ \textcolor{keyword}{decltype}(lhs\ <=\ ValueType(rhs))}
+\DoxyCodeLine{00350\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ <=\ ValueType(rhs);}
+\DoxyCodeLine{00352\ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00359\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00360\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a5c18729fd53f4bb5275874c8cd1eb644}{operator>=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00362\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ >=\ rhs)}
+\DoxyCodeLine{00363\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ >=\ rhs;}
+\DoxyCodeLine{00365\ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00372\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00373\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a5c18729fd53f4bb5275874c8cd1eb644}{operator>=\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00375\ -\/>\ \textcolor{keyword}{decltype}(lhs\ >=\ ValueType(rhs))}
+\DoxyCodeLine{00376\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ >=\ ValueType(rhs);}
+\DoxyCodeLine{00378\ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00386\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00387\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a4e50b7f361b27adaf57e0b275b849cb2}{operator<\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00389\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ <\ rhs)}
+\DoxyCodeLine{00390\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ <\ rhs;}
+\DoxyCodeLine{00392\ \}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00399\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00400\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a4e50b7f361b27adaf57e0b275b849cb2}{operator<\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00402\ -\/>\ \textcolor{keyword}{decltype}(lhs\ <\ ValueType(rhs))}
+\DoxyCodeLine{00403\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ <\ ValueType(rhs);}
+\DoxyCodeLine{00405\ \}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00412\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00413\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aab6a70eaafe3d414d9ebb561150a5ae0}{operator>\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00415\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ >\ rhs)}
+\DoxyCodeLine{00416\ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ >\ rhs;}
+\DoxyCodeLine{00418\ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00425\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00426\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aab6a70eaafe3d414d9ebb561150a5ae0}{operator>\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00428\ -\/>\ \textcolor{keyword}{decltype}(lhs\ >\ ValueType(rhs))}
+\DoxyCodeLine{00429\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ >\ ValueType(rhs);}
+\DoxyCodeLine{00431\ \}}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00438\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00439\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab695c5da4298cd1267ccb84710dc5dc4}{operator*\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,\ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00440\ -\/>\ std::enable\_if\_t<!IsMultipliable<CheckedValue<ValueType,\ CheckerType>,\ Other>::value,\ \textcolor{keyword}{decltype}(ValueType()*Other())>}
+\DoxyCodeLine{00441\ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ *\ rhs;}
+\DoxyCodeLine{00443\ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00450\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00451\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab695c5da4298cd1267ccb84710dc5dc4}{operator*\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00452\ -\/>\ std::enable\_if\_t<!IsMultipliable<Other,\ CheckedValue<ValueType,\ CheckerType>>::value,\ \textcolor{keyword}{decltype}(Other()*ValueType())>}
+\DoxyCodeLine{00453\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ *\ ValueType(rhs);}
+\DoxyCodeLine{00455\ \}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00462\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00463\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a5a5b28003deb87e06a3c9e51f44fb096}{operator/\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00465\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ /\ rhs)}
+\DoxyCodeLine{00466\ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ /\ rhs;}
+\DoxyCodeLine{00468\ \}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00475\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00476\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a5a5b28003deb87e06a3c9e51f44fb096}{operator/\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00478\ -\/>\ \textcolor{keyword}{decltype}(lhs\ /\ ValueType(rhs))}
+\DoxyCodeLine{00479\ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ /\ ValueType(rhs);}
+\DoxyCodeLine{00481\ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00488\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00489\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab0007f3b80a0bc77615b4566b5860111}{operator+\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00491\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ +\ rhs)}
+\DoxyCodeLine{00492\ \{}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ +\ rhs;}
+\DoxyCodeLine{00494\ \}}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00501\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00502\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab0007f3b80a0bc77615b4566b5860111}{operator+\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00504\ -\/>\ \textcolor{keyword}{decltype}(lhs\ +\ ValueType(rhs))}
+\DoxyCodeLine{00505\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ +\ ValueType(rhs);}
+\DoxyCodeLine{00507\ \}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00514\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00515\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aa918349e3179ab2f97d04b41085d0a48}{operator-\/\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ lhs,}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Other\&\ rhs)}
+\DoxyCodeLine{00517\ -\/>\ \textcolor{keyword}{decltype}(ValueType(lhs)\ -\/\ rhs)}
+\DoxyCodeLine{00518\ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \textcolor{keywordflow}{return}\ ValueType(lhs)\ -\/\ rhs;}
+\DoxyCodeLine{00520\ \}}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00527\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ValueType,\ \textcolor{keyword}{typename}\ CheckerType,\ \textcolor{keyword}{typename}\ Other>}
+\DoxyCodeLine{00528\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aa918349e3179ab2f97d04b41085d0a48}{operator-\/\ }}(\textcolor{keyword}{const}\ Other\&\ lhs,}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<ValueType,\ CheckerType>}}\&\ rhs)}
+\DoxyCodeLine{00530\ -\/>\ \textcolor{keyword}{decltype}(lhs\ -\/\ ValueType(rhs))}
+\DoxyCodeLine{00531\ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs\ -\/\ ValueType(rhs);}
+\DoxyCodeLine{00533\ \}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00546\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00547\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1CheckedValue}{DefaultCheckedValue}}\ =\ \mbox{\hyperlink{classplayrho_1_1CheckedValue}{CheckedValue<T>}};}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_CHECKEDVALUE\_HPP}}
+
+\end{DoxyCode}

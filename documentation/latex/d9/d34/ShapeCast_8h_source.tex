@@ -1,0 +1,148 @@
+\doxysection{Shape\+Cast.\+h}
+\hypertarget{ShapeCast_8h_source}{}\label{ShapeCast_8h_source}\index{includes/jolt/Physics/Collision/ShapeCast.h@{includes/jolt/Physics/Collision/ShapeCast.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/AABox.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/CollideShape.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/Shape.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Vec,\ \textcolor{keyword}{class}\ Mat,\ \textcolor{keyword}{class}\ ShapeCastType>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structShapeCastT}{ShapeCastT}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_a2b2b79fda0cdbef648d9ee22d348334f}{ShapeCastT}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{typename}\ Mat::ArgType\ inCenterOfMassStart,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inWorldSpaceBounds)\ :}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_a68df269e004434dd4c2dec18e29b1f8d}{mShape}}(inShape),}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_aed62d5fadde28ac5dea4f8a44d3dddf2}{mScale}}(inScale),}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_accfdbb9a3a66304f8cec4c918f83ce87}{mCenterOfMassStart}}(inCenterOfMassStart),}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_a4b45c3421b2f87e1553bb3325ca64752}{mDirection}}(inDirection),}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_aef82ae03a83e2026e3af3d2f18d9710c}{mShapeWorldBounds}}(inWorldSpaceBounds)}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_a72512e9621d9b3ecf84e215bef9ee535}{ShapeCastT}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{typename}\ Mat::ArgType\ inCenterOfMassStart,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\ :}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT}{ShapeCastT}}<Vec,\ Mat,\ ShapeCastType>(inShape,\ inScale,\ inCenterOfMassStart,\ inDirection,\ inShape-\/>GetWorldSpaceBounds(inCenterOfMassStart,\ inScale))}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ ShapeCastType\ \mbox{\hyperlink{structShapeCastT_a0195f56ecbe283d8e393f1564d864823}{sFromWorldTransform}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{typename}\ Mat::ArgType\ inWorldTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ShapeCastType(inShape,\ inScale,\ inWorldTransform.PreTranslated(inShape-\/>\mbox{\hyperlink{classShape_a7e34b0626a40c31db0b2a761922adb1a}{GetCenterOfMass}}()),\ inDirection);}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ ShapeCastType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_ab07dbf4278d79895fb480781d24db2f3}{PostTransformed}}(\textcolor{keyword}{typename}\ Mat::ArgType\ inTransform)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ start\ =\ inTransform\ *\ \mbox{\hyperlink{structShapeCastT_accfdbb9a3a66304f8cec4c918f83ce87}{mCenterOfMassStart}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ direction\ =\ inTransform.Multiply3x3(\mbox{\hyperlink{structShapeCastT_a4b45c3421b2f87e1553bb3325ca64752}{mDirection}});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ \mbox{\hyperlink{structShapeCastT_a68df269e004434dd4c2dec18e29b1f8d}{mShape}},\ \mbox{\hyperlink{structShapeCastT_aed62d5fadde28ac5dea4f8a44d3dddf2}{mScale}},\ start,\ direction\ \};}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ ShapeCastType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_a053b353deba2ee41bf6c42d3be33f18e}{PostTranslated}}(\textcolor{keyword}{typename}\ Vec::ArgType\ inTranslation)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ \mbox{\hyperlink{structShapeCastT_a68df269e004434dd4c2dec18e29b1f8d}{mShape}},\ \mbox{\hyperlink{structShapeCastT_aed62d5fadde28ac5dea4f8a44d3dddf2}{mScale}},\ \mbox{\hyperlink{structShapeCastT_accfdbb9a3a66304f8cec4c918f83ce87}{mCenterOfMassStart}}.PostTranslated(inTranslation),\ \mbox{\hyperlink{structShapeCastT_a4b45c3421b2f87e1553bb3325ca64752}{mDirection}}\ \};}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ Vec\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_a90dcaf5d1e22122cf08862b9da811c96}{GetPointOnRay}}(\textcolor{keywordtype}{float}\ inFraction)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structShapeCastT_accfdbb9a3a66304f8cec4c918f83ce87}{mCenterOfMassStart}}.GetTranslation()\ +\ inFraction\ *\ \mbox{\hyperlink{structShapeCastT_a4b45c3421b2f87e1553bb3325ca64752}{mDirection}};}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_a68df269e004434dd4c2dec18e29b1f8d}{mShape}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_aed62d5fadde28ac5dea4f8a44d3dddf2}{mScale}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ Mat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_accfdbb9a3a66304f8cec4c918f83ce87}{mCenterOfMassStart}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_a4b45c3421b2f87e1553bb3325ca64752}{mDirection}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structShapeCastT_aef82ae03a83e2026e3af3d2f18d9710c}{mShapeWorldBounds}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structShapeCast}{ShapeCast}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structShapeCastT}{ShapeCastT}}<Vec3,\ Mat44,\ ShapeCast>}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structShapeCastT}{ShapeCastT}}<\mbox{\hyperlink{classVec3}{Vec3}},\ \mbox{\hyperlink{classMat44}{Mat44}},\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}>\mbox{\hyperlink{structShapeCastT}{::ShapeCastT}};}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structRShapeCast}{RShapeCast}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structShapeCastT}{ShapeCastT}}<RVec3,\ RMat44,\ RShapeCast>}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structShapeCastT}{ShapeCastT}}<\mbox{\hyperlink{classVec3}{RVec3}},\ \mbox{\hyperlink{classMat44}{RMat44}},\ \mbox{\hyperlink{structRShapeCast}{RShapeCast}}>\mbox{\hyperlink{structShapeCastT}{::ShapeCastT}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structRShapeCast_a006aae5be875eba47b5bdd3778e36e2f}{RShapeCast}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}\ \&inCast)\ :}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structRShapeCast}{RShapeCast}}(inCast.\mbox{\hyperlink{structShapeCastT_a68df269e004434dd4c2dec18e29b1f8d}{mShape}},\ inCast.\mbox{\hyperlink{structShapeCastT_aed62d5fadde28ac5dea4f8a44d3dddf2}{mScale}},\ \mbox{\hyperlink{classMat44}{RMat44}}(inCast.\mbox{\hyperlink{structShapeCastT_accfdbb9a3a66304f8cec4c918f83ce87}{mCenterOfMassStart}}),\ inCast.\mbox{\hyperlink{structShapeCastT_a4b45c3421b2f87e1553bb3325ca64752}{mDirection}},\ inCast.\mbox{\hyperlink{structShapeCastT_aef82ae03a83e2026e3af3d2f18d9710c}{mShapeWorldBounds}})}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}(\mbox{\hyperlink{structShapeCastT_a68df269e004434dd4c2dec18e29b1f8d}{mShape}},\ \mbox{\hyperlink{structShapeCastT_aed62d5fadde28ac5dea4f8a44d3dddf2}{mScale}},\ \mbox{\hyperlink{structShapeCastT_accfdbb9a3a66304f8cec4c918f83ce87}{mCenterOfMassStart}}.\mbox{\hyperlink{classMat44_a3445a728646fe8ad80381a0e55ea2289}{ToMat44}}(),\ \mbox{\hyperlink{structShapeCastT_a4b45c3421b2f87e1553bb3325ca64752}{mDirection}},\ \mbox{\hyperlink{structShapeCastT_aef82ae03a83e2026e3af3d2f18d9710c}{mShapeWorldBounds}});}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCollideSettingsBase}{CollideSettingsBase}}}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00094\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \ \ \ \ EBackFaceMode\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastSettings_a0a568620db5194a57219e3ae94ac4ef5}{mBackFaceModeTriangles}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ EBackFaceMode::IgnoreBackFaces;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ \ \ \ \ EBackFaceMode\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastSettings_a3f2bb437820c80a4ba4e2952fe9742d0}{mBackFaceModeConvex}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ EBackFaceMode::IgnoreBackFaces;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastSettings_ac3cb9da5f5cce51f465609ac117f643e}{mUseShrunkenShapeAndConvexRadius}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastSettings_a38fe76bbe3df55bb0ea0f9aa031bcc6e}{mReturnDeepestPoint}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00107\ \};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classShapeCastResult}{ShapeCastResult}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCollideShapeResult}{CollideShapeResult}}}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00113\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult_a79089f4b310168c5bfa51cc0bcf134dd}{ShapeCastResult}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult_afb01699f4368bbbeec678f0c3c21108d}{ShapeCastResult}}(\textcolor{keywordtype}{float}\ inFraction,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactPoint1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactPoint2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactNormalOrPenetrationDepth,\ \textcolor{keywordtype}{bool}\ inBackFaceHit,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID2)\ :}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCollideShapeResult}{CollideShapeResult}}(inContactPoint1,\ inContactPoint2,\ inContactNormalOrPenetrationDepth,\ (inContactPoint2\ -\/\ inContactPoint1).Length(),\ inSubShapeID1,\ inSubShapeID2,\ inBodyID2),}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult_a8c1f5167202e5071cca22085350b0471}{mFraction}}(inFraction),}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult_a1b87f661ac91360c311fd96684f1d293}{mIsBackFaceHit}}(inBackFaceHit)}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult_a0b91d796ee4e127cac91c9d82f292e57}{GetEarlyOutFraction}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classShapeCastResult_a8c1f5167202e5071cca22085350b0471}{mFraction}}\ >\ 0.0f?\ \mbox{\hyperlink{classShapeCastResult_a8c1f5167202e5071cca22085350b0471}{mFraction}}\ :\ -\/\mbox{\hyperlink{classCollideShapeResult_a940adcfe5fa917a065f5ae65773de013}{mPenetrationDepth}};\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{classShapeCastResult}{ShapeCastResult}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult_ab16c921cd28c80c7acbf8005b778965f}{Reversed}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inWorldSpaceCastDirection)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00140\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ by\ how\ much\ to\ shift\ the\ contact\ points}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ delta\ =\ \mbox{\hyperlink{classShapeCastResult_a8c1f5167202e5071cca22085350b0471}{mFraction}}\ *\ inWorldSpaceCastDirection;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult}{ShapeCastResult}}\ result;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_a2f09d3bbc9e1563c974836c2327f73a7}{mContactPointOn2}}\ =\ \mbox{\hyperlink{classCollideShapeResult_a76dd6be632967ea1f0348eca8155be44}{mContactPointOn1}}\ -\/\ delta;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_a76dd6be632967ea1f0348eca8155be44}{mContactPointOn1}}\ =\ \mbox{\hyperlink{classCollideShapeResult_a2f09d3bbc9e1563c974836c2327f73a7}{mContactPointOn2}}\ -\/\ delta;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_a3704397b8c4c6e39f2bb94bb477a7bc7}{mPenetrationAxis}}\ =\ -\/\mbox{\hyperlink{classCollideShapeResult_a3704397b8c4c6e39f2bb94bb477a7bc7}{mPenetrationAxis}};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_a940adcfe5fa917a065f5ae65773de013}{mPenetrationDepth}}\ =\ \mbox{\hyperlink{classCollideShapeResult_a940adcfe5fa917a065f5ae65773de013}{mPenetrationDepth}};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_ab12cb1e36b125a536229698328e30d9a}{mSubShapeID2}}\ =\ \mbox{\hyperlink{classCollideShapeResult_a0a62402355f85f878a6444bbcbba31c4}{mSubShapeID1}};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_a0a62402355f85f878a6444bbcbba31c4}{mSubShapeID1}}\ =\ \mbox{\hyperlink{classCollideShapeResult_ab12cb1e36b125a536229698328e30d9a}{mSubShapeID2}};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_a22e33232d0af6889b6715dfaa460ebbb}{mBodyID2}}\ =\ \mbox{\hyperlink{classCollideShapeResult_a22e33232d0af6889b6715dfaa460ebbb}{mBodyID2}};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classShapeCastResult_a8c1f5167202e5071cca22085350b0471}{mFraction}}\ =\ \mbox{\hyperlink{classShapeCastResult_a8c1f5167202e5071cca22085350b0471}{mFraction}};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classShapeCastResult_a1b87f661ac91360c311fd96684f1d293}{mIsBackFaceHit}}\ =\ \mbox{\hyperlink{classShapeCastResult_a1b87f661ac91360c311fd96684f1d293}{mIsBackFaceHit}};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_ae69726442e6d35051405f8d437003316}{mShape2Face}}.\mbox{\hyperlink{classStaticArray_af90fb922a70be2d41cc70b243cbc4c64}{resize}}(\mbox{\hyperlink{classCollideShapeResult_aa79b80c5eca1d8e7bf57771421bc3acc}{mShape1Face}}.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}());}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (Face::size\_type\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classCollideShapeResult_aa79b80c5eca1d8e7bf57771421bc3acc}{mShape1Face}}.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}();\ ++i)}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_ae69726442e6d35051405f8d437003316}{mShape2Face}}[i]\ =\ \mbox{\hyperlink{classCollideShapeResult_aa79b80c5eca1d8e7bf57771421bc3acc}{mShape1Face}}[i]\ -\/\ delta;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_aa79b80c5eca1d8e7bf57771421bc3acc}{mShape1Face}}.\mbox{\hyperlink{classStaticArray_af90fb922a70be2d41cc70b243cbc4c64}{resize}}(\mbox{\hyperlink{classCollideShapeResult_ae69726442e6d35051405f8d437003316}{mShape2Face}}.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}());}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (Face::size\_type\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classCollideShapeResult_ae69726442e6d35051405f8d437003316}{mShape2Face}}.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}();\ ++i)}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classCollideShapeResult_aa79b80c5eca1d8e7bf57771421bc3acc}{mShape1Face}}[i]\ =\ \mbox{\hyperlink{classCollideShapeResult_ae69726442e6d35051405f8d437003316}{mShape2Face}}[i]\ -\/\ delta;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult_a8c1f5167202e5071cca22085350b0471}{mFraction}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classShapeCastResult_a1b87f661ac91360c311fd96684f1d293}{mIsBackFaceHit}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

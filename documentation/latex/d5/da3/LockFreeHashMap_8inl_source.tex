@@ -1,0 +1,351 @@
+\doxysection{Lock\+Free\+Hash\+Map.\+inl}
+\hypertarget{LockFreeHashMap_8inl_source}{}\label{LockFreeHashMap_8inl_source}\index{includes/jolt/Core/LockFreeHashMap.inl@{includes/jolt/Core/LockFreeHashMap.inl}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ LFHMAllocator}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classLFHMAllocator_a97034c25b38fd7a1c3e3cf59b818afbb}{LFHMAllocator::\string~LFHMAllocator}}()}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ AlignedFree(mObjectStore);}
+\DoxyCodeLine{00016\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLFHMAllocator_a9eda23a0f8dd6fac54adab81b97e7c60}{LFHMAllocator::Init}}(uint\ inObjectStoreSizeBytes)}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ JPH\_ASSERT(mObjectStore\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ mObjectStoreSizeBytes\ =\ inObjectStoreSizeBytes;}
+\DoxyCodeLine{00023\ \ \ \ \ mObjectStore\ =\ \textcolor{keyword}{reinterpret\_cast<}uint8\ *\textcolor{keyword}{>}(JPH::AlignedAllocate(inObjectStoreSizeBytes,\ 16));}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLFHMAllocator_add8458530312383491f936a7147a8ce3}{LFHMAllocator::Clear}}()}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ mWriteOffset\ =\ 0;}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLFHMAllocator_aca5503a8c5d7c9ac25b4f1baa89c5317}{LFHMAllocator::Allocate}}(uint32\ inBlockSize,\ uint32\ \&ioBegin,\ uint32\ \&ioEnd)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ If\ we're\ already\ beyond\ the\ end\ of\ our\ buffer\ then\ don't\ do\ an\ atomic\ add.}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ It's\ possible\ that\ many\ keys\ are\ inserted\ after\ the\ allocator\ is\ full,\ making\ it\ possible}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ for\ mWriteOffset\ (uint32)\ to\ wrap\ around\ to\ zero.\ When\ this\ happens,\ there\ will\ be\ a\ memory\ corruption.}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ This\ way,\ we\ will\ be\ able\ to\ progress\ the\ write\ offset\ beyond\ the\ size\ of\ the\ buffer}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ worst\ case\ by\ max\ <CPU\ count>\ *\ inBlockSize.}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (mWriteOffset.load(memory\_order\_relaxed)\ >=\ mObjectStoreSizeBytes)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Atomically\ fetch\ a\ block\ from\ the\ pool}}
+\DoxyCodeLine{00042\ \ \ \ \ uint32\ begin\ =\ mWriteOffset.fetch\_add(inBlockSize,\ memory\_order\_relaxed);}
+\DoxyCodeLine{00043\ \ \ \ \ uint32\ end\ =\ min(begin\ +\ inBlockSize,\ mObjectStoreSizeBytes);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (ioEnd\ ==\ begin)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Block\ is\ allocated\ straight\ after\ our\ previous\ block}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ begin\ =\ ioBegin;}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Block\ is\ a\ new\ block}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ begin\ =\ min(begin,\ mObjectStoreSizeBytes);}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Store\ the\ begin\ and\ end\ of\ the\ resulting\ block}}
+\DoxyCodeLine{00057\ \ \ \ \ ioBegin\ =\ begin;}
+\DoxyCodeLine{00058\ \ \ \ \ ioEnd\ =\ end;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{classLFHMAllocator_a5b71c811049f9598a499cc58a1f2e8c0}{LFHMAllocator::ToOffset}}(\textcolor{keyword}{const}\ T\ *inData)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ uint8\ *data\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint8\ *\textcolor{keyword}{>}(inData);}
+\DoxyCodeLine{00065\ \ \ \ \ JPH\_ASSERT(data\ >=\ mObjectStore\ \&\&\ data\ <\ mObjectStore\ +\ mObjectStoreSizeBytes);}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ uint32(data\ -\/\ mObjectStore);}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}\ T\ *\mbox{\hyperlink{classLFHMAllocator_abcf9394d71567a53088ce79cf96ed0e1}{LFHMAllocator::FromOffset}}(uint32\ inOffset)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00072\ \ \ \ \ JPH\_ASSERT(inOffset\ <\ mObjectStoreSizeBytes);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(mObjectStore\ +\ inOffset);}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ LFHMAllocatorContext}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classLFHMAllocatorContext_a4937e72fe7c08c45687b9deb3c3dba32}{LFHMAllocatorContext::LFHMAllocatorContext}}(\mbox{\hyperlink{classLFHMAllocator}{LFHMAllocator}}\ \&inAllocator,\ uint32\ inBlockSize)\ :}
+\DoxyCodeLine{00081\ \ \ \ \ mAllocator(inAllocator),}
+\DoxyCodeLine{00082\ \ \ \ \ mBlockSize(inBlockSize)}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classLFHMAllocatorContext_afc85e525f6ca72b286aea4cdf693ac7f}{LFHMAllocatorContext::Allocate}}(uint32\ inSize,\ uint32\ inAlignment,\ uint32\ \&outWriteOffset)}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Calculate\ needed\ bytes\ for\ alignment}}
+\DoxyCodeLine{00089\ \ \ \ \ JPH\_ASSERT(IsPowerOf2(inAlignment));}
+\DoxyCodeLine{00090\ \ \ \ \ uint32\ alignment\_mask\ =\ inAlignment\ -\/\ 1;}
+\DoxyCodeLine{00091\ \ \ \ \ uint32\ alignment\ =\ (inAlignment\ -\/\ (mBegin\ \&\ alignment\_mask))\ \&\ alignment\_mask;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ have\ space}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{if}\ (mEnd\ -\/\ mBegin\ <\ inSize\ +\ alignment)}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allocate\ a\ new\ block}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ mAllocator.\mbox{\hyperlink{classLFHMAllocator_aca5503a8c5d7c9ac25b4f1baa89c5317}{Allocate}}(mBlockSize,\ mBegin,\ mEnd);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ alignment}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ alignment\ =\ (inAlignment\ -\/\ (mBegin\ \&\ alignment\_mask))\ \&\ alignment\_mask;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ have\ space\ again}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mEnd\ -\/\ mBegin\ <\ inSize\ +\ alignment)}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ Make\ the\ allocation}}
+\DoxyCodeLine{00108\ \ \ \ \ mBegin\ +=\ alignment;}
+\DoxyCodeLine{00109\ \ \ \ \ outWriteOffset\ =\ mBegin;}
+\DoxyCodeLine{00110\ \ \ \ \ mBegin\ +=\ inSize;}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ LockFreeHashMap}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLockFreeHashMap_a64add1094aa66c55413b2488e8ae8d16}{LockFreeHashMap<Key,\ Value>::Init}}(uint32\ inMaxBuckets)}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ JPH\_ASSERT(inMaxBuckets\ >=\ 4\ \&\&\ IsPowerOf2(inMaxBuckets));}
+\DoxyCodeLine{00122\ \ \ \ \ JPH\_ASSERT(mBuckets\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ mNumBuckets\ =\ inMaxBuckets;}
+\DoxyCodeLine{00125\ \ \ \ \ mMaxBuckets\ =\ inMaxBuckets;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ mBuckets\ =\ \textcolor{keyword}{reinterpret\_cast<}atomic<uint32>\ *\textcolor{keyword}{>}(AlignedAllocate(inMaxBuckets\ *\ \textcolor{keyword}{sizeof}(atomic<uint32>),\ 16));}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ Clear();}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00133\ \mbox{\hyperlink{classLockFreeHashMap}{LockFreeHashMap<Key,\ Value>::\string~LockFreeHashMap}}()}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ AlignedFree(mBuckets);}
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00139\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLockFreeHashMap_afe0dc35025cb64372c9aef71ee997a0d}{LockFreeHashMap<Key,\ Value>::Clear}}()}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ Reset\ number\ of\ key\ value\ pairs}}
+\DoxyCodeLine{00143\ \ \ \ \ mNumKeyValues\ =\ 0;}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ Reset\ buckets\ 4\ at\ a\ time}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(atomic<uint32>)\ ==\ \textcolor{keyword}{sizeof}(uint32));}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ invalid\_handle\ =\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(cInvalidHandle);}
+\DoxyCodeLine{00149\ \ \ \ \ uint32\ *start\ =\ \textcolor{keyword}{reinterpret\_cast<}uint32\ *\textcolor{keyword}{>}(mBuckets);}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ uint32\ *end\ =\ start\ +\ mNumBuckets;}
+\DoxyCodeLine{00151\ \ \ \ \ JPH\_ASSERT(IsAligned(start,\ 16));}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{while}\ (start\ <\ end)}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ invalid\_handle.\mbox{\hyperlink{classUVec4_af62228e490b01b95d5b008a54746473c}{StoreInt4Aligned}}(start);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ start\ +=\ 4;}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00160\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLockFreeHashMap_a7c6ead3c7440e19213eac4119236964d}{LockFreeHashMap<Key,\ Value>::SetNumBuckets}}(uint32\ inNumBuckets)}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ JPH\_ASSERT(mNumKeyValues\ ==\ 0);}
+\DoxyCodeLine{00163\ \ \ \ \ JPH\_ASSERT(inNumBuckets\ <=\ mMaxBuckets);}
+\DoxyCodeLine{00164\ \ \ \ \ JPH\_ASSERT(inNumBuckets\ >=\ 4\ \&\&\ IsPowerOf2(inNumBuckets));}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ mNumBuckets\ =\ inNumBuckets;}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00170\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}...\ Params>}
+\DoxyCodeLine{00171\ \textcolor{keyword}{inline}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{LockFreeHashMap<Key,\ Value>::KeyValue}}\ *\mbox{\hyperlink{classLockFreeHashMap_a9a758f6a4dbf7bb4e25bac764a948266}{LockFreeHashMap<Key,\ Value>::Create}}(\mbox{\hyperlink{classLFHMAllocatorContext}{LFHMAllocatorContext}}\ \&ioContext,\ \textcolor{keyword}{const}\ Key\ \&inKey,\ uint64\ inKeyHash,\ \textcolor{keywordtype}{int}\ inExtraBytes,\ Params\ \&\&...\ inConstructorParams)}
+\DoxyCodeLine{00172\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{//\ This\ is\ not\ a\ multi\ map,\ test\ the\ key\ hasn't\ been\ inserted\ yet}}
+\DoxyCodeLine{00174\ \ \ \ \ JPH\_ASSERT(Find(inKey,\ inKeyHash)\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//\ Calculate\ total\ size}}
+\DoxyCodeLine{00177\ \ \ \ \ uint\ size\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}})\ +\ inExtraBytes;}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ write\ offset\ for\ this\ key\ value\ pair}}
+\DoxyCodeLine{00180\ \ \ \ \ uint32\ write\_offset;}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ioContext.\mbox{\hyperlink{classLFHMAllocatorContext_afc85e525f6ca72b286aea4cdf693ac7f}{Allocate}}(size,\ \textcolor{keyword}{alignof}(\mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}}),\ write\_offset))}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//\ Increment\ amount\ of\ entries\ in\ map}}
+\DoxyCodeLine{00186\ \ \ \ \ mNumKeyValues.fetch\_add(1,\ memory\_order\_relaxed);}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ Construct\ the\ key/value\ pair}}
+\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}}\ *kv\ =\ mAllocator.template\ FromOffset<KeyValue>(write\_offset);}
+\DoxyCodeLine{00191\ \ \ \ \ JPH\_ASSERT(intptr\_t(kv)\ \%\ \textcolor{keyword}{alignof}(\mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}})\ ==\ 0);}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00193\ \ \ \ \ memset(kv,\ 0xcd,\ size);}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00195\ \ \ \ \ kv-\/>mKey\ =\ inKey;}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{new}\ (\&kv-\/>mValue)\ Value(std::forward<Params>(inConstructorParams)...);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ offset\ to\ the\ first\ object\ from\ the\ bucket\ with\ corresponding\ hash}}
+\DoxyCodeLine{00199\ \ \ \ \ atomic<uint32>\ \&offset\ =\ mBuckets[inKeyHash\ \&\ (mNumBuckets\ -\/\ 1)];}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{//\ Add\ this\ entry\ as\ the\ first\ element\ in\ the\ linked\ list}}
+\DoxyCodeLine{00202\ \ \ \ \ uint32\ old\_offset\ =\ offset.load(memory\_order\_relaxed);}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00204\ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ kv-\/>mNextOffset\ =\ old\_offset;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (offset.compare\_exchange\_weak(old\_offset,\ write\_offset,\ memory\_order\_release))}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ kv;}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00214\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{LockFreeHashMap<Key,\ Value>::KeyValue}}\ *\mbox{\hyperlink{classLockFreeHashMap_abf0f1e866eba5975400db74cc3da6913}{LockFreeHashMap<Key,\ Value>::Find}}(\textcolor{keyword}{const}\ Key\ \&inKey,\ uint64\ inKeyHash)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00215\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ offset\ to\ the\ keyvalue\ object\ from\ the\ bucket\ with\ corresponding\ hash}}
+\DoxyCodeLine{00217\ \ \ \ \ uint32\ offset\ =\ mBuckets[inKeyHash\ \&\ (mNumBuckets\ -\/\ 1)].load(memory\_order\_acquire);}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{while}\ (offset\ !=\ cInvalidHandle)}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ through\ linked\ list\ of\ values\ until\ the\ right\ one\ is\ found}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}}\ *kv\ =\ mAllocator.template\ FromOffset<const\ KeyValue>(offset);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kv-\/>mKey\ ==\ inKey)}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ kv;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ offset\ =\ kv-\/>mNextOffset;}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ Not\ found}}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00229\ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00232\ \textcolor{keyword}{inline}\ uint32\ \mbox{\hyperlink{classLockFreeHashMap_ae1a2bd3a51575e8353470750d0ea9f4b}{LockFreeHashMap<Key,\ Value>::ToHandle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}}\ *inKeyValue)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{return}\ mAllocator.ToOffset(inKeyValue);}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00238\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{LockFreeHashMap<Key,\ Value>::KeyValue}}\ *\mbox{\hyperlink{classLockFreeHashMap_a0705a68e432c61be72d5f6fdfffb2d85}{LockFreeHashMap<Key,\ Value>::FromHandle}}(uint32\ inHandle)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00239\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordflow}{return}\ mAllocator.template\ FromOffset<const\ KeyValue>(inHandle);}
+\DoxyCodeLine{00241\ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00244\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLockFreeHashMap_a483d330f8722f8ad6f6398b1d4d81653}{LockFreeHashMap<Key,\ Value>::GetAllKeyValues}}(Array<const\ KeyValue\ *>\ \&outAll)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00245\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ atomic<uint32>\ *bucket\ =\ mBuckets;\ bucket\ <\ mBuckets\ +\ mNumBuckets;\ ++bucket)}
+\DoxyCodeLine{00247\ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ uint32\ offset\ =\ *bucket;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (offset\ !=\ cInvalidHandle)}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}}\ *kv\ =\ mAllocator.template\ FromOffset<const\ KeyValue>(offset);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ outAll.push\_back(kv);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ offset\ =\ kv-\/>mNextOffset;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \}}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00259\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structLockFreeHashMap_1_1Iterator}{LockFreeHashMap<Key,\ Value>::Iterator}}\ \mbox{\hyperlink{classLockFreeHashMap_a0ecc7b5f560d02210a707b1099f8b99e}{LockFreeHashMap<Key,\ Value>::begin}}()}
+\DoxyCodeLine{00260\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{comment}{//\ Start\ with\ the\ first\ bucket}}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{structLockFreeHashMap_1_1Iterator}{Iterator}}\ it\ \{\ \textcolor{keyword}{this},\ 0,\ mBuckets[0]\ \};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{comment}{//\ If\ it\ doesn't\ contain\ a\ valid\ entry,\ use\ the\ ++\ operator\ to\ find\ the\ first\ valid\ entry}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{if}\ (it.mOffset\ ==\ cInvalidHandle)}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ ++it;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordflow}{return}\ it;}
+\DoxyCodeLine{00269\ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00272\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structLockFreeHashMap_1_1Iterator}{LockFreeHashMap<Key,\ Value>::Iterator}}\ \mbox{\hyperlink{classLockFreeHashMap}{LockFreeHashMap<Key,\ Value>::end}}()}
+\DoxyCodeLine{00273\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ \textcolor{keyword}{this},\ mNumBuckets,\ cInvalidHandle\ \};}
+\DoxyCodeLine{00275\ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00278\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{LockFreeHashMap<Key,\ Value>::KeyValue}}\ \&\mbox{\hyperlink{structLockFreeHashMap_1_1Iterator_af2b164af90f8efbeb7c5a5bc19333f34}{LockFreeHashMap<Key,\ Value>::Iterator::operator*\ }}()}
+\DoxyCodeLine{00279\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ JPH\_ASSERT(mOffset\ !=\ \mbox{\hyperlink{classLockFreeHashMap_afba2f355a6948c3c97ed5183c0b704e9}{cInvalidHandle}});}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordflow}{return}\ *mMap-\/>mAllocator.template\ FromOffset<KeyValue>(mOffset);}
+\DoxyCodeLine{00283\ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00286\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structLockFreeHashMap_1_1Iterator}{LockFreeHashMap<Key,\ Value>::Iterator}}\ \&\mbox{\hyperlink{structLockFreeHashMap_1_1Iterator_aaaf8062e981a1be7118d1dde98968ba6}{LockFreeHashMap<Key,\ Value>::Iterator::operator++\ }}()}
+\DoxyCodeLine{00287\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ JPH\_ASSERT(mBucket\ <\ mMap-\/>mNumBuckets);}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{comment}{//\ Find\ the\ next\ key\ value\ in\ this\ bucket}}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{if}\ (mOffset\ !=\ \mbox{\hyperlink{classLockFreeHashMap_afba2f355a6948c3c97ed5183c0b704e9}{cInvalidHandle}})}
+\DoxyCodeLine{00292\ \ \ \ \ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}}\ *kv\ =\ mMap-\/>mAllocator.template\ FromOffset<const\ KeyValue>(mOffset);}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ mOffset\ =\ kv-\/>mNextOffset;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mOffset\ !=\ \mbox{\hyperlink{classLockFreeHashMap_afba2f355a6948c3c97ed5183c0b704e9}{cInvalidHandle}})}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ next\ buckets}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00301\ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Next\ bucket}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ ++mBucket;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mBucket\ >=\ mMap-\/>mNumBuckets)}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ the\ first\ entry\ in\ the\ bucket}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ mOffset\ =\ mMap-\/>mBuckets[mBucket];}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mOffset\ !=\ \mbox{\hyperlink{classLockFreeHashMap_afba2f355a6948c3c97ed5183c0b704e9}{cInvalidHandle}})}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00311\ \ \ \ \ \}}
+\DoxyCodeLine{00312\ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Key,\ \textcolor{keyword}{class}\ Value>}
+\DoxyCodeLine{00317\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLockFreeHashMap}{LockFreeHashMap<Key,\ Value>::TraceStats}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00318\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ cMaxPerBucket\ =\ 256;}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordtype}{int}\ max\_objects\_per\_bucket\ =\ 0;}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_objects\ =\ 0;}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keywordtype}{int}\ histogram[cMaxPerBucket];}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ cMaxPerBucket;\ ++i)}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ histogram[i]\ =\ 0;}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{for}\ (atomic<uint32>\ *bucket\ =\ mBuckets,\ *bucket\_end\ =\ mBuckets\ +\ mNumBuckets;\ bucket\ <\ bucket\_end;\ ++bucket)}
+\DoxyCodeLine{00328\ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ objects\_in\_bucket\ =\ 0;}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ uint32\ offset\ =\ *bucket;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (offset\ !=\ \mbox{\hyperlink{classLockFreeHashMap_afba2f355a6948c3c97ed5183c0b704e9}{cInvalidHandle}})}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classLockFreeHashMap_1_1KeyValue}{KeyValue}}\ *kv\ =\ mAllocator.template\ FromOffset<const\ KeyValue>(offset);}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ offset\ =\ kv-\/>mNextOffset;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ ++objects\_in\_bucket;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ ++num\_objects;}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ max\_objects\_per\_bucket\ =\ max(objects\_in\_bucket,\ max\_objects\_per\_bucket);}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ histogram[min(objects\_in\_bucket,\ cMaxPerBucket\ -\/\ 1)]++;}
+\DoxyCodeLine{00340\ \ \ \ \ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ Trace(\textcolor{stringliteral}{"{}max\_objects\_per\_bucket\ =\ \%d,\ num\_buckets\ =\ \%u,\ num\_objects\ =\ \%d"{}},\ max\_objects\_per\_bucket,\ mNumBuckets,\ num\_objects);}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ cMaxPerBucket;\ ++i)}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (histogram[i]\ !=\ 0)}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}\%d:\ \%d"{}},\ i,\ histogram[i]);}
+\DoxyCodeLine{00347\ \}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

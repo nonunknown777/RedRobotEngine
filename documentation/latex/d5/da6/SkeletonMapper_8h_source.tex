@@ -1,0 +1,107 @@
+\doxysection{Skeleton\+Mapper.\+h}
+\hypertarget{SkeletonMapper_8h_source}{}\label{SkeletonMapper_8h_source}\index{includes/jolt/Skeleton/SkeletonMapper.h@{includes/jolt/Skeleton/SkeletonMapper.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2022\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Reference.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Skeleton/Skeleton.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classSkeletonMapper}{SkeletonMapper}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}<SkeletonMapper>}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSkeletonMapper_1_1Mapping}{Mapping}}}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Mapping}{Mapping}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Mapping}{Mapping}}(\textcolor{keywordtype}{int}\ inJointIdx1,\ \textcolor{keywordtype}{int}\ inJointIdx2,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inJoint1To2)\ :\ mJointIdx1(inJointIdx1),\ mJointIdx2(inJointIdx2),\ mJoint1To2(inJoint1To2),\ mJoint2To1(inJoint1To2.\mbox{\hyperlink{classMat44_aae48032b0b6d27778617b8546135b057}{Inversed}}())}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ bottom\ right\ element\ is\ 1\ (numerical\ imprecision\ in\ the\ inverse\ can\ make\ this\ not\ so)}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ mJoint2To1(3,\ 3)\ =\ 1.0f;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Mapping_ad9c3aee5f9212c14890160465b4b5e76}{mJointIdx1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Mapping_afb9eae211c89b42d0fbafcba3c83dc9a}{mJointIdx2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Mapping_a15f95111d1d250ca13a5de5e27f55409}{mJoint1To2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Mapping_a508b9a2e6f5072665751b14c66b1a426}{mJoint2To1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSkeletonMapper_1_1Chain}{Chain}}}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Chain}{Chain}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Chain}{Chain}}(Array<int>\ \&\&inJointIndices1,\ Array<int>\ \&\&inJointIndices2)\ :\ mJointIndices1(std::move(inJointIndices1)),\ mJointIndices2(std::move(inJointIndices2))\ \{\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Array<int>\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Chain_a0ab11a6d71e15f14ba33bfcf2656aa1d}{mJointIndices1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ Array<int>\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Chain_a7dc7efb54107e58e7c82d2e49eeec139}{mJointIndices2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSkeletonMapper_1_1Unmapped}{Unmapped}}}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Unmapped}{Unmapped}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Unmapped}{Unmapped}}(\textcolor{keywordtype}{int}\ inJointIdx,\ \textcolor{keywordtype}{int}\ inParentJointIdx)\ :\ mJointIdx(inJointIdx),\ mParentJointIdx(inParentJointIdx)\ \{\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Unmapped_a2fc5f1a02042bc53fe51ce0e76b88225}{mJointIdx}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Unmapped_ad91b1fd5a34203f9aeacd6234c56da17}{mParentJointIdx}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSkeletonMapper_1_1Locked}{Locked}}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Locked_a3f7fd92624a86f0fcd323e594e336e7b}{mJointIdx}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Locked_af041c178fc6e97c469f138ea9fb6797e}{mParentJointIdx}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_1_1Locked_a8c531c4839b8a2c8afd287eed3118faf}{mTranslation}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classSkeletonMapper_a6d56bcd1cbaecd9f2b9013e6e04b7bf8}{CanMapJoint}}\ =\ function<bool\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeleton}{Skeleton}}\ *,\ \textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeleton}{Skeleton}}\ *,\ \textcolor{keywordtype}{int})>;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_a642ec444197fca150bddcadd5cb85bd5}{sDefaultCanMapJoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeleton}{Skeleton}}\ *inSkeleton1,\ \textcolor{keywordtype}{int}\ inIndex1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeleton}{Skeleton}}\ *inSkeleton2,\ \textcolor{keywordtype}{int}\ inIndex2)}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inSkeleton1-\/>GetJoint(inIndex1).\mbox{\hyperlink{classSkeleton_1_1Joint_a49426f9af65fba0c7a0a687079d38ff3}{mName}}\ ==\ inSkeleton2-\/>GetJoint(inIndex2).\mbox{\hyperlink{classSkeleton_1_1Joint_a49426f9af65fba0c7a0a687079d38ff3}{mName}};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_a63ce08263311941b64c074716b24c9bf}{Initialize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeleton}{Skeleton}}\ *inSkeleton1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ *inNeutralPose1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeleton}{Skeleton}}\ *inSkeleton2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ *inNeutralPose2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeletonMapper_a6d56bcd1cbaecd9f2b9013e6e04b7bf8}{CanMapJoint}}\ \&inCanMapJoint\ =\ sDefaultCanMapJoint);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_a2741193b04cb2cbe14996962fbf71b97}{LockTranslations}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeleton}{Skeleton}}\ *inSkeleton2,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ *inLockedTranslations,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ *inNeutralPose2);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_abbaa0b7c3a89c8332342c2cc6aa74262}{LockAllTranslations}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSkeleton}{Skeleton}}\ *inSkeleton2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ *inNeutralPose2);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_aa5ea82586d40fbdc0d2930e51b008c9c}{Map}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ *inPose1ModelSpace,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ *inPose2LocalSpace,\ \mbox{\hyperlink{classMat44}{Mat44}}\ *outPose2ModelSpace)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_a64ebec9cb8e8f0f7a4ec68fa0c30bfd6}{MapReverse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ *inPose2ModelSpace,\ \mbox{\hyperlink{classMat44}{Mat44}}\ *outPose1ModelSpace)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_a21b16b76b464cf207878aa382c6cfde4}{GetMappedJointIdx}}(\textcolor{keywordtype}{int}\ inJoint1Idx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSkeletonMapper_a6fcd34ef9c18a53f65679b5d671e6147}{IsJointTranslationLocked}}(\textcolor{keywordtype}{int}\ inJoint2Idx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{using\ }MappingVector\ =\ Array<Mapping>;}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{using\ }ChainVector\ =\ Array<Chain>;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{using\ }UnmappedVector\ =\ Array<Unmapped>;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{using\ }LockedVector\ =\ Array<Locked>;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{const}\ MappingVector\ \&\ \ \ GetMappings()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMappings;\ \}}
+\DoxyCodeLine{00128\ \ \ \ \ MappingVector\ \&\ \ \ \ \ \ \ \ \ GetMappings()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mMappings;\ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{const}\ ChainVector\ \&\ \ \ \ \ GetChains()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mChains;\ \}}
+\DoxyCodeLine{00130\ \ \ \ \ ChainVector\ \&\ \ \ \ \ \ \ \ \ \ \ GetChains()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mChains;\ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{const}\ UnmappedVector\ \&\ \ GetUnmapped()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mUnmapped;\ \}}
+\DoxyCodeLine{00132\ \ \ \ \ UnmappedVector\ \&\ \ \ \ \ \ \ \ GetUnmapped()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mUnmapped;\ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ LockedVector\ \&\ \ \ \ GetLockedTranslations()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLockedTranslations;\ \}}
+\DoxyCodeLine{00134\ \ \ \ \ LockedVector\ \&\ \ \ \ \ \ \ \ \ \ GetLockedTranslations()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mLockedTranslations;\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00139\ \ \ \ \ MappingVector\ \ \ \ \ \ \ \ \ \ \ mMappings;}
+\DoxyCodeLine{00140\ \ \ \ \ ChainVector\ \ \ \ \ \ \ \ \ \ \ \ \ mChains;}
+\DoxyCodeLine{00141\ \ \ \ \ UnmappedVector\ \ \ \ \ \ \ \ \ \ mUnmapped;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ LockedVector\ \ \ \ \ \ \ \ \ \ \ \ mLockedTranslations;}
+\DoxyCodeLine{00143\ \};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

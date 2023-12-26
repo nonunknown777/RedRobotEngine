@@ -1,0 +1,879 @@
+\doxysection{GJKClosest\+Point.\+h}
+\hypertarget{GJKClosestPoint_8h_source}{}\label{GJKClosestPoint_8h_source}\index{includes/jolt/Geometry/GJKClosestPoint.h@{includes/jolt/Geometry/GJKClosestPoint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/FPException.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/ClosestPoint.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/ConvexSupport.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\#define\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Core/StringTools.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Renderer/DebugRenderer.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGJKClosestPoint}{GJKClosestPoint}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ LastPo\textcolor{keywordtype}{int}PartOfClosestFeature>}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ GetClosest(\textcolor{keywordtype}{float}\ inPrevVLenSq,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outV,\ \textcolor{keywordtype}{float}\ \&outVLenSq,\ uint32\ \&outSet)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00038\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}y[\%d]\ =\ [\%s],\ |y[\%d]|\ =\ \%g"{}},\ i,\ ConvertToString(mY[i]).c\_str(),\ i,\ (\textcolor{keywordtype}{double})mY[i].Length());}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ uint32\ set;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (mNumPoints)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Single\ point}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ set\ =\ 0b0001;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ mY[0];}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Line\ segment}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ \mbox{\hyperlink{namespaceClosestPoint_ad687ef98922a03b7128a5d3a5a64ab39}{ClosestPoint::GetClosestPointOnLine}}(mY[0],\ mY[1],\ set);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Triangle}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ ClosestPoint::GetClosestPointOnTriangle<LastPointPartOfClosestFeature>(mY[0],\ mY[1],\ mY[2],\ set);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tetrahedron}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ ClosestPoint::GetClosestPointOnTetrahedron<LastPointPartOfClosestFeature>(mY[0],\ mY[1],\ mY[2],\ mY[3],\ set);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(\textcolor{keyword}{false});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}GetClosest:\ set\ =\ 0b\%s,\ v\ =\ [\%s],\ |v|\ =\ \%g"{}},\ NibbleToBinary(set),\ ConvertToString(v).c\_str(),\ (\textcolor{keywordtype}{double})v.\mbox{\hyperlink{classVec3_a38a9efffc3f9413f3dd702abc73eb9a2}{Length}}());}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_len\_sq\ =\ v.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_len\_sq\ <\ inPrevVLenSq)\ \textcolor{comment}{//\ Note,\ comparison\ order\ important:\ If\ v\_len\_sq\ is\ NaN\ then\ this\ expression\ will\ be\ false\ so\ we\ will\ return\ false}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ closest\ point}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ outV\ =\ v;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ outVLenSq\ =\ v\_len\_sq;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ outSet\ =\ set;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ better\ match\ found}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}New\ closer\ point\ is\ further\ away,\ failed\ to\ converge"{}});}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ Get\ max(|Y\_0|\string^2\ ..\ |Y\_n|\string^2)}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ GetMaxYLengthSq()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y\_len\_sq\ =\ mY[0].\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ y\_len\_sq\ =\ max(y\_len\_sq,\ mY[i].LengthSq());}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y\_len\_sq;}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ Remove\ points\ that\ are\ not\ in\ the\ set,\ only\ updates\ mY}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ UpdatePointSetY(uint32\ inSet)}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_points\ =\ 0;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((inSet\ \&\ (1\ <<\ i))\ !=\ 0)}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mY[num\_points]\ =\ mY[i];}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++num\_points;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ mNumPoints\ =\ num\_points;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ GCC\ 11.3\ thinks\ the\ assignments\ to\ mP,\ mQ\ and\ mY\ below\ may\ use\ uninitialized\ variables}}
+\DoxyCodeLine{00119\ \ \ \ \ JPH\_SUPPRESS\_WARNING\_PUSH}
+\DoxyCodeLine{00120\ \ \ \ \ JPH\_GCC\_SUPPRESS\_WARNING(\textcolor{stringliteral}{"{}-\/Wmaybe-\/uninitialized"{}})}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ Remove\ points\ that\ are\ not\ in\ the\ set,\ only\ updates\ mP}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ UpdatePointSetP(uint32\ inSet)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_points\ =\ 0;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((inSet\ \&\ (1\ <<\ i))\ !=\ 0)}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mP[num\_points]\ =\ mP[i];}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++num\_points;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ mNumPoints\ =\ num\_points;}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ Remove\ points\ that\ are\ not\ in\ the\ set,\ only\ updates\ mP\ and\ mQ}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ UpdatePointSetPQ(uint32\ inSet)}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_points\ =\ 0;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((inSet\ \&\ (1\ <<\ i))\ !=\ 0)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mP[num\_points]\ =\ mP[i];}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mQ[num\_points]\ =\ mQ[i];}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++num\_points;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ mNumPoints\ =\ num\_points;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ Remove\ points\ that\ are\ not\ in\ the\ set,\ updates\ mY,\ mP\ and\ mQ}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ UpdatePointSetYPQ(uint32\ inSet)}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_points\ =\ 0;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((inSet\ \&\ (1\ <<\ i))\ !=\ 0)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mY[num\_points]\ =\ mY[i];}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mP[num\_points]\ =\ mP[i];}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mQ[num\_points]\ =\ mQ[i];}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++num\_points;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ mNumPoints\ =\ num\_points;}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ JPH\_SUPPRESS\_WARNING\_POP}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ Calculate\ closest\ points\ on\ A\ and\ B}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ CalculatePointAAndB(\mbox{\hyperlink{classVec3}{Vec3}}\ \&outPointA,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPointB)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (mNumPoints)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ outPointA\ =\ mP[0];}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ outPointB\ =\ mQ[0];}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ u,\ v;}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{ClosestPoint::GetBaryCentricCoordinates}}(mY[0],\ mY[1],\ u,\ v);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outPointA\ =\ u\ *\ mP[0]\ +\ v\ *\ mP[1];}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outPointB\ =\ u\ *\ mQ[0]\ +\ v\ *\ mQ[1];}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ u,\ v,\ w;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{ClosestPoint::GetBaryCentricCoordinates}}(mY[0],\ mY[1],\ mY[2],\ u,\ v,\ w);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outPointA\ =\ u\ *\ mP[0]\ +\ v\ *\ mP[1]\ +\ w\ *\ mP[2];}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outPointB\ =\ u\ *\ mQ[0]\ +\ v\ *\ mQ[1]\ +\ w\ *\ mQ[2];}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&outPointA,\ 0xcd,\ \textcolor{keyword}{sizeof}(outPointA));}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&outPointB,\ 0xcd,\ \textcolor{keyword}{sizeof}(outPointB));}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ A,\ \textcolor{keyword}{typename}\ B>}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classGJKClosestPoint_a20ab4d36efcf62ceae244ec75eb4bc23}{Intersects}}(\textcolor{keyword}{const}\ A\ \&inA,\ \textcolor{keyword}{const}\ B\ \&inB,\ \textcolor{keywordtype}{float}\ inTolerance,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioV)}
+\DoxyCodeLine{00215\ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tolerance\_sq\ =\ Square(inTolerance);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ state}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ mNumPoints\ =\ 0;}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ mY[i]\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Previous\ length\string^2\ of\ v}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ prev\_v\_len\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}v\ =\ [\%s],\ num\_points\ =\ \%d"{}},\ ConvertToString(ioV).c\_str(),\ mNumPoints);}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ support\ points\ for\ shape\ A\ and\ B\ in\ the\ direction\ of\ v}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ p\ =\ inA.GetSupport(ioV);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ inB.GetSupport(-\/ioV);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ support\ point\ of\ the\ minkowski\ sum\ A\ -\/\ B\ of\ v}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ w\ =\ p\ -\/\ q;}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ support\ point\ sA-\/B(v)\ is\ in\ the\ opposite\ direction\ as\ v,\ then\ we\ have\ found\ a\ separating\ axis\ and\ there\ is\ no\ intersection}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioV.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(w)\ <\ 0.0f)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Separating\ axis\ found}}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Seperating\ axis"{}});}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ the\ point\ for\ later\ use}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ mY[mNumPoints]\ =\ w;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ ++mNumPoints;}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}w\ =\ [\%s]"{}},\ ConvertToString(w).c\_str());}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ new\ closest\ point}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_len\_sq;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Length\string^2\ of\ v}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ set;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ of\ points\ that\ form\ the\ new\ simplex}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetClosest<true>(prev\_v\_len\_sq,\ ioV,\ v\_len\_sq,\ set))}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ there\ are\ 4\ points,\ the\ origin\ is\ inside\ the\ tetrahedron\ and\ we're\ done}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (set\ ==\ 0xf)}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Full\ simplex"{}});}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioV\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ v\ is\ very\ close\ to\ zero,\ we\ consider\ this\ a\ collision}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_len\_sq\ <=\ tolerance\_sq)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Distance\ zero"{}});}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioV\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ v\ is\ very\ small\ compared\ to\ the\ length\ of\ y,\ we\ also\ consider\ this\ a\ collision}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_len\_sq\ <=\ FLT\_EPSILON\ *\ GetMaxYLengthSq())}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Machine\ precision\ reached"{}});}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioV\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ seperation\ axis\ to\ test\ is\ the\ negative\ of\ the\ closest\ point\ of\ the\ Minkowski\ sum\ to\ the\ origin}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ This\ must\ be\ done\ before\ terminating\ as\ converged\ since\ the\ separating\ axis\ is\ -\/v}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ ioV\ =\ -\/ioV;}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ squared\ length\ of\ v\ is\ not\ changing\ enough,\ we've\ converged\ and\ there\ is\ no\ collision}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(prev\_v\_len\_sq\ >=\ v\_len\_sq);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (prev\_v\_len\_sq\ -\/\ v\_len\_sq\ <=\ FLT\_EPSILON\ *\ prev\_v\_len\_sq)}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v\ is\ a\ separating\ axis}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Converged"{}});}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ prev\_v\_len\_sq\ =\ v\_len\_sq;}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ points\ of\ the\ simplex}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ UpdatePointSetY(set);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ A,\ \textcolor{keyword}{typename}\ B>}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{classGJKClosestPoint_abb7cfdd49d708007d75b4c2e9b90ebb9}{GetClosestPoints}}(\textcolor{keyword}{const}\ A\ \&inA,\ \textcolor{keyword}{const}\ B\ \&inB,\ \textcolor{keywordtype}{float}\ inTolerance,\ \textcolor{keywordtype}{float}\ inMaxDistSq,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioV,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPointA,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPointB)}
+\DoxyCodeLine{00335\ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tolerance\_sq\ =\ Square(inTolerance);}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ state}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ mNumPoints\ =\ 0;}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ the\ hull\ of\ the\ Minkowski\ difference\ for\ visualization}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structMinkowskiDifference}{MinkowskiDifference}}\ diff(inA,\ inB);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ mGeometry\ =\ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>CreateTriangleGeometryForConvex([\&diff](\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\ \{\ \textcolor{keywordflow}{return}\ diff.\mbox{\hyperlink{structMinkowskiDifference_ad9e15e934b19be1df6e09a926a1e26dd}{GetSupport}}(inDirection);\ \});}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ mY[i]\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ mP[i]\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ mQ[i]\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Length\string^2\ of\ v}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_len\_sq\ =\ ioV.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Previous\ length\string^2\ of\ v}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ prev\_v\_len\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}v\ =\ [\%s],\ num\_points\ =\ \%d"{}},\ ConvertToString(ioV).c\_str(),\ mNumPoints);}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ support\ points\ for\ shape\ A\ and\ B\ in\ the\ direction\ of\ v}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ p\ =\ inA.GetSupport(ioV);}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ inB.GetSupport(-\/ioV);}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ support\ point\ of\ the\ minkowski\ sum\ A\ -\/\ B\ of\ v}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ w\ =\ p\ -\/\ q;}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dot\ =\ ioV.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(w);}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ -\/ioV\ to\ show\ the\ closest\ point\ to\ the\ origin\ from\ the\ previous\ simplex}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_ad3208b1f011a70927082d734591c0e83}{DrawArrow}}(mOffset,\ mOffset\ -\/\ ioV,\ Color::sOrange,\ 0.05f);}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ ioV\ to\ show\ where\ we're\ probing\ next}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_ad3208b1f011a70927082d734591c0e83}{DrawArrow}}(mOffset,\ mOffset\ +\ ioV,\ Color::sCyan,\ 0.05f);}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ w,\ the\ support\ point}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_ad3208b1f011a70927082d734591c0e83}{DrawArrow}}(mOffset,\ mOffset\ +\ w,\ Color::sGreen,\ 0.05f);}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a146eec1ac4bb44258fc748e66cd154ba}{DrawMarker}}(mOffset\ +\ w,\ Color::sGreen,\ 1.0f);}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ simplex\ and\ the\ Minkowski\ difference\ around\ it}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ DrawState();}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ if\ we\ have\ a\ separation\ of\ more\ than\ inMaxDistSq,\ in\ which\ case\ we\ terminate\ early}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dot\ <\ 0.0f\ \&\&\ dot\ *\ dot\ >\ v\_len\_sq\ *\ inMaxDistSq)}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Distance\ bigger\ than\ max"{}});}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&outPointA,\ 0xcd,\ \textcolor{keyword}{sizeof}(outPointA));}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&outPointB,\ 0xcd,\ \textcolor{keyword}{sizeof}(outPointB));}
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FLT\_MAX;}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ the\ point\ for\ later\ use}}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ mY[mNumPoints]\ =\ w;}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ mP[mNumPoints]\ =\ p;}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ mQ[mNumPoints]\ =\ q;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ ++mNumPoints;}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}w\ =\ [\%s]"{}},\ ConvertToString(w).c\_str());}
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ set;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetClosest<true>(prev\_v\_len\_sq,\ ioV,\ v\_len\_sq,\ set))}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/mNumPoints;\ \textcolor{comment}{//\ Undo\ add\ last\ point}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ there\ are\ 4\ points,\ the\ origin\ is\ inside\ the\ tetrahedron\ and\ we're\ done}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (set\ ==\ 0xf)}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Full\ simplex"{}});}
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioV\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_len\_sq\ =\ 0.0f;}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ points\ of\ the\ simplex}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ UpdatePointSetYPQ(set);}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ v\ is\ very\ close\ to\ zero,\ we\ consider\ this\ a\ collision}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_len\_sq\ <=\ tolerance\_sq)}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Distance\ zero"{}});}
+\DoxyCodeLine{00439\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioV\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_len\_sq\ =\ 0.0f;}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ v\ is\ very\ small\ compared\ to\ the\ length\ of\ y,\ we\ also\ consider\ this\ a\ collision}}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Check\ v\ small\ compared\ to\ y:\ \%g\ <=\ \%g"{}},\ (\textcolor{keywordtype}{double})v\_len\_sq,\ (\textcolor{keywordtype}{double})(FLT\_EPSILON\ *\ GetMaxYLengthSq()));}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_len\_sq\ <=\ FLT\_EPSILON\ *\ GetMaxYLengthSq())}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00451\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Machine\ precision\ reached"{}});}
+\DoxyCodeLine{00453\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioV\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_len\_sq\ =\ 0.0f;}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ seperation\ axis\ to\ test\ is\ the\ negative\ of\ the\ closest\ point\ of\ the\ Minkowski\ sum\ to\ the\ origin}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ This\ must\ be\ done\ before\ terminating\ as\ converged\ since\ the\ separating\ axis\ is\ -\/v}}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ ioV\ =\ -\/ioV;}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ squared\ length\ of\ v\ is\ not\ changing\ enough,\ we've\ converged\ and\ there\ is\ no\ collision}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Check\ v\ not\ changing\ enough:\ \%g\ <=\ \%g"{}},\ (\textcolor{keywordtype}{double})(prev\_v\_len\_sq\ -\/\ v\_len\_sq),\ (\textcolor{keywordtype}{double})(FLT\_EPSILON\ *\ prev\_v\_len\_sq));}
+\DoxyCodeLine{00466\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(prev\_v\_len\_sq\ >=\ v\_len\_sq);}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (prev\_v\_len\_sq\ -\/\ v\_len\_sq\ <=\ FLT\_EPSILON\ *\ prev\_v\_len\_sq)}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v\ is\ a\ separating\ axis}}
+\DoxyCodeLine{00471\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Converged"{}});}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ prev\_v\_len\_sq\ =\ v\_len\_sq;}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ closest\ points}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ CalculatePointAAndB(outPointA,\ outPointB);}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Return:\ v\ =\ [\%s],\ |v|\ =\ \%g"{}},\ ConvertToString(ioV).c\_str(),\ (\textcolor{keywordtype}{double})ioV.\mbox{\hyperlink{classVec3_a38a9efffc3f9413f3dd702abc73eb9a2}{Length}}());}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ -\/ioV\ to\ show\ the\ closest\ point\ to\ the\ origin\ from\ the\ previous\ simplex}}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_ad3208b1f011a70927082d734591c0e83}{DrawArrow}}(mOffset,\ mOffset\ -\/\ ioV,\ Color::sOrange,\ 0.05f);}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ closest\ points}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a146eec1ac4bb44258fc748e66cd154ba}{DrawMarker}}(mOffset\ +\ outPointA,\ Color::sGreen,\ 1.0f);}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a146eec1ac4bb44258fc748e66cd154ba}{DrawMarker}}(mOffset\ +\ outPointB,\ Color::sPurple,\ 1.0f);}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ simplex\ and\ the\ Minkowski\ difference\ around\ it}}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ DrawState();}
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ JPH\_ASSERT(ioV.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}()\ ==\ v\_len\_sq);}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v\_len\_sq;}
+\DoxyCodeLine{00498\ \ \ \ \ \}}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00502\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classGJKClosestPoint_a73d6f276fb275026a0126ca7361fb2bf}{GetClosestPointsSimplex}}(\mbox{\hyperlink{classVec3}{Vec3}}\ *outY,\ \mbox{\hyperlink{classVec3}{Vec3}}\ *outP,\ \mbox{\hyperlink{classVec3}{Vec3}}\ *outQ,\ uint\ \&outNumPoints)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00503\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ uint\ size\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classVec3}{Vec3}})\ *\ mNumPoints;}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ memcpy(outY,\ mY,\ size);}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ memcpy(outP,\ mP,\ size);}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ memcpy(outQ,\ mQ,\ size);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ outNumPoints\ =\ mNumPoints;}
+\DoxyCodeLine{00509\ \ \ \ \ \}}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00522\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ A>}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classGJKClosestPoint_ade3cde48252b6f77f749f9ac29685ec7}{CastRay}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayDirection,\ \textcolor{keywordtype}{float}\ inTolerance,\ \textcolor{keyword}{const}\ A\ \&inA,\ \textcolor{keywordtype}{float}\ \&ioLambda)}
+\DoxyCodeLine{00524\ \ \ \ \ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tolerance\_sq\ =\ Square(inTolerance);}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ state}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ mNumPoints\ =\ 0;}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ lambda\ =\ 0.0f;}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ x\ =\ inRayOrigin;}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v\ =\ x\ -\/\ inA.GetSupport(\mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}());}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_len\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ allow\_restart\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00538\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}v\ =\ [\%s],\ num\_points\ =\ \%d"{}},\ ConvertToString(v).c\_str(),\ mNumPoints);}
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ new\ support\ point}}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ p\ =\ inA.GetSupport(v);}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ w\ =\ x\ -\/\ p;}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}w\ =\ [\%s]"{}},\ ConvertToString(w).c\_str());}
+\DoxyCodeLine{00548\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00549\ }
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_dot\_w\ =\ v.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(w);}
+\DoxyCodeLine{00551\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}v\ .\ w\ =\ \%g"{}},\ (\textcolor{keywordtype}{double})v\_dot\_w);}
+\DoxyCodeLine{00553\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_dot\_w\ >\ 0.0f)}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ ray\ and\ normal\ are\ in\ the\ same\ direction,\ we've\ passed\ A\ and\ there's\ no\ collision}}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_dot\_r\ =\ v.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inRayDirection);}
+\DoxyCodeLine{00558\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}v\ .\ r\ =\ \%g"{}},\ (\textcolor{keywordtype}{double})v\_dot\_r);}
+\DoxyCodeLine{00560\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_dot\_r\ >=\ 0.0f)}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ lower\ bound\ for\ lambda}}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ delta\ =\ v\_dot\_w\ /\ v\_dot\_r;}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ old\_lambda\ =\ lambda;}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lambda\ -\/=\ delta;}
+\DoxyCodeLine{00568\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}lambda\ =\ \%g,\ delta\ =\ \%g"{}},\ (\textcolor{keywordtype}{double})lambda,\ (\textcolor{keywordtype}{double})delta);}
+\DoxyCodeLine{00570\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ lambda\ didn't\ change,\ we\ cannot\ converge\ any\ further\ and\ we\ assume\ a\ hit}}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (old\_lambda\ ==\ lambda)}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ lambda\ is\ bigger\ or\ equal\ than\ max,\ we\ don't\ have\ a\ hit}}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lambda\ >=\ ioLambda)}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ x\ to\ new\ closest\ point\ on\ the\ ray}}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ inRayOrigin\ +\ lambda\ *\ inRayDirection;}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We've\ shifted\ x,\ so\ reset\ v\_len\_sq\ so\ that\ it\ is\ not\ used\ as\ early\ out\ for\ GetClosest}}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_len\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ allow\ rebuilding\ the\ simplex\ once\ after\ x\ changes\ because\ the\ simplex\ was\ built}}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ another\ x\ and\ numerical\ round\ off\ builds\ up\ as\ you\ keep\ adding\ points\ to\ an}}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ existing\ simplex}}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allow\_restart\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ p\ to\ set\ P:\ P\ =\ P\ U\ \{p\}}}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ mP[mNumPoints]\ =\ p;}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ ++mNumPoints;}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ Y\ =\ \{x\}\ -\/\ P}}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mY[i]\ =\ x\ -\/\ mP[i];}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ new\ closest\ point\ from\ Y\ to\ origin}}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ set;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ of\ points\ that\ form\ the\ new\ simplex}}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetClosest<false>(v\_len\_sq,\ v,\ v\_len\_sq,\ set))}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00604\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Failed\ to\ converge"{}});}
+\DoxyCodeLine{00606\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ allow\ 1\ restart,\ if\ we\ still\ can't\ get\ a\ closest\ point}}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we're\ so\ close\ that\ we\ return\ this\ as\ a\ hit}}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!allow\_restart)}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ fail\ to\ converge,\ we\ start\ again\ with\ the\ last\ point\ as\ simplex}}
+\DoxyCodeLine{00614\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Restarting"{}});}
+\DoxyCodeLine{00616\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allow\_restart\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mP[0]\ =\ p;}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumPoints\ =\ 1;}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ x\ -\/\ p;}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_len\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (set\ ==\ 0xf)}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00626\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Full\ simplex"{}});}
+\DoxyCodeLine{00628\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We're\ inside\ the\ tetrahedron,\ we\ have\ a\ hit\ (verify\ that\ length\ of\ v\ is\ 0)}}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(v\_len\_sq\ ==\ 0.0f);}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ points\ P\ to\ form\ the\ new\ simplex}}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ We're\ not\ updating\ Y\ as\ Y\ will\ shift\ with\ x\ so\ we\ have\ to\ calculate\ it\ every\ iteration}}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ UpdatePointSetP(set);}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ x\ is\ close\ enough\ to\ inA}}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_len\_sq\ <=\ tolerance\_sq)}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00642\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Converged"{}});}
+\DoxyCodeLine{00644\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ hit\ fraction}}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ ioLambda\ =\ lambda;}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00652\ \ \ \ \ \}}
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00664\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ A,\ \textcolor{keyword}{typename}\ B>}
+\DoxyCodeLine{00665\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classGJKClosestPoint_a66d20557ad6d34a1c1f29b6df058b523}{CastShape}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inStart,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keywordtype}{float}\ inTolerance,\ \textcolor{keyword}{const}\ A\ \&inA,\ \textcolor{keyword}{const}\ B\ \&inB,\ \textcolor{keywordtype}{float}\ \&ioLambda)}
+\DoxyCodeLine{00666\ \ \ \ \ \{}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ the\ shape\ to\ be\ cast\ to\ the\ starting\ position}}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTransformedConvexObject}{TransformedConvexObject}}\ transformed\_a(inStart,\ inA);}
+\DoxyCodeLine{00669\ }
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ minkowski\ difference\ inB\ -\/\ inA}}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ inA\ is\ moving,\ so\ we\ need\ to\ add\ the\ back\ side\ of\ inB\ to\ the\ front\ side\ of\ inA}}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structMinkowskiDifference}{MinkowskiDifference}}\ difference(inB,\ transformed\_a);}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Do\ a\ raycast\ against\ the\ Minkowski\ difference}}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classGJKClosestPoint_ade3cde48252b6f77f749f9ac29685ec7}{CastRay}}(\mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}(),\ inDirection,\ inTolerance,\ difference,\ ioLambda);}
+\DoxyCodeLine{00676\ \ \ \ \ \}}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00695\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ A,\ \textcolor{keyword}{typename}\ B>}
+\DoxyCodeLine{00696\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classGJKClosestPoint_aa5b19da7e23744cb5c1af8fe2fee2940}{CastShape}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inStart,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keywordtype}{float}\ inTolerance,\ \textcolor{keyword}{const}\ A\ \&inA,\ \textcolor{keyword}{const}\ B\ \&inB,\ \textcolor{keywordtype}{float}\ inConvexRadiusA,\ \textcolor{keywordtype}{float}\ inConvexRadiusB,\ \textcolor{keywordtype}{float}\ \&ioLambda,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPointA,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outPointB,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outSeparatingAxis)}
+\DoxyCodeLine{00697\ \ \ \ \ \{}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tolerance\_sq\ =\ Square(inTolerance);}
+\DoxyCodeLine{00699\ }
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ how\ close\ A\ and\ B\ (without\ their\ convex\ radius)\ need\ to\ be\ to\ eachother\ in\ order\ for\ us\ to\ consider\ this\ a\ collision}}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ sum\_convex\_radius\ =\ inConvexRadiusA\ +\ inConvexRadiusB;}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ the\ shape\ to\ be\ cast\ to\ the\ starting\ position}}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTransformedConvexObject}{TransformedConvexObject}}\ transformed\_a(inStart,\ inA);}
+\DoxyCodeLine{00705\ }
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ state}}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ mNumPoints\ =\ 0;}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ lambda\ =\ 0.0f;}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ x\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();\ \textcolor{comment}{//\ Since\ A\ is\ already\ transformed\ we\ can\ start\ the\ cast\ from\ zero}}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v\ =\ -\/inB.GetSupport(\mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}())\ +\ transformed\_a.\mbox{\hyperlink{structTransformedConvexObject_a0fa745b8d15e71629ebb719716d16fa8}{GetSupport}}(\mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}());\ \textcolor{comment}{//\ See\ CastRay:\ v\ =\ x\ -\/\ inA.GetSupport(Vec3::sZero())\ where\ inA\ is\ the\ Minkowski\ difference\ inB\ -\/\ transformed\_a\ (see\ CastShape\ above)\ and\ x\ is\ zero}}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_len\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ allow\_restart\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00714\ }
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ separating\ axis\ of\ the\ previous\ iteration.}}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialized\ at\ zero\ as\ we\ don't\ know\ if\ our\ first\ v\ is\ actually\ a\ separating\ axis.}}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ prev\_v\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00718\ }
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00721\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}v\ =\ [\%s],\ num\_points\ =\ \%d"{}},\ ConvertToString(v).c\_str(),\ mNumPoints);}
+\DoxyCodeLine{00723\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00724\ }
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ minkowski\ difference\ inB\ -\/\ inA}}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ inA\ is\ moving,\ so\ we\ need\ to\ add\ the\ back\ side\ of\ inB\ to\ the\ front\ side\ of\ inA}}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keep\ the\ support\ points\ on\ A\ and\ B\ separate\ so\ that\ in\ the\ end\ we\ can\ calculate\ a\ contact\ point}}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ p\ =\ transformed\_a.\mbox{\hyperlink{structTransformedConvexObject_a0fa745b8d15e71629ebb719716d16fa8}{GetSupport}}(-\/v);}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ q\ =\ inB.GetSupport(v);}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ w\ =\ x\ -\/\ (q\ -\/\ p);}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}w\ =\ [\%s]"{}},\ ConvertToString(w).c\_str());}
+\DoxyCodeLine{00734\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00735\ }
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Difference\ from\ article\ to\ this\ code:}}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ did\ not\ include\ the\ convex\ radius\ in\ p\ and\ q\ in\ order\ to\ be\ able\ to\ calculate\ a\ good\ separating\ axis\ at\ the\ end\ of\ the\ algorithm.}}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ However\ when\ moving\ forward\ along\ inDirection\ we\ do\ need\ to\ take\ this\ into\ account\ so\ that\ we\ keep\ A\ and\ B\ separated\ by\ the\ sum\ of\ their\ convex\ radii.}}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ From\ p\ we\ have\ to\ subtract:\ inConvexRadiusA\ *\ v\ /\ |v|}}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ q\ we\ have\ to\ add:\ inConvexRadiusB\ *\ v\ /\ |v|}}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ means\ that\ to\ w\ we\ have\ to\ add:\ -\/(inConvexRadiusA\ +\ inConvexRadiusB)\ *\ v\ /\ |v|}}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ to\ v\ .\ w\ we\ have\ to\ add:\ v\ .\ (-\/(inConvexRadiusA\ +\ inConvexRadiusB)\ *\ v\ /\ |v|)\ =\ -\/(inConvexRadiusA\ +\ inConvexRadiusB)\ *\ |v|}}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_dot\_w\ =\ v.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(w)\ -\/\ sum\_convex\_radius\ *\ v.\mbox{\hyperlink{classVec3_a38a9efffc3f9413f3dd702abc73eb9a2}{Length}}();}
+\DoxyCodeLine{00744\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}v\ .\ w\ =\ \%g"{}},\ (\textcolor{keywordtype}{double})v\_dot\_w);}
+\DoxyCodeLine{00746\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_dot\_w\ >\ 0.0f)}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ ray\ and\ normal\ are\ in\ the\ same\ direction,\ we've\ passed\ A\ and\ there's\ no\ collision}}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ v\_dot\_r\ =\ v.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inDirection);}
+\DoxyCodeLine{00751\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}v\ .\ r\ =\ \%g"{}},\ (\textcolor{keywordtype}{double})v\_dot\_r);}
+\DoxyCodeLine{00753\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_dot\_r\ >=\ 0.0f)}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ lower\ bound\ for\ lambda}}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ delta\ =\ v\_dot\_w\ /\ v\_dot\_r;}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ old\_lambda\ =\ lambda;}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lambda\ -\/=\ delta;}
+\DoxyCodeLine{00761\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}lambda\ =\ \%g,\ delta\ =\ \%g"{}},\ (\textcolor{keywordtype}{double})lambda,\ (\textcolor{keywordtype}{double})delta);}
+\DoxyCodeLine{00763\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00764\ }
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ lambda\ didn't\ change,\ we\ cannot\ converge\ any\ further\ and\ we\ assume\ a\ hit}}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (old\_lambda\ ==\ lambda)}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00768\ }
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ lambda\ is\ bigger\ or\ equal\ than\ max,\ we\ don't\ have\ a\ hit}}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lambda\ >=\ ioLambda)}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ x\ to\ new\ closest\ point\ on\ the\ ray}}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ lambda\ *\ inDirection;}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We've\ shifted\ x,\ so\ reset\ v\_len\_sq\ so\ that\ it\ is\ not\ used\ as\ early\ out\ when\ GetClosest\ returns\ false}}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_len\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00778\ }
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ that\ we've\ moved,\ we\ know\ that\ A\ and\ B\ are\ not\ intersecting\ at\ lambda\ =\ 0,\ so\ we\ can\ update\ our\ tolerance\ to\ stop\ iterating}}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ soon\ as\ A\ and\ B\ are\ inConvexRadiusA\ +\ inConvexRadiusB\ apart}}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tolerance\_sq\ =\ Square(inTolerance\ +\ sum\_convex\_radius);}
+\DoxyCodeLine{00782\ }
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ allow\ rebuilding\ the\ simplex\ once\ after\ x\ changes\ because\ the\ simplex\ was\ built}}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ another\ x\ and\ numerical\ round\ off\ builds\ up\ as\ you\ keep\ adding\ points\ to\ an}}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ existing\ simplex}}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allow\_restart\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ p\ to\ set\ P,\ q\ to\ set\ Q:\ P\ =\ P\ U\ \{p\},\ Q\ =\ Q\ U\ \{q\}}}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ mP[mNumPoints]\ =\ p;}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ mQ[mNumPoints]\ =\ q;}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \ \ \ \ ++mNumPoints;}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ Y\ =\ \{x\}\ -\/\ (Q\ -\/\ P)}}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mY[i]\ =\ x\ -\/\ (mQ[i]\ -\/\ mP[i]);}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ new\ closest\ point\ from\ Y\ to\ origin}}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ set;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ of\ points\ that\ form\ the\ new\ simplex}}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetClosest<false>(v\_len\_sq,\ v,\ v\_len\_sq,\ set))}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00802\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Failed\ to\ converge"{}});}
+\DoxyCodeLine{00804\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00805\ }
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ allow\ 1\ restart,\ if\ we\ still\ can't\ get\ a\ closest\ point}}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we're\ so\ close\ that\ we\ return\ this\ as\ a\ hit}}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!allow\_restart)}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00810\ }
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ fail\ to\ converge,\ we\ start\ again\ with\ the\ last\ point\ as\ simplex}}
+\DoxyCodeLine{00812\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Restarting"{}});}
+\DoxyCodeLine{00814\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allow\_restart\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mP[0]\ =\ p;}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mQ[0]\ =\ q;}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumPoints\ =\ 1;}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ x\ -\/\ q;}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_len\_sq\ =\ FLT\_MAX;}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (set\ ==\ 0xf)}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00825\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Full\ simplex"{}});}
+\DoxyCodeLine{00827\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00828\ }
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We're\ inside\ the\ tetrahedron,\ we\ have\ a\ hit\ (verify\ that\ length\ of\ v\ is\ 0)}}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(v\_len\_sq\ ==\ 0.0f);}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00833\ }
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ points\ P\ and\ Q\ to\ form\ the\ new\ simplex}}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ We're\ not\ updating\ Y\ as\ Y\ will\ shift\ with\ x\ so\ we\ have\ to\ calculate\ it\ every\ iteration}}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ UpdatePointSetPQ(set);}
+\DoxyCodeLine{00837\ }
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ A\ and\ B\ are\ touching\ according\ to\ our\ tolerance}}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (v\_len\_sq\ <=\ tolerance\_sq)}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00841\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Trace(\textcolor{stringliteral}{"{}Converged"{}});}
+\DoxyCodeLine{00843\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00846\ }
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ our\ v\ to\ return\ as\ separating\ axis}}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ prev\_v\ =\ v;}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00850\ }
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ Y\ =\ \{x\}\ -\/\ (Q\ -\/\ P)\ again\ so\ we\ can\ calculate\ the\ contact\ points}}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \ \ \ \ mY[i]\ =\ x\ -\/\ (mQ[i]\ -\/\ mP[i]);}
+\DoxyCodeLine{00854\ }
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ offset\ we\ need\ to\ apply\ to\ A\ and\ B\ to\ correct\ for\ the\ convex\ radius}}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ normalized\_v\ =\ v.\mbox{\hyperlink{classVec3_a6c6409cad56e4e357f73d43cd719ffe8}{NormalizedOr}}(\mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}());}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ convex\_radius\_a\ =\ inConvexRadiusA\ *\ normalized\_v;}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ convex\_radius\_b\ =\ inConvexRadiusB\ *\ normalized\_v;}
+\DoxyCodeLine{00859\ }
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ contact\ point}}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ A\ and\ B\ will\ coincide\ when\ lambda\ >\ 0.\ In\ this\ case\ we\ calculate\ only\ B\ as\ it\ is\ more\ accurate\ as\ it\ contains\ less\ terms.}}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (mNumPoints)}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \ \ \ \ outPointB\ =\ mQ[0]\ +\ convex\_radius\_b;}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ outPointA\ =\ lambda\ >\ 0.0f?\ outPointB\ :\ mP[0]\ -\/\ convex\_radius\_a;}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00868\ }
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ bu,\ bv;}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{ClosestPoint::GetBaryCentricCoordinates}}(mY[0],\ mY[1],\ bu,\ bv);}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outPointB\ =\ bu\ *\ mQ[0]\ +\ bv\ *\ mQ[1]\ +\ convex\_radius\_b;}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outPointA\ =\ lambda\ >\ 0.0f?\ outPointB\ :\ bu\ *\ mP[0]\ +\ bv\ *\ mP[1]\ -\/\ convex\_radius\_a;}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00877\ }
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \textcolor{comment}{//\ A\ full\ simplex,\ we\ can't\ properly\ determine\ a\ contact\ point!\ As\ contact\ point\ we\ take\ the\ closest\ point\ of\ the\ previous\ iteration.}}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ bu,\ bv,\ bw;}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceClosestPoint_a292e497d840ac56d4004212fd10b18e4}{ClosestPoint::GetBaryCentricCoordinates}}(mY[0],\ mY[1],\ mY[2],\ bu,\ bv,\ bw);}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outPointB\ =\ bu\ *\ mQ[0]\ +\ bv\ *\ mQ[1]\ +\ bw\ *\ mQ[2]\ +\ convex\_radius\_b;}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outPointA\ =\ lambda\ >\ 0.0f?\ outPointB\ :\ bu\ *\ mP[0]\ +\ bv\ *\ mP[1]\ +\ bw\ *\ mP[2]\ -\/\ convex\_radius\_a;}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00888\ }
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ separating\ axis,\ in\ case\ we\ have\ a\ convex\ radius\ we\ can\ just\ return\ v,}}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ otherwise\ v\ will\ be\ very\ small\ and\ we\ resort\ to\ returning\ previous\ v\ as\ an\ approximation.}}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ outSeparatingAxis\ =\ sum\_convex\_radius\ >\ 0.0f?\ -\/v\ :\ -\/prev\_v;}
+\DoxyCodeLine{00892\ }
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ hit\ fraction}}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ ioLambda\ =\ lambda;}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00896\ \ \ \ \ \}}
+\DoxyCodeLine{00897\ }
+\DoxyCodeLine{00898\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00899\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00901\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ DrawState()}
+\DoxyCodeLine{00902\ \ \ \ \ \{}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ origin\ =\ \mbox{\hyperlink{classMat44_a8cc7184902ce670d0822a28a8906df52}{RMat44::sTranslation}}(mOffset);}
+\DoxyCodeLine{00904\ }
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ origin}}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a7d64d230d835d560b34282b5402ae05e}{DrawCoordinateSystem}}(origin,\ 1.0f);}
+\DoxyCodeLine{00907\ }
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ hull}}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a9542e23f59dcb2dbe19d5cc870e1efcf}{DrawGeometry}}(origin,\ mGeometry-\/>mBounds.Transformed(origin),\ mGeometry-\/>mBounds.GetExtent().LengthSq(),\ Color::sYellow,\ mGeometry);}
+\DoxyCodeLine{00910\ }
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ Y}}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ mNumPoints;\ ++i)}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ support\ point}}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ y\_i\ =\ origin\ *\ mY[i];}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a146eec1ac4bb44258fc748e66cd154ba}{DrawMarker}}(y\_i,\ Color::sRed,\ 1.0f);}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ i\ +\ 1;\ j\ <\ mNumPoints;\ ++j)}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ edge}}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ y\_j\ =\ origin\ *\ mY[j];}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_acea9470f13a1d50b677e2aaaeb9eeaed}{DrawLine}}(y\_i,\ y\_j,\ Color::sRed);}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ j\ +\ 1;\ k\ <\ mNumPoints;\ ++k)}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ triangle\ faces\ the\ origin}}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ y\_k\ =\ origin\ *\ mY[k];}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ center\ =\ (y\_i\ +\ y\_j\ +\ y\_k)\ /\ Real(3);}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ normal\ =\ (y\_j\ -\/\ y\_i).Cross(y\_k\ -\/\ y\_i);}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (normal.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(center)\ <\ Real(0))}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>DrawTriangle(y\_i,\ y\_j,\ y\_k,\ Color::sLightGrey);}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_afc6b62590e5a26de8cbd98a29bf8b1a3}{DrawTriangle}}(y\_i,\ y\_k,\ y\_j,\ Color::sLightGrey);}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00935\ }
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Offset\ to\ the\ right}}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ mOffset\ +=\ \mbox{\hyperlink{classVec3}{Vec3}}(mGeometry-\/>mBounds.GetSize().GetX()\ +\ 2.0f,\ 0,\ 0);}
+\DoxyCodeLine{00938\ \ \ \ \ \}}
+\DoxyCodeLine{00939\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00940\ }
+\DoxyCodeLine{00941\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ mY[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00942\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ mP[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00943\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ mQ[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00944\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ mNumPoints\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00945\ }
+\DoxyCodeLine{00946\ \textcolor{preprocessor}{\#ifdef\ JPH\_GJK\_DEBUG}}
+\DoxyCodeLine{00947\ \ \ \ \ \mbox{\hyperlink{classRef}{DebugRenderer::GeometryRef}}\ \ \ \ mGeometry;\ \ }
+\DoxyCodeLine{00948\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ mOffset\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3::sZero}}();\ \ \ }
+\DoxyCodeLine{00949\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00950\ \};}
+\DoxyCodeLine{00951\ }
+\DoxyCodeLine{00952\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

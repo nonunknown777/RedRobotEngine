@@ -1,0 +1,39 @@
+\doxysection{Semaphore Class Reference}
+\hypertarget{classSemaphore}{}\label{classSemaphore}\index{Semaphore@{Semaphore}}
+
+
+{\ttfamily \#include $<$Semaphore.\+h$>$}
+
+
+
+Collaboration diagram for Semaphore\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{d8/dae/classSemaphore__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSemaphore_ae32c955336ae9e60e20a3facde270714}\label{classSemaphore_ae32c955336ae9e60e20a3facde270714} 
+{\bfseries Semaphore} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classSemaphore_aad2d5e92add4088a741869d88fd2fc37}\label{classSemaphore_aad2d5e92add4088a741869d88fd2fc37} 
+void {\bfseries Release} (uint in\+Number=1)
+\begin{DoxyCompactList}\small\item\em Release the semaphore, signalling the thread waiting on the barrier that there may be work. \end{DoxyCompactList}\item 
+\Hypertarget{classSemaphore_a81c1cbdab78310c8b13e7052572e599d}\label{classSemaphore_a81c1cbdab78310c8b13e7052572e599d} 
+void {\bfseries Acquire} (uint in\+Number=1)
+\begin{DoxyCompactList}\small\item\em Acquire the semaphore in\+Number times. \end{DoxyCompactList}\item 
+\Hypertarget{classSemaphore_a8e4d787c14be5d3191ba1353594267e4}\label{classSemaphore_a8e4d787c14be5d3191ba1353594267e4} 
+int {\bfseries Get\+Value} () const
+\begin{DoxyCompactList}\small\item\em Get the current value of the semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements a semaphore When we switch to C++20 we can use counting\+\_\+semaphore to unify this 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Semaphore.\+h\end{DoxyCompactItemize}

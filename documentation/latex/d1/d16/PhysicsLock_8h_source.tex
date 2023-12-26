@@ -1,0 +1,167 @@
+\doxysection{Physics\+Lock.\+h}
+\hypertarget{PhysicsLock_8h_source}{}\label{PhysicsLock_8h_source}\index{includes/jolt/Physics/PhysicsLock.h@{includes/jolt/Physics/PhysicsLock.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Mutex.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ EPhysicsLockTypes}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuery}{BroadPhaseQuery}}\ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 0,}
+\DoxyCodeLine{00017\ \ \ \ \ PerBody\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 1,}
+\DoxyCodeLine{00018\ \ \ \ \ BodiesList\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 2,}
+\DoxyCodeLine{00019\ \ \ \ \ BroadPhaseUpdate\ \ \ \ \ \ \ \ =\ 1\ <<\ 3,}
+\DoxyCodeLine{00020\ \ \ \ \ ConstraintsList\ \ \ \ \ \ \ \ \ =\ 1\ <<\ 4,}
+\DoxyCodeLine{00021\ \ \ \ \ ActiveBodiesList\ \ \ \ \ \ \ \ =\ 1\ <<\ 5,}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyManager}{BodyManager}};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{using\ }PhysicsLockContext\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ *;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsLock}{PhysicsLock}}}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ sCheckLock(PhysicsLockContext\ inContext,\ EPhysicsLockTypes\ inType)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ uint32\ \&mutexes\ =\ sGetLockedMutexes(inContext);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ JPH\_ASSERT(uint32(inType)\ >\ mutexes,\ \textcolor{stringliteral}{"{}A\ lock\ of\ same\ or\ higher\ priority\ was\ already\ taken,\ this\ can\ create\ a\ deadlock!"{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ mutexes\ =\ mutexes\ |\ uint32(inType);}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ sCheckUnlock(PhysicsLockContext\ inContext,\ EPhysicsLockTypes\ inType)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ uint32\ \&mutexes\ =\ sGetLockedMutexes(inContext);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ JPH\_ASSERT((mutexes\ \&\ uint32(inType))\ !=\ 0,\ \textcolor{stringliteral}{"{}Mutex\ was\ not\ locked!"{}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ mutexes\ =\ mutexes\ \&\ \string~uint32(inType);}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ LockType>}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ sLock(LockType\ \&inMutex\ JPH\_IF\_ENABLE\_ASSERTS(,\ PhysicsLockContext\ inContext,\ EPhysicsLockTypes\ inType))}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ JPH\_IF\_ENABLE\_ASSERTS(sCheckLock(inContext,\ inType);)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ inMutex.lock();}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ LockType>}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ sUnlock(LockType\ \&inMutex\ JPH\_IF\_ENABLE\_ASSERTS(,\ PhysicsLockContext\ inContext,\ EPhysicsLockTypes\ inType))}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ JPH\_IF\_ENABLE\_ASSERTS(sCheckUnlock(inContext,\ inType);)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ inMutex.unlock();}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ LockType>}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ sLockShared(LockType\ \&inMutex\ JPH\_IF\_ENABLE\_ASSERTS(,\ PhysicsLockContext\ inContext,\ EPhysicsLockTypes\ inType))}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ JPH\_IF\_ENABLE\_ASSERTS(sCheckLock(inContext,\ inType);)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ inMutex.lock\_shared();}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ LockType>}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ sUnlockShared(LockType\ \&inMutex\ JPH\_IF\_ENABLE\_ASSERTS(,\ PhysicsLockContext\ inContext,\ EPhysicsLockTypes\ inType))}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ JPH\_IF\_ENABLE\_ASSERTS(sCheckUnlock(inContext,\ inType);)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ inMutex.unlock\_shared();}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{struct\ }LockData}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLockedMutexes\ =\ 0;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ PhysicsLockContext\ \ \ \ \ \ mContext\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{thread\_local}\ LockData\ sLocks[4];}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ to\ find\ the\ locked\ mutexes\ for\ a\ particular\ context}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ uint32\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ sGetLockedMutexes(PhysicsLockContext\ inContext)}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ find\ a\ matching\ context\ we\ can\ use\ it}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (LockData\ \&l\ :\ sLocks)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (l.mContext\ ==\ inContext)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ l.mLockedMutexes;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otherwise\ we\ look\ for\ an\ entry\ that\ is\ not\ in\ use}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (LockData\ \&l\ :\ sLocks)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (l.mLockedMutexes\ ==\ 0)}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l.mContext\ =\ inContext;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ l.mLockedMutexes;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ JPH\_ASSERT(\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Too\ many\ physics\ systems\ locked\ at\ the\ same\ time!"{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sLocks[0].mLockedMutexes;}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ LockType>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUniqueLock}{UniqueLock}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUniqueLock}{UniqueLock}}(LockType\ \&inLock\ JPH\_IF\_ENABLE\_ASSERTS(,\ PhysicsLockContext\ inContext,\ EPhysicsLockTypes\ inType))\ :}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ mLock(inLock)}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ ,\ mContext(inContext),}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ mType(inType)}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ PhysicsLock::sLock(mLock\ JPH\_IF\_ENABLE\_ASSERTS(,\ mContext,\ mType));}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUniqueLock}{\string~UniqueLock}}()}
+\DoxyCodeLine{00129\ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ PhysicsLock::sUnlock(mLock\ JPH\_IF\_ENABLE\_ASSERTS(,\ mContext,\ mType));}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00134\ \ \ \ \ LockType\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLock;}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00136\ \ \ \ \ PhysicsLockContext\ \ \ \ \ \ \ \ \ \ mContext;}
+\DoxyCodeLine{00137\ \ \ \ \ EPhysicsLockTypes\ \ \ \ \ \ \ \ \ \ \ mType;}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00139\ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ LockType>}
+\DoxyCodeLine{00143\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSharedLock}{SharedLock}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSharedLock}{SharedLock}}(LockType\ \&inLock\ JPH\_IF\_ENABLE\_ASSERTS(,\ PhysicsLockContext\ inContext,\ EPhysicsLockTypes\ inType))\ :}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ mLock(inLock)}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ ,\ mContext(inContext)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ ,\ mType(inType)}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ PhysicsLock::sLockShared(mLock\ JPH\_IF\_ENABLE\_ASSERTS(,\ mContext,\ mType));}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSharedLock}{\string~SharedLock}}()}
+\DoxyCodeLine{00157\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ PhysicsLock::sUnlockShared(mLock\ JPH\_IF\_ENABLE\_ASSERTS(,\ mContext,\ mType));}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00162\ \ \ \ \ LockType\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLock;}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00164\ \ \ \ \ PhysicsLockContext\ \ \ \ \ \ \ \ \ \ mContext;}
+\DoxyCodeLine{00165\ \ \ \ \ EPhysicsLockTypes\ \ \ \ \ \ \ \ \ \ \ mType;}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00167\ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

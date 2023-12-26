@@ -1,0 +1,36 @@
+\doxysection{Ray\+Capsule.\+h}
+\hypertarget{RayCapsule_8h_source}{}\label{RayCapsule_8h_source}\index{includes/jolt/Geometry/RayCapsule.h@{includes/jolt/Geometry/RayCapsule.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/RayCylinder.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/RaySphere.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00019\ JPH\_INLINE\ \textcolor{keywordtype}{float}\ RayCapsule(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayDirection,\ \textcolor{keywordtype}{float}\ inCapsuleHalfHeight,\ \textcolor{keywordtype}{float}\ inCapsuleRadius)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Test\ infinite\ cylinder}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ cylinder\ =\ RayCylinder(inRayOrigin,\ inRayDirection,\ inCapsuleRadius);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (cylinder\ ==\ FLT\_MAX)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FLT\_MAX;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ If\ this\ hit\ is\ in\ the\ finite\ cylinder\ we\ have\ our\ fraction}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(inRayOrigin.GetY()\ +\ cylinder\ *\ inRayDirection.GetY())\ <=\ inCapsuleHalfHeight)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cylinder;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Test\ upper\ and\ lower\ sphere}}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ sphere\_center(0,\ inCapsuleHalfHeight,\ 0);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{float}\ upper\ =\ RaySphere(inRayOrigin,\ inRayDirection,\ sphere\_center,\ inCapsuleRadius);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{float}\ lower\ =\ RaySphere(inRayOrigin,\ inRayDirection,\ -\/sphere\_center,\ inCapsuleRadius);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ min(upper,\ lower);}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

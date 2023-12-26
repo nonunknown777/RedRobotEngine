@@ -1,0 +1,45 @@
+\doxysection{Vehicle\+Anti\+Roll\+Bar Class Reference}
+\hypertarget{classVehicleAntiRollBar}{}\label{classVehicleAntiRollBar}\index{VehicleAntiRollBar@{VehicleAntiRollBar}}
+
+
+{\ttfamily \#include $<$Vehicle\+Anti\+Roll\+Bar.\+h$>$}
+
+
+
+Collaboration diagram for Vehicle\+Anti\+Roll\+Bar\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d8/dc8/classVehicleAntiRollBar__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVehicleAntiRollBar_adef2c8bc1bce0835c229f03bafcf6c97}\label{classVehicleAntiRollBar_adef2c8bc1bce0835c229f03bafcf6c97} 
+void {\bfseries Save\+Binary\+State} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the contents in binary form to in\+Stream. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleAntiRollBar_acf4e180f4337014b2ce4e0ddcd83a7fc}\label{classVehicleAntiRollBar_acf4e180f4337014b2ce4e0ddcd83a7fc} 
+void {\bfseries Restore\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restores the contents in binary form to in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVehicleAntiRollBar_ae4afc75ffe5f9652d5539064069d4271}\label{classVehicleAntiRollBar_ae4afc75ffe5f9652d5539064069d4271} 
+int {\bfseries m\+Left\+Wheel} = 0
+\begin{DoxyCompactList}\small\item\em Index (in m\+Wheels) that represents the left wheel of this anti-\/rollbar. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleAntiRollBar_a1c60e3cb529234e906aba43dacd04271}\label{classVehicleAntiRollBar_a1c60e3cb529234e906aba43dacd04271} 
+int {\bfseries m\+Right\+Wheel} = 1
+\begin{DoxyCompactList}\small\item\em Index (in m\+Wheels) that represents the right wheel of this anti-\/rollbar. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleAntiRollBar_a834b3f779e7beeb0cc7109d74bcf54b7}\label{classVehicleAntiRollBar_a834b3f779e7beeb0cc7109d74bcf54b7} 
+float {\bfseries m\+Stiffness} = 1000.\+0f
+\begin{DoxyCompactList}\small\item\em Stiffness (spring constant in N/m) of anti rollbar, can be 0 to disable the anti-\/rollbar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An anti rollbar is a stiff spring that connects two wheels to reduce the amount of roll the vehicle makes in sharp corners See\+: \href{https://en.wikipedia.org/wiki/Anti-roll_bar}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Anti-\/roll\+\_\+bar}} 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Vehicle/Vehicle\+Anti\+Roll\+Bar.\+h\end{DoxyCompactItemize}

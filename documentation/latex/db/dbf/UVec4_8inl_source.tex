@@ -1,0 +1,579 @@
+\doxysection{UVec4.\+inl}
+\hypertarget{UVec4_8inl_source}{}\label{UVec4_8inl_source}\index{includes/jolt/Math/UVec4.inl@{includes/jolt/Math/UVec4.inl}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4::UVec4}}(uint32\ inX,\ uint32\ inY,\ uint32\ inZ,\ uint32\ inW)}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00010\ \ \ \ \ mValue\ =\ \_mm\_set\_epi32(\textcolor{keywordtype}{int}(inW),\ \textcolor{keywordtype}{int}(inZ),\ \textcolor{keywordtype}{int}(inY),\ \textcolor{keywordtype}{int}(inX));}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00012\ \ \ \ \ uint32x2\_t\ xy\ =\ vcreate\_u32(\textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(inX)\ |\ (\textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(inY)\ <<\ 32));}
+\DoxyCodeLine{00013\ \ \ \ \ uint32x2\_t\ zw\ =\ vcreate\_u32(\textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(inZ)\ |\ (\textcolor{keyword}{static\_cast<}uint64\textcolor{keyword}{>}(inW)\ <<\ 32));}
+\DoxyCodeLine{00014\ \ \ \ \ mValue\ =\ vcombine\_u32(xy,\ zw);}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00016\ \ \ \ \ mU32[0]\ =\ inX;}
+\DoxyCodeLine{00017\ \ \ \ \ mU32[1]\ =\ inY;}
+\DoxyCodeLine{00018\ \ \ \ \ mU32[2]\ =\ inZ;}
+\DoxyCodeLine{00019\ \ \ \ \ mU32[3]\ =\ inW;}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUVec4_a998274caec249b2255973d43fcdd6111}{UVec4::operator\ ==\ }}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_a7124c8dadba4fa2467bb542e33b664f1}{sEquals}}(*\textcolor{keyword}{this},\ inV2).\mbox{\hyperlink{classUVec4_a48549afaeaba00fc4b45a10c50656c9f}{TestAllTrue}}();}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\ SwizzleX,\ u\textcolor{keywordtype}{int}32\ SwizzleY,\ u\textcolor{keywordtype}{int}32\ SwizzleZ,\ u\textcolor{keywordtype}{int}32\ SwizzleW>}
+\DoxyCodeLine{00029\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a03d1ddee4a58319e1fd6fb7a8c599874}{UVec4::Swizzle}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static\_assert}(SwizzleX\ <=\ 3,\ \textcolor{stringliteral}{"{}SwizzleX\ template\ parameter\ out\ of\ range"{}});}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static\_assert}(SwizzleY\ <=\ 3,\ \textcolor{stringliteral}{"{}SwizzleY\ template\ parameter\ out\ of\ range"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static\_assert}(SwizzleZ\ <=\ 3,\ \textcolor{stringliteral}{"{}SwizzleZ\ template\ parameter\ out\ of\ range"{}});}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static\_assert}(SwizzleW\ <=\ 3,\ \textcolor{stringliteral}{"{}SwizzleW\ template\ parameter\ out\ of\ range"{}});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi32(mValue,\ \_MM\_SHUFFLE(SwizzleW,\ SwizzleZ,\ SwizzleY,\ SwizzleX));}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ JPH\_NEON\_SHUFFLE\_F32x4(mValue,\ mValue,\ SwizzleX,\ SwizzleY,\ SwizzleZ,\ SwizzleW);}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[SwizzleX],\ mU32[SwizzleY],\ mU32[SwizzleZ],\ mU32[SwizzleW]);}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_ac95737616e92901bf3ebf5746a861233}{UVec4::sZero}}()}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_setzero\_si128();}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ vdupq\_n\_u32(0);}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(0,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(uint32\ inV)}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_set1\_epi32(\textcolor{keywordtype}{int}(inV));}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ vdupq\_n\_u32(inV);}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(inV,\ inV,\ inV,\ inV);}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a1fbc23618b7d0936c948c359fe5433e2}{UVec4::sLoadInt}}(\textcolor{keyword}{const}\ uint32\ *inV)}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_castps\_si128(\_mm\_load\_ss(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{float}*\textcolor{keyword}{>}(inV)));}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ vsetq\_lane\_u32(*inV,\ vdupq\_n\_u32(0),\ 0);}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(*inV,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\textcolor{keyword}{const}\ uint32\ *inV)}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_loadu\_si128(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\_\_m128i\ *\textcolor{keyword}{>}(inV));}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ vld1q\_u32(inV);}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(inV[0],\ inV[1],\ inV[2],\ inV[3]);}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_ab7c6d553246416fecc7ad386ec247562}{UVec4::sLoadInt4Aligned}}(\textcolor{keyword}{const}\ uint32\ *inV)}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_load\_si128(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\_\_m128i\ *\textcolor{keyword}{>}(inV));}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ vld1q\_u32(inV);\ \textcolor{comment}{//\ ARM\ doesn't\ make\ distinction\ between\ aligned\ or\ not}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(inV[0],\ inV[1],\ inV[2],\ inV[3]);}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{template}\ <const\ \textcolor{keywordtype}{int}\ Scale>}
+\DoxyCodeLine{00101\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a64f61c75e1595a8bbd98a964b1fb77ee}{UVec4::sGatherInt4}}(\textcolor{keyword}{const}\ uint32\ *inBase,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inOffsets)}
+\DoxyCodeLine{00102\ \{}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#ifdef\ JPH\_USE\_AVX2}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_i32gather\_epi32(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{int}\ *\textcolor{keyword}{>}(inBase),\ inOffsets.mValue,\ Scale);}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ Vec4::sGatherFloat4<Scale>(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{float}\ *\textcolor{keyword}{>}(inBase),\ inOffsets).ReinterpretAsInt();}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a158ea0e79cd9b012856caa45a79e9463}{UVec4::sMin}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV1,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_min\_epu32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ vminq\_u32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result;}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ min(inV1.mU32[i],\ inV2.mU32[i]);}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00122\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a9b6f9b567c5b18179eff43ec527ef82d}{UVec4::sMax}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV1,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_max\_epu32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ vmaxq\_u32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result;}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ max(inV1.mU32[i],\ inV2.mU32[i]);}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a7124c8dadba4fa2467bb542e33b664f1}{UVec4::sEquals}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV1,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)}
+\DoxyCodeLine{00139\ \{}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_cmpeq\_epi32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ vceqq\_u32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(inV1.mU32[0]\ ==\ inV2.mU32[0]?\ 0xffffffffu\ :\ 0,}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[1]\ ==\ inV2.mU32[1]?\ 0xffffffffu\ :\ 0,}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[2]\ ==\ inV2.mU32[2]?\ 0xffffffffu\ :\ 0,}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[3]\ ==\ inV2.mU32[3]?\ 0xffffffffu\ :\ 0);}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_ae71c2806661a22cb3a5c880a280f30c0}{UVec4::sSelect}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV1,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inControl)}
+\DoxyCodeLine{00153\ \{}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_castps\_si128(\_mm\_blendv\_ps(\_mm\_castsi128\_ps(inV1.mValue),\ \_mm\_castsi128\_ps(inV2.mValue),\ \_mm\_castsi128\_ps(inControl.mValue)));}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{return}\ vbslq\_u32(vshrq\_n\_s32(inControl.mValue,\ 31),\ inV2.mValue,\ inV1.mValue);}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result;}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ inControl.mU32[i]\ ?\ inV2.mU32[i]\ :\ inV1.mU32[i];}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00164\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV1,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)}
+\DoxyCodeLine{00167\ \{}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_or\_si128(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ vorrq\_u32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(inV1.mU32[0]\ |\ inV2.mU32[0],}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[1]\ |\ inV2.mU32[1],}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[2]\ |\ inV2.mU32[2],}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[3]\ |\ inV2.mU32[3]);}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_abd3a979865d0b6df8f8ef5ce6410e583}{UVec4::sXor}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV1,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)}
+\DoxyCodeLine{00181\ \{}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_xor\_si128(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ veorq\_u32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(inV1.mU32[0]\ \string^\ inV2.mU32[0],}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[1]\ \string^\ inV2.mU32[1],}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[2]\ \string^\ inV2.mU32[2],}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[3]\ \string^\ inV2.mU32[3]);}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV1,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)}
+\DoxyCodeLine{00195\ \{}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_and\_si128(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{return}\ vandq\_u32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(inV1.mU32[0]\ \&\ inV2.mU32[0],}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[1]\ \&\ inV2.mU32[1],}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[2]\ \&\ inV2.mU32[2],}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inV1.mU32[3]\ \&\ inV2.mU32[3]);}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00206\ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a089b92931aa8ae271a79f6c3684e647c}{UVec4::sNot}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV1)}
+\DoxyCodeLine{00210\ \{}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_AVX512)}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_ternarylogic\_epi32(inV1.mValue,\ inV1.mValue,\ inV1.mValue,\ 0b01010101);}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_abd3a979865d0b6df8f8ef5ce6410e583}{sXor}}(inV1,\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{sReplicate}}(0xffffffff));}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{return}\ vmvnq\_u32(inV1.mValue);}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(\string~inV1.mU32[0],\ \string~inV1.mU32[1],\ \string~inV1.mU32[2],\ \string~inV1.mU32[3]);}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00220\ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a2c26ee49875159becb637c976cd7b589}{UVec4::sSort4True}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inValue,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inIndex)}
+\DoxyCodeLine{00223\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{//\ If\ inValue.z\ is\ false\ then\ shift\ W\ to\ Z}}
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ v\ =\ \mbox{\hyperlink{classUVec4_ae71c2806661a22cb3a5c880a280f30c0}{UVec4::sSelect}}(inIndex.\mbox{\hyperlink{classUVec4_a03d1ddee4a58319e1fd6fb7a8c599874}{Swizzle}}<SWIZZLE\_X,\ SWIZZLE\_Y,\ SWIZZLE\_W,\ SWIZZLE\_W>(),\ inIndex,\ inValue.\mbox{\hyperlink{classUVec4_a9e56056fab7838ecd3017281a974755d}{SplatZ}}());}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ If\ inValue.y\ is\ false\ then\ shift\ Z\ and\ further\ to\ Y\ and\ further}}
+\DoxyCodeLine{00228\ \ \ \ \ v\ =\ \mbox{\hyperlink{classUVec4_ae71c2806661a22cb3a5c880a280f30c0}{UVec4::sSelect}}(v.\mbox{\hyperlink{classUVec4_a03d1ddee4a58319e1fd6fb7a8c599874}{Swizzle}}<SWIZZLE\_X,\ SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_W>(),\ v,\ inValue.\mbox{\hyperlink{classUVec4_a1dad43e9c11de6562500394e3c07a491}{SplatY}}());}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//\ If\ inValue.x\ is\ false\ then\ shift\ X\ and\ furhter\ to\ Y\ and\ furhter}}
+\DoxyCodeLine{00231\ \ \ \ \ v\ =\ \mbox{\hyperlink{classUVec4_ae71c2806661a22cb3a5c880a280f30c0}{UVec4::sSelect}}(v.\mbox{\hyperlink{classUVec4_a03d1ddee4a58319e1fd6fb7a8c599874}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_W>(),\ v,\ inValue.\mbox{\hyperlink{classUVec4_a434119d6c7174e6efda8bf7a9bfab3e7}{SplatX}}());}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00234\ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_ae2b7e062cd567b34fe691d46b15b072b}{UVec4::operator\ *\ }}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00237\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_mullo\_epi32(mValue,\ inV2.mValue);}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{return}\ vmulq\_u32(mValue,\ inV2.mValue);}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result;}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ mU32[i]\ *\ inV2.mU32[i];}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00248\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_aca855486776f06c4948abdf178ba17f2}{UVec4::operator\ +\ }}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)}
+\DoxyCodeLine{00251\ \{}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_add\_epi32(mValue,\ inV2.mValue);}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{return}\ vaddq\_u32(mValue,\ inV2.mValue);}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[0]\ +\ inV2.mU32[0],}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mU32[1]\ +\ inV2.mU32[1],}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mU32[2]\ +\ inV2.mU32[2],}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mU32[3]\ +\ inV2.mU32[3]);}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00262\ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \&\mbox{\hyperlink{classUVec4_a602f5243d8a4c73dc6796a03cecdc5f3}{UVec4::operator\ +=\ }}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV2)}
+\DoxyCodeLine{00265\ \{}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00267\ \ \ \ \ mValue\ =\ \_mm\_add\_epi32(mValue,\ inV2.mValue);}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00269\ \ \ \ \ mValue\ =\ vaddq\_u32(mValue,\ inV2.mValue);}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ mU32[i]\ +=\ inV2.mU32[i];}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00275\ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a434119d6c7174e6efda8bf7a9bfab3e7}{UVec4::SplatX}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00278\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi32(mValue,\ \_MM\_SHUFFLE(0,\ 0,\ 0,\ 0));}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordflow}{return}\ vdupq\_laneq\_u32(mValue,\ 0);}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[0],\ mU32[0],\ mU32[0],\ mU32[0]);}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00286\ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a1dad43e9c11de6562500394e3c07a491}{UVec4::SplatY}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00289\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi32(mValue,\ \_MM\_SHUFFLE(1,\ 1,\ 1,\ 1));}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{return}\ vdupq\_laneq\_u32(mValue,\ 1);}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[1],\ mU32[1],\ mU32[1],\ mU32[1]);}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00297\ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a9e56056fab7838ecd3017281a974755d}{UVec4::SplatZ}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00300\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi32(mValue,\ \_MM\_SHUFFLE(2,\ 2,\ 2,\ 2));}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordflow}{return}\ vdupq\_laneq\_u32(mValue,\ 2);}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[2],\ mU32[2],\ mU32[2],\ mU32[2]);}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00308\ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_aa387ab2fa75ac96fa21f35f119c60f8a}{UVec4::SplatW}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00311\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi32(mValue,\ \_MM\_SHUFFLE(3,\ 3,\ 3,\ 3));}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{return}\ vdupq\_laneq\_u32(mValue,\ 3);}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[3],\ mU32[3],\ mU32[3],\ mU32[3]);}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00319\ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \mbox{\hyperlink{classVec4}{Vec4}}\ \mbox{\hyperlink{classUVec4_aec14683a4f6c1c34bb27e7119a813184}{UVec4::ToFloat}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00322\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_cvtepi32\_ps(mValue);}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordflow}{return}\ vcvtq\_f32\_s32(mValue);}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec4}{Vec4}}((\textcolor{keywordtype}{float})mU32[0],\ (\textcolor{keywordtype}{float})mU32[1],\ (\textcolor{keywordtype}{float})mU32[2],\ (\textcolor{keywordtype}{float})mU32[3]);}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00330\ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \mbox{\hyperlink{classVec4}{Vec4}}\ \mbox{\hyperlink{classUVec4_af399ef91439555b5264eec1790537547}{UVec4::ReinterpretAsFloat}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00333\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec4}{Vec4}}(\_mm\_castsi128\_ps(mValue));}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keywordflow}{return}\ vreinterpretq\_f32\_s32(mValue);}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classVec4}{Vec4}}\ *\textcolor{keyword}{>}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00341\ \}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUVec4_aa7b95daa78a51ef877eca777c0389023}{UVec4::StoreInt4}}(uint32\ *outV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00344\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00346\ \ \ \ \ \_mm\_storeu\_si128(\textcolor{keyword}{reinterpret\_cast<}\_\_m128i\ *\textcolor{keyword}{>}(outV),\ mValue);}
+\DoxyCodeLine{00347\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00348\ \ \ \ \ vst1q\_u32(outV,\ mValue);}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ outV[i]\ =\ mU32[i];}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00353\ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classUVec4_af62228e490b01b95d5b008a54746473c}{UVec4::StoreInt4Aligned}}(uint32\ *outV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00356\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00358\ \ \ \ \ \_mm\_store\_si128(\textcolor{keyword}{reinterpret\_cast<}\_\_m128i\ *\textcolor{keyword}{>}(outV),\ mValue);}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00360\ \ \ \ \ vst1q\_u32(outV,\ mValue);\ \textcolor{comment}{//\ ARM\ doesn't\ make\ distinction\ between\ aligned\ or\ not}}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ outV[i]\ =\ mU32[i];}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00365\ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classUVec4_a1b44f57941f0fd3237bc0c6ff638e91e}{UVec4::CountTrues}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00368\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keywordflow}{return}\ CountBits(\_mm\_movemask\_ps(\_mm\_castsi128\_ps(mValue)));}
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{return}\ vaddvq\_u32(vshrq\_n\_u32(mValue,\ 31));}
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordflow}{return}\ (mU32[0]\ >>\ 31)\ +\ (mU32[1]\ >>\ 31)\ +\ (mU32[2]\ >>\ 31)\ +\ (mU32[3]\ >>\ 31);}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00376\ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classUVec4_a4e62bc4e8238a1742d9cde03a0520252}{UVec4::GetTrues}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00379\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_movemask\_ps(\_mm\_castsi128\_ps(mValue));}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00383\ \ \ \ \ int32x4\_t\ shift\ =\ JPH\_NEON\_INT32x4(0,\ 1,\ 2,\ 3);}
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keywordflow}{return}\ vaddvq\_u32(vshlq\_u32(vshrq\_n\_u32(mValue,\ 31),\ shift));}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keywordflow}{return}\ (mU32[0]\ >>\ 31)\ |\ ((mU32[1]\ >>\ 31)\ <<\ 1)\ |\ ((mU32[2]\ >>\ 31)\ <<\ 2)\ |\ ((mU32[3]\ >>\ 31)\ <<\ 3);}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00388\ \}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUVec4_afa8f229eccfd643197d92382bf8877f7}{UVec4::TestAnyTrue}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00391\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_a4e62bc4e8238a1742d9cde03a0520252}{GetTrues}}()\ !=\ 0;}
+\DoxyCodeLine{00393\ \}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUVec4_a57a26ddd10bb99e07e68096eb10d1244}{UVec4::TestAnyXYZTrue}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00396\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classUVec4_a4e62bc4e8238a1742d9cde03a0520252}{GetTrues}}()\ \&\ 0b111)\ !=\ 0;}
+\DoxyCodeLine{00398\ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUVec4_a48549afaeaba00fc4b45a10c50656c9f}{UVec4::TestAllTrue}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00401\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_a4e62bc4e8238a1742d9cde03a0520252}{GetTrues}}()\ ==\ 0b1111;}
+\DoxyCodeLine{00403\ \}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUVec4_a8a5a4714c700cab249106fe37bf1f74f}{UVec4::TestAllXYZTrue}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00406\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classUVec4_a4e62bc4e8238a1742d9cde03a0520252}{GetTrues}}()\ \&\ 0b111)\ ==\ 0b111;}
+\DoxyCodeLine{00408\ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00411\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a159c5fb6e8cb1c49a87a48d3977b50b6}{UVec4::LogicalShiftLeft}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00412\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keyword}{static\_assert}(Count\ <=\ 31,\ \textcolor{stringliteral}{"{}Invalid\ shift"{}});}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_slli\_epi32(mValue,\ Count);}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keywordflow}{return}\ vshlq\_n\_u32(mValue,\ Count);}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[0]\ <<\ Count,\ mU32[1]\ <<\ Count,\ mU32[2]\ <<\ Count,\ mU32[3]\ <<\ Count);}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00422\ \}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00425\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a42597d44e823feee9c343624b72ece79}{UVec4::LogicalShiftRight}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00426\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{keyword}{static\_assert}(Count\ <=\ 31,\ \textcolor{stringliteral}{"{}Invalid\ shift"{}});}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_srli\_epi32(mValue,\ Count);}
+\DoxyCodeLine{00431\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{return}\ vshrq\_n\_u32(mValue,\ Count);}
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[0]\ >>\ Count,\ mU32[1]\ >>\ Count,\ mU32[2]\ >>\ Count,\ mU32[3]\ >>\ Count);}
+\DoxyCodeLine{00435\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00436\ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00439\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_acfceebc6fc876a55c008bff9fc78b005}{UVec4::ArithmeticShiftRight}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00440\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{keyword}{static\_assert}(Count\ <=\ 31,\ \textcolor{stringliteral}{"{}Invalid\ shift"{}});}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_srai\_epi32(mValue,\ Count);}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keywordflow}{return}\ vshrq\_n\_s32(mValue,\ Count);}
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(uint32(int32\_t(mU32[0])\ >>\ Count),}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32(int32\_t(mU32[1])\ >>\ Count),}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32(int32\_t(mU32[2])\ >>\ Count),}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32(int32\_t(mU32[3])\ >>\ Count));}
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00453\ \}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a231db23152af3fc49272a7842432b2d8}{UVec4::Expand4Uint16Lo}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00456\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_unpacklo\_epi16(mValue,\ \_mm\_castps\_si128(\_mm\_setzero\_ps()));}
+\DoxyCodeLine{00459\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00460\ \ \ \ \ int16x4\_t\ value\ =\ vget\_low\_s16(mValue);}
+\DoxyCodeLine{00461\ \ \ \ \ int16x4\_t\ zero\ =\ vdup\_n\_s16(0);}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keywordflow}{return}\ vcombine\_s16(vzip1\_s16(value,\ zero),\ vzip2\_s16(value,\ zero));}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00464\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[0]\ \&\ 0xffff,}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mU32[0]\ >>\ 16)\ \&\ 0xffff,}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mU32[1]\ \&\ 0xffff,}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mU32[1]\ >>\ 16)\ \&\ 0xffff);}
+\DoxyCodeLine{00468\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00469\ \}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_ac7ecdcc40c2437edb94d824902084471}{UVec4::Expand4Uint16Hi}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00472\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_unpackhi\_epi16(mValue,\ \_mm\_castps\_si128(\_mm\_setzero\_ps()));}
+\DoxyCodeLine{00475\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00476\ \ \ \ \ int16x4\_t\ value\ =\ vget\_high\_s16(mValue);}
+\DoxyCodeLine{00477\ \ \ \ \ int16x4\_t\ zero\ =\ vdup\_n\_s16(0);}
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{keywordflow}{return}\ vcombine\_s16(vzip1\_s16(value,\ zero),\ vzip2\_s16(value,\ zero));}
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}}(mU32[2]\ \&\ 0xffff,}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mU32[2]\ >>\ 16)\ \&\ 0xffff,}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mU32[3]\ \&\ 0xffff,}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mU32[3]\ >>\ 16)\ \&\ 0xffff);}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00485\ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a4e1d53e419791f3a1d73e96fe905cb9a}{UVec4::Expand4Byte0}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00488\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00490\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi8(mValue,\ \_mm\_set\_epi32(\textcolor{keywordtype}{int}(0xffffff03),\ \textcolor{keywordtype}{int}(0xffffff02),\ \textcolor{keywordtype}{int}(0xffffff01),\ \textcolor{keywordtype}{int}(0xffffff00)));}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00492\ \ \ \ \ int8x16\_t\ idx\ =\ JPH\_NEON\_INT8x16(0x00,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x01,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x02,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x03,\ 0x7f,\ 0x7f,\ 0x7f);}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordflow}{return}\ vreinterpretq\_u32\_s8(vqtbl1q\_s8(vreinterpretq\_s8\_u32(mValue),\ idx));}
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00495\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result;}
+\DoxyCodeLine{00496\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ (mU32[0]\ >>\ (i\ *\ 8))\ \&\ 0xff;}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00499\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00500\ \}}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a43c0348b32fe2a8a8a3fe3e82adbf4e1}{UVec4::Expand4Byte4}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00503\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00504\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00505\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi8(mValue,\ \_mm\_set\_epi32(\textcolor{keywordtype}{int}(0xffffff07),\ \textcolor{keywordtype}{int}(0xffffff06),\ \textcolor{keywordtype}{int}(0xffffff05),\ \textcolor{keywordtype}{int}(0xffffff04)));}
+\DoxyCodeLine{00506\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00507\ \ \ \ \ int8x16\_t\ idx\ =\ JPH\_NEON\_INT8x16(0x04,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x05,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x06,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x07,\ 0x7f,\ 0x7f,\ 0x7f);}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordflow}{return}\ vreinterpretq\_u32\_s8(vqtbl1q\_s8(vreinterpretq\_s8\_u32(mValue),\ idx));}
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00510\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result;}
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ (mU32[1]\ >>\ (i\ *\ 8))\ \&\ 0xff;}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00514\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00515\ \}}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_ab576b5e89a741b942e5a0eee30221fff}{UVec4::Expand4Byte8}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00518\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi8(mValue,\ \_mm\_set\_epi32(\textcolor{keywordtype}{int}(0xffffff0b),\ \textcolor{keywordtype}{int}(0xffffff0a),\ \textcolor{keywordtype}{int}(0xffffff09),\ \textcolor{keywordtype}{int}(0xffffff08)));}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00522\ \ \ \ \ int8x16\_t\ idx\ =\ JPH\_NEON\_INT8x16(0x08,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x09,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x0a,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x0b,\ 0x7f,\ 0x7f,\ 0x7f);}
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordflow}{return}\ vreinterpretq\_u32\_s8(vqtbl1q\_s8(vreinterpretq\_s8\_u32(mValue),\ idx));}
+\DoxyCodeLine{00524\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00525\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result;}
+\DoxyCodeLine{00526\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ (mU32[2]\ >>\ (i\ *\ 8))\ \&\ 0xff;}
+\DoxyCodeLine{00528\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00529\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00530\ \}}
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00532\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_ab90115fc1e9f272b053cd5e593eefecd}{UVec4::Expand4Byte12}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00533\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00534\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00535\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi8(mValue,\ \_mm\_set\_epi32(\textcolor{keywordtype}{int}(0xffffff0f),\ \textcolor{keywordtype}{int}(0xffffff0e),\ \textcolor{keywordtype}{int}(0xffffff0d),\ \textcolor{keywordtype}{int}(0xffffff0c)));}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00537\ \ \ \ \ int8x16\_t\ idx\ =\ JPH\_NEON\_INT8x16(0x0c,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x0d,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x0e,\ 0x7f,\ 0x7f,\ 0x7f,\ 0x0f,\ 0x7f,\ 0x7f,\ 0x7f);}
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{keywordflow}{return}\ vreinterpretq\_u32\_s8(vqtbl1q\_s8(vreinterpretq\_s8\_u32(mValue),\ idx));}
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00540\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result;}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ (mU32[3]\ >>\ (i\ *\ 8))\ \&\ 0xff;}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00545\ \}}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec4_a8d9ff8b435e5475505c944e96d872b2b}{UVec4::ShiftComponents4Minus}}(\textcolor{keywordtype}{int}\ inCount)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00548\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00549\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)\ ||\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00550\ \ \ \ \ \textcolor{keyword}{alignas}(\mbox{\hyperlink{classUVec4_ade18dcf5276cb800f91e55993f1f5270}{UVec4}})\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint32\ sFourMinusXShuffle[5][4]\ =}
+\DoxyCodeLine{00551\ \ \ \ \ \{}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \{\ 0xffffffff,\ 0xffffffff,\ 0xffffffff,\ 0xffffffff\ \},}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \{\ 0x0f0e0d0c,\ 0xffffffff,\ 0xffffffff,\ 0xffffffff\ \},}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \{\ 0x0b0a0908,\ 0x0f0e0d0c,\ 0xffffffff,\ 0xffffffff\ \},}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \{\ 0x07060504,\ 0x0b0a0908,\ 0x0f0e0d0c,\ 0xffffffff\ \},}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \{\ 0x03020100,\ 0x07060504,\ 0x0b0a0908,\ 0x0f0e0d0c\ \}}
+\DoxyCodeLine{00557\ \ \ \ \ \};}
+\DoxyCodeLine{00558\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00561\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_shuffle\_epi8(mValue,\ *\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }UVec4::Type\ *\textcolor{keyword}{>}(sFourMinusXShuffle[inCount]));}
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00563\ \ \ \ \ uint8x16\_t\ idx\ =\ vreinterpretq\_u8\_u32(*\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }UVec4::Type\ *\textcolor{keyword}{>}(sFourMinusXShuffle[inCount]));}
+\DoxyCodeLine{00564\ \ \ \ \ \textcolor{keywordflow}{return}\ vreinterpretq\_u32\_s8(vqtbl1q\_s8(vreinterpretq\_s8\_u32(mValue),\ idx));}
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00566\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ result\ =\ \mbox{\hyperlink{classUVec4_ac95737616e92901bf3ebf5746a861233}{UVec4::sZero}}();}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ inCount;\ i++)}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ result.mU32[i]\ =\ mU32[i\ +\ 4\ -\/\ inCount];}
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00570\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00571\ \}}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00573\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

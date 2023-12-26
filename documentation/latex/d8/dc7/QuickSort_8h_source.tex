@@ -1,0 +1,139 @@
+\doxysection{Quick\+Sort.\+h}
+\hypertarget{QuickSort_8h_source}{}\label{QuickSort_8h_source}\index{includes/jolt/Core/QuickSort.h@{includes/jolt/Core/QuickSort.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2022\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/InsertionSort.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator,\ \textcolor{keyword}{typename}\ Compare>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ QuickSortMedianOfThree(Iterator\ inFirst,\ Iterator\ inMiddle,\ Iterator\ inLast,\ Compare\ inCompare)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ This\ should\ be\ guaranteed\ because\ we\ switch\ over\ to\ insertion\ sort\ when\ there's\ 32\ or\ less\ elements}}
+\DoxyCodeLine{00016\ \ \ \ \ JPH\_ASSERT(inFirst\ !=\ inMiddle\ \&\&\ inMiddle\ !=\ inLast);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (inCompare(*inMiddle,\ *inFirst))}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_abbaf30d44caa739e24d21d763b90030c}{swap}}(*inFirst,\ *inMiddle);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (inCompare(*inLast,\ *inFirst))}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_abbaf30d44caa739e24d21d763b90030c}{swap}}(*inFirst,\ *inLast);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (inCompare(*inLast,\ *inMiddle))}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_abbaf30d44caa739e24d21d763b90030c}{swap}}(*inMiddle,\ *inLast);}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator,\ \textcolor{keyword}{typename}\ Compare>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ QuickSortNinther(Iterator\ inFirst,\ Iterator\ inMiddle,\ Iterator\ inLast,\ Compare\ inCompare)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Divide\ the\ range\ in\ 8\ equal\ parts\ (this\ means\ there\ are\ 9\ points)}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{auto}\ diff\ =\ (inLast\ -\/\ inFirst)\ >>\ 3;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{auto}\ two\_diff\ =\ diff\ <<\ 1;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Median\ of\ first\ 3\ points}}
+\DoxyCodeLine{00037\ \ \ \ \ Iterator\ mid1\ =\ inFirst\ +\ diff;}
+\DoxyCodeLine{00038\ \ \ \ \ QuickSortMedianOfThree(inFirst,\ mid1,\ inFirst\ +\ two\_diff,\ inCompare);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Median\ of\ second\ 3\ points}}
+\DoxyCodeLine{00041\ \ \ \ \ QuickSortMedianOfThree(inMiddle\ -\/\ diff,\ inMiddle,\ inMiddle\ +\ diff,\ inCompare);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Median\ of\ third\ 3\ points}}
+\DoxyCodeLine{00044\ \ \ \ \ Iterator\ mid3\ =\ inLast\ -\/\ diff;}
+\DoxyCodeLine{00045\ \ \ \ \ QuickSortMedianOfThree(inLast\ -\/\ two\_diff,\ mid3,\ inLast,\ inCompare);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ median\ of\ the\ 3\ medians}}
+\DoxyCodeLine{00048\ \ \ \ \ QuickSortMedianOfThree(mid1,\ inMiddle,\ mid3,\ inCompare);}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator,\ \textcolor{keyword}{typename}\ Compare>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ QuickSort(Iterator\ inBegin,\ Iterator\ inEnd,\ Compare\ inCompare)}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Implementation\ based\ on\ https://en.wikipedia.org/wiki/Quicksort\ using\ Hoare's\ partition\ scheme}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Loop\ so\ that\ we\ only\ need\ to\ do\ 1\ recursive\ call\ instead\ of\ 2.}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ there's\ less\ than\ 2\ elements\ we're\ done}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ num\_elements\ =\ inEnd\ -\/\ inBegin;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_elements\ <\ 2)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fall\ back\ to\ insertion\ sort\ if\ there\ are\ too\ few\ elements}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (num\_elements\ <=\ 32)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ InsertionSort(inBegin,\ inEnd,\ inCompare);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ pivot}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ Iterator\ pivot\_iterator\ =\ inBegin\ +\ ((num\_elements\ -\/\ 1)\ >>\ 1);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ QuickSortNinther(inBegin,\ pivot\_iterator,\ inEnd\ -\/\ 1,\ inCompare);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ pivot\ =\ *pivot\_iterator;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Left\ and\ right\ iterators}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ Iterator\ i\ =\ inBegin;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ Iterator\ j\ =\ inEnd;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ first\ element\ that\ is\ bigger\ than\ the\ pivot}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (inCompare(*i,\ pivot))}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ last\ element\ that\ is\ smaller\ than\ the\ pivot}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/j;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (inCompare(pivot,\ *j));}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ two\ iterators\ crossed,\ we're\ done}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ j)}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swap\ the\ elements}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_abbaf30d44caa739e24d21d763b90030c}{swap}}(*i,\ *j);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ the\ first\ while\ loop\ in\ this\ function\ should}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ have\ been\ do\ i++\ while\ (...)\ but\ since\ we\ cannot\ decrement}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ iterator\ from\ inBegin\ we\ left\ that\ out,\ so\ we\ need\ to\ do}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ it\ here.}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ ++i;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Include\ the\ middle\ element\ on\ the\ left\ side}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ j++;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ which\ partition\ is\ smaller}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ -\/\ inBegin\ <\ inEnd\ -\/\ j)}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Left\ side\ is\ smaller,\ recurse\ to\ left\ first}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ QuickSort(inBegin,\ j,\ inCompare);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ again\ with\ the\ right\ side\ to\ avoid\ a\ call}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ inBegin\ =\ j;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Right\ side\ is\ smaller,\ recurse\ to\ right\ first}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ QuickSort(j,\ inEnd,\ inCompare);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ again\ with\ the\ left\ side\ to\ avoid\ a\ call}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ inEnd\ =\ j;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ QuickSort(Iterator\ inBegin,\ Iterator\ inEnd)}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ std::less<>\ compare;}
+\DoxyCodeLine{00134\ \ \ \ \ QuickSort(inBegin,\ inEnd,\ compare);}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

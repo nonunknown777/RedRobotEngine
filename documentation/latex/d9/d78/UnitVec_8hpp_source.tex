@@ -1,0 +1,312 @@
+\doxysection{Unit\+Vec.\+hpp}
+\hypertarget{UnitVec_8hpp_source}{}\label{UnitVec_8hpp_source}\index{includes/playrho/Common/UnitVec.hpp@{includes/playrho/Common/UnitVec.hpp}}
+\mbox{\hyperlink{UnitVec_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_UNITVEC2\_HPP}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_UNITVEC2\_HPP}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Settings.hpp>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Units.hpp>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/InvalidArgument.hpp>}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ Explicitly\ import\ needed\ functions\ into\ this\ namespace\ to\ avoid\ including\ the\ math}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ \ header\ which\ itself\ expects\ UnitVec\ to\ already\ be\ defined.}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{using\ }std::isnormal;}
+\DoxyCodeLine{00041\ \textcolor{keyword}{using\ }std::sqrt;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{using\ }std::hypot;}
+\DoxyCodeLine{00043\ \textcolor{keyword}{using\ }std::abs;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{namespace\ }d2\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}};}
+\DoxyCodeLine{00054\ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\_type}}\ =\ std::size\_t;}
+\DoxyCodeLine{00057\ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5}{const\_reference}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\&;}
+\DoxyCodeLine{00060\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab01e2b6172ff17d8ef644c5915ac0ddc}{const\_pointer}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}*;}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\_iterator}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}*;}
+\DoxyCodeLine{00066\ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\_reverse\_iterator}}\ =\ std::reverse\_iterator<const\_iterator>;}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a989ef293213c6b3a4d1901533445cd85}{GetRight}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{1,\ 0\};\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ad3f132b30c82d05c107a8d8231db244b}{GetTop}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{0,\ 1\};\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a44b186e8e5faa989049dcb9fba7367c7}{GetLeft}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{-\/1,\ 0\};\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a814ef2468f93f2785da36e6651840a14}{GetBottom}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{0,\ -\/1\};\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a36ae084e9c7c9e474738daa40674bf73}{GetZero}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{0,\ 0\};\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1e841cb8279292e8fbaf0d83b4cd0ddb}{GetTopRight}}()\ noexcept}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ 1/sqrt(2)\ ==\ sqrt(2)/(sqrt(2)*sqrt(2))\ ==\ sqrt(2)/2}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{+\mbox{\hyperlink{namespaceplayrho_aae1bd392cbafcb91d60633c893ff0742}{SquareRootTwo}}/\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(2),\ +\mbox{\hyperlink{namespaceplayrho_aae1bd392cbafcb91d60633c893ff0742}{SquareRootTwo}}/\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(2)\};}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ad253c43a96160cfccf89cf650abd225e}{GetBottomRight}}()\ noexcept}
+\DoxyCodeLine{00109\ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ 1/sqrt(2)\ ==\ sqrt(2)/(sqrt(2)*sqrt(2))\ ==\ sqrt(2)/2}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{+\mbox{\hyperlink{namespaceplayrho_aae1bd392cbafcb91d60633c893ff0742}{SquareRootTwo}}/\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(2),\ -\/\mbox{\hyperlink{namespaceplayrho_aae1bd392cbafcb91d60633c893ff0742}{SquareRootTwo}}/\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(2)\};}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a9c0d12b9f3e418a49933c367305c01c0}{GetDefaultFallback}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{\};\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab3503f1c480f004d65ee5562c1039140}{PolarCoord}}\ =\ std::enable\_if\_t<IsArithmetic<T>::value,\ std::pair<UnitVec,\ T>>;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab3503f1c480f004d65ee5562c1039140}{PolarCoord<T>}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a64a1edbf6659aa3c059baf770f3c165e}{Get}}(\textcolor{keyword}{const}\ T\ x,\ \textcolor{keyword}{const}\ T\ y,}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ fallback\ =\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a9c0d12b9f3e418a49933c367305c01c0}{GetDefaultFallback}}())\ noexcept}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Try\ the\ faster\ way\ first...}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ magnitudeSquared\ =\ x\ *\ x\ +\ y\ *\ y;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__FixedMath_ga4ab479ab854291e9d03a25cc0986deca}{isnormal}}(magnitudeSquared))}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ magnitude\ =\ \mbox{\hyperlink{group__FixedMath_ga7a9d7e9855b45a3b4103632a47ccd6f4}{sqrt}}(magnitudeSquared);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\mbox{\hyperlink{group__FixedMath_ga4ab479ab854291e9d03a25cc0986deca}{isnormal}}(magnitude));}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ invMagnitude\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{1\}\ /\ magnitude;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\{x\ *\ invMagnitude\},\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\{y\ *\ invMagnitude\}\},\ magnitude\};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Failed\ the\ faster\ way,\ try\ the\ more\ accurate\ and\ robust\ way...}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ magnitude\ =\ \mbox{\hyperlink{group__FixedMath_ga213e88c53422b6b956e53b0c41d409ae}{hypot}}(x,\ y);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__FixedMath_ga4ab479ab854291e9d03a25cc0986deca}{isnormal}}(magnitude))}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_pair(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{x\ /\ magnitude,\ y\ /\ magnitude\},\ magnitude);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Give\ up\ and\ return\ the\ fallback\ value.}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_pair(fallback,\ T\{0\});}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a30458bf213b9ea659a0b62491acd5231}{Get}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}\ angle)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}()\ noexcept\ =\ default;}
+\DoxyCodeLine{00159\ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ constexpr\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\_type}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_af55450330386cf1cde58138e559bb39f}{max\_size}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\_type}}\{2\};\ \}}
+\DoxyCodeLine{00162\ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\_type}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab2eb4e744f2d9576257c943eb33d31de}{size}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\_type}}\{2\};\ \}}
+\DoxyCodeLine{00165\ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ad7db3fec687e84fa542b4658cc72acc1}{empty}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00169\ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\_iterator}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1daed0036c85f79db339d621bd821e7e}{begin}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\_iterator}}(m\_elems);\ \}}
+\DoxyCodeLine{00172\ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\_iterator}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a51c92fd671c1aa855d11fc2270d27b8f}{end}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\_iterator}}(m\_elems\ +\ 2);\ \}}
+\DoxyCodeLine{00175\ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\_iterator}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a05b457eb94056a8e3b3865024d9e7597}{cbegin}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1daed0036c85f79db339d621bd821e7e}{begin}}();\ \}}
+\DoxyCodeLine{00178\ \ \ \ \ }
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8768204b9d09d03c772c14967a925791}{const\_iterator}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_aa0a3a0f53320c3e0461bee2b2c8ea30b}{cend}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a51c92fd671c1aa855d11fc2270d27b8f}{end}}();\ \}}
+\DoxyCodeLine{00181\ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\_reverse\_iterator}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab22cbe6daab96aee5c3c4117834b06c7}{crbegin}}()\ const\ noexcept}
+\DoxyCodeLine{00184\ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\_reverse\_iterator}}\{m\_elems\ +\ 2\};}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\_reverse\_iterator}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8d44f8cbedd5f58a3a47ec217607e2cd}{crend}}()\ const\ noexcept}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\_reverse\_iterator}}\{m\_elems\};}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ }
+\DoxyCodeLine{00195\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\_reverse\_iterator}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a2395f8349fa44e4705f22704a40b6603}{rbegin}}()\ const\ noexcept}
+\DoxyCodeLine{00196\ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab22cbe6daab96aee5c3c4117834b06c7}{crbegin}}();}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ }
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7913b334ce42e2e6dd740254e76cec64}{const\_reverse\_iterator}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a0fc0438361d440f40960594f3c50e9d6}{rend}}()\ const\ noexcept}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a8d44f8cbedd5f58a3a47ec217607e2cd}{crend}}();}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5}{const\_reference}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1e6755e80f6737ff7823b135a1f47318}{operator[]}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\_type}}\ pos)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ assert(pos\ <\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab2eb4e744f2d9576257c943eb33d31de}{size}}());}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elems[pos];}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a3f9af7e3f3778be7c5397325fdfda6b5}{const\_reference}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7067c246d03f6de8a054b8ce3810b9b2}{at}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a4c0ec8c437dcabe459480d31af35d31b}{size\_type}}\ pos)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00218\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ >=\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab2eb4e744f2d9576257c943eb33d31de}{size}}())}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classplayrho_1_1InvalidArgument}{InvalidArgument}}(\textcolor{stringliteral}{"{}Vector::at:\ position\ >=\ size()"{}});}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elems[pos];}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab01e2b6172ff17d8ef644c5915ac0ddc}{const\_pointer}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab20e84975636fb39972c50fb55251771}{data}}()\ const\ noexcept}
+\DoxyCodeLine{00228\ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elems;}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ m\_elems[0];\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ m\_elems[1];\ \}}
+\DoxyCodeLine{00237\ \ \ \ \ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a292d9c273617a3ada4a20f53b0e22cbf}{FlipXY}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{-\/\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}(),\ -\/\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}()\};\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a9383bbc355a8e001d1eda9fcc0f98aa2}{FlipX}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{-\/\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}(),\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}()\};\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a939f4c4a3315818d7cdbb2475406cc41}{FlipY}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}(),\ -\/\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}()\};\ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab8759fd715e0db2fa7658a90aef100b2}{Rotate}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ amount)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}()\ *\ amount.\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}()\ -\/\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}()\ *\ amount.GetY(),}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}()\ *\ amount.GetX()\ +\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}()\ *\ amount.GetY()\};}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1d9cfdf4a1d77ff7f795f4208170a239}{GetRevPerpendicular}}()\ const\ noexcept}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ See\ http://mathworld.wolfram.com/PerpendicularVector.html}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{-\/\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}(),\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}()\};}
+\DoxyCodeLine{00268\ \ \ \ \ \}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7b903c5d18da3007dad5d31d66ffa872}{GetFwdPerpendicular}}()\ const\ noexcept}
+\DoxyCodeLine{00275\ \ \ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ See\ http://mathworld.wolfram.com/PerpendicularVector.html}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}(),\ -\/\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}()\};}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a897c2964930d475d582c5ccfd8cee10f}{operator-\/}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{-\/\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}(),\ -\/\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}()\};\ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab4d6bd9c4e747cc1f0118769269df628}{operator+}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}(),\ +\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}()\};\ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ad1bcbfce894d533d52b98c6032da9661}{Absolute}}()\ const\ noexcept}
+\DoxyCodeLine{00288\ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\{\mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}()),\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_afd94abdf9e62bb60313227c20a5757d8}{GetY}}())\};}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00293\ \ \ \ \ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\ x,\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\ y)\ noexcept\ :\ m\_elems\{x,\ y\}}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\ m\_elems[2]\ =\ \{\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\{0\},\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{value\_type}}\{0\}\ \};\ }
+\DoxyCodeLine{00301\ \};}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{comment}{//\ Free\ functions...}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00306\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_ab54e46ffcc4d47cab7dc7194690357c0}{GetXAxis}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ rot)\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ rot;\ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00310\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_aa30dcf70f9f07cbfd26e897823a43948}{GetYAxis}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ rot)\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ rot.\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1d9cfdf4a1d77ff7f795f4208170a239}{GetRevPerpendicular}}();\ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00313\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a4e08ccbbdba321adad44c940d95c52fb}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ b)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{return}\ (a.GetX()\ ==\ b.GetX())\ \&\&\ (a.GetY()\ ==\ b.GetY());}
+\DoxyCodeLine{00316\ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00319\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a4442cd95fcdc4e62463d3e294fc7a303}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ b)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00320\ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{return}\ (a.GetX()\ !=\ b.GetX())\ ||\ (a.GetY()\ !=\ b.GetY());}
+\DoxyCodeLine{00322\ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00330\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_ae4e2af42e9c6e9d5413f99eb0da246fd}{GetRevPerpendicular}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ vector)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00331\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordflow}{return}\ vector.\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1d9cfdf4a1d77ff7f795f4208170a239}{GetRevPerpendicular}}();}
+\DoxyCodeLine{00333\ \}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00340\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a349428868dd3c61bdd24052f7d809472}{GetFwdPerpendicular}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ vector)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00341\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordflow}{return}\ vector.\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a7b903c5d18da3007dad5d31d66ffa872}{GetFwdPerpendicular}}();}
+\DoxyCodeLine{00343\ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00348\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_ae66614a0b733ce9092928e3b30f16cfe}{Rotate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\&\ angle)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00349\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordflow}{return}\ vector.\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab8759fd715e0db2fa7658a90aef100b2}{Rotate}}(angle);}
+\DoxyCodeLine{00351\ \}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00354\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a2e0aebd6a2aa7682a091698b5012df16}{InverseRotate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\&\ angle)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00355\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordflow}{return}\ vector.\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_ab8759fd715e0db2fa7658a90aef100b2}{Rotate}}(angle.FlipY());}
+\DoxyCodeLine{00357\ \}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00360\ \textcolor{keyword}{template}\ <std::\textcolor{keywordtype}{size\_t}\ I>}
+\DoxyCodeLine{00361\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{UnitVec::value\_type}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a7f255d17276c91c754f80427ab5b0fe5}{get}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00362\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{static\_assert}(I\ <\ 2,\ \textcolor{stringliteral}{"{}Index\ out\ of\ bounds\ in\ playrho::get<>\ (playrho::UnitVec)"{}});}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordflow}{switch}\ (I)}
+\DoxyCodeLine{00365\ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ v.\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a5b4a5ee8a7ab899d9dc87e948f0efbf9}{GetX}}();}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ v.GetY();}
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00372\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00373\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{UnitVec::value\_type}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a121348e66a018e39470850e228a32325}{get<0>}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00374\ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keywordflow}{return}\ v.GetX();}
+\DoxyCodeLine{00376\ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00379\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00380\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{UnitVec::value\_type}}\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a67bf6af0b317839a31e92ef6d6f5ba52}{get<1>}}(\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00381\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordflow}{return}\ v.GetY();}
+\DoxyCodeLine{00383\ \}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00386\ inline\ ::std::ostream\&\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a825ad596535328923dfd9765ed740baf}{operator<<}}(::std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{UnitVec}}\&\ value)}
+\DoxyCodeLine{00387\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keywordflow}{return}\ os\ <<\ \textcolor{stringliteral}{"{}UnitVec("{}}\ <<\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a121348e66a018e39470850e228a32325}{get<0>}}(value)\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ \mbox{\hyperlink{namespaceplayrho_1_1d2_a67bf6af0b317839a31e92ef6d6f5ba52}{get<1>}}(value)\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00389\ \}}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ \}\ \textcolor{comment}{//\ namespace\ d2}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00394\ \textcolor{keyword}{template}\ <>\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{d2::UnitVec}}\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{d2::UnitVec}}\{\};\ \}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00397\ \textcolor{keyword}{template}\ <>\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{d2::UnitVec}}\&\ value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00398\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.GetX())\ \&\&\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.GetY())\ \&\&\ (value\ !=\ \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a36ae084e9c7c9e474738daa40674bf73}{d2::UnitVec::GetZero}}());}
+\DoxyCodeLine{00400\ \}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}\ \{}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00407\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00408\ \textcolor{keyword}{class\ }tuple\_size<\ \mbox{\hyperlink{namespaceplayrho}{playrho}}::d2::UnitVec\ >:\ \textcolor{keyword}{public}\ std::integral\_constant<std::size\_t,\ 2>\ \{\};}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00411\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ I>}
+\DoxyCodeLine{00412\ \textcolor{keyword}{class\ }tuple\_element<I,\ \mbox{\hyperlink{namespaceplayrho}{playrho}}::d2::UnitVec>}
+\DoxyCodeLine{00413\ \{}
+\DoxyCodeLine{00414\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{using\ }type\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{playrho::Real}};}
+\DoxyCodeLine{00417\ \};}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \}\ \textcolor{comment}{//\ namespace\ std}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_UNITVEC2\_HPP}}
+
+\end{DoxyCode}

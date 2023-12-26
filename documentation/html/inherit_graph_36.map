@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d1/d1a/classCollideSettingsBase.html" title="Settings to be passed with a collision query." alt="" coords="5,32,157,60"/>
+<area shape="rect" id="Node000001" href="$d6/df7/classCollideShapeSettings.html" title="Settings to be passed with a collision query." alt="" coords="205,5,364,33"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="172,31,204,27,205,32,172,37"/>
+<area shape="rect" id="Node000002" href="$df/db6/classShapeCastSettings.html" title="Settings to be passed with a shape cast." alt="" coords="213,57,356,85"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="172,55,213,60,212,65,172,60"/>
+</map>

@@ -1,0 +1,2198 @@
+\doxysection{raymath.\+h}
+\hypertarget{raymath_8h_source}{}\label{raymath_8h_source}\index{includes/raylib/raymath.h@{includes/raylib/raymath.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/**********************************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{*\ \ \ raymath\ v1.5\ -\/\ Math\ functions\ to\ work\ with\ Vector2,\ Vector3,\ Matrix\ and\ Quaternions}}
+\DoxyCodeLine{00004\ \textcolor{comment}{*}}
+\DoxyCodeLine{00005\ \textcolor{comment}{*\ \ \ CONVENTIONS:}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*\ \ \ \ \ -\/\ Matrix\ structure\ is\ defined\ as\ row-\/major\ (memory\ layout)\ but\ parameters\ naming\ AND\ all}}
+\DoxyCodeLine{00007\ \textcolor{comment}{*\ \ \ \ \ \ \ math\ operations\ performed\ by\ the\ library\ consider\ the\ structure\ as\ it\ was\ column-\/major}}
+\DoxyCodeLine{00008\ \textcolor{comment}{*\ \ \ \ \ \ \ It\ is\ like\ transposed\ versions\ of\ the\ matrices\ are\ used\ for\ all\ the\ maths}}
+\DoxyCodeLine{00009\ \textcolor{comment}{*\ \ \ \ \ \ \ It\ benefits\ some\ functions\ making\ them\ cache-\/friendly\ and\ also\ avoids\ matrix}}
+\DoxyCodeLine{00010\ \textcolor{comment}{*\ \ \ \ \ \ \ transpositions\ sometimes\ required\ by\ OpenGL}}
+\DoxyCodeLine{00011\ \textcolor{comment}{*\ \ \ \ \ \ \ Example:\ In\ memory\ order,\ row0\ is\ [m0\ m4\ m8\ m12]\ but\ in\ semantic\ math\ row0\ is\ [m0\ m1\ m2\ m3]}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*\ \ \ \ \ -\/\ Functions\ are\ always\ self-\/contained,\ no\ function\ use\ another\ raymath\ function\ inside,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{*\ \ \ \ \ \ \ required\ code\ is\ directly\ re-\/implemented\ inside}}
+\DoxyCodeLine{00014\ \textcolor{comment}{*\ \ \ \ \ -\/\ Functions\ input\ parameters\ are\ always\ received\ by\ value\ (2\ unavoidable\ exceptions)}}
+\DoxyCodeLine{00015\ \textcolor{comment}{*\ \ \ \ \ -\/\ Functions\ use\ always\ a\ "{}result"{}\ variable\ for\ return}}
+\DoxyCodeLine{00016\ \textcolor{comment}{*\ \ \ \ \ -\/\ Functions\ are\ always\ defined\ inline}}
+\DoxyCodeLine{00017\ \textcolor{comment}{*\ \ \ \ \ -\/\ Angles\ are\ always\ in\ radians\ (DEG2RAD/RAD2DEG\ macros\ provided\ for\ convenience)}}
+\DoxyCodeLine{00018\ \textcolor{comment}{*\ \ \ \ \ -\/\ No\ compound\ literals\ used\ to\ make\ sure\ libray\ is\ compatible\ with\ C++}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*}}
+\DoxyCodeLine{00020\ \textcolor{comment}{*\ \ \ CONFIGURATION:}}
+\DoxyCodeLine{00021\ \textcolor{comment}{*\ \ \ \ \ \ \ \#define\ RAYMATH\_IMPLEMENTATION}}
+\DoxyCodeLine{00022\ \textcolor{comment}{*\ \ \ \ \ \ \ \ \ \ \ Generates\ the\ implementation\ of\ the\ library\ into\ the\ included\ file.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{*\ \ \ \ \ \ \ \ \ \ \ If\ not\ defined,\ the\ library\ is\ in\ header\ only\ mode\ and\ can\ be\ included\ in\ other\ headers}}
+\DoxyCodeLine{00024\ \textcolor{comment}{*\ \ \ \ \ \ \ \ \ \ \ or\ source\ files\ without\ problems.\ But\ only\ ONE\ file\ should\ hold\ the\ implementation.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{*}}
+\DoxyCodeLine{00026\ \textcolor{comment}{*\ \ \ \ \ \ \ \#define\ RAYMATH\_STATIC\_INLINE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{*\ \ \ \ \ \ \ \ \ \ \ Define\ static\ inline\ functions\ code,\ so\ \#include\ header\ suffices\ for\ use.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{*\ \ \ \ \ \ \ \ \ \ \ This\ may\ use\ up\ lots\ of\ memory.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{*}}
+\DoxyCodeLine{00030\ \textcolor{comment}{*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{*\ \ \ LICENSE:\ zlib/libpng}}
+\DoxyCodeLine{00032\ \textcolor{comment}{*}}
+\DoxyCodeLine{00033\ \textcolor{comment}{*\ \ \ Copyright\ (c)\ 2015-\/2023\ Ramon\ Santamaria\ (@raysan5)}}
+\DoxyCodeLine{00034\ \textcolor{comment}{*}}
+\DoxyCodeLine{00035\ \textcolor{comment}{*\ \ \ This\ software\ is\ provided\ "{}as-\/is"{},\ without\ any\ express\ or\ implied\ warranty.\ In\ no\ event}}
+\DoxyCodeLine{00036\ \textcolor{comment}{*\ \ \ will\ the\ authors\ be\ held\ liable\ for\ any\ damages\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00037\ \textcolor{comment}{*}}
+\DoxyCodeLine{00038\ \textcolor{comment}{*\ \ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,\ including\ commercial}}
+\DoxyCodeLine{00039\ \textcolor{comment}{*\ \ \ applications,\ and\ to\ alter\ it\ and\ redistribute\ it\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00040\ \textcolor{comment}{*}}
+\DoxyCodeLine{00041\ \textcolor{comment}{*\ \ \ \ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not\ claim\ that\ you}}
+\DoxyCodeLine{00042\ \textcolor{comment}{*\ \ \ \ \ wrote\ the\ original\ software.\ If\ you\ use\ this\ software\ in\ a\ product,\ an\ acknowledgment}}
+\DoxyCodeLine{00043\ \textcolor{comment}{*\ \ \ \ \ in\ the\ product\ documentation\ would\ be\ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00044\ \textcolor{comment}{*}}
+\DoxyCodeLine{00045\ \textcolor{comment}{*\ \ \ \ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be\ misrepresented}}
+\DoxyCodeLine{00046\ \textcolor{comment}{*\ \ \ \ \ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{*}}
+\DoxyCodeLine{00048\ \textcolor{comment}{*\ \ \ \ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00049\ \textcolor{comment}{*}}
+\DoxyCodeLine{00050\ \textcolor{comment}{**********************************************************************************************/}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifndef\ RAYMATH\_H}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ RAYMATH\_H}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#if\ defined(RAYMATH\_IMPLEMENTATION)\ \&\&\ defined(RAYMATH\_STATIC\_INLINE)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ \#error\ "{}Specifying\ both\ RAYMATH\_IMPLEMENTATION\ and\ RAYMATH\_STATIC\_INLINE\ is\ contradictory"{}}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ Function\ specifiers\ definition}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#if\ defined(RAYMATH\_IMPLEMENTATION)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(\_WIN32)\ \&\&\ defined(BUILD\_LIBTYPE\_SHARED)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ RMAPI\ \_\_declspec(dllexport)\ extern\ inline\ }\textcolor{comment}{//\ We\ are\ building\ raylib\ as\ a\ Win32\ shared\ library\ (.dll)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \#elif\ defined(BUILD\_LIBTYPE\_SHARED)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ RMAPI\ \_\_attribute\_\_((visibility("{}default"{})))\ }\textcolor{comment}{//\ We\ are\ building\ raylib\ as\ a\ Unix\ shared\ library\ (.so/.dylib)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ \ \#elif\ defined(\_WIN32)\ \&\&\ defined(USE\_LIBTYPE\_SHARED)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ RMAPI\ \_\_declspec(dllimport)\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ We\ are\ using\ raylib\ as\ a\ Win32\ shared\ library\ (.dll)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ RMAPI\ extern\ inline\ }\textcolor{comment}{//\ Provide\ external\ definition}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#elif\ defined(RAYMATH\_STATIC\_INLINE)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \#define\ RMAPI\ static\ inline\ }\textcolor{comment}{//\ Functions\ may\ be\ inlined,\ no\ external\ out-\/of-\/line\ definition}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined(\_\_TINYC\_\_)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ RMAPI\ static\ inline\ }\textcolor{comment}{//\ plain\ inline\ not\ supported\ by\ tinycc\ (See\ issue\ \#435)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ RMAPI\ inline\ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Functions\ may\ be\ inlined\ or\ external\ definition\ used}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ Defines\ and\ Macros}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#ifndef\ PI}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ \#define\ PI\ 3.14159265358979323846f}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#ifndef\ EPSILON}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \ \ \#define\ EPSILON\ 0.000001f}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#ifndef\ DEG2RAD}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ \#define\ DEG2RAD\ (PI/180.0f)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#ifndef\ RAD2DEG}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ \#define\ RAD2DEG\ (180.0f/PI)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ Get\ float\ vector\ for\ Matrix}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#ifndef\ MatrixToFloat}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \ \ \#define\ MatrixToFloat(mat)\ (MatrixToFloatV(mat).v)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ Get\ float\ vector\ for\ Vector3}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#ifndef\ Vector3ToFloat}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\ \ \ \ \#define\ Vector3ToFloat(vec)\ (Vector3ToFloatV(vec).v)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ Types\ and\ Structures\ Definition}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#if\ !defined(RL\_VECTOR2\_TYPE)}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ Vector2\ type}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVector2}{Vector2}}\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{float}\ x;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{float}\ y;}
+\DoxyCodeLine{00117\ \}\ \mbox{\hyperlink{structVector2}{Vector2}};}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ RL\_VECTOR2\_TYPE}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#if\ !defined(RL\_VECTOR3\_TYPE)}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ Vector3\ type}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVector3}{Vector3}}\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{float}\ x;}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{float}\ y;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{float}\ z;}
+\DoxyCodeLine{00127\ \}\ \mbox{\hyperlink{structVector3}{Vector3}};}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ RL\_VECTOR3\_TYPE}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#if\ !defined(RL\_VECTOR4\_TYPE)}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ Vector4\ type}}
+\DoxyCodeLine{00133\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVector4}{Vector4}}\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{float}\ x;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{float}\ y;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{float}\ z;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{float}\ w;}
+\DoxyCodeLine{00138\ \}\ \mbox{\hyperlink{structVector4}{Vector4}};}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ RL\_VECTOR4\_TYPE}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#if\ !defined(RL\_QUATERNION\_TYPE)}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ Quaternion\ type}}
+\DoxyCodeLine{00144\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structVector4}{Vector4}}\ \mbox{\hyperlink{structVector4}{Quaternion}};}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#define\ RL\_QUATERNION\_TYPE}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#if\ !defined(RL\_MATRIX\_TYPE)}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ Matrix\ type\ (OpenGL\ style\ 4x4\ -\/\ right\ handed,\ column\ major)}}
+\DoxyCodeLine{00150\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{classMatrix}{Matrix}}\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{float}\ m0,\ m4,\ m8,\ m12;\ \ \ \ \ \ \textcolor{comment}{//\ Matrix\ first\ row\ (4\ components)}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{float}\ m1,\ m5,\ m9,\ m13;\ \ \ \ \ \ \textcolor{comment}{//\ Matrix\ second\ row\ (4\ components)}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{float}\ m2,\ m6,\ m10,\ m14;\ \ \ \ \ \textcolor{comment}{//\ Matrix\ third\ row\ (4\ components)}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{float}\ m3,\ m7,\ m11,\ m15;\ \ \ \ \ \textcolor{comment}{//\ Matrix\ fourth\ row\ (4\ components)}}
+\DoxyCodeLine{00155\ \}\ \mbox{\hyperlink{classMatrix}{Matrix}};}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ RL\_MATRIX\_TYPE}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ NOTE:\ Helper\ types\ to\ be\ used\ instead\ of\ array\ return\ types\ for\ *ToFloat\ functions}}
+\DoxyCodeLine{00160\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structfloat3}{float3}}\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{float}\ v[3];}
+\DoxyCodeLine{00162\ \}\ \mbox{\hyperlink{structfloat3}{float3}};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structfloat16}{float16}}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{float}\ v[16];}
+\DoxyCodeLine{00166\ \}\ \mbox{\hyperlink{structfloat16}{float16}};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#include\ <math.h>}\ \ \ \ \ \ \ \textcolor{comment}{//\ Required\ for:\ sinf(),\ cosf(),\ tan(),\ atan2f(),\ sqrtf(),\ floor(),\ fminf(),\ fmaxf(),\ fabs()}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ Module\ Functions\ Definition\ -\/\ Utils\ math}}
+\DoxyCodeLine{00172\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ Clamp\ float\ value}}
+\DoxyCodeLine{00175\ RMAPI\ \textcolor{keywordtype}{float}\ Clamp(\textcolor{keywordtype}{float}\ value,\ \textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max)}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ (value\ <\ min)?\ min\ :\ value;}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ >\ max)\ result\ =\ max;}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{comment}{//\ Calculate\ linear\ interpolation\ between\ two\ floats}}
+\DoxyCodeLine{00185\ RMAPI\ \textcolor{keywordtype}{float}\ Lerp(\textcolor{keywordtype}{float}\ start,\ \textcolor{keywordtype}{float}\ end,\ \textcolor{keywordtype}{float}\ amount)}
+\DoxyCodeLine{00186\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ start\ +\ amount*(end\ -\/\ start);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00190\ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{comment}{//\ Normalize\ input\ value\ within\ input\ range}}
+\DoxyCodeLine{00193\ RMAPI\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__Math_ga0c7d2525a406c1f83c0574e46a2cee32}{Normalize}}(\textcolor{keywordtype}{float}\ value,\ \textcolor{keywordtype}{float}\ start,\ \textcolor{keywordtype}{float}\ end)}
+\DoxyCodeLine{00194\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ (value\ -\/\ start)/(end\ -\/\ start);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{comment}{//\ Remap\ input\ value\ within\ input\ range\ to\ output\ range}}
+\DoxyCodeLine{00201\ RMAPI\ \textcolor{keywordtype}{float}\ Remap(\textcolor{keywordtype}{float}\ value,\ \textcolor{keywordtype}{float}\ inputStart,\ \textcolor{keywordtype}{float}\ inputEnd,\ \textcolor{keywordtype}{float}\ outputStart,\ \textcolor{keywordtype}{float}\ outputEnd)}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ (value\ -\/\ inputStart)/(inputEnd\ -\/\ inputStart)*(outputEnd\ -\/\ outputStart)\ +\ outputStart;}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00206\ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{comment}{//\ Wrap\ input\ value\ from\ min\ to\ max}}
+\DoxyCodeLine{00209\ RMAPI\ \textcolor{keywordtype}{float}\ Wrap(\textcolor{keywordtype}{float}\ value,\ \textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max)}
+\DoxyCodeLine{00210\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ value\ -\/\ (max\ -\/\ min)*floorf((value\ -\/\ min)/(max\ -\/\ min));}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00214\ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{comment}{//\ Check\ whether\ two\ given\ floats\ are\ almost\ equal}}
+\DoxyCodeLine{00217\ RMAPI\ \textcolor{keywordtype}{int}\ FloatEquals(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)}
+\DoxyCodeLine{00218\ \{}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#if\ !defined(EPSILON)}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\ \ \ \ \#define\ EPSILON\ 0.000001f}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ (fabsf(x\ -\/\ y))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(x),\ fabsf(y))));}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00226\ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00229\ \textcolor{comment}{//\ Module\ Functions\ Definition\ -\/\ Vector2\ math}}
+\DoxyCodeLine{00230\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ Vector\ with\ components\ value\ 0.0f}}
+\DoxyCodeLine{00233\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Zero(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00234\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 0.0f,\ 0.0f\ \};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00238\ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{comment}{//\ Vector\ with\ components\ value\ 1.0f}}
+\DoxyCodeLine{00241\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2One(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00242\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 1.0f,\ 1.0f\ \};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00246\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{comment}{//\ Add\ two\ vectors\ (v1\ +\ v2)}}
+\DoxyCodeLine{00249\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Add(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2)}
+\DoxyCodeLine{00250\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ v1.x\ +\ v2.x,\ v1.y\ +\ v2.y\ \};}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{comment}{//\ Add\ vector\ and\ float\ value}}
+\DoxyCodeLine{00257\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2AddValue(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \textcolor{keywordtype}{float}\ add)}
+\DoxyCodeLine{00258\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ v.x\ +\ add,\ v.y\ +\ add\ \};}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00262\ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \textcolor{comment}{//\ Subtract\ two\ vectors\ (v1\ -\/\ v2)}}
+\DoxyCodeLine{00265\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Subtract(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2)}
+\DoxyCodeLine{00266\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ v1.x\ -\/\ v2.x,\ v1.y\ -\/\ v2.y\ \};}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00270\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{comment}{//\ Subtract\ vector\ by\ float\ value}}
+\DoxyCodeLine{00273\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2SubtractValue(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \textcolor{keywordtype}{float}\ sub)}
+\DoxyCodeLine{00274\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ v.x\ -\/\ sub,\ v.y\ -\/\ sub\ \};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00278\ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{comment}{//\ Calculate\ vector\ length}}
+\DoxyCodeLine{00281\ RMAPI\ \textcolor{keywordtype}{float}\ Vector2Length(\mbox{\hyperlink{structVector2}{Vector2}}\ v)}
+\DoxyCodeLine{00282\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ sqrtf((v.x*v.x)\ +\ (v.y*v.y));}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00286\ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{comment}{//\ Calculate\ vector\ square\ length}}
+\DoxyCodeLine{00289\ RMAPI\ \textcolor{keywordtype}{float}\ Vector2LengthSqr(\mbox{\hyperlink{structVector2}{Vector2}}\ v)}
+\DoxyCodeLine{00290\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ (v.x*v.x)\ +\ (v.y*v.y);}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00294\ \}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \textcolor{comment}{//\ Calculate\ two\ vectors\ dot\ product}}
+\DoxyCodeLine{00297\ RMAPI\ \textcolor{keywordtype}{float}\ Vector2DotProduct(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2)}
+\DoxyCodeLine{00298\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ (v1.x*v2.x\ +\ v1.y*v2.y);}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00302\ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \textcolor{comment}{//\ Calculate\ distance\ between\ two\ vectors}}
+\DoxyCodeLine{00305\ RMAPI\ \textcolor{keywordtype}{float}\ Vector2Distance(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2)}
+\DoxyCodeLine{00306\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ sqrtf((v1.x\ -\/\ v2.x)*(v1.x\ -\/\ v2.x)\ +\ (v1.y\ -\/\ v2.y)*(v1.y\ -\/\ v2.y));}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00310\ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{comment}{//\ Calculate\ square\ distance\ between\ two\ vectors}}
+\DoxyCodeLine{00313\ RMAPI\ \textcolor{keywordtype}{float}\ Vector2DistanceSqr(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2)}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ ((v1.x\ -\/\ v2.x)*(v1.x\ -\/\ v2.x)\ +\ (v1.y\ -\/\ v2.y)*(v1.y\ -\/\ v2.y));}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00318\ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \textcolor{comment}{//\ Calculate\ angle\ between\ two\ vectors}}
+\DoxyCodeLine{00321\ \textcolor{comment}{//\ NOTE:\ Angle\ is\ calculated\ from\ origin\ point\ (0,\ 0)}}
+\DoxyCodeLine{00322\ RMAPI\ \textcolor{keywordtype}{float}\ Vector2Angle(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2)}
+\DoxyCodeLine{00323\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ 0.0f;}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordtype}{float}\ dot\ =\ v1.x*v2.x\ +\ v1.y*v2.y;}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordtype}{float}\ det\ =\ v1.x*v2.y\ -\/\ v1.y*v2.x;}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ result\ =\ atan2f(det,\ dot);}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00332\ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \textcolor{comment}{//\ Calculate\ angle\ defined\ by\ a\ two\ vectors\ line}}
+\DoxyCodeLine{00335\ \textcolor{comment}{//\ NOTE:\ Parameters\ need\ to\ be\ normalized}}
+\DoxyCodeLine{00336\ \textcolor{comment}{//\ Current\ implementation\ should\ be\ aligned\ with\ glm::angle}}
+\DoxyCodeLine{00337\ RMAPI\ \textcolor{keywordtype}{float}\ Vector2LineAngle(\mbox{\hyperlink{structVector2}{Vector2}}\ start,\ \mbox{\hyperlink{structVector2}{Vector2}}\ end)}
+\DoxyCodeLine{00338\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ 0.0f;}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{comment}{//\ TODO(10/9/2023):\ Currently\ angles\ move\ clockwise,\ determine\ if\ this\ is\ wanted\ behavior}}
+\DoxyCodeLine{00342\ \ \ \ \ result\ =\ -\/atan2f(end.y\ -\/\ start.y,\ end.x\ -\/\ start.x);}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00345\ \}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \textcolor{comment}{//\ Scale\ vector\ (multiply\ by\ value)}}
+\DoxyCodeLine{00348\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Scale(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \textcolor{keywordtype}{float}\ scale)}
+\DoxyCodeLine{00349\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ v.x*scale,\ v.y*scale\ \};}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00353\ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \textcolor{comment}{//\ Multiply\ vector\ by\ vector}}
+\DoxyCodeLine{00356\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Multiply(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2)}
+\DoxyCodeLine{00357\ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ v1.x*v2.x,\ v1.y*v2.y\ \};}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00361\ \}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \textcolor{comment}{//\ Negate\ vector}}
+\DoxyCodeLine{00364\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Negate(\mbox{\hyperlink{structVector2}{Vector2}}\ v)}
+\DoxyCodeLine{00365\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ -\/v.x,\ -\/v.y\ \};}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00369\ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{comment}{//\ Divide\ vector\ by\ vector}}
+\DoxyCodeLine{00372\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Divide(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2)}
+\DoxyCodeLine{00373\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ v1.x/v2.x,\ v1.y/v2.y\ \};}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00377\ \}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \textcolor{comment}{//\ Normalize\ provided\ vector}}
+\DoxyCodeLine{00380\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Normalize(\mbox{\hyperlink{structVector2}{Vector2}}\ v)}
+\DoxyCodeLine{00381\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ sqrtf((v.x*v.x)\ +\ (v.y*v.y));}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ >\ 0)}
+\DoxyCodeLine{00386\ \ \ \ \ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ result.x\ =\ v.x*ilength;}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ result.y\ =\ v.y*ilength;}
+\DoxyCodeLine{00390\ \ \ \ \ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00393\ \}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \textcolor{comment}{//\ Transforms\ a\ Vector2\ by\ a\ given\ Matrix}}
+\DoxyCodeLine{00396\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Transform(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{00397\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ v.x;}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ v.y;}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ 0;}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ result.x\ =\ mat.m0*x\ +\ mat.m4*y\ +\ mat.m8*z\ +\ mat.m12;}
+\DoxyCodeLine{00405\ \ \ \ \ result.y\ =\ mat.m1*x\ +\ mat.m5*y\ +\ mat.m9*z\ +\ mat.m13;}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00408\ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{comment}{//\ Calculate\ linear\ interpolation\ between\ two\ vectors}}
+\DoxyCodeLine{00411\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Lerp(\mbox{\hyperlink{structVector2}{Vector2}}\ v1,\ \mbox{\hyperlink{structVector2}{Vector2}}\ v2,\ \textcolor{keywordtype}{float}\ amount)}
+\DoxyCodeLine{00412\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ result.x\ =\ v1.x\ +\ amount*(v2.x\ -\/\ v1.x);}
+\DoxyCodeLine{00416\ \ \ \ \ result.y\ =\ v1.y\ +\ amount*(v2.y\ -\/\ v1.y);}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00419\ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{comment}{//\ Calculate\ reflected\ vector\ to\ normal}}
+\DoxyCodeLine{00422\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Reflect(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \mbox{\hyperlink{structVector2}{Vector2}}\ normal)}
+\DoxyCodeLine{00423\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{keywordtype}{float}\ dotProduct\ =\ (v.x*normal.x\ +\ v.y*normal.y);\ \textcolor{comment}{//\ Dot\ product}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ result.x\ =\ v.x\ -\/\ (2.0f*normal.x)*dotProduct;}
+\DoxyCodeLine{00429\ \ \ \ \ result.y\ =\ v.y\ -\/\ (2.0f*normal.y)*dotProduct;}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00432\ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \textcolor{comment}{//\ Rotate\ vector\ by\ angle}}
+\DoxyCodeLine{00435\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Rotate(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \textcolor{keywordtype}{float}\ angle)}
+\DoxyCodeLine{00436\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{float}\ cosres\ =\ cosf(angle);}
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keywordtype}{float}\ sinres\ =\ sinf(angle);}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ result.x\ =\ v.x*cosres\ -\/\ v.y*sinres;}
+\DoxyCodeLine{00443\ \ \ \ \ result.y\ =\ v.x*sinres\ +\ v.y*cosres;}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00446\ \}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \textcolor{comment}{//\ Move\ Vector\ towards\ target}}
+\DoxyCodeLine{00449\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2MoveTowards(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \mbox{\hyperlink{structVector2}{Vector2}}\ target,\ \textcolor{keywordtype}{float}\ maxDistance)}
+\DoxyCodeLine{00450\ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordtype}{float}\ dx\ =\ target.x\ -\/\ v.x;}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordtype}{float}\ dy\ =\ target.y\ -\/\ v.y;}
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keywordtype}{float}\ value\ =\ (dx*dx)\ +\ (dy*dy);}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordflow}{if}\ ((value\ ==\ 0)\ ||\ ((maxDistance\ >=\ 0)\ \&\&\ (value\ <=\ maxDistance*maxDistance)))\ \textcolor{keywordflow}{return}\ target;}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordtype}{float}\ dist\ =\ sqrtf(value);}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ result.x\ =\ v.x\ +\ dx/dist*maxDistance;}
+\DoxyCodeLine{00462\ \ \ \ \ result.y\ =\ v.y\ +\ dy/dist*maxDistance;}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00465\ \}}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \textcolor{comment}{//\ Invert\ the\ given\ vector}}
+\DoxyCodeLine{00468\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Invert(\mbox{\hyperlink{structVector2}{Vector2}}\ v)}
+\DoxyCodeLine{00469\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 1.0f/v.x,\ 1.0f/v.y\ \};}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00473\ \}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \textcolor{comment}{//\ Clamp\ the\ components\ of\ the\ vector\ between}}
+\DoxyCodeLine{00476\ \textcolor{comment}{//\ min\ and\ max\ values\ specified\ by\ the\ given\ vectors}}
+\DoxyCodeLine{00477\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2Clamp(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \mbox{\hyperlink{structVector2}{Vector2}}\ min,\ \mbox{\hyperlink{structVector2}{Vector2}}\ max)}
+\DoxyCodeLine{00478\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \ \ \ \ result.x\ =\ fminf(max.x,\ fmaxf(min.x,\ v.x));}
+\DoxyCodeLine{00482\ \ \ \ \ result.y\ =\ fminf(max.y,\ fmaxf(min.y,\ v.y));}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00485\ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \textcolor{comment}{//\ Clamp\ the\ magnitude\ of\ the\ vector\ between\ two\ min\ and\ max\ values}}
+\DoxyCodeLine{00488\ RMAPI\ \mbox{\hyperlink{structVector2}{Vector2}}\ Vector2ClampValue(\mbox{\hyperlink{structVector2}{Vector2}}\ v,\ \textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max)}
+\DoxyCodeLine{00489\ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ result\ =\ v;}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ (v.x*v.x)\ +\ (v.y*v.y);}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ >\ 0.0f)}
+\DoxyCodeLine{00494\ \ \ \ \ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ length\ =\ sqrtf(length);}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ <\ min)}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scale\ =\ min/length;}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ v.x*scale;}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ v.y*scale;}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (length\ >\ max)}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scale\ =\ max/length;}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ v.x*scale;}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ v.y*scale;}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ \}}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00512\ \}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \textcolor{comment}{//\ Check\ whether\ two\ given\ vectors\ are\ almost\ equal}}
+\DoxyCodeLine{00515\ RMAPI\ \textcolor{keywordtype}{int}\ Vector2Equals(\mbox{\hyperlink{structVector2}{Vector2}}\ p,\ \mbox{\hyperlink{structVector2}{Vector2}}\ q)}
+\DoxyCodeLine{00516\ \{}
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\#if\ !defined(EPSILON)}}
+\DoxyCodeLine{00518\ \textcolor{preprocessor}{\ \ \ \ \#define\ EPSILON\ 0.000001f}}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ ((fabsf(p.x\ -\/\ q.x))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.x),\ fabsf(q.x)))))\ \&\&}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.y\ -\/\ q.y))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.y),\ fabsf(q.y)))));}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00525\ \}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00528\ \textcolor{comment}{//\ Module\ Functions\ Definition\ -\/\ Vector3\ math}}
+\DoxyCodeLine{00529\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \textcolor{comment}{//\ Vector\ with\ components\ value\ 0.0f}}
+\DoxyCodeLine{00532\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Zero(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00533\ \{}
+\DoxyCodeLine{00534\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0.0f,\ 0.0f,\ 0.0f\ \};}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00537\ \}}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \textcolor{comment}{//\ Vector\ with\ components\ value\ 1.0f}}
+\DoxyCodeLine{00540\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3One(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00541\ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 1.0f,\ 1.0f,\ 1.0f\ \};}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00545\ \}}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ \textcolor{comment}{//\ Add\ two\ vectors}}
+\DoxyCodeLine{00548\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Add(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00549\ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ v1.x\ +\ v2.x,\ v1.y\ +\ v2.y,\ v1.z\ +\ v2.z\ \};}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00553\ \}}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \textcolor{comment}{//\ Add\ vector\ and\ float\ value}}
+\DoxyCodeLine{00556\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3AddValue(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \textcolor{keywordtype}{float}\ add)}
+\DoxyCodeLine{00557\ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ v.x\ +\ add,\ v.y\ +\ add,\ v.z\ +\ add\ \};}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00561\ \}}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \textcolor{comment}{//\ Subtract\ two\ vectors}}
+\DoxyCodeLine{00564\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Subtract(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00565\ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ v1.x\ -\/\ v2.x,\ v1.y\ -\/\ v2.y,\ v1.z\ -\/\ v2.z\ \};}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00569\ \}}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \textcolor{comment}{//\ Subtract\ vector\ by\ float\ value}}
+\DoxyCodeLine{00572\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3SubtractValue(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \textcolor{keywordtype}{float}\ sub)}
+\DoxyCodeLine{00573\ \{}
+\DoxyCodeLine{00574\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ v.x\ -\/\ sub,\ v.y\ -\/\ sub,\ v.z\ -\/\ sub\ \};}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00577\ \}}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ \textcolor{comment}{//\ Multiply\ vector\ by\ scalar}}
+\DoxyCodeLine{00580\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Scale(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \textcolor{keywordtype}{float}\ scalar)}
+\DoxyCodeLine{00581\ \{}
+\DoxyCodeLine{00582\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ v.x*scalar,\ v.y*scalar,\ v.z*scalar\ \};}
+\DoxyCodeLine{00583\ }
+\DoxyCodeLine{00584\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00585\ \}}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \textcolor{comment}{//\ Multiply\ vector\ by\ vector}}
+\DoxyCodeLine{00588\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Multiply(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00589\ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ v1.x*v2.x,\ v1.y*v2.y,\ v1.z*v2.z\ \};}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00593\ \}}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \textcolor{comment}{//\ Calculate\ two\ vectors\ cross\ product}}
+\DoxyCodeLine{00596\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3CrossProduct(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00597\ \{}
+\DoxyCodeLine{00598\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ v1.y*v2.z\ -\/\ v1.z*v2.y,\ v1.z*v2.x\ -\/\ v1.x*v2.z,\ v1.x*v2.y\ -\/\ v1.y*v2.x\ \};}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00601\ \}}
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00603\ \textcolor{comment}{//\ Calculate\ one\ vector\ perpendicular\ vector}}
+\DoxyCodeLine{00604\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Perpendicular(\mbox{\hyperlink{structVector3}{Vector3}}\ v)}
+\DoxyCodeLine{00605\ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \ \ \ \ \textcolor{keywordtype}{float}\ min\ =\ (float)\ fabs(v.x);}
+\DoxyCodeLine{00609\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ cardinalAxis\ =\ \{1.0f,\ 0.0f,\ 0.0f\};}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabsf(v.y)\ <\ min)}
+\DoxyCodeLine{00612\ \ \ \ \ \{}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ min\ =\ (float)\ fabs(v.y);}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ tmp\ =\ \{0.0f,\ 1.0f,\ 0.0f\};}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ cardinalAxis\ =\ tmp;}
+\DoxyCodeLine{00616\ \ \ \ \ \}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabsf(v.z)\ <\ min)}
+\DoxyCodeLine{00619\ \ \ \ \ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ tmp\ =\ \{0.0f,\ 0.0f,\ 1.0f\};}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ cardinalAxis\ =\ tmp;}
+\DoxyCodeLine{00622\ \ \ \ \ \}}
+\DoxyCodeLine{00623\ }
+\DoxyCodeLine{00624\ \ \ \ \ \textcolor{comment}{//\ Cross\ product\ between\ vectors}}
+\DoxyCodeLine{00625\ \ \ \ \ result.x\ =\ v.y*cardinalAxis.z\ -\/\ v.z*cardinalAxis.y;}
+\DoxyCodeLine{00626\ \ \ \ \ result.y\ =\ v.z*cardinalAxis.x\ -\/\ v.x*cardinalAxis.z;}
+\DoxyCodeLine{00627\ \ \ \ \ result.z\ =\ v.x*cardinalAxis.y\ -\/\ v.y*cardinalAxis.x;}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00630\ \}}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \textcolor{comment}{//\ Calculate\ vector\ length}}
+\DoxyCodeLine{00633\ RMAPI\ \textcolor{keywordtype}{float}\ Vector3Length(\textcolor{keyword}{const}\ \mbox{\hyperlink{structVector3}{Vector3}}\ v)}
+\DoxyCodeLine{00634\ \{}
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ sqrtf(v.x*v.x\ +\ v.y*v.y\ +\ v.z*v.z);}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00637\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00638\ \}}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \textcolor{comment}{//\ Calculate\ vector\ square\ length}}
+\DoxyCodeLine{00641\ RMAPI\ \textcolor{keywordtype}{float}\ Vector3LengthSqr(\textcolor{keyword}{const}\ \mbox{\hyperlink{structVector3}{Vector3}}\ v)}
+\DoxyCodeLine{00642\ \{}
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ v.x*v.x\ +\ v.y*v.y\ +\ v.z*v.z;}
+\DoxyCodeLine{00644\ }
+\DoxyCodeLine{00645\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00646\ \}}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \textcolor{comment}{//\ Calculate\ two\ vectors\ dot\ product}}
+\DoxyCodeLine{00649\ RMAPI\ \textcolor{keywordtype}{float}\ Vector3DotProduct(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00650\ \{}
+\DoxyCodeLine{00651\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ (v1.x*v2.x\ +\ v1.y*v2.y\ +\ v1.z*v2.z);}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00654\ \}}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ \textcolor{comment}{//\ Calculate\ distance\ between\ two\ vectors}}
+\DoxyCodeLine{00657\ RMAPI\ \textcolor{keywordtype}{float}\ Vector3Distance(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00658\ \{}
+\DoxyCodeLine{00659\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ 0.0f;}
+\DoxyCodeLine{00660\ }
+\DoxyCodeLine{00661\ \ \ \ \ \textcolor{keywordtype}{float}\ dx\ =\ v2.x\ -\/\ v1.x;}
+\DoxyCodeLine{00662\ \ \ \ \ \textcolor{keywordtype}{float}\ dy\ =\ v2.y\ -\/\ v1.y;}
+\DoxyCodeLine{00663\ \ \ \ \ \textcolor{keywordtype}{float}\ dz\ =\ v2.z\ -\/\ v1.z;}
+\DoxyCodeLine{00664\ \ \ \ \ result\ =\ sqrtf(dx*dx\ +\ dy*dy\ +\ dz*dz);}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00666\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00667\ \}}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00669\ \textcolor{comment}{//\ Calculate\ square\ distance\ between\ two\ vectors}}
+\DoxyCodeLine{00670\ RMAPI\ \textcolor{keywordtype}{float}\ Vector3DistanceSqr(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00671\ \{}
+\DoxyCodeLine{00672\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ 0.0f;}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \ \ \ \ \textcolor{keywordtype}{float}\ dx\ =\ v2.x\ -\/\ v1.x;}
+\DoxyCodeLine{00675\ \ \ \ \ \textcolor{keywordtype}{float}\ dy\ =\ v2.y\ -\/\ v1.y;}
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keywordtype}{float}\ dz\ =\ v2.z\ -\/\ v1.z;}
+\DoxyCodeLine{00677\ \ \ \ \ result\ =\ dx*dx\ +\ dy*dy\ +\ dz*dz;}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00680\ \}}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00682\ \textcolor{comment}{//\ Calculate\ angle\ between\ two\ vectors}}
+\DoxyCodeLine{00683\ RMAPI\ \textcolor{keywordtype}{float}\ Vector3Angle(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00684\ \{}
+\DoxyCodeLine{00685\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ 0.0f;}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00687\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ cross\ =\ \{\ v1.y*v2.z\ -\/\ v1.z*v2.y,\ v1.z*v2.x\ -\/\ v1.x*v2.z,\ v1.x*v2.y\ -\/\ v1.y*v2.x\ \};}
+\DoxyCodeLine{00688\ \ \ \ \ \textcolor{keywordtype}{float}\ len\ =\ sqrtf(cross.x*cross.x\ +\ cross.y*cross.y\ +\ cross.z*cross.z);}
+\DoxyCodeLine{00689\ \ \ \ \ \textcolor{keywordtype}{float}\ dot\ =\ (v1.x*v2.x\ +\ v1.y*v2.y\ +\ v1.z*v2.z);}
+\DoxyCodeLine{00690\ \ \ \ \ result\ =\ atan2f(len,\ dot);}
+\DoxyCodeLine{00691\ }
+\DoxyCodeLine{00692\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00693\ \}}
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \textcolor{comment}{//\ Negate\ provided\ vector\ (invert\ direction)}}
+\DoxyCodeLine{00696\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Negate(\mbox{\hyperlink{structVector3}{Vector3}}\ v)}
+\DoxyCodeLine{00697\ \{}
+\DoxyCodeLine{00698\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ -\/v.x,\ -\/v.y,\ -\/v.z\ \};}
+\DoxyCodeLine{00699\ }
+\DoxyCodeLine{00700\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00701\ \}}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \textcolor{comment}{//\ Divide\ vector\ by\ vector}}
+\DoxyCodeLine{00704\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Divide(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00705\ \{}
+\DoxyCodeLine{00706\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ v1.x/v2.x,\ v1.y/v2.y,\ v1.z/v2.z\ \};}
+\DoxyCodeLine{00707\ }
+\DoxyCodeLine{00708\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00709\ \}}
+\DoxyCodeLine{00710\ }
+\DoxyCodeLine{00711\ \textcolor{comment}{//\ Normalize\ provided\ vector}}
+\DoxyCodeLine{00712\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Normalize(\mbox{\hyperlink{structVector3}{Vector3}}\ v)}
+\DoxyCodeLine{00713\ \{}
+\DoxyCodeLine{00714\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ v;}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ sqrtf(v.x*v.x\ +\ v.y*v.y\ +\ v.z*v.z);}
+\DoxyCodeLine{00717\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ !=\ 0.0f)}
+\DoxyCodeLine{00718\ \ \ \ \ \{}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ result.x\ *=\ ilength;}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ result.y\ *=\ ilength;}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ result.z\ *=\ ilength;}
+\DoxyCodeLine{00724\ \ \ \ \ \}}
+\DoxyCodeLine{00725\ }
+\DoxyCodeLine{00726\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00727\ \}}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00729\ \textcolor{comment}{//Calculate\ the\ projection\ of\ the\ vector\ v1\ on\ to\ v2}}
+\DoxyCodeLine{00730\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Project(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00731\ \{}
+\DoxyCodeLine{00732\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00733\ \ \ \ \ }
+\DoxyCodeLine{00734\ \ \ \ \ \textcolor{keywordtype}{float}\ v1dv2\ =\ (v1.x*v2.x\ +\ v1.y*v2.y\ +\ v1.z*v2.z);}
+\DoxyCodeLine{00735\ \ \ \ \ \textcolor{keywordtype}{float}\ v2dv2\ =\ (v2.x*v2.x\ +\ v2.y*v2.y\ +\ v2.z*v2.z);}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00737\ \ \ \ \ \textcolor{keywordtype}{float}\ mag\ =\ v1dv2/v2dv2;}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00739\ \ \ \ \ result.x\ =\ v2.x*mag;}
+\DoxyCodeLine{00740\ \ \ \ \ result.y\ =\ v2.y*mag;}
+\DoxyCodeLine{00741\ \ \ \ \ result.z\ =\ v2.z*mag;}
+\DoxyCodeLine{00742\ }
+\DoxyCodeLine{00743\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00744\ \}}
+\DoxyCodeLine{00745\ }
+\DoxyCodeLine{00746\ \textcolor{comment}{//Calculate\ the\ rejection\ of\ the\ vector\ v1\ on\ to\ v2}}
+\DoxyCodeLine{00747\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Reject(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00748\ \{}
+\DoxyCodeLine{00749\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00750\ \ \ \ \ }
+\DoxyCodeLine{00751\ \ \ \ \ \textcolor{keywordtype}{float}\ v1dv2\ =\ (v1.x*v2.x\ +\ v1.y*v2.y\ +\ v1.z*v2.z);}
+\DoxyCodeLine{00752\ \ \ \ \ \textcolor{keywordtype}{float}\ v2dv2\ =\ (v2.x*v2.x\ +\ v2.y*v2.y\ +\ v2.z*v2.z);}
+\DoxyCodeLine{00753\ }
+\DoxyCodeLine{00754\ \ \ \ \ \textcolor{keywordtype}{float}\ mag\ =\ v1dv2/v2dv2;}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00756\ \ \ \ \ result.x\ =\ v1.x\ -\/\ (v2.x*mag);}
+\DoxyCodeLine{00757\ \ \ \ \ result.y\ =\ v1.y\ -\/\ (v2.y*mag);}
+\DoxyCodeLine{00758\ \ \ \ \ result.z\ =\ v1.z\ -\/\ (v2.z*mag);}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00760\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00761\ \}}
+\DoxyCodeLine{00762\ }
+\DoxyCodeLine{00763\ \textcolor{comment}{//\ Orthonormalize\ provided\ vectors}}
+\DoxyCodeLine{00764\ \textcolor{comment}{//\ Makes\ vectors\ normalized\ and\ orthogonal\ to\ each\ other}}
+\DoxyCodeLine{00765\ \textcolor{comment}{//\ Gram-\/Schmidt\ function\ implementation}}
+\DoxyCodeLine{00766\ RMAPI\ \textcolor{keywordtype}{void}\ Vector3OrthoNormalize(\mbox{\hyperlink{structVector3}{Vector3}}\ *v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ *v2)}
+\DoxyCodeLine{00767\ \{}
+\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ 0.0f;}
+\DoxyCodeLine{00769\ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 0.0f;}
+\DoxyCodeLine{00770\ }
+\DoxyCodeLine{00771\ \ \ \ \ \textcolor{comment}{//\ Vector3Normalize(*v1);}}
+\DoxyCodeLine{00772\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ v\ =\ *v1;}
+\DoxyCodeLine{00773\ \ \ \ \ length\ =\ sqrtf(v.x*v.x\ +\ v.y*v.y\ +\ v.z*v.z);}
+\DoxyCodeLine{00774\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{00775\ \ \ \ \ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{00776\ \ \ \ \ v1-\/>x\ *=\ ilength;}
+\DoxyCodeLine{00777\ \ \ \ \ v1-\/>y\ *=\ ilength;}
+\DoxyCodeLine{00778\ \ \ \ \ v1-\/>z\ *=\ ilength;}
+\DoxyCodeLine{00779\ }
+\DoxyCodeLine{00780\ \ \ \ \ \textcolor{comment}{//\ Vector3CrossProduct(*v1,\ *v2)}}
+\DoxyCodeLine{00781\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ vn1\ =\ \{\ v1-\/>y*v2-\/>z\ -\/\ v1-\/>z*v2-\/>y,\ v1-\/>z*v2-\/>x\ -\/\ v1-\/>x*v2-\/>z,\ v1-\/>x*v2-\/>y\ -\/\ v1-\/>y*v2-\/>x\ \};}
+\DoxyCodeLine{00782\ }
+\DoxyCodeLine{00783\ \ \ \ \ \textcolor{comment}{//\ Vector3Normalize(vn1);}}
+\DoxyCodeLine{00784\ \ \ \ \ v\ =\ vn1;}
+\DoxyCodeLine{00785\ \ \ \ \ length\ =\ sqrtf(v.x*v.x\ +\ v.y*v.y\ +\ v.z*v.z);}
+\DoxyCodeLine{00786\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{00787\ \ \ \ \ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{00788\ \ \ \ \ vn1.x\ *=\ ilength;}
+\DoxyCodeLine{00789\ \ \ \ \ vn1.y\ *=\ ilength;}
+\DoxyCodeLine{00790\ \ \ \ \ vn1.z\ *=\ ilength;}
+\DoxyCodeLine{00791\ }
+\DoxyCodeLine{00792\ \ \ \ \ \textcolor{comment}{//\ Vector3CrossProduct(vn1,\ *v1)}}
+\DoxyCodeLine{00793\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ vn2\ =\ \{\ vn1.y*v1-\/>z\ -\/\ vn1.z*v1-\/>y,\ vn1.z*v1-\/>x\ -\/\ vn1.x*v1-\/>z,\ vn1.x*v1-\/>y\ -\/\ vn1.y*v1-\/>x\ \};}
+\DoxyCodeLine{00794\ }
+\DoxyCodeLine{00795\ \ \ \ \ *v2\ =\ vn2;}
+\DoxyCodeLine{00796\ \}}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ \textcolor{comment}{//\ Transforms\ a\ Vector3\ by\ a\ given\ Matrix}}
+\DoxyCodeLine{00799\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Transform(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{00800\ \{}
+\DoxyCodeLine{00801\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00802\ }
+\DoxyCodeLine{00803\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ v.x;}
+\DoxyCodeLine{00804\ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ v.y;}
+\DoxyCodeLine{00805\ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ v.z;}
+\DoxyCodeLine{00806\ }
+\DoxyCodeLine{00807\ \ \ \ \ result.x\ =\ mat.m0*x\ +\ mat.m4*y\ +\ mat.m8*z\ +\ mat.m12;}
+\DoxyCodeLine{00808\ \ \ \ \ result.y\ =\ mat.m1*x\ +\ mat.m5*y\ +\ mat.m9*z\ +\ mat.m13;}
+\DoxyCodeLine{00809\ \ \ \ \ result.z\ =\ mat.m2*x\ +\ mat.m6*y\ +\ mat.m10*z\ +\ mat.m14;}
+\DoxyCodeLine{00810\ }
+\DoxyCodeLine{00811\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00812\ \}}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00814\ \textcolor{comment}{//\ Transform\ a\ vector\ by\ quaternion\ rotation}}
+\DoxyCodeLine{00815\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3RotateByQuaternion(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q)}
+\DoxyCodeLine{00816\ \{}
+\DoxyCodeLine{00817\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00818\ }
+\DoxyCodeLine{00819\ \ \ \ \ result.x\ =\ v.x*(q.x*q.x\ +\ q.w*q.w\ -\/\ q.y*q.y\ -\/\ q.z*q.z)\ +\ v.y*(2*q.x*q.y\ -\/\ 2*q.w*q.z)\ +\ v.z*(2*q.x*q.z\ +\ 2*q.w*q.y);}
+\DoxyCodeLine{00820\ \ \ \ \ result.y\ =\ v.x*(2*q.w*q.z\ +\ 2*q.x*q.y)\ +\ v.y*(q.w*q.w\ -\/\ q.x*q.x\ +\ q.y*q.y\ -\/\ q.z*q.z)\ +\ v.z*(-\/2*q.w*q.x\ +\ 2*q.y*q.z);}
+\DoxyCodeLine{00821\ \ \ \ \ result.z\ =\ v.x*(-\/2*q.w*q.y\ +\ 2*q.x*q.z)\ +\ v.y*(2*q.w*q.x\ +\ 2*q.y*q.z)+\ v.z*(q.w*q.w\ -\/\ q.x*q.x\ -\/\ q.y*q.y\ +\ q.z*q.z);}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00823\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00824\ \}}
+\DoxyCodeLine{00825\ }
+\DoxyCodeLine{00826\ \textcolor{comment}{//\ Rotates\ a\ vector\ around\ an\ axis}}
+\DoxyCodeLine{00827\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3RotateByAxisAngle(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \mbox{\hyperlink{structVector3}{Vector3}}\ axis,\ \textcolor{keywordtype}{float}\ angle)}
+\DoxyCodeLine{00828\ \{}
+\DoxyCodeLine{00829\ \ \ \ \ \textcolor{comment}{//\ Using\ Euler-\/Rodrigues\ Formula}}
+\DoxyCodeLine{00830\ \ \ \ \ \textcolor{comment}{//\ Ref.:\ https://en.wikipedia.org/w/index.php?title=Euler\%E2\%80\%93Rodrigues\_formula}}
+\DoxyCodeLine{00831\ }
+\DoxyCodeLine{00832\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ v;}
+\DoxyCodeLine{00833\ }
+\DoxyCodeLine{00834\ \ \ \ \ \textcolor{comment}{//\ Vector3Normalize(axis);}}
+\DoxyCodeLine{00835\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ sqrtf(axis.x*axis.x\ +\ axis.y*axis.y\ +\ axis.z*axis.z);}
+\DoxyCodeLine{00836\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{00837\ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 1.0f\ /\ length;}
+\DoxyCodeLine{00838\ \ \ \ \ axis.x\ *=\ ilength;}
+\DoxyCodeLine{00839\ \ \ \ \ axis.y\ *=\ ilength;}
+\DoxyCodeLine{00840\ \ \ \ \ axis.z\ *=\ ilength;}
+\DoxyCodeLine{00841\ }
+\DoxyCodeLine{00842\ \ \ \ \ angle\ /=\ 2.0f;}
+\DoxyCodeLine{00843\ \ \ \ \ \textcolor{keywordtype}{float}\ a\ =\ sinf(angle);}
+\DoxyCodeLine{00844\ \ \ \ \ \textcolor{keywordtype}{float}\ b\ =\ axis.x*a;}
+\DoxyCodeLine{00845\ \ \ \ \ \textcolor{keywordtype}{float}\ c\ =\ axis.y*a;}
+\DoxyCodeLine{00846\ \ \ \ \ \textcolor{keywordtype}{float}\ d\ =\ axis.z*a;}
+\DoxyCodeLine{00847\ \ \ \ \ a\ =\ cosf(angle);}
+\DoxyCodeLine{00848\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ w\ =\ \{\ b,\ c,\ d\ \};}
+\DoxyCodeLine{00849\ }
+\DoxyCodeLine{00850\ \ \ \ \ \textcolor{comment}{//\ Vector3CrossProduct(w,\ v)}}
+\DoxyCodeLine{00851\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ wv\ =\ \{\ w.y*v.z\ -\/\ w.z*v.y,\ w.z*v.x\ -\/\ w.x*v.z,\ w.x*v.y\ -\/\ w.y*v.x\ \};}
+\DoxyCodeLine{00852\ }
+\DoxyCodeLine{00853\ \ \ \ \ \textcolor{comment}{//\ Vector3CrossProduct(w,\ wv)}}
+\DoxyCodeLine{00854\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ wwv\ =\ \{\ w.y*wv.z\ -\/\ w.z*wv.y,\ w.z*wv.x\ -\/\ w.x*wv.z,\ w.x*wv.y\ -\/\ w.y*wv.x\ \};}
+\DoxyCodeLine{00855\ }
+\DoxyCodeLine{00856\ \ \ \ \ \textcolor{comment}{//\ Vector3Scale(wv,\ 2*a)}}
+\DoxyCodeLine{00857\ \ \ \ \ a\ *=\ 2;}
+\DoxyCodeLine{00858\ \ \ \ \ wv.x\ *=\ a;}
+\DoxyCodeLine{00859\ \ \ \ \ wv.y\ *=\ a;}
+\DoxyCodeLine{00860\ \ \ \ \ wv.z\ *=\ a;}
+\DoxyCodeLine{00861\ }
+\DoxyCodeLine{00862\ \ \ \ \ \textcolor{comment}{//\ Vector3Scale(wwv,\ 2)}}
+\DoxyCodeLine{00863\ \ \ \ \ wwv.x\ *=\ 2;}
+\DoxyCodeLine{00864\ \ \ \ \ wwv.y\ *=\ 2;}
+\DoxyCodeLine{00865\ \ \ \ \ wwv.z\ *=\ 2;}
+\DoxyCodeLine{00866\ }
+\DoxyCodeLine{00867\ \ \ \ \ result.x\ +=\ wv.x;}
+\DoxyCodeLine{00868\ \ \ \ \ result.y\ +=\ wv.y;}
+\DoxyCodeLine{00869\ \ \ \ \ result.z\ +=\ wv.z;}
+\DoxyCodeLine{00870\ }
+\DoxyCodeLine{00871\ \ \ \ \ result.x\ +=\ wwv.x;}
+\DoxyCodeLine{00872\ \ \ \ \ result.y\ +=\ wwv.y;}
+\DoxyCodeLine{00873\ \ \ \ \ result.z\ +=\ wwv.z;}
+\DoxyCodeLine{00874\ }
+\DoxyCodeLine{00875\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00876\ \}}
+\DoxyCodeLine{00877\ }
+\DoxyCodeLine{00878\ \textcolor{comment}{//\ Calculate\ linear\ interpolation\ between\ two\ vectors}}
+\DoxyCodeLine{00879\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Lerp(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2,\ \textcolor{keywordtype}{float}\ amount)}
+\DoxyCodeLine{00880\ \{}
+\DoxyCodeLine{00881\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00882\ }
+\DoxyCodeLine{00883\ \ \ \ \ result.x\ =\ v1.x\ +\ amount*(v2.x\ -\/\ v1.x);}
+\DoxyCodeLine{00884\ \ \ \ \ result.y\ =\ v1.y\ +\ amount*(v2.y\ -\/\ v1.y);}
+\DoxyCodeLine{00885\ \ \ \ \ result.z\ =\ v1.z\ +\ amount*(v2.z\ -\/\ v1.z);}
+\DoxyCodeLine{00886\ }
+\DoxyCodeLine{00887\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00888\ \}}
+\DoxyCodeLine{00889\ }
+\DoxyCodeLine{00890\ \textcolor{comment}{//\ Calculate\ reflected\ vector\ to\ normal}}
+\DoxyCodeLine{00891\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Reflect(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \mbox{\hyperlink{structVector3}{Vector3}}\ normal)}
+\DoxyCodeLine{00892\ \{}
+\DoxyCodeLine{00893\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00894\ }
+\DoxyCodeLine{00895\ \ \ \ \ \textcolor{comment}{//\ I\ is\ the\ original\ vector}}
+\DoxyCodeLine{00896\ \ \ \ \ \textcolor{comment}{//\ N\ is\ the\ normal\ of\ the\ incident\ plane}}
+\DoxyCodeLine{00897\ \ \ \ \ \textcolor{comment}{//\ R\ =\ I\ -\/\ (2*N*(DotProduct[I,\ N]))}}
+\DoxyCodeLine{00898\ }
+\DoxyCodeLine{00899\ \ \ \ \ \textcolor{keywordtype}{float}\ dotProduct\ =\ (v.x*normal.x\ +\ v.y*normal.y\ +\ v.z*normal.z);}
+\DoxyCodeLine{00900\ }
+\DoxyCodeLine{00901\ \ \ \ \ result.x\ =\ v.x\ -\/\ (2.0f*normal.x)*dotProduct;}
+\DoxyCodeLine{00902\ \ \ \ \ result.y\ =\ v.y\ -\/\ (2.0f*normal.y)*dotProduct;}
+\DoxyCodeLine{00903\ \ \ \ \ result.z\ =\ v.z\ -\/\ (2.0f*normal.z)*dotProduct;}
+\DoxyCodeLine{00904\ }
+\DoxyCodeLine{00905\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00906\ \}}
+\DoxyCodeLine{00907\ }
+\DoxyCodeLine{00908\ \textcolor{comment}{//\ Get\ min\ value\ for\ each\ pair\ of\ components}}
+\DoxyCodeLine{00909\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Min(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00910\ \{}
+\DoxyCodeLine{00911\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00912\ }
+\DoxyCodeLine{00913\ \ \ \ \ result.x\ =\ fminf(v1.x,\ v2.x);}
+\DoxyCodeLine{00914\ \ \ \ \ result.y\ =\ fminf(v1.y,\ v2.y);}
+\DoxyCodeLine{00915\ \ \ \ \ result.z\ =\ fminf(v1.z,\ v2.z);}
+\DoxyCodeLine{00916\ }
+\DoxyCodeLine{00917\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00918\ \}}
+\DoxyCodeLine{00919\ }
+\DoxyCodeLine{00920\ \textcolor{comment}{//\ Get\ max\ value\ for\ each\ pair\ of\ components}}
+\DoxyCodeLine{00921\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Max(\mbox{\hyperlink{structVector3}{Vector3}}\ v1,\ \mbox{\hyperlink{structVector3}{Vector3}}\ v2)}
+\DoxyCodeLine{00922\ \{}
+\DoxyCodeLine{00923\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00924\ }
+\DoxyCodeLine{00925\ \ \ \ \ result.x\ =\ fmaxf(v1.x,\ v2.x);}
+\DoxyCodeLine{00926\ \ \ \ \ result.y\ =\ fmaxf(v1.y,\ v2.y);}
+\DoxyCodeLine{00927\ \ \ \ \ result.z\ =\ fmaxf(v1.z,\ v2.z);}
+\DoxyCodeLine{00928\ }
+\DoxyCodeLine{00929\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00930\ \}}
+\DoxyCodeLine{00931\ }
+\DoxyCodeLine{00932\ \textcolor{comment}{//\ Compute\ barycenter\ coordinates\ (u,\ v,\ w)\ for\ point\ p\ with\ respect\ to\ triangle\ (a,\ b,\ c)}}
+\DoxyCodeLine{00933\ \textcolor{comment}{//\ NOTE:\ Assumes\ P\ is\ on\ the\ plane\ of\ the\ triangle}}
+\DoxyCodeLine{00934\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Barycenter(\mbox{\hyperlink{structVector3}{Vector3}}\ p,\ \mbox{\hyperlink{structVector3}{Vector3}}\ a,\ \mbox{\hyperlink{structVector3}{Vector3}}\ b,\ \mbox{\hyperlink{structVector3}{Vector3}}\ c)}
+\DoxyCodeLine{00935\ \{}
+\DoxyCodeLine{00936\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00937\ }
+\DoxyCodeLine{00938\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ v0\ =\ \{\ b.x\ -\/\ a.x,\ b.y\ -\/\ a.y,\ b.z\ -\/\ a.z\ \};\ \ \ \textcolor{comment}{//\ Vector3Subtract(b,\ a)}}
+\DoxyCodeLine{00939\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ v1\ =\ \{\ c.x\ -\/\ a.x,\ c.y\ -\/\ a.y,\ c.z\ -\/\ a.z\ \};\ \ \ \textcolor{comment}{//\ Vector3Subtract(c,\ a)}}
+\DoxyCodeLine{00940\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ v2\ =\ \{\ p.x\ -\/\ a.x,\ p.y\ -\/\ a.y,\ p.z\ -\/\ a.z\ \};\ \ \ \textcolor{comment}{//\ Vector3Subtract(p,\ a)}}
+\DoxyCodeLine{00941\ \ \ \ \ \textcolor{keywordtype}{float}\ d00\ =\ (v0.x*v0.x\ +\ v0.y*v0.y\ +\ v0.z*v0.z);\ \ \ \ \textcolor{comment}{//\ Vector3DotProduct(v0,\ v0)}}
+\DoxyCodeLine{00942\ \ \ \ \ \textcolor{keywordtype}{float}\ d01\ =\ (v0.x*v1.x\ +\ v0.y*v1.y\ +\ v0.z*v1.z);\ \ \ \ \textcolor{comment}{//\ Vector3DotProduct(v0,\ v1)}}
+\DoxyCodeLine{00943\ \ \ \ \ \textcolor{keywordtype}{float}\ d11\ =\ (v1.x*v1.x\ +\ v1.y*v1.y\ +\ v1.z*v1.z);\ \ \ \ \textcolor{comment}{//\ Vector3DotProduct(v1,\ v1)}}
+\DoxyCodeLine{00944\ \ \ \ \ \textcolor{keywordtype}{float}\ d20\ =\ (v2.x*v0.x\ +\ v2.y*v0.y\ +\ v2.z*v0.z);\ \ \ \ \textcolor{comment}{//\ Vector3DotProduct(v2,\ v0)}}
+\DoxyCodeLine{00945\ \ \ \ \ \textcolor{keywordtype}{float}\ d21\ =\ (v2.x*v1.x\ +\ v2.y*v1.y\ +\ v2.z*v1.z);\ \ \ \ \textcolor{comment}{//\ Vector3DotProduct(v2,\ v1)}}
+\DoxyCodeLine{00946\ }
+\DoxyCodeLine{00947\ \ \ \ \ \textcolor{keywordtype}{float}\ denom\ =\ d00*d11\ -\/\ d01*d01;}
+\DoxyCodeLine{00948\ }
+\DoxyCodeLine{00949\ \ \ \ \ result.y\ =\ (d11*d20\ -\/\ d01*d21)/denom;}
+\DoxyCodeLine{00950\ \ \ \ \ result.z\ =\ (d00*d21\ -\/\ d01*d20)/denom;}
+\DoxyCodeLine{00951\ \ \ \ \ result.x\ =\ 1.0f\ -\/\ (result.z\ +\ result.y);}
+\DoxyCodeLine{00952\ }
+\DoxyCodeLine{00953\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00954\ \}}
+\DoxyCodeLine{00955\ }
+\DoxyCodeLine{00956\ \textcolor{comment}{//\ Projects\ a\ Vector3\ from\ screen\ space\ into\ object\ space}}
+\DoxyCodeLine{00957\ \textcolor{comment}{//\ NOTE:\ We\ are\ avoiding\ calling\ other\ raymath\ functions\ despite\ available}}
+\DoxyCodeLine{00958\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Unproject(\mbox{\hyperlink{structVector3}{Vector3}}\ source,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ projection,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ view)}
+\DoxyCodeLine{00959\ \{}
+\DoxyCodeLine{00960\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{00961\ }
+\DoxyCodeLine{00962\ \ \ \ \ \textcolor{comment}{//\ Calculate\ unprojected\ matrix\ (multiply\ view\ matrix\ by\ projection\ matrix)\ and\ invert\ it}}
+\DoxyCodeLine{00963\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ matViewProj\ =\ \{\ \ \ \ \ \ \textcolor{comment}{//\ MatrixMultiply(view,\ projection);}}
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ view.m0*projection.m0\ +\ view.m1*projection.m4\ +\ view.m2*projection.m8\ +\ view.m3*projection.m12,}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ view.m0*projection.m1\ +\ view.m1*projection.m5\ +\ view.m2*projection.m9\ +\ view.m3*projection.m13,}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ view.m0*projection.m2\ +\ view.m1*projection.m6\ +\ view.m2*projection.m10\ +\ view.m3*projection.m14,}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ view.m0*projection.m3\ +\ view.m1*projection.m7\ +\ view.m2*projection.m11\ +\ view.m3*projection.m15,}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ view.m4*projection.m0\ +\ view.m5*projection.m4\ +\ view.m6*projection.m8\ +\ view.m7*projection.m12,}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ view.m4*projection.m1\ +\ view.m5*projection.m5\ +\ view.m6*projection.m9\ +\ view.m7*projection.m13,}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ view.m4*projection.m2\ +\ view.m5*projection.m6\ +\ view.m6*projection.m10\ +\ view.m7*projection.m14,}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ view.m4*projection.m3\ +\ view.m5*projection.m7\ +\ view.m6*projection.m11\ +\ view.m7*projection.m15,}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ view.m8*projection.m0\ +\ view.m9*projection.m4\ +\ view.m10*projection.m8\ +\ view.m11*projection.m12,}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ view.m8*projection.m1\ +\ view.m9*projection.m5\ +\ view.m10*projection.m9\ +\ view.m11*projection.m13,}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ view.m8*projection.m2\ +\ view.m9*projection.m6\ +\ view.m10*projection.m10\ +\ view.m11*projection.m14,}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ view.m8*projection.m3\ +\ view.m9*projection.m7\ +\ view.m10*projection.m11\ +\ view.m11*projection.m15,}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ view.m12*projection.m0\ +\ view.m13*projection.m4\ +\ view.m14*projection.m8\ +\ view.m15*projection.m12,}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ view.m12*projection.m1\ +\ view.m13*projection.m5\ +\ view.m14*projection.m9\ +\ view.m15*projection.m13,}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ view.m12*projection.m2\ +\ view.m13*projection.m6\ +\ view.m14*projection.m10\ +\ view.m15*projection.m14,}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ view.m12*projection.m3\ +\ view.m13*projection.m7\ +\ view.m14*projection.m11\ +\ view.m15*projection.m15\ \};}
+\DoxyCodeLine{00980\ }
+\DoxyCodeLine{00981\ \ \ \ \ \textcolor{comment}{//\ Calculate\ inverted\ matrix\ -\/>\ MatrixInvert(matViewProj);}}
+\DoxyCodeLine{00982\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ matrix\ values\ (speed\ optimization)}}
+\DoxyCodeLine{00983\ \ \ \ \ \textcolor{keywordtype}{float}\ a00\ =\ matViewProj.m0,\ a01\ =\ matViewProj.m1,\ a02\ =\ matViewProj.m2,\ a03\ =\ matViewProj.m3;}
+\DoxyCodeLine{00984\ \ \ \ \ \textcolor{keywordtype}{float}\ a10\ =\ matViewProj.m4,\ a11\ =\ matViewProj.m5,\ a12\ =\ matViewProj.m6,\ a13\ =\ matViewProj.m7;}
+\DoxyCodeLine{00985\ \ \ \ \ \textcolor{keywordtype}{float}\ a20\ =\ matViewProj.m8,\ a21\ =\ matViewProj.m9,\ a22\ =\ matViewProj.m10,\ a23\ =\ matViewProj.m11;}
+\DoxyCodeLine{00986\ \ \ \ \ \textcolor{keywordtype}{float}\ a30\ =\ matViewProj.m12,\ a31\ =\ matViewProj.m13,\ a32\ =\ matViewProj.m14,\ a33\ =\ matViewProj.m15;}
+\DoxyCodeLine{00987\ }
+\DoxyCodeLine{00988\ \ \ \ \ \textcolor{keywordtype}{float}\ b00\ =\ a00*a11\ -\/\ a01*a10;}
+\DoxyCodeLine{00989\ \ \ \ \ \textcolor{keywordtype}{float}\ b01\ =\ a00*a12\ -\/\ a02*a10;}
+\DoxyCodeLine{00990\ \ \ \ \ \textcolor{keywordtype}{float}\ b02\ =\ a00*a13\ -\/\ a03*a10;}
+\DoxyCodeLine{00991\ \ \ \ \ \textcolor{keywordtype}{float}\ b03\ =\ a01*a12\ -\/\ a02*a11;}
+\DoxyCodeLine{00992\ \ \ \ \ \textcolor{keywordtype}{float}\ b04\ =\ a01*a13\ -\/\ a03*a11;}
+\DoxyCodeLine{00993\ \ \ \ \ \textcolor{keywordtype}{float}\ b05\ =\ a02*a13\ -\/\ a03*a12;}
+\DoxyCodeLine{00994\ \ \ \ \ \textcolor{keywordtype}{float}\ b06\ =\ a20*a31\ -\/\ a21*a30;}
+\DoxyCodeLine{00995\ \ \ \ \ \textcolor{keywordtype}{float}\ b07\ =\ a20*a32\ -\/\ a22*a30;}
+\DoxyCodeLine{00996\ \ \ \ \ \textcolor{keywordtype}{float}\ b08\ =\ a20*a33\ -\/\ a23*a30;}
+\DoxyCodeLine{00997\ \ \ \ \ \textcolor{keywordtype}{float}\ b09\ =\ a21*a32\ -\/\ a22*a31;}
+\DoxyCodeLine{00998\ \ \ \ \ \textcolor{keywordtype}{float}\ b10\ =\ a21*a33\ -\/\ a23*a31;}
+\DoxyCodeLine{00999\ \ \ \ \ \textcolor{keywordtype}{float}\ b11\ =\ a22*a33\ -\/\ a23*a32;}
+\DoxyCodeLine{01000\ }
+\DoxyCodeLine{01001\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ invert\ determinant\ (inlined\ to\ avoid\ double-\/caching)}}
+\DoxyCodeLine{01002\ \ \ \ \ \textcolor{keywordtype}{float}\ invDet\ =\ 1.0f/(b00*b11\ -\/\ b01*b10\ +\ b02*b09\ +\ b03*b08\ -\/\ b04*b07\ +\ b05*b06);}
+\DoxyCodeLine{01003\ }
+\DoxyCodeLine{01004\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ matViewProjInv\ =\ \{}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ (a11*b11\ -\/\ a12*b10\ +\ a13*b09)*invDet,}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ (-\/a01*b11\ +\ a02*b10\ -\/\ a03*b09)*invDet,}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ (a31*b05\ -\/\ a32*b04\ +\ a33*b03)*invDet,}
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ (-\/a21*b05\ +\ a22*b04\ -\/\ a23*b03)*invDet,}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ (-\/a10*b11\ +\ a12*b08\ -\/\ a13*b07)*invDet,}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ (a00*b11\ -\/\ a02*b08\ +\ a03*b07)*invDet,}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ (-\/a30*b05\ +\ a32*b02\ -\/\ a33*b01)*invDet,}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ (a20*b05\ -\/\ a22*b02\ +\ a23*b01)*invDet,}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ (a10*b10\ -\/\ a11*b08\ +\ a13*b06)*invDet,}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ (-\/a00*b10\ +\ a01*b08\ -\/\ a03*b06)*invDet,}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ (a30*b04\ -\/\ a31*b02\ +\ a33*b00)*invDet,}
+\DoxyCodeLine{01016\ \ \ \ \ \ \ \ \ (-\/a20*b04\ +\ a21*b02\ -\/\ a23*b00)*invDet,}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ (-\/a10*b09\ +\ a11*b07\ -\/\ a12*b06)*invDet,}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ (a00*b09\ -\/\ a01*b07\ +\ a02*b06)*invDet,}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ (-\/a30*b03\ +\ a31*b01\ -\/\ a32*b00)*invDet,}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ (a20*b03\ -\/\ a21*b01\ +\ a22*b00)*invDet\ \};}
+\DoxyCodeLine{01021\ }
+\DoxyCodeLine{01022\ \ \ \ \ \textcolor{comment}{//\ Create\ quaternion\ from\ source\ point}}
+\DoxyCodeLine{01023\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ quat\ =\ \{\ source.x,\ source.y,\ source.z,\ 1.0f\ \};}
+\DoxyCodeLine{01024\ }
+\DoxyCodeLine{01025\ \ \ \ \ \textcolor{comment}{//\ Multiply\ quat\ point\ by\ unprojecte\ matrix}}
+\DoxyCodeLine{01026\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ qtransformed\ =\ \{\ \ \ \ \ \textcolor{comment}{//\ QuaternionTransform(quat,\ matViewProjInv)}}
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ matViewProjInv.m0*quat.x\ +\ matViewProjInv.m4*quat.y\ +\ matViewProjInv.m8*quat.z\ +\ matViewProjInv.m12*quat.w,}
+\DoxyCodeLine{01028\ \ \ \ \ \ \ \ \ matViewProjInv.m1*quat.x\ +\ matViewProjInv.m5*quat.y\ +\ matViewProjInv.m9*quat.z\ +\ matViewProjInv.m13*quat.w,}
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ matViewProjInv.m2*quat.x\ +\ matViewProjInv.m6*quat.y\ +\ matViewProjInv.m10*quat.z\ +\ matViewProjInv.m14*quat.w,}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ matViewProjInv.m3*quat.x\ +\ matViewProjInv.m7*quat.y\ +\ matViewProjInv.m11*quat.z\ +\ matViewProjInv.m15*quat.w\ \};}
+\DoxyCodeLine{01031\ }
+\DoxyCodeLine{01032\ \ \ \ \ \textcolor{comment}{//\ Normalized\ world\ points\ in\ vectors}}
+\DoxyCodeLine{01033\ \ \ \ \ result.x\ =\ qtransformed.x/qtransformed.w;}
+\DoxyCodeLine{01034\ \ \ \ \ result.y\ =\ qtransformed.y/qtransformed.w;}
+\DoxyCodeLine{01035\ \ \ \ \ result.z\ =\ qtransformed.z/qtransformed.w;}
+\DoxyCodeLine{01036\ }
+\DoxyCodeLine{01037\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01038\ \}}
+\DoxyCodeLine{01039\ }
+\DoxyCodeLine{01040\ \textcolor{comment}{//\ Get\ Vector3\ as\ float\ array}}
+\DoxyCodeLine{01041\ RMAPI\ \mbox{\hyperlink{structfloat3}{float3}}\ Vector3ToFloatV(\mbox{\hyperlink{structVector3}{Vector3}}\ v)}
+\DoxyCodeLine{01042\ \{}
+\DoxyCodeLine{01043\ \ \ \ \ \mbox{\hyperlink{structfloat3}{float3}}\ buffer\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01044\ }
+\DoxyCodeLine{01045\ \ \ \ \ buffer.v[0]\ =\ v.x;}
+\DoxyCodeLine{01046\ \ \ \ \ buffer.v[1]\ =\ v.y;}
+\DoxyCodeLine{01047\ \ \ \ \ buffer.v[2]\ =\ v.z;}
+\DoxyCodeLine{01048\ }
+\DoxyCodeLine{01049\ \ \ \ \ \textcolor{keywordflow}{return}\ buffer;}
+\DoxyCodeLine{01050\ \}}
+\DoxyCodeLine{01051\ }
+\DoxyCodeLine{01052\ \textcolor{comment}{//\ Invert\ the\ given\ vector}}
+\DoxyCodeLine{01053\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Invert(\mbox{\hyperlink{structVector3}{Vector3}}\ v)}
+\DoxyCodeLine{01054\ \{}
+\DoxyCodeLine{01055\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 1.0f/v.x,\ 1.0f/v.y,\ 1.0f/v.z\ \};}
+\DoxyCodeLine{01056\ }
+\DoxyCodeLine{01057\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01058\ \}}
+\DoxyCodeLine{01059\ }
+\DoxyCodeLine{01060\ \textcolor{comment}{//\ Clamp\ the\ components\ of\ the\ vector\ between}}
+\DoxyCodeLine{01061\ \textcolor{comment}{//\ min\ and\ max\ values\ specified\ by\ the\ given\ vectors}}
+\DoxyCodeLine{01062\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Clamp(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \mbox{\hyperlink{structVector3}{Vector3}}\ min,\ \mbox{\hyperlink{structVector3}{Vector3}}\ max)}
+\DoxyCodeLine{01063\ \{}
+\DoxyCodeLine{01064\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01065\ }
+\DoxyCodeLine{01066\ \ \ \ \ result.x\ =\ fminf(max.x,\ fmaxf(min.x,\ v.x));}
+\DoxyCodeLine{01067\ \ \ \ \ result.y\ =\ fminf(max.y,\ fmaxf(min.y,\ v.y));}
+\DoxyCodeLine{01068\ \ \ \ \ result.z\ =\ fminf(max.z,\ fmaxf(min.z,\ v.z));}
+\DoxyCodeLine{01069\ }
+\DoxyCodeLine{01070\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01071\ \}}
+\DoxyCodeLine{01072\ }
+\DoxyCodeLine{01073\ \textcolor{comment}{//\ Clamp\ the\ magnitude\ of\ the\ vector\ between\ two\ values}}
+\DoxyCodeLine{01074\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3ClampValue(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max)}
+\DoxyCodeLine{01075\ \{}
+\DoxyCodeLine{01076\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ v;}
+\DoxyCodeLine{01077\ }
+\DoxyCodeLine{01078\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ (v.x*v.x)\ +\ (v.y*v.y)\ +\ (v.z*v.z);}
+\DoxyCodeLine{01079\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ >\ 0.0f)}
+\DoxyCodeLine{01080\ \ \ \ \ \{}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ length\ =\ sqrtf(length);}
+\DoxyCodeLine{01082\ }
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ <\ min)}
+\DoxyCodeLine{01084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scale\ =\ min/length;}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ v.x*scale;}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ v.y*scale;}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \ \ \ \ result.z\ =\ v.z*scale;}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (length\ >\ max)}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scale\ =\ max/length;}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ v.x*scale;}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ v.y*scale;}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \ \ \ \ result.z\ =\ v.z*scale;}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01097\ \ \ \ \ \}}
+\DoxyCodeLine{01098\ }
+\DoxyCodeLine{01099\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01100\ \}}
+\DoxyCodeLine{01101\ }
+\DoxyCodeLine{01102\ \textcolor{comment}{//\ Check\ whether\ two\ given\ vectors\ are\ almost\ equal}}
+\DoxyCodeLine{01103\ RMAPI\ \textcolor{keywordtype}{int}\ Vector3Equals(\mbox{\hyperlink{structVector3}{Vector3}}\ p,\ \mbox{\hyperlink{structVector3}{Vector3}}\ q)}
+\DoxyCodeLine{01104\ \{}
+\DoxyCodeLine{01105\ \textcolor{preprocessor}{\#if\ !defined(EPSILON)}}
+\DoxyCodeLine{01106\ \textcolor{preprocessor}{\ \ \ \ \#define\ EPSILON\ 0.000001f}}
+\DoxyCodeLine{01107\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01108\ }
+\DoxyCodeLine{01109\ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ ((fabsf(p.x\ -\/\ q.x))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.x),\ fabsf(q.x)))))\ \&\&}
+\DoxyCodeLine{01110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.y\ -\/\ q.y))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.y),\ fabsf(q.y)))))\ \&\&}
+\DoxyCodeLine{01111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.z\ -\/\ q.z))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.z),\ fabsf(q.z)))));}
+\DoxyCodeLine{01112\ }
+\DoxyCodeLine{01113\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01114\ \}}
+\DoxyCodeLine{01115\ }
+\DoxyCodeLine{01116\ \textcolor{comment}{//\ Compute\ the\ direction\ of\ a\ refracted\ ray}}
+\DoxyCodeLine{01117\ \textcolor{comment}{//\ v:\ normalized\ direction\ of\ the\ incoming\ ray}}
+\DoxyCodeLine{01118\ \textcolor{comment}{//\ n:\ normalized\ normal\ vector\ of\ the\ interface\ of\ two\ optical\ media}}
+\DoxyCodeLine{01119\ \textcolor{comment}{//\ r:\ ratio\ of\ the\ refractive\ index\ of\ the\ medium\ from\ where\ the\ ray\ comes}}
+\DoxyCodeLine{01120\ \textcolor{comment}{//\ \ \ \ to\ the\ refractive\ index\ of\ the\ medium\ on\ the\ other\ side\ of\ the\ surface}}
+\DoxyCodeLine{01121\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ Vector3Refract(\mbox{\hyperlink{structVector3}{Vector3}}\ v,\ \mbox{\hyperlink{structVector3}{Vector3}}\ n,\ \textcolor{keywordtype}{float}\ r)}
+\DoxyCodeLine{01122\ \{}
+\DoxyCodeLine{01123\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01124\ }
+\DoxyCodeLine{01125\ \ \ \ \ \textcolor{keywordtype}{float}\ dot\ =\ v.x*n.x\ +\ v.y*n.y\ +\ v.z*n.z;}
+\DoxyCodeLine{01126\ \ \ \ \ \textcolor{keywordtype}{float}\ d\ =\ 1.0f\ -\/\ r*r*(1.0f\ -\/\ dot*dot);}
+\DoxyCodeLine{01127\ }
+\DoxyCodeLine{01128\ \ \ \ \ \textcolor{keywordflow}{if}\ (d\ >=\ 0.0f)}
+\DoxyCodeLine{01129\ \ \ \ \ \{}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ d\ =\ sqrtf(d);}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ v.x\ =\ r*v.x\ -\/\ (r*dot\ +\ d)*n.x;}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ v.y\ =\ r*v.y\ -\/\ (r*dot\ +\ d)*n.y;}
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \ \ v.z\ =\ r*v.z\ -\/\ (r*dot\ +\ d)*n.z;}
+\DoxyCodeLine{01134\ }
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ result\ =\ v;}
+\DoxyCodeLine{01136\ \ \ \ \ \}}
+\DoxyCodeLine{01137\ }
+\DoxyCodeLine{01138\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01139\ \}}
+\DoxyCodeLine{01140\ }
+\DoxyCodeLine{01141\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01142\ \textcolor{comment}{//\ Module\ Functions\ Definition\ -\/\ Matrix\ math}}
+\DoxyCodeLine{01143\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01144\ }
+\DoxyCodeLine{01145\ \textcolor{comment}{//\ Compute\ matrix\ determinant}}
+\DoxyCodeLine{01146\ RMAPI\ \textcolor{keywordtype}{float}\ MatrixDeterminant(\mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{01147\ \{}
+\DoxyCodeLine{01148\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ 0.0f;}
+\DoxyCodeLine{01149\ }
+\DoxyCodeLine{01150\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ matrix\ values\ (speed\ optimization)}}
+\DoxyCodeLine{01151\ \ \ \ \ \textcolor{keywordtype}{float}\ a00\ =\ mat.m0,\ a01\ =\ mat.m1,\ a02\ =\ mat.m2,\ a03\ =\ mat.m3;}
+\DoxyCodeLine{01152\ \ \ \ \ \textcolor{keywordtype}{float}\ a10\ =\ mat.m4,\ a11\ =\ mat.m5,\ a12\ =\ mat.m6,\ a13\ =\ mat.m7;}
+\DoxyCodeLine{01153\ \ \ \ \ \textcolor{keywordtype}{float}\ a20\ =\ mat.m8,\ a21\ =\ mat.m9,\ a22\ =\ mat.m10,\ a23\ =\ mat.m11;}
+\DoxyCodeLine{01154\ \ \ \ \ \textcolor{keywordtype}{float}\ a30\ =\ mat.m12,\ a31\ =\ mat.m13,\ a32\ =\ mat.m14,\ a33\ =\ mat.m15;}
+\DoxyCodeLine{01155\ }
+\DoxyCodeLine{01156\ \ \ \ \ result\ =\ a30*a21*a12*a03\ -\/\ a20*a31*a12*a03\ -\/\ a30*a11*a22*a03\ +\ a10*a31*a22*a03\ +}
+\DoxyCodeLine{01157\ \ \ \ \ \ \ \ \ \ \ \ \ \ a20*a11*a32*a03\ -\/\ a10*a21*a32*a03\ -\/\ a30*a21*a02*a13\ +\ a20*a31*a02*a13\ +}
+\DoxyCodeLine{01158\ \ \ \ \ \ \ \ \ \ \ \ \ \ a30*a01*a22*a13\ -\/\ a00*a31*a22*a13\ -\/\ a20*a01*a32*a13\ +\ a00*a21*a32*a13\ +}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ \ \ \ \ \ a30*a11*a02*a23\ -\/\ a10*a31*a02*a23\ -\/\ a30*a01*a12*a23\ +\ a00*a31*a12*a23\ +}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ \ \ \ \ \ a10*a01*a32*a23\ -\/\ a00*a11*a32*a23\ -\/\ a20*a11*a02*a33\ +\ a10*a21*a02*a33\ +}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ \ \ \ \ \ a20*a01*a12*a33\ -\/\ a00*a21*a12*a33\ -\/\ a10*a01*a22*a33\ +\ a00*a11*a22*a33;}
+\DoxyCodeLine{01162\ }
+\DoxyCodeLine{01163\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01164\ \}}
+\DoxyCodeLine{01165\ }
+\DoxyCodeLine{01166\ \textcolor{comment}{//\ Get\ the\ trace\ of\ the\ matrix\ (sum\ of\ the\ values\ along\ the\ diagonal)}}
+\DoxyCodeLine{01167\ RMAPI\ \textcolor{keywordtype}{float}\ MatrixTrace(\mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{01168\ \{}
+\DoxyCodeLine{01169\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ (mat.m0\ +\ mat.m5\ +\ mat.m10\ +\ mat.m15);}
+\DoxyCodeLine{01170\ }
+\DoxyCodeLine{01171\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01172\ \}}
+\DoxyCodeLine{01173\ }
+\DoxyCodeLine{01174\ \textcolor{comment}{//\ Transposes\ provided\ matrix}}
+\DoxyCodeLine{01175\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixTranspose(\mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{01176\ \{}
+\DoxyCodeLine{01177\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01178\ }
+\DoxyCodeLine{01179\ \ \ \ \ result.m0\ =\ mat.m0;}
+\DoxyCodeLine{01180\ \ \ \ \ result.m1\ =\ mat.m4;}
+\DoxyCodeLine{01181\ \ \ \ \ result.m2\ =\ mat.m8;}
+\DoxyCodeLine{01182\ \ \ \ \ result.m3\ =\ mat.m12;}
+\DoxyCodeLine{01183\ \ \ \ \ result.m4\ =\ mat.m1;}
+\DoxyCodeLine{01184\ \ \ \ \ result.m5\ =\ mat.m5;}
+\DoxyCodeLine{01185\ \ \ \ \ result.m6\ =\ mat.m9;}
+\DoxyCodeLine{01186\ \ \ \ \ result.m7\ =\ mat.m13;}
+\DoxyCodeLine{01187\ \ \ \ \ result.m8\ =\ mat.m2;}
+\DoxyCodeLine{01188\ \ \ \ \ result.m9\ =\ mat.m6;}
+\DoxyCodeLine{01189\ \ \ \ \ result.m10\ =\ mat.m10;}
+\DoxyCodeLine{01190\ \ \ \ \ result.m11\ =\ mat.m14;}
+\DoxyCodeLine{01191\ \ \ \ \ result.m12\ =\ mat.m3;}
+\DoxyCodeLine{01192\ \ \ \ \ result.m13\ =\ mat.m7;}
+\DoxyCodeLine{01193\ \ \ \ \ result.m14\ =\ mat.m11;}
+\DoxyCodeLine{01194\ \ \ \ \ result.m15\ =\ mat.m15;}
+\DoxyCodeLine{01195\ }
+\DoxyCodeLine{01196\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01197\ \}}
+\DoxyCodeLine{01198\ }
+\DoxyCodeLine{01199\ \textcolor{comment}{//\ Invert\ provided\ matrix}}
+\DoxyCodeLine{01200\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixInvert(\mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{01201\ \{}
+\DoxyCodeLine{01202\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01203\ }
+\DoxyCodeLine{01204\ \ \ \ \ \textcolor{comment}{//\ Cache\ the\ matrix\ values\ (speed\ optimization)}}
+\DoxyCodeLine{01205\ \ \ \ \ \textcolor{keywordtype}{float}\ a00\ =\ mat.m0,\ a01\ =\ mat.m1,\ a02\ =\ mat.m2,\ a03\ =\ mat.m3;}
+\DoxyCodeLine{01206\ \ \ \ \ \textcolor{keywordtype}{float}\ a10\ =\ mat.m4,\ a11\ =\ mat.m5,\ a12\ =\ mat.m6,\ a13\ =\ mat.m7;}
+\DoxyCodeLine{01207\ \ \ \ \ \textcolor{keywordtype}{float}\ a20\ =\ mat.m8,\ a21\ =\ mat.m9,\ a22\ =\ mat.m10,\ a23\ =\ mat.m11;}
+\DoxyCodeLine{01208\ \ \ \ \ \textcolor{keywordtype}{float}\ a30\ =\ mat.m12,\ a31\ =\ mat.m13,\ a32\ =\ mat.m14,\ a33\ =\ mat.m15;}
+\DoxyCodeLine{01209\ }
+\DoxyCodeLine{01210\ \ \ \ \ \textcolor{keywordtype}{float}\ b00\ =\ a00*a11\ -\/\ a01*a10;}
+\DoxyCodeLine{01211\ \ \ \ \ \textcolor{keywordtype}{float}\ b01\ =\ a00*a12\ -\/\ a02*a10;}
+\DoxyCodeLine{01212\ \ \ \ \ \textcolor{keywordtype}{float}\ b02\ =\ a00*a13\ -\/\ a03*a10;}
+\DoxyCodeLine{01213\ \ \ \ \ \textcolor{keywordtype}{float}\ b03\ =\ a01*a12\ -\/\ a02*a11;}
+\DoxyCodeLine{01214\ \ \ \ \ \textcolor{keywordtype}{float}\ b04\ =\ a01*a13\ -\/\ a03*a11;}
+\DoxyCodeLine{01215\ \ \ \ \ \textcolor{keywordtype}{float}\ b05\ =\ a02*a13\ -\/\ a03*a12;}
+\DoxyCodeLine{01216\ \ \ \ \ \textcolor{keywordtype}{float}\ b06\ =\ a20*a31\ -\/\ a21*a30;}
+\DoxyCodeLine{01217\ \ \ \ \ \textcolor{keywordtype}{float}\ b07\ =\ a20*a32\ -\/\ a22*a30;}
+\DoxyCodeLine{01218\ \ \ \ \ \textcolor{keywordtype}{float}\ b08\ =\ a20*a33\ -\/\ a23*a30;}
+\DoxyCodeLine{01219\ \ \ \ \ \textcolor{keywordtype}{float}\ b09\ =\ a21*a32\ -\/\ a22*a31;}
+\DoxyCodeLine{01220\ \ \ \ \ \textcolor{keywordtype}{float}\ b10\ =\ a21*a33\ -\/\ a23*a31;}
+\DoxyCodeLine{01221\ \ \ \ \ \textcolor{keywordtype}{float}\ b11\ =\ a22*a33\ -\/\ a23*a32;}
+\DoxyCodeLine{01222\ }
+\DoxyCodeLine{01223\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ invert\ determinant\ (inlined\ to\ avoid\ double-\/caching)}}
+\DoxyCodeLine{01224\ \ \ \ \ \textcolor{keywordtype}{float}\ invDet\ =\ 1.0f/(b00*b11\ -\/\ b01*b10\ +\ b02*b09\ +\ b03*b08\ -\/\ b04*b07\ +\ b05*b06);}
+\DoxyCodeLine{01225\ }
+\DoxyCodeLine{01226\ \ \ \ \ result.m0\ =\ (a11*b11\ -\/\ a12*b10\ +\ a13*b09)*invDet;}
+\DoxyCodeLine{01227\ \ \ \ \ result.m1\ =\ (-\/a01*b11\ +\ a02*b10\ -\/\ a03*b09)*invDet;}
+\DoxyCodeLine{01228\ \ \ \ \ result.m2\ =\ (a31*b05\ -\/\ a32*b04\ +\ a33*b03)*invDet;}
+\DoxyCodeLine{01229\ \ \ \ \ result.m3\ =\ (-\/a21*b05\ +\ a22*b04\ -\/\ a23*b03)*invDet;}
+\DoxyCodeLine{01230\ \ \ \ \ result.m4\ =\ (-\/a10*b11\ +\ a12*b08\ -\/\ a13*b07)*invDet;}
+\DoxyCodeLine{01231\ \ \ \ \ result.m5\ =\ (a00*b11\ -\/\ a02*b08\ +\ a03*b07)*invDet;}
+\DoxyCodeLine{01232\ \ \ \ \ result.m6\ =\ (-\/a30*b05\ +\ a32*b02\ -\/\ a33*b01)*invDet;}
+\DoxyCodeLine{01233\ \ \ \ \ result.m7\ =\ (a20*b05\ -\/\ a22*b02\ +\ a23*b01)*invDet;}
+\DoxyCodeLine{01234\ \ \ \ \ result.m8\ =\ (a10*b10\ -\/\ a11*b08\ +\ a13*b06)*invDet;}
+\DoxyCodeLine{01235\ \ \ \ \ result.m9\ =\ (-\/a00*b10\ +\ a01*b08\ -\/\ a03*b06)*invDet;}
+\DoxyCodeLine{01236\ \ \ \ \ result.m10\ =\ (a30*b04\ -\/\ a31*b02\ +\ a33*b00)*invDet;}
+\DoxyCodeLine{01237\ \ \ \ \ result.m11\ =\ (-\/a20*b04\ +\ a21*b02\ -\/\ a23*b00)*invDet;}
+\DoxyCodeLine{01238\ \ \ \ \ result.m12\ =\ (-\/a10*b09\ +\ a11*b07\ -\/\ a12*b06)*invDet;}
+\DoxyCodeLine{01239\ \ \ \ \ result.m13\ =\ (a00*b09\ -\/\ a01*b07\ +\ a02*b06)*invDet;}
+\DoxyCodeLine{01240\ \ \ \ \ result.m14\ =\ (-\/a30*b03\ +\ a31*b01\ -\/\ a32*b00)*invDet;}
+\DoxyCodeLine{01241\ \ \ \ \ result.m15\ =\ (a20*b03\ -\/\ a21*b01\ +\ a22*b00)*invDet;}
+\DoxyCodeLine{01242\ }
+\DoxyCodeLine{01243\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01244\ \}}
+\DoxyCodeLine{01245\ }
+\DoxyCodeLine{01246\ \textcolor{comment}{//\ Get\ identity\ matrix}}
+\DoxyCodeLine{01247\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixIdentity(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{01248\ \{}
+\DoxyCodeLine{01249\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 1.0f,\ 0.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 1.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 1.0f,\ 0.0f,}
+\DoxyCodeLine{01252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};}
+\DoxyCodeLine{01253\ }
+\DoxyCodeLine{01254\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01255\ \}}
+\DoxyCodeLine{01256\ }
+\DoxyCodeLine{01257\ \textcolor{comment}{//\ Add\ two\ matrices}}
+\DoxyCodeLine{01258\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixAdd(\mbox{\hyperlink{classMatrix}{Matrix}}\ left,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ right)}
+\DoxyCodeLine{01259\ \{}
+\DoxyCodeLine{01260\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01261\ }
+\DoxyCodeLine{01262\ \ \ \ \ result.m0\ =\ left.m0\ +\ right.m0;}
+\DoxyCodeLine{01263\ \ \ \ \ result.m1\ =\ left.m1\ +\ right.m1;}
+\DoxyCodeLine{01264\ \ \ \ \ result.m2\ =\ left.m2\ +\ right.m2;}
+\DoxyCodeLine{01265\ \ \ \ \ result.m3\ =\ left.m3\ +\ right.m3;}
+\DoxyCodeLine{01266\ \ \ \ \ result.m4\ =\ left.m4\ +\ right.m4;}
+\DoxyCodeLine{01267\ \ \ \ \ result.m5\ =\ left.m5\ +\ right.m5;}
+\DoxyCodeLine{01268\ \ \ \ \ result.m6\ =\ left.m6\ +\ right.m6;}
+\DoxyCodeLine{01269\ \ \ \ \ result.m7\ =\ left.m7\ +\ right.m7;}
+\DoxyCodeLine{01270\ \ \ \ \ result.m8\ =\ left.m8\ +\ right.m8;}
+\DoxyCodeLine{01271\ \ \ \ \ result.m9\ =\ left.m9\ +\ right.m9;}
+\DoxyCodeLine{01272\ \ \ \ \ result.m10\ =\ left.m10\ +\ right.m10;}
+\DoxyCodeLine{01273\ \ \ \ \ result.m11\ =\ left.m11\ +\ right.m11;}
+\DoxyCodeLine{01274\ \ \ \ \ result.m12\ =\ left.m12\ +\ right.m12;}
+\DoxyCodeLine{01275\ \ \ \ \ result.m13\ =\ left.m13\ +\ right.m13;}
+\DoxyCodeLine{01276\ \ \ \ \ result.m14\ =\ left.m14\ +\ right.m14;}
+\DoxyCodeLine{01277\ \ \ \ \ result.m15\ =\ left.m15\ +\ right.m15;}
+\DoxyCodeLine{01278\ }
+\DoxyCodeLine{01279\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01280\ \}}
+\DoxyCodeLine{01281\ }
+\DoxyCodeLine{01282\ \textcolor{comment}{//\ Subtract\ two\ matrices\ (left\ -\/\ right)}}
+\DoxyCodeLine{01283\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixSubtract(\mbox{\hyperlink{classMatrix}{Matrix}}\ left,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ right)}
+\DoxyCodeLine{01284\ \{}
+\DoxyCodeLine{01285\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01286\ }
+\DoxyCodeLine{01287\ \ \ \ \ result.m0\ =\ left.m0\ -\/\ right.m0;}
+\DoxyCodeLine{01288\ \ \ \ \ result.m1\ =\ left.m1\ -\/\ right.m1;}
+\DoxyCodeLine{01289\ \ \ \ \ result.m2\ =\ left.m2\ -\/\ right.m2;}
+\DoxyCodeLine{01290\ \ \ \ \ result.m3\ =\ left.m3\ -\/\ right.m3;}
+\DoxyCodeLine{01291\ \ \ \ \ result.m4\ =\ left.m4\ -\/\ right.m4;}
+\DoxyCodeLine{01292\ \ \ \ \ result.m5\ =\ left.m5\ -\/\ right.m5;}
+\DoxyCodeLine{01293\ \ \ \ \ result.m6\ =\ left.m6\ -\/\ right.m6;}
+\DoxyCodeLine{01294\ \ \ \ \ result.m7\ =\ left.m7\ -\/\ right.m7;}
+\DoxyCodeLine{01295\ \ \ \ \ result.m8\ =\ left.m8\ -\/\ right.m8;}
+\DoxyCodeLine{01296\ \ \ \ \ result.m9\ =\ left.m9\ -\/\ right.m9;}
+\DoxyCodeLine{01297\ \ \ \ \ result.m10\ =\ left.m10\ -\/\ right.m10;}
+\DoxyCodeLine{01298\ \ \ \ \ result.m11\ =\ left.m11\ -\/\ right.m11;}
+\DoxyCodeLine{01299\ \ \ \ \ result.m12\ =\ left.m12\ -\/\ right.m12;}
+\DoxyCodeLine{01300\ \ \ \ \ result.m13\ =\ left.m13\ -\/\ right.m13;}
+\DoxyCodeLine{01301\ \ \ \ \ result.m14\ =\ left.m14\ -\/\ right.m14;}
+\DoxyCodeLine{01302\ \ \ \ \ result.m15\ =\ left.m15\ -\/\ right.m15;}
+\DoxyCodeLine{01303\ }
+\DoxyCodeLine{01304\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01305\ \}}
+\DoxyCodeLine{01306\ }
+\DoxyCodeLine{01307\ \textcolor{comment}{//\ Get\ two\ matrix\ multiplication}}
+\DoxyCodeLine{01308\ \textcolor{comment}{//\ NOTE:\ When\ multiplying\ matrices...\ the\ order\ matters!}}
+\DoxyCodeLine{01309\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixMultiply(\mbox{\hyperlink{classMatrix}{Matrix}}\ left,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ right)}
+\DoxyCodeLine{01310\ \{}
+\DoxyCodeLine{01311\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01312\ }
+\DoxyCodeLine{01313\ \ \ \ \ result.m0\ =\ left.m0*right.m0\ +\ left.m1*right.m4\ +\ left.m2*right.m8\ +\ left.m3*right.m12;}
+\DoxyCodeLine{01314\ \ \ \ \ result.m1\ =\ left.m0*right.m1\ +\ left.m1*right.m5\ +\ left.m2*right.m9\ +\ left.m3*right.m13;}
+\DoxyCodeLine{01315\ \ \ \ \ result.m2\ =\ left.m0*right.m2\ +\ left.m1*right.m6\ +\ left.m2*right.m10\ +\ left.m3*right.m14;}
+\DoxyCodeLine{01316\ \ \ \ \ result.m3\ =\ left.m0*right.m3\ +\ left.m1*right.m7\ +\ left.m2*right.m11\ +\ left.m3*right.m15;}
+\DoxyCodeLine{01317\ \ \ \ \ result.m4\ =\ left.m4*right.m0\ +\ left.m5*right.m4\ +\ left.m6*right.m8\ +\ left.m7*right.m12;}
+\DoxyCodeLine{01318\ \ \ \ \ result.m5\ =\ left.m4*right.m1\ +\ left.m5*right.m5\ +\ left.m6*right.m9\ +\ left.m7*right.m13;}
+\DoxyCodeLine{01319\ \ \ \ \ result.m6\ =\ left.m4*right.m2\ +\ left.m5*right.m6\ +\ left.m6*right.m10\ +\ left.m7*right.m14;}
+\DoxyCodeLine{01320\ \ \ \ \ result.m7\ =\ left.m4*right.m3\ +\ left.m5*right.m7\ +\ left.m6*right.m11\ +\ left.m7*right.m15;}
+\DoxyCodeLine{01321\ \ \ \ \ result.m8\ =\ left.m8*right.m0\ +\ left.m9*right.m4\ +\ left.m10*right.m8\ +\ left.m11*right.m12;}
+\DoxyCodeLine{01322\ \ \ \ \ result.m9\ =\ left.m8*right.m1\ +\ left.m9*right.m5\ +\ left.m10*right.m9\ +\ left.m11*right.m13;}
+\DoxyCodeLine{01323\ \ \ \ \ result.m10\ =\ left.m8*right.m2\ +\ left.m9*right.m6\ +\ left.m10*right.m10\ +\ left.m11*right.m14;}
+\DoxyCodeLine{01324\ \ \ \ \ result.m11\ =\ left.m8*right.m3\ +\ left.m9*right.m7\ +\ left.m10*right.m11\ +\ left.m11*right.m15;}
+\DoxyCodeLine{01325\ \ \ \ \ result.m12\ =\ left.m12*right.m0\ +\ left.m13*right.m4\ +\ left.m14*right.m8\ +\ left.m15*right.m12;}
+\DoxyCodeLine{01326\ \ \ \ \ result.m13\ =\ left.m12*right.m1\ +\ left.m13*right.m5\ +\ left.m14*right.m9\ +\ left.m15*right.m13;}
+\DoxyCodeLine{01327\ \ \ \ \ result.m14\ =\ left.m12*right.m2\ +\ left.m13*right.m6\ +\ left.m14*right.m10\ +\ left.m15*right.m14;}
+\DoxyCodeLine{01328\ \ \ \ \ result.m15\ =\ left.m12*right.m3\ +\ left.m13*right.m7\ +\ left.m14*right.m11\ +\ left.m15*right.m15;}
+\DoxyCodeLine{01329\ }
+\DoxyCodeLine{01330\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01331\ \}}
+\DoxyCodeLine{01332\ }
+\DoxyCodeLine{01333\ \textcolor{comment}{//\ Get\ translation\ matrix}}
+\DoxyCodeLine{01334\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixTranslate(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ z)}
+\DoxyCodeLine{01335\ \{}
+\DoxyCodeLine{01336\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 1.0f,\ 0.0f,\ 0.0f,\ x,}
+\DoxyCodeLine{01337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 1.0f,\ 0.0f,\ y,}
+\DoxyCodeLine{01338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 1.0f,\ z,}
+\DoxyCodeLine{01339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};}
+\DoxyCodeLine{01340\ }
+\DoxyCodeLine{01341\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01342\ \}}
+\DoxyCodeLine{01343\ }
+\DoxyCodeLine{01344\ \textcolor{comment}{//\ Create\ rotation\ matrix\ from\ axis\ and\ angle}}
+\DoxyCodeLine{01345\ \textcolor{comment}{//\ NOTE:\ Angle\ should\ be\ provided\ in\ radians}}
+\DoxyCodeLine{01346\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixRotate(\mbox{\hyperlink{structVector3}{Vector3}}\ axis,\ \textcolor{keywordtype}{float}\ angle)}
+\DoxyCodeLine{01347\ \{}
+\DoxyCodeLine{01348\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01349\ }
+\DoxyCodeLine{01350\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ axis.x,\ y\ =\ axis.y,\ z\ =\ axis.z;}
+\DoxyCodeLine{01351\ }
+\DoxyCodeLine{01352\ \ \ \ \ \textcolor{keywordtype}{float}\ lengthSquared\ =\ x*x\ +\ y*y\ +\ z*z;}
+\DoxyCodeLine{01353\ }
+\DoxyCodeLine{01354\ \ \ \ \ \textcolor{keywordflow}{if}\ ((lengthSquared\ !=\ 1.0f)\ \&\&\ (lengthSquared\ !=\ 0.0f))}
+\DoxyCodeLine{01355\ \ \ \ \ \{}
+\DoxyCodeLine{01356\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 1.0f/sqrtf(lengthSquared);}
+\DoxyCodeLine{01357\ \ \ \ \ \ \ \ \ x\ *=\ ilength;}
+\DoxyCodeLine{01358\ \ \ \ \ \ \ \ \ y\ *=\ ilength;}
+\DoxyCodeLine{01359\ \ \ \ \ \ \ \ \ z\ *=\ ilength;}
+\DoxyCodeLine{01360\ \ \ \ \ \}}
+\DoxyCodeLine{01361\ }
+\DoxyCodeLine{01362\ \ \ \ \ \textcolor{keywordtype}{float}\ sinres\ =\ sinf(angle);}
+\DoxyCodeLine{01363\ \ \ \ \ \textcolor{keywordtype}{float}\ cosres\ =\ cosf(angle);}
+\DoxyCodeLine{01364\ \ \ \ \ \textcolor{keywordtype}{float}\ t\ =\ 1.0f\ -\/\ cosres;}
+\DoxyCodeLine{01365\ }
+\DoxyCodeLine{01366\ \ \ \ \ result.m0\ =\ x*x*t\ +\ cosres;}
+\DoxyCodeLine{01367\ \ \ \ \ result.m1\ =\ y*x*t\ +\ z*sinres;}
+\DoxyCodeLine{01368\ \ \ \ \ result.m2\ =\ z*x*t\ -\/\ y*sinres;}
+\DoxyCodeLine{01369\ \ \ \ \ result.m3\ =\ 0.0f;}
+\DoxyCodeLine{01370\ }
+\DoxyCodeLine{01371\ \ \ \ \ result.m4\ =\ x*y*t\ -\/\ z*sinres;}
+\DoxyCodeLine{01372\ \ \ \ \ result.m5\ =\ y*y*t\ +\ cosres;}
+\DoxyCodeLine{01373\ \ \ \ \ result.m6\ =\ z*y*t\ +\ x*sinres;}
+\DoxyCodeLine{01374\ \ \ \ \ result.m7\ =\ 0.0f;}
+\DoxyCodeLine{01375\ }
+\DoxyCodeLine{01376\ \ \ \ \ result.m8\ =\ x*z*t\ +\ y*sinres;}
+\DoxyCodeLine{01377\ \ \ \ \ result.m9\ =\ y*z*t\ -\/\ x*sinres;}
+\DoxyCodeLine{01378\ \ \ \ \ result.m10\ =\ z*z*t\ +\ cosres;}
+\DoxyCodeLine{01379\ \ \ \ \ result.m11\ =\ 0.0f;}
+\DoxyCodeLine{01380\ }
+\DoxyCodeLine{01381\ \ \ \ \ result.m12\ =\ 0.0f;}
+\DoxyCodeLine{01382\ \ \ \ \ result.m13\ =\ 0.0f;}
+\DoxyCodeLine{01383\ \ \ \ \ result.m14\ =\ 0.0f;}
+\DoxyCodeLine{01384\ \ \ \ \ result.m15\ =\ 1.0f;}
+\DoxyCodeLine{01385\ }
+\DoxyCodeLine{01386\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01387\ \}}
+\DoxyCodeLine{01388\ }
+\DoxyCodeLine{01389\ \textcolor{comment}{//\ Get\ x-\/rotation\ matrix}}
+\DoxyCodeLine{01390\ \textcolor{comment}{//\ NOTE:\ Angle\ must\ be\ provided\ in\ radians}}
+\DoxyCodeLine{01391\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixRotateX(\textcolor{keywordtype}{float}\ angle)}
+\DoxyCodeLine{01392\ \{}
+\DoxyCodeLine{01393\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 1.0f,\ 0.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 1.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 1.0f,\ 0.0f,}
+\DoxyCodeLine{01396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};\ \textcolor{comment}{//\ MatrixIdentity()}}
+\DoxyCodeLine{01397\ }
+\DoxyCodeLine{01398\ \ \ \ \ \textcolor{keywordtype}{float}\ cosres\ =\ cosf(angle);}
+\DoxyCodeLine{01399\ \ \ \ \ \textcolor{keywordtype}{float}\ sinres\ =\ sinf(angle);}
+\DoxyCodeLine{01400\ }
+\DoxyCodeLine{01401\ \ \ \ \ result.m5\ =\ cosres;}
+\DoxyCodeLine{01402\ \ \ \ \ result.m6\ =\ sinres;}
+\DoxyCodeLine{01403\ \ \ \ \ result.m9\ =\ -\/sinres;}
+\DoxyCodeLine{01404\ \ \ \ \ result.m10\ =\ cosres;}
+\DoxyCodeLine{01405\ }
+\DoxyCodeLine{01406\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01407\ \}}
+\DoxyCodeLine{01408\ }
+\DoxyCodeLine{01409\ \textcolor{comment}{//\ Get\ y-\/rotation\ matrix}}
+\DoxyCodeLine{01410\ \textcolor{comment}{//\ NOTE:\ Angle\ must\ be\ provided\ in\ radians}}
+\DoxyCodeLine{01411\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixRotateY(\textcolor{keywordtype}{float}\ angle)}
+\DoxyCodeLine{01412\ \{}
+\DoxyCodeLine{01413\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 1.0f,\ 0.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 1.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 1.0f,\ 0.0f,}
+\DoxyCodeLine{01416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};\ \textcolor{comment}{//\ MatrixIdentity()}}
+\DoxyCodeLine{01417\ }
+\DoxyCodeLine{01418\ \ \ \ \ \textcolor{keywordtype}{float}\ cosres\ =\ cosf(angle);}
+\DoxyCodeLine{01419\ \ \ \ \ \textcolor{keywordtype}{float}\ sinres\ =\ sinf(angle);}
+\DoxyCodeLine{01420\ }
+\DoxyCodeLine{01421\ \ \ \ \ result.m0\ =\ cosres;}
+\DoxyCodeLine{01422\ \ \ \ \ result.m2\ =\ -\/sinres;}
+\DoxyCodeLine{01423\ \ \ \ \ result.m8\ =\ sinres;}
+\DoxyCodeLine{01424\ \ \ \ \ result.m10\ =\ cosres;}
+\DoxyCodeLine{01425\ }
+\DoxyCodeLine{01426\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01427\ \}}
+\DoxyCodeLine{01428\ }
+\DoxyCodeLine{01429\ \textcolor{comment}{//\ Get\ z-\/rotation\ matrix}}
+\DoxyCodeLine{01430\ \textcolor{comment}{//\ NOTE:\ Angle\ must\ be\ provided\ in\ radians}}
+\DoxyCodeLine{01431\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixRotateZ(\textcolor{keywordtype}{float}\ angle)}
+\DoxyCodeLine{01432\ \{}
+\DoxyCodeLine{01433\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 1.0f,\ 0.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 1.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 1.0f,\ 0.0f,}
+\DoxyCodeLine{01436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};\ \textcolor{comment}{//\ MatrixIdentity()}}
+\DoxyCodeLine{01437\ }
+\DoxyCodeLine{01438\ \ \ \ \ \textcolor{keywordtype}{float}\ cosres\ =\ cosf(angle);}
+\DoxyCodeLine{01439\ \ \ \ \ \textcolor{keywordtype}{float}\ sinres\ =\ sinf(angle);}
+\DoxyCodeLine{01440\ }
+\DoxyCodeLine{01441\ \ \ \ \ result.m0\ =\ cosres;}
+\DoxyCodeLine{01442\ \ \ \ \ result.m1\ =\ sinres;}
+\DoxyCodeLine{01443\ \ \ \ \ result.m4\ =\ -\/sinres;}
+\DoxyCodeLine{01444\ \ \ \ \ result.m5\ =\ cosres;}
+\DoxyCodeLine{01445\ }
+\DoxyCodeLine{01446\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01447\ \}}
+\DoxyCodeLine{01448\ }
+\DoxyCodeLine{01449\ }
+\DoxyCodeLine{01450\ \textcolor{comment}{//\ Get\ xyz-\/rotation\ matrix}}
+\DoxyCodeLine{01451\ \textcolor{comment}{//\ NOTE:\ Angle\ must\ be\ provided\ in\ radians}}
+\DoxyCodeLine{01452\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixRotateXYZ(\mbox{\hyperlink{structVector3}{Vector3}}\ angle)}
+\DoxyCodeLine{01453\ \{}
+\DoxyCodeLine{01454\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 1.0f,\ 0.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 1.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 1.0f,\ 0.0f,}
+\DoxyCodeLine{01457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};\ \textcolor{comment}{//\ MatrixIdentity()}}
+\DoxyCodeLine{01458\ }
+\DoxyCodeLine{01459\ \ \ \ \ \textcolor{keywordtype}{float}\ cosz\ =\ cosf(-\/angle.z);}
+\DoxyCodeLine{01460\ \ \ \ \ \textcolor{keywordtype}{float}\ sinz\ =\ sinf(-\/angle.z);}
+\DoxyCodeLine{01461\ \ \ \ \ \textcolor{keywordtype}{float}\ cosy\ =\ cosf(-\/angle.y);}
+\DoxyCodeLine{01462\ \ \ \ \ \textcolor{keywordtype}{float}\ siny\ =\ sinf(-\/angle.y);}
+\DoxyCodeLine{01463\ \ \ \ \ \textcolor{keywordtype}{float}\ cosx\ =\ cosf(-\/angle.x);}
+\DoxyCodeLine{01464\ \ \ \ \ \textcolor{keywordtype}{float}\ sinx\ =\ sinf(-\/angle.x);}
+\DoxyCodeLine{01465\ }
+\DoxyCodeLine{01466\ \ \ \ \ result.m0\ =\ cosz*cosy;}
+\DoxyCodeLine{01467\ \ \ \ \ result.m1\ =\ (cosz*siny*sinx)\ -\/\ (sinz*cosx);}
+\DoxyCodeLine{01468\ \ \ \ \ result.m2\ =\ (cosz*siny*cosx)\ +\ (sinz*sinx);}
+\DoxyCodeLine{01469\ }
+\DoxyCodeLine{01470\ \ \ \ \ result.m4\ =\ sinz*cosy;}
+\DoxyCodeLine{01471\ \ \ \ \ result.m5\ =\ (sinz*siny*sinx)\ +\ (cosz*cosx);}
+\DoxyCodeLine{01472\ \ \ \ \ result.m6\ =\ (sinz*siny*cosx)\ -\/\ (cosz*sinx);}
+\DoxyCodeLine{01473\ }
+\DoxyCodeLine{01474\ \ \ \ \ result.m8\ =\ -\/siny;}
+\DoxyCodeLine{01475\ \ \ \ \ result.m9\ =\ cosy*sinx;}
+\DoxyCodeLine{01476\ \ \ \ \ result.m10=\ cosy*cosx;}
+\DoxyCodeLine{01477\ }
+\DoxyCodeLine{01478\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01479\ \}}
+\DoxyCodeLine{01480\ }
+\DoxyCodeLine{01481\ \textcolor{comment}{//\ Get\ zyx-\/rotation\ matrix}}
+\DoxyCodeLine{01482\ \textcolor{comment}{//\ NOTE:\ Angle\ must\ be\ provided\ in\ radians}}
+\DoxyCodeLine{01483\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixRotateZYX(\mbox{\hyperlink{structVector3}{Vector3}}\ angle)}
+\DoxyCodeLine{01484\ \{}
+\DoxyCodeLine{01485\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01486\ }
+\DoxyCodeLine{01487\ \ \ \ \ \textcolor{keywordtype}{float}\ cz\ =\ cosf(angle.z);}
+\DoxyCodeLine{01488\ \ \ \ \ \textcolor{keywordtype}{float}\ sz\ =\ sinf(angle.z);}
+\DoxyCodeLine{01489\ \ \ \ \ \textcolor{keywordtype}{float}\ cy\ =\ cosf(angle.y);}
+\DoxyCodeLine{01490\ \ \ \ \ \textcolor{keywordtype}{float}\ sy\ =\ sinf(angle.y);}
+\DoxyCodeLine{01491\ \ \ \ \ \textcolor{keywordtype}{float}\ cx\ =\ cosf(angle.x);}
+\DoxyCodeLine{01492\ \ \ \ \ \textcolor{keywordtype}{float}\ sx\ =\ sinf(angle.x);}
+\DoxyCodeLine{01493\ }
+\DoxyCodeLine{01494\ \ \ \ \ result.m0\ =\ cz*cy;}
+\DoxyCodeLine{01495\ \ \ \ \ result.m4\ =\ cz*sy*sx\ -\/\ cx*sz;}
+\DoxyCodeLine{01496\ \ \ \ \ result.m8\ =\ sz*sx\ +\ cz*cx*sy;}
+\DoxyCodeLine{01497\ \ \ \ \ result.m12\ =\ 0;}
+\DoxyCodeLine{01498\ }
+\DoxyCodeLine{01499\ \ \ \ \ result.m1\ =\ cy*sz;}
+\DoxyCodeLine{01500\ \ \ \ \ result.m5\ =\ cz*cx\ +\ sz*sy*sx;}
+\DoxyCodeLine{01501\ \ \ \ \ result.m9\ =\ cx*sz*sy\ -\/\ cz*sx;}
+\DoxyCodeLine{01502\ \ \ \ \ result.m13\ =\ 0;}
+\DoxyCodeLine{01503\ }
+\DoxyCodeLine{01504\ \ \ \ \ result.m2\ =\ -\/sy;}
+\DoxyCodeLine{01505\ \ \ \ \ result.m6\ =\ cy*sx;}
+\DoxyCodeLine{01506\ \ \ \ \ result.m10\ =\ cy*cx;}
+\DoxyCodeLine{01507\ \ \ \ \ result.m14\ =\ 0;}
+\DoxyCodeLine{01508\ }
+\DoxyCodeLine{01509\ \ \ \ \ result.m3\ =\ 0;}
+\DoxyCodeLine{01510\ \ \ \ \ result.m7\ =\ 0;}
+\DoxyCodeLine{01511\ \ \ \ \ result.m11\ =\ 0;}
+\DoxyCodeLine{01512\ \ \ \ \ result.m15\ =\ 1;}
+\DoxyCodeLine{01513\ }
+\DoxyCodeLine{01514\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01515\ \}}
+\DoxyCodeLine{01516\ }
+\DoxyCodeLine{01517\ \textcolor{comment}{//\ Get\ scaling\ matrix}}
+\DoxyCodeLine{01518\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixScale(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ z)}
+\DoxyCodeLine{01519\ \{}
+\DoxyCodeLine{01520\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ x,\ 0.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ y,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{01522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ z,\ 0.0f,}
+\DoxyCodeLine{01523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};}
+\DoxyCodeLine{01524\ }
+\DoxyCodeLine{01525\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01526\ \}}
+\DoxyCodeLine{01527\ }
+\DoxyCodeLine{01528\ \textcolor{comment}{//\ Get\ perspective\ projection\ matrix}}
+\DoxyCodeLine{01529\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixFrustum(\textcolor{keywordtype}{double}\ left,\ \textcolor{keywordtype}{double}\ right,\ \textcolor{keywordtype}{double}\ bottom,\ \textcolor{keywordtype}{double}\ top,\ \textcolor{keywordtype}{double}\ near,\ \textcolor{keywordtype}{double}\ far)}
+\DoxyCodeLine{01530\ \{}
+\DoxyCodeLine{01531\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01532\ }
+\DoxyCodeLine{01533\ \ \ \ \ \textcolor{keywordtype}{float}\ rl\ =\ (float)(right\ -\/\ left);}
+\DoxyCodeLine{01534\ \ \ \ \ \textcolor{keywordtype}{float}\ tb\ =\ (float)(top\ -\/\ bottom);}
+\DoxyCodeLine{01535\ \ \ \ \ \textcolor{keywordtype}{float}\ fn\ =\ (float)(far\ -\/\ near);}
+\DoxyCodeLine{01536\ }
+\DoxyCodeLine{01537\ \ \ \ \ result.m0\ =\ ((float)near*2.0f)/rl;}
+\DoxyCodeLine{01538\ \ \ \ \ result.m1\ =\ 0.0f;}
+\DoxyCodeLine{01539\ \ \ \ \ result.m2\ =\ 0.0f;}
+\DoxyCodeLine{01540\ \ \ \ \ result.m3\ =\ 0.0f;}
+\DoxyCodeLine{01541\ }
+\DoxyCodeLine{01542\ \ \ \ \ result.m4\ =\ 0.0f;}
+\DoxyCodeLine{01543\ \ \ \ \ result.m5\ =\ ((float)near*2.0f)/tb;}
+\DoxyCodeLine{01544\ \ \ \ \ result.m6\ =\ 0.0f;}
+\DoxyCodeLine{01545\ \ \ \ \ result.m7\ =\ 0.0f;}
+\DoxyCodeLine{01546\ }
+\DoxyCodeLine{01547\ \ \ \ \ result.m8\ =\ ((float)right\ +\ (\textcolor{keywordtype}{float})left)/rl;}
+\DoxyCodeLine{01548\ \ \ \ \ result.m9\ =\ ((float)top\ +\ (\textcolor{keywordtype}{float})bottom)/tb;}
+\DoxyCodeLine{01549\ \ \ \ \ result.m10\ =\ -\/((float)far\ +\ (\textcolor{keywordtype}{float})near)/fn;}
+\DoxyCodeLine{01550\ \ \ \ \ result.m11\ =\ -\/1.0f;}
+\DoxyCodeLine{01551\ }
+\DoxyCodeLine{01552\ \ \ \ \ result.m12\ =\ 0.0f;}
+\DoxyCodeLine{01553\ \ \ \ \ result.m13\ =\ 0.0f;}
+\DoxyCodeLine{01554\ \ \ \ \ result.m14\ =\ -\/((float)far*(\textcolor{keywordtype}{float})near*2.0f)/fn;}
+\DoxyCodeLine{01555\ \ \ \ \ result.m15\ =\ 0.0f;}
+\DoxyCodeLine{01556\ }
+\DoxyCodeLine{01557\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01558\ \}}
+\DoxyCodeLine{01559\ }
+\DoxyCodeLine{01560\ \textcolor{comment}{//\ Get\ perspective\ projection\ matrix}}
+\DoxyCodeLine{01561\ \textcolor{comment}{//\ NOTE:\ Fovy\ angle\ must\ be\ provided\ in\ radians}}
+\DoxyCodeLine{01562\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixPerspective(\textcolor{keywordtype}{double}\ fovY,\ \textcolor{keywordtype}{double}\ aspect,\ \textcolor{keywordtype}{double}\ nearPlane,\ \textcolor{keywordtype}{double}\ farPlane)}
+\DoxyCodeLine{01563\ \{}
+\DoxyCodeLine{01564\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01565\ }
+\DoxyCodeLine{01566\ \ \ \ \ \textcolor{keywordtype}{double}\ top\ =\ nearPlane*tan(fovY*0.5);}
+\DoxyCodeLine{01567\ \ \ \ \ \textcolor{keywordtype}{double}\ bottom\ =\ -\/top;}
+\DoxyCodeLine{01568\ \ \ \ \ \textcolor{keywordtype}{double}\ right\ =\ top*aspect;}
+\DoxyCodeLine{01569\ \ \ \ \ \textcolor{keywordtype}{double}\ left\ =\ -\/right;}
+\DoxyCodeLine{01570\ }
+\DoxyCodeLine{01571\ \ \ \ \ \textcolor{comment}{//\ MatrixFrustum(-\/right,\ right,\ -\/top,\ top,\ near,\ far);}}
+\DoxyCodeLine{01572\ \ \ \ \ \textcolor{keywordtype}{float}\ rl\ =\ (float)(right\ -\/\ left);}
+\DoxyCodeLine{01573\ \ \ \ \ \textcolor{keywordtype}{float}\ tb\ =\ (float)(top\ -\/\ bottom);}
+\DoxyCodeLine{01574\ \ \ \ \ \textcolor{keywordtype}{float}\ fn\ =\ (float)(farPlane\ -\/\ nearPlane);}
+\DoxyCodeLine{01575\ }
+\DoxyCodeLine{01576\ \ \ \ \ result.m0\ =\ ((float)nearPlane*2.0f)/rl;}
+\DoxyCodeLine{01577\ \ \ \ \ result.m5\ =\ ((float)nearPlane*2.0f)/tb;}
+\DoxyCodeLine{01578\ \ \ \ \ result.m8\ =\ ((float)right\ +\ (\textcolor{keywordtype}{float})left)/rl;}
+\DoxyCodeLine{01579\ \ \ \ \ result.m9\ =\ ((float)top\ +\ (\textcolor{keywordtype}{float})bottom)/tb;}
+\DoxyCodeLine{01580\ \ \ \ \ result.m10\ =\ -\/((float)farPlane\ +\ (\textcolor{keywordtype}{float})nearPlane)/fn;}
+\DoxyCodeLine{01581\ \ \ \ \ result.m11\ =\ -\/1.0f;}
+\DoxyCodeLine{01582\ \ \ \ \ result.m14\ =\ -\/((float)farPlane*(\textcolor{keywordtype}{float})nearPlane*2.0f)/fn;}
+\DoxyCodeLine{01583\ }
+\DoxyCodeLine{01584\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01585\ \}}
+\DoxyCodeLine{01586\ }
+\DoxyCodeLine{01587\ \textcolor{comment}{//\ Get\ orthographic\ projection\ matrix}}
+\DoxyCodeLine{01588\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixOrtho(\textcolor{keywordtype}{double}\ left,\ \textcolor{keywordtype}{double}\ right,\ \textcolor{keywordtype}{double}\ bottom,\ \textcolor{keywordtype}{double}\ top,\ \textcolor{keywordtype}{double}\ nearPlane,\ \textcolor{keywordtype}{double}\ farPlane)}
+\DoxyCodeLine{01589\ \{}
+\DoxyCodeLine{01590\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01591\ }
+\DoxyCodeLine{01592\ \ \ \ \ \textcolor{keywordtype}{float}\ rl\ =\ (float)(right\ -\/\ left);}
+\DoxyCodeLine{01593\ \ \ \ \ \textcolor{keywordtype}{float}\ tb\ =\ (float)(top\ -\/\ bottom);}
+\DoxyCodeLine{01594\ \ \ \ \ \textcolor{keywordtype}{float}\ fn\ =\ (float)(farPlane\ -\/\ nearPlane);}
+\DoxyCodeLine{01595\ }
+\DoxyCodeLine{01596\ \ \ \ \ result.m0\ =\ 2.0f/rl;}
+\DoxyCodeLine{01597\ \ \ \ \ result.m1\ =\ 0.0f;}
+\DoxyCodeLine{01598\ \ \ \ \ result.m2\ =\ 0.0f;}
+\DoxyCodeLine{01599\ \ \ \ \ result.m3\ =\ 0.0f;}
+\DoxyCodeLine{01600\ \ \ \ \ result.m4\ =\ 0.0f;}
+\DoxyCodeLine{01601\ \ \ \ \ result.m5\ =\ 2.0f/tb;}
+\DoxyCodeLine{01602\ \ \ \ \ result.m6\ =\ 0.0f;}
+\DoxyCodeLine{01603\ \ \ \ \ result.m7\ =\ 0.0f;}
+\DoxyCodeLine{01604\ \ \ \ \ result.m8\ =\ 0.0f;}
+\DoxyCodeLine{01605\ \ \ \ \ result.m9\ =\ 0.0f;}
+\DoxyCodeLine{01606\ \ \ \ \ result.m10\ =\ -\/2.0f/fn;}
+\DoxyCodeLine{01607\ \ \ \ \ result.m11\ =\ 0.0f;}
+\DoxyCodeLine{01608\ \ \ \ \ result.m12\ =\ -\/((float)left\ +\ (\textcolor{keywordtype}{float})right)/rl;}
+\DoxyCodeLine{01609\ \ \ \ \ result.m13\ =\ -\/((float)top\ +\ (\textcolor{keywordtype}{float})bottom)/tb;}
+\DoxyCodeLine{01610\ \ \ \ \ result.m14\ =\ -\/((float)farPlane\ +\ (\textcolor{keywordtype}{float})nearPlane)/fn;}
+\DoxyCodeLine{01611\ \ \ \ \ result.m15\ =\ 1.0f;}
+\DoxyCodeLine{01612\ }
+\DoxyCodeLine{01613\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01614\ \}}
+\DoxyCodeLine{01615\ }
+\DoxyCodeLine{01616\ \textcolor{comment}{//\ Get\ camera\ look-\/at\ matrix\ (view\ matrix)}}
+\DoxyCodeLine{01617\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ MatrixLookAt(\mbox{\hyperlink{structVector3}{Vector3}}\ eye,\ \mbox{\hyperlink{structVector3}{Vector3}}\ target,\ \mbox{\hyperlink{structVector3}{Vector3}}\ up)}
+\DoxyCodeLine{01618\ \{}
+\DoxyCodeLine{01619\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01620\ }
+\DoxyCodeLine{01621\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ 0.0f;}
+\DoxyCodeLine{01622\ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 0.0f;}
+\DoxyCodeLine{01623\ }
+\DoxyCodeLine{01624\ \ \ \ \ \textcolor{comment}{//\ Vector3Subtract(eye,\ target)}}
+\DoxyCodeLine{01625\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ vz\ =\ \{\ eye.x\ -\/\ target.x,\ eye.y\ -\/\ target.y,\ eye.z\ -\/\ target.z\ \};}
+\DoxyCodeLine{01626\ }
+\DoxyCodeLine{01627\ \ \ \ \ \textcolor{comment}{//\ Vector3Normalize(vz)}}
+\DoxyCodeLine{01628\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ v\ =\ vz;}
+\DoxyCodeLine{01629\ \ \ \ \ length\ =\ sqrtf(v.x*v.x\ +\ v.y*v.y\ +\ v.z*v.z);}
+\DoxyCodeLine{01630\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{01631\ \ \ \ \ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{01632\ \ \ \ \ vz.x\ *=\ ilength;}
+\DoxyCodeLine{01633\ \ \ \ \ vz.y\ *=\ ilength;}
+\DoxyCodeLine{01634\ \ \ \ \ vz.z\ *=\ ilength;}
+\DoxyCodeLine{01635\ }
+\DoxyCodeLine{01636\ \ \ \ \ \textcolor{comment}{//\ Vector3CrossProduct(up,\ vz)}}
+\DoxyCodeLine{01637\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ vx\ =\ \{\ up.y*vz.z\ -\/\ up.z*vz.y,\ up.z*vz.x\ -\/\ up.x*vz.z,\ up.x*vz.y\ -\/\ up.y*vz.x\ \};}
+\DoxyCodeLine{01638\ }
+\DoxyCodeLine{01639\ \ \ \ \ \textcolor{comment}{//\ Vector3Normalize(x)}}
+\DoxyCodeLine{01640\ \ \ \ \ v\ =\ vx;}
+\DoxyCodeLine{01641\ \ \ \ \ length\ =\ sqrtf(v.x*v.x\ +\ v.y*v.y\ +\ v.z*v.z);}
+\DoxyCodeLine{01642\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{01643\ \ \ \ \ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{01644\ \ \ \ \ vx.x\ *=\ ilength;}
+\DoxyCodeLine{01645\ \ \ \ \ vx.y\ *=\ ilength;}
+\DoxyCodeLine{01646\ \ \ \ \ vx.z\ *=\ ilength;}
+\DoxyCodeLine{01647\ }
+\DoxyCodeLine{01648\ \ \ \ \ \textcolor{comment}{//\ Vector3CrossProduct(vz,\ vx)}}
+\DoxyCodeLine{01649\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ vy\ =\ \{\ vz.y*vx.z\ -\/\ vz.z*vx.y,\ vz.z*vx.x\ -\/\ vz.x*vx.z,\ vz.x*vx.y\ -\/\ vz.y*vx.x\ \};}
+\DoxyCodeLine{01650\ }
+\DoxyCodeLine{01651\ \ \ \ \ result.m0\ =\ vx.x;}
+\DoxyCodeLine{01652\ \ \ \ \ result.m1\ =\ vy.x;}
+\DoxyCodeLine{01653\ \ \ \ \ result.m2\ =\ vz.x;}
+\DoxyCodeLine{01654\ \ \ \ \ result.m3\ =\ 0.0f;}
+\DoxyCodeLine{01655\ \ \ \ \ result.m4\ =\ vx.y;}
+\DoxyCodeLine{01656\ \ \ \ \ result.m5\ =\ vy.y;}
+\DoxyCodeLine{01657\ \ \ \ \ result.m6\ =\ vz.y;}
+\DoxyCodeLine{01658\ \ \ \ \ result.m7\ =\ 0.0f;}
+\DoxyCodeLine{01659\ \ \ \ \ result.m8\ =\ vx.z;}
+\DoxyCodeLine{01660\ \ \ \ \ result.m9\ =\ vy.z;}
+\DoxyCodeLine{01661\ \ \ \ \ result.m10\ =\ vz.z;}
+\DoxyCodeLine{01662\ \ \ \ \ result.m11\ =\ 0.0f;}
+\DoxyCodeLine{01663\ \ \ \ \ result.m12\ =\ -\/(vx.x*eye.x\ +\ vx.y*eye.y\ +\ vx.z*eye.z);\ \ \ \textcolor{comment}{//\ Vector3DotProduct(vx,\ eye)}}
+\DoxyCodeLine{01664\ \ \ \ \ result.m13\ =\ -\/(vy.x*eye.x\ +\ vy.y*eye.y\ +\ vy.z*eye.z);\ \ \ \textcolor{comment}{//\ Vector3DotProduct(vy,\ eye)}}
+\DoxyCodeLine{01665\ \ \ \ \ result.m14\ =\ -\/(vz.x*eye.x\ +\ vz.y*eye.y\ +\ vz.z*eye.z);\ \ \ \textcolor{comment}{//\ Vector3DotProduct(vz,\ eye)}}
+\DoxyCodeLine{01666\ \ \ \ \ result.m15\ =\ 1.0f;}
+\DoxyCodeLine{01667\ }
+\DoxyCodeLine{01668\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01669\ \}}
+\DoxyCodeLine{01670\ }
+\DoxyCodeLine{01671\ \textcolor{comment}{//\ Get\ float\ array\ of\ matrix\ data}}
+\DoxyCodeLine{01672\ RMAPI\ \mbox{\hyperlink{structfloat16}{float16}}\ MatrixToFloatV(\mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{01673\ \{}
+\DoxyCodeLine{01674\ \ \ \ \ \mbox{\hyperlink{structfloat16}{float16}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01675\ }
+\DoxyCodeLine{01676\ \ \ \ \ result.v[0]\ =\ mat.m0;}
+\DoxyCodeLine{01677\ \ \ \ \ result.v[1]\ =\ mat.m1;}
+\DoxyCodeLine{01678\ \ \ \ \ result.v[2]\ =\ mat.m2;}
+\DoxyCodeLine{01679\ \ \ \ \ result.v[3]\ =\ mat.m3;}
+\DoxyCodeLine{01680\ \ \ \ \ result.v[4]\ =\ mat.m4;}
+\DoxyCodeLine{01681\ \ \ \ \ result.v[5]\ =\ mat.m5;}
+\DoxyCodeLine{01682\ \ \ \ \ result.v[6]\ =\ mat.m6;}
+\DoxyCodeLine{01683\ \ \ \ \ result.v[7]\ =\ mat.m7;}
+\DoxyCodeLine{01684\ \ \ \ \ result.v[8]\ =\ mat.m8;}
+\DoxyCodeLine{01685\ \ \ \ \ result.v[9]\ =\ mat.m9;}
+\DoxyCodeLine{01686\ \ \ \ \ result.v[10]\ =\ mat.m10;}
+\DoxyCodeLine{01687\ \ \ \ \ result.v[11]\ =\ mat.m11;}
+\DoxyCodeLine{01688\ \ \ \ \ result.v[12]\ =\ mat.m12;}
+\DoxyCodeLine{01689\ \ \ \ \ result.v[13]\ =\ mat.m13;}
+\DoxyCodeLine{01690\ \ \ \ \ result.v[14]\ =\ mat.m14;}
+\DoxyCodeLine{01691\ \ \ \ \ result.v[15]\ =\ mat.m15;}
+\DoxyCodeLine{01692\ }
+\DoxyCodeLine{01693\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01694\ \}}
+\DoxyCodeLine{01695\ }
+\DoxyCodeLine{01696\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01697\ \textcolor{comment}{//\ Module\ Functions\ Definition\ -\/\ Quaternion\ math}}
+\DoxyCodeLine{01698\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01699\ }
+\DoxyCodeLine{01700\ \textcolor{comment}{//\ Add\ two\ quaternions}}
+\DoxyCodeLine{01701\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionAdd(\mbox{\hyperlink{structVector4}{Quaternion}}\ q1,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q2)}
+\DoxyCodeLine{01702\ \{}
+\DoxyCodeLine{01703\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{q1.x\ +\ q2.x,\ q1.y\ +\ q2.y,\ q1.z\ +\ q2.z,\ q1.w\ +\ q2.w\};}
+\DoxyCodeLine{01704\ }
+\DoxyCodeLine{01705\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01706\ \}}
+\DoxyCodeLine{01707\ }
+\DoxyCodeLine{01708\ \textcolor{comment}{//\ Add\ quaternion\ and\ float\ value}}
+\DoxyCodeLine{01709\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionAddValue(\mbox{\hyperlink{structVector4}{Quaternion}}\ q,\ \textcolor{keywordtype}{float}\ add)}
+\DoxyCodeLine{01710\ \{}
+\DoxyCodeLine{01711\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{q.x\ +\ add,\ q.y\ +\ add,\ q.z\ +\ add,\ q.w\ +\ add\};}
+\DoxyCodeLine{01712\ }
+\DoxyCodeLine{01713\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01714\ \}}
+\DoxyCodeLine{01715\ }
+\DoxyCodeLine{01716\ \textcolor{comment}{//\ Subtract\ two\ quaternions}}
+\DoxyCodeLine{01717\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionSubtract(\mbox{\hyperlink{structVector4}{Quaternion}}\ q1,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q2)}
+\DoxyCodeLine{01718\ \{}
+\DoxyCodeLine{01719\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{q1.x\ -\/\ q2.x,\ q1.y\ -\/\ q2.y,\ q1.z\ -\/\ q2.z,\ q1.w\ -\/\ q2.w\};}
+\DoxyCodeLine{01720\ }
+\DoxyCodeLine{01721\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01722\ \}}
+\DoxyCodeLine{01723\ }
+\DoxyCodeLine{01724\ \textcolor{comment}{//\ Subtract\ quaternion\ and\ float\ value}}
+\DoxyCodeLine{01725\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionSubtractValue(\mbox{\hyperlink{structVector4}{Quaternion}}\ q,\ \textcolor{keywordtype}{float}\ sub)}
+\DoxyCodeLine{01726\ \{}
+\DoxyCodeLine{01727\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{q.x\ -\/\ sub,\ q.y\ -\/\ sub,\ q.z\ -\/\ sub,\ q.w\ -\/\ sub\};}
+\DoxyCodeLine{01728\ }
+\DoxyCodeLine{01729\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01730\ \}}
+\DoxyCodeLine{01731\ }
+\DoxyCodeLine{01732\ \textcolor{comment}{//\ Get\ identity\ quaternion}}
+\DoxyCodeLine{01733\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionIdentity(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{01734\ \{}
+\DoxyCodeLine{01735\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};}
+\DoxyCodeLine{01736\ }
+\DoxyCodeLine{01737\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01738\ \}}
+\DoxyCodeLine{01739\ }
+\DoxyCodeLine{01740\ \textcolor{comment}{//\ Computes\ the\ length\ of\ a\ quaternion}}
+\DoxyCodeLine{01741\ RMAPI\ \textcolor{keywordtype}{float}\ QuaternionLength(\mbox{\hyperlink{structVector4}{Quaternion}}\ q)}
+\DoxyCodeLine{01742\ \{}
+\DoxyCodeLine{01743\ \ \ \ \ \textcolor{keywordtype}{float}\ result\ =\ sqrtf(q.x*q.x\ +\ q.y*q.y\ +\ q.z*q.z\ +\ q.w*q.w);}
+\DoxyCodeLine{01744\ }
+\DoxyCodeLine{01745\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01746\ \}}
+\DoxyCodeLine{01747\ }
+\DoxyCodeLine{01748\ \textcolor{comment}{//\ Normalize\ provided\ quaternion}}
+\DoxyCodeLine{01749\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionNormalize(\mbox{\hyperlink{structVector4}{Quaternion}}\ q)}
+\DoxyCodeLine{01750\ \{}
+\DoxyCodeLine{01751\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01752\ }
+\DoxyCodeLine{01753\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ sqrtf(q.x*q.x\ +\ q.y*q.y\ +\ q.z*q.z\ +\ q.w*q.w);}
+\DoxyCodeLine{01754\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{01755\ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{01756\ }
+\DoxyCodeLine{01757\ \ \ \ \ result.x\ =\ q.x*ilength;}
+\DoxyCodeLine{01758\ \ \ \ \ result.y\ =\ q.y*ilength;}
+\DoxyCodeLine{01759\ \ \ \ \ result.z\ =\ q.z*ilength;}
+\DoxyCodeLine{01760\ \ \ \ \ result.w\ =\ q.w*ilength;}
+\DoxyCodeLine{01761\ }
+\DoxyCodeLine{01762\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01763\ \}}
+\DoxyCodeLine{01764\ }
+\DoxyCodeLine{01765\ \textcolor{comment}{//\ Invert\ provided\ quaternion}}
+\DoxyCodeLine{01766\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionInvert(\mbox{\hyperlink{structVector4}{Quaternion}}\ q)}
+\DoxyCodeLine{01767\ \{}
+\DoxyCodeLine{01768\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ q;}
+\DoxyCodeLine{01769\ }
+\DoxyCodeLine{01770\ \ \ \ \ \textcolor{keywordtype}{float}\ lengthSq\ =\ q.x*q.x\ +\ q.y*q.y\ +\ q.z*q.z\ +\ q.w*q.w;}
+\DoxyCodeLine{01771\ }
+\DoxyCodeLine{01772\ \ \ \ \ \textcolor{keywordflow}{if}\ (lengthSq\ !=\ 0.0f)}
+\DoxyCodeLine{01773\ \ \ \ \ \{}
+\DoxyCodeLine{01774\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ invLength\ =\ 1.0f/lengthSq;}
+\DoxyCodeLine{01775\ }
+\DoxyCodeLine{01776\ \ \ \ \ \ \ \ \ result.x\ *=\ -\/invLength;}
+\DoxyCodeLine{01777\ \ \ \ \ \ \ \ \ result.y\ *=\ -\/invLength;}
+\DoxyCodeLine{01778\ \ \ \ \ \ \ \ \ result.z\ *=\ -\/invLength;}
+\DoxyCodeLine{01779\ \ \ \ \ \ \ \ \ result.w\ *=\ invLength;}
+\DoxyCodeLine{01780\ \ \ \ \ \}}
+\DoxyCodeLine{01781\ }
+\DoxyCodeLine{01782\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01783\ \}}
+\DoxyCodeLine{01784\ }
+\DoxyCodeLine{01785\ \textcolor{comment}{//\ Calculate\ two\ quaternion\ multiplication}}
+\DoxyCodeLine{01786\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionMultiply(\mbox{\hyperlink{structVector4}{Quaternion}}\ q1,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q2)}
+\DoxyCodeLine{01787\ \{}
+\DoxyCodeLine{01788\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01789\ }
+\DoxyCodeLine{01790\ \ \ \ \ \textcolor{keywordtype}{float}\ qax\ =\ q1.x,\ qay\ =\ q1.y,\ qaz\ =\ q1.z,\ qaw\ =\ q1.w;}
+\DoxyCodeLine{01791\ \ \ \ \ \textcolor{keywordtype}{float}\ qbx\ =\ q2.x,\ qby\ =\ q2.y,\ qbz\ =\ q2.z,\ qbw\ =\ q2.w;}
+\DoxyCodeLine{01792\ }
+\DoxyCodeLine{01793\ \ \ \ \ result.x\ =\ qax*qbw\ +\ qaw*qbx\ +\ qay*qbz\ -\/\ qaz*qby;}
+\DoxyCodeLine{01794\ \ \ \ \ result.y\ =\ qay*qbw\ +\ qaw*qby\ +\ qaz*qbx\ -\/\ qax*qbz;}
+\DoxyCodeLine{01795\ \ \ \ \ result.z\ =\ qaz*qbw\ +\ qaw*qbz\ +\ qax*qby\ -\/\ qay*qbx;}
+\DoxyCodeLine{01796\ \ \ \ \ result.w\ =\ qaw*qbw\ -\/\ qax*qbx\ -\/\ qay*qby\ -\/\ qaz*qbz;}
+\DoxyCodeLine{01797\ }
+\DoxyCodeLine{01798\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01799\ \}}
+\DoxyCodeLine{01800\ }
+\DoxyCodeLine{01801\ \textcolor{comment}{//\ Scale\ quaternion\ by\ float\ value}}
+\DoxyCodeLine{01802\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionScale(\mbox{\hyperlink{structVector4}{Quaternion}}\ q,\ \textcolor{keywordtype}{float}\ mul)}
+\DoxyCodeLine{01803\ \{}
+\DoxyCodeLine{01804\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01805\ }
+\DoxyCodeLine{01806\ \ \ \ \ result.x\ =\ q.x*mul;}
+\DoxyCodeLine{01807\ \ \ \ \ result.y\ =\ q.y*mul;}
+\DoxyCodeLine{01808\ \ \ \ \ result.z\ =\ q.z*mul;}
+\DoxyCodeLine{01809\ \ \ \ \ result.w\ =\ q.w*mul;}
+\DoxyCodeLine{01810\ }
+\DoxyCodeLine{01811\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01812\ \}}
+\DoxyCodeLine{01813\ }
+\DoxyCodeLine{01814\ \textcolor{comment}{//\ Divide\ two\ quaternions}}
+\DoxyCodeLine{01815\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionDivide(\mbox{\hyperlink{structVector4}{Quaternion}}\ q1,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q2)}
+\DoxyCodeLine{01816\ \{}
+\DoxyCodeLine{01817\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ q1.x/q2.x,\ q1.y/q2.y,\ q1.z/q2.z,\ q1.w/q2.w\ \};}
+\DoxyCodeLine{01818\ }
+\DoxyCodeLine{01819\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01820\ \}}
+\DoxyCodeLine{01821\ }
+\DoxyCodeLine{01822\ \textcolor{comment}{//\ Calculate\ linear\ interpolation\ between\ two\ quaternions}}
+\DoxyCodeLine{01823\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionLerp(\mbox{\hyperlink{structVector4}{Quaternion}}\ q1,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q2,\ \textcolor{keywordtype}{float}\ amount)}
+\DoxyCodeLine{01824\ \{}
+\DoxyCodeLine{01825\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01826\ }
+\DoxyCodeLine{01827\ \ \ \ \ result.x\ =\ q1.x\ +\ amount*(q2.x\ -\/\ q1.x);}
+\DoxyCodeLine{01828\ \ \ \ \ result.y\ =\ q1.y\ +\ amount*(q2.y\ -\/\ q1.y);}
+\DoxyCodeLine{01829\ \ \ \ \ result.z\ =\ q1.z\ +\ amount*(q2.z\ -\/\ q1.z);}
+\DoxyCodeLine{01830\ \ \ \ \ result.w\ =\ q1.w\ +\ amount*(q2.w\ -\/\ q1.w);}
+\DoxyCodeLine{01831\ }
+\DoxyCodeLine{01832\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01833\ \}}
+\DoxyCodeLine{01834\ }
+\DoxyCodeLine{01835\ \textcolor{comment}{//\ Calculate\ slerp-\/optimized\ interpolation\ between\ two\ quaternions}}
+\DoxyCodeLine{01836\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionNlerp(\mbox{\hyperlink{structVector4}{Quaternion}}\ q1,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q2,\ \textcolor{keywordtype}{float}\ amount)}
+\DoxyCodeLine{01837\ \{}
+\DoxyCodeLine{01838\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01839\ }
+\DoxyCodeLine{01840\ \ \ \ \ \textcolor{comment}{//\ QuaternionLerp(q1,\ q2,\ amount)}}
+\DoxyCodeLine{01841\ \ \ \ \ result.x\ =\ q1.x\ +\ amount*(q2.x\ -\/\ q1.x);}
+\DoxyCodeLine{01842\ \ \ \ \ result.y\ =\ q1.y\ +\ amount*(q2.y\ -\/\ q1.y);}
+\DoxyCodeLine{01843\ \ \ \ \ result.z\ =\ q1.z\ +\ amount*(q2.z\ -\/\ q1.z);}
+\DoxyCodeLine{01844\ \ \ \ \ result.w\ =\ q1.w\ +\ amount*(q2.w\ -\/\ q1.w);}
+\DoxyCodeLine{01845\ }
+\DoxyCodeLine{01846\ \ \ \ \ \textcolor{comment}{//\ QuaternionNormalize(q);}}
+\DoxyCodeLine{01847\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ q\ =\ result;}
+\DoxyCodeLine{01848\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ sqrtf(q.x*q.x\ +\ q.y*q.y\ +\ q.z*q.z\ +\ q.w*q.w);}
+\DoxyCodeLine{01849\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{01850\ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{01851\ }
+\DoxyCodeLine{01852\ \ \ \ \ result.x\ =\ q.x*ilength;}
+\DoxyCodeLine{01853\ \ \ \ \ result.y\ =\ q.y*ilength;}
+\DoxyCodeLine{01854\ \ \ \ \ result.z\ =\ q.z*ilength;}
+\DoxyCodeLine{01855\ \ \ \ \ result.w\ =\ q.w*ilength;}
+\DoxyCodeLine{01856\ }
+\DoxyCodeLine{01857\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01858\ \}}
+\DoxyCodeLine{01859\ }
+\DoxyCodeLine{01860\ \textcolor{comment}{//\ Calculates\ spherical\ linear\ interpolation\ between\ two\ quaternions}}
+\DoxyCodeLine{01861\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionSlerp(\mbox{\hyperlink{structVector4}{Quaternion}}\ q1,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q2,\ \textcolor{keywordtype}{float}\ amount)}
+\DoxyCodeLine{01862\ \{}
+\DoxyCodeLine{01863\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01864\ }
+\DoxyCodeLine{01865\ \textcolor{preprocessor}{\#if\ !defined(EPSILON)}}
+\DoxyCodeLine{01866\ \textcolor{preprocessor}{\ \ \ \ \#define\ EPSILON\ 0.000001f}}
+\DoxyCodeLine{01867\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01868\ }
+\DoxyCodeLine{01869\ \ \ \ \ \textcolor{keywordtype}{float}\ cosHalfTheta\ =\ q1.x*q2.x\ +\ q1.y*q2.y\ +\ q1.z*q2.z\ +\ q1.w*q2.w;}
+\DoxyCodeLine{01870\ }
+\DoxyCodeLine{01871\ \ \ \ \ \textcolor{keywordflow}{if}\ (cosHalfTheta\ <\ 0)}
+\DoxyCodeLine{01872\ \ \ \ \ \{}
+\DoxyCodeLine{01873\ \ \ \ \ \ \ \ \ q2.x\ =\ -\/q2.x;\ q2.y\ =\ -\/q2.y;\ q2.z\ =\ -\/q2.z;\ q2.w\ =\ -\/q2.w;}
+\DoxyCodeLine{01874\ \ \ \ \ \ \ \ \ cosHalfTheta\ =\ -\/cosHalfTheta;}
+\DoxyCodeLine{01875\ \ \ \ \ \}}
+\DoxyCodeLine{01876\ }
+\DoxyCodeLine{01877\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabsf(cosHalfTheta)\ >=\ 1.0f)\ result\ =\ q1;}
+\DoxyCodeLine{01878\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (cosHalfTheta\ >\ 0.95f)\ result\ =\ QuaternionNlerp(q1,\ q2,\ amount);}
+\DoxyCodeLine{01879\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01880\ \ \ \ \ \{}
+\DoxyCodeLine{01881\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ halfTheta\ =\ acosf(cosHalfTheta);}
+\DoxyCodeLine{01882\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ sinHalfTheta\ =\ sqrtf(1.0f\ -\/\ cosHalfTheta*cosHalfTheta);}
+\DoxyCodeLine{01883\ }
+\DoxyCodeLine{01884\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fabsf(sinHalfTheta)\ <\ EPSILON)}
+\DoxyCodeLine{01885\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01886\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ (q1.x*0.5f\ +\ q2.x*0.5f);}
+\DoxyCodeLine{01887\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ (q1.y*0.5f\ +\ q2.y*0.5f);}
+\DoxyCodeLine{01888\ \ \ \ \ \ \ \ \ \ \ \ \ result.z\ =\ (q1.z*0.5f\ +\ q2.z*0.5f);}
+\DoxyCodeLine{01889\ \ \ \ \ \ \ \ \ \ \ \ \ result.w\ =\ (q1.w*0.5f\ +\ q2.w*0.5f);}
+\DoxyCodeLine{01890\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01891\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01892\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01893\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ratioA\ =\ sinf((1\ -\/\ amount)*halfTheta)/sinHalfTheta;}
+\DoxyCodeLine{01894\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ratioB\ =\ sinf(amount*halfTheta)/sinHalfTheta;}
+\DoxyCodeLine{01895\ }
+\DoxyCodeLine{01896\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ (q1.x*ratioA\ +\ q2.x*ratioB);}
+\DoxyCodeLine{01897\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ (q1.y*ratioA\ +\ q2.y*ratioB);}
+\DoxyCodeLine{01898\ \ \ \ \ \ \ \ \ \ \ \ \ result.z\ =\ (q1.z*ratioA\ +\ q2.z*ratioB);}
+\DoxyCodeLine{01899\ \ \ \ \ \ \ \ \ \ \ \ \ result.w\ =\ (q1.w*ratioA\ +\ q2.w*ratioB);}
+\DoxyCodeLine{01900\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01901\ \ \ \ \ \}}
+\DoxyCodeLine{01902\ }
+\DoxyCodeLine{01903\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01904\ \}}
+\DoxyCodeLine{01905\ }
+\DoxyCodeLine{01906\ \textcolor{comment}{//\ Calculate\ quaternion\ based\ on\ the\ rotation\ from\ one\ vector\ to\ another}}
+\DoxyCodeLine{01907\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionFromVector3ToVector3(\mbox{\hyperlink{structVector3}{Vector3}}\ from,\ \mbox{\hyperlink{structVector3}{Vector3}}\ to)}
+\DoxyCodeLine{01908\ \{}
+\DoxyCodeLine{01909\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01910\ }
+\DoxyCodeLine{01911\ \ \ \ \ \textcolor{keywordtype}{float}\ cos2Theta\ =\ (from.x*to.x\ +\ from.y*to.y\ +\ from.z*to.z);\ \ \ \ \textcolor{comment}{//\ Vector3DotProduct(from,\ to)}}
+\DoxyCodeLine{01912\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ cross\ =\ \{\ from.y*to.z\ -\/\ from.z*to.y,\ from.z*to.x\ -\/\ from.x*to.z,\ from.x*to.y\ -\/\ from.y*to.x\ \};\ \textcolor{comment}{//\ Vector3CrossProduct(from,\ to)}}
+\DoxyCodeLine{01913\ }
+\DoxyCodeLine{01914\ \ \ \ \ result.x\ =\ cross.x;}
+\DoxyCodeLine{01915\ \ \ \ \ result.y\ =\ cross.y;}
+\DoxyCodeLine{01916\ \ \ \ \ result.z\ =\ cross.z;}
+\DoxyCodeLine{01917\ \ \ \ \ result.w\ =\ 1.0f\ +\ cos2Theta;}
+\DoxyCodeLine{01918\ }
+\DoxyCodeLine{01919\ \ \ \ \ \textcolor{comment}{//\ QuaternionNormalize(q);}}
+\DoxyCodeLine{01920\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ Normalize\ to\ essentially\ nlerp\ the\ original\ and\ identity\ to\ 0.5}}
+\DoxyCodeLine{01921\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ q\ =\ result;}
+\DoxyCodeLine{01922\ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ sqrtf(q.x*q.x\ +\ q.y*q.y\ +\ q.z*q.z\ +\ q.w*q.w);}
+\DoxyCodeLine{01923\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{01924\ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{01925\ }
+\DoxyCodeLine{01926\ \ \ \ \ result.x\ =\ q.x*ilength;}
+\DoxyCodeLine{01927\ \ \ \ \ result.y\ =\ q.y*ilength;}
+\DoxyCodeLine{01928\ \ \ \ \ result.z\ =\ q.z*ilength;}
+\DoxyCodeLine{01929\ \ \ \ \ result.w\ =\ q.w*ilength;}
+\DoxyCodeLine{01930\ }
+\DoxyCodeLine{01931\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01932\ \}}
+\DoxyCodeLine{01933\ }
+\DoxyCodeLine{01934\ \textcolor{comment}{//\ Get\ a\ quaternion\ for\ a\ given\ rotation\ matrix}}
+\DoxyCodeLine{01935\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionFromMatrix(\mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{01936\ \{}
+\DoxyCodeLine{01937\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{01938\ }
+\DoxyCodeLine{01939\ \ \ \ \ \textcolor{keywordtype}{float}\ fourWSquaredMinus1\ =\ mat.m0\ \ +\ mat.m5\ +\ mat.m10;}
+\DoxyCodeLine{01940\ \ \ \ \ \textcolor{keywordtype}{float}\ fourXSquaredMinus1\ =\ mat.m0\ \ -\/\ mat.m5\ -\/\ mat.m10;}
+\DoxyCodeLine{01941\ \ \ \ \ \textcolor{keywordtype}{float}\ fourYSquaredMinus1\ =\ mat.m5\ \ -\/\ mat.m0\ -\/\ mat.m10;}
+\DoxyCodeLine{01942\ \ \ \ \ \textcolor{keywordtype}{float}\ fourZSquaredMinus1\ =\ mat.m10\ -\/\ mat.m0\ -\/\ mat.m5;}
+\DoxyCodeLine{01943\ }
+\DoxyCodeLine{01944\ \ \ \ \ \textcolor{keywordtype}{int}\ biggestIndex\ =\ 0;}
+\DoxyCodeLine{01945\ \ \ \ \ \textcolor{keywordtype}{float}\ fourBiggestSquaredMinus1\ =\ fourWSquaredMinus1;}
+\DoxyCodeLine{01946\ \ \ \ \ \textcolor{keywordflow}{if}\ (fourXSquaredMinus1\ >\ fourBiggestSquaredMinus1)}
+\DoxyCodeLine{01947\ \ \ \ \ \{}
+\DoxyCodeLine{01948\ \ \ \ \ \ \ \ \ fourBiggestSquaredMinus1\ =\ fourXSquaredMinus1;}
+\DoxyCodeLine{01949\ \ \ \ \ \ \ \ \ biggestIndex\ =\ 1;}
+\DoxyCodeLine{01950\ \ \ \ \ \}}
+\DoxyCodeLine{01951\ }
+\DoxyCodeLine{01952\ \ \ \ \ \textcolor{keywordflow}{if}\ (fourYSquaredMinus1\ >\ fourBiggestSquaredMinus1)}
+\DoxyCodeLine{01953\ \ \ \ \ \{}
+\DoxyCodeLine{01954\ \ \ \ \ \ \ \ \ fourBiggestSquaredMinus1\ =\ fourYSquaredMinus1;}
+\DoxyCodeLine{01955\ \ \ \ \ \ \ \ \ biggestIndex\ =\ 2;}
+\DoxyCodeLine{01956\ \ \ \ \ \}}
+\DoxyCodeLine{01957\ }
+\DoxyCodeLine{01958\ \ \ \ \ \textcolor{keywordflow}{if}\ (fourZSquaredMinus1\ >\ fourBiggestSquaredMinus1)}
+\DoxyCodeLine{01959\ \ \ \ \ \{}
+\DoxyCodeLine{01960\ \ \ \ \ \ \ \ \ fourBiggestSquaredMinus1\ =\ fourZSquaredMinus1;}
+\DoxyCodeLine{01961\ \ \ \ \ \ \ \ \ biggestIndex\ =\ 3;}
+\DoxyCodeLine{01962\ \ \ \ \ \}}
+\DoxyCodeLine{01963\ }
+\DoxyCodeLine{01964\ \ \ \ \ \textcolor{keywordtype}{float}\ biggestVal\ =\ sqrtf(fourBiggestSquaredMinus1\ +\ 1.0f)*0.5f;}
+\DoxyCodeLine{01965\ \ \ \ \ \textcolor{keywordtype}{float}\ mult\ =\ 0.25f\ /\ biggestVal;}
+\DoxyCodeLine{01966\ }
+\DoxyCodeLine{01967\ \ \ \ \ \textcolor{keywordflow}{switch}\ (biggestIndex)}
+\DoxyCodeLine{01968\ \ \ \ \ \{}
+\DoxyCodeLine{01969\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{01970\ \ \ \ \ \ \ \ \ \ \ \ \ result.w\ =\ biggestVal;}
+\DoxyCodeLine{01971\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ (mat.m6\ -\/\ mat.m9)*mult;}
+\DoxyCodeLine{01972\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ (mat.m8\ -\/\ mat.m2)*mult;}
+\DoxyCodeLine{01973\ \ \ \ \ \ \ \ \ \ \ \ \ result.z\ =\ (mat.m1\ -\/\ mat.m4)*mult;}
+\DoxyCodeLine{01974\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01975\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{01976\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ biggestVal;}
+\DoxyCodeLine{01977\ \ \ \ \ \ \ \ \ \ \ \ \ result.w\ =\ (mat.m6\ -\/\ mat.m9)*mult;}
+\DoxyCodeLine{01978\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ (mat.m1\ +\ mat.m4)*mult;}
+\DoxyCodeLine{01979\ \ \ \ \ \ \ \ \ \ \ \ \ result.z\ =\ (mat.m8\ +\ mat.m2)*mult;}
+\DoxyCodeLine{01980\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01981\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{01982\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ biggestVal;}
+\DoxyCodeLine{01983\ \ \ \ \ \ \ \ \ \ \ \ \ result.w\ =\ (mat.m8\ -\/\ mat.m2)*mult;}
+\DoxyCodeLine{01984\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ (mat.m1\ +\ mat.m4)*mult;}
+\DoxyCodeLine{01985\ \ \ \ \ \ \ \ \ \ \ \ \ result.z\ =\ (mat.m6\ +\ mat.m9)*mult;}
+\DoxyCodeLine{01986\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01987\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{01988\ \ \ \ \ \ \ \ \ \ \ \ \ result.z\ =\ biggestVal;}
+\DoxyCodeLine{01989\ \ \ \ \ \ \ \ \ \ \ \ \ result.w\ =\ (mat.m1\ -\/\ mat.m4)*mult;}
+\DoxyCodeLine{01990\ \ \ \ \ \ \ \ \ \ \ \ \ result.x\ =\ (mat.m8\ +\ mat.m2)*mult;}
+\DoxyCodeLine{01991\ \ \ \ \ \ \ \ \ \ \ \ \ result.y\ =\ (mat.m6\ +\ mat.m9)*mult;}
+\DoxyCodeLine{01992\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01993\ \ \ \ \ \}}
+\DoxyCodeLine{01994\ }
+\DoxyCodeLine{01995\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{01996\ \}}
+\DoxyCodeLine{01997\ }
+\DoxyCodeLine{01998\ \textcolor{comment}{//\ Get\ a\ matrix\ for\ a\ given\ quaternion}}
+\DoxyCodeLine{01999\ RMAPI\ \mbox{\hyperlink{classMatrix}{Matrix}}\ QuaternionToMatrix(\mbox{\hyperlink{structVector4}{Quaternion}}\ q)}
+\DoxyCodeLine{02000\ \{}
+\DoxyCodeLine{02001\ \ \ \ \ \mbox{\hyperlink{classMatrix}{Matrix}}\ result\ =\ \{\ 1.0f,\ 0.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{02002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 1.0f,\ 0.0f,\ 0.0f,}
+\DoxyCodeLine{02003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 1.0f,\ 0.0f,}
+\DoxyCodeLine{02004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};\ \textcolor{comment}{//\ MatrixIdentity()}}
+\DoxyCodeLine{02005\ }
+\DoxyCodeLine{02006\ \ \ \ \ \textcolor{keywordtype}{float}\ a2\ =\ q.x*q.x;}
+\DoxyCodeLine{02007\ \ \ \ \ \textcolor{keywordtype}{float}\ b2\ =\ q.y*q.y;}
+\DoxyCodeLine{02008\ \ \ \ \ \textcolor{keywordtype}{float}\ c2\ =\ q.z*q.z;}
+\DoxyCodeLine{02009\ \ \ \ \ \textcolor{keywordtype}{float}\ ac\ =\ q.x*q.z;}
+\DoxyCodeLine{02010\ \ \ \ \ \textcolor{keywordtype}{float}\ ab\ =\ q.x*q.y;}
+\DoxyCodeLine{02011\ \ \ \ \ \textcolor{keywordtype}{float}\ bc\ =\ q.y*q.z;}
+\DoxyCodeLine{02012\ \ \ \ \ \textcolor{keywordtype}{float}\ ad\ =\ q.w*q.x;}
+\DoxyCodeLine{02013\ \ \ \ \ \textcolor{keywordtype}{float}\ bd\ =\ q.w*q.y;}
+\DoxyCodeLine{02014\ \ \ \ \ \textcolor{keywordtype}{float}\ cd\ =\ q.w*q.z;}
+\DoxyCodeLine{02015\ }
+\DoxyCodeLine{02016\ \ \ \ \ result.m0\ =\ 1\ -\/\ 2*(b2\ +\ c2);}
+\DoxyCodeLine{02017\ \ \ \ \ result.m1\ =\ 2*(ab\ +\ cd);}
+\DoxyCodeLine{02018\ \ \ \ \ result.m2\ =\ 2*(ac\ -\/\ bd);}
+\DoxyCodeLine{02019\ }
+\DoxyCodeLine{02020\ \ \ \ \ result.m4\ =\ 2*(ab\ -\/\ cd);}
+\DoxyCodeLine{02021\ \ \ \ \ result.m5\ =\ 1\ -\/\ 2*(a2\ +\ c2);}
+\DoxyCodeLine{02022\ \ \ \ \ result.m6\ =\ 2*(bc\ +\ ad);}
+\DoxyCodeLine{02023\ }
+\DoxyCodeLine{02024\ \ \ \ \ result.m8\ =\ 2*(ac\ +\ bd);}
+\DoxyCodeLine{02025\ \ \ \ \ result.m9\ =\ 2*(bc\ -\/\ ad);}
+\DoxyCodeLine{02026\ \ \ \ \ result.m10\ =\ 1\ -\/\ 2*(a2\ +\ b2);}
+\DoxyCodeLine{02027\ }
+\DoxyCodeLine{02028\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{02029\ \}}
+\DoxyCodeLine{02030\ }
+\DoxyCodeLine{02031\ \textcolor{comment}{//\ Get\ rotation\ quaternion\ for\ an\ angle\ and\ axis}}
+\DoxyCodeLine{02032\ \textcolor{comment}{//\ NOTE:\ Angle\ must\ be\ provided\ in\ radians}}
+\DoxyCodeLine{02033\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionFromAxisAngle(\mbox{\hyperlink{structVector3}{Vector3}}\ axis,\ \textcolor{keywordtype}{float}\ angle)}
+\DoxyCodeLine{02034\ \{}
+\DoxyCodeLine{02035\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0.0f,\ 0.0f,\ 0.0f,\ 1.0f\ \};}
+\DoxyCodeLine{02036\ }
+\DoxyCodeLine{02037\ \ \ \ \ \textcolor{keywordtype}{float}\ axisLength\ =\ sqrtf(axis.x*axis.x\ +\ axis.y*axis.y\ +\ axis.z*axis.z);}
+\DoxyCodeLine{02038\ }
+\DoxyCodeLine{02039\ \ \ \ \ \textcolor{keywordflow}{if}\ (axisLength\ !=\ 0.0f)}
+\DoxyCodeLine{02040\ \ \ \ \ \{}
+\DoxyCodeLine{02041\ \ \ \ \ \ \ \ \ angle\ *=\ 0.5f;}
+\DoxyCodeLine{02042\ }
+\DoxyCodeLine{02043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ 0.0f;}
+\DoxyCodeLine{02044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 0.0f;}
+\DoxyCodeLine{02045\ }
+\DoxyCodeLine{02046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vector3Normalize(axis)}}
+\DoxyCodeLine{02047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ v\ =\ axis;}
+\DoxyCodeLine{02048\ \ \ \ \ \ \ \ \ length\ =\ sqrtf(v.x*v.x\ +\ v.y*v.y\ +\ v.z*v.z);}
+\DoxyCodeLine{02049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{02050\ \ \ \ \ \ \ \ \ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{02051\ \ \ \ \ \ \ \ \ axis.x\ *=\ ilength;}
+\DoxyCodeLine{02052\ \ \ \ \ \ \ \ \ axis.y\ *=\ ilength;}
+\DoxyCodeLine{02053\ \ \ \ \ \ \ \ \ axis.z\ *=\ ilength;}
+\DoxyCodeLine{02054\ }
+\DoxyCodeLine{02055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ sinres\ =\ sinf(angle);}
+\DoxyCodeLine{02056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ cosres\ =\ cosf(angle);}
+\DoxyCodeLine{02057\ }
+\DoxyCodeLine{02058\ \ \ \ \ \ \ \ \ result.x\ =\ axis.x*sinres;}
+\DoxyCodeLine{02059\ \ \ \ \ \ \ \ \ result.y\ =\ axis.y*sinres;}
+\DoxyCodeLine{02060\ \ \ \ \ \ \ \ \ result.z\ =\ axis.z*sinres;}
+\DoxyCodeLine{02061\ \ \ \ \ \ \ \ \ result.w\ =\ cosres;}
+\DoxyCodeLine{02062\ }
+\DoxyCodeLine{02063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ QuaternionNormalize(q);}}
+\DoxyCodeLine{02064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ q\ =\ result;}
+\DoxyCodeLine{02065\ \ \ \ \ \ \ \ \ length\ =\ sqrtf(q.x*q.x\ +\ q.y*q.y\ +\ q.z*q.z\ +\ q.w*q.w);}
+\DoxyCodeLine{02066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{02067\ \ \ \ \ \ \ \ \ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{02068\ \ \ \ \ \ \ \ \ result.x\ =\ q.x*ilength;}
+\DoxyCodeLine{02069\ \ \ \ \ \ \ \ \ result.y\ =\ q.y*ilength;}
+\DoxyCodeLine{02070\ \ \ \ \ \ \ \ \ result.z\ =\ q.z*ilength;}
+\DoxyCodeLine{02071\ \ \ \ \ \ \ \ \ result.w\ =\ q.w*ilength;}
+\DoxyCodeLine{02072\ \ \ \ \ \}}
+\DoxyCodeLine{02073\ }
+\DoxyCodeLine{02074\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{02075\ \}}
+\DoxyCodeLine{02076\ }
+\DoxyCodeLine{02077\ \textcolor{comment}{//\ Get\ the\ rotation\ angle\ and\ axis\ for\ a\ given\ quaternion}}
+\DoxyCodeLine{02078\ RMAPI\ \textcolor{keywordtype}{void}\ QuaternionToAxisAngle(\mbox{\hyperlink{structVector4}{Quaternion}}\ q,\ \mbox{\hyperlink{structVector3}{Vector3}}\ *outAxis,\ \textcolor{keywordtype}{float}\ *outAngle)}
+\DoxyCodeLine{02079\ \{}
+\DoxyCodeLine{02080\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabsf(q.w)\ >\ 1.0f)}
+\DoxyCodeLine{02081\ \ \ \ \ \{}
+\DoxyCodeLine{02082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ QuaternionNormalize(q);}}
+\DoxyCodeLine{02083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ sqrtf(q.x*q.x\ +\ q.y*q.y\ +\ q.z*q.z\ +\ q.w*q.w);}
+\DoxyCodeLine{02084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ ==\ 0.0f)\ length\ =\ 1.0f;}
+\DoxyCodeLine{02085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ilength\ =\ 1.0f/length;}
+\DoxyCodeLine{02086\ }
+\DoxyCodeLine{02087\ \ \ \ \ \ \ \ \ q.x\ =\ q.x*ilength;}
+\DoxyCodeLine{02088\ \ \ \ \ \ \ \ \ q.y\ =\ q.y*ilength;}
+\DoxyCodeLine{02089\ \ \ \ \ \ \ \ \ q.z\ =\ q.z*ilength;}
+\DoxyCodeLine{02090\ \ \ \ \ \ \ \ \ q.w\ =\ q.w*ilength;}
+\DoxyCodeLine{02091\ \ \ \ \ \}}
+\DoxyCodeLine{02092\ }
+\DoxyCodeLine{02093\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ resAxis\ =\ \{\ 0.0f,\ 0.0f,\ 0.0f\ \};}
+\DoxyCodeLine{02094\ \ \ \ \ \textcolor{keywordtype}{float}\ resAngle\ =\ 2.0f*acosf(q.w);}
+\DoxyCodeLine{02095\ \ \ \ \ \textcolor{keywordtype}{float}\ den\ =\ sqrtf(1.0f\ -\/\ q.w*q.w);}
+\DoxyCodeLine{02096\ }
+\DoxyCodeLine{02097\ \ \ \ \ \textcolor{keywordflow}{if}\ (den\ >\ EPSILON)}
+\DoxyCodeLine{02098\ \ \ \ \ \{}
+\DoxyCodeLine{02099\ \ \ \ \ \ \ \ \ resAxis.x\ =\ q.x/den;}
+\DoxyCodeLine{02100\ \ \ \ \ \ \ \ \ resAxis.y\ =\ q.y/den;}
+\DoxyCodeLine{02101\ \ \ \ \ \ \ \ \ resAxis.z\ =\ q.z/den;}
+\DoxyCodeLine{02102\ \ \ \ \ \}}
+\DoxyCodeLine{02103\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02104\ \ \ \ \ \{}
+\DoxyCodeLine{02105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ occurs\ when\ the\ angle\ is\ zero.}}
+\DoxyCodeLine{02106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ a\ problem:\ just\ set\ an\ arbitrary\ normalized\ axis.}}
+\DoxyCodeLine{02107\ \ \ \ \ \ \ \ \ resAxis.x\ =\ 1.0f;}
+\DoxyCodeLine{02108\ \ \ \ \ \}}
+\DoxyCodeLine{02109\ }
+\DoxyCodeLine{02110\ \ \ \ \ *outAxis\ =\ resAxis;}
+\DoxyCodeLine{02111\ \ \ \ \ *outAngle\ =\ resAngle;}
+\DoxyCodeLine{02112\ \}}
+\DoxyCodeLine{02113\ }
+\DoxyCodeLine{02114\ \textcolor{comment}{//\ Get\ the\ quaternion\ equivalent\ to\ Euler\ angles}}
+\DoxyCodeLine{02115\ \textcolor{comment}{//\ NOTE:\ Rotation\ order\ is\ ZYX}}
+\DoxyCodeLine{02116\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionFromEuler(\textcolor{keywordtype}{float}\ pitch,\ \textcolor{keywordtype}{float}\ yaw,\ \textcolor{keywordtype}{float}\ roll)}
+\DoxyCodeLine{02117\ \{}
+\DoxyCodeLine{02118\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{02119\ }
+\DoxyCodeLine{02120\ \ \ \ \ \textcolor{keywordtype}{float}\ x0\ =\ cosf(pitch*0.5f);}
+\DoxyCodeLine{02121\ \ \ \ \ \textcolor{keywordtype}{float}\ x1\ =\ sinf(pitch*0.5f);}
+\DoxyCodeLine{02122\ \ \ \ \ \textcolor{keywordtype}{float}\ y0\ =\ cosf(yaw*0.5f);}
+\DoxyCodeLine{02123\ \ \ \ \ \textcolor{keywordtype}{float}\ y1\ =\ sinf(yaw*0.5f);}
+\DoxyCodeLine{02124\ \ \ \ \ \textcolor{keywordtype}{float}\ z0\ =\ cosf(roll*0.5f);}
+\DoxyCodeLine{02125\ \ \ \ \ \textcolor{keywordtype}{float}\ z1\ =\ sinf(roll*0.5f);}
+\DoxyCodeLine{02126\ }
+\DoxyCodeLine{02127\ \ \ \ \ result.x\ =\ x1*y0*z0\ -\/\ x0*y1*z1;}
+\DoxyCodeLine{02128\ \ \ \ \ result.y\ =\ x0*y1*z0\ +\ x1*y0*z1;}
+\DoxyCodeLine{02129\ \ \ \ \ result.z\ =\ x0*y0*z1\ -\/\ x1*y1*z0;}
+\DoxyCodeLine{02130\ \ \ \ \ result.w\ =\ x0*y0*z0\ +\ x1*y1*z1;}
+\DoxyCodeLine{02131\ }
+\DoxyCodeLine{02132\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{02133\ \}}
+\DoxyCodeLine{02134\ }
+\DoxyCodeLine{02135\ \textcolor{comment}{//\ Get\ the\ Euler\ angles\ equivalent\ to\ quaternion\ (roll,\ pitch,\ yaw)}}
+\DoxyCodeLine{02136\ \textcolor{comment}{//\ NOTE:\ Angles\ are\ returned\ in\ a\ Vector3\ struct\ in\ radians}}
+\DoxyCodeLine{02137\ RMAPI\ \mbox{\hyperlink{structVector3}{Vector3}}\ QuaternionToEuler(\mbox{\hyperlink{structVector4}{Quaternion}}\ q)}
+\DoxyCodeLine{02138\ \{}
+\DoxyCodeLine{02139\ \ \ \ \ \mbox{\hyperlink{structVector3}{Vector3}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{02140\ }
+\DoxyCodeLine{02141\ \ \ \ \ \textcolor{comment}{//\ Roll\ (x-\/axis\ rotation)}}
+\DoxyCodeLine{02142\ \ \ \ \ \textcolor{keywordtype}{float}\ x0\ =\ 2.0f*(q.w*q.x\ +\ q.y*q.z);}
+\DoxyCodeLine{02143\ \ \ \ \ \textcolor{keywordtype}{float}\ x1\ =\ 1.0f\ -\/\ 2.0f*(q.x*q.x\ +\ q.y*q.y);}
+\DoxyCodeLine{02144\ \ \ \ \ result.x\ =\ atan2f(x0,\ x1);}
+\DoxyCodeLine{02145\ }
+\DoxyCodeLine{02146\ \ \ \ \ \textcolor{comment}{//\ Pitch\ (y-\/axis\ rotation)}}
+\DoxyCodeLine{02147\ \ \ \ \ \textcolor{keywordtype}{float}\ y0\ =\ 2.0f*(q.w*q.y\ -\/\ q.z*q.x);}
+\DoxyCodeLine{02148\ \ \ \ \ y0\ =\ y0\ >\ 1.0f\ ?\ 1.0f\ :\ y0;}
+\DoxyCodeLine{02149\ \ \ \ \ y0\ =\ y0\ <\ -\/1.0f\ ?\ -\/1.0f\ :\ y0;}
+\DoxyCodeLine{02150\ \ \ \ \ result.y\ =\ asinf(y0);}
+\DoxyCodeLine{02151\ }
+\DoxyCodeLine{02152\ \ \ \ \ \textcolor{comment}{//\ Yaw\ (z-\/axis\ rotation)}}
+\DoxyCodeLine{02153\ \ \ \ \ \textcolor{keywordtype}{float}\ z0\ =\ 2.0f*(q.w*q.z\ +\ q.x*q.y);}
+\DoxyCodeLine{02154\ \ \ \ \ \textcolor{keywordtype}{float}\ z1\ =\ 1.0f\ -\/\ 2.0f*(q.y*q.y\ +\ q.z*q.z);}
+\DoxyCodeLine{02155\ \ \ \ \ result.z\ =\ atan2f(z0,\ z1);}
+\DoxyCodeLine{02156\ }
+\DoxyCodeLine{02157\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{02158\ \}}
+\DoxyCodeLine{02159\ }
+\DoxyCodeLine{02160\ \textcolor{comment}{//\ Transform\ a\ quaternion\ given\ a\ transformation\ matrix}}
+\DoxyCodeLine{02161\ RMAPI\ \mbox{\hyperlink{structVector4}{Quaternion}}\ QuaternionTransform(\mbox{\hyperlink{structVector4}{Quaternion}}\ q,\ \mbox{\hyperlink{classMatrix}{Matrix}}\ mat)}
+\DoxyCodeLine{02162\ \{}
+\DoxyCodeLine{02163\ \ \ \ \ \mbox{\hyperlink{structVector4}{Quaternion}}\ result\ =\ \{\ 0\ \};}
+\DoxyCodeLine{02164\ }
+\DoxyCodeLine{02165\ \ \ \ \ result.x\ =\ mat.m0*q.x\ +\ mat.m4*q.y\ +\ mat.m8*q.z\ +\ mat.m12*q.w;}
+\DoxyCodeLine{02166\ \ \ \ \ result.y\ =\ mat.m1*q.x\ +\ mat.m5*q.y\ +\ mat.m9*q.z\ +\ mat.m13*q.w;}
+\DoxyCodeLine{02167\ \ \ \ \ result.z\ =\ mat.m2*q.x\ +\ mat.m6*q.y\ +\ mat.m10*q.z\ +\ mat.m14*q.w;}
+\DoxyCodeLine{02168\ \ \ \ \ result.w\ =\ mat.m3*q.x\ +\ mat.m7*q.y\ +\ mat.m11*q.z\ +\ mat.m15*q.w;}
+\DoxyCodeLine{02169\ }
+\DoxyCodeLine{02170\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{02171\ \}}
+\DoxyCodeLine{02172\ }
+\DoxyCodeLine{02173\ \textcolor{comment}{//\ Check\ whether\ two\ given\ quaternions\ are\ almost\ equal}}
+\DoxyCodeLine{02174\ RMAPI\ \textcolor{keywordtype}{int}\ QuaternionEquals(\mbox{\hyperlink{structVector4}{Quaternion}}\ p,\ \mbox{\hyperlink{structVector4}{Quaternion}}\ q)}
+\DoxyCodeLine{02175\ \{}
+\DoxyCodeLine{02176\ \textcolor{preprocessor}{\#if\ !defined(EPSILON)}}
+\DoxyCodeLine{02177\ \textcolor{preprocessor}{\ \ \ \ \#define\ EPSILON\ 0.000001f}}
+\DoxyCodeLine{02178\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02179\ }
+\DoxyCodeLine{02180\ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ (((fabsf(p.x\ -\/\ q.x))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.x),\ fabsf(q.x)))))\ \&\&}
+\DoxyCodeLine{02181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.y\ -\/\ q.y))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.y),\ fabsf(q.y)))))\ \&\&}
+\DoxyCodeLine{02182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.z\ -\/\ q.z))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.z),\ fabsf(q.z)))))\ \&\&}
+\DoxyCodeLine{02183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.w\ -\/\ q.w))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.w),\ fabsf(q.w))))))\ ||}
+\DoxyCodeLine{02184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((fabsf(p.x\ +\ q.x))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.x),\ fabsf(q.x)))))\ \&\&}
+\DoxyCodeLine{02185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.y\ +\ q.y))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.y),\ fabsf(q.y)))))\ \&\&}
+\DoxyCodeLine{02186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.z\ +\ q.z))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.z),\ fabsf(q.z)))))\ \&\&}
+\DoxyCodeLine{02187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((fabsf(p.w\ +\ q.w))\ <=\ (EPSILON*fmaxf(1.0f,\ fmaxf(fabsf(p.w),\ fabsf(q.w))))));}
+\DoxyCodeLine{02188\ }
+\DoxyCodeLine{02189\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{02190\ \}}
+\DoxyCodeLine{02191\ }
+\DoxyCodeLine{02192\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ RAYMATH\_H}}
+
+\end{DoxyCode}

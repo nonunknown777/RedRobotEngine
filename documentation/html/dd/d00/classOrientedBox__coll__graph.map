@@ -1,0 +1,7 @@
+<map id="OrientedBox" name="OrientedBox">
+<area shape="rect" id="Node000001" title="Oriented box." alt="" coords="134,652,251,806"/>
+<area shape="rect" id="Node000002" href="$de/d0e/classMat44.html" title="Holds a 4x4 matrix of floats, but supports also operations on the 3x3 upper left part of the matrix." alt="" coords="5,37,185,555"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,554,162,627,164,635,159,636,157,628,140,555"/>
+<area shape="rect" id="Node000003" href="$d9/de4/classVec3.html" title=" " alt="" coords="209,5,371,587"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="276,587,263,629,260,637,255,635,258,627,271,586"/>
+</map>

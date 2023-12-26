@@ -1,0 +1,359 @@
+\doxysection{Character\+Virtual.\+h}
+\hypertarget{CharacterVirtual_8h_source}{}\label{CharacterVirtual_8h_source}\index{includes/jolt/Physics/Character/CharacterVirtual.h@{includes/jolt/Physics/Character/CharacterVirtual.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Character/CharacterBase.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/MotionType.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyFilter.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/BroadPhase/BroadPhaseLayer.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ObjectLayer.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Core/STLTempAllocator.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classCharacterVirtualSettings}{CharacterVirtualSettings}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCharacterBaseSettings}{CharacterBaseSettings}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMass\ =\ 70.0f;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxStrength\ =\ 100.0f;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mShapeOffset\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ EBackFaceMode\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackFaceMode\ =\ EBackFaceMode::CollideWithBackFaces;\ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPredictiveContactDistance\ =\ 0.1f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxCollisionIterations\ =\ 5;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxConstraintIterations\ =\ 15;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinTimeRemaining\ =\ 1.0e-\/4f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionTolerance\ =\ 1.0e-\/3f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCharacterPadding\ =\ 0.02f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxNumHits\ =\ 256;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHitReductionCosMaxAngle\ =\ 0.999f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPenetrationRecoverySpeed\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCharacterContactSettings}{CharacterContactSettings}}}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterContactSettings_a08d217d923d36ad868fa83b8d1851833}{mCanPushCharacter}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterContactSettings_a9e1a4f9fb9e52f755a15af2066cf441b}{mCanReceiveImpulses}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classCharacterContactListener}{CharacterContactListener}}}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterContactListener_a1cbf56ca2333e878c3d7da75b9dfc0ba}{\string~CharacterContactListener}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterContactListener_a861889d3b1f2349eb1726ebfd979bf53}{OnAdjustBodyVelocity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *inCharacter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioLinearVelocity,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioAngularVelocity)\ \{\ \textcolor{comment}{/*\ Do\ nothing,\ the\ linear\ and\ angular\ velocity\ are\ already\ filled\ in\ */}\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterContactListener_a46fc7a819cf904aa3db5cf1648f21530}{OnContactValidate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *inCharacter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID2)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterContactListener_a07550deec345e7d94ca05afdd341b11d}{OnContactAdded}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *inCharacter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID2,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactNormal,\ \mbox{\hyperlink{classCharacterContactSettings}{CharacterContactSettings}}\ \&ioSettings)\ \{\ \textcolor{comment}{/*\ Default\ do\ nothing\ */}\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterContactListener_a4d1a8b09ee3a923d4aa7bc53aec160b6}{OnContactSolve}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *inCharacter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID2,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactNormal,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactVelocity,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ *inContactMaterial,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inCharacterVelocity,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioNewCharacterVelocity)\ \{\ \textcolor{comment}{/*\ Default\ do\ nothing\ */}\ \}}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCharacterBase}{CharacterBase}}}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00098\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a2b5c96bb11bdc3fcfa5bfb97b5c365b3}{CharacterVirtual}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtualSettings}{CharacterVirtualSettings}}\ *inSettings,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ *inSystem);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_af7bfe39cc6f67eeb4cd8d4d453d8b179}{SetListener}}(\mbox{\hyperlink{classCharacterContactListener}{CharacterContactListener}}\ *inListener)\ \ \ \ \ \ \ \ \{\ mListener\ =\ inListener;\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classCharacterContactListener}{CharacterContactListener}}\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_aacf19c0b42216d6dc497c20556b642e7}{GetListener}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mListener;\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a9f8aca4dbbb9c926e52ca8b7337c4c71}{GetLinearVelocity}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mLinearVelocity;\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a25da7eb8e9ff5316e357cbf59027b57e}{SetLinearVelocity}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLinearVelocity)\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mLinearVelocity\ =\ inLinearVelocity;\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a24f025912ca62c15e830bd6213129d6b}{GetPosition}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPosition;\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_af3622b341d017712981d6d26de99fe5c}{SetPosition}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mPosition\ =\ inPosition;\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_afdec9f01a8b449ba9b29f39c42afe0d8}{GetRotation}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mRotation;\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_ac0b74d1e4ec29a6a4853bc8cbb72578d}{SetRotation}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mRotation\ =\ inRotation;\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a36a2e0c44e55954fbc62aed4e030ab01}{GetWorldTransform}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_aba5427f45393b40263d52ec614cfa985}{RMat44::sRotationTranslation}}(mRotation,\ mPosition);\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_aad9788892410b982d43bbd34ef8a016c}{GetCenterOfMassTransform}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classCharacterVirtual_aad9788892410b982d43bbd34ef8a016c}{GetCenterOfMassTransform}}(mPosition,\ mRotation,\ mShape);\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a1ae032d5f31f955686e3c519abfaa1a4}{GetMass}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMass;\ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMass(\textcolor{keywordtype}{float}\ inMass)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mMass\ =\ inMass;\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a6d11baa32abe7ab7f75100daca4fda2c}{GetMaxStrength}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMaxStrength;\ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMaxStrength(\textcolor{keywordtype}{float}\ inMaxStrength)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mMaxStrength\ =\ inMaxStrength;\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a2407cd5fec2965214f0d9c3c27eb47ca}{GetPenetrationRecoverySpeed}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPenetrationRecoverySpeed;\ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetPenetrationRecoverySpeed(\textcolor{keywordtype}{float}\ inSpeed)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mPenetrationRecoverySpeed\ =\ inSpeed;\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a643ed04caa01ba9e4e4fc9d5058dc3d7}{GetCharacterPadding}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mCharacterPadding;\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00153\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a6b037237b95355079f9aca7904899004}{GetMaxNumHits}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMaxNumHits;\ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMaxNumHits(uint\ inMaxHits)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mMaxNumHits\ =\ inMaxHits;\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_ae8dcc6de2efd2ad646722e92ed1ba38a}{GetHitReductionCosMaxAngle}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mHitReductionCosMaxAngle;\ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetHitReductionCosMaxAngle(\textcolor{keywordtype}{float}\ inCosMaxAngle)\ \ \ \ \ \ \ \ \ \{\ mHitReductionCosMaxAngle\ =\ inCosMaxAngle;\ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a4bcaf2938288d8a8cbf907f74851b109}{GetMaxHitsExceeded}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMaxHitsExceeded;\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_ad36f1869421eeee298f3230d27841071}{GetShapeOffset}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mShapeOffset;\ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetShapeOffset(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inShapeOffset)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mShapeOffset\ =\ inShapeOffset;\ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a1e8c56bb848a852be4e63806fe6a74c6}{CancelVelocityTowardsSteepSlopes}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDesiredVelocity)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_ab9ce165035699a776a9d0b3e570def01}{Update}}(\textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inGravity,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_af44f8072c8e2687bbc20452b608fc5fe}{CanWalkStairs}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLinearVelocity)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a7b92d577e9abb6193f971e26df9964f7}{WalkStairs}}(\textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inStepUp,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inStepForward,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inStepForwardTest,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inStepDownExtra,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a994b7c0aa38c4930117253eafdd9c9b9}{StickToFloor}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inStepDown,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structCharacterVirtual_1_1ExtendedUpdateSettings}{ExtendedUpdateSettings}}}
+\DoxyCodeLine{00221\ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStickToFloorStepDown\ \{\ 0,\ -\/0.5f,\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWalkStairsStepUp\ \{\ 0,\ 0.4f,\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWalkStairsMinStepForward\ \{\ 0.02f\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWalkStairsStepForwardTest\ \{\ 0.15f\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWalkStairsCosAngleForwardContact\ \{\ Cos(DegreesToRadians(75.0f))\ \};\ \ \ \ \ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWalkStairsStepDownExtra\ \{\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}()\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ \};}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_ae03c43c12e8eb6496b8c8044c70b591f}{ExtendedUpdate}}(\textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inGravity,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structCharacterVirtual_1_1ExtendedUpdateSettings}{ExtendedUpdateSettings}}\ \&inSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a09ecc3efc44b912eca30d9dbc05cc558}{RefreshContacts}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a5817d937424e252d406f71f0ba8771da}{UpdateGroundVelocity}}();}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a8149fcb7a9f932dd5154e23588e20763}{SetShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \textcolor{keywordtype}{float}\ inMaxPenetrationDepth,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_ae70222c609c35c1acd94b9fc24e03681}{CheckCollision}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inMovementDirection,\ \textcolor{keywordtype}{float}\ inMaxSeparationDistance,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{comment}{//\ Saving\ /\ restoring\ state\ for\ replay}}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDrawConstraints\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDrawWalkStairs\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDrawStickToFloor\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{comment}{//\ Encapsulates\ a\ collision\ contact}}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structCharacterVirtual_1_1Contact}{Contact}}}
+\DoxyCodeLine{00288\ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Saving\ /\ restoring\ state\ for\ replay}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RestoreState(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream);}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_ae0c5dd762716d33d3c0289846b4126ff}{mPosition}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_ab4c53990ab4c51b1b7f9abe59de0775c}{mLinearVelocity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_a3e0e1203d15a972c0b52b08940439664}{mContactNormal}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_ac8573f10d6b69928672603e63490d450}{mSurfaceNormal}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_abbbf77d2cdfb572d1f637812bbca93e9}{mDistance}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_a85abb6cf7ff39090dba7f596603c8f23}{mFraction}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_a96b288a9886ddc8003154087e32a10ab}{mBodyB}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_a9bf8135c5166ab8a22092656b2f6ebb1}{mSubShapeIDB}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ EMotionType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_a1f227d6b89bbddbc35de63b1c8f7d306}{mMotionTypeB}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_a904ea0676f8406e735f23ff45fa2d57a}{mUserData}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCharacterVirtual_1_1Contact_a668d987b784e7b11dd030ad79f202cab}{mMaterial}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHadCollision\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWasDiscarded\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCanPushCharacter\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00307\ \ \ \ \ \};}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keyword}{using\ }TempContactList\ =\ std::vector<Contact,\ STLTempAllocator<Contact>>;}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{using\ }ContactList\ =\ Array<Contact>;}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keyword}{const}\ ContactList\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCharacterVirtual_a2fcecdf5b3e0f584f2bb7ec5a128dbe6}{GetActiveContacts}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mActiveContacts;\ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{comment}{//\ Sorting\ predicate\ for\ making\ contact\ order\ deterministic}}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{struct\ }ContactOrderingPredicate}
+\DoxyCodeLine{00318\ \ \ \ \ \{}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ()\ (\textcolor{keyword}{const}\ Contact\ \&inLHS,\ \textcolor{keyword}{const}\ Contact\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00320\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inLHS.mBodyB\ !=\ inRHS.mBodyB)}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inLHS.mBodyB\ <\ inRHS.mBodyB;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inLHS.mSubShapeIDB.GetValue()\ <\ inRHS.mSubShapeIDB.GetValue();}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \};}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{comment}{//\ A\ contact\ that\ needs\ to\ be\ ignored}}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{struct\ }IgnoredContact}
+\DoxyCodeLine{00330\ \ \ \ \ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IgnoredContact()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IgnoredContact(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID)\ :\ mBodyID(inBodyID),\ mSubShapeID(inSubShapeID)\ \{\ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyID;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSubShapeID;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00336\ \ \ \ \ \};}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{using\ }IgnoredContactList\ =\ std::vector<IgnoredContact,\ STLTempAllocator<IgnoredContact>>;}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{comment}{//\ A\ constraint\ that\ limits\ the\ movement\ of\ the\ character}}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{classConstraint}{Constraint}}}
+\DoxyCodeLine{00342\ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ Contact\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContact;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTOI;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mProjectedVelocity;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLinearVelocity;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPlane}{Plane}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPlane;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mIsSteepSlope\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00349\ \ \ \ \ \};}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{using\ }ConstraintList\ =\ std::vector<Constraint,\ STLTempAllocator<Constraint>>;}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{comment}{//\ Collision\ collector\ that\ collects\ hits\ for\ CollideShape}}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{class\ }ContactCollector\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}}
+\DoxyCodeLine{00355\ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ContactCollector(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ *inSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *inCharacter,\ uint\ inMaxHits,\ \textcolor{keywordtype}{float}\ inHitReductionCosMaxAngle,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inUp,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ TempContactList\ \&outContacts)\ :\ mBaseOffset(inBaseOffset),\ mUp(inUp),\ mSystem(inSystem),\ mCharacter(inCharacter),\ mContacts(outContacts),\ mMaxHits(inMaxHits),\ mHitReductionCosMaxAngle(inHitReductionCosMaxAngle)\ \{\ \}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddHit(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeResult}{CollideShapeResult}}\ \&inResult)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBaseOffset;}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUp;}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSystem;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *\ \ \ \ \ \ \ \ mCharacter;}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ TempContactList\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContacts;}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxHits;}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHitReductionCosMaxAngle;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxHitsExceeded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00369\ \ \ \ \ \};}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{comment}{//\ A\ collision\ collector\ that\ collects\ hits\ for\ CastShape}}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keyword}{class\ }ContactCastCollector\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}}
+\DoxyCodeLine{00373\ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ContactCastCollector(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ *inSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *inCharacter,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDisplacement,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inUp,\ \textcolor{keyword}{const}\ IgnoredContactList\ \&inIgnoredContacts,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ Contact\ \&outContact)\ :\ mBaseOffset(inBaseOffset),\ mDisplacement(inDisplacement),\ mUp(inUp),\ mSystem(inSystem),\ mCharacter(inCharacter),\ mIgnoredContacts(inIgnoredContacts),\ mContact(outContact)\ \{\ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddHit(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastResult}{ShapeCastResult}}\ \&inResult)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBaseOffset;}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDisplacement;}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUp;}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSystem;}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *\ \ \ \ \ \ \ \ mCharacter;}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ IgnoredContactList\ \&\ \ \ \ \ \ mIgnoredContacts;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ Contact\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContact;}
+\DoxyCodeLine{00386\ \ \ \ \ \};}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ to\ convert\ a\ Jolt\ collision\ result\ into\ a\ contact}}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ taCollector>}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sFillContactProperties(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCharacterVirtual}{CharacterVirtual}}\ *inCharacter,\ Contact\ \&outContact,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inUp,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ \textcolor{keyword}{const}\ taCollector\ \&inCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeResult}{CollideShapeResult}}\ \&inResult);}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{comment}{//\ Move\ the\ shape\ from\ ioPosition\ and\ try\ to\ displace\ it\ by\ inVelocity\ *\ inDeltaTime,\ this\ will\ try\ to\ slide\ the\ shape\ along\ the\ world\ geometry}}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MoveShape(\mbox{\hyperlink{classVec3}{RVec3}}\ \&ioPosition,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inVelocity,\ \textcolor{keywordtype}{float}\ inDeltaTime,\ ContactList\ *outActiveContacts,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator}
+\DoxyCodeLine{00394\ \ \ \ \ \#ifdef\ JPH\_DEBUG\_RENDERER}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ ,\ \textcolor{keywordtype}{bool}\ inDrawConstraints\ =\ \textcolor{keyword}{false}}
+\DoxyCodeLine{00396\ \ \ \ \ \#endif\ \textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{comment}{//\ Ask\ the\ callback\ if\ inContact\ is\ a\ valid\ contact\ point}}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidateContact(\textcolor{keyword}{const}\ Contact\ \&inContact)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{comment}{//\ Tests\ the\ shape\ for\ collision\ around\ inPosition}}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetContactsAtPosition(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inMovementDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ TempContactList\ \&outContacts,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{comment}{//\ Remove\ penetrating\ contacts\ with\ the\ same\ body\ that\ have\ conflicting\ normals,\ leaving\ these\ will\ make\ the\ character\ mover\ get\ stuck}}
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RemoveConflictingContacts(TempContactList\ \&ioContacts,\ IgnoredContactList\ \&outIgnoredContacts)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{comment}{//\ Convert\ contacts\ into\ constraints.\ The\ character\ is\ assumed\ to\ start\ at\ the\ origin\ and\ the\ constraints\ are\ planes\ around\ the\ origin\ that\ confine\ the\ movement\ of\ the\ character.}}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DetermineConstraints(TempContactList\ \&inContacts,\ \textcolor{keywordtype}{float}\ inDeltaTime,\ ConstraintList\ \&outConstraints)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{comment}{//\ Use\ the\ constraints\ to\ solve\ the\ displacement\ of\ the\ character.\ This\ will\ slide\ the\ character\ on\ the\ planes\ around\ the\ origin\ for\ as\ far\ as\ possible.}}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolveConstraints(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inVelocity,\ \textcolor{keywordtype}{float}\ inDeltaTime,\ \textcolor{keywordtype}{float}\ inTimeRemaining,\ ConstraintList\ \&ioConstraints,\ IgnoredContactList\ \&ioIgnoredContacts,\ \textcolor{keywordtype}{float}\ \&outTimeSimulated,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outDisplacement,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator}
+\DoxyCodeLine{00413\ \ \ \ \ \#ifdef\ JPH\_DEBUG\_RENDERER}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ ,\ \textcolor{keywordtype}{bool}\ inDrawConstraints\ =\ \textcolor{keyword}{false}}
+\DoxyCodeLine{00415\ \ \ \ \ \#endif\ \textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ velocity\ of\ a\ body\ adjusted\ by\ the\ contact\ listener}}
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetAdjustedBodyVelocity(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\&\ inBody,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outLinearVelocity,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outAngularVelocity)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ ground\ velocity\ of\ the\ character\ assuming\ it's\ standing\ on\ an\ object\ with\ specified\ linear\ and\ angular\ velocity\ and\ with\ specified\ center\ of\ mass.}}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{comment}{//\ Note\ that\ we\ don't\ just\ take\ the\ point\ velocity\ because\ a\ point\ on\ an\ object\ with\ angular\ velocity\ traces\ an\ arc,}}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{comment}{//\ so\ if\ you\ just\ take\ point\ velocity\ *\ delta\ time\ you\ get\ an\ error\ that\ accumulates\ over\ time}}
+\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateCharacterGroundVelocity(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inCenterOfMass,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLinearVelocity,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAngularVelocity,\ \textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{comment}{//\ Handle\ contact\ with\ physics\ object\ that\ we're\ colliding\ against}}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HandleContact(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inVelocity,\ \mbox{\hyperlink{classConstraint}{Constraint}}\ \&ioConstraint,\ \textcolor{keywordtype}{float}\ inDeltaTime)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{comment}{//\ Does\ a\ swept\ test\ of\ the\ shape\ from\ inPosition\ with\ displacement\ inDisplacement,\ returns\ true\ if\ there\ was\ a\ collision}}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetFirstContactForSweep(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDisplacement,\ Contact\ \&outContact,\ \textcolor{keyword}{const}\ IgnoredContactList\ \&inIgnoredContacts,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{comment}{//\ Store\ contacts\ so\ that\ we\ have\ proper\ ground\ information}}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StoreActiveContacts(\textcolor{keyword}{const}\ TempContactList\ \&inContacts,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{comment}{//\ This\ function\ will\ determine\ which\ contacts\ are\ touching\ the\ character\ and\ will\ calculate\ the\ one\ that\ is\ supporting\ us}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateSupportingContact(\textcolor{keywordtype}{bool}\ inSkipContactVelocityCheck,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MoveToContact(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \textcolor{keyword}{const}\ Contact\ \&inContact,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{comment}{//\ This\ function\ returns\ the\ actual\ center\ of\ mass\ of\ the\ shape,\ not\ corrected\ for\ the\ character\ padding}}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetCenterOfMassTransform(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00443\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_aba5427f45393b40263d52ec614cfa985}{RMat44::sRotationTranslation}}(inRotation,\ inPosition).\mbox{\hyperlink{classMat44_a16f19b423139db52503bb8d6526d947f}{PreTranslated}}(mShapeOffset\ +\ inShape-\/>\mbox{\hyperlink{classShape_a7e34b0626a40c31db0b2a761922adb1a}{GetCenterOfMass}}()).\mbox{\hyperlink{classMat44_a16b90363d2e120bd570c4200e29f5ba6}{PostTranslated}}(mCharacterPadding\ *\ mUp);}
+\DoxyCodeLine{00445\ \ \ \ \ \}}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{comment}{//\ Our\ main\ listener\ for\ contacts}}
+\DoxyCodeLine{00448\ \ \ \ \ \mbox{\hyperlink{classCharacterContactListener}{CharacterContactListener}}\ *\ \ \ \ \ \ \ \ \ \ mListener\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{comment}{//\ Movement\ settings}}
+\DoxyCodeLine{00451\ \ \ \ \ EBackFaceMode\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackFaceMode;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ colliding\ with\ back\ faces,\ the\ character\ will\ not\ be\ able\ to\ move\ through\ back\ facing\ triangles.\ Use\ this\ if\ you\ have\ triangles\ that\ need\ to\ collide\ on\ both\ sides.}}
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPredictiveContactDistance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ How\ far\ to\ scan\ outside\ of\ the\ shape\ for\ predictive\ contacts.\ A\ value\ of\ 0\ will\ most\ likely\ cause\ the\ character\ to\ get\ stuck\ as\ it\ cannot\ properly\ calculate\ a\ sliding\ direction\ anymore.\ A\ value\ that's\ too\ high\ will\ cause\ ghost\ collisions.}}
+\DoxyCodeLine{00453\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxCollisionIterations;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Max\ amount\ of\ collision\ loops}}
+\DoxyCodeLine{00454\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxConstraintIterations;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ How\ often\ to\ try\ stepping\ in\ the\ constraint\ solving}}
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinTimeRemaining;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Early\ out\ condition:\ If\ this\ much\ time\ is\ left\ to\ simulate\ we\ are\ done}}
+\DoxyCodeLine{00456\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionTolerance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ How\ far\ we're\ willing\ to\ penetrate\ geometry}}
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCharacterPadding;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ How\ far\ we\ try\ to\ stay\ away\ from\ the\ geometry,\ this\ ensures\ that\ the\ sweep\ will\ hit\ as\ little\ as\ possible\ lowering\ the\ collision\ cost\ and\ reducing\ the\ risk\ of\ getting\ stuck}}
+\DoxyCodeLine{00458\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxNumHits;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Max\ num\ hits\ to\ collect\ in\ order\ to\ avoid\ excess\ of\ contact\ points\ collection}}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHitReductionCosMaxAngle;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cos(angle)\ where\ angle\ is\ the\ maximum\ angle\ between\ two\ hits\ contact\ normals\ that\ are\ allowed\ to\ be\ merged\ during\ hit\ reduction.\ Default\ is\ around\ 2.5\ degrees.\ Set\ to\ -\/1\ to\ turn\ off.}}
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPenetrationRecoverySpeed;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ value\ governs\ how\ fast\ a\ penetration\ will\ be\ resolved,\ 0\ =\ nothing\ is\ resolved,\ 1\ =\ everything\ in\ one\ update}}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{comment}{//\ Character\ mass\ (kg)}}
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMass;}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{comment}{//\ Maximum\ force\ with\ which\ the\ character\ can\ push\ other\ bodies\ (N)}}
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxStrength;}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{comment}{//\ An\ extra\ offset\ applied\ to\ the\ shape\ in\ local\ space.\ This\ allows\ applying\ an\ extra\ offset\ to\ the\ shape\ in\ local\ space.}}
+\DoxyCodeLine{00469\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mShapeOffset\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{comment}{//\ Current\ position\ (of\ the\ base,\ not\ the\ center\ of\ mass)}}
+\DoxyCodeLine{00472\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPosition\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3::sZero}}();}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{comment}{//\ Current\ rotation\ (of\ the\ base,\ not\ of\ the\ center\ of\ mass)}}
+\DoxyCodeLine{00475\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRotation\ =\ \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat::sIdentity}}();}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{comment}{//\ Current\ linear\ velocity}}
+\DoxyCodeLine{00478\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLinearVelocity\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{comment}{//\ List\ of\ contacts\ that\ were\ active\ in\ the\ last\ frame}}
+\DoxyCodeLine{00481\ \ \ \ \ ContactList\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mActiveContacts;}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{comment}{//\ Remembers\ the\ delta\ time\ of\ the\ last\ update}}
+\DoxyCodeLine{00484\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLastDeltaTime\ =\ 1.0f\ /\ 60.0f;}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{comment}{//\ Remember\ if\ we\ exceeded\ the\ maximum\ number\ of\ hits\ and\ had\ to\ remove\ similar\ contacts}}
+\DoxyCodeLine{00487\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxHitsExceeded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00488\ \};}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

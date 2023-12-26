@@ -1,0 +1,269 @@
+\doxysection{Physics\+System Class Reference}
+\hypertarget{classPhysicsSystem}{}\label{classPhysicsSystem}\index{PhysicsSystem@{PhysicsSystem}}
+
+
+{\ttfamily \#include $<$Physics\+System.\+h$>$}
+
+
+
+Inheritance diagram for Physics\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{d4/dfa/classPhysicsSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Physics\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{d9/d46/classPhysicsSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPhysicsSystem_a8298f68e3a5a5990ea4c5391750b3d90}\label{classPhysicsSystem_a8298f68e3a5a5990ea4c5391750b3d90} 
+using {\bfseries Body\+Stats} = \mbox{\hyperlink{structBodyManager_1_1BodyStats}{Body\+Manager\+::\+Body\+Stats}}
+\begin{DoxyCompactList}\small\item\em Helper struct that counts the number of bodies of each type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPhysicsSystem_aaefedca1b6619cf11f5c45f7f2176148}\label{classPhysicsSystem_aaefedca1b6619cf11f5c45f7f2176148} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Physics\+System} ()
+\begin{DoxyCompactList}\small\item\em Constructor / Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPhysicsSystem_ae578fcd0c58f678156b7cd8b44f811a6}{Init}} (uint in\+Max\+Bodies, uint in\+Num\+Body\+Mutexes, uint in\+Max\+Body\+Pairs, uint in\+Max\+Contact\+Constraints, const \mbox{\hyperlink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}} \&in\+Broad\+Phase\+Layer\+Interface, const \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{Object\+Vs\+Broad\+Phase\+Layer\+Filter}} \&in\+Object\+Vs\+Broad\+Phase\+Layer\+Filter, const \mbox{\hyperlink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter}} \&in\+Object\+Layer\+Pair\+Filter)
+\item 
+\Hypertarget{classPhysicsSystem_ae7c05e21f93638e9b9eb2c52dd6d850f}\label{classPhysicsSystem_ae7c05e21f93638e9b9eb2c52dd6d850f} 
+void {\bfseries Set\+Body\+Activation\+Listener} (\mbox{\hyperlink{classBodyActivationListener}{Body\+Activation\+Listener}} \texorpdfstring{$\ast$}{*}in\+Listener)
+\begin{DoxyCompactList}\small\item\em Listener that is notified whenever a body is activated/deactivated. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a8fd2362a6a9377d74902653f42e83170}\label{classPhysicsSystem_a8fd2362a6a9377d74902653f42e83170} 
+\mbox{\hyperlink{classBodyActivationListener}{Body\+Activation\+Listener}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body\+Activation\+Listener} () const
+\item 
+\Hypertarget{classPhysicsSystem_ade7967ad5ff4a67d255cc6fb956943c8}\label{classPhysicsSystem_ade7967ad5ff4a67d255cc6fb956943c8} 
+void {\bfseries Set\+Contact\+Listener} (\mbox{\hyperlink{classContactListener}{Contact\+Listener}} \texorpdfstring{$\ast$}{*}in\+Listener)
+\begin{DoxyCompactList}\small\item\em Listener that is notified whenever a contact point between two bodies is added/updated/removed. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_ae7f5894935da5a4652a6d7ac60ad82e0}\label{classPhysicsSystem_ae7f5894935da5a4652a6d7ac60ad82e0} 
+\mbox{\hyperlink{classContactListener}{Contact\+Listener}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Contact\+Listener} () const
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_ae1cc3e726b7e186f642c7da5f6c6a2c2}{Set\+Combine\+Friction}} (\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Contact\+Constraint\+Manager\+::\+Combine\+Function}} in\+Combine\+Friction)
+\item 
+\Hypertarget{classPhysicsSystem_ae19842257ae5c36c88dd4dbead21e55f}\label{classPhysicsSystem_ae19842257ae5c36c88dd4dbead21e55f} 
+\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Contact\+Constraint\+Manager\+::\+Combine\+Function}} {\bfseries Get\+Combine\+Friction} () const
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_aadad532dfda2006fd3b699116e9fed08}{Set\+Combine\+Restitution}} (\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Contact\+Constraint\+Manager\+::\+Combine\+Function}} in\+Combine\+Restition)
+\item 
+\Hypertarget{classPhysicsSystem_aad39e9dd77faf9b578460b66451334e7}\label{classPhysicsSystem_aad39e9dd77faf9b578460b66451334e7} 
+\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Contact\+Constraint\+Manager\+::\+Combine\+Function}} {\bfseries Get\+Combine\+Restitution} () const
+\item 
+\Hypertarget{classPhysicsSystem_a2f81c29dfb88dd7e0711caffcd2ebc22}\label{classPhysicsSystem_a2f81c29dfb88dd7e0711caffcd2ebc22} 
+void {\bfseries Set\+Physics\+Settings} (const \mbox{\hyperlink{structPhysicsSettings}{Physics\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em \doxylink{classControl}{Control} the main constants of the physics simulation. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a54b6d93365bca8fda1edf68997c29b9e}\label{classPhysicsSystem_a54b6d93365bca8fda1edf68997c29b9e} 
+const \mbox{\hyperlink{structPhysicsSettings}{Physics\+Settings}} \& {\bfseries Get\+Physics\+Settings} () const
+\item 
+\Hypertarget{classPhysicsSystem_a35474557b977d2a03e7b5e7c920bf2ee}\label{classPhysicsSystem_a35474557b977d2a03e7b5e7c920bf2ee} 
+const \mbox{\hyperlink{classBodyInterface}{Body\+Interface}} \& {\bfseries Get\+Body\+Interface} () const
+\begin{DoxyCompactList}\small\item\em Access to the body interface. This interface allows to to create / remove bodies and to change their properties. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a579bc839c332cf3523c3eb2b03c98e3e}\label{classPhysicsSystem_a579bc839c332cf3523c3eb2b03c98e3e} 
+\mbox{\hyperlink{classBodyInterface}{Body\+Interface}} \& {\bfseries Get\+Body\+Interface} ()
+\item 
+\Hypertarget{classPhysicsSystem_a55216f4cfc718d052548baac4ba098d7}\label{classPhysicsSystem_a55216f4cfc718d052548baac4ba098d7} 
+const \mbox{\hyperlink{classBodyInterface}{Body\+Interface}} \& {\bfseries Get\+Body\+Interface\+No\+Lock} () const
+\begin{DoxyCompactList}\small\item\em Version that does not lock the bodies, use with great care! \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a9da48916fec4a9b9af533a84785aa455}\label{classPhysicsSystem_a9da48916fec4a9b9af533a84785aa455} 
+\mbox{\hyperlink{classBodyInterface}{Body\+Interface}} \& {\bfseries Get\+Body\+Interface\+No\+Lock} ()
+\begin{DoxyCompactList}\small\item\em Version that does not lock the bodies, use with great care! \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a3d621cc72c69b73cdcc13bdb3b0dddc4}\label{classPhysicsSystem_a3d621cc72c69b73cdcc13bdb3b0dddc4} 
+const \mbox{\hyperlink{classBroadPhaseQuery}{Broad\+Phase\+Query}} \& {\bfseries Get\+Broad\+Phase\+Query} () const
+\begin{DoxyCompactList}\small\item\em Access to the broadphase interface that allows coarse collision queries. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a1ced58861f3fbb7cfea901128bb7a84d}\label{classPhysicsSystem_a1ced58861f3fbb7cfea901128bb7a84d} 
+const \mbox{\hyperlink{classNarrowPhaseQuery}{Narrow\+Phase\+Query}} \& {\bfseries Get\+Narrow\+Phase\+Query} () const
+\begin{DoxyCompactList}\small\item\em Interface that allows fine collision queries against first the broad phase and then the narrow phase. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a472f122c70806d1a2b88fbb441be42e0}\label{classPhysicsSystem_a472f122c70806d1a2b88fbb441be42e0} 
+const \mbox{\hyperlink{classNarrowPhaseQuery}{Narrow\+Phase\+Query}} \& {\bfseries Get\+Narrow\+Phase\+Query\+No\+Lock} () const
+\begin{DoxyCompactList}\small\item\em Version that does not lock the bodies, use with great care! \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a6a1378c13080b5ad3af2c61be87ca40c}\label{classPhysicsSystem_a6a1378c13080b5ad3af2c61be87ca40c} 
+void {\bfseries Add\+Constraint} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}in\+Constraint)
+\begin{DoxyCompactList}\small\item\em Add constraint to the world. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a7cdf5d375a54ab6d6b29e3944d8e4266}\label{classPhysicsSystem_a7cdf5d375a54ab6d6b29e3944d8e4266} 
+void {\bfseries Remove\+Constraint} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}in\+Constraint)
+\begin{DoxyCompactList}\small\item\em Remove constraint from the world. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_ad83534f99aa4e7fc78e6ede84576b59c}\label{classPhysicsSystem_ad83534f99aa4e7fc78e6ede84576b59c} 
+void {\bfseries Add\+Constraints} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Constraints, int in\+Number)
+\begin{DoxyCompactList}\small\item\em Batch add constraints. Note that the in\+Constraints array is allowed to have nullptrs, these will be ignored. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a220ed391139f4ffdb384fe83b44d6439}\label{classPhysicsSystem_a220ed391139f4ffdb384fe83b44d6439} 
+void {\bfseries Remove\+Constraints} (\mbox{\hyperlink{classConstraint}{Constraint}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Constraints, int in\+Number)
+\begin{DoxyCompactList}\small\item\em Batch remove constraints. Note that the in\+Constraints array is allowed to have nullptrs, these will be ignored. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a69c9f67351312d43f8e1c1f5d23fdf99}\label{classPhysicsSystem_a69c9f67351312d43f8e1c1f5d23fdf99} 
+Constraints {\bfseries Get\+Constraints} () const
+\begin{DoxyCompactList}\small\item\em Get a list of all constraints. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_ab3cd9f2562f0f051c032b3bc298d9604}\label{classPhysicsSystem_ab3cd9f2562f0f051c032b3bc298d9604} 
+void {\bfseries Optimize\+Broad\+Phase} ()
+\begin{DoxyCompactList}\small\item\em Optimize the broadphase, needed only if you\textquotesingle{}ve added many bodies prior to calling \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Update()} for the first time. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a0964d49514b7447981dcc7438876e988}\label{classPhysicsSystem_a0964d49514b7447981dcc7438876e988} 
+void {\bfseries Add\+Step\+Listener} (\mbox{\hyperlink{classPhysicsStepListener}{Physics\+Step\+Listener}} \texorpdfstring{$\ast$}{*}in\+Listener)
+\begin{DoxyCompactList}\small\item\em Adds a new step listener. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a00aeeff60505f9baa3dd1ffdfe73c2b3}\label{classPhysicsSystem_a00aeeff60505f9baa3dd1ffdfe73c2b3} 
+void {\bfseries Remove\+Step\+Listener} (\mbox{\hyperlink{classPhysicsStepListener}{Physics\+Step\+Listener}} \texorpdfstring{$\ast$}{*}in\+Listener)
+\begin{DoxyCompactList}\small\item\em Removes a step listener. \end{DoxyCompactList}\item 
+EPhysics\+Update\+Error \mbox{\hyperlink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Update}} (float in\+Delta\+Time, int in\+Collision\+Steps, \mbox{\hyperlink{classTempAllocator}{Temp\+Allocator}} \texorpdfstring{$\ast$}{*}in\+Temp\+Allocator, \mbox{\hyperlink{classJobSystem}{Job\+System}} \texorpdfstring{$\ast$}{*}in\+Job\+System)
+\item 
+\Hypertarget{classPhysicsSystem_ae13975e609ff125fa02b922795777824}\label{classPhysicsSystem_ae13975e609ff125fa02b922795777824} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream, EState\+Recorder\+State in\+State=EState\+Recorder\+State\+::\+All, const \mbox{\hyperlink{classStateRecorderFilter}{State\+Recorder\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter=nullptr) const
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a5c0936f0d1e9cc6f05a100e48a687bb6}\label{classPhysicsSystem_a5c0936f0d1e9cc6f05a100e48a687bb6} 
+bool {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. Returns false if failed. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a29255e6d9124402e08319bfbf81b8509}\label{classPhysicsSystem_a29255e6d9124402e08319bfbf81b8509} 
+void {\bfseries Save\+Body\+State} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body, \mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saving state of a single body. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a5865e977575ab65a41ce98e098b897cc}\label{classPhysicsSystem_a5865e977575ab65a41ce98e098b897cc} 
+void {\bfseries Restore\+Body\+State} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body, \mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restoring state of a single body. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_ad09c12009bbcb0d0e6dbfd9582593be4}\label{classPhysicsSystem_ad09c12009bbcb0d0e6dbfd9582593be4} 
+void {\bfseries Set\+Gravity} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Gravity)
+\begin{DoxyCompactList}\small\item\em Set gravity value. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a73776df14d1f0f10ba9a5fa033eefafd}\label{classPhysicsSystem_a73776df14d1f0f10ba9a5fa033eefafd} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Gravity} () const
+\item 
+\Hypertarget{classPhysicsSystem_ad381ea5bd5568b20ae05c1229dbff49e}\label{classPhysicsSystem_ad381ea5bd5568b20ae05c1229dbff49e} 
+const \mbox{\hyperlink{classBodyLockInterfaceNoLock}{Body\+Lock\+Interface\+No\+Lock}} \& {\bfseries Get\+Body\+Lock\+Interface\+No\+Lock} () const
+\begin{DoxyCompactList}\small\item\em Returns a locking interface that won\textquotesingle{}t actually lock the body. Use with great care! \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a3ec396058f674026726e59dc7ad20609}\label{classPhysicsSystem_a3ec396058f674026726e59dc7ad20609} 
+const \mbox{\hyperlink{classBodyLockInterfaceLocking}{Body\+Lock\+Interface\+Locking}} \& {\bfseries Get\+Body\+Lock\+Interface} () const
+\begin{DoxyCompactList}\small\item\em Returns a locking interface that locks the body so other threads cannot modify it. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a9473bc5d3e3cd861b58b0db3240b4f1d}\label{classPhysicsSystem_a9473bc5d3e3cd861b58b0db3240b4f1d} 
+\mbox{\hyperlink{classDefaultBroadPhaseLayerFilter}{Default\+Broad\+Phase\+Layer\+Filter}} {\bfseries Get\+Default\+Broad\+Phase\+Layer\+Filter} (Object\+Layer in\+Layer) const
+\begin{DoxyCompactList}\small\item\em Get an broadphase layer filter that uses the default pair filter and a specified object layer to determine if broadphase layers collide. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_adaf3b2dbc230ee329461e47f096ef467}\label{classPhysicsSystem_adaf3b2dbc230ee329461e47f096ef467} 
+\mbox{\hyperlink{classDefaultObjectLayerFilter}{Default\+Object\+Layer\+Filter}} {\bfseries Get\+Default\+Layer\+Filter} (Object\+Layer in\+Layer) const
+\begin{DoxyCompactList}\small\item\em Get an object layer filter that uses the default pair filter and a specified layer to determine if layers collide. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a25eb1c752bffdd53c2c7cd610f2708f7}\label{classPhysicsSystem_a25eb1c752bffdd53c2c7cd610f2708f7} 
+uint {\bfseries Get\+Num\+Bodies} () const
+\begin{DoxyCompactList}\small\item\em Gets the current amount of bodies that are in the body manager. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a294887e565856fe5305419aa4432e33e}\label{classPhysicsSystem_a294887e565856fe5305419aa4432e33e} 
+uint32 {\bfseries Get\+Num\+Active\+Bodies} (EBody\+Type in\+Type) const
+\begin{DoxyCompactList}\small\item\em Gets the current amount of active bodies that are in the body manager. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_a77646a1768d1cfc892b6238bf614ed9f}\label{classPhysicsSystem_a77646a1768d1cfc892b6238bf614ed9f} 
+uint {\bfseries Get\+Max\+Bodies} () const
+\begin{DoxyCompactList}\small\item\em Get the maximum amount of bodies that this physics system supports. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsSystem_ad826f67ef4fd3a1457cf9d8d6892d5cb}\label{classPhysicsSystem_ad826f67ef4fd3a1457cf9d8d6892d5cb} 
+\mbox{\hyperlink{classPhysicsSystem_a8298f68e3a5a5990ea4c5391750b3d90}{Body\+Stats}} {\bfseries Get\+Body\+Stats} () const
+\begin{DoxyCompactList}\small\item\em Get stats about the bodies in the body manager (slow, iterates through all bodies) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPhysicsSystem_a01018de422e55bc7e23a17f318ecdd1f}{Get\+Bodies}} (Body\+IDVector \&out\+Body\+IDs) const
+\item 
+void \mbox{\hyperlink{classPhysicsSystem_aac0c682798c1fc5c78977b0dc4b24b7d}{Get\+Active\+Bodies}} (EBody\+Type in\+Type, Body\+IDVector \&out\+Body\+IDs) const
+\item 
+const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPhysicsSystem_ae3f5ce308a831074e1e0fff453862584}{Get\+Active\+Bodies\+Unsafe}} (EBody\+Type in\+Type) const
+\item 
+bool \mbox{\hyperlink{classPhysicsSystem_ad8f5849a90549504d9f1705c324a9a83}{Were\+Bodies\+In\+Contact}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body1\+ID, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body2\+ID) const
+\item 
+\Hypertarget{classPhysicsSystem_a7f87f05d94f62054d6f3e975b613d2f0}\label{classPhysicsSystem_a7f87f05d94f62054d6f3e975b613d2f0} 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries Get\+Bounds} () const
+\begin{DoxyCompactList}\small\item\em Get the bounding box of all bodies in the physics system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main class for the physics system. It contains all rigid bodies and simulates them.
+
+The main simulation is performed by the \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Update()} call on multiple threads (if the \doxylink{classJobSystem}{Job\+System} is configured to use them). Please refer to the general architecture overview in the Docs folder for more information. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPhysicsSystem_aac0c682798c1fc5c78977b0dc4b24b7d}\label{classPhysicsSystem_aac0c682798c1fc5c78977b0dc4b24b7d} 
+\index{PhysicsSystem@{PhysicsSystem}!GetActiveBodies@{GetActiveBodies}}
+\index{GetActiveBodies@{GetActiveBodies}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{GetActiveBodies()}{GetActiveBodies()}}
+{\footnotesize\ttfamily void Physics\+System\+::\+Get\+Active\+Bodies (\begin{DoxyParamCaption}\item[{EBody\+Type}]{in\+Type,  }\item[{Body\+IDVector \&}]{out\+Body\+IDs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get copy of the list of active bodies under protection of a lock. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Type} & The type of bodies to get \\
+\hline
+{\em out\+Body\+IDs} & On return, this will contain the list of Body\+IDs \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPhysicsSystem_ae3f5ce308a831074e1e0fff453862584}\label{classPhysicsSystem_ae3f5ce308a831074e1e0fff453862584} 
+\index{PhysicsSystem@{PhysicsSystem}!GetActiveBodiesUnsafe@{GetActiveBodiesUnsafe}}
+\index{GetActiveBodiesUnsafe@{GetActiveBodiesUnsafe}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{GetActiveBodiesUnsafe()}{GetActiveBodiesUnsafe()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*} Physics\+System\+::\+Get\+Active\+Bodies\+Unsafe (\begin{DoxyParamCaption}\item[{EBody\+Type}]{in\+Type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the list of active bodies, use \doxylink{classPhysicsSystem_a294887e565856fe5305419aa4432e33e}{Get\+Num\+Active\+Bodies()} to find out how long the list is. Note\+: Not thread safe. The active bodies list can change at any moment when other threads are doing work. Use \doxylink{classPhysicsSystem_aac0c682798c1fc5c78977b0dc4b24b7d}{Get\+Active\+Bodies()} if you need a thread safe version. \Hypertarget{classPhysicsSystem_a01018de422e55bc7e23a17f318ecdd1f}\label{classPhysicsSystem_a01018de422e55bc7e23a17f318ecdd1f} 
+\index{PhysicsSystem@{PhysicsSystem}!GetBodies@{GetBodies}}
+\index{GetBodies@{GetBodies}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{GetBodies()}{GetBodies()}}
+{\footnotesize\ttfamily void Physics\+System\+::\+Get\+Bodies (\begin{DoxyParamCaption}\item[{Body\+IDVector \&}]{out\+Body\+IDs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get copy of the list of all bodies under protection of a lock. 
+\begin{DoxyParams}{Parameters}
+{\em out\+Body\+IDs} & On return, this will contain the list of Body\+IDs \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPhysicsSystem_ae578fcd0c58f678156b7cd8b44f811a6}\label{classPhysicsSystem_ae578fcd0c58f678156b7cd8b44f811a6} 
+\index{PhysicsSystem@{PhysicsSystem}!Init@{Init}}
+\index{Init@{Init}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Physics\+System\+::\+Init (\begin{DoxyParamCaption}\item[{uint}]{in\+Max\+Bodies,  }\item[{uint}]{in\+Num\+Body\+Mutexes,  }\item[{uint}]{in\+Max\+Body\+Pairs,  }\item[{uint}]{in\+Max\+Contact\+Constraints,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}} \&}]{in\+Broad\+Phase\+Layer\+Interface,  }\item[{const \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{Object\+Vs\+Broad\+Phase\+Layer\+Filter}} \&}]{in\+Object\+Vs\+Broad\+Phase\+Layer\+Filter,  }\item[{const \mbox{\hyperlink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter}} \&}]{in\+Object\+Layer\+Pair\+Filter }\end{DoxyParamCaption})}
+
+Initialize the system. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Max\+Bodies} & Maximum number of bodies to support. \\
+\hline
+{\em in\+Num\+Body\+Mutexes} & Number of body mutexes to use. Should be a power of 2 in the range \mbox{[}1, 64\mbox{]}, use 0 to auto detect. \\
+\hline
+{\em in\+Max\+Body\+Pairs} & Maximum amount of body pairs to process (anything else will fall through the world), this number should generally be much higher than the max amount of contact points as there will be lots of bodies close that are not actually touching. \\
+\hline
+{\em in\+Max\+Contact\+Constraints} & Maximum amount of contact constraints to process (anything else will fall through the world). \\
+\hline
+{\em in\+Broad\+Phase\+Layer\+Interface} & Information on the mapping of object layers to broad phase layers. Since this is a virtual interface, the instance needs to stay alive during the lifetime of the \doxylink{classPhysicsSystem}{Physics\+System}. \\
+\hline
+{\em in\+Object\+Vs\+Broad\+Phase\+Layer\+Filter} & Filter callback function that is used to determine if an object layer collides with a broad phase layer. Since this is a virtual interface, the instance needs to stay alive during the lifetime of the \doxylink{classPhysicsSystem}{Physics\+System}. \\
+\hline
+{\em in\+Object\+Layer\+Pair\+Filter} & Filter callback function that is used to determine if two object layers collide. Since this is a virtual interface, the instance needs to stay alive during the lifetime of the \doxylink{classPhysicsSystem}{Physics\+System}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classPhysicsSystem_ae1cc3e726b7e186f642c7da5f6c6a2c2}\label{classPhysicsSystem_ae1cc3e726b7e186f642c7da5f6c6a2c2} 
+\index{PhysicsSystem@{PhysicsSystem}!SetCombineFriction@{SetCombineFriction}}
+\index{SetCombineFriction@{SetCombineFriction}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{SetCombineFriction()}{SetCombineFriction()}}
+{\footnotesize\ttfamily void Physics\+System\+::\+Set\+Combine\+Friction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Contact\+Constraint\+Manager\+::\+Combine\+Function}}}]{in\+Combine\+Friction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the function that combines the friction of two bodies and returns it Default method is the geometric mean\+: sqrt(friction1 \texorpdfstring{$\ast$}{*} friction2). \Hypertarget{classPhysicsSystem_aadad532dfda2006fd3b699116e9fed08}\label{classPhysicsSystem_aadad532dfda2006fd3b699116e9fed08} 
+\index{PhysicsSystem@{PhysicsSystem}!SetCombineRestitution@{SetCombineRestitution}}
+\index{SetCombineRestitution@{SetCombineRestitution}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{SetCombineRestitution()}{SetCombineRestitution()}}
+{\footnotesize\ttfamily void Physics\+System\+::\+Set\+Combine\+Restitution (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classContactConstraintManager_ad0b40a0f57d994f32b069744541fce56}{Contact\+Constraint\+Manager\+::\+Combine\+Function}}}]{in\+Combine\+Restition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the function that combines the restitution of two bodies and returns it Default method is max(restitution1, restitution1) \Hypertarget{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}\label{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3} 
+\index{PhysicsSystem@{PhysicsSystem}!Update@{Update}}
+\index{Update@{Update}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily EPhysics\+Update\+Error Physics\+System\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time,  }\item[{int}]{in\+Collision\+Steps,  }\item[{\mbox{\hyperlink{classTempAllocator}{Temp\+Allocator}} \texorpdfstring{$\ast$}{*}}]{in\+Temp\+Allocator,  }\item[{\mbox{\hyperlink{classJobSystem}{Job\+System}} \texorpdfstring{$\ast$}{*}}]{in\+Job\+System }\end{DoxyParamCaption})}
+
+Simulate the system. The world steps for a total of in\+Delta\+Time seconds. This is divided in in\+Collision\+Steps iterations. Each iteration consists of collision detection followed by an integration step. This function internally spawns jobs using in\+Job\+System and waits for them to complete, so no jobs will be running when this function returns. \Hypertarget{classPhysicsSystem_ad8f5849a90549504d9f1705c324a9a83}\label{classPhysicsSystem_ad8f5849a90549504d9f1705c324a9a83} 
+\index{PhysicsSystem@{PhysicsSystem}!WereBodiesInContact@{WereBodiesInContact}}
+\index{WereBodiesInContact@{WereBodiesInContact}!PhysicsSystem@{PhysicsSystem}}
+\doxysubsubsection{\texorpdfstring{WereBodiesInContact()}{WereBodiesInContact()}}
+{\footnotesize\ttfamily bool Physics\+System\+::\+Were\+Bodies\+In\+Contact (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body1\+ID,  }\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body2\+ID }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if 2 bodies were in contact during the last simulation step. Since contacts are only detected between active bodies, so at least one of the bodies must be active in order for this function to work. It queries the state at the time of the last \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update} and will return true if the bodies were in contact, even if one of the bodies was moved / removed afterwards. This function can be called from any thread when the \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update} is not running. During \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update} this function is only valid during contact callbacks\+:
+\begin{DoxyItemize}
+\item During the \doxylink{classContactListener_aeb1d7908c8556ce24448ac572d7ad944}{Contact\+Listener\+::\+On\+Contact\+Added} callback this function can be used to determine if a different contact pair between the bodies was active in the previous simulation step (function returns true) or if this is the first step that the bodies are touching (function returns false).
+\item During the \doxylink{classContactListener_aef8f0cac1d560622743420afcd1ce17a}{Contact\+Listener\+::\+On\+Contact\+Removed} callback this function can be used to determine if this is the last contact pair between the bodies (function returns false) or if there are other contacts still present (function returns true). 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/Physics\+System.\+h\end{DoxyCompactItemize}

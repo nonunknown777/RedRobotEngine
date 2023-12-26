@@ -1,0 +1,107 @@
+\doxysection{Vertex\+Set.\+hpp}
+\hypertarget{VertexSet_8hpp_source}{}\label{VertexSet_8hpp_source}\index{includes/playrho/Common/VertexSet.hpp@{includes/playrho/Common/VertexSet.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_VERTEXSET\_HPP}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_VERTEXSET\_HPP}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Math.hpp>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }d2\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet}{VertexSet}}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structplayrho_1_1Vector}{const\_pointer}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}*;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{Area}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a5a33cdf5ac70599dfe9d1881b8d58484}{GetDefaultMinSeparationSquared}}()}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__FixedMath_ga7a9d7e9855b45a3b4103632a47ccd6f4}{sqrt}}(std::numeric\_limits<Vec2::value\_type>::min())\ *\ \mbox{\hyperlink{group__PhysicalUnits_ga1fb0acbda4409a1a132baf7df83b9870}{SquareMeter}};}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_add430fa9d90fffb18596d1f45a89b515}{VertexSet}}(\mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{Area}}\ minSepSquared\ =\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a5a33cdf5ac70599dfe9d1881b8d58484}{GetDefaultMinSeparationSquared}}()):}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ m\_minSepSquared\{minSepSquared\}}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ assert(minSepSquared\ >=\ 0\_m2);}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{Area}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_aab2c23f7f7344bc31409837dbd1946c3}{GetMinSeparationSquared}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ m\_minSepSquared;\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_ade7534188a8fc91d9837b3e562347a82}{add}}(\mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\ value)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a1ede2f852e19cf2156350aae630944d0}{find}}(value)\ !=\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a89f55e0a38a5a9d01c8fa5834f62919e}{end}}())}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ m\_elements.push\_back(value);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a2db75b4004bb99e8dcd5e275805d158a}{clear}}()\ noexcept}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ m\_elements.clear();}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_aa5e49e3b445c8dd4d78f9fd72fb50a20}{size}}()\ const\ noexcept}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ return\ ::playrho::detail::Size(m\_elements);}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{const\_pointer}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_ad36911307335afc1a9b4e6ddcc33a29a}{data}}()\textcolor{keyword}{\ const\ }\{\ return\ ::playrho::detail::Data(m\_elements);\ \}}
+\DoxyCodeLine{00085\ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{const\_pointer}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a3ab60237213bf69d476b637cd2437d57}{begin}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_ad36911307335afc1a9b4e6ddcc33a29a}{data}}();\ \}}
+\DoxyCodeLine{00088\ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{const\_pointer}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a89f55e0a38a5a9d01c8fa5834f62919e}{end}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_ad36911307335afc1a9b4e6ddcc33a29a}{data}}()\ +\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_aa5e49e3b445c8dd4d78f9fd72fb50a20}{size}}();\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{const\_pointer}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a1ede2f852e19cf2156350aae630944d0}{find}}(\mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\ value)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ squaring\ anything\ smaller\ than\ the\ sqrt(std::numeric\_limits<Vec2::data\_type>::min())}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ won't\ be\ reversible.}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ i.e.\ won't\ obey\ the\ property\ that\ square(sqrt(a))\ ==\ a\ and\ sqrt(square(a))\ ==\ a.}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::find\_if(\mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a3ab60237213bf69d476b637cd2437d57}{begin}}(),\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a89f55e0a38a5a9d01c8fa5834f62919e}{end}}(),\ [\&](\mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\ elem)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ length\ squared\ must\ be\ large\ enough\ to\ have\ a\ reasonable\ enough\ unit\ vector.}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__Math_ga1ac00e661c653f21ddbd0693bbb039ac}{GetMagnitudeSquared}}(value\ -\/\ elem)\ <=\ m\_minSepSquared;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{Length2}}\ \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet_a6cd15a8277866afd8e620c0df9a2fc8d}{operator[]}}(std::size\_t\ index)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elements[index];}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00112\ \ \ \ \ std::vector<Length2>\ m\_elements;\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{Area}}\ m\_minSepSquared;\ }
+\DoxyCodeLine{00114\ \};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \}\ \textcolor{comment}{//\ namespace\ d2}}
+\DoxyCodeLine{00117\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_VERTEXSET\_HPP}}
+
+\end{DoxyCode}

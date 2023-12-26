@@ -1,0 +1,133 @@
+\doxysection{Mutable\+Compound\+Shape.\+h}
+\hypertarget{MutableCompoundShape_8h_source}{}\label{MutableCompoundShape_8h_source}\index{includes/jolt/Physics/Collision/Shape/MutableCompoundShape.h@{includes/jolt/Physics/Collision/Shape/MutableCompoundShape.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/CompoundShape.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classMutableCompoundShapeSettings}{MutableCompoundShapeSettings}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCompoundShapeSettings}{CompoundShapeSettings}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classMutableCompoundShapeSettings}{MutableCompoundShapeSettings}})}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ See:\ ShapeSettings}}
+\DoxyCodeLine{00020\ \ \ \ \ virtual\ \mbox{\hyperlink{classResult}{ShapeResult}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ Create()\ const\ override;}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00030\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classMutableCompoundShape}{MutableCompoundShape}}\ final\ :\ public\ \mbox{\hyperlink{classCompoundShape}{CompoundShape}}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a661ed40beb5af222c420b5746c16f431}{MutableCompoundShape}}()\ :\ \mbox{\hyperlink{classCompoundShape}{CompoundShape}}(EShapeSubType::MutableCompound)\ \{\ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape}{MutableCompoundShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMutableCompoundShapeSettings}{MutableCompoundShapeSettings}}\ \&inSettings,\ ShapeResult\ \&outResult);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::CastRay}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a55cc19d38b3eda1fb2399895d5422217}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRayCast}{RayCast}}\ \&inRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classRayCastResult}{RayCastResult}}\ \&ioHit)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a7efb0edaed299ca33de9a469c280bdc6}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRayCast}{RayCast}}\ \&inRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayCastSettings}{RayCastSettings}}\ \&inRayCastSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classCollisionCollector}{CastRayCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const}\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::CollidePoint}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a8b1884398b79955ef6ba058939c18388}{CollidePoint}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classCollisionCollector}{CollidePointCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const}\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::CollectTransformedShapes}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a8ce33b7618405bf406a318a14d5d336c}{CollectTransformedShapes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPositionCOM,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classCollisionCollector}{TransformedShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ See:\ CompoundShape::GetIntersectingSubShapes}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a54f90f67aaa20068117cf7f687b72062}{GetIntersectingSubShapes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ uint\ *outSubShapeIndices,\ \textcolor{keywordtype}{int}\ inMaxSubShapeIndices)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ See:\ CompoundShape::GetIntersectingSubShapes}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_accfe7ae7b7ca09a084af2bc6a0abdc26}{GetIntersectingSubShapes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classOrientedBox}{OrientedBox}}\ \&inBox,\ uint\ *outSubShapeIndices,\ \textcolor{keywordtype}{int}\ inMaxSubShapeIndices)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ See\ Shape}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_ae9e0c36b04f54f5dd78859341d838d45}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetStats}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{structShape_1_1Stats}{Stats}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_aabd799e121f048e83a6ef43490422fbe}{GetStats}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structShape_1_1Stats}{Stats}}(\textcolor{keyword}{sizeof}(*\textcolor{keyword}{this})\ +\ mSubShapes.size()\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structCompoundShape_1_1SubShape}{SubShape}})\ +\ mSubShapeBounds.size()\ *\ \textcolor{keyword}{sizeof}(Bounds),\ 0);\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00066\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a66c4e1e058a06ddb1718604254d15c4d}{AddShape}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ uint32\ inUserData\ =\ 0);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_ab91b4cd767b396eca6a341e98501daea}{RemoveShape}}(uint\ inIndex);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a3992cb7a984307a08139812e44da14ae}{ModifyShape}}(uint\ inIndex,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a6b947de024a9a91039f4b472072efdba}{ModifyShape}}(uint\ inIndex,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_a48172d558ec67cb67e4a4d0ec7b48133}{ModifyShapes}}(uint\ inStartIndex,\ uint\ inNumber,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{Vec3}}\ *inPositions,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classQuat}{Quat}}\ *inRotations,\ uint\ inPositionStride\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classVec3}{Vec3}}),\ uint\ inRotationStride\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classQuat}{Quat}}));}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_aadb711e8d328adc04397be0cf44d4f4c}{AdjustCenterOfMass}}();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ Register\ shape\ functions\ with\ the\ registry}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sRegister();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::RestoreBinaryState}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMutableCompoundShape_ac4871effbbfa65966136fb6c6e2bd278}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ Visitor\ for\ GetIntersectingSubShapes}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ BoxType>}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{struct\ }GetIntersectingSubShapesVisitorMC\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structCompoundShape_1_1GetIntersectingSubShapesVisitor}{GetIntersectingSubShapesVisitor}}<BoxType>}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structCompoundShape_1_1GetIntersectingSubShapesVisitor}{GetIntersectingSubShapesVisitor}}<BoxType>::GetIntersectingSubShapesVisitor;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classResult}{Result}}\ =\ \mbox{\hyperlink{classUVec4}{UVec4}};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classResult}{Result}}\ \ \ \ \ \ \ \ \ TestBlock(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMinX,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMinY,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMinZ,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMaxX,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMaxY,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMaxZ)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structCompoundShape_1_1GetIntersectingSubShapesVisitor}{GetIntersectingSubShapesVisitor<BoxType>::TestBounds}}(inBoundsMinX,\ inBoundsMinY,\ inBoundsMinZ,\ inBoundsMaxX,\ inBoundsMaxY,\ inBoundsMaxZ);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ ShouldVisitBlock(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inResult)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inResult.\mbox{\hyperlink{classUVec4_afa8f229eccfd643197d92382bf8877f7}{TestAnyTrue}}();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ ShouldVisitSubShape(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inResult,\ uint\ inIndexInBlock)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00120\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inResult[inIndexInBlock]\ !=\ 0;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetNumBlocks()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ ((uint)mSubShapes.size()\ +\ 3)\ >>\ 2;\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EnsureSubShapeBoundsCapacity();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateSubShapeBounds(uint\ inStartIdx,\ uint\ inNumber);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateLocalBounds();}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Visitor>}
+\DoxyCodeLine{00140\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WalkSubShapes(Visitor\ \&ioVisitor)\ \textcolor{keyword}{const};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ Helper\ functions\ called\ by\ CollisionDispatch}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCollideCompoundVsShape(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale2,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}}\ \&inCollideShapeSettings,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter);}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCollideShapeVsCompound(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale2,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}}\ \&inCollideShapeSettings,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter);}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCastShapeVsCompound(\textcolor{keyword}{const}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}\ \&inShapeCast,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&inShapeCastSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&ioCollector);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{struct\ }Bounds}
+\DoxyCodeLine{00148\ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinX;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinY;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinZ;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxX;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxY;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxZ;}
+\DoxyCodeLine{00155\ \ \ \ \ \};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ Array<Bounds>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSubShapeBounds;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00158\ \};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,99 @@
+\doxysection{playrho\+::Span\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classplayrho_1_1Span}{}\label{classplayrho_1_1Span}\index{playrho::Span$<$ T $>$@{playrho::Span$<$ T $>$}}
+
+
+A C++ encapsulation of an array and its size.  
+
+
+
+
+{\ttfamily \#include $<$Span.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Span\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{d0/d8c/classplayrho_1_1Span__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1Span_a71f2562f09ebcc2077d54844556707d6}\label{classplayrho_1_1Span_a71f2562f09ebcc2077d54844556707d6} 
+using {\bfseries data\+\_\+type} = T
+\begin{DoxyCompactList}\small\item\em Data type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a4ebcb51676a0de69e4a8e1ed2c389762}\label{classplayrho_1_1Span_a4ebcb51676a0de69e4a8e1ed2c389762} 
+using {\bfseries pointer} = \mbox{\hyperlink{classplayrho_1_1Span_a71f2562f09ebcc2077d54844556707d6}{data\+\_\+type}} \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Pointer type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_ad58b1f45f17cc2d44e9574e9fadc7271}\label{classplayrho_1_1Span_ad58b1f45f17cc2d44e9574e9fadc7271} 
+using {\bfseries const\+\_\+pointer} = const \mbox{\hyperlink{classplayrho_1_1Span_a71f2562f09ebcc2077d54844556707d6}{data\+\_\+type}} \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Constant pointer type. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_ab168aaeaa6439758345a1ad6d2d3368e}\label{classplayrho_1_1Span_ab168aaeaa6439758345a1ad6d2d3368e} 
+using {\bfseries size\+\_\+type} = std\+::size\+\_\+t
+\begin{DoxyCompactList}\small\item\em Size type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1Span_aa5b01aab6e08e9e68c837bc484783e60}\label{classplayrho_1_1Span_aa5b01aab6e08e9e68c837bc484783e60} 
+{\bfseries Span} (const \mbox{\hyperlink{classplayrho_1_1Span}{Span}} \&copy)=default
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_ad851b25c4531c92389186dbe1814fe79}\label{classplayrho_1_1Span_ad851b25c4531c92389186dbe1814fe79} 
+constexpr {\bfseries Span} (\mbox{\hyperlink{classplayrho_1_1Span_a4ebcb51676a0de69e4a8e1ed2c389762}{pointer}} array, \mbox{\hyperlink{classplayrho_1_1Span_ab168aaeaa6439758345a1ad6d2d3368e}{size\+\_\+type}} \mbox{\hyperlink{classplayrho_1_1Span_aface1cea0aaf8e6911a8f3473712285f}{size}}) noexcept
+\begin{DoxyCompactList}\small\item\em Initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a7de1ab7b524515dce4cb659b64cb3881}\label{classplayrho_1_1Span_a7de1ab7b524515dce4cb659b64cb3881} 
+{\footnotesize template$<$std\+::size\+\_\+t SIZE$>$ }\\constexpr {\bfseries Span} (\mbox{\hyperlink{classplayrho_1_1Span_a71f2562f09ebcc2077d54844556707d6}{data\+\_\+type}}(\&array)\mbox{[}SIZE\mbox{]}) noexcept
+\begin{DoxyCompactList}\small\item\em Initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a436f5ebe163f794865951914d4bb3c7a}\label{classplayrho_1_1Span_a436f5ebe163f794865951914d4bb3c7a} 
+{\footnotesize template$<$typename U , typename  = std\+::enable\+\_\+if\+\_\+t$<$ !std\+::is\+\_\+array$<$\+U$>$\+::value $>$$>$ }\\constexpr {\bfseries Span} (U \&value) noexcept
+\begin{DoxyCompactList}\small\item\em Initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a92b02e6a1208189dc8d6af2a5ec84fc4}\label{classplayrho_1_1Span_a92b02e6a1208189dc8d6af2a5ec84fc4} 
+constexpr {\bfseries Span} (std\+::initializer\+\_\+list$<$ T $>$ list) noexcept
+\begin{DoxyCompactList}\small\item\em Initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a3a5b487c1f1bd3836229446ee1cbb5b8}\label{classplayrho_1_1Span_a3a5b487c1f1bd3836229446ee1cbb5b8} 
+\mbox{\hyperlink{classplayrho_1_1Span_a4ebcb51676a0de69e4a8e1ed2c389762}{pointer}} {\bfseries begin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}begin"{} iterator value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a801ea93ca0ecde35e3599a37b9d2e696}\label{classplayrho_1_1Span_a801ea93ca0ecde35e3599a37b9d2e696} 
+\mbox{\hyperlink{classplayrho_1_1Span_ad58b1f45f17cc2d44e9574e9fadc7271}{const\+\_\+pointer}} {\bfseries cbegin} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}begin"{} iterator value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a6af40e1afd77999c87fe31260e13e0c3}\label{classplayrho_1_1Span_a6af40e1afd77999c87fe31260e13e0c3} 
+\mbox{\hyperlink{classplayrho_1_1Span_a4ebcb51676a0de69e4a8e1ed2c389762}{pointer}} {\bfseries end} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}end"{} iterator value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a99db26b218cd2950dfa0f2caf4594ce1}\label{classplayrho_1_1Span_a99db26b218cd2950dfa0f2caf4594ce1} 
+\mbox{\hyperlink{classplayrho_1_1Span_ad58b1f45f17cc2d44e9574e9fadc7271}{const\+\_\+pointer}} {\bfseries cend} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}end"{} iterator value. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_aadf75d0d0ec2e66e185305c4dd503d10}\label{classplayrho_1_1Span_aadf75d0d0ec2e66e185305c4dd503d10} 
+\mbox{\hyperlink{classplayrho_1_1Span_a71f2562f09ebcc2077d54844556707d6}{data\+\_\+type}} \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (\mbox{\hyperlink{classplayrho_1_1Span_ab168aaeaa6439758345a1ad6d2d3368e}{size\+\_\+type}} index) noexcept
+\begin{DoxyCompactList}\small\item\em Accesses the indexed element. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_abad4427391ae3561dc4702e2a2fa12e0}\label{classplayrho_1_1Span_abad4427391ae3561dc4702e2a2fa12e0} 
+const \mbox{\hyperlink{classplayrho_1_1Span_a71f2562f09ebcc2077d54844556707d6}{data\+\_\+type}} \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (\mbox{\hyperlink{classplayrho_1_1Span_ab168aaeaa6439758345a1ad6d2d3368e}{size\+\_\+type}} index) const noexcept
+\begin{DoxyCompactList}\small\item\em Accesses the indexed element. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_aface1cea0aaf8e6911a8f3473712285f}\label{classplayrho_1_1Span_aface1cea0aaf8e6911a8f3473712285f} 
+constexpr \mbox{\hyperlink{classplayrho_1_1Span_ab168aaeaa6439758345a1ad6d2d3368e}{size\+\_\+type}} {\bfseries size} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets the size of this span. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a179f2bbfe30ddc06c2bb951d759f5666}\label{classplayrho_1_1Span_a179f2bbfe30ddc06c2bb951d759f5666} 
+\mbox{\hyperlink{classplayrho_1_1Span_a4ebcb51676a0de69e4a8e1ed2c389762}{pointer}} {\bfseries data} () const noexcept
+\begin{DoxyCompactList}\small\item\em Direct access to data. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1Span_a798828a0922d7a61c8005316cd80f76d}\label{classplayrho_1_1Span_a798828a0922d7a61c8005316cd80f76d} 
+constexpr bool {\bfseries empty} () const noexcept
+\begin{DoxyCompactList}\small\item\em Checks whether this span is empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class playrho\+::\+Span$<$ T $>$}
+A C++ encapsulation of an array and its size. 
+
+\begin{DoxyNote}{Note}
+This is conceptually like the Guideline Support Library\textquotesingle{}s span template class. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{http://open-std.org/JTC1/SC22/WG21/docs/papers/2016/p0122r1.pdf}{\texttt{ http\+://open-\/std.\+org/\+JTC1/\+SC22/\+WG21/docs/papers/2016/p0122r1.\+pdf}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Span.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,678 @@
+\doxysection{playrho\+::d2 Namespace Reference}
+\hypertarget{namespaceplayrho_1_1d2}{}\label{namespaceplayrho_1_1d2}\index{playrho::d2@{playrho::d2}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}
+\begin{DoxyCompactList}\small\item\em 2-\/D acceleration related data structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}}
+\begin{DoxyCompactList}\small\item\em 2-\/D positional data structure. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}
+\begin{DoxyCompactList}\small\item\em Description of a "{}sweep"{} of motion in 2-\/D space. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}}
+\begin{DoxyCompactList}\small\item\em Describes a geometric transformation. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}
+\begin{DoxyCompactList}\small\item\em 2-\/D unit vector. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}
+\begin{DoxyCompactList}\small\item\em 2-\/D velocity related data structure. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classplayrho_1_1d2_1_1VertexSet}{Vertex\+Set}}
+\begin{DoxyCompactList}\small\item\em Vertex Set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceplayrho_1_1d2_aa577189e0996ba8d7897fa12b80726c8}\label{namespaceplayrho_1_1d2_aa577189e0996ba8d7897fa12b80726c8} 
+using {\bfseries Velocity\+Pair} = std\+::pair$<$ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}, \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} $>$
+\begin{DoxyCompactList}\small\item\em \doxylink{structplayrho_1_1d2_1_1Velocity}{Velocity} pair. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceplayrho_1_1d2_a4e08ccbbdba321adad44c940d95c52fb}\label{namespaceplayrho_1_1d2_a4e08ccbbdba321adad44c940d95c52fb} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a4442cd95fcdc4e62463d3e294fc7a303}\label{namespaceplayrho_1_1d2_a4442cd95fcdc4e62463d3e294fc7a303} 
+constexpr bool {\bfseries operator!=} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a381123f80f2c54ad37576e703eeb68a4}\label{namespaceplayrho_1_1d2_a381123f80f2c54ad37576e703eeb68a4} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} rhs)
+\begin{DoxyCompactList}\small\item\em Multiplication assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a80f242d8a02779e3c73ebb380a7476c1}\label{namespaceplayrho_1_1d2_a80f242d8a02779e3c73ebb380a7476c1} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \& {\bfseries operator/=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} rhs)
+\begin{DoxyCompactList}\small\item\em Division assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_aae7afb9157770b54dde00ee05cc3f586}\label{namespaceplayrho_1_1d2_aae7afb9157770b54dde00ee05cc3f586} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \& {\bfseries operator+=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Addition assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_af1ae3bcd38f85eedaab9cfb290de1ba2}\label{namespaceplayrho_1_1d2_af1ae3bcd38f85eedaab9cfb290de1ba2} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} {\bfseries operator+} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Addition operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a66e903f6e66753963a1bd82295759ddb}\label{namespaceplayrho_1_1d2_a66e903f6e66753963a1bd82295759ddb} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \& {\bfseries operator-\/=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Subtraction assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_af4082a55e3d2a0600855a5b626f19f41}\label{namespaceplayrho_1_1d2_af4082a55e3d2a0600855a5b626f19f41} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} {\bfseries operator-\/} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Subtraction operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_af2f8aaffda4163a6733ef5aff24414e0}\label{namespaceplayrho_1_1d2_af2f8aaffda4163a6733ef5aff24414e0} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} {\bfseries operator-\/} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&value)
+\begin{DoxyCompactList}\small\item\em Negation operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a33f1fdc4c279009a88f064ca1dd3ff59}\label{namespaceplayrho_1_1d2_a33f1fdc4c279009a88f064ca1dd3ff59} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} {\bfseries operator+} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&value)
+\begin{DoxyCompactList}\small\item\em Positive operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a69bd254b1dac7999ffb0d0a8cb73f64e}\label{namespaceplayrho_1_1d2_a69bd254b1dac7999ffb0d0a8cb73f64e} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} rhs)
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a19e063d352181298469b751c99cad684}\label{namespaceplayrho_1_1d2_a19e063d352181298469b751c99cad684} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a9b895b5b826bc5349fbd007bd6e9683b}\label{namespaceplayrho_1_1d2_a9b895b5b826bc5349fbd007bd6e9683b} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} {\bfseries operator/} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}} \&lhs, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} rhs)
+\begin{DoxyCompactList}\small\item\em Division operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a8d6ed75d97525ecd8b9e086a1b1b7d93}\label{namespaceplayrho_1_1d2_a8d6ed75d97525ecd8b9e086a1b1b7d93} 
+constexpr \mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} {\bfseries Get\+Vec2} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} value)
+\begin{DoxyCompactList}\small\item\em Gets a {\ttfamily Vec2} representation of the given value. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ade290c2d810216ce9b13924b10e748cd}\label{namespaceplayrho_1_1d2_ade290c2d810216ce9b13924b10e748cd} 
+\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} {\bfseries Get\+Angle} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} value)
+\begin{DoxyCompactList}\small\item\em Gets the angle of the given unit vector. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a01ec0848cea0c5b1730736cd1b75b156}\label{namespaceplayrho_1_1d2_a01ec0848cea0c5b1730736cd1b75b156} 
+\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} {\bfseries Get\+Angle} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&value)
+\begin{DoxyCompactList}\small\item\em Gets the angle of the given transformation. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a643d5d6e58d1d23bf632a1b4ec3506bb}\label{namespaceplayrho_1_1d2_a643d5d6e58d1d23bf632a1b4ec3506bb} 
+{\footnotesize template$<$class T , typename U $>$ }\\constexpr \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ {\bfseries operator\texorpdfstring{$\ast$}{*}} (\mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ T, U $>$ s, \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} u) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a62695ec74b5e8390e04e4fe218b71c06}\label{namespaceplayrho_1_1d2_a62695ec74b5e8390e04e4fe218b71c06} 
+{\footnotesize template$<$class T $>$ }\\constexpr \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ {\bfseries operator\texorpdfstring{$\ast$}{*}} (const T s, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} u) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_aeb33ed0aedb3f4daf1eba2fe702c6202}\label{namespaceplayrho_1_1d2_aeb33ed0aedb3f4daf1eba2fe702c6202} 
+{\footnotesize template$<$class T , typename U $>$ }\\constexpr \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ {\bfseries operator\texorpdfstring{$\ast$}{*}} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} u, \mbox{\hyperlink{classplayrho_1_1CheckedValue}{Checked\+Value}}$<$ T, U $>$ s) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_aacd531c5b2e5795a78edbbb2787c5d90}\label{namespaceplayrho_1_1d2_aacd531c5b2e5795a78edbbb2787c5d90} 
+{\footnotesize template$<$class T $>$ }\\constexpr \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ {\bfseries operator\texorpdfstring{$\ast$}{*}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} u, const T s) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_aa76933551e3e30127f996b6fde9c6a43}\label{namespaceplayrho_1_1d2_aa76933551e3e30127f996b6fde9c6a43} 
+constexpr \mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} {\bfseries operator/} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} u, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{Unit\+Vec\+::value\+\_\+type}} s) noexcept
+\begin{DoxyCompactList}\small\item\em Division operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\constexpr auto \mbox{\hyperlink{namespaceplayrho_1_1d2_ae66614a0b733ce9092928e3b30f16cfe}{Rotate}} (const \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ vector, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&angle) noexcept
+\begin{DoxyCompactList}\small\item\em Rotates a vector by a given angle. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\constexpr auto \mbox{\hyperlink{namespaceplayrho_1_1d2_a2e0aebd6a2aa7682a091698b5012df16}{Inverse\+Rotate}} (const \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ vector, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&angle) noexcept
+\begin{DoxyCompactList}\small\item\em Inverse rotates a vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a8286b06c48b4fc12a5addb7cc3528b07}{Get\+Unit\+Vector}} (\mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ value, \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} fallback=\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a9c0d12b9f3e418a49933c367305c01c0}{Unit\+Vec\+::\+Get\+Default\+Fallback}}())
+\item 
+\mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a5955bf7b1c0cdfa36d11adea236d9af4}{Get\+Normalized}} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&val) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}normalized"{} position. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a09b21383c1a73afea37f11e0ba906a76}{Get\+Normalized}} (\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} sweep) noexcept
+\begin{DoxyCompactList}\small\item\em Gets a sweep with the given sweep\textquotesingle{}s angles normalized. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} \mbox{\hyperlink{namespaceplayrho_1_1d2_acd968f8e09dbaf5c00467e6149d1ffc1}{Transform}} (const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} v, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} xfm) noexcept
+\begin{DoxyCompactList}\small\item\em Transforms the given 2-\/D vector with the given transformation. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a8e23993b858f2137ae78dc5f1025da42}{Inverse\+Transform}} (const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} v, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} xfm) noexcept
+\begin{DoxyCompactList}\small\item\em Inverse transforms the given 2-\/D vector with the given transformation. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a2ee12b6e0f384806e2dbb27a90a6cd7f}{Mul}} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&A, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&B) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplies a given transformation by another given transformation. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \mbox{\hyperlink{namespaceplayrho_1_1d2_ad9854545199d1abb2a6521895bf63831}{MulT}} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&A, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&B) noexcept
+\begin{DoxyCompactList}\small\item\em Inverse multiplies a given transformation by another given transformation. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a7470c7f509ec02d51adcc2e96a37d2fe}\label{namespaceplayrho_1_1d2_a7470c7f509ec02d51adcc2e96a37d2fe} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} {\bfseries Get\+Transformation} (const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} ctr, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} rot, const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} local\+Ctr) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the transformation for the given values. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_acfafb2a85ece528e8bf2a7a46a9c1612}\label{namespaceplayrho_1_1d2_acfafb2a85ece528e8bf2a7a46a9c1612} 
+\mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} {\bfseries Get\+Transformation} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} pos, const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} local\+\_\+ctr) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the transformation for the given values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a42dd24b646d220e52b8cb79f0d8cd50d}{Get\+Transformation}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&sweep, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} beta) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the interpolated transform at a specific time. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a8128f59808ffb8ab56cc4d9528422b16}{Get\+Transform0}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&sweep) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the transform at "{}time"{} zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a3047f53ab4e594f414832db427f03d6c}{Get\+Transform1}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&sweep) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the transform at "{}time"{} one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespaceplayrho_a2faa31bff8794a0c4191d8b042f7deeb}{Linear\+Velocity2}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a0ec0d91d72476f3b381c5a3aee92ec21}{Get\+Contact\+Rel\+Velocity}} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} velA, const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} relA, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} velB, const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} relB) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the contact relative velocity. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a9be9a0a2f7a01c1e06d84cd092778883}\label{namespaceplayrho_1_1d2_a9be9a0a2f7a01c1e06d84cd092778883} 
+bool {\bfseries Is\+Under\+Active} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} velocity, \mbox{\hyperlink{group__PhysicalQuantities_ga6e944c18ed210626b5829b8ad2813fde}{Linear\+Velocity}} lin\+Sleep\+Tol, \mbox{\hyperlink{group__PhysicalQuantities_gac33f92018f7e8821550296aece465028}{Angular\+Velocity}} ang\+Sleep\+Tol) noexcept
+\begin{DoxyCompactList}\small\item\em Gets whether the given velocity is "{}under active"{} based on the given tolerances. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ac9b46924bad23425a7abd1eb39f28451}\label{namespaceplayrho_1_1d2_ac9b46924bad23425a7abd1eb39f28451} 
+\mbox{\hyperlink{group__PhysicalQuantities_ga9b387148008099ec9d37dbcf1f1a1571}{Inv\+Mass}} {\bfseries Get\+Effective\+Inv\+Mass} (const \mbox{\hyperlink{group__PhysicalQuantities_gad5941a3d5c4b22ba991887772a3744de}{Inv\+Rot\+Inertia}} inv\+RotI, const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} p, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} q)
+\begin{DoxyCompactList}\small\item\em Gets the "{}effective"{} inverse mass. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_1_1d2_ae12dde8e8ddf2de54e6b4fb63ddf9778}{Get\+Reflection\+Matrix}} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} axis)
+\begin{DoxyCompactList}\small\item\em Gets the reflection matrix for the given unit vector that defines the normal of the line through the origin that points should be reflected against. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a5e0589100dc43e1301d6b8b945ccb37c}\label{namespaceplayrho_1_1d2_a5e0589100dc43e1301d6b8b945ccb37c} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a920e4ebf45a599f01060d56b280adc74}\label{namespaceplayrho_1_1d2_a920e4ebf45a599f01060d56b280adc74} 
+constexpr bool {\bfseries operator!=} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_acf4c47e7d8cba3a76dcdc9fa4b79d242}\label{namespaceplayrho_1_1d2_acf4c47e7d8cba3a76dcdc9fa4b79d242} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} {\bfseries operator-\/} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&value)
+\begin{DoxyCompactList}\small\item\em Negation operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a8e75f2489f1991855f31108826613c6f}\label{namespaceplayrho_1_1d2_a8e75f2489f1991855f31108826613c6f} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} {\bfseries operator+} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&value)
+\begin{DoxyCompactList}\small\item\em Positive operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_adad2c25d2579c31f2091a842e17fa2c3}\label{namespaceplayrho_1_1d2_adad2c25d2579c31f2091a842e17fa2c3} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \& {\bfseries operator+=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Addition assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_adc427276624c31301f4d2c3c202497d8}\label{namespaceplayrho_1_1d2_adc427276624c31301f4d2c3c202497d8} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} {\bfseries operator+} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Addition operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a3f8a057d7496ce6e5c72debd2361de5c}\label{namespaceplayrho_1_1d2_a3f8a057d7496ce6e5c72debd2361de5c} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \& {\bfseries operator-\/=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Subtraction assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ab4a62d780748e8a22c6fe64234f6d121}\label{namespaceplayrho_1_1d2_ab4a62d780748e8a22c6fe64234f6d121} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} {\bfseries operator-\/} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Subtraction operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_af31710833f717897050fa1e9981ebb95}\label{namespaceplayrho_1_1d2_af31710833f717897050fa1e9981ebb95} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&pos, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} scalar)
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ab6cbd956958f8a1cd6726ad4e0cf2e43}\label{namespaceplayrho_1_1d2_ab6cbd956958f8a1cd6726ad4e0cf2e43} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} scalar, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&pos)
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \mbox{\hyperlink{namespaceplayrho_1_1d2_aaf9f3a11a5c60b5832946d9fb0a43164}{Get\+Position}} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} pos0, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} pos1, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} beta) noexcept
+\item 
+\Hypertarget{namespaceplayrho_1_1d2_af317b3462727e3832e11d157b7e0b7b4}\label{namespaceplayrho_1_1d2_af317b3462727e3832e11d157b7e0b7b4} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Equals operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_af0f08a3cbef074f5f78272c205967888}\label{namespaceplayrho_1_1d2_af0f08a3cbef074f5f78272c205967888} 
+constexpr bool {\bfseries operator!=} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Not-\/equals operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a9f366fc4f9a298d3dded719b628a9933}\label{namespaceplayrho_1_1d2_a9f366fc4f9a298d3dded719b628a9933} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ac100cc2e77031bd058367006ddd2ebe1}\label{namespaceplayrho_1_1d2_ac100cc2e77031bd058367006ddd2ebe1} 
+constexpr bool {\bfseries operator!=} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ad3978702132a5caf87ad3cbec808b116}\label{namespaceplayrho_1_1d2_ad3978702132a5caf87ad3cbec808b116} 
+constexpr \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} {\bfseries Get\+Location} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&value) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the location information from the given transformation. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a850723b278d7e003b0be5f2c0f7435f1}\label{namespaceplayrho_1_1d2_a850723b278d7e003b0be5f2c0f7435f1} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries Get\+Direction} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&value) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the directional information from the given transformation. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ab54e46ffcc4d47cab7dc7194690357c0}\label{namespaceplayrho_1_1d2_ab54e46ffcc4d47cab7dc7194690357c0} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries Get\+XAxis} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} rot) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}\+X-\/axis"{}. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_aa30dcf70f9f07cbfd26e897823a43948}{Get\+YAxis}} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} rot) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}\+Y-\/axis"{}. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ad33b69f10a83f25ec56a520ecdaf5197}\label{namespaceplayrho_1_1d2_ad33b69f10a83f25ec56a520ecdaf5197} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} a, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} b) noexcept
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a80895a6660b816171be5198f566cd867}\label{namespaceplayrho_1_1d2_a80895a6660b816171be5198f566cd867} 
+constexpr bool {\bfseries operator!=} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} a, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} b) noexcept
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_ae4e2af42e9c6e9d5413f99eb0da246fd}{Get\+Rev\+Perpendicular}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} vector) noexcept
+\begin{DoxyCompactList}\small\item\em Gets a vector counter-\/clockwise (reverse-\/clockwise) perpendicular to the given vector. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a349428868dd3c61bdd24052f7d809472}{Get\+Fwd\+Perpendicular}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} vector) noexcept
+\begin{DoxyCompactList}\small\item\em Gets a vector clockwise (forward-\/clockwise) perpendicular to the given vector. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_add59f66b3f4a79e797c378f516bada81}{Rotate}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} vector, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&angle) noexcept
+\begin{DoxyCompactList}\small\item\em Rotates a unit vector by the angle expressed by the second unit vector. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a0822c6471a0683d126eb36acc0b69bab}\label{namespaceplayrho_1_1d2_a0822c6471a0683d126eb36acc0b69bab} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries Inverse\+Rotate} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} vector, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&angle) noexcept
+\begin{DoxyCompactList}\small\item\em Inverse rotates a vector. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a7f255d17276c91c754f80427ab5b0fe5}\label{namespaceplayrho_1_1d2_a7f255d17276c91c754f80427ab5b0fe5} 
+{\footnotesize template$<$std\+::size\+\_\+t I$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{Unit\+Vec\+::value\+\_\+type}} {\bfseries get} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} v) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the specified element of the given collection. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a121348e66a018e39470850e228a32325}\label{namespaceplayrho_1_1d2_a121348e66a018e39470850e228a32325} 
+template$<$$>$ constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{Unit\+Vec\+::value\+\_\+type}} {\bfseries get$<$ 0 $>$} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} v) noexcept
+\begin{DoxyCompactList}\small\item\em Gets element 0 of the given collection. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a67bf6af0b317839a31e92ef6d6f5ba52}\label{namespaceplayrho_1_1d2_a67bf6af0b317839a31e92ef6d6f5ba52} 
+template$<$$>$ constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{Unit\+Vec\+::value\+\_\+type}} {\bfseries get$<$ 1 $>$} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} v) noexcept
+\begin{DoxyCompactList}\small\item\em Gets element 1 of the given collection. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a825ad596535328923dfd9765ed740baf}\label{namespaceplayrho_1_1d2_a825ad596535328923dfd9765ed740baf} 
+inline \+::std\+::ostream \& {\bfseries operator$<$$<$} (\+::std\+::ostream \&os, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&value)
+\begin{DoxyCompactList}\small\item\em Output stream operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_afe4f2bcd98877c4562293dfe2dbcfa8b}\label{namespaceplayrho_1_1d2_afe4f2bcd98877c4562293dfe2dbcfa8b} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a50aa6c2021393ced745d056c34b3bc07}\label{namespaceplayrho_1_1d2_a50aa6c2021393ced745d056c34b3bc07} 
+constexpr bool {\bfseries operator!=} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a7083f8551c8713a94d38f614a7ebc3b5}\label{namespaceplayrho_1_1d2_a7083f8551c8713a94d38f614a7ebc3b5} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \& {\bfseries operator\texorpdfstring{$\ast$}{*}=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} rhs)
+\begin{DoxyCompactList}\small\item\em Multiplication assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_afafe86dc357999a8933a71f73dcce818}\label{namespaceplayrho_1_1d2_afafe86dc357999a8933a71f73dcce818} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \& {\bfseries operator/=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} rhs)
+\begin{DoxyCompactList}\small\item\em Division assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a3be07a7714bf76d380af60fa8ef623d3}\label{namespaceplayrho_1_1d2_a3be07a7714bf76d380af60fa8ef623d3} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \& {\bfseries operator+=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Addition assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a7608d9d4b5ffcc571a17bacf9faa411e}\label{namespaceplayrho_1_1d2_a7608d9d4b5ffcc571a17bacf9faa411e} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} {\bfseries operator+} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Addition operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ad2577d7502ee2442b81d0e6570c00d6f}\label{namespaceplayrho_1_1d2_ad2577d7502ee2442b81d0e6570c00d6f} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \& {\bfseries operator-\/=} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Subtraction assignment operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ab2f3370383aaf9a8443cacef7841c5a0}\label{namespaceplayrho_1_1d2_ab2f3370383aaf9a8443cacef7841c5a0} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} {\bfseries operator-\/} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Subtraction operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ab9cbc07fb71929600cae9ef2f69e35ac}\label{namespaceplayrho_1_1d2_ab9cbc07fb71929600cae9ef2f69e35ac} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} {\bfseries operator-\/} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&value)
+\begin{DoxyCompactList}\small\item\em Negation operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_acf1a262569fd1d300ef359200d514d6a}\label{namespaceplayrho_1_1d2_acf1a262569fd1d300ef359200d514d6a} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} {\bfseries operator+} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&value)
+\begin{DoxyCompactList}\small\item\em Positive operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a5d52ed09352bfd1dd80dc6b138a19f55}\label{namespaceplayrho_1_1d2_a5d52ed09352bfd1dd80dc6b138a19f55} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} rhs)
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a285d8d7bdef58a4c7210516b1060beef}\label{namespaceplayrho_1_1d2_a285d8d7bdef58a4c7210516b1060beef} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_aec5f4967a3c7e58ccf6c9fb4aafa90a1}\label{namespaceplayrho_1_1d2_aec5f4967a3c7e58ccf6c9fb4aafa90a1} 
+constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} {\bfseries operator/} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \&lhs, const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} rhs)
+\begin{DoxyCompactList}\small\item\em Division operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a3d2551fe26d1aa448d4d4b337e5aa66c}{Cap}} (\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} velocity, \mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}} h, const Movement\+Conf \&conf) noexcept
+\begin{DoxyCompactList}\small\item\em Caps velocity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_1_1d2_ac330e66ae1b4cbbfd851406256b18972}{Transform\+\_\+identity}}
+\begin{DoxyCompactList}\small\item\em Identity transformation value. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_1_1d2_ababb5cdb48a1960a30aed40859075dee}{Earthly\+Gravity}}
+\begin{DoxyCompactList}\small\item\em Earthly gravity in 2-\/dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Name space for 2-\/dimensionally related Play\+Rho names. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceplayrho_1_1d2_a3d2551fe26d1aa448d4d4b337e5aa66c}\label{namespaceplayrho_1_1d2_a3d2551fe26d1aa448d4d4b337e5aa66c} 
+\index{playrho::d2@{playrho::d2}!Cap@{Cap}}
+\index{Cap@{Cap}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{Cap()}{Cap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}} Cap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}}]{velocity,  }\item[{\mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}}}]{h,  }\item[{const Movement\+Conf \&}]{conf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Caps velocity. 
+
+Enforces maximums on the given velocity. 
+\begin{DoxyParams}{Parameters}
+{\em velocity} & \doxylink{structplayrho_1_1d2_1_1Velocity}{Velocity} to cap. Behavior is undefined if this value is invalid. \\
+\hline
+{\em h} & Time elapsed to get velocity for. Behavior is undefined if this value is invalid. \\
+\hline
+{\em conf} & Movement configuration. This defines caps on linear and angular speeds. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespaceplayrho_1_1d2_a0ec0d91d72476f3b381c5a3aee92ec21}\label{namespaceplayrho_1_1d2_a0ec0d91d72476f3b381c5a3aee92ec21} 
+\index{playrho::d2@{playrho::d2}!GetContactRelVelocity@{GetContactRelVelocity}}
+\index{GetContactRelVelocity@{GetContactRelVelocity}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetContactRelVelocity()}{GetContactRelVelocity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceplayrho_a2faa31bff8794a0c4191d8b042f7deeb}{Linear\+Velocity2}} playrho\+::d2\+::\+Get\+Contact\+Rel\+Velocity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}}]{velA,  }\item[{const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}}}]{relA,  }\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}}]{velB,  }\item[{const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}}}]{relB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Gets the contact relative velocity. 
+
+\begin{DoxyNote}{Note}
+If {\ttfamily relA} and {\ttfamily relB} are the zero vectors, the resulting value is simply {\ttfamily vel\+B.\+linear -\/ vel\+A.\+linear}. 
+\end{DoxyNote}
+\Hypertarget{namespaceplayrho_1_1d2_a349428868dd3c61bdd24052f7d809472}\label{namespaceplayrho_1_1d2_a349428868dd3c61bdd24052f7d809472} 
+\index{playrho::d2@{playrho::d2}!GetFwdPerpendicular@{GetFwdPerpendicular}}
+\index{GetFwdPerpendicular@{GetFwdPerpendicular}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetFwdPerpendicular()}{GetFwdPerpendicular()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Get\+Fwd\+Perpendicular (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a vector clockwise (forward-\/clockwise) perpendicular to the given vector. 
+
+This takes a vector of form (x, y) and returns the vector (y, -\/x). 
+\begin{DoxyParams}{Parameters}
+{\em vector} & \doxylink{structplayrho_1_1Vector}{Vector} to return a clockwise perpendicular equivalent for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A clockwise 90-\/degree rotation of the given vector. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespaceplayrho_1_1d2_ae4e2af42e9c6e9d5413f99eb0da246fd}{Get\+Rev\+Perpendicular}. 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1d2_a5955bf7b1c0cdfa36d11adea236d9af4}\label{namespaceplayrho_1_1d2_a5955bf7b1c0cdfa36d11adea236d9af4} 
+\index{playrho::d2@{playrho::d2}!GetNormalized@{GetNormalized}}
+\index{GetNormalized@{GetNormalized}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetNormalized()}{GetNormalized()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} playrho\+::d2\+::\+Get\+Normalized (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the "{}normalized"{} position. 
+
+Enforces a wrap-\/around of one rotation on the angular position. \begin{DoxyNote}{Note}
+Use to prevent unbounded angles in positions. 
+\end{DoxyNote}
+\Hypertarget{namespaceplayrho_1_1d2_a09b21383c1a73afea37f11e0ba906a76}\label{namespaceplayrho_1_1d2_a09b21383c1a73afea37f11e0ba906a76} 
+\index{playrho::d2@{playrho::d2}!GetNormalized@{GetNormalized}}
+\index{GetNormalized@{GetNormalized}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetNormalized()}{GetNormalized()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} Get\+Normalized (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}}}]{sweep }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a sweep with the given sweep\textquotesingle{}s angles normalized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sweep} & \doxylink{classplayrho_1_1d2_1_1Sweep}{Sweep} to return with its angles normalized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classplayrho_1_1d2_1_1Sweep}{Sweep} with its position 0 angle to be between -\/2 pi and 2 pi and its position 1 angle reduced by the amount the position 0 angle was reduced by. 
+\end{DoxyReturn}
+\Hypertarget{namespaceplayrho_1_1d2_aaf9f3a11a5c60b5832946d9fb0a43164}\label{namespaceplayrho_1_1d2_aaf9f3a11a5c60b5832946d9fb0a43164} 
+\index{playrho::d2@{playrho::d2}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}} Get\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}}}]{pos0,  }\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Position}{Position}}}]{pos1,  }\item[{const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}}]{beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+Gets the position between two positions at a given unit interval. 
+\begin{DoxyParams}{Parameters}
+{\em pos0} & \doxylink{structplayrho_1_1d2_1_1Position}{Position} at unit interval value of 0. \\
+\hline
+{\em pos1} & \doxylink{structplayrho_1_1d2_1_1Position}{Position} at unit interval value of 1. \\
+\hline
+{\em beta} & Unit interval (value between 0 and 1) of travel between position 0 and position 1. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+position 0 if {\ttfamily pos0 == pos1} or {\ttfamily beta == 0}, position 1 if {\ttfamily beta == 1}, or at the given unit interval value between position 0 and position 1. 
+\end{DoxyReturn}
+\Hypertarget{namespaceplayrho_1_1d2_ae12dde8e8ddf2de54e6b4fb63ddf9778}\label{namespaceplayrho_1_1d2_ae12dde8e8ddf2de54e6b4fb63ddf9778} 
+\index{playrho::d2@{playrho::d2}!GetReflectionMatrix@{GetReflectionMatrix}}
+\index{GetReflectionMatrix@{GetReflectionMatrix}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetReflectionMatrix()}{GetReflectionMatrix()}}
+{\footnotesize\ttfamily constexpr auto playrho\+::d2\+::\+Get\+Reflection\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}}]{axis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Gets the reflection matrix for the given unit vector that defines the normal of the line through the origin that points should be reflected against. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Transformation_matrix}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Transformation\+\_\+matrix}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1d2_ae4e2af42e9c6e9d5413f99eb0da246fd}\label{namespaceplayrho_1_1d2_ae4e2af42e9c6e9d5413f99eb0da246fd} 
+\index{playrho::d2@{playrho::d2}!GetRevPerpendicular@{GetRevPerpendicular}}
+\index{GetRevPerpendicular@{GetRevPerpendicular}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetRevPerpendicular()}{GetRevPerpendicular()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Get\+Rev\+Perpendicular (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a vector counter-\/clockwise (reverse-\/clockwise) perpendicular to the given vector. 
+
+This takes a vector of form (x, y) and returns the vector (-\/y, x). 
+\begin{DoxyParams}{Parameters}
+{\em vector} & \doxylink{structplayrho_1_1Vector}{Vector} to return a counter-\/clockwise perpendicular equivalent for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A counter-\/clockwise 90-\/degree rotation of the given vector. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespaceplayrho_1_1d2_a349428868dd3c61bdd24052f7d809472}{Get\+Fwd\+Perpendicular}. 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1d2_a8128f59808ffb8ab56cc4d9528422b16}\label{namespaceplayrho_1_1d2_a8128f59808ffb8ab56cc4d9528422b16} 
+\index{playrho::d2@{playrho::d2}!GetTransform0@{GetTransform0}}
+\index{GetTransform0@{GetTransform0}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetTransform0()}{GetTransform0()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} playrho\+::d2\+::\+Get\+Transform0 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&}]{sweep }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the transform at "{}time"{} zero. 
+
+\begin{DoxyNote}{Note}
+This is like calling {\ttfamily Get\+Transformation(sweep, 0)}, except more efficiently. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespaceplayrho_1_1d2_a42dd24b646d220e52b8cb79f0d8cd50d}{Get\+Transformation(const Sweep\& sweep, Real beta)}. 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em sweep} & \doxylink{classplayrho_1_1d2_1_1Sweep}{Sweep} data to get the transform from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structplayrho_1_1d2_1_1Transformation}{Transformation} of the given sweep at time zero. 
+\end{DoxyReturn}
+\Hypertarget{namespaceplayrho_1_1d2_a3047f53ab4e594f414832db427f03d6c}\label{namespaceplayrho_1_1d2_a3047f53ab4e594f414832db427f03d6c} 
+\index{playrho::d2@{playrho::d2}!GetTransform1@{GetTransform1}}
+\index{GetTransform1@{GetTransform1}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetTransform1()}{GetTransform1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} playrho\+::d2\+::\+Get\+Transform1 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&}]{sweep }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the transform at "{}time"{} one. 
+
+\begin{DoxyNote}{Note}
+This is like calling {\ttfamily Get\+Transformation(sweep, 1.\+0)}, except more efficiently. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespaceplayrho_1_1d2_a42dd24b646d220e52b8cb79f0d8cd50d}{Get\+Transformation(const Sweep\& sweep, Real beta)}. 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em sweep} & \doxylink{classplayrho_1_1d2_1_1Sweep}{Sweep} data to get the transform from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structplayrho_1_1d2_1_1Transformation}{Transformation} of the given sweep at time one. 
+\end{DoxyReturn}
+\Hypertarget{namespaceplayrho_1_1d2_a42dd24b646d220e52b8cb79f0d8cd50d}\label{namespaceplayrho_1_1d2_a42dd24b646d220e52b8cb79f0d8cd50d} 
+\index{playrho::d2@{playrho::d2}!GetTransformation@{GetTransformation}}
+\index{GetTransformation@{GetTransformation}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetTransformation()}{GetTransformation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} playrho\+::d2\+::\+Get\+Transformation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1Sweep}{Sweep}} \&}]{sweep,  }\item[{const \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}}]{beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the interpolated transform at a specific time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sweep} & \doxylink{classplayrho_1_1d2_1_1Sweep}{Sweep} data to get the transform from. \\
+\hline
+{\em beta} & Time factor in \mbox{[}0,1\mbox{]}, where 0 indicates alpha 0. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structplayrho_1_1d2_1_1Transformation}{Transformation} of the given sweep at the specified time. 
+\end{DoxyReturn}
+\Hypertarget{namespaceplayrho_1_1d2_a8286b06c48b4fc12a5addb7cc3528b07}\label{namespaceplayrho_1_1d2_a8286b06c48b4fc12a5addb7cc3528b07} 
+\index{playrho::d2@{playrho::d2}!GetUnitVector@{GetUnitVector}}
+\index{GetUnitVector@{GetUnitVector}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetUnitVector()}{GetUnitVector()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Get\+Unit\+Vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$}]{value,  }\item[{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}}]{fallback = {\ttfamily \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a9c0d12b9f3e418a49933c367305c01c0}{Unit\+Vec\+::\+Get\+Default\+Fallback}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the unit vector for the given value. 
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to get the unit vector for. \\
+\hline
+{\em fallback} & Fallback unit vector value to use in case a unit vector can\textquotesingle{}t effectively be calculated from the given value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value divided by its length if length not almost zero otherwise invalid value. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespaceplayrho_a6aaf4879371df30246226867c121a9ad}{Almost\+Equal}. 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1d2_aa30dcf70f9f07cbfd26e897823a43948}\label{namespaceplayrho_1_1d2_aa30dcf70f9f07cbfd26e897823a43948} 
+\index{playrho::d2@{playrho::d2}!GetYAxis@{GetYAxis}}
+\index{GetYAxis@{GetYAxis}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{GetYAxis()}{GetYAxis()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Get\+YAxis (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}}]{rot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the "{}\+Y-\/axis"{}. 
+
+\begin{DoxyNote}{Note}
+This is the reverse perpendicular vector of the given unit vector. 
+\end{DoxyNote}
+\Hypertarget{namespaceplayrho_1_1d2_a2e0aebd6a2aa7682a091698b5012df16}\label{namespaceplayrho_1_1d2_a2e0aebd6a2aa7682a091698b5012df16} 
+\index{playrho::d2@{playrho::d2}!InverseRotate@{InverseRotate}}
+\index{InverseRotate@{InverseRotate}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{InverseRotate()}{InverseRotate()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr auto playrho\+::d2\+::\+Inverse\+Rotate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$}]{vector,  }\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Inverse rotates a vector. 
+
+This is the inverse of rotating a vector -\/ it undoes what rotate does. I.\+e. this effectively subtracts from the angle of the given vector the angle that\textquotesingle{}s expressed by the angle parameter. 
+\begin{DoxyParams}{Parameters}
+{\em vector} & \doxylink{structplayrho_1_1Vector}{Vector} to reverse rotate. \\
+\hline
+{\em angle} & Expresses the angle to reverse rotate the given vector by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespaceplayrho_1_1d2_ae66614a0b733ce9092928e3b30f16cfe}{Rotate}. 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1d2_a8e23993b858f2137ae78dc5f1025da42}\label{namespaceplayrho_1_1d2_a8e23993b858f2137ae78dc5f1025da42} 
+\index{playrho::d2@{playrho::d2}!InverseTransform@{InverseTransform}}
+\index{InverseTransform@{InverseTransform}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{InverseTransform()}{InverseTransform()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} playrho\+::d2\+::\+Inverse\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}}}]{v,  }\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}}}]{xfm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Inverse transforms the given 2-\/D vector with the given transformation. 
+
+Inverse translate and rotate the given 2-\/D vector according to the translation and rotation defined by the given transformation. \begin{DoxyNote}{Note}
+Passing the output of this function to {\ttfamily \doxylink{structTransform}{Transform}} (with the same transformation again) will result in the original vector being returned. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+{\ttfamily \doxylink{structTransform}{Transform}}. 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em v} & 2-\/D vector to inverse transform (inverse translate and inverse rotate). \\
+\hline
+{\em xfm} & \doxylink{structplayrho_1_1d2_1_1Transformation}{Transformation} (a translation and rotation) to inversely apply to the given vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Inverse transformed vector. 
+\end{DoxyReturn}
+\Hypertarget{namespaceplayrho_1_1d2_a2ee12b6e0f384806e2dbb27a90a6cd7f}\label{namespaceplayrho_1_1d2_a2ee12b6e0f384806e2dbb27a90a6cd7f} 
+\index{playrho::d2@{playrho::d2}!Mul@{Mul}}
+\index{Mul@{Mul}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{Mul()}{Mul()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} playrho\+::d2\+::\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&}]{A,  }\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Multiplies a given transformation by another given transformation. 
+
+\begin{DoxyNote}{Note}
+{\ttfamily v2 = A.\+q.\+Rot(B.\+q.\+Rot(v1) + B.\+p) + A.\+p = (A.\+q \texorpdfstring{$\ast$}{*} B.\+q).Rot(v1) + A.\+q.\+Rot(B.\+p) + A.\+p} 
+\end{DoxyNote}
+\Hypertarget{namespaceplayrho_1_1d2_ad9854545199d1abb2a6521895bf63831}\label{namespaceplayrho_1_1d2_ad9854545199d1abb2a6521895bf63831} 
+\index{playrho::d2@{playrho::d2}!MulT@{MulT}}
+\index{MulT@{MulT}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{MulT()}{MulT()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} playrho\+::d2\+::\+MulT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&}]{A,  }\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Inverse multiplies a given transformation by another given transformation. 
+
+\begin{DoxyNote}{Note}
+{\ttfamily v2 = A.\+q\textquotesingle{} \texorpdfstring{$\ast$}{*} (B.\+q \texorpdfstring{$\ast$}{*} v1 + B.\+p -\/ A.\+p) = A.\+q\textquotesingle{} \texorpdfstring{$\ast$}{*} B.\+q \texorpdfstring{$\ast$}{*} v1 + A.\+q\textquotesingle{} \texorpdfstring{$\ast$}{*} (B.\+p -\/ A.\+p)} 
+\end{DoxyNote}
+\Hypertarget{namespaceplayrho_1_1d2_add59f66b3f4a79e797c378f516bada81}\label{namespaceplayrho_1_1d2_add59f66b3f4a79e797c378f516bada81} 
+\index{playrho::d2@{playrho::d2}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{Rotate()}{Rotate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} playrho\+::d2\+::\+Rotate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}}}]{vector,  }\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Rotates a unit vector by the angle expressed by the second unit vector. 
+
+\begin{DoxyReturn}{Returns}
+Unit vector for the angle that\textquotesingle{}s the sum of the two angles expressed by the input unit vectors. 
+\end{DoxyReturn}
+\Hypertarget{namespaceplayrho_1_1d2_ae66614a0b733ce9092928e3b30f16cfe}\label{namespaceplayrho_1_1d2_ae66614a0b733ce9092928e3b30f16cfe} 
+\index{playrho::d2@{playrho::d2}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{Rotate()}{Rotate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr auto playrho\+::d2\+::\+Rotate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$}]{vector,  }\item[{const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&}]{angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Rotates a vector by a given angle. 
+
+This rotates a vector by the angle expressed by the angle parameter. 
+\begin{DoxyParams}{Parameters}
+{\em vector} & \doxylink{structplayrho_1_1Vector}{Vector} to forward rotate. \\
+\hline
+{\em angle} & Expresses the angle to forward rotate the given vector by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespaceplayrho_1_1d2_a2e0aebd6a2aa7682a091698b5012df16}{Inverse\+Rotate}. 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1d2_acd968f8e09dbaf5c00467e6149d1ffc1}\label{namespaceplayrho_1_1d2_acd968f8e09dbaf5c00467e6149d1ffc1} 
+\index{playrho::d2@{playrho::d2}!Transform@{Transform}}
+\index{Transform@{Transform}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{Transform()}{Transform()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} playrho\+::d2\+::\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}}}]{v,  }\item[{const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}}}]{xfm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Transforms the given 2-\/D vector with the given transformation. 
+
+Rotate and translate the given 2-\/D linear position according to the rotation and translation defined by the given transformation. \begin{DoxyNote}{Note}
+Passing the output of this function to {\ttfamily Inverse\+Transform} (with the same transformation again) will result in the original vector being returned. 
+
+For a 2-\/D linear position of the origin (0, 0), the result is simply the translation. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+{\ttfamily \doxylink{namespaceplayrho_1_1d2_a8e23993b858f2137ae78dc5f1025da42}{Inverse\+Transform}}. 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em v} & 2-\/D position to transform (to rotate and then translate). \\
+\hline
+{\em xfm} & \doxylink{structplayrho_1_1d2_1_1Transformation}{Transformation} (a translation and rotation) to apply to the given vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Rotated and translated vector. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceplayrho_1_1d2_ababb5cdb48a1960a30aed40859075dee}\label{namespaceplayrho_1_1d2_ababb5cdb48a1960a30aed40859075dee} 
+\index{playrho::d2@{playrho::d2}!EarthlyGravity@{EarthlyGravity}}
+\index{EarthlyGravity@{EarthlyGravity}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{EarthlyGravity}{EarthlyGravity}}
+{\footnotesize\ttfamily constexpr auto playrho\+::d2\+::\+Earthly\+Gravity\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \mbox{\hyperlink{namespaceplayrho_a5822921028100052d4c6dfb43c7f6c4b}{LinearAcceleration2}}\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 0\_mps2,\ \mbox{\hyperlink{group__UnitConstants_ga770e7e3c14510e96d5115b36988e5dde}{EarthlyLinearAcceleration}}\}}
+
+\end{DoxyCode}
+
+
+Earthly gravity in 2-\/dimensions. 
+
+Linear acceleration in 2-\/dimensions of an earthly object due to Earth\textquotesingle{}s mass. \begin{DoxySeeAlso}{See also}
+\doxylink{group__UnitConstants_ga770e7e3c14510e96d5115b36988e5dde}{Earthly\+Linear\+Acceleration} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1d2_ac330e66ae1b4cbbfd851406256b18972}\label{namespaceplayrho_1_1d2_ac330e66ae1b4cbbfd851406256b18972} 
+\index{playrho::d2@{playrho::d2}!Transform\_identity@{Transform\_identity}}
+\index{Transform\_identity@{Transform\_identity}!playrho::d2@{playrho::d2}}
+\doxysubsubsection{\texorpdfstring{Transform\_identity}{Transform\_identity}}
+{\footnotesize\ttfamily constexpr auto playrho\+::d2\+::\+Transform\+\_\+identity\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ Transformation\{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}}\{0\_m,\ 0\_m\},\ UnitVec::GetRight()}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Identity transformation value. 
+

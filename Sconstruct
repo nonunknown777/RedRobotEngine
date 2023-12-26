@@ -19,15 +19,15 @@ env.Append(CPPPATH=[Glob('includes/**'),'src/includes/'])
 
 # Source files
 src_files = Glob('src/**/*.cpp')
-references_files = Glob('references/**/*.cpp')
+references_files = Glob('src/references/*.cpp')
 
 # Libs directory
 env.Append(LIBPATH=['libs'])
 
 if ARGUMENTS.get('target') == 'debug':
-    env.Append(LIBS=['raylib','Jolt','PlayRho_Debug'])
+    env.Append(LIBS=['JoltDebug','PlayRhoDebug','raylibDebug','yamlDebug'])
 else:
-    env.Append(LIBS=['raylib','Jolt',"PlayRho_Release"])
+    env.Append(LIBS=['JoltRelease','PlayRhoRelease','raylibRelease','yamlRelease'])
 
 # Build the executable
 env.Program(target=program_name, source=['src/main.cpp'] + src_files)

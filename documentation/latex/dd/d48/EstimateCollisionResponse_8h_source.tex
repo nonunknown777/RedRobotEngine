@@ -1,0 +1,41 @@
+\doxysection{Estimate\+Collision\+Response.\+h}
+\hypertarget{EstimateCollisionResponse_8h_source}{}\label{EstimateCollisionResponse_8h_source}\index{includes/jolt/Physics/Collision/EstimateCollisionResponse.h@{includes/jolt/Physics/Collision/EstimateCollisionResponse.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2023\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ContactListener.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structCollisionEstimationResult}{CollisionEstimationResult}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_ac162c5b8c86cd927de472acbe76adae0}{mLinearVelocity1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_a2dda95e1b040950e758d2a15b3cc0aef}{mAngularVelocity1}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_a24e229dac9d990dd915e0365c34d0167}{mLinearVelocity2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_af8db3dcccbc454c945d0bc6e6b21dec6}{mAngularVelocity2}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_a4bbba50d9d52cc075e49fc3c9f65b7a3}{mTangent1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_a48883412273db08fa7bd1d2e1d219ee4}{mTangent2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structCollisionEstimationResult_1_1Impulse}{Impulse}}}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_1_1Impulse_ad672fbc096b11969fc9ef19a0ba5a225}{mContactImpulse}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_1_1Impulse_aebeff7b76e005ba545aa77eb670f11e7}{mFrictionImpulse1}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structCollisionEstimationResult_1_1Impulse_a2cb7bb86ca170e986cb89a85e5abf354}{mFrictionImpulse2}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classStaticArray}{Impulses}}\ =\ \mbox{\hyperlink{classStaticArray}{StaticArray<Impulse,\ ContactPoints::Capacity>}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classStaticArray}{Impulses}}\ \ \ \ \ \ \ \ mImpulses;}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00046\ JPH\_EXPORT\ \textcolor{keywordtype}{void}\ EstimateCollisionResponse(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classContactManifold}{ContactManifold}}\ \&inManifold,\ \mbox{\hyperlink{structCollisionEstimationResult}{CollisionEstimationResult}}\ \&outResult,\ \textcolor{keywordtype}{float}\ inCombinedFriction,\ \textcolor{keywordtype}{float}\ inCombinedRestitution,\ \textcolor{keywordtype}{float}\ inMinVelocityForRestitution\ =\ 1.0f,\ uint\ inNumIterations\ =\ 10);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

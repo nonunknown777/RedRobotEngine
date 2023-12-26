@@ -1,0 +1,398 @@
+\doxysection{Triangle\+Codec\+Indexed8\+Bit\+Pack\+SOA4\+Flags.\+h}
+\hypertarget{TriangleCodecIndexed8BitPackSOA4Flags_8h_source}{}\label{TriangleCodecIndexed8BitPackSOA4Flags_8h_source}\index{includes/jolt/AABBTree/TriangleCodec/TriangleCodecIndexed8BitPackSOA4Flags.h@{includes/jolt/AABBTree/TriangleCodec/TriangleCodecIndexed8BitPackSOA4Flags.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/RayTriangle.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags}{TriangleCodecIndexed8BitPackSOA4Flags}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader}{TriangleHeader}}}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat3}{Float3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_a31081b105365540e856c4e5a264dfe64}{mOffset}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat3}{Float3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_ab4e4d57f7c4750037a52136fa23d6c5c}{mScale}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_a7685e55750d8ba3c748d97b3eecdc57b}{TriangleHeaderSize}}\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader}{TriangleHeader}});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_a6bcee096cce9bd21231620f20ab90f10}{ChangesOffsetOnPack}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_a9ae76041d1be874601839088c1e62bef}{EComponentData}}\ :\ uint32}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ COMPONENT\_BITS\ =\ 21,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ COMPONENT\_MASK\ =\ (1\ <<\ COMPONENT\_BITS)\ -\/\ 1,}
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_ad85eb72dec6aa3c370e9ad969c46c4d2}{EVertexXY}}\ :\ uint32}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ COMPONENT\_X\ =\ 0,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ COMPONENT\_Y1\ =\ COMPONENT\_BITS,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ COMPONENT\_Y1\_BITS\ =\ 32\ -\/\ COMPONENT\_BITS,}
+\DoxyCodeLine{00052\ \ \ \ \ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_adf7b4eade64871b3f53059bdacf9aace}{EVertexZY}}\ :\ uint32}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ COMPONENT\_Z\ =\ 0,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ COMPONENT\_Y2\ =\ COMPONENT\_BITS,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ COMPONENT\_Y2\_BITS\ =\ 31\ -\/\ COMPONENT\_BITS,}
+\DoxyCodeLine{00060\ \ \ \ \ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mVertexXY;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mVertexZY;}
+\DoxyCodeLine{00067\ \ \ \ \ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}})\ ==\ 8,\ \textcolor{stringliteral}{"{}Compiler\ added\ padding"{}});}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a68cd4254b336df34bec84b1f2a01a781}{mIndices}}[3][4];\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a60f89a38a5a24637c79e79e7283afcff}{mFlags}}[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}})\ ==\ 16,\ \textcolor{stringliteral}{"{}Compiler\ added\ padding"{}});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ *\ \ \ \ \ \ \ \ \ \ \ \ GetVertexData()\textcolor{keyword}{\ const\ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ *\textcolor{keyword}{>}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint8\ *\textcolor{keyword}{>}(\textcolor{keyword}{this})\ +\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader_a303f44607f9c4045d02993df815514e3}{mOffsetToVertices}});\ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *\ \ \ \ \ \ GetTriangleBlock()\textcolor{keyword}{\ const\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *\textcolor{keyword}{>}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint8\ *\textcolor{keyword}{>}(\textcolor{keyword}{this})\ +\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}));\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader_a303f44607f9c4045d02993df815514e3}{mOffsetToVertices}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}})\ ==\ 4,\ \textcolor{stringliteral}{"{}Compiler\ added\ padding"{}});}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1EncodingContext}{EncodingContext}}}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1EncodingContext_a1a7a9c8bdd917bf0e4b95a88694c8630}{EncodingContext}}(\textcolor{keyword}{const}\ VertexList\ \&inVertices)\ :}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ mVertexMap(inVertices.size(),\ 0xffffffff)\ \textcolor{comment}{//\ Fill\ vertex\ map\ with\ 'not\ found'}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reserve\ for\ worst\ case\ to\ avoid\ allocating\ in\ the\ inner\ loop}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ mVertices.reserve(inVertices.size());}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1EncodingContext_a573d120362b45d1088d19c76001507db}{GetPessimisticMemoryEstimate}}(uint\ inTriangleCount)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Worst\ case\ each\ triangle\ is\ alone\ in\ a\ block,\ none\ of\ the\ vertices\ are\ shared\ and\ we\ need\ to\ add\ 3\ bytes\ to\ align\ the\ vertices}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inTriangleCount\ *\ (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}})\ +\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}})\ +\ 3\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}))\ +\ 3;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1EncodingContext_a50a1460500545669a8ace0085df1de47}{Pack}}(\textcolor{keyword}{const}\ IndexedTriangleList\ \&inTriangles,\ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \&ioBuffer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\&outError)}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ position\ of\ triangles\ start}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ offset\ =\ (uint)ioBuffer.size();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ stats}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ tri\_count\ =\ (uint)inTriangles.size();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ mNumTriangles\ +=\ tri\_count;}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allocate\ triangle\ block\ header}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *header\ =\ ioBuffer.\mbox{\hyperlink{classByteBuffer_a6fc1274ad81be5609f1f1e807be7cf6b}{Allocate}}<\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}>();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ first\ vertex\ that\ this\ batch\ will\ use\ (ensuring\ there's\ enough\ room\ if\ none\ of\ the\ vertices\ are\ shared)}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ start\_vertex\ =\ Clamp((\textcolor{keywordtype}{int})mVertices.size()\ -\/\ 256\ +\ (\textcolor{keywordtype}{int})tri\_count\ *\ 3,\ 0,\ (\textcolor{keywordtype}{int})mVertices.size());}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ the\ start\ vertex\ offset,\ this\ will\ later\ be\ patched\ to\ give\ the\ delta\ offset\ relative\ to\ the\ triangle\ block}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ mOffsetsToPatch.push\_back(uint((uint8\ *)\&header-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader_a303f44607f9c4045d02993df815514e3}{mOffsetToVertices}}\ -\/\ \&ioBuffer[0]));}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ header-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader_a303f44607f9c4045d02993df815514e3}{mOffsetToVertices}}\ =\ start\_vertex\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}});}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pack\ vertices}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ padded\_triangle\_count\ =\ AlignUp(tri\_count,\ 4);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ t\ =\ 0;\ t\ <\ padded\_triangle\_count;\ t\ +=\ 4)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *block\ =\ ioBuffer.\mbox{\hyperlink{classByteBuffer_a6fc1274ad81be5609f1f1e807be7cf6b}{Allocate}}<\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}>();}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ vertex\_nr\ =\ 0;\ vertex\_nr\ <\ 3;\ ++vertex\_nr)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ block\_tri\_idx\ =\ 0;\ block\_tri\_idx\ <\ 4;\ ++block\_tri\_idx)}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ vertex\ index.\ Create\ degenerate\ triangles\ for\ padding\ triangles.}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ triangle\_available\ =\ t\ +\ block\_tri\_idx\ <\ tri\_count;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ src\_vertex\_index\ =\ triangle\_available?\ inTriangles[t\ +\ block\_tri\_idx].mIdx[vertex\_nr]\ :\ inTriangles[tri\_count\ -\/\ 1].mIdx[0];}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we've\ seen\ this\ vertex\ before\ and\ if\ it\ is\ in\ the\ range\ that\ we\ can\ encode}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ \&vertex\_index\ =\ mVertexMap[src\_vertex\_index];}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vertex\_index\ ==\ 0xffffffff\ ||\ vertex\_index\ <\ start\_vertex)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ vertex}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vertex\_index\ =\ (uint32)mVertices.size();}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mVertices.push\_back(src\_vertex\_index);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ vertex\ index}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ vertex\_offset\ =\ vertex\_index\ -\/\ start\_vertex;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vertex\_offset\ >\ 0xff)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}TriangleCodecIndexed8BitPackSOA4Flags:\ Offset\ doesn't\ fit\ in\ 8\ bit"{}};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ uint(-\/1);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ block-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a68cd4254b336df34bec84b1f2a01a781}{mIndices}}[vertex\_nr][block\_tri\_idx]\ =\ (uint8)vertex\_offset;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ flags}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ flags\ =\ triangle\_available?\ inTriangles[t\ +\ block\_tri\_idx].mMaterialIndex\ :\ 0;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flags\ >\ 0xff)}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}TriangleCodecIndexed8BitPackSOA4Flags:\ Material\ index\ doesn't\ fit\ in\ 8\ bit"{}};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ uint(-\/1);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ block-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a60f89a38a5a24637c79e79e7283afcff}{mFlags}}[block\_tri\_idx]\ =\ (uint8)flags;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ offset;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1EncodingContext_a795673261b70c6dcf35cc2b95cc6e901}{Finalize}}(\textcolor{keyword}{const}\ VertexList\ \&inVertices,\ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader}{TriangleHeader}}\ *ioHeader,\ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \&ioBuffer)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00177\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ anything\ to\ do}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mVertices.empty())}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Align\ buffer\ to\ 4\ bytes}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ vertices\_idx\ =\ (uint)ioBuffer.\mbox{\hyperlink{classByteBuffer_ad30809667592e1c5b70ecd023017b692}{Align}}(4);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Patch\ the\ offsets}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ o\ :\ mOffsetsToPatch)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *ioBuffer.\mbox{\hyperlink{classByteBuffer_afc33bc408efa8e38051debb2c4f64aa8}{Get}}<uint32>(o)\ +=\ vertices\_idx\ -\/\ o;}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ bounding\ box}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ bounds;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\ v\ :\ mVertices)}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bounds.\mbox{\hyperlink{classAABox_addccf5b511ece1be10dbae4818d4aaa0}{Encapsulate}}(\mbox{\hyperlink{classVec3}{Vec3}}(inVertices[v]));}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compress\ vertices}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ *vertices\ =\ ioBuffer.\mbox{\hyperlink{classByteBuffer_a6fc1274ad81be5609f1f1e807be7cf6b}{Allocate}}<\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}>(mVertices.size());}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ compress\_scale\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(COMPONENT\_MASK)\ /\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(bounds.\mbox{\hyperlink{classAABox_a376b8319c2ac3e843b1dfac1b8288e94}{GetSize}}(),\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0e-\/20f));}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\ v\ :\ mVertices)}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ c\ =\ ((\mbox{\hyperlink{classVec3}{Vec3}}(inVertices[v])\ -\/\ bounds.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}})\ *\ compress\_scale\ +\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(0.5f)).ToInt();}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(c.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}()\ <=\ COMPONENT\_MASK);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(c.GetY()\ <=\ COMPONENT\_MASK);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(c.GetZ()\ <=\ COMPONENT\_MASK);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vertices-\/>mVertexXY\ =\ c.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}()\ +\ (c.GetY()\ <<\ COMPONENT\_Y1);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vertices-\/>mVertexZY\ =\ c.GetZ()\ +\ ((c.GetY()\ >>\ COMPONENT\_Y1\_BITS)\ <<\ COMPONENT\_Y2);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++vertices;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ decompression\ information}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ bounds.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}.\mbox{\hyperlink{classVec3_ab22c62c48d2de13947c0cd3413018364}{StoreFloat3}}(\&ioHeader-\/>\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_a31081b105365540e856c4e5a264dfe64}{mOffset}});}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ (bounds.\mbox{\hyperlink{classAABox_a376b8319c2ac3e843b1dfac1b8288e94}{GetSize}}()\ /\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(COMPONENT\_MASK)).StoreFloat3(\&ioHeader-\/>\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_ab4e4d57f7c4750037a52136fa23d6c5c}{mScale}});}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }VertexMap\ =\ Array<uint32>;}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumTriangles\ =\ 0;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ Array<uint32>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mVertices;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ VertexMap\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mVertexMap;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ Array<uint>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mOffsetsToPatch;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ \};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext}{DecodingContext}}}
+\DoxyCodeLine{00224\ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ Unpack(\textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ *inVertices,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inIndex,\ \mbox{\hyperlink{classVec4}{Vec4}}\ \&outX,\ \mbox{\hyperlink{classVec4}{Vec4}}\ \&outY,\ \mbox{\hyperlink{classVec4}{Vec4}}\ \&outZ)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00228\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ compressed\ data}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ c1\ =\ UVec4::sGatherInt4<8>(\&inVertices-\/>mVertexXY,\ inIndex);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ c2\ =\ UVec4::sGatherInt4<8>(\&inVertices-\/>mVertexZY,\ inIndex);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unpack\ the\ x\ y\ and\ z\ component}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ xc\ =\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(c1,\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(COMPONENT\_MASK));}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ yc\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(c1.\mbox{\hyperlink{classUVec4_a42597d44e823feee9c343624b72ece79}{LogicalShiftRight}}<COMPONENT\_Y1>(),\ c2.\mbox{\hyperlink{classUVec4_a42597d44e823feee9c343624b72ece79}{LogicalShiftRight}}<COMPONENT\_Y2>().\mbox{\hyperlink{classUVec4_a159c5fb6e8cb1c49a87a48d3977b50b6}{LogicalShiftLeft}}<COMPONENT\_Y1\_BITS>());}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ zc\ =\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(c2,\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(COMPONENT\_MASK));}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ to\ float}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ outX\ =\ \mbox{\hyperlink{classVec4_a5dfc1722ee92f7a8ad6e068ad8551686}{Vec4::sFusedMultiplyAdd}}(xc.\mbox{\hyperlink{classUVec4_aec14683a4f6c1c34bb27e7119a813184}{ToFloat}}(),\ mScaleX,\ mOffsetX);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ outY\ =\ \mbox{\hyperlink{classVec4_a5dfc1722ee92f7a8ad6e068ad8551686}{Vec4::sFusedMultiplyAdd}}(yc.\mbox{\hyperlink{classUVec4_aec14683a4f6c1c34bb27e7119a813184}{ToFloat}}(),\ mScaleY,\ mOffsetY);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ outZ\ =\ \mbox{\hyperlink{classVec4_a5dfc1722ee92f7a8ad6e068ad8551686}{Vec4::sFusedMultiplyAdd}}(zc.\mbox{\hyperlink{classUVec4_aec14683a4f6c1c34bb27e7119a813184}{ToFloat}}(),\ mScaleZ,\ mOffsetZ);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext}{DecodingContext}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader}{TriangleHeader}}\ *inHeader)\ :}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ mOffsetX(\mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inHeader-\/>\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_a31081b105365540e856c4e5a264dfe64}{mOffset}}.x)),}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ mOffsetY(\mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inHeader-\/>\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_a31081b105365540e856c4e5a264dfe64}{mOffset}}.y)),}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ mOffsetZ(\mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inHeader-\/>\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_a31081b105365540e856c4e5a264dfe64}{mOffset}}.z)),}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ mScaleX(\mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inHeader-\/>\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_ab4e4d57f7c4750037a52136fa23d6c5c}{mScale}}.x)),}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ mScaleY(\mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inHeader-\/>\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_ab4e4d57f7c4750037a52136fa23d6c5c}{mScale}}.y)),}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ mScaleZ(\mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inHeader-\/>\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader_ab4e4d57f7c4750037a52136fa23d6c5c}{mScale}}.z))}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext_ada5a0630058e85675e03c6d054b5bff2}{Unpack}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inTriangleStart,\ uint32\ inNumTriangles,\ \mbox{\hyperlink{classVec3}{Vec3}}\ *outTriangles)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00257\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(inNumTriangles\ >\ 0);}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *header\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *\textcolor{keyword}{>}(inTriangleStart);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ *vertices\ =\ header-\/>GetVertexData();}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *t\ =\ header-\/>GetTriangleBlock();}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *end\ =\ t\ +\ ((inNumTriangles\ +\ 3)\ >>\ 2);}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ triangles\_left\ =\ inNumTriangles;}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ indices\ for\ the\ three\ vertices\ (reads\ 4\ bytes\ extra,\ but\ these\ are\ the\ flags\ so\ that's\ ok)}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ indices\ =\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint32\ *\textcolor{keyword}{>}(\&t-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a68cd4254b336df34bec84b1f2a01a781}{mIndices}}[0]));}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ iv1\ =\ indices.\mbox{\hyperlink{classUVec4_a4e1d53e419791f3a1d73e96fe905cb9a}{Expand4Byte0}}();}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ iv2\ =\ indices.\mbox{\hyperlink{classUVec4_a43c0348b32fe2a8a8a3fe3e82adbf4e1}{Expand4Byte4}}();}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ iv3\ =\ indices.\mbox{\hyperlink{classUVec4_ab576b5e89a741b942e5a0eee30221fff}{Expand4Byte8}}();}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Decompress\ the\ triangle\ data}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ v1x,\ v1y,\ v1z,\ v2x,\ v2y,\ v2z,\ v3x,\ v3y,\ v3z;}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Unpack(vertices,\ iv1,\ v1x,\ v1y,\ v1z);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Unpack(vertices,\ iv2,\ v2x,\ v2y,\ v2z);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Unpack(vertices,\ iv3,\ v3x,\ v3y,\ v3z);}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transpose\ it\ so\ we\ get\ normal\ vectors}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ v1\ =\ \mbox{\hyperlink{classMat44}{Mat44}}(v1x,\ v1y,\ v1z,\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}()).\mbox{\hyperlink{classMat44_a388723db2d35de31efcee6ff0cfb711d}{Transposed}}();}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ v2\ =\ \mbox{\hyperlink{classMat44}{Mat44}}(v2x,\ v2y,\ v2z,\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}()).\mbox{\hyperlink{classMat44_a388723db2d35de31efcee6ff0cfb711d}{Transposed}}();}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ v3\ =\ \mbox{\hyperlink{classMat44}{Mat44}}(v3x,\ v3y,\ v3z,\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}()).\mbox{\hyperlink{classMat44_a388723db2d35de31efcee6ff0cfb711d}{Transposed}}();}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ triangle\ data}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4\ \&\&\ triangles\_left\ >\ 0;\ ++i,\ -\/-\/triangles\_left)}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *outTriangles++\ =\ v1.GetColumn3(i);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *outTriangles++\ =\ v2.GetColumn3(i);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *outTriangles++\ =\ v3.GetColumn3(i);}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++t;}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (t\ <\ end);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext_ae532afd31a81a660a2602ce779449b23}{TestRay}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayDirection,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inTriangleStart,\ uint32\ inNumTriangles,\ \textcolor{keywordtype}{float}\ inClosest,\ uint32\ \&outClosestTriangleIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00300\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(inNumTriangles\ >\ 0);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *header\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *\textcolor{keyword}{>}(inTriangleStart);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ *vertices\ =\ header-\/>GetVertexData();}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *t\ =\ header-\/>GetTriangleBlock();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *end\ =\ t\ +\ ((inNumTriangles\ +\ 3)\ >>\ 2);}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ closest\ =\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inClosest);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ closest\_triangle\_idx\ =\ \mbox{\hyperlink{classUVec4_ac95737616e92901bf3ebf5746a861233}{UVec4::sZero}}();}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ start\_triangle\_idx\ =\ \mbox{\hyperlink{classUVec4_ac95737616e92901bf3ebf5746a861233}{UVec4::sZero}}();}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ indices\ for\ the\ three\ vertices\ (reads\ 4\ bytes\ extra,\ but\ these\ are\ the\ flags\ so\ that's\ ok)}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ indices\ =\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint32\ *\textcolor{keyword}{>}(\&t-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a68cd4254b336df34bec84b1f2a01a781}{mIndices}}[0]));}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ iv1\ =\ indices.\mbox{\hyperlink{classUVec4_a4e1d53e419791f3a1d73e96fe905cb9a}{Expand4Byte0}}();}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ iv2\ =\ indices.\mbox{\hyperlink{classUVec4_a43c0348b32fe2a8a8a3fe3e82adbf4e1}{Expand4Byte4}}();}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ iv3\ =\ indices.\mbox{\hyperlink{classUVec4_ab576b5e89a741b942e5a0eee30221fff}{Expand4Byte8}}();}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Decompress\ the\ triangle\ data}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ v1x,\ v1y,\ v1z,\ v2x,\ v2y,\ v2z,\ v3x,\ v3y,\ v3z;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Unpack(vertices,\ iv1,\ v1x,\ v1y,\ v1z);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Unpack(vertices,\ iv2,\ v2x,\ v2y,\ v2z);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Unpack(vertices,\ iv3,\ v3x,\ v3y,\ v3z);}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ ray\ vs\ triangle\ test}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ distance\ =\ RayTriangle4(inRayOrigin,\ inRayDirection,\ v1x,\ v1y,\ v1z,\ v2x,\ v2y,\ v2z,\ v3x,\ v3y,\ v3z);}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ closest\ with\ the\ smaller\ values}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ smaller\ =\ \mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(distance,\ closest);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\ =\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(closest,\ distance,\ smaller);}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ triangle\ index\ with\ the\ smallest\ values}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ triangle\_idx\ =\ start\_triangle\_idx\ +\ \mbox{\hyperlink{classUVec4}{UVec4}}(0,\ 1,\ 2,\ 3);}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_triangle\_idx\ =\ \mbox{\hyperlink{classUVec4_ae71c2806661a22cb3a5c880a280f30c0}{UVec4::sSelect}}(closest\_triangle\_idx,\ triangle\_idx,\ smaller);}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Next\ block}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++t;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_triangle\_idx\ +=\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(4);}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (t\ <\ end);}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ smallest\ component}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4_a07960f2e43abb163fe7ded729c3cac16}{Vec4::sSort4}}(closest,\ closest\_triangle\_idx);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ outClosestTriangleIndex\ =\ closest\_triangle\_idx.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}();}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ closest.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext_a3fb4bf3fda3a5fe7fede50bdfad3ed17}{GetTriangle}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inTriangleStart,\ uint32\ inTriangleIdx,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outV1,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outV2,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outV3)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00350\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *header\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *\textcolor{keyword}{>}(inTriangleStart);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ *vertices\ =\ header-\/>GetVertexData();}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *block\ =\ header-\/>GetTriangleBlock()\ +\ (inTriangleIdx\ >>\ 2);}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ block\_triangle\_idx\ =\ inTriangleIdx\ \&\ 0b11;}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ 3\ vertices}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ \&v1\ =\ vertices[block-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a68cd4254b336df34bec84b1f2a01a781}{mIndices}}[0][block\_triangle\_idx]];}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ \&v2\ =\ vertices[block-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a68cd4254b336df34bec84b1f2a01a781}{mIndices}}[1][block\_triangle\_idx]];}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{VertexData}}\ \&v3\ =\ vertices[block-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a68cd4254b336df34bec84b1f2a01a781}{mIndices}}[2][block\_triangle\_idx]];}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pack\ the\ vertices}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ c1(v1.mVertexXY,\ v2.mVertexXY,\ v3.mVertexXY,\ 0);}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ c2(v1.mVertexZY,\ v2.mVertexZY,\ v3.mVertexZY,\ 0);}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unpack\ the\ x\ y\ and\ z\ component}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ xc\ =\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(c1,\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(COMPONENT\_MASK));}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ yc\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(c1.\mbox{\hyperlink{classUVec4_a42597d44e823feee9c343624b72ece79}{LogicalShiftRight}}<COMPONENT\_Y1>(),\ c2.\mbox{\hyperlink{classUVec4_a42597d44e823feee9c343624b72ece79}{LogicalShiftRight}}<COMPONENT\_Y2>().\mbox{\hyperlink{classUVec4_a159c5fb6e8cb1c49a87a48d3977b50b6}{LogicalShiftLeft}}<COMPONENT\_Y1\_BITS>());}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ zc\ =\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(c2,\ \mbox{\hyperlink{classUVec4_a4287a7bd825aaf6111f310e0c92bd152}{UVec4::sReplicate}}(COMPONENT\_MASK));}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ to\ float}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ vx\ =\ \mbox{\hyperlink{classVec4_a5dfc1722ee92f7a8ad6e068ad8551686}{Vec4::sFusedMultiplyAdd}}(xc.\mbox{\hyperlink{classUVec4_aec14683a4f6c1c34bb27e7119a813184}{ToFloat}}(),\ mScaleX,\ mOffsetX);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ vy\ =\ \mbox{\hyperlink{classVec4_a5dfc1722ee92f7a8ad6e068ad8551686}{Vec4::sFusedMultiplyAdd}}(yc.\mbox{\hyperlink{classUVec4_aec14683a4f6c1c34bb27e7119a813184}{ToFloat}}(),\ mScaleY,\ mOffsetY);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ vz\ =\ \mbox{\hyperlink{classVec4_a5dfc1722ee92f7a8ad6e068ad8551686}{Vec4::sFusedMultiplyAdd}}(zc.\mbox{\hyperlink{classUVec4_aec14683a4f6c1c34bb27e7119a813184}{ToFloat}}(),\ mScaleZ,\ mOffsetZ);}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transpose\ it\ so\ we\ get\ normal\ vectors}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ trans\ =\ \mbox{\hyperlink{classMat44}{Mat44}}(vx,\ vy,\ vz,\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}()).\mbox{\hyperlink{classMat44_a388723db2d35de31efcee6ff0cfb711d}{Transposed}}();}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ outV1\ =\ trans.\mbox{\hyperlink{classMat44_aa71942f9a684cf2e0e55f8c9ba8f5b99}{GetAxisX}}();}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ outV2\ =\ trans.GetAxisY();}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ outV3\ =\ trans.GetAxisZ();}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext_a546c633b400007f4f848b1b86dc1be61}{sGetFlags}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inTriangleStart,\ uint32\ inNumTriangles,\ uint8\ *outTriangleFlags)}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(inNumTriangles\ >\ 0);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *header\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *\textcolor{keyword}{>}(inTriangleStart);}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *t\ =\ header-\/>GetTriangleBlock();}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *end\ =\ t\ +\ ((inNumTriangles\ +\ 3)\ >>\ 2);}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ triangles\_left\ =\ inNumTriangles;}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4\ \&\&\ triangles\_left\ >\ 0;\ ++i,\ -\/-\/triangles\_left)}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *outTriangleFlags++\ =\ t-\/>\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a60f89a38a5a24637c79e79e7283afcff}{mFlags}}[i];}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++t;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (t\ <\ end);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{static}\ uint8\ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext_a4e137a15d4867a854f9e4c94656a0773}{sGetFlags}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inTriangleStart,\ \textcolor{keywordtype}{int}\ inTriangleIndex)}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *header\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{TriangleBlockHeader}}\ *\textcolor{keyword}{>}(inTriangleStart);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{TriangleBlock}}\ *first\_block\ =\ header-\/>GetTriangleBlock();}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ first\_block[inTriangleIndex\ >>\ 2].\mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock_a60f89a38a5a24637c79e79e7283afcff}{mFlags}}[inTriangleIndex\ \&\ 0b11];}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext_ab2f3679c65f018d1dcb3e462dad0eef0}{Unpack}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inTriangleStart,\ uint32\ inNumTriangles,\ \mbox{\hyperlink{classVec3}{Vec3}}\ *outTriangles,\ uint8\ *outTriangleFlags)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00411\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ Unpack(inTriangleStart,\ inNumTriangles,\ outTriangles);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext_a546c633b400007f4f848b1b86dc1be61}{sGetFlags}}(inTriangleStart,\ inNumTriangles,\ outTriangleFlags);}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mOffsetX;}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mOffsetY;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mOffsetZ;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mScaleX;}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mScaleY;}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mScaleZ;}
+\DoxyCodeLine{00423\ \ \ \ \ \};}
+\DoxyCodeLine{00424\ \};}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

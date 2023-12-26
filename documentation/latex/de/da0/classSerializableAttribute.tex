@@ -1,0 +1,83 @@
+\doxysection{Serializable\+Attribute Class Reference}
+\hypertarget{classSerializableAttribute}{}\label{classSerializableAttribute}\index{SerializableAttribute@{SerializableAttribute}}
+
+
+Attributes are members of classes that need to be serialized.  
+
+
+
+
+{\ttfamily \#include $<$Serializable\+Attribute.\+h$>$}
+
+
+
+Collaboration diagram for Serializable\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{dd/da7/classSerializableAttribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSerializableAttribute_af7f01caef8726c642aaeb8ce7016c97a}\label{classSerializableAttribute_af7f01caef8726c642aaeb8ce7016c97a} 
+using {\bfseries p\+Get\+Member\+Primitive\+Type} = const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*})()
+\begin{DoxyCompactList}\small\item\em @ Serialization functions \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_a35e667b9f50f27293b7dd1abf0753305}\label{classSerializableAttribute_a35e667b9f50f27293b7dd1abf0753305} 
+using {\bfseries p\+Is\+Type} = bool(\texorpdfstring{$\ast$}{*})(int in\+Array\+Depth, EOSData\+Type in\+Data\+Type, const char \texorpdfstring{$\ast$}{*}in\+Class\+Name)
+\item 
+\Hypertarget{classSerializableAttribute_ac5151d0f316587c6baaac9a7f731861b}\label{classSerializableAttribute_ac5151d0f316587c6baaac9a7f731861b} 
+using {\bfseries p\+Read\+Data} = bool(\texorpdfstring{$\ast$}{*})(\mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}} \&io\+Stream, void \texorpdfstring{$\ast$}{*}in\+Object)
+\item 
+\Hypertarget{classSerializableAttribute_aff266618effe94c6ea33145d783337a4}\label{classSerializableAttribute_aff266618effe94c6ea33145d783337a4} 
+using {\bfseries p\+Write\+Data} = void(\texorpdfstring{$\ast$}{*})(\mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}} \&io\+Stream, const void \texorpdfstring{$\ast$}{*}in\+Object)
+\item 
+\Hypertarget{classSerializableAttribute_a0709b27ded07a2d1baab744a317d576e}\label{classSerializableAttribute_a0709b27ded07a2d1baab744a317d576e} 
+using {\bfseries p\+Write\+Data\+Type} = void(\texorpdfstring{$\ast$}{*})(\mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}} \&io\+Stream)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSerializableAttribute_ab8ee3ad5a95fdf86aec0422cac3b7a42}\label{classSerializableAttribute_ab8ee3ad5a95fdf86aec0422cac3b7a42} 
+{\bfseries Serializable\+Attribute} (const char \texorpdfstring{$\ast$}{*}in\+Name, uint in\+Member\+Offset, \mbox{\hyperlink{classSerializableAttribute_af7f01caef8726c642aaeb8ce7016c97a}{p\+Get\+Member\+Primitive\+Type}} in\+Get\+Member\+Primitive\+Type, p\+Is\+Type in\+Is\+Type, p\+Read\+Data in\+Read\+Data, p\+Write\+Data in\+Write\+Data, p\+Write\+Data\+Type in\+Write\+Data\+Type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_ae8a205bb6313394469d97affd2964046}\label{classSerializableAttribute_ae8a205bb6313394469d97affd2964046} 
+{\bfseries Serializable\+Attribute} (const \mbox{\hyperlink{classSerializableAttribute}{Serializable\+Attribute}} \&in\+Other, int in\+Base\+Offset)
+\begin{DoxyCompactList}\small\item\em Construct from other attribute with base class offset. \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_a9ce63d609aeb2c8fcdff058957d4644f}\label{classSerializableAttribute_a9ce63d609aeb2c8fcdff058957d4644f} 
+void {\bfseries Set\+Name} (const char \texorpdfstring{$\ast$}{*}in\+Name)
+\begin{DoxyCompactList}\small\item\em Name of the attribute. \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_aeef84793af0dbf4397f0e0ca4590a39c}\label{classSerializableAttribute_aeef84793af0dbf4397f0e0ca4590a39c} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries Get\+Name} () const
+\item 
+\Hypertarget{classSerializableAttribute_a835cd7db4edd6bd36f2130e9498122c2}\label{classSerializableAttribute_a835cd7db4edd6bd36f2130e9498122c2} 
+{\footnotesize template$<$class T $>$ }\\T \texorpdfstring{$\ast$}{*} {\bfseries Get\+Member\+Pointer} (void \texorpdfstring{$\ast$}{*}in\+Object) const
+\begin{DoxyCompactList}\small\item\em Access to the memory location that contains the member. \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_a72008d94009acc09cec81d10486783eb}\label{classSerializableAttribute_a72008d94009acc09cec81d10486783eb} 
+{\footnotesize template$<$class T $>$ }\\const T \texorpdfstring{$\ast$}{*} {\bfseries Get\+Member\+Pointer} (const void \texorpdfstring{$\ast$}{*}in\+Object) const
+\item 
+\Hypertarget{classSerializableAttribute_a6738344c9c5ddbf28680db6511dda210}\label{classSerializableAttribute_a6738344c9c5ddbf28680db6511dda210} 
+const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Member\+Primitive\+Type} () const
+\begin{DoxyCompactList}\small\item\em In case this attribute contains an \doxylink{classRTTI}{RTTI} type, return it (note that a Array$<$sometype$>$ will return the rtti of sometype) \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_ab928f1de1446823484b4437a79214924}\label{classSerializableAttribute_ab928f1de1446823484b4437a79214924} 
+bool {\bfseries Is\+Type} (int in\+Array\+Depth, EOSData\+Type in\+Data\+Type, const char \texorpdfstring{$\ast$}{*}in\+Class\+Name) const
+\begin{DoxyCompactList}\small\item\em Check if this attribute is of a specific type. \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_ad8b999830598842432441df6647be298}\label{classSerializableAttribute_ad8b999830598842432441df6647be298} 
+bool {\bfseries Read\+Data} (\mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}} \&io\+Stream, void \texorpdfstring{$\ast$}{*}in\+Object) const
+\begin{DoxyCompactList}\small\item\em Read the data for this attribute into attribute containing class in\+Object. \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_a2d75640f1636e85a47da938b71b3a736}\label{classSerializableAttribute_a2d75640f1636e85a47da938b71b3a736} 
+void {\bfseries Write\+Data} (\mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}} \&io\+Stream, const void \texorpdfstring{$\ast$}{*}in\+Object) const
+\begin{DoxyCompactList}\small\item\em Write the data for this attribute from attribute containing class in\+Object. \end{DoxyCompactList}\item 
+\Hypertarget{classSerializableAttribute_a30c9f23371b5552485ebf5bfea47afef}\label{classSerializableAttribute_a30c9f23371b5552485ebf5bfea47afef} 
+void {\bfseries Write\+Data\+Type} (\mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}} \&io\+Stream) const
+\begin{DoxyCompactList}\small\item\em Write the data type of this attribute to a stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Attributes are members of classes that need to be serialized. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Object\+Stream/Serializable\+Attribute.\+h\end{DoxyCompactItemize}

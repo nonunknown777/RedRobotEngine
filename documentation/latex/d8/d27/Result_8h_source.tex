@@ -1,0 +1,167 @@
+\doxysection{Result.\+h}
+\hypertarget{Result_8h_source}{}\label{Result_8h_source}\index{includes/jolt/Core/Result.h@{includes/jolt/Core/Result.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ GCC\ doesn't\ properly\ detect\ that\ mState\ is\ used\ to\ ensure\ that\ mResult\ is\ initialized}}
+\DoxyCodeLine{00010\ JPH\_GCC\_SUPPRESS\_WARNING(\textcolor{stringliteral}{"{}-\/Wmaybe-\/uninitialized"{}})}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ template\ <class\ Type>}
+\DoxyCodeLine{00014\ class\ \mbox{\hyperlink{classResult}{Result}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a48ea3c542aca44533bbe0467ce7edb32}{Result}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a0cb5b79fcbc7a428276cec91bfc794cb}{Result}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classResult}{Result<Type>}}\ \&inRHS)\ :}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ mState(inRHS.mState)}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (inRHS.mState)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Valid:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mResult)\ Type\ (inRHS.\mbox{\hyperlink{classResult_a2540c24a649431bd9bdc679737c7df1d}{mResult}});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Error:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mError)\ String(inRHS.\mbox{\hyperlink{classResult_ada2c3d37778adbf318df78b5bd427e17}{mError}});}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Invalid:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_ad9e9e7780434af5bdfe5652c0b621862}{Result}}(\mbox{\hyperlink{classResult}{Result<Type>}}\ \&\&inRHS)\ noexcept\ :}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ mState(inRHS.mState)}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (inRHS.mState)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Valid:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mResult)\ Type\ (std::move(inRHS.mResult));}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Error:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mError)\ String(std::move(inRHS.mError));}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Invalid:}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ reset\ the\ state\ of\ inRHS,\ the\ destructors\ still\ need\ to\ be\ called\ after\ a\ move\ operation}}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_ace4aa7515162bb6ca532d3be78150328}{\string~Result}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ Clear();\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classResult}{Result<Type>}}\ \&\ \ \ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classResult}{Result<Type>}}\ \&inRHS)}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ Clear();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ mState\ =\ inRHS.mState;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (inRHS.mState)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Valid:}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mResult)\ Type\ (inRHS.\mbox{\hyperlink{classResult_a2540c24a649431bd9bdc679737c7df1d}{mResult}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Error:}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mError)\ String(inRHS.\mbox{\hyperlink{classResult_ada2c3d37778adbf318df78b5bd427e17}{mError}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Invalid:}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classResult}{Result<Type>}}\ \&\ \ \ \ \ \ operator\ =\ (\mbox{\hyperlink{classResult}{Result<Type>}}\ \&\&inRHS)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ Clear();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ mState\ =\ inRHS.mState;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (inRHS.mState)}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Valid:}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mResult)\ Type\ (std::move(inRHS.mResult));}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Error:}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ ::new\ (\&mError)\ String(std::move(inRHS.mError));}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Invalid:}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ reset\ the\ state\ of\ inRHS,\ the\ destructors\ still\ need\ to\ be\ called\ after\ a\ move\ operation}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a14eed4aba60f359e04f44980adcf6125}{Clear}}()}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (mState)}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Valid:}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ mResult.\string~Type();}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Error:}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ mError.\string~String();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ EState::Invalid:}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ mState\ =\ EState::Invalid;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a596c71aec4992abce2ecda10cf827573}{IsEmpty}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mState\ ==\ EState::Invalid;\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a06b7e3b8ea77cb4b1fc5ecfa45494167}{IsValid}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mState\ ==\ EState::Valid;\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ Type\ \&\ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_ab3d845db638a6a51467760867bfc472a}{Get}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(IsValid());\ \textcolor{keywordflow}{return}\ mResult;\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a2d4677e046c9d429f9a512342bdd479b}{Set}}(\textcolor{keyword}{const}\ Type\ \&inResult)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ Clear();\ ::new\ (\&mResult)\ Type(inResult);\ mState\ =\ EState::Valid;\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a2e5e698448fcf24d455121278715015e}{Set}}(Type\ \&\&inResult)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ Clear();\ ::new\ (\&mResult)\ Type(std::move(inResult));\ mState\ =\ EState::Valid;\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a2de3e8315a673e4fc3e627eafad42586}{HasError}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mState\ ==\ EState::Error;\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{const}\ String\ \&\ \ \ \ \ \ \mbox{\hyperlink{classResult_a3d0fc76c48e6db9cf5918dcc248ee4cb}{GetError}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(HasError());\ \textcolor{keywordflow}{return}\ mError;\ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a22ac380ffc00f33d49466729d22241b0}{SetError}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inError)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ Clear();\ ::new\ (\&mError)\ String(inError);\ mState\ =\ EState::Error;\ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetError(\textcolor{keyword}{const}\ string\_view\ \&inError)\ \ \ \ \ \ \ \ \{\ Clear();\ ::new\ (\&mError)\ String(inError);\ mState\ =\ EState::Error;\ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetError(String\ \&\&inError)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ Clear();\ ::new\ (\&mError)\ String(std::move(inError));\ mState\ =\ EState::Error;\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ Type\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_a2540c24a649431bd9bdc679737c7df1d}{mResult}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ String\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResult_ada2c3d37778adbf318df78b5bd427e17}{mError}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{enum\ class}\ EState\ :\ uint8}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ Invalid,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ Valid,}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ Error}
+\DoxyCodeLine{00172\ \ \ \ \ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ EState\ \ \ \ \ \ \ \ \ \ \ \ \ \ mState\ =\ EState::Invalid;}
+\DoxyCodeLine{00175\ \};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

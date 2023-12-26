@@ -1,0 +1,276 @@
+\doxysection{AABox.\+h}
+\hypertarget{AABox_8h_source}{}\label{AABox_8h_source}\index{includes/jolt/Geometry/AABox.h@{includes/jolt/Geometry/AABox.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/Triangle.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/IndexedTriangle.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/Plane.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Mat44.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classAABox}{AABox}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a0982651a7b0ed25cab78537cdeba982a}{AABox}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mMin(\mbox{\hyperlink{classVec3}{Vec3}}::sReplicate(FLT\_MAX)),\ mMax(\mbox{\hyperlink{classVec3}{Vec3}}::sReplicate(-\/FLT\_MAX))\ \{\ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inMin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inMax)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mMin(inMin),\ mMax(inMax)\ \{\ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inMin,\ \mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inMax)\ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mMin(inMin.ToVec3RoundDown()),\ mMax(inMax.ToVec3RoundUp())\ \{\ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inCenter,\ \textcolor{keywordtype}{float}\ inRadius)\ \ \ \ \ \ \ \ \ \ \ \ \ :\ mMin(inCenter\ -\/\ \mbox{\hyperlink{classVec3}{Vec3}}::sReplicate(inRadius)),\ mMax(inCenter\ +\ \mbox{\hyperlink{classVec3}{Vec3}}::sReplicate(inRadius))\ \{\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \mbox{\hyperlink{classAABox_a75910b6fcd958c465541efe5e3087987}{sFromTwoPoints}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inP1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inP2)\ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classAABox}{AABox}}(\mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(inP1,\ inP2),\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(inP1,\ inP2));\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \mbox{\hyperlink{classAABox_a15167b9943311d8f05cd02a008563f7b}{sBiggest}}()}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classAABox}{AABox}}(\mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(-\/FLT\_MAX),\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(FLT\_MAX));}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMin\ ==\ inRHS.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}\ \&\&\ mMax\ ==\ inRHS.mMax;\ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mMin\ !=\ inRHS.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}\ ||\ mMax\ !=\ inRHS.mMax;\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a5c69aa69cf37132aa62dc0b58571e79c}{SetEmpty}}()}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ mMin\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(FLT\_MAX);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ mMax\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(-\/FLT\_MAX);}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_ad68947562ff18e440f87d50265001647}{IsValid}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mMin.GetX()\ <=\ mMax.GetX()\ \&\&\ mMin.GetY()\ <=\ mMax.GetY()\ \&\&\ mMin.GetZ()\ <=\ mMax.GetZ();}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_addccf5b511ece1be10dbae4818d4aaa0}{Encapsulate}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPos)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ mMin\ =\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(mMin,\ inPos);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ mMax\ =\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(mMax,\ inPos);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a83d2f26869e8870c2d6dfd41804d5438}{Encapsulate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inRHS)}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ mMin\ =\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(mMin,\ inRHS.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ mMax\ =\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(mMax,\ inRHS.mMax);}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_af29df5ecf944d7ec92eea7d016e49320}{Encapsulate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classTriangle}{Triangle}}\ \&inRHS)}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v\ =\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(inRHS.\mbox{\hyperlink{classTriangle_add833346b63769a08d6d868195c9b6a5}{mV}}[0]);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ Encapsulate(v);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ v\ =\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(inRHS.\mbox{\hyperlink{classTriangle_add833346b63769a08d6d868195c9b6a5}{mV}}[1]);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ Encapsulate(v);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ v\ =\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(inRHS.\mbox{\hyperlink{classTriangle_add833346b63769a08d6d868195c9b6a5}{mV}}[2]);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ Encapsulate(v);}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a88aa8b06db963335016bcb124091feec}{Encapsulate}}(\textcolor{keyword}{const}\ VertexList\ \&inVertices,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}}\ \&inTriangle)}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\ idx\ :\ inTriangle.mIdx)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ Encapsulate(\mbox{\hyperlink{classVec3}{Vec3}}(inVertices[idx]));}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a5dfffd69562c679b789599bb3b30f736}{Intersect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inOther)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classAABox}{AABox}}(\mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(mMin,\ inOther.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}),\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(mMax,\ inOther.mMax));}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a377eb9ef3dfdd76f62d0faf6e0a54525}{EnsureMinimalEdgeLength}}(\textcolor{keywordtype}{float}\ inMinEdgeLength)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ min\_length\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(inMinEdgeLength);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ mMax\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(mMax,\ mMin\ +\ min\_length,\ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(mMax\ -\/\ mMin,\ min\_length));}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a7023c1c28f073fa0d14ecee0f5fc8ee8}{ExpandBy}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inVector)}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ mMin\ -\/=\ inVector;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ mMax\ +=\ inVector;}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_ae39e3c3fee87093735787b4c3fd58a8d}{GetCenter}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.5f\ *\ (mMin\ +\ mMax);}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a094a8548424826014024349fd7b96766}{GetExtent}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.5f\ *\ (mMax\ -\/\ mMin);}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a376b8319c2ac3e843b1dfac1b8288e94}{GetSize}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00118\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mMax\ -\/\ mMin;}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_ace160fe5908ca1b3125b757bdfde8d22}{GetSurfaceArea}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ extent\ =\ mMax\ -\/\ mMin;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2.0f\ *\ (extent.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}()\ *\ extent.GetY()\ +\ extent.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}()\ *\ extent.GetZ()\ +\ extent.GetY()\ *\ extent.GetZ());}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_aab14f598d69dfa94daf74cc8d7721a21}{GetVolume}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ extent\ =\ mMax\ -\/\ mMin;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ extent.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}()\ *\ extent.GetY()\ *\ extent.GetZ();}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_ae52734145d3a50ef7536bda72b553797}{Contains}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inOther)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00138\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(\mbox{\hyperlink{classVec3_a483dc7054df9a3f8c48303a31be6c1e0}{Vec3::sLessOrEqual}}(mMin,\ inOther.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}),\ \mbox{\hyperlink{classVec3_a3a5e5fc2d3bf17a05723d4e411e4202d}{Vec3::sGreaterOrEqual}}(mMax,\ inOther.mMax)).\mbox{\hyperlink{classUVec4_a8a5a4714c700cab249106fe37bf1f74f}{TestAllXYZTrue}}();}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a374d1dc1d0889a919b9c3fbaea694750}{Contains}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOther)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00144\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(\mbox{\hyperlink{classVec3_a483dc7054df9a3f8c48303a31be6c1e0}{Vec3::sLessOrEqual}}(mMin,\ inOther),\ \mbox{\hyperlink{classVec3_a3a5e5fc2d3bf17a05723d4e411e4202d}{Vec3::sGreaterOrEqual}}(mMax,\ inOther)).\mbox{\hyperlink{classUVec4_a8a5a4714c700cab249106fe37bf1f74f}{TestAllXYZTrue}}();}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_af09ba30f5f27874bbd9f407341a2dc42}{Contains}}(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inOther)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00150\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Contains(\mbox{\hyperlink{classVec3}{Vec3}}(inOther));}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_ac0d76efbc7bd7904881eeb5911df8457}{Overlaps}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inOther)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !\mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(mMin,\ inOther.mMax),\ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(mMax,\ inOther.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}})).\mbox{\hyperlink{classUVec4_a57a26ddd10bb99e07e68096eb10d1244}{TestAnyXYZTrue}}();}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_abd758e269f2b5b508a7dd66a427e4dba}{Overlaps}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classPlane}{Plane}}\ \&inPlane)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00162\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ normal\ =\ inPlane.GetNormal();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_normal\ =\ inPlane.\mbox{\hyperlink{classPlane_a96f5ba7b329fcccd22eaa63a7e282605}{SignedDistance}}(GetSupport(normal));}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_min\_normal\ =\ inPlane.\mbox{\hyperlink{classPlane_a96f5ba7b329fcccd22eaa63a7e282605}{SignedDistance}}(GetSupport(-\/normal));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dist\_normal\ *\ dist\_min\_normal\ <=\ 0.0f;\ \textcolor{comment}{//\ If\ both\ support\ points\ are\ on\ the\ same\ side\ of\ the\ plane\ we\ don't\ overlap}}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_ad20ec5f347a638536bdcbeb91f8993f5}{Translate}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTranslation)}
+\DoxyCodeLine{00171\ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ mMin\ +=\ inTranslation;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ mMax\ +=\ inTranslation;}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a2a472cf66982e1eb113185ccb8fde0f4}{Translate}}(\mbox{\hyperlink{classDVec3}{DVec3Arg}}\ inTranslation)}
+\DoxyCodeLine{00178\ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ mMin\ =\ (\mbox{\hyperlink{classDVec3}{DVec3}}(mMin)\ +\ inTranslation).ToVec3RoundDown();}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ mMax\ =\ (\mbox{\hyperlink{classDVec3}{DVec3}}(mMax)\ +\ inTranslation).ToVec3RoundUp();}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_abd7316d2e960c1a365acc924b1492ff3}{Transformed}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inMatrix)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00185\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ with\ the\ translation\ of\ the\ matrix}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ new\_min,\ new\_max;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ new\_min\ =\ new\_max\ =\ inMatrix.GetTranslation();}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ find\ the\ extreme\ points\ by\ considering\ the\ product\ of\ the\ min\ and\ max\ with\ each\ column\ of\ inMatrix}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 3;\ ++c)}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ col\ =\ inMatrix.GetColumn3(c);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ a\ =\ col\ *\ mMin[c];}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ b\ =\ col\ *\ mMax[c];}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ new\_min\ +=\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(a,\ b);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ new\_max\ +=\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(a,\ b);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ new\ bounding\ box}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classAABox}{AABox}}(new\_min,\ new\_max);}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a8be97ca2e05200438519a73994ca26a9}{Transformed}}(\mbox{\hyperlink{classDMat44}{DMat44Arg}}\ inMatrix)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00208\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ transformed\ =\ Transformed(inMatrix.\mbox{\hyperlink{classDMat44_ad488caa68ce5121590b731778edac0d6}{GetRotation}}());}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ transformed.\mbox{\hyperlink{classAABox_ad20ec5f347a638536bdcbeb91f8993f5}{Translate}}(inMatrix.GetTranslation());}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ transformed;}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a31ebfa8ddbf9f09cb16aee086e0bbffc}{Scaled}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00216\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classAABox_a75910b6fcd958c465541efe5e3087987}{AABox::sFromTwoPoints}}(mMin\ *\ inScale,\ mMax\ *\ inScale);}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00221\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_aaea4b8b5fc160778df59859a1c4dc69b}{GetSupport}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00222\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(mMax,\ mMin,\ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(inDirection,\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}()));}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY>}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a8ebca3740082c6ad5359d8c42d6c5f69}{GetSupportingFace}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ VERTEX\_ARRAY\ \&outVertices)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00229\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ outVertices.resize(4);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ axis\ =\ inDirection.\mbox{\hyperlink{classVec3_a60c863c1cdad322a1af54e77a4af8f02}{Abs}}().\mbox{\hyperlink{classVec3_aefba3895f1a98e1a5854b7e79598a408}{GetHighestComponentIndex}}();}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inDirection[axis]\ <\ 0.0f)}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (axis)}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[0]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMin.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[1]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMax.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[2]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMax.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[3]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMin.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[0]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMax.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[1]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMax.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[2]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMax.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[3]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMax.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[0]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMin.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[1]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMin.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[2]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMax.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[3]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMax.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (axis)}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[0]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMin.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[1]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMin.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[2]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMax.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[3]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMax.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[0]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMin.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[1]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMin.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[2]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMin.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[3]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMin.GetY(),\ mMax.GetZ());}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[0]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMin.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[1]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMin.GetX(),\ mMax.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[2]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMax.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outVertices[3]\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(mMax.GetX(),\ mMin.GetY(),\ mMin.GetZ());}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00288\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_aac4e2dce7616f266b7ef3ae25a9a9aac}{GetClosestPoint}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00289\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(\mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(inPoint,\ mMin),\ mMax);}
+\DoxyCodeLine{00291\ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \mbox{\hyperlink{classAABox_a9d68bc754580c6a3055ce4e6a305460f}{GetSqDistanceTo}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00295\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (GetClosestPoint(inPoint)\ -\/\ inPoint).LengthSq();}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00300\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}};}
+\DoxyCodeLine{00301\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ mMax;}
+\DoxyCodeLine{00302\ \};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

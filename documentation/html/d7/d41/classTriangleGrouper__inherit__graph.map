@@ -1,0 +1,9 @@
+<map id="TriangleGrouper" name="TriangleGrouper">
+<area shape="rect" id="Node000001" title="A class that groups triangles in batches of N (according to closeness)" alt="" coords="146,165,297,256"/>
+<area shape="rect" id="Node000003" href="$db/d8a/classTriangleGrouperClosestCentroid.html" title=" " alt="" coords="5,304,224,373"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="176,269,145,306,141,303,172,266"/>
+<area shape="rect" id="Node000004" href="$dd/d38/classTriangleGrouperMorton.html" title=" " alt="" coords="249,304,410,373"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="271,266,303,303,299,306,267,269"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="160,5,283,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,133,224,166,219,166,219,133"/>
+</map>

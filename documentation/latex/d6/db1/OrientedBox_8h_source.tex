@@ -1,0 +1,40 @@
+\doxysection{Oriented\+Box.\+h}
+\hypertarget{OrientedBox_8h_source}{}\label{OrientedBox_8h_source}\index{includes/jolt/Geometry/OrientedBox.h@{includes/jolt/Geometry/OrientedBox.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/Triangle.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/IndexedTriangle.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/AABox.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Mat44.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAABox}{AABox}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }[[nodiscard]]\ JPH\_EXPORT\_GCC\_BUG\_WORKAROUND\ \mbox{\hyperlink{classOrientedBox}{OrientedBox}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOrientedBox_ac9d787ceb1d5ce11d768e463901dc8f8}{OrientedBox}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOrientedBox}{OrientedBox}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inOrientation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inHalfExtents)\ \ \ \ \ \ \ \ \ \ \ \ :\ mOrientation(inOrientation),\ mHalfExtents(inHalfExtents)\ \{\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOrientedBox_aa452a08a66dacf55bdfb5d8d0cff7c8c}{OrientedBox}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inOrientation,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox)\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classOrientedBox}{OrientedBox}}(inOrientation.PreTranslated(inBox.GetCenter()),\ inBox.GetExtent())\ \{\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOrientedBox_a7aa8b578fed70c2f340743815ed108ae}{Overlaps}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \textcolor{keywordtype}{float}\ inEpsilon\ =\ 1.0e-\/6f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOrientedBox_a2829c629a9c5565d2aabae1f53a51c97}{Overlaps}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classOrientedBox}{OrientedBox}}\ \&inBox,\ \textcolor{keywordtype}{float}\ inEpsilon\ =\ 1.0e-\/6f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOrientedBox_a05fc57c2033ce0e75ef2bd9dbe0e0636}{mOrientation}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classOrientedBox_aea20adbf3c48427f78ea4c6dfa61fb60}{mHalfExtents}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

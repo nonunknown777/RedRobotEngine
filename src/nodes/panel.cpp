@@ -1,9 +1,12 @@
 #include "panel.hpp"
 #include <iostream>
+#include "../references/style_box_flat.hpp"
 
 Panel::Panel(std::string name) : Control(name) {
-    style_box_flat = new StyleBoxFlat();
-    size = Vector2(100,100);
+    panel = new StyleBoxFlat();
+    StyleBoxFlat* flat = (StyleBoxFlat*)panel;
+    flat->bg_color = BLUE;
+    visible = true;
 }
 
 Panel::~Panel() {
@@ -11,6 +14,6 @@ Panel::~Panel() {
 }
 
 void Panel::_draw() {
-    DrawRectangle(position.x,position.y,size.x,size.y,style_box_flat->bg_color);
+    DrawRectangle(position.x,position.y,size.x,size.y,((StyleBoxFlat*)panel)->bg_color);
     Control::_draw();
 }

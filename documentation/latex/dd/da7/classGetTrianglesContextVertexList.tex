@@ -1,0 +1,61 @@
+\doxysection{Get\+Triangles\+Context\+Vertex\+List Class Reference}
+\hypertarget{classGetTrianglesContextVertexList}{}\label{classGetTrianglesContextVertexList}\index{GetTrianglesContextVertexList@{GetTrianglesContextVertexList}}
+
+
+Implementation of Get\+Triangles\+Start/\+Next that uses a fixed list of vertices for the triangles. These are transformed into world space when getting the triangles.  
+
+
+
+
+{\ttfamily \#include $<$Get\+Triangles\+Context.\+h$>$}
+
+
+
+Collaboration diagram for Get\+Triangles\+Context\+Vertex\+List\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{dd/de3/classGetTrianglesContextVertexList__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGetTrianglesContextVertexList_ad42b38dbd910b48adc48cbeb2e7d3eee}\label{classGetTrianglesContextVertexList_ad42b38dbd910b48adc48cbeb2e7d3eee} 
+{\bfseries Get\+Triangles\+Context\+Vertex\+List} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Local\+Transform, const \mbox{\hyperlink{classVec3}{Vec3}} \texorpdfstring{$\ast$}{*}in\+Triangle\+Vertices, size\+\_\+t in\+Num\+Triangle\+Vertices, const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}in\+Material)
+\begin{DoxyCompactList}\small\item\em Constructor, to be called in Get\+Triangles\+Start. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGetTrianglesContextVertexList_ac42ac006966e5e9819b97f3764be4fc4}{Get\+Triangles\+Next}} (int in\+Max\+Triangles\+Requested, \mbox{\hyperlink{classFloat3}{Float3}} \texorpdfstring{$\ast$}{*}out\+Triangle\+Vertices, const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+Materials)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGetTrianglesContextVertexList_a0c4300885e99c9f468a0ca0e12eb3378}\label{classGetTrianglesContextVertexList_a0c4300885e99c9f468a0ca0e12eb3378} 
+static void {\bfseries s\+Create\+Half\+Unit\+Sphere\+Top} (std\+::vector$<$ \mbox{\hyperlink{classVec3}{Vec3}} $>$ \&io\+Vertices, int in\+Detail\+Level)
+\begin{DoxyCompactList}\small\item\em Helper function that creates a vertex list of a half unit sphere (top part) \end{DoxyCompactList}\item 
+\Hypertarget{classGetTrianglesContextVertexList_a5501e985211843b05064512f5608298b}\label{classGetTrianglesContextVertexList_a5501e985211843b05064512f5608298b} 
+static void {\bfseries s\+Create\+Half\+Unit\+Sphere\+Bottom} (std\+::vector$<$ \mbox{\hyperlink{classVec3}{Vec3}} $>$ \&io\+Vertices, int in\+Detail\+Level)
+\begin{DoxyCompactList}\small\item\em Helper function that creates a vertex list of a half unit sphere (bottom part) \end{DoxyCompactList}\item 
+\Hypertarget{classGetTrianglesContextVertexList_ae6511b36e10811fa33be2021e15e9248}\label{classGetTrianglesContextVertexList_ae6511b36e10811fa33be2021e15e9248} 
+static void {\bfseries s\+Create\+Unit\+Open\+Cylinder} (std\+::vector$<$ \mbox{\hyperlink{classVec3}{Vec3}} $>$ \&io\+Vertices, int in\+Detail\+Level)
+\begin{DoxyCompactList}\small\item\em Helper function that creates an open cyclinder of half height 1 and radius 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of Get\+Triangles\+Start/\+Next that uses a fixed list of vertices for the triangles. These are transformed into world space when getting the triangles. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGetTrianglesContextVertexList_ac42ac006966e5e9819b97f3764be4fc4}\label{classGetTrianglesContextVertexList_ac42ac006966e5e9819b97f3764be4fc4} 
+\index{GetTrianglesContextVertexList@{GetTrianglesContextVertexList}!GetTrianglesNext@{GetTrianglesNext}}
+\index{GetTrianglesNext@{GetTrianglesNext}!GetTrianglesContextVertexList@{GetTrianglesContextVertexList}}
+\doxysubsubsection{\texorpdfstring{GetTrianglesNext()}{GetTrianglesNext()}}
+{\footnotesize\ttfamily int Get\+Triangles\+Context\+Vertex\+List\+::\+Get\+Triangles\+Next (\begin{DoxyParamCaption}\item[{int}]{in\+Max\+Triangles\+Requested,  }\item[{\mbox{\hyperlink{classFloat3}{Float3}} \texorpdfstring{$\ast$}{*}}]{out\+Triangle\+Vertices,  }\item[{const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{out\+Materials }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{classShape_a4b6ba637f676d38c24bdb5da9a2f345f}{Shape\+::\+Get\+Triangles\+Next} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Get\+Triangles\+Context.\+h\end{DoxyCompactItemize}

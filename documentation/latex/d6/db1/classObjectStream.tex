@@ -1,0 +1,79 @@
+\doxysection{Object\+Stream Class Reference}
+\hypertarget{classObjectStream}{}\label{classObjectStream}\index{ObjectStream@{ObjectStream}}
+
+
+Base class for object stream input and output streams.  
+
+
+
+
+{\ttfamily \#include $<$Object\+Stream.\+h$>$}
+
+
+
+Inheritance diagram for Object\+Stream\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/de0/classObjectStream__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object\+Stream\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{d0/d0c/classObjectStream__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}\label{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e} 
+enum class \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} \{ {\bfseries Text}
+, {\bfseries Binary}
+ \}
+\begin{DoxyCompactList}\small\item\em Stream type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStream_a03085cd2aa375ca2c773579947434455}\label{classObjectStream_a03085cd2aa375ca2c773579947434455} 
+using {\bfseries Identifier} = uint32
+\begin{DoxyCompactList}\small\item\em Identifier for objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStream_a0a01e88706acdcadf4b7cc7af99a008e}\label{classObjectStream_a0a01e88706acdcadf4b7cc7af99a008e} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Object\+Stream} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStream_af44c611aa03b15ebaf81e50dc244151c}\label{classObjectStream_af44c611aa03b15ebaf81e50dc244151c} 
+static constexpr int {\bfseries s\+Version} = 1
+\item 
+\Hypertarget{classObjectStream_a9b50736a6c66df50ba7274ca6a3c0686}\label{classObjectStream_a9b50736a6c66df50ba7274ca6a3c0686} 
+static constexpr int {\bfseries s\+Revision} = 0
+\item 
+\Hypertarget{classObjectStream_afb1b32a3aff83d99a4ac14c5cb828778}\label{classObjectStream_afb1b32a3aff83d99a4ac14c5cb828778} 
+static constexpr \mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} {\bfseries s\+Null\+Identifier} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for object stream input and output streams. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Object\+Stream/Object\+Stream.\+h\end{DoxyCompactItemize}

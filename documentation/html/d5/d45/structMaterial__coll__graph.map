@@ -1,0 +1,12 @@
+<map id="Material" name="Material">
+<area shape="rect" id="Node000001" title=" " alt="" coords="41,871,115,941"/>
+<area shape="rect" id="Node000002" href="$d7/d78/structShader.html" title=" " alt="" coords="5,716,63,806"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="36,806,43,847,47,856,42,858,38,848,30,806"/>
+<area shape="rect" id="Node000003" href="$d2/d70/structMaterialMap.html" title=" " alt="" coords="87,726,181,796"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="123,796,100,856,95,854,119,794"/>
+<area shape="rect" id="Node000004" href="$df/dda/structTexture.html" title=" " alt="" coords="32,251,119,405"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="75,405,80,540,89,616,104,691,111,710,105,712,99,692,83,617,74,540,70,405"/>
+<area shape="rect" id="Node000005" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="143,5,293,651"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="177,651,166,692,160,711,154,710,161,691,172,650"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="295,263,305,271,313,285,318,304,320,328,317,359,308,381,303,379,312,358,315,328,313,305,308,287,301,275,291,267"/>
+</map>

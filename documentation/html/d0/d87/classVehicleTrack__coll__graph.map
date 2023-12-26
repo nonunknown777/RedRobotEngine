@@ -1,0 +1,5 @@
+<map id="VehicleTrack" name="VehicleTrack">
+<area shape="rect" id="Node000001" title="Runtime data for tank tracks." alt="" coords="16,251,157,341"/>
+<area shape="rect" id="Node000002" href="$dc/d06/classVehicleTrackSettings.html" title="Generic properties for tank tracks." alt="" coords="5,5,168,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,217,89,251,84,251,84,217"/>
+</map>

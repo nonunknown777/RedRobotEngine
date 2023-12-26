@@ -1,0 +1,49 @@
+\doxysection{Tick\+Counter.\+h}
+\hypertarget{TickCounter_8h_source}{}\label{TickCounter_8h_source}\index{includes/jolt/Core/TickCounter.h@{includes/jolt/Core/TickCounter.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Include\ for\ \_\_rdtsc}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#if\ defined(JPH\_PLATFORM\_WINDOWS)}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \#include\ <intrin.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_X86)\ \&\&\ defined(JPH\_COMPILER\_GCC)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \#include\ <x86intrin.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#if\ defined(JPH\_PLATFORM\_WINDOWS\_UWP)\ ||\ (defined(JPH\_PLATFORM\_WINDOWS)\ \&\&\ defined(JPH\_CPU\_ARM))}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ uint64\ GetProcessorTickCount();\ \textcolor{comment}{//\ Not\ inline\ to\ avoid\ having\ to\ include\ Windows.h}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ JPH\_INLINE\ uint64\ GetProcessorTickCount()}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#if\ defined(JPH\_PLATFORM\_BLUE)}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ JPH\_PLATFORM\_BLUE\_GET\_TICKS();}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_X86)}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{return}\ \_\_rdtsc();}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_ARM)\ \&\&\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00031\ \ \ \ \ uint64\ val;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}mrs\ \%0,\ cntvct\_el0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (val));}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ val;}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_ARM)}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Not\ supported}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_WASM)}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ Not\ supported}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ \#error\ Undefined}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_PLATFORM\_WINDOWS\_UWP\ ||\ (JPH\_PLATFORM\_WINDOWS\ \&\&\ JPH\_CPU\_ARM)}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

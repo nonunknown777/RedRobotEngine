@@ -1,0 +1,97 @@
+\doxysection{Fixed\+Size\+Free\+List\texorpdfstring{$<$}{<} Object \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classFixedSizeFreeList}{}\label{classFixedSizeFreeList}\index{FixedSizeFreeList$<$ Object $>$@{FixedSizeFreeList$<$ Object $>$}}
+
+
+{\ttfamily \#include $<$Fixed\+Size\+Free\+List.\+h$>$}
+
+
+
+Inheritance diagram for Fixed\+Size\+Free\+List\texorpdfstring{$<$}{<} Object \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{df/d40/classFixedSizeFreeList__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Fixed\+Size\+Free\+List\texorpdfstring{$<$}{<} Object \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{d6/de1/classFixedSizeFreeList__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structFixedSizeFreeList_1_1Batch}{Batch}}
+\begin{DoxyCompactList}\small\item\em A batch of objects that can be destructed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classFixedSizeFreeList_a71571a26f9bc002d714f0178e46177ba}\label{classFixedSizeFreeList_a71571a26f9bc002d714f0178e46177ba} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Fixed\+Size\+Free\+List} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classFixedSizeFreeList_a083084370fcf7fde019f6d4d8b99378e}\label{classFixedSizeFreeList_a083084370fcf7fde019f6d4d8b99378e} 
+void {\bfseries Init} (uint in\+Max\+Objects, uint in\+Page\+Size)
+\begin{DoxyCompactList}\small\item\em Initialize the free list, up to in\+Max\+Objects can be allocated. \end{DoxyCompactList}\item 
+\Hypertarget{classFixedSizeFreeList_a54bb676ae1632d32f3f07dea3e5b4ba8}\label{classFixedSizeFreeList_a54bb676ae1632d32f3f07dea3e5b4ba8} 
+{\footnotesize template$<$typename... Parameters$>$ }\\uint32 {\bfseries Construct\+Object} (Parameters \&\&... in\+Parameters)
+\begin{DoxyCompactList}\small\item\em Lockless construct a new object, in\+Parameters are passed on to the constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classFixedSizeFreeList_a7446e6f32dac053462c14dfefcb467a0}\label{classFixedSizeFreeList_a7446e6f32dac053462c14dfefcb467a0} 
+void {\bfseries Destruct\+Object} (uint32 in\+Object\+Index)
+\begin{DoxyCompactList}\small\item\em Lockless destruct an object and return it to the free pool. \end{DoxyCompactList}\item 
+\Hypertarget{classFixedSizeFreeList_a80ff23d54800cfa02da08d6e77171397}\label{classFixedSizeFreeList_a80ff23d54800cfa02da08d6e77171397} 
+void {\bfseries Destruct\+Object} (Object \texorpdfstring{$\ast$}{*}in\+Object)
+\begin{DoxyCompactList}\small\item\em Lockless destruct an object and return it to the free pool. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFixedSizeFreeList_afed6e2529117da02be0ddbcc41a509a9}{Add\+Object\+To\+Batch}} (\mbox{\hyperlink{structFixedSizeFreeList_1_1Batch}{Batch}} \&io\+Batch, uint32 in\+Object\+Index)
+\item 
+\Hypertarget{classFixedSizeFreeList_a0bf25bd9e2c35e584e0bc14d40054bc2}\label{classFixedSizeFreeList_a0bf25bd9e2c35e584e0bc14d40054bc2} 
+void {\bfseries Destruct\+Object\+Batch} (\mbox{\hyperlink{structFixedSizeFreeList_1_1Batch}{Batch}} \&io\+Batch)
+\begin{DoxyCompactList}\small\item\em Lockless destruct batch of objects. \end{DoxyCompactList}\item 
+\Hypertarget{classFixedSizeFreeList_accd9130a85781885d0d5f669ce0a86f1}\label{classFixedSizeFreeList_accd9130a85781885d0d5f669ce0a86f1} 
+Object \& {\bfseries Get} (uint32 in\+Object\+Index)
+\begin{DoxyCompactList}\small\item\em Access an object by index. \end{DoxyCompactList}\item 
+\Hypertarget{classFixedSizeFreeList_afcfce9ec76b8df6291beac70ab699080}\label{classFixedSizeFreeList_afcfce9ec76b8df6291beac70ab699080} 
+const Object \& {\bfseries Get} (uint32 in\+Object\+Index) const
+\begin{DoxyCompactList}\small\item\em Access an object by index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classFixedSizeFreeList_aa52c28cff499eeeb733b9b2f421a6f80}\label{classFixedSizeFreeList_aa52c28cff499eeeb733b9b2f421a6f80} 
+static const uint32 {\bfseries c\+Invalid\+Object\+Index} = 0xffffffff
+\begin{DoxyCompactList}\small\item\em Invalid index. \end{DoxyCompactList}\item 
+\Hypertarget{classFixedSizeFreeList_a574046ef3a420bee3408d5a1930f0952}\label{classFixedSizeFreeList_a574046ef3a420bee3408d5a1930f0952} 
+static const int {\bfseries Object\+Storage\+Size} = sizeof(Object\+Storage)
+\begin{DoxyCompactList}\small\item\em Size of an object + bookkeeping for the freelist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Object$>$\newline
+class Fixed\+Size\+Free\+List$<$ Object $>$}
+Class that allows lock free creation / destruction of objects (unless a new page of objects needs to be allocated) It contains a fixed pool of objects and also allows batching up a lot of objects to be destroyed and doing the actual free in a single atomic operation 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFixedSizeFreeList_afed6e2529117da02be0ddbcc41a509a9}\label{classFixedSizeFreeList_afed6e2529117da02be0ddbcc41a509a9} 
+\index{FixedSizeFreeList$<$ Object $>$@{FixedSizeFreeList$<$ Object $>$}!AddObjectToBatch@{AddObjectToBatch}}
+\index{AddObjectToBatch@{AddObjectToBatch}!FixedSizeFreeList$<$ Object $>$@{FixedSizeFreeList$<$ Object $>$}}
+\doxysubsubsection{\texorpdfstring{AddObjectToBatch()}{AddObjectToBatch()}}
+{\footnotesize\ttfamily template$<$typename Object $>$ \\
+void \mbox{\hyperlink{classFixedSizeFreeList}{Fixed\+Size\+Free\+List}}$<$ Object $>$\+::\+Add\+Object\+To\+Batch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFixedSizeFreeList_1_1Batch}{Batch}} \&}]{io\+Batch,  }\item[{uint32}]{in\+Object\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a object to an existing batch to be destructed. Adding objects to a batch does not destroy or modify the objects, this will merely link them so that the entire batch can be returned to the free list in a single atomic operation 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Fixed\+Size\+Free\+List.\+h\item 
+includes/jolt/\+Core/Fixed\+Size\+Free\+List.\+inl\end{DoxyCompactItemize}

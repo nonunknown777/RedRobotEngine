@@ -1,0 +1,26 @@
+<map id="Model" name="Model">
+<area shape="rect" id="Node000001" title=" " alt="" coords="292,1556,411,1689"/>
+<area shape="rect" id="Node000002" href="$d3/d3f/classMatrix.html" title="Templatized matrix class." alt="" coords="5,931,161,1491"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,1489,194,1530,234,1564,278,1590,276,1594,231,1568,190,1534,159,1492"/>
+<area shape="rect" id="Node000003" href="$da/d29/structMesh.html" title=" " alt="" coords="186,1027,301,1395"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,1395,264,1464,285,1531,289,1540,284,1542,280,1533,259,1465,246,1395"/>
+<area shape="rect" id="Node000004" href="$d2/d10/structMaterial.html" title=" " alt="" coords="325,1176,399,1246"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="364,1246,356,1515,355,1539,350,1539,350,1515,358,1245"/>
+<area shape="rect" id="Node000005" href="$d7/d78/structShader.html" title=" " alt="" coords="259,737,316,828"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="298,827,356,1159,351,1160,292,828"/>
+<area shape="rect" id="Node000006" href="$d2/d70/structMaterialMap.html" title=" " alt="" coords="340,748,435,817"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="388,817,368,1160,362,1159,383,817"/>
+<area shape="rect" id="Node000007" href="$df/dda/structTexture.html" title=" " alt="" coords="285,251,372,405"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="331,405,336,539,344,616,357,691,369,731,364,732,352,692,339,617,331,540,325,405"/>
+<area shape="rect" id="Node000008" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="396,5,547,651"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="428,651,419,692,408,732,403,731,414,691,423,650"/>
+<area shape="poly" id="edge8_Node000008_Node000008" title=" " alt="" coords="548,263,558,271,566,285,571,304,573,328,570,359,561,381,556,379,565,358,568,328,566,305,561,287,554,275,545,267"/>
+<area shape="rect" id="Node000009" href="$dd/da9/structBoneInfo.html" title=" " alt="" coords="424,1166,495,1256"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="466,1256,468,1313,466,1384,455,1460,432,1533,423,1551,418,1549,428,1531,450,1459,461,1383,463,1313,461,1256"/>
+<area shape="rect" id="Node000010" href="$d2/d43/structTransform.html" title=" " alt="" coords="519,1176,597,1246"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="563,1245,563,1304,556,1380,548,1420,536,1460,519,1498,497,1534,465,1566,427,1592,424,1587,462,1562,493,1530,514,1496,531,1458,542,1419,550,1379,558,1304,558,1245"/>
+<area shape="rect" id="Node000011" href="$de/d4b/structVector3.html" title=" " alt="" coords="506,726,567,838"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="539,838,541,907,557,1159,551,1160,536,907,534,838"/>
+<area shape="rect" id="Node000012" href="$da/dc5/structVector4.html" title=" " alt="" coords="618,716,679,849"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="637,849,571,1161,566,1160,632,848"/>
+</map>

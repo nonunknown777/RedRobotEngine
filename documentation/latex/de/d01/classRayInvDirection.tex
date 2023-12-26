@@ -1,0 +1,50 @@
+\doxysection{Ray\+Inv\+Direction Class Reference}
+\hypertarget{classRayInvDirection}{}\label{classRayInvDirection}\index{RayInvDirection@{RayInvDirection}}
+
+
+Helper structure holding the reciprocal of a ray for \doxylink{structRay}{Ray} vs \doxylink{classAABox}{AABox} testing.  
+
+
+
+
+{\ttfamily \#include $<$Ray\+AABox.\+h$>$}
+
+
+
+Collaboration diagram for Ray\+Inv\+Direction\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d8/d82/classRayInvDirection__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRayInvDirection_a5609464debfaa939e4c947f083a84556}\label{classRayInvDirection_a5609464debfaa939e4c947f083a84556} 
+{\bfseries Ray\+Inv\+Direction} ()=default
+\begin{DoxyCompactList}\small\item\em Constructors. \end{DoxyCompactList}\item 
+\Hypertarget{classRayInvDirection_a33b00fe0da252d7b5aa1801ffb7e5c56}\label{classRayInvDirection_a33b00fe0da252d7b5aa1801ffb7e5c56} 
+{\bfseries Ray\+Inv\+Direction} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction)
+\item 
+\Hypertarget{classRayInvDirection_ac9569874f14ade61e966744af2abdc79}\label{classRayInvDirection_ac9569874f14ade61e966744af2abdc79} 
+void {\bfseries Set} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction)
+\begin{DoxyCompactList}\small\item\em Set reciprocal from ray direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}\label{classRayInvDirection_a093897689117556a3a61eaaf15b543c2} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Inv\+Direction}
+\begin{DoxyCompactList}\small\item\em 1 / ray direction \end{DoxyCompactList}\item 
+\Hypertarget{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}\label{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce} 
+\mbox{\hyperlink{classUVec4}{UVec4}} {\bfseries m\+Is\+Parallel}
+\begin{DoxyCompactList}\small\item\em for each component if it is parallel to the coordinate axis \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper structure holding the reciprocal of a ray for \doxylink{structRay}{Ray} vs \doxylink{classAABox}{AABox} testing. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Ray\+AABox.\+h\end{DoxyCompactItemize}

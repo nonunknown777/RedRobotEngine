@@ -1,0 +1,148 @@
+\doxysection{Soft\+Body\+Update\+Context Class Reference}
+\hypertarget{classSoftBodyUpdateContext}{}\label{classSoftBodyUpdateContext}\index{SoftBodyUpdateContext@{SoftBodyUpdateContext}}
+
+
+Temporary data used by the update of a soft body.  
+
+
+
+
+{\ttfamily \#include $<$Soft\+Body\+Update\+Context.\+h$>$}
+
+
+
+Inheritance diagram for Soft\+Body\+Update\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{dc/ddb/classSoftBodyUpdateContext__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Soft\+Body\+Update\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d6f/classSoftBodyUpdateContext__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5}{EState}} \{ \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5a6985815cf22d36349d3183058c186205}{Determine\+Collision\+Planes}}
+, \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5ab9d2711957f631c71313ff90f81fc1a1}{Apply\+Edge\+Constraints}}
+, \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5af92965e2c8a7afb3c1b9a5c09a263636}{Done}}
+ \}
+\begin{DoxyCompactList}\small\item\em Describes progress in the current update. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodyUpdateContext_a62a2e9852eb6b92218e7ad08aa099721}\label{classSoftBodyUpdateContext_a62a2e9852eb6b92218e7ad08aa099721} 
+static uint64 {\bfseries s\+Get\+Edge\+Group\+Start} (uint32 in\+Group)
+\begin{DoxyCompactList}\small\item\em Construct the edge constraint iterator starting at a new group. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a4794679402ae8fdc23b8b0e4bba9ac61}\label{classSoftBodyUpdateContext_a4794679402ae8fdc23b8b0e4bba9ac61} 
+static void {\bfseries s\+Get\+Edge\+Group\+And\+Start\+Idx} (uint64 in\+Next\+Edge\+Constraint, uint32 \&out\+Group, uint32 \&out\+Start\+Idx)
+\begin{DoxyCompactList}\small\item\em Get the group and start index from the edge constraint iterator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodyUpdateContext_a88b6c3a98493e002dc691f90520ad05b}\label{classSoftBodyUpdateContext_a88b6c3a98493e002dc691f90520ad05b} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body}
+\begin{DoxyCompactList}\small\item\em \doxylink{classBody}{Body} that is being updated. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a9562dabc569151bf015943cea75f2d12}\label{classSoftBodyUpdateContext_a9562dabc569151bf015943cea75f2d12} 
+\mbox{\hyperlink{classSoftBodyMotionProperties}{Soft\+Body\+Motion\+Properties}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Motion\+Properties}
+\begin{DoxyCompactList}\small\item\em Motion properties of that body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a7a6a0aecd66518f1b46cbde25f522c34}\label{classSoftBodyUpdateContext_a7a6a0aecd66518f1b46cbde25f522c34} 
+\mbox{\hyperlink{classMat44}{RMat44}} {\bfseries m\+Center\+Of\+Mass\+Transform}
+\begin{DoxyCompactList}\small\item\em \doxylink{structTransform}{Transform} of the body relative to the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_aa8cc078898b92ddb1f55822b01ccac66}\label{classSoftBodyUpdateContext_aa8cc078898b92ddb1f55822b01ccac66} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Gravity}
+\begin{DoxyCompactList}\small\item\em Gravity vector in local space of the soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_ac0b07375d564d77c2ecf16cd4a619896}\label{classSoftBodyUpdateContext_ac0b07375d564d77c2ecf16cd4a619896} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Displacement\+Due\+To\+Gravity}
+\begin{DoxyCompactList}\small\item\em Displacement of the center of mass due to gravity in the current time step. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a74ad9a6e4da4c7e81d669d0d2643417d}\label{classSoftBodyUpdateContext_a74ad9a6e4da4c7e81d669d0d2643417d} 
+float {\bfseries m\+Delta\+Time}
+\begin{DoxyCompactList}\small\item\em Delta time for the current time step. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a0900465027d74b085a1a3138cb2e84f6}\label{classSoftBodyUpdateContext_a0900465027d74b085a1a3138cb2e84f6} 
+float {\bfseries m\+Sub\+Step\+Delta\+Time}
+\begin{DoxyCompactList}\small\item\em Delta time for each sub step. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a17a280895e22b255d4938b2504f4a850}\label{classSoftBodyUpdateContext_a17a280895e22b255d4938b2504f4a850} 
+atomic$<$ \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5}{EState}} $>$ {\bfseries m\+State} \{ \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5a6985815cf22d36349d3183058c186205}{EState\+::\+Determine\+Collision\+Planes}} \}
+\begin{DoxyCompactList}\small\item\em Current state of the update. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a01554dcdf826c0c1e71061939467f389}\label{classSoftBodyUpdateContext_a01554dcdf826c0c1e71061939467f389} 
+atomic$<$ uint $>$ {\bfseries m\+Next\+Collision\+Vertex} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next vertex to process for Determine\+Collision\+Planes. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a34ccaf27bfe9bd6436fe8b933822d144}\label{classSoftBodyUpdateContext_a34ccaf27bfe9bd6436fe8b933822d144} 
+atomic$<$ uint $>$ {\bfseries m\+Num\+Collision\+Vertices\+Processed} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Number of vertices processed by Determine\+Collision\+Planes, used to determine if we can start simulating. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a5016ad1e602ce57f0927262ad59ec4ef}\label{classSoftBodyUpdateContext_a5016ad1e602ce57f0927262ad59ec4ef} 
+atomic$<$ uint $>$ {\bfseries m\+Next\+Iteration} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next simulation iteration to process. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a86b84dd4797de46f8de2e7ab71267f3d}\label{classSoftBodyUpdateContext_a86b84dd4797de46f8de2e7ab71267f3d} 
+atomic$<$ uint64 $>$ {\bfseries m\+Next\+Edge\+Constraint} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next edge constraint group and start index to process. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a138461f1681bfc86b5e6e4ee96af61a4}\label{classSoftBodyUpdateContext_a138461f1681bfc86b5e6e4ee96af61a4} 
+atomic$<$ uint $>$ {\bfseries m\+Num\+Edge\+Constraints\+Processed} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Number of edge constraints processed by Apply\+Edge\+Constraints, used to determine if we can go to the next group / iteration. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a6cce0079d538ff50a6a77688e44116e1}\label{classSoftBodyUpdateContext_a6cce0079d538ff50a6a77688e44116e1} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Delta\+Position}
+\begin{DoxyCompactList}\small\item\em Delta position of the body in the current time step, should be applied after the update. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_af78fae54587cbbc41f185d1c4e477925}\label{classSoftBodyUpdateContext_af78fae54587cbbc41f185d1c4e477925} 
+ECan\+Sleep {\bfseries m\+Can\+Sleep}
+\begin{DoxyCompactList}\small\item\em Can the body sleep? Should be applied after the update. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodyUpdateContext_af008cc95bb849ed4b84ee656f775ead1}\label{classSoftBodyUpdateContext_af008cc95bb849ed4b84ee656f775ead1} 
+static constexpr uint {\bfseries c\+Vertex\+Collision\+Batch} = 64
+\begin{DoxyCompactList}\small\item\em Number of vertices to process in a batch in Determine\+Collision\+Planes. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodyUpdateContext_a74e1371072e34f9abfa50725f6e677f0}\label{classSoftBodyUpdateContext_a74e1371072e34f9abfa50725f6e677f0} 
+static constexpr uint {\bfseries c\+Edge\+Constraint\+Batch} = 256
+\begin{DoxyCompactList}\small\item\em Number of edge constraints to process in a batch in Apply\+Edge\+Constraints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Temporary data used by the update of a soft body. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5}\label{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5} 
+\index{SoftBodyUpdateContext@{SoftBodyUpdateContext}!EState@{EState}}
+\index{EState@{EState}!SoftBodyUpdateContext@{SoftBodyUpdateContext}}
+\doxysubsubsection{\texorpdfstring{EState}{EState}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5}{Soft\+Body\+Update\+Context\+::\+EState}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Describes progress in the current update. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DetermineCollisionPlanes@{DetermineCollisionPlanes}!SoftBodyUpdateContext@{SoftBodyUpdateContext}}\index{SoftBodyUpdateContext@{SoftBodyUpdateContext}!DetermineCollisionPlanes@{DetermineCollisionPlanes}}}\Hypertarget{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5a6985815cf22d36349d3183058c186205}\label{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5a6985815cf22d36349d3183058c186205} 
+Determine\+Collision\+Planes&Determine collision planes for vertices in parallel. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ApplyEdgeConstraints@{ApplyEdgeConstraints}!SoftBodyUpdateContext@{SoftBodyUpdateContext}}\index{SoftBodyUpdateContext@{SoftBodyUpdateContext}!ApplyEdgeConstraints@{ApplyEdgeConstraints}}}\Hypertarget{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5ab9d2711957f631c71313ff90f81fc1a1}\label{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5ab9d2711957f631c71313ff90f81fc1a1} 
+Apply\+Edge\+Constraints&Apply edge constraints in parallel. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Done@{Done}!SoftBodyUpdateContext@{SoftBodyUpdateContext}}\index{SoftBodyUpdateContext@{SoftBodyUpdateContext}!Done@{Done}}}\Hypertarget{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5af92965e2c8a7afb3c1b9a5c09a263636}\label{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5af92965e2c8a7afb3c1b9a5c09a263636} 
+Done&Update is finished. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Soft\+Body/Soft\+Body\+Update\+Context.\+h\end{DoxyCompactItemize}

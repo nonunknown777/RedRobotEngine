@@ -1,0 +1,197 @@
+\doxysection{Distance\+Constraint\+Settings Class Reference}
+\hypertarget{classDistanceConstraintSettings}{}\label{classDistanceConstraintSettings}\index{DistanceConstraintSettings@{DistanceConstraintSettings}}
+
+
+Distance constraint settings, used to create a distance constraint.  
+
+
+
+
+{\ttfamily \#include $<$Distance\+Constraint.\+h$>$}
+
+
+
+Inheritance diagram for Distance\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/de8/classDistanceConstraintSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Distance\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d9/d80/classDistanceConstraintSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDistanceConstraintSettings_adcc7a0f0fe9d5c86b82af0a48f609a76}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saves the contents of the constraint settings in binary form to in\+Stream. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDistanceConstraintSettings_a5c9c44f0de0435c281aa9346567614df}{Create}} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2) const override
+\begin{DoxyCompactList}\small\item\em Create an an instance of this constraint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDistanceConstraintSettings_a09098a011c7b8061c47260953e49e48b}\label{classDistanceConstraintSettings_a09098a011c7b8061c47260953e49e48b} 
+EConstraint\+Space {\bfseries m\+Space} = EConstraint\+Space\+::\+World\+Space
+\begin{DoxyCompactList}\small\item\em This determines in which space the constraint is setup, all properties below should be in the specified space. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{RVec3}} \mbox{\hyperlink{classDistanceConstraintSettings_a8ca1134032fe38952fcf59be4329c939}{m\+Point1}} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()
+\item 
+\Hypertarget{classDistanceConstraintSettings_a18e1fbea7cbb304ce9e86168c1845475}\label{classDistanceConstraintSettings_a18e1fbea7cbb304ce9e86168c1845475} 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries m\+Point2} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()
+\begin{DoxyCompactList}\small\item\em \doxylink{classBody}{Body} 2 constraint reference frame (space determined by m\+Space) \end{DoxyCompactList}\item 
+\Hypertarget{classDistanceConstraintSettings_a7dd98fea4e812f9bc4168804c1bc4742}\label{classDistanceConstraintSettings_a7dd98fea4e812f9bc4168804c1bc4742} 
+float {\bfseries m\+Min\+Distance} = -\/1.\+0f
+\begin{DoxyCompactList}\small\item\em Ability to override the distance range at which the two points are kept apart. If the value is negative, it will be replaced by the distance between m\+Point1 and m\+Point2 (works only if m\+Space is world space). \end{DoxyCompactList}\item 
+\Hypertarget{classDistanceConstraintSettings_a2535335c96322853cd8243a199ce54d1}\label{classDistanceConstraintSettings_a2535335c96322853cd8243a199ce54d1} 
+float {\bfseries m\+Max\+Distance} = -\/1.\+0f
+\item 
+\Hypertarget{classDistanceConstraintSettings_a09758da3857c1883a7fcd1e128bdb175}\label{classDistanceConstraintSettings_a09758da3857c1883a7fcd1e128bdb175} 
+\mbox{\hyperlink{classSpringSettings}{Spring\+Settings}} {\bfseries m\+Limits\+Spring\+Settings}
+\begin{DoxyCompactList}\small\item\em When enabled, this makes the limits soft. When the constraint exceeds the limits, a spring force will pull it back. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries m\+Enabled} = true
+\begin{DoxyCompactList}\small\item\em If this constraint is enabled initially. Use \doxylink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Constraint\+::\+Set\+Enabled} to toggle after creation. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraintSettings_ab01ba90506d17f415054bfa6208a4939}{m\+Constraint\+Priority}} = 0
+\item 
+uint {\bfseries m\+Num\+Velocity\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries m\+Num\+Position\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+float {\bfseries m\+Draw\+Constraint\+Size} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Size of constraint when drawing it through the debug renderer. \end{DoxyCompactList}\item 
+uint64 {\bfseries m\+User\+Data} = 0
+\begin{DoxyCompactList}\small\item\em User data value (can be used by application) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDistanceConstraintSettings_ab39d0193de128210b114595a85e6daaa}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Constraint\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Constraint\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a constraint of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Distance constraint settings, used to create a distance constraint. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDistanceConstraintSettings_a5c9c44f0de0435c281aa9346567614df}\label{classDistanceConstraintSettings_a5c9c44f0de0435c281aa9346567614df} 
+\index{DistanceConstraintSettings@{DistanceConstraintSettings}!Create@{Create}}
+\index{Create@{Create}!DistanceConstraintSettings@{DistanceConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} Distance\+Constraint\+Settings\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Create an an instance of this constraint. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraintSettings_a42e353e736b0254b02008b050a28f55b}{Two\+Body\+Constraint\+Settings}}.
+
+\Hypertarget{classDistanceConstraintSettings_ab39d0193de128210b114595a85e6daaa}\label{classDistanceConstraintSettings_ab39d0193de128210b114595a85e6daaa} 
+\index{DistanceConstraintSettings@{DistanceConstraintSettings}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!DistanceConstraintSettings@{DistanceConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Distance\+Constraint\+Settings\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraintSettings_adcdb433a58df0924940fd8f86acd3251}{Constraint\+Settings}}.
+
+\Hypertarget{classDistanceConstraintSettings_adcc7a0f0fe9d5c86b82af0a48f609a76}\label{classDistanceConstraintSettings_adcc7a0f0fe9d5c86b82af0a48f609a76} 
+\index{DistanceConstraintSettings@{DistanceConstraintSettings}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!DistanceConstraintSettings@{DistanceConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Distance\+Constraint\+Settings\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the contents of the constraint settings in binary form to in\+Stream. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraintSettings_a2f45c4a1fd6d6d74691729d5103f094a}{Constraint\+Settings}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classDistanceConstraintSettings_a8ca1134032fe38952fcf59be4329c939}\label{classDistanceConstraintSettings_a8ca1134032fe38952fcf59be4329c939} 
+\index{DistanceConstraintSettings@{DistanceConstraintSettings}!mPoint1@{mPoint1}}
+\index{mPoint1@{mPoint1}!DistanceConstraintSettings@{DistanceConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{mPoint1}{mPoint1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVec3}{RVec3}} Distance\+Constraint\+Settings\+::m\+Point1 = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()}
+
+\doxylink{classBody}{Body} 1 constraint reference frame (space determined by m\+Space). \doxylink{classConstraint}{Constraint} will keep m\+Point1 (a point on body 1) and m\+Point2 (a point on body 2) at the same distance. Note that this constraint can be used as a cheap \doxylink{classPointConstraint}{Point\+Constraint} by setting m\+Point1 = m\+Point2 (but this removes only 1 degree of freedom instead of 3). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Distance\+Constraint.\+h\end{DoxyCompactItemize}

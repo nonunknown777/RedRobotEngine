@@ -1,0 +1,186 @@
+\doxysection{Constraint.\+h}
+\hypertarget{Constraint_8h_source}{}\label{Constraint_8h_source}\index{includes/jolt/Physics/Constraints/Constraint.h@{includes/jolt/Physics/Constraints/Constraint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Reference.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Result.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableObject.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyID}{BodyID}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIslandBuilder}{IslandBuilder}};}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLargeIslandSplitter}{LargeIslandSplitter}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyManager}{BodyManager}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStateRecorder}{StateRecorder}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStreamIn}{StreamIn}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStreamOut}{StreamOut}};}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}};}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{enum\ class}\ EConstraintType}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classConstraint}{Constraint}},}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}},}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{enum\ class}\ EConstraintSubType}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ Fixed,}
+\DoxyCodeLine{00036\ \ \ \ \ Point,}
+\DoxyCodeLine{00037\ \ \ \ \ Hinge,}
+\DoxyCodeLine{00038\ \ \ \ \ Slider,}
+\DoxyCodeLine{00039\ \ \ \ \ Distance,}
+\DoxyCodeLine{00040\ \ \ \ \ Cone,}
+\DoxyCodeLine{00041\ \ \ \ \ SwingTwist,}
+\DoxyCodeLine{00042\ \ \ \ \ SixDOF,}
+\DoxyCodeLine{00043\ \ \ \ \ Path,}
+\DoxyCodeLine{00044\ \ \ \ \ Vehicle,}
+\DoxyCodeLine{00045\ \ \ \ \ RackAndPinion,}
+\DoxyCodeLine{00046\ \ \ \ \ Gear,}
+\DoxyCodeLine{00047\ \ \ \ \ Pulley,}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ User1,}
+\DoxyCodeLine{00051\ \ \ \ \ User2,}
+\DoxyCodeLine{00052\ \ \ \ \ User3,}
+\DoxyCodeLine{00053\ \ \ \ \ User4}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{enum\ class}\ EConstraintSpace}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ LocalToBodyCOM,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ WorldSpace,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classConstraintSettings}{ConstraintSettings}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSerializableObject}{SerializableObject}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}<ConstraintSettings>}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classConstraintSettings}{ConstraintSettings}})}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classResult}{ConstraintResult}}\ =\ \mbox{\hyperlink{classResult}{Result<Ref<ConstraintSettings>}}>;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraintSettings_a2f45c4a1fd6d6d74691729d5103f094a}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classResult}{ConstraintResult}}\ \ \ \ \ \mbox{\hyperlink{classConstraintSettings_a91525518e10424d5722be2db0697ccd6}{sRestoreFromBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEnabled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00082\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConstraintPriority\ =\ 0;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumVelocityStepsOverride\ =\ 0;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumPositionStepsOverride\ =\ 0;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawConstraintSize\ =\ 1.0f;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUserData\ =\ 0;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraintSettings_adcdb433a58df0924940fd8f86acd3251}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream);}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classConstraint}{Constraint}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}<Constraint>,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00105\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_ae16420a87c4410ab9586397805c909bb}{Constraint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classConstraintSettings}{ConstraintSettings}}\ \&inSettings)\ :}
+\DoxyCodeLine{00109\ \#ifdef\ JPH\_DEBUG\_RENDERER}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ mDrawConstraintSize(inSettings.mDrawConstraintSize),}
+\DoxyCodeLine{00111\ \#endif\ \textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ mConstraintPriority(inSettings.mConstraintPriority),}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ mNumVelocityStepsOverride(uint8(inSettings.mNumVelocityStepsOverride)),}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ mNumPositionStepsOverride(uint8(inSettings.mNumPositionStepsOverride)),}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ mEnabled(inSettings.mEnabled),}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ mUserData(inSettings.mUserData)}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inSettings.\mbox{\hyperlink{classConstraintSettings_ade4ba912369caad8d5acb9ce87c27e4f}{mNumVelocityStepsOverride}}\ <\ 256);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inSettings.\mbox{\hyperlink{classConstraintSettings_a7022c1a032590883f2002aeef24adf69}{mNumPositionStepsOverride}}\ <\ 256);}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_a1608cc2c7d701d0e9dbcb5656d5845bb}{\string~Constraint}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{virtual}\ EConstraintType\ \ \ \ \ \mbox{\hyperlink{classConstraint_a6e290088c6049b1f1d1fb26df96dce3a}{GetType}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ EConstraintType::Constraint;\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{virtual}\ EConstraintSubType\ \ \mbox{\hyperlink{classConstraint_a632a8161ad49c443c2e3a8b600a730a1}{GetSubType}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00133\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_a6c75250d651da3854eda9e929193e585}{GetConstraintPriority}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mConstraintPriority;\ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetConstraintPriority(uint32\ inPriority)\ \ \ \ \{\ mConstraintPriority\ =\ inPriority;\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_a4c9b56bbae7de5094241daddc6975059}{SetNumVelocityStepsOverride}}(uint\ inN)\ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inN\ <\ 256);\ mNumVelocityStepsOverride\ =\ uint8(inN);\ \}}
+\DoxyCodeLine{00138\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetNumVelocityStepsOverride()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumVelocityStepsOverride;\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_a746a3c987f34f2573c0add9ddd56f390}{SetNumPositionStepsOverride}}(uint\ inN)\ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inN\ <\ 256);\ mNumPositionStepsOverride\ =\ uint8(inN);\ \}}
+\DoxyCodeLine{00142\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetNumPositionStepsOverride()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumPositionStepsOverride;\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{SetEnabled}}(\textcolor{keywordtype}{bool}\ inEnabled)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mEnabled\ =\ inEnabled;\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_a2e0b8708469ecb3ea071c1b37ca8ea26}{GetEnabled}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mEnabled;\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00154\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_a51361e09906d05f85d341d1bad2cecd5}{GetUserData}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mUserData;\ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetUserData(uint64\ inUserData)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mUserData\ =\ inUserData;\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_a3072411d2c9da10356f2087cdc02ec70}{NotifyShapeChanged}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDeltaCOM)\ =\ 0;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsActive()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mEnabled;\ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetupVelocityConstraint(\textcolor{keywordtype}{float}\ inDeltaTime)\ =\ 0;}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WarmStartVelocityConstraint(\textcolor{keywordtype}{float}\ inWarmStartImpulseRatio)\ =\ 0;}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolveVelocityConstraint(\textcolor{keywordtype}{float}\ inDeltaTime)\ =\ 0;}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolvePositionConstraint(\textcolor{keywordtype}{float}\ inDeltaTime,\ \textcolor{keywordtype}{float}\ inBaumgarte)\ =\ 0;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_af62388f6f234f8cd7d24af34e49180fd}{BuildIslands}}(uint32\ inConstraintIndex,\ \mbox{\hyperlink{classIslandBuilder}{IslandBuilder}}\ \&ioBuilder,\ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ \&inBodyManager)\ =\ 0;}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{virtual}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_a6388265dbe8e1a92980d796006879798}{BuildIslandSplits}}(\mbox{\hyperlink{classLargeIslandSplitter}{LargeIslandSplitter}}\ \&ioSplitter)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//\ Drawing\ interface}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraint(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraintLimits([[maybe\_unused]]\ \mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\textcolor{keyword}{\ const\ }\{\ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawConstraintReferenceFrame([[maybe\_unused]]\ \mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer)\textcolor{keyword}{\ const\ }\{\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetDrawConstraintSize()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mDrawConstraintSize;\ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetDrawConstraintSize(\textcolor{keywordtype}{float}\ inSize)\ \ \ \ \ \ \ \ \ \{\ mDrawConstraintSize\ =\ inSize;\ \}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_aea8609ddde798f001409dd7c1a5c8b82}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_aac3d4c1948f1062a8d7c511eddc92e7b}{RestoreState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classRef}{Ref<ConstraintSettings>}}\ \mbox{\hyperlink{classConstraint_a2cb32f0fbbc03050fd09c975e01277d2}{GetConstraintSettings}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classConstraint_aa117730922a803f0a12321bcd68583ab}{ToConstraintSettings}}(\mbox{\hyperlink{classConstraintSettings}{ConstraintSettings}}\ \&outSettings)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawConstraintSize;}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classConstraintManager}{ConstraintManager}};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint32\ \ \ \ \ cInvalidConstraintIndex\ =\ 0xffffffff;}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00214\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConstraintIndex\ =\ cInvalidConstraintIndex;}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00217\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConstraintPriority\ =\ 0;}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00220\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumVelocityStepsOverride\ =\ 0;}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00223\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumPositionStepsOverride\ =\ 0;}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEnabled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00229\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUserData;}
+\DoxyCodeLine{00230\ \};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

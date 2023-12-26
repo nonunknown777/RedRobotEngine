@@ -1,0 +1,105 @@
+\doxysection{Body\+Lock\+Interface Class Reference}
+\hypertarget{classBodyLockInterface}{}\label{classBodyLockInterface}\index{BodyLockInterface@{BodyLockInterface}}
+
+
+Base class interface for locking a body. Usually you will use \doxylink{classBodyLockRead}{Body\+Lock\+Read} / \doxylink{classBodyLockWrite}{Body\+Lock\+Write} / \doxylink{classBodyLockMultiRead}{Body\+Lock\+Multi\+Read} / \doxylink{classBodyLockMultiWrite}{Body\+Lock\+Multi\+Write} instead.  
+
+
+
+
+{\ttfamily \#include $<$Body\+Lock\+Interface.\+h$>$}
+
+
+
+Inheritance diagram for Body\+Lock\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/dd8/classBodyLockInterface__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Body\+Lock\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/d19/classBodyLockInterface__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}\label{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb} 
+using {\bfseries Mutex\+Mask} = \mbox{\hyperlink{classBodyManager_aee0d75a5176680f7c00728fa33cbe9e2}{Body\+Manager\+::\+Mutex\+Mask}}
+\begin{DoxyCompactList}\small\item\em Redefine Mutex\+Mask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyLockInterface_a502df83afc4e8e8e77d7a8b2993c1f8e}\label{classBodyLockInterface_a502df83afc4e8e8e77d7a8b2993c1f8e} 
+{\bfseries Body\+Lock\+Interface} (\mbox{\hyperlink{classBodyManager}{Body\+Manager}} \&in\+Body\+Manager)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockInterface_a76bee9cac091824dea84407a94a557f6}\label{classBodyLockInterface_a76bee9cac091824dea84407a94a557f6} 
+\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{Mutex\+Mask}} {\bfseries Get\+All\+Bodies\+Mutex\+Mask} () const
+\begin{DoxyCompactList}\small\item\em Get the mask needed to lock all bodies. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockInterface_a69aba1e1549e9bc55c1ccd4b68cc171a}\label{classBodyLockInterface_a69aba1e1549e9bc55c1ccd4b68cc171a} 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Try\+Get\+Body} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID) const
+\begin{DoxyCompactList}\small\item\em Convert body ID to body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Locking functions}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyLockInterface_a8a771b3c89803fee5e6d1c90f2f96a07}\label{classBodyLockInterface_a8a771b3c89803fee5e6d1c90f2f96a07} 
+virtual Shared\+Mutex \texorpdfstring{$\ast$}{*} {\bfseries Lock\+Read} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID) const =0
+\item 
+\Hypertarget{classBodyLockInterface_a01f2a12bf7200265b64aae3effd3a82d}\label{classBodyLockInterface_a01f2a12bf7200265b64aae3effd3a82d} 
+virtual void {\bfseries Unlock\+Read} (Shared\+Mutex \texorpdfstring{$\ast$}{*}in\+Mutex) const =0
+\item 
+\Hypertarget{classBodyLockInterface_a9d17ddb805293e6495f3569a4ed32969}\label{classBodyLockInterface_a9d17ddb805293e6495f3569a4ed32969} 
+virtual Shared\+Mutex \texorpdfstring{$\ast$}{*} {\bfseries Lock\+Write} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID) const =0
+\item 
+\Hypertarget{classBodyLockInterface_a786e43ce709b4214d7ebda26961d4725}\label{classBodyLockInterface_a786e43ce709b4214d7ebda26961d4725} 
+virtual void {\bfseries Unlock\+Write} (Shared\+Mutex \texorpdfstring{$\ast$}{*}in\+Mutex) const =0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Batch locking functions}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyLockInterface_a3bfe95981277029552253f953f5e2179}\label{classBodyLockInterface_a3bfe95981277029552253f953f5e2179} 
+virtual \mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{Mutex\+Mask}} {\bfseries Get\+Mutex\+Mask} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}in\+Bodies, int in\+Number) const =0
+\item 
+\Hypertarget{classBodyLockInterface_ae146eecd6e18c0b9b5e19f72a2696572}\label{classBodyLockInterface_ae146eecd6e18c0b9b5e19f72a2696572} 
+virtual void {\bfseries Lock\+Read} (\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{Mutex\+Mask}} in\+Mutex\+Mask) const =0
+\item 
+\Hypertarget{classBodyLockInterface_a702e6d9dba53f21d054dc51397bd9c39}\label{classBodyLockInterface_a702e6d9dba53f21d054dc51397bd9c39} 
+virtual void {\bfseries Unlock\+Read} (\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{Mutex\+Mask}} in\+Mutex\+Mask) const =0
+\item 
+\Hypertarget{classBodyLockInterface_a8ec7191e60755953798e570d01c0b30b}\label{classBodyLockInterface_a8ec7191e60755953798e570d01c0b30b} 
+virtual void {\bfseries Lock\+Write} (\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{Mutex\+Mask}} in\+Mutex\+Mask) const =0
+\item 
+\Hypertarget{classBodyLockInterface_ae7ab56617d45d42ee2935b0eaf9b57e6}\label{classBodyLockInterface_ae7ab56617d45d42ee2935b0eaf9b57e6} 
+virtual void {\bfseries Unlock\+Write} (\mbox{\hyperlink{classBodyLockInterface_a771acdfb6a269ae145b3b7867b560ebb}{Mutex\+Mask}} in\+Mutex\+Mask) const =0
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyLockInterface_a061f3644dbda5115a837f9acbf0d3f6e}\label{classBodyLockInterface_a061f3644dbda5115a837f9acbf0d3f6e} 
+\mbox{\hyperlink{classBodyManager}{Body\+Manager}} \& {\bfseries m\+Body\+Manager}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class interface for locking a body. Usually you will use \doxylink{classBodyLockRead}{Body\+Lock\+Read} / \doxylink{classBodyLockWrite}{Body\+Lock\+Write} / \doxylink{classBodyLockMultiRead}{Body\+Lock\+Multi\+Read} / \doxylink{classBodyLockMultiWrite}{Body\+Lock\+Multi\+Write} instead. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Body/Body\+Lock\+Interface.\+h\end{DoxyCompactItemize}

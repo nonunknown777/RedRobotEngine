@@ -1,0 +1,84 @@
+\doxysection{Ignore\+Multiple\+Bodies\+Filter Class Reference}
+\hypertarget{classIgnoreMultipleBodiesFilter}{}\label{classIgnoreMultipleBodiesFilter}\index{IgnoreMultipleBodiesFilter@{IgnoreMultipleBodiesFilter}}
+
+
+A simple body filter implementation that ignores multiple, specified bodies.  
+
+
+
+
+{\ttfamily \#include $<$Body\+Filter.\+h$>$}
+
+
+
+Inheritance diagram for Ignore\+Multiple\+Bodies\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{d7/db3/classIgnoreMultipleBodiesFilter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ignore\+Multiple\+Bodies\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{de/d64/classIgnoreMultipleBodiesFilter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classIgnoreMultipleBodiesFilter_afc300f42ae1b503867a2c2da86cecc4a}\label{classIgnoreMultipleBodiesFilter_afc300f42ae1b503867a2c2da86cecc4a} 
+void {\bfseries Clear} ()
+\begin{DoxyCompactList}\small\item\em Remove all bodies from the filter. \end{DoxyCompactList}\item 
+\Hypertarget{classIgnoreMultipleBodiesFilter_a4151dd0e414f86279940306d664a6042}\label{classIgnoreMultipleBodiesFilter_a4151dd0e414f86279940306d664a6042} 
+void {\bfseries Reserve} (uint in\+Size)
+\begin{DoxyCompactList}\small\item\em Reserve space for in\+Size body ID\textquotesingle{}s. \end{DoxyCompactList}\item 
+\Hypertarget{classIgnoreMultipleBodiesFilter_ad3bfab720ac4fcd05cef194b6ec0106a}\label{classIgnoreMultipleBodiesFilter_ad3bfab720ac4fcd05cef194b6ec0106a} 
+void {\bfseries Ignore\+Body} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID)
+\begin{DoxyCompactList}\small\item\em Add a body to be ignored. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classIgnoreMultipleBodiesFilter_a137d43d99694c431af49bcf1e1398b79}{Should\+Collide}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID) const override
+\begin{DoxyCompactList}\small\item\em Filter function. Returns true if we should collide with in\+Body\+ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classBodyFilter}{Body\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Body\+Filter} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual bool {\bfseries Should\+Collide\+Locked} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body) const
+\begin{DoxyCompactList}\small\item\em Filter function. Returns true if we should collide with in\+Body (this is called after the body is locked and makes it possible to filter based on body members) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A simple body filter implementation that ignores multiple, specified bodies. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classIgnoreMultipleBodiesFilter_a137d43d99694c431af49bcf1e1398b79}\label{classIgnoreMultipleBodiesFilter_a137d43d99694c431af49bcf1e1398b79} 
+\index{IgnoreMultipleBodiesFilter@{IgnoreMultipleBodiesFilter}!ShouldCollide@{ShouldCollide}}
+\index{ShouldCollide@{ShouldCollide}!IgnoreMultipleBodiesFilter@{IgnoreMultipleBodiesFilter}}
+\doxysubsubsection{\texorpdfstring{ShouldCollide()}{ShouldCollide()}}
+{\footnotesize\ttfamily virtual bool Ignore\+Multiple\+Bodies\+Filter\+::\+Should\+Collide (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body\+ID }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Filter function. Returns true if we should collide with in\+Body\+ID. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classBodyFilter_af6f1c46fdb171ad70570c1ca83b0eab7}{Body\+Filter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Body/Body\+Filter.\+h\end{DoxyCompactItemize}

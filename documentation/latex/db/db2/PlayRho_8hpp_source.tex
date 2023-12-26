@@ -1,0 +1,72 @@
+\doxysection{Play\+Rho.\+hpp}
+\hypertarget{PlayRho_8hpp_source}{}\label{PlayRho_8hpp_source}\index{includes/playrho/PlayRho.hpp@{includes/playrho/PlayRho.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2006-\/2009\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_PLAYRHO\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_PLAYRHO\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ These\ include\ files\ constitute\ the\ main\ PlayRho\ API}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ For\ purists,\ just\ include\ this\ first\ file.}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/World.hpp>}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ For\ pragmatists,\ add\ these\ for\ free\ function\ interfaces\ to\ the\ world\ and\ some\ additional}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ functionality.\ Note\ that\ using\ these\ free\ function\ interfaces,\ instead\ of\ directly\ using}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ world\ member\ functions,\ may\ help\ isolate\ your\ code\ from\ changes\ to\ the\ World\ class.}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/WorldMisc.hpp>}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/WorldBody.hpp>}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/WorldFixture.hpp>}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/WorldJoint.hpp>}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/WorldContact.hpp>}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ For\ any\ and\ all\ shape\ configurations,\ add\ one\ or\ more\ of\ the\ following.}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#include\ <PlayRho/Collision/Shapes/DiskShapeConf.hpp>}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#include\ <PlayRho/Collision/Shapes/EdgeShapeConf.hpp>}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#include\ <PlayRho/Collision/Shapes/ChainShapeConf.hpp>}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#include\ <PlayRho/Collision/Shapes/PolygonShapeConf.hpp>}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#include\ <PlayRho/Collision/Shapes/MultiShapeConf.hpp>}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ For\ any\ and\ all\ joint\ configurations,\ add\ one\ or\ more\ of\ the\ following.}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/DistanceJointConf.hpp>}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/FrictionJointConf.hpp>}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/GearJointConf.hpp>}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/MotorJointConf.hpp>}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/TargetJointConf.hpp>}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/PrismaticJointConf.hpp>}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/PulleyJointConf.hpp>}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/RevoluteJointConf.hpp>}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/RopeJointConf.hpp>}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/WeldJointConf.hpp>}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/Joints/WheelJointConf.hpp>}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_PLAYRHO\_HPP}}
+
+\end{DoxyCode}

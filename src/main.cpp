@@ -21,10 +21,17 @@
 
 #include <chrono>
 
+#include "references/resource_loader.hpp"
+
+void load_yaml() {
+	// ResourceLoader::load("scenes/Main.yaml");
+}
+
 int main(int argc, char* argv[])
 {
 	// Initialization
 	//--------------------------------------------------------------------------------------
+
 
 
 	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
@@ -36,6 +43,7 @@ int main(int argc, char* argv[])
 	auto delta_start = std::chrono::high_resolution_clock::now();
 
 	// bool window_created = false;
+	load_yaml();
 
 	// Main game loop
 	while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -45,14 +53,14 @@ int main(int argc, char* argv[])
         std::chrono::duration<float> delta_seconds = delta_current - delta_start;
         float delta = delta_seconds.count();
 
-		ClearBackground(RAYWHITE);
+		ClearBackground(GRAY);
 
 		tree.update(delta);
 
 	
         delta_start = delta_current;
 
-		DrawText(TextFormat("FPS: %03i",GetFPS()),720,100,16,GREEN);
+		// DrawText(TextFormat("FPS: %03i",GetFPS()),720,100,16,GREEN);
 		EndDrawing();
 	}
 	

@@ -1,0 +1,125 @@
+\doxysection{Triangle\+Splitter\+Morton Class Reference}
+\hypertarget{classTriangleSplitterMorton}{}\label{classTriangleSplitterMorton}\index{TriangleSplitterMorton@{TriangleSplitterMorton}}
+
+
+Splitter using Morton codes, see\+: \href{http://devblogs.nvidia.com/parallelforall/thinking-parallel-part-iii-tree-construction-gpu/}{\texttt{ http\+://devblogs.\+nvidia.\+com/parallelforall/thinking-\/parallel-\/part-\/iii-\/tree-\/construction-\/gpu/}}.  
+
+
+
+
+{\ttfamily \#include $<$Triangle\+Splitter\+Morton.\+h$>$}
+
+
+
+Inheritance diagram for Triangle\+Splitter\+Morton\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{d0/d6f/classTriangleSplitterMorton__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Triangle\+Splitter\+Morton\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{df/d21/classTriangleSplitterMorton__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTriangleSplitterMorton_adc29288c93087555041e2248ed8e84fb}\label{classTriangleSplitterMorton_adc29288c93087555041e2248ed8e84fb} 
+{\bfseries Triangle\+Splitter\+Morton} (const Vertex\+List \&in\+Vertices, const Indexed\+Triangle\+List \&in\+Triangles)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTriangleSplitterMorton_a874a5423ed55acbabc662812a0a5ec4f}{Get\+Stats}} (\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Stats}} \&out\+Stats) const override
+\begin{DoxyCompactList}\small\item\em Get stats of splitter. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classTriangleSplitterMorton_a511830b56a6a614106987a6fa39987cb}{Split}} (const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&in\+Triangles, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Left, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Right) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Triangle\+Splitter} (const Vertex\+List \&in\+Vertices, const Indexed\+Triangle\+List \&in\+Triangles)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Triangle\+Splitter} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} {\bfseries Get\+Initial\+Range} () const
+\begin{DoxyCompactList}\small\item\em \doxylink{structTriangleSplitter_1_1Range}{Range} of triangles to start with. \end{DoxyCompactList}\item 
+const Vertex\+List \& {\bfseries Get\+Vertices} () const
+\begin{DoxyCompactList}\small\item\em Get the list of vertices. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classIndexedTriangle}{Indexed\+Triangle}} \& {\bfseries Get\+Triangle} (uint in\+Idx) const
+\begin{DoxyCompactList}\small\item\em Get triangle by index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Split\+Internal} (const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&in\+Triangles, uint in\+Dimension, float in\+Split, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Left, \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&out\+Right)
+\begin{DoxyCompactList}\small\item\em Helper function to split triangles based on dimension and split value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classTriangleSplitter}{Triangle\+Splitter}}}
+\begin{DoxyCompactItemize}
+\item 
+const Vertex\+List \& {\bfseries m\+Vertices}
+\begin{DoxyCompactList}\small\item\em Vertices of the indexed triangles. \end{DoxyCompactList}\item 
+const Indexed\+Triangle\+List \& {\bfseries m\+Triangles}
+\begin{DoxyCompactList}\small\item\em Unsorted triangles. \end{DoxyCompactList}\item 
+Array$<$ \mbox{\hyperlink{classFloat3}{Float3}} $>$ {\bfseries m\+Centroids}
+\begin{DoxyCompactList}\small\item\em Unsorted centroids of triangles. \end{DoxyCompactList}\item 
+Array$<$ uint $>$ {\bfseries m\+Sorted\+Triangle\+Idx}
+\begin{DoxyCompactList}\small\item\em Indices to sort triangles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Splitter using Morton codes, see\+: \href{http://devblogs.nvidia.com/parallelforall/thinking-parallel-part-iii-tree-construction-gpu/}{\texttt{ http\+://devblogs.\+nvidia.\+com/parallelforall/thinking-\/parallel-\/part-\/iii-\/tree-\/construction-\/gpu/}}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTriangleSplitterMorton_a874a5423ed55acbabc662812a0a5ec4f}\label{classTriangleSplitterMorton_a874a5423ed55acbabc662812a0a5ec4f} 
+\index{TriangleSplitterMorton@{TriangleSplitterMorton}!GetStats@{GetStats}}
+\index{GetStats@{GetStats}!TriangleSplitterMorton@{TriangleSplitterMorton}}
+\doxysubsubsection{\texorpdfstring{GetStats()}{GetStats()}}
+{\footnotesize\ttfamily virtual void Triangle\+Splitter\+Morton\+::\+Get\+Stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Stats}} \&}]{out\+Stats }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get stats of splitter. 
+
+
+
+Implements \mbox{\hyperlink{classTriangleSplitter_ad58e7ea8a806e7e9df8ea5117ff2ebe8}{Triangle\+Splitter}}.
+
+\Hypertarget{classTriangleSplitterMorton_a511830b56a6a614106987a6fa39987cb}\label{classTriangleSplitterMorton_a511830b56a6a614106987a6fa39987cb} 
+\index{TriangleSplitterMorton@{TriangleSplitterMorton}!Split@{Split}}
+\index{Split@{Split}!TriangleSplitterMorton@{TriangleSplitterMorton}}
+\doxysubsubsection{\texorpdfstring{Split()}{Split()}}
+{\footnotesize\ttfamily virtual bool Triangle\+Splitter\+Morton\+::\+Split (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{in\+Triangles,  }\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{out\+Left,  }\item[{\mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}} \&}]{out\+Right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Split triangles into two groups left and right, returns false if no split could be made 
+\begin{DoxyParams}{Parameters}
+{\em in\+Triangles} & The range of triangles (in m\+Sorted\+Triangle\+Idx) to process \\
+\hline
+{\em out\+Left} & On return this will contain the ranges for the left subpart. m\+Sorted\+Triangle\+Idx may have been shuffled. \\
+\hline
+{\em out\+Right} & On return this will contain the ranges for the right subpart. m\+Sorted\+Triangle\+Idx may have been shuffled. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true when a split was found 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classTriangleSplitter_ad9cb9d125c24255c964427e186e5076e}{Triangle\+Splitter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Triangle\+Splitter/Triangle\+Splitter\+Morton.\+h\end{DoxyCompactItemize}

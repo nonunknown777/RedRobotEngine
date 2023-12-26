@@ -1,0 +1,75 @@
+\doxysection{Triangle\+Grouper\+Closest\+Centroid Class Reference}
+\hypertarget{classTriangleGrouperClosestCentroid}{}\label{classTriangleGrouperClosestCentroid}\index{TriangleGrouperClosestCentroid@{TriangleGrouperClosestCentroid}}
+
+
+{\ttfamily \#include $<$Triangle\+Grouper\+Closest\+Centroid.\+h$>$}
+
+
+
+Inheritance diagram for Triangle\+Grouper\+Closest\+Centroid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{de/dea/classTriangleGrouperClosestCentroid__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Triangle\+Grouper\+Closest\+Centroid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{d6/db2/classTriangleGrouperClosestCentroid__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classTriangleGrouperClosestCentroid_a7c3e8575ee43bd8626660029a3ef94a8}{Group}} (const Vertex\+List \&in\+Vertices, const Indexed\+Triangle\+List \&in\+Triangles, int in\+Group\+Size, Array$<$ uint $>$ \&out\+Grouped\+Triangle\+Indices) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classTriangleGrouper}{Triangle\+Grouper}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Triangle\+Grouper} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that groups triangles in batches of N. Starts with centroid with lowest X coordinate and finds N closest centroids, this repeats until all groups have been found. Time complexity\+: O(\+N\texorpdfstring{$^\wedge$}{\string^}2) 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTriangleGrouperClosestCentroid_a7c3e8575ee43bd8626660029a3ef94a8}\label{classTriangleGrouperClosestCentroid_a7c3e8575ee43bd8626660029a3ef94a8} 
+\index{TriangleGrouperClosestCentroid@{TriangleGrouperClosestCentroid}!Group@{Group}}
+\index{Group@{Group}!TriangleGrouperClosestCentroid@{TriangleGrouperClosestCentroid}}
+\doxysubsubsection{\texorpdfstring{Group()}{Group()}}
+{\footnotesize\ttfamily virtual void Triangle\+Grouper\+Closest\+Centroid\+::\+Group (\begin{DoxyParamCaption}\item[{const Vertex\+List \&}]{in\+Vertices,  }\item[{const Indexed\+Triangle\+List \&}]{in\+Triangles,  }\item[{int}]{in\+Group\+Size,  }\item[{Array$<$ uint $>$ \&}]{out\+Grouped\+Triangle\+Indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Group a batch of indexed triangles 
+\begin{DoxyParams}{Parameters}
+{\em in\+Vertices} & The list of vertices \\
+\hline
+{\em in\+Triangles} & The list of indexed triangles (indexes into in\+Vertices) \\
+\hline
+{\em in\+Group\+Size} & How big each group should be \\
+\hline
+{\em out\+Grouped\+Triangle\+Indices} & An ordered list of indices (indexing into in\+Triangles), contains groups of in\+Group\+Size large worth of indices to triangles that are grouped together. If the triangle count is not an exact multiple of in\+Group\+Size the last batch will be smaller. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classTriangleGrouper_a002940499a58b60dafdcdedb7e26fbb5}{Triangle\+Grouper}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Triangle\+Grouper/Triangle\+Grouper\+Closest\+Centroid.\+h\end{DoxyCompactItemize}

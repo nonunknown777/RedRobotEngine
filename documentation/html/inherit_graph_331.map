@@ -1,0 +1,25 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,361,123,388"/>
+<area shape="rect" id="Node000001" href="$da/dea/structplayrho_1_1HasType_3_01T_00_01std_1_1tuple_3_4_01_4.html" title="Has&#45;type trait template class specialized for std::tuple classes." alt="" coords="207,5,368,50"/>
+<area shape="poly" id="edge261_Node000000_Node000001" title=" " alt="" coords="64,345,71,286,87,209,101,169,118,130,141,93,169,60,186,47,206,38,208,43,189,52,172,64,145,96,123,132,106,171,92,211,76,287,69,345"/>
+<area shape="rect" id="Node000002" href="$dc/d40/structplayrho_1_1IsAddable.html" title="Template for determining if the given types are addable." alt="" coords="216,75,359,119"/>
+<area shape="poly" id="edge262_Node000000_Node000002" title=" " alt="" coords="67,344,78,297,97,240,127,181,146,154,169,130,191,115,215,105,217,110,193,120,172,134,150,157,131,183,102,242,83,299,73,345"/>
+<area shape="rect" id="Node000003" href="$d6/d7a/structplayrho_1_1IsArithmetic.html" title="Template for determining if the given type is an &quot;arithmetic&quot; type." alt="" coords="209,144,366,189"/>
+<area shape="poly" id="edge263_Node000000_Node000003" title=" " alt="" coords="73,345,87,312,108,272,135,233,169,199,207,179,210,183,172,203,139,236,112,275,92,314,77,347"/>
+<area shape="rect" id="Node000004" href="$d4/d44/structplayrho_1_1IsDivisable.html" title="Template for determining if the given types are divisable." alt="" coords="212,213,363,258"/>
+<area shape="poly" id="edge264_Node000000_Node000004" title=" " alt="" coords="84,346,121,306,169,268,211,250,213,255,172,273,124,310,87,350"/>
+<area shape="rect" id="Node000005" href="$dc/d93/structplayrho_1_1IsEqualityComparable.html" title="Template for determining if the given type is an equality comparable type." alt="" coords="177,283,398,327"/>
+<area shape="poly" id="edge265_Node000000_Node000005" title=" " alt="" coords="122,353,170,337,208,325,210,330,171,342,124,358"/>
+<area shape="rect" id="Node000006" href="$de/da8/structplayrho_1_1IsInequalityComparable.html" title="Template for determining if the given type is an inequality comparable type." alt="" coords="171,352,404,397"/>
+<area shape="poly" id="edge266_Node000000_Node000006" title=" " alt="" coords="138,372,170,372,170,377,138,377"/>
+<area shape="rect" id="Node000007" href="$d1/d48/structplayrho_1_1IsMatrix.html" title="Trait class for checking if type is a matrix type." alt="" coords="216,421,359,466"/>
+<area shape="poly" id="edge267_Node000000_Node000007" title=" " alt="" coords="124,391,171,406,217,420,215,425,170,412,122,396"/>
+<area shape="rect" id="Node000008" href="$df/d64/structplayrho_1_1IsMultipliable.html" title="Template for determining if the given types are multipliable." alt="" coords="204,491,371,535"/>
+<area shape="poly" id="edge268_Node000000_Node000008" title=" " alt="" coords="87,399,124,439,172,476,205,491,203,496,169,481,121,443,84,402"/>
+<area shape="rect" id="Node000009" href="$dc/de9/structplayrho_1_1IsSquareMatrix.html" title="Trait class for checking if type is a square matrix type." alt="" coords="199,560,376,605"/>
+<area shape="poly" id="edge269_Node000000_Node000009" title=" " alt="" coords="77,401,92,435,112,474,139,513,172,546,200,561,197,566,169,550,135,516,108,476,87,437,73,403"/>
+<area shape="rect" id="Node000010" href="$db/d27/structplayrho_1_1IsVector.html" title="Trait class for checking if type is a Vector type." alt="" coords="217,629,358,674"/>
+<area shape="poly" id="edge270_Node000000_Node000010" title=" " alt="" coords="73,403,83,450,102,507,131,565,150,592,172,615,193,629,217,639,215,644,191,634,169,619,146,595,127,568,97,509,78,451,67,405"/>
+<area shape="rect" id="Node000011" href="$d7/dbb/structplayrho_1_1detail_1_1IsIterableImpl.html" title="Low&#45;level implementation of the is&#45;iterable default value trait." alt="" coords="195,699,380,743"/>
+<area shape="poly" id="edge271_Node000000_Node000011" title=" " alt="" coords="69,403,76,462,92,538,106,578,123,616,145,653,172,684,197,701,194,705,169,688,141,656,118,619,101,580,87,539,71,463,64,404"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="CollisionEstimationResult" name="CollisionEstimationResult">
+<area shape="rect" id="Node000001" title="A structure that contains the estimated contact and friction impulses and the resulting body velociti..." alt="" coords="80,888,260,958"/>
+<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="5,157,167,738"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,738,82,802,105,863,112,874,107,877,100,865,77,804,64,739"/>
+<area shape="rect" id="Node000003" href="$de/d35/classStaticArray.html" title=" " alt="" coords="191,287,378,608"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="298,608,295,672,286,738,269,804,243,866,235,878,231,875,238,863,264,802,281,737,290,671,293,608"/>
+<area shape="rect" id="Node000004" href="$d4/d55/structStaticArray_1_1Storage.html" title=" " alt="" coords="214,5,355,92"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="287,92,287,270,282,270,282,92"/>
+</map>

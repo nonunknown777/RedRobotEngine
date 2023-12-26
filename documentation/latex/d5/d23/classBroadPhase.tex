@@ -1,0 +1,332 @@
+\doxysection{Broad\+Phase Class Reference}
+\hypertarget{classBroadPhase}{}\label{classBroadPhase}\index{BroadPhase@{BroadPhase}}
+
+
+Used to do coarse collision detection operations to quickly prune out bodies that will not collide.  
+
+
+
+
+{\ttfamily \#include $<$Broad\+Phase.\+h$>$}
+
+
+
+Inheritance diagram for Broad\+Phase\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/d00/classBroadPhase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Broad\+Phase\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/db5/classBroadPhase__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structBroadPhase_1_1UpdateState}{Update\+State}}
+\begin{DoxyCompactList}\small\item\em Context used during broadphase update. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}\label{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10} 
+using {\bfseries Add\+State} = void \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em Handle used during adding bodies to the broadphase. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_ad6b23ee0d0890136c3add81e64ac2efd}{Init}} (\mbox{\hyperlink{classBodyManager}{Body\+Manager}} \texorpdfstring{$\ast$}{*}in\+Body\+Manager, const \mbox{\hyperlink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}} \&in\+Layer\+Interface)
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_ab209cd12e5b3c915ed9d9c65e5d34089}{Optimize}} ()
+\begin{DoxyCompactList}\small\item\em Should be called after many objects have been inserted to make the broadphase more efficient, usually done on startup only. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhase_a4772ae4d99f16342a494b7c1e0066d8d}{Frame\+Sync}} ()
+\begin{DoxyCompactList}\small\item\em Must be called just before updating the broadphase when none of the body mutexes are locked. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhase_a09a84eceb64acb6636984a06bbb7a73a}{Lock\+Modifications}} ()
+\begin{DoxyCompactList}\small\item\em Must be called before Update\+Prepare to prevent modifications from being made to the tree. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structBroadPhase_1_1UpdateState}{Update\+State}} \mbox{\hyperlink{classBroadPhase_af28614224a9ae6463bce9f2039468852}{Update\+Prepare}} ()
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_ab78bec1eb43c0ff847eaf489bd2e95a2}{Update\+Finalize}} (const \mbox{\hyperlink{structBroadPhase_1_1UpdateState}{Update\+State}} \&in\+Update\+State)
+\begin{DoxyCompactList}\small\item\em Finalizing the update will quickly apply the changes. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhase_a588463ac5567b3cc721c45cdb90138d6}{Unlock\+Modifications}} ()
+\begin{DoxyCompactList}\small\item\em Must be called after Update\+Finalize to allow modifications to the broadphase. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{Add\+State}} \mbox{\hyperlink{classBroadPhase_adc636ae60807c46011ed3674b6a983c2}{Add\+Bodies\+Prepare}} (\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}io\+Bodies, int in\+Number)
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_a07f0fba42d45520a9bc2d22f2a636584}{Add\+Bodies\+Finalize}} (\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}io\+Bodies, int in\+Number, \mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{Add\+State}} in\+Add\+State)=0
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_a031638360b44d1a9b2176590796eb2a6}{Add\+Bodies\+Abort}} (\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}io\+Bodies, int in\+Number, \mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{Add\+State}} in\+Add\+State)
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_adfcebfeb40995d6a122dd53730eec6fd}{Remove\+Bodies}} (\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}io\+Bodies, int in\+Number)=0
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_a1a88ea16a35689cad897fcffa428a2ed}{Notify\+Bodies\+AABBChanged}} (\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}io\+Bodies, int in\+Number, bool in\+Take\+Lock=true)=0
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_a9acfe24c8f30529d412a26174dba503c}{Notify\+Bodies\+Layer\+Changed}} (\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}io\+Bodies, int in\+Number)=0
+\begin{DoxyCompactList}\small\item\em Call whenever the layer (and optionally the aabb as well) of a body changes (can change order of io\+Bodies array) \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhase_aecd92cc792c15c624b97eeeac11cc468}{Find\+Colliding\+Pairs}} (\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}io\+Active\+Bodies, int in\+Num\+Active\+Bodies, float in\+Speculative\+Contact\+Distance, const \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{Object\+Vs\+Broad\+Phase\+Layer\+Filter}} \&in\+Object\+Vs\+Broad\+Phase\+Layer\+Filter, const \mbox{\hyperlink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter}} \&in\+Object\+Layer\+Pair\+Filter, \mbox{\hyperlink{classCollisionCollector}{Body\+Pair\+Collector}} \&io\+Pair\+Collector) const =0
+\item 
+virtual void \mbox{\hyperlink{classBroadPhase_a324830206fb4032c6a6670fea6c15143}{Cast\+AABox\+No\+Lock}} (const \mbox{\hyperlink{structAABoxCast}{AABox\+Cast}} \&in\+Box, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter) const =0
+\begin{DoxyCompactList}\small\item\em Same as \doxylink{classBroadPhaseQuery_a8df87b27367ff5e9911f7966359d326a}{Broad\+Phase\+Query\+::\+Cast\+AABox} but can be implemented in a way to take no broad phase locks. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classBroadPhase_ac1c7ee25257e8b1c1e89f6bd610d77fb}{Get\+Bounds}} () const =0
+\begin{DoxyCompactList}\small\item\em Get the bounding box of all objects in the broadphase. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classBroadPhaseQuery}{Broad\+Phase\+Query}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Broad\+Phase\+Query} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_a1c74037652396c3584021f9b99341397}{Cast\+Ray}} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray, \mbox{\hyperlink{classCollisionCollector}{Ray\+Cast\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Cast a ray and add any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_a4a63335c1c6b386af32b22d4e74dbf5a}{Collide\+AABox}} (const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Get bodies intersecting with in\+Box and any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_afb74ce9d61cf7048e3ea8a48a2997d38}{Collide\+Sphere}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Center, float in\+Radius, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Get bodies intersecting with a sphere and any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_a191877420623144ad7ba7a78db56baa9}{Collide\+Point}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Get bodies intersecting with a point and any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_aeec59baf944dd3f63f172dbf732768b2}{Collide\+Oriented\+Box}} (const \mbox{\hyperlink{classOrientedBox}{Oriented\+Box}} \&in\+Box, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Get bodies intersecting with an oriented box and any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_a8df87b27367ff5e9911f7966359d326a}{Cast\+AABox}} (const \mbox{\hyperlink{structAABoxCast}{AABox\+Cast}} \&in\+Box, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Cast a box and add any hits to io\+Collector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBroadPhase_a7789150cb00a308ed3da284decedb169}\label{classBroadPhase_a7789150cb00a308ed3da284decedb169} 
+\mbox{\hyperlink{classBodyManager}{Body\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body\+Manager} = nullptr
+\begin{DoxyCompactList}\small\item\em Link to the body manager that manages the bodies in this broadphase. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Used to do coarse collision detection operations to quickly prune out bodies that will not collide. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBroadPhase_a031638360b44d1a9b2176590796eb2a6}\label{classBroadPhase_a031638360b44d1a9b2176590796eb2a6} 
+\index{BroadPhase@{BroadPhase}!AddBodiesAbort@{AddBodiesAbort}}
+\index{AddBodiesAbort@{AddBodiesAbort}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{AddBodiesAbort()}{AddBodiesAbort()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Add\+Bodies\+Abort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{io\+Bodies,  }\item[{int}]{in\+Number,  }\item[{\mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{Add\+State}}}]{in\+Add\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Abort adding bodies to the broadphase, supply the return value of Add\+Bodies\+Prepare in in\+Add\+State. This can be done on a background thread without influencing the broadphase. Please ensure that the io\+Bodies array passed to Add\+Bodies\+Prepare is unmodified and passed again to this function. 
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_ab9cada806786f864c0534021ce4a0dc8}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_a07f0fba42d45520a9bc2d22f2a636584}\label{classBroadPhase_a07f0fba42d45520a9bc2d22f2a636584} 
+\index{BroadPhase@{BroadPhase}!AddBodiesFinalize@{AddBodiesFinalize}}
+\index{AddBodiesFinalize@{AddBodiesFinalize}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{AddBodiesFinalize()}{AddBodiesFinalize()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Add\+Bodies\+Finalize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{io\+Bodies,  }\item[{int}]{in\+Number,  }\item[{\mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{Add\+State}}}]{in\+Add\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Finalize adding bodies to the broadphase, supply the return value of Add\+Bodies\+Prepare in in\+Add\+State. Please ensure that the io\+Bodies array passed to Add\+Bodies\+Prepare is unmodified and passed again to this function. 
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a12d2a9b7d93bbfd1a956cf8939bf2faa}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a5738a447a85dd4da7afb6e9abc84f057}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_adc636ae60807c46011ed3674b6a983c2}\label{classBroadPhase_adc636ae60807c46011ed3674b6a983c2} 
+\index{BroadPhase@{BroadPhase}!AddBodiesPrepare@{AddBodiesPrepare}}
+\index{AddBodiesPrepare@{AddBodiesPrepare}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{AddBodiesPrepare()}{AddBodiesPrepare()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classBroadPhase_ae7d00a18a41401f177a2a1d111265b10}{Add\+State}} Broad\+Phase\+::\+Add\+Bodies\+Prepare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{io\+Bodies,  }\item[{int}]{in\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Prepare adding in\+Number bodies at io\+Bodies to the broadphase, returns a handle that should be used in Add\+Bodies\+Finalize/\+Abort. This can be done on a background thread without influencing the broadphase. io\+Bodies may be shuffled around by this function and should be kept that way until Add\+Bodies\+Finalize/\+Abort is called. 
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_aa68e84a08df4f9253dbf242e8b0345d6}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_a324830206fb4032c6a6670fea6c15143}\label{classBroadPhase_a324830206fb4032c6a6670fea6c15143} 
+\index{BroadPhase@{BroadPhase}!CastAABoxNoLock@{CastAABoxNoLock}}
+\index{CastAABoxNoLock@{CastAABoxNoLock}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{CastAABoxNoLock()}{CastAABoxNoLock()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Cast\+AABox\+No\+Lock (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structAABoxCast}{AABox\+Cast}} \&}]{in\+Box,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Body\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&}]{in\+Broad\+Phase\+Layer\+Filter,  }\item[{const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&}]{in\+Object\+Layer\+Filter }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Same as \doxylink{classBroadPhaseQuery_a8df87b27367ff5e9911f7966359d326a}{Broad\+Phase\+Query\+::\+Cast\+AABox} but can be implemented in a way to take no broad phase locks. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a767ab3788fdc56b9ce8fc1c93ad39a70}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a3634d5f1f366a6e59c6150032caee378}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_aecd92cc792c15c624b97eeeac11cc468}\label{classBroadPhase_aecd92cc792c15c624b97eeeac11cc468} 
+\index{BroadPhase@{BroadPhase}!FindCollidingPairs@{FindCollidingPairs}}
+\index{FindCollidingPairs@{FindCollidingPairs}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{FindCollidingPairs()}{FindCollidingPairs()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Find\+Colliding\+Pairs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{io\+Active\+Bodies,  }\item[{int}]{in\+Num\+Active\+Bodies,  }\item[{float}]{in\+Speculative\+Contact\+Distance,  }\item[{const \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{Object\+Vs\+Broad\+Phase\+Layer\+Filter}} \&}]{in\+Object\+Vs\+Broad\+Phase\+Layer\+Filter,  }\item[{const \mbox{\hyperlink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter}} \&}]{in\+Object\+Layer\+Pair\+Filter,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Body\+Pair\+Collector}} \&}]{io\+Pair\+Collector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Find all colliding pairs between dynamic bodies Note that this function is very specifically tailored for the \doxylink{classPhysicsSystem_a4cdc76b2486dfaecfc9319d040e5e5f3}{Physics\+System\+::\+Update} function, hence it is not part of the \doxylink{classBroadPhaseQuery}{Broad\+Phase\+Query} interface. One of the assumptions it can make is that no locking is needed during the query as it will only be called during a very particular part of the update. 
+\begin{DoxyParams}{Parameters}
+{\em io\+Active\+Bodies} & is a list of bodies for which we need to find colliding pairs (this function can change the order of the io\+Active\+Bodies array). This can be a subset of the set of active bodies in the system. \\
+\hline
+{\em in\+Num\+Active\+Bodies} & is the size of the io\+Active\+Bodies array. \\
+\hline
+{\em in\+Speculative\+Contact\+Distance} & Distance at which speculative contact points will be created. \\
+\hline
+{\em in\+Object\+Vs\+Broad\+Phase\+Layer\+Filter} & is the filter that determines if an object can collide with a broadphase layer. \\
+\hline
+{\em in\+Object\+Layer\+Pair\+Filter} & is the filter that determines if two objects can collide. \\
+\hline
+{\em io\+Pair\+Collector} & receives callbacks for every body pair found. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a6ef1fee07360121b277fea9989290b77}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a425fef7a0c8ac0b6be8e7bc6e96675bf}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_a4772ae4d99f16342a494b7c1e0066d8d}\label{classBroadPhase_a4772ae4d99f16342a494b7c1e0066d8d} 
+\index{BroadPhase@{BroadPhase}!FrameSync@{FrameSync}}
+\index{FrameSync@{FrameSync}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{FrameSync()}{FrameSync()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Frame\+Sync (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Must be called just before updating the broadphase when none of the body mutexes are locked. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_a73d4be3eb8e3e6f3342074b1a484027d}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_ac1c7ee25257e8b1c1e89f6bd610d77fb}\label{classBroadPhase_ac1c7ee25257e8b1c1e89f6bd610d77fb} 
+\index{BroadPhase@{BroadPhase}!GetBounds@{GetBounds}}
+\index{GetBounds@{GetBounds}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{GetBounds()}{GetBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classAABox}{AABox}} Broad\+Phase\+::\+Get\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the bounding box of all objects in the broadphase. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a53308eee4f5781dc92f5adcf72512ec5}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a5dc01d628a617cca18a01c6fe7305c37}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_ad6b23ee0d0890136c3add81e64ac2efd}\label{classBroadPhase_ad6b23ee0d0890136c3add81e64ac2efd} 
+\index{BroadPhase@{BroadPhase}!Init@{Init}}
+\index{Init@{Init}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBodyManager}{Body\+Manager}} \texorpdfstring{$\ast$}{*}}]{in\+Body\+Manager,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerInterface}{Broad\+Phase\+Layer\+Interface}} \&}]{in\+Layer\+Interface }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Initialize the broadphase. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Body\+Manager} & The body manager singleton \\
+\hline
+{\em in\+Layer\+Interface} & Interface that maps object layers to broadphase layers. Note that the broadphase takes a pointer to the data inside in\+Object\+To\+Broad\+Phase\+Layer so this object should remain static. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_ac72ae370274737c01ae1a58b38520eb0}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_a09a84eceb64acb6636984a06bbb7a73a}\label{classBroadPhase_a09a84eceb64acb6636984a06bbb7a73a} 
+\index{BroadPhase@{BroadPhase}!LockModifications@{LockModifications}}
+\index{LockModifications@{LockModifications}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{LockModifications()}{LockModifications()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Lock\+Modifications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Must be called before Update\+Prepare to prevent modifications from being made to the tree. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_a045d7982b2bef393a5159ee4fba433a4}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_a1a88ea16a35689cad897fcffa428a2ed}\label{classBroadPhase_a1a88ea16a35689cad897fcffa428a2ed} 
+\index{BroadPhase@{BroadPhase}!NotifyBodiesAABBChanged@{NotifyBodiesAABBChanged}}
+\index{NotifyBodiesAABBChanged@{NotifyBodiesAABBChanged}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{NotifyBodiesAABBChanged()}{NotifyBodiesAABBChanged()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Notify\+Bodies\+AABBChanged (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{io\+Bodies,  }\item[{int}]{in\+Number,  }\item[{bool}]{in\+Take\+Lock = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Call whenever the aabb of a body changes (can change order of io\+Bodies array) in\+Take\+Lock should be false if we\textquotesingle{}re between Lock\+Modifications/\+Unlock\+Modificiations in which case care needs to be taken to not call this between Update\+Prepare/\+Update\+Finalize 
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_ad13115f234a1d0c0e5a2bcf4f0f1ba80}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a08b302e2c0b0f0c510641715039caa9e}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_a9acfe24c8f30529d412a26174dba503c}\label{classBroadPhase_a9acfe24c8f30529d412a26174dba503c} 
+\index{BroadPhase@{BroadPhase}!NotifyBodiesLayerChanged@{NotifyBodiesLayerChanged}}
+\index{NotifyBodiesLayerChanged@{NotifyBodiesLayerChanged}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{NotifyBodiesLayerChanged()}{NotifyBodiesLayerChanged()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Notify\+Bodies\+Layer\+Changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{io\+Bodies,  }\item[{int}]{in\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Call whenever the layer (and optionally the aabb as well) of a body changes (can change order of io\+Bodies array) 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a0d7cfd4dab13310e1247c6dfd65801bf}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_aefd3bce6d43726769dc9e4860cc25ac1}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_ab209cd12e5b3c915ed9d9c65e5d34089}\label{classBroadPhase_ab209cd12e5b3c915ed9d9c65e5d34089} 
+\index{BroadPhase@{BroadPhase}!Optimize@{Optimize}}
+\index{Optimize@{Optimize}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{Optimize()}{Optimize()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Optimize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Should be called after many objects have been inserted to make the broadphase more efficient, usually done on startup only. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_aee379593c8ce1ee2f801bec78262348a}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_adfcebfeb40995d6a122dd53730eec6fd}\label{classBroadPhase_adfcebfeb40995d6a122dd53730eec6fd} 
+\index{BroadPhase@{BroadPhase}!RemoveBodies@{RemoveBodies}}
+\index{RemoveBodies@{RemoveBodies}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{RemoveBodies()}{RemoveBodies()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Remove\+Bodies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBodyID}{Body\+ID}} \texorpdfstring{$\ast$}{*}}]{io\+Bodies,  }\item[{int}]{in\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Remove in\+Number bodies in io\+Bodies from the broadphase. io\+Bodies may be shuffled around by this function. 
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_afb71c69c92e2d71b7d9ae9b2837363d3}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_ad44075b1d6b35bee89ca31a4e923767f}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_a588463ac5567b3cc721c45cdb90138d6}\label{classBroadPhase_a588463ac5567b3cc721c45cdb90138d6} 
+\index{BroadPhase@{BroadPhase}!UnlockModifications@{UnlockModifications}}
+\index{UnlockModifications@{UnlockModifications}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{UnlockModifications()}{UnlockModifications()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Unlock\+Modifications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Must be called after Update\+Finalize to allow modifications to the broadphase. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_af766e7fd8a67c5662cc5c287f5a92980}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_ab78bec1eb43c0ff847eaf489bd2e95a2}\label{classBroadPhase_ab78bec1eb43c0ff847eaf489bd2e95a2} 
+\index{BroadPhase@{BroadPhase}!UpdateFinalize@{UpdateFinalize}}
+\index{UpdateFinalize@{UpdateFinalize}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{UpdateFinalize()}{UpdateFinalize()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+::\+Update\+Finalize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structBroadPhase_1_1UpdateState}{Update\+State}} \&}]{in\+Update\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Finalizing the update will quickly apply the changes. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_a0a61be3f02df6acf55ae87c5f49f79ae}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhase_af28614224a9ae6463bce9f2039468852}\label{classBroadPhase_af28614224a9ae6463bce9f2039468852} 
+\index{BroadPhase@{BroadPhase}!UpdatePrepare@{UpdatePrepare}}
+\index{UpdatePrepare@{UpdatePrepare}!BroadPhase@{BroadPhase}}
+\doxysubsubsection{\texorpdfstring{UpdatePrepare()}{UpdatePrepare()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{structBroadPhase_1_1UpdateState}{Update\+State}} Broad\+Phase\+::\+Update\+Prepare (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Update the broadphase, needs to be called frequently to update the internal state when bodies have been modified. The \doxylink{classBroadPhase_af28614224a9ae6463bce9f2039468852}{Update\+Prepare()} function can run in a background thread without influencing the broadphase 
+
+Reimplemented in \mbox{\hyperlink{classBroadPhaseQuadTree_a8faab95d425bd2613b5e8b0b98f0e9f4}{Broad\+Phase\+Quad\+Tree}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Broad\+Phase/Broad\+Phase.\+h\end{DoxyCompactItemize}

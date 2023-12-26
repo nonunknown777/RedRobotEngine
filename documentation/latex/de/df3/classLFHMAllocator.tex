@@ -1,0 +1,95 @@
+\doxysection{LFHMAllocator Class Reference}
+\hypertarget{classLFHMAllocator}{}\label{classLFHMAllocator}\index{LFHMAllocator@{LFHMAllocator}}
+
+
+Allocator for a lock free hash map.  
+
+
+
+
+{\ttfamily \#include $<$Lock\+Free\+Hash\+Map.\+h$>$}
+
+
+
+Inheritance diagram for LFHMAllocator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{db/d62/classLFHMAllocator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for LFHMAllocator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{d5/dbb/classLFHMAllocator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classLFHMAllocator_a97034c25b38fd7a1c3e3cf59b818afbb}\label{classLFHMAllocator_a97034c25b38fd7a1c3e3cf59b818afbb} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+LFHMAllocator} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLFHMAllocator_a9eda23a0f8dd6fac54adab81b97e7c60}{Init}} (uint in\+Object\+Store\+Size\+Bytes)
+\item 
+\Hypertarget{classLFHMAllocator_add8458530312383491f936a7147a8ce3}\label{classLFHMAllocator_add8458530312383491f936a7147a8ce3} 
+void {\bfseries Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear all allocations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLFHMAllocator_aca5503a8c5d7c9ac25b4f1baa89c5317}{Allocate}} (uint32 in\+Block\+Size, uint32 \&io\+Begin, uint32 \&io\+End)
+\item 
+\Hypertarget{classLFHMAllocator_a5b71c811049f9598a499cc58a1f2e8c0}\label{classLFHMAllocator_a5b71c811049f9598a499cc58a1f2e8c0} 
+{\footnotesize template$<$class T $>$ }\\uint32 {\bfseries To\+Offset} (const T \texorpdfstring{$\ast$}{*}in\+Data) const
+\begin{DoxyCompactList}\small\item\em Convert a pointer to an offset. \end{DoxyCompactList}\item 
+\Hypertarget{classLFHMAllocator_abcf9394d71567a53088ce79cf96ed0e1}\label{classLFHMAllocator_abcf9394d71567a53088ce79cf96ed0e1} 
+{\footnotesize template$<$class T $>$ }\\T \texorpdfstring{$\ast$}{*} {\bfseries From\+Offset} (uint32 in\+Offset) const
+\begin{DoxyCompactList}\small\item\em Convert an offset to a pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Allocator for a lock free hash map. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classLFHMAllocator_aca5503a8c5d7c9ac25b4f1baa89c5317}\label{classLFHMAllocator_aca5503a8c5d7c9ac25b4f1baa89c5317} 
+\index{LFHMAllocator@{LFHMAllocator}!Allocate@{Allocate}}
+\index{Allocate@{Allocate}!LFHMAllocator@{LFHMAllocator}}
+\doxysubsubsection{\texorpdfstring{Allocate()}{Allocate()}}
+{\footnotesize\ttfamily void LFHMAllocator\+::\+Allocate (\begin{DoxyParamCaption}\item[{uint32}]{in\+Block\+Size,  }\item[{uint32 \&}]{io\+Begin,  }\item[{uint32 \&}]{io\+End }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allocate a new block of data 
+\begin{DoxyParams}{Parameters}
+{\em in\+Block\+Size} & Size of block to allocate (will potentially return a smaller block if memory is full). \\
+\hline
+{\em io\+Begin} & Should be the start of the first free byte in current memory block on input, will contain the start of the first free byte in allocated block on return. \\
+\hline
+{\em io\+End} & Should be the byte beyond the current memory block on input, will contain the byte beyond the allocated block on return. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classLFHMAllocator_a9eda23a0f8dd6fac54adab81b97e7c60}\label{classLFHMAllocator_a9eda23a0f8dd6fac54adab81b97e7c60} 
+\index{LFHMAllocator@{LFHMAllocator}!Init@{Init}}
+\index{Init@{Init}!LFHMAllocator@{LFHMAllocator}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void LFHMAllocator\+::\+Init (\begin{DoxyParamCaption}\item[{uint}]{in\+Object\+Store\+Size\+Bytes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize the allocator 
+\begin{DoxyParams}{Parameters}
+{\em in\+Object\+Store\+Size\+Bytes} & Number of bytes to reserve for all key value pairs \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Lock\+Free\+Hash\+Map.\+h\item 
+includes/jolt/\+Core/Lock\+Free\+Hash\+Map.\+inl\end{DoxyCompactItemize}

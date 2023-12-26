@@ -1,0 +1,354 @@
+\doxysection{Math Functions For Fixed Types}
+\hypertarget{group__FixedMath}{}\label{group__FixedMath}\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+
+
+Common Mathematical Functions For \doxylink{classplayrho_1_1Fixed}{Fixed} Types.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceplayrho_1_1detail}{playrho\+::detail}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename BT , unsigned int FB, int N = 5$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{playrho\+::abs}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the absolute value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_gabedeaf69521357662f6b985ba637bf85}{playrho\+::pow}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ value, int n)
+\begin{DoxyCompactList}\small\item\em Computes the value of the given number raised to the given power. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga5512cf829f0df411e13da13b326cc855}{playrho\+::trunc}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Truncates the given value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga954d93d2829e0dee9e5d0231c9ac892f}{playrho\+::nextafter}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ from, \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ to) noexcept
+\begin{DoxyCompactList}\small\item\em Next after function for \doxylink{classplayrho_1_1Fixed}{Fixed} types. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga390f79e48c92adee4c1d21d1ba3310c4}{playrho\+::fmod}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ dividend, \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ divisor) noexcept
+\begin{DoxyCompactList}\small\item\em Computes the remainder of the division of the given dividend by the given divisor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\auto \mbox{\hyperlink{group__FixedMath_ga7a9d7e9855b45a3b4103632a47ccd6f4}{playrho\+::sqrt}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Square root\textquotesingle{}s the given value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\bool \mbox{\hyperlink{group__FixedMath_ga4ab479ab854291e9d03a25cc0986deca}{playrho\+::isnormal}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Gets whether the given value is normal -\/ i.\+e. not 0 nor infinite. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_gaebc2676bb19baa7930e959276d4e5cea}{playrho\+::sin}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the sine of the argument for \doxylink{classplayrho_1_1Fixed}{Fixed} types. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_gaffdd23423b0c646ab7ad1490da9e1471}{playrho\+::cos}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the cosine of the argument for \doxylink{classplayrho_1_1Fixed}{Fixed} types. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga909eedc191129a6abb2e1876e25eecf1}{playrho\+::atan}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the arc tangent. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga0495a9a28e8844d6ac68121d1d83f283}{playrho\+::atan2}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ y, \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ x)
+\begin{DoxyCompactList}\small\item\em Computes the multi-\/valued inverse tangent. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_gabecdbb0bac0c2f4825a3da5ca8a249ca}{playrho\+::log}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the natural logarithm of the given argument. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga3d5269782f3bc216d96deeaac4faffb6}{playrho\+::exp}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the Euler number raised to the power of the given argument. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_gac445c906f5d5e379cbf8934bdb170409}{playrho\+::pow}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ base, \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ exponent)
+\begin{DoxyCompactList}\small\item\em Computes the value of the base number raised to the power of the exponent. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga213e88c53422b6b956e53b0c41d409ae}{playrho\+::hypot}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ x, \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ y)
+\begin{DoxyCompactList}\small\item\em Computes the square root of the sum of the squares. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{group__FixedMath_ga1f9677f89537cc13addf1ca83e49936c}{playrho\+::round}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ value) noexcept
+\begin{DoxyCompactList}\small\item\em Rounds the given value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\bool \mbox{\hyperlink{group__FixedMath_ga8445167791eb53f1e8eb0dbf318293a1}{playrho\+::signbit}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ value) noexcept
+\begin{DoxyCompactList}\small\item\em Determines whether the given value is negative. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\constexpr bool \mbox{\hyperlink{group__FixedMath_gab57c92b7d96634ba24fa1f6c25647799}{playrho\+::isnan}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ value) noexcept
+\begin{DoxyCompactList}\small\item\em Gets whether the given value is not-\/a-\/number. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\bool \mbox{\hyperlink{group__FixedMath_gab8fa73692143466ca4d584aacf5749f1}{playrho\+::isfinite}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ value) noexcept
+\begin{DoxyCompactList}\small\item\em Gets whether the given value is finite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Common Mathematical Functions For \doxylink{classplayrho_1_1Fixed}{Fixed} Types. 
+
+\begin{DoxyNote}{Note}
+These functions directly compute their respective results. They don\textquotesingle{}t convert their inputs to a floating point type to use the standard math functions and then convert those results back to the fixed point type. This has pros and cons. Some pros are that\+: this won\textquotesingle{}t suffer from the "{}non-\/determinism"{} inherent with different hardware platforms potentially having different floating point or math library implementations; this implementation won\textquotesingle{}t suffer any overhead of converting between the underlying type and a floating point type. On the con side however\+: this implementation is unlikely to be anywhere near as tested as standard C++ math library functions likely are; this implementation is unlikely to have anywhere near as much performance tuning as standard library functions have had. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classplayrho_1_1Fixed}{Fixed} 
+
+\href{https://en.cppreference.com/w/cpp/numeric/math}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}\label{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!abs@{abs}}
+\index{abs@{abs}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{abs()}{abs()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB, int N = 5$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::abs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Computes the absolute value. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/fabs}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/fabs}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga909eedc191129a6abb2e1876e25eecf1}\label{group__FixedMath_ga909eedc191129a6abb2e1876e25eecf1} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!atan@{atan}}
+\index{atan@{atan}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{atan()}{atan()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::atan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the arc tangent. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/atan}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/atan}} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+Value between {\ttfamily -\/Pi / 2} and {\ttfamily Pi / 2}. 
+\end{DoxyReturn}
+\Hypertarget{group__FixedMath_ga0495a9a28e8844d6ac68121d1d83f283}\label{group__FixedMath_ga0495a9a28e8844d6ac68121d1d83f283} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!atan2@{atan2}}
+\index{atan2@{atan2}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{atan2()}{atan2()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::atan2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{y,  }\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the multi-\/valued inverse tangent. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/atan2}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/atan2}} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+Value between {\ttfamily -\/Pi} and {\ttfamily +Pi} inclusive. 
+\end{DoxyReturn}
+\Hypertarget{group__FixedMath_gaffdd23423b0c646ab7ad1490da9e1471}\label{group__FixedMath_gaffdd23423b0c646ab7ad1490da9e1471} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!cos@{cos}}
+\index{cos@{cos}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{cos()}{cos()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::cos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the cosine of the argument for \doxylink{classplayrho_1_1Fixed}{Fixed} types. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/cos}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/cos}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga3d5269782f3bc216d96deeaac4faffb6}\label{group__FixedMath_ga3d5269782f3bc216d96deeaac4faffb6} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!exp@{exp}}
+\index{exp@{exp}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{exp()}{exp()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::exp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the Euler number raised to the power of the given argument. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/exp}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/exp}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga390f79e48c92adee4c1d21d1ba3310c4}\label{group__FixedMath_ga390f79e48c92adee4c1d21d1ba3310c4} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!fmod@{fmod}}
+\index{fmod@{fmod}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{fmod()}{fmod()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::fmod (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{dividend,  }\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{divisor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Computes the remainder of the division of the given dividend by the given divisor. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/fmod}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/fmod}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga213e88c53422b6b956e53b0c41d409ae}\label{group__FixedMath_ga213e88c53422b6b956e53b0c41d409ae} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!hypot@{hypot}}
+\index{hypot@{hypot}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{hypot()}{hypot()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::hypot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{x,  }\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the square root of the sum of the squares. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/hypot}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/hypot}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_gab8fa73692143466ca4d584aacf5749f1}\label{group__FixedMath_gab8fa73692143466ca4d584aacf5749f1} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!isfinite@{isfinite}}
+\index{isfinite@{isfinite}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{isfinite()}{isfinite()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+bool playrho\+::isfinite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Gets whether the given value is finite. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/isfinite}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/isfinite}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_gab57c92b7d96634ba24fa1f6c25647799}\label{group__FixedMath_gab57c92b7d96634ba24fa1f6c25647799} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!isnan@{isnan}}
+\index{isnan@{isnan}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{isnan()}{isnan()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+constexpr bool playrho\+::isnan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets whether the given value is not-\/a-\/number. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/isnan}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/isnan}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga4ab479ab854291e9d03a25cc0986deca}\label{group__FixedMath_ga4ab479ab854291e9d03a25cc0986deca} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!isnormal@{isnormal}}
+\index{isnormal@{isnormal}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{isnormal()}{isnormal()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+bool playrho\+::isnormal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets whether the given value is normal -\/ i.\+e. not 0 nor infinite. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/isnormal}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/isnormal}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_gabecdbb0bac0c2f4825a3da5ca8a249ca}\label{group__FixedMath_gabecdbb0bac0c2f4825a3da5ca8a249ca} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!log@{log}}
+\index{log@{log}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the natural logarithm of the given argument. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/log}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/log}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga954d93d2829e0dee9e5d0231c9ac892f}\label{group__FixedMath_ga954d93d2829e0dee9e5d0231c9ac892f} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!nextafter@{nextafter}}
+\index{nextafter@{nextafter}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{nextafter()}{nextafter()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::nextafter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{from,  }\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Next after function for \doxylink{classplayrho_1_1Fixed}{Fixed} types. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/nextafter}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/nextafter}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_gac445c906f5d5e379cbf8934bdb170409}\label{group__FixedMath_gac445c906f5d5e379cbf8934bdb170409} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!pow@{pow}}
+\index{pow@{pow}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{pow()}{pow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::pow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{base,  }\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{exponent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the value of the base number raised to the power of the exponent. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/pow}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/pow}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_gabedeaf69521357662f6b985ba637bf85}\label{group__FixedMath_gabedeaf69521357662f6b985ba637bf85} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!pow@{pow}}
+\index{pow@{pow}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{pow()}{pow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::pow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{value,  }\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Computes the value of the given number raised to the given power. 
+
+\begin{DoxyNote}{Note}
+This implementation is for raising a given value to an integer power. This may have significantly different performance than raising a value to a non-\/integer power. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/pow}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/pow}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga1f9677f89537cc13addf1ca83e49936c}\label{group__FixedMath_ga1f9677f89537cc13addf1ca83e49936c} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!round@{round}}
+\index{round@{round}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{round()}{round()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::round (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Rounds the given value. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/round}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/round}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga8445167791eb53f1e8eb0dbf318293a1}\label{group__FixedMath_ga8445167791eb53f1e8eb0dbf318293a1} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!signbit@{signbit}}
+\index{signbit@{signbit}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{signbit()}{signbit()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+bool playrho\+::signbit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Determines whether the given value is negative. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/signbit}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/signbit}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_gaebc2676bb19baa7930e959276d4e5cea}\label{group__FixedMath_gaebc2676bb19baa7930e959276d4e5cea} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!sin@{sin}}
+\index{sin@{sin}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{sin()}{sin()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::sin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the sine of the argument for \doxylink{classplayrho_1_1Fixed}{Fixed} types. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/sin}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/sin}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga7a9d7e9855b45a3b4103632a47ccd6f4}\label{group__FixedMath_ga7a9d7e9855b45a3b4103632a47ccd6f4} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!sqrt@{sqrt}}
+\index{sqrt@{sqrt}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{sqrt()}{sqrt()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+auto playrho\+::sqrt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Square root\textquotesingle{}s the given value. 
+
+\begin{DoxyNote}{Note}
+This implementation isn\textquotesingle{}t meant to be fast, only correct enough. 
+
+The IEEE standard (presumably IEC 60559), requires {\ttfamily std\+::sqrt} to be exact to within half of a ULP for floating-\/point types (float, double). That sets a precedence that puts a high expectation on this implementation for fixed-\/point types. 
+
+"{}\+Domain error"{} occurs if {\ttfamily arg} is less than zero. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+Mathematical square root value of the given value or the {\ttfamily NaN} value. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/sqrt}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/sqrt}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__FixedMath_ga5512cf829f0df411e13da13b326cc855}\label{group__FixedMath_ga5512cf829f0df411e13da13b326cc855} 
+\index{Math Functions For Fixed Types@{Math Functions For Fixed Types}!trunc@{trunc}}
+\index{trunc@{trunc}!Math Functions For Fixed Types@{Math Functions For Fixed Types}}
+\doxysubsubsection{\texorpdfstring{trunc()}{trunc()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::trunc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Truncates the given value. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/c/numeric/math/trunc}{\texttt{ https\+://en.\+cppreference.\+com/w/c/numeric/math/trunc}} 
+\end{DoxySeeAlso}

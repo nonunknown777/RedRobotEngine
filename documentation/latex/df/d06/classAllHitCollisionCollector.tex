@@ -1,0 +1,68 @@
+\doxysection{All\+Hit\+Collision\+Collector\texorpdfstring{$<$}{<} Collector\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classAllHitCollisionCollector}{}\label{classAllHitCollisionCollector}\index{AllHitCollisionCollector$<$ CollectorType $>$@{AllHitCollisionCollector$<$ CollectorType $>$}}
+
+
+Simple implementation that collects all hits and optionally sorts them on distance.  
+
+
+
+
+{\ttfamily \#include $<$Collision\+Collector\+Impl.\+h$>$}
+
+
+
+Inheritance diagram for All\+Hit\+Collision\+Collector\texorpdfstring{$<$}{<} Collector\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{df/db8/classAllHitCollisionCollector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for All\+Hit\+Collision\+Collector\texorpdfstring{$<$}{<} Collector\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d3/d8d/classAllHitCollisionCollector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAllHitCollisionCollector_ac61acffd70a24d96dbf53ef96134fecf}\label{classAllHitCollisionCollector_ac61acffd70a24d96dbf53ef96134fecf} 
+using {\bfseries Result\+Type} = typename Collector\+Type\+::\+Result\+Type
+\begin{DoxyCompactList}\small\item\em Redeclare Result\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAllHitCollisionCollector_af3bfc75b183c4406c65807ff0d62dd43}\label{classAllHitCollisionCollector_af3bfc75b183c4406c65807ff0d62dd43} 
+virtual void {\bfseries Reset} () override
+\item 
+\Hypertarget{classAllHitCollisionCollector_ae581ce1300189f781fafe702951dbf96}\label{classAllHitCollisionCollector_ae581ce1300189f781fafe702951dbf96} 
+virtual void {\bfseries Add\+Hit} (const \mbox{\hyperlink{classAllHitCollisionCollector_ac61acffd70a24d96dbf53ef96134fecf}{Result\+Type}} \&in\+Result) override
+\item 
+\Hypertarget{classAllHitCollisionCollector_a6301883d4dfcfd89e61ac4cd62e5c92a}\label{classAllHitCollisionCollector_a6301883d4dfcfd89e61ac4cd62e5c92a} 
+void {\bfseries Sort} ()
+\begin{DoxyCompactList}\small\item\em Order hits on closest first. \end{DoxyCompactList}\item 
+\Hypertarget{classAllHitCollisionCollector_abb747117423ae48dc5e4f661084ef32a}\label{classAllHitCollisionCollector_abb747117423ae48dc5e4f661084ef32a} 
+bool {\bfseries Had\+Hit} () const
+\begin{DoxyCompactList}\small\item\em Check if any hits were collected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAllHitCollisionCollector_ad55540177fc266c38b2170b4105bed54}\label{classAllHitCollisionCollector_ad55540177fc266c38b2170b4105bed54} 
+Array$<$ \mbox{\hyperlink{classAllHitCollisionCollector_ac61acffd70a24d96dbf53ef96134fecf}{Result\+Type}} $>$ {\bfseries m\+Hits}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Collector\+Type$>$\newline
+class All\+Hit\+Collision\+Collector$<$ Collector\+Type $>$}
+Simple implementation that collects all hits and optionally sorts them on distance. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Collision\+Collector\+Impl.\+h\end{DoxyCompactItemize}

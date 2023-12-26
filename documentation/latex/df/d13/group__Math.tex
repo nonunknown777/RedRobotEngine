@@ -1,0 +1,629 @@
+\doxysection{Additional Math Functions}
+\hypertarget{group__Math}{}\label{group__Math}\index{Additional Math Functions@{Additional Math Functions}}
+
+
+Additional functions for common mathematical operations.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , typename U $>$ }\\constexpr U \mbox{\hyperlink{group__Math_ga9cf6fb58c36515834217c6b150b43772}{playrho\+::\+Secant}} (T target, U a1, T s1, U a2, T s2) noexcept
+\begin{DoxyCompactList}\small\item\em Secant method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr T \mbox{\hyperlink{group__Math_ga8ccc71ac7ccd063fd81a31d78c3d2c90}{playrho\+::\+Bisect}} (T a1, T a2) noexcept
+\begin{DoxyCompactList}\small\item\em Bisection method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr bool \mbox{\hyperlink{group__Math_ga76721557b2b677d24efa2d0415954be5}{playrho\+::\+Is\+Odd}} (T val) noexcept
+\begin{DoxyCompactList}\small\item\em Is-\/odd. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga948ebcbc9ef959d24546e6c8ff848fa6}\label{group__Math_ga948ebcbc9ef959d24546e6c8ff848fa6} 
+{\footnotesize template$<$class TYPE $>$ }\\constexpr auto {\bfseries playrho\+::\+Square} (TYPE t) noexcept
+\begin{DoxyCompactList}\small\item\em Squares the given value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{group__Math_gab870a9188fcc77c905807fa718a8268d}{playrho\+::\+Atan2}} (T y, T x)
+\begin{DoxyCompactList}\small\item\em Computes the arc-\/tangent of the given y and x values. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga8b2133f1c2e5299035bb059d2d2706cd}\label{group__Math_ga8b2133f1c2e5299035bb059d2d2706cd} 
+{\footnotesize template$<$typename T , typename  = std\+::enable\+\_\+if\+\_\+t$<$    Is\+Iterable$<$\+T$>$\+::value \&\& Is\+Addable$<$decltype(\texorpdfstring{$\ast$}{*}begin(std\+::declval$<$\+T$>$()))$>$\+::value$>$ }\\auto {\bfseries playrho\+::\+Average} (const T \&span)
+\begin{DoxyCompactList}\small\item\em Computes the average of the given values. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga5cbd801645e8c41a0345c4a73ef6eb1e}\label{group__Math_ga5cbd801645e8c41a0345c4a73ef6eb1e} 
+{\footnotesize template$<$typename T $>$ }\\std\+::enable\+\_\+if\+\_\+t$<$ \mbox{\hyperlink{structplayrho_1_1IsArithmetic}{Is\+Arithmetic}}$<$ T $>$\+::value, T $>$ {\bfseries playrho\+::\+Round\+Off} (T value, unsigned precision=100000)
+\begin{DoxyCompactList}\small\item\em Computes the rounded value of the given value. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga812ea5eaf66fb9d1bffa799886b2eee3}\label{group__Math_ga812ea5eaf66fb9d1bffa799886b2eee3} 
+\mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} {\bfseries playrho\+::\+Round\+Off} (\mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} value, std\+::uint32\+\_\+t precision=100000)
+\begin{DoxyCompactList}\small\item\em Computes the rounded value of the given value. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_gad58b963716375c0487ce3826c7d7ace7}\label{group__Math_gad58b963716375c0487ce3826c7d7ace7} 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\constexpr \mbox{\hyperlink{structplayrho_1_1Vector}{Vector}}$<$ T, N $>$ {\bfseries playrho\+::abs} (const \mbox{\hyperlink{structplayrho_1_1Vector}{Vector}}$<$ T, N $>$ \&v) noexcept
+\begin{DoxyCompactList}\small\item\em Absolute value function for vectors. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_gac862a8609b82126d0683ecb38a498087}\label{group__Math_gac862a8609b82126d0683ecb38a498087} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{d2\+::\+Unit\+Vec}} {\bfseries playrho\+::abs} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{d2\+::\+Unit\+Vec}} \&v) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the absolute value of the given value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+arithmetic$<$ T $>$\+::value, bool $>$ \mbox{\hyperlink{group__Math_gaab1c1d9c6655688cefde069d1a5e7020}{playrho\+::\+Almost\+Zero}} (T value)
+\begin{DoxyCompactList}\small\item\em Gets whether a given value is almost zero. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga3a916ac88804c89deb249a0e2673f00c}\label{group__Math_ga3a916ac88804c89deb249a0e2673f00c} 
+{\footnotesize template$<$typename T $>$ }\\constexpr std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+floating\+\_\+point$<$ T $>$\+::value, bool $>$ {\bfseries playrho\+::\+Almost\+Equal} (T x, T y, int ulp=2)
+\begin{DoxyCompactList}\small\item\em Determines whether the given two values are "{}almost equal"{}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{group__Math_ga25b52facf9e28f05e5e41f4e7b7ff54e}{playrho\+::\+Modulo\+Via\+Fmod}} (T dividend, T divisor) noexcept
+\begin{DoxyCompactList}\small\item\em Modulo operation using {\ttfamily std\+::fmod}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{group__Math_ga84e7cb2a415fcb956202c8d7e1b1d200}{playrho\+::\+Modulo\+Via\+Trunc}} (T dividend, T divisor) noexcept
+\begin{DoxyCompactList}\small\item\em Modulo operation using {\ttfamily std\+::trunc}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} \mbox{\hyperlink{group__Math_ga156a2abff11f978a8df25efbf0c10147}{playrho\+::\+Get\+Normalized}} (\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} value) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}normalized"{} value of the given angle. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} \mbox{\hyperlink{group__Math_ga56785e4c60180ef416fe29f68ccf525a}{playrho\+::\+Get\+Angle}} (const \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ value)
+\begin{DoxyCompactList}\small\item\em Gets the angle. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr auto \mbox{\hyperlink{group__Math_ga1ac00e661c653f21ddbd0693bbb039ac}{playrho\+::\+Get\+Magnitude\+Squared}} (T value) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the square of the magnitude of the given iterable value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\auto \mbox{\hyperlink{group__Math_ga85c114f129eeee63e60ec7d4703bbd65}{playrho\+::\+Get\+Magnitude}} (T value)
+\begin{DoxyCompactList}\small\item\em Gets the magnitude of the given value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\constexpr auto \mbox{\hyperlink{group__Math_ga451c8554a408d41df85a41650e0ada93}{playrho\+::\+Dot}} (const T1 a, const T2 b) noexcept
+\begin{DoxyCompactList}\small\item\em Performs the dot product on two vectors (A and B). \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T1 , class T2 , std\+::enable\+\_\+if\+\_\+t$<$ std\+::tuple\+\_\+size$<$ T1 $>$\+::value==2 \&\&std\+::tuple\+\_\+size$<$ T2 $>$\+::value==2, int $>$  = 0$>$ }\\constexpr auto \mbox{\hyperlink{group__Math_ga804d55e7545685ee9841c239bdac7c8f}{playrho\+::\+Cross}} (T1 a, T2 b) noexcept
+\begin{DoxyCompactList}\small\item\em Performs the 2-\/element analog of the cross product of two vectors. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename U $>$ }\\constexpr auto \mbox{\hyperlink{group__Math_ga3846333746b73978c91e250c6f239ce3}{playrho\+::\+Solve}} (const \mbox{\hyperlink{namespaceplayrho_a26aabbb6723402cb9e12cf32e17beebc}{Matrix22}}$<$ U $>$ mat, const \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$ b) noexcept
+\begin{DoxyCompactList}\small\item\em Solves A \texorpdfstring{$\ast$}{*} x = b, where b is a column vector. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga00cc9646bab6ce84d6b4704f8c1e0ade}\label{group__Math_ga00cc9646bab6ce84d6b4704f8c1e0ade} 
+{\footnotesize template$<$class IN\+\_\+\+TYPE $>$ }\\constexpr auto {\bfseries playrho\+::\+Invert} (const \mbox{\hyperlink{namespaceplayrho_a26aabbb6723402cb9e12cf32e17beebc}{Matrix22}}$<$ IN\+\_\+\+TYPE $>$ value) noexcept
+\begin{DoxyCompactList}\small\item\em Inverts the given value. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{namespaceplayrho_a63f6dcdf3763052ea25099973c7c00ad}{Vec3}} \mbox{\hyperlink{group__Math_gab4795a90a377c5335ce5b1900caf6d24}{playrho\+::\+Solve33}} (const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&mat, const \mbox{\hyperlink{namespaceplayrho_a63f6dcdf3763052ea25099973c7c00ad}{Vec3}} b) noexcept
+\begin{DoxyCompactList}\small\item\em Solves A \texorpdfstring{$\ast$}{*} x = b, where b is a column vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr T \mbox{\hyperlink{group__Math_ga0a0606abee6bd0cc122578a2a640f044}{playrho\+::\+Solve22}} (const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&mat, const T b) noexcept
+\begin{DoxyCompactList}\small\item\em Solves A \texorpdfstring{$\ast$}{*} x = b, where b is a column vector. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \mbox{\hyperlink{group__Math_gaeaceaa1218e1f86e27e6678db247bc79}{playrho\+::\+Get\+Inverse22}} (const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&value) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the inverse of the given matrix as a 2-\/by-\/2. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \mbox{\hyperlink{group__Math_gae7a513e105038f6425bfc83180a69cd3}{playrho\+::\+Get\+Sym\+Inverse33}} (const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&value) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the symmetric inverse of this matrix as a 3-\/by-\/3. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\constexpr auto \mbox{\hyperlink{group__Math_ga6aa0aece94173885da01b5e3a6737af7}{playrho\+::\+Get\+Rev\+Perpendicular}} (const T vector) noexcept
+\begin{DoxyCompactList}\small\item\em Gets a vector counter-\/clockwise (reverse-\/clockwise) perpendicular to the given vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\constexpr auto \mbox{\hyperlink{group__Math_ga87b57d633b625c58f9200a201e4664a7}{playrho\+::\+Get\+Fwd\+Perpendicular}} (const T vector) noexcept
+\begin{DoxyCompactList}\small\item\em Gets a vector clockwise (forward-\/clockwise) perpendicular to the given vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$std\+::size\+\_\+t M, typename T1 , std\+::size\+\_\+t N, typename T2 $>$ }\\constexpr auto \mbox{\hyperlink{group__Math_gac898f9ba1986f3886cb93c0668613c41}{playrho\+::\+Transform}} (const \mbox{\hyperlink{structplayrho_1_1Vector}{Vector}}$<$ T1, M $>$ v, const \mbox{\hyperlink{namespaceplayrho_acbf97bd8e3f0f2ce4588735388f4089a}{Matrix}}$<$ T2, M, N $>$ \&m) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplies an M-\/element vector by an M-\/by-\/N matrix. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga52a7716aaab729705e73d4d533e81672}\label{group__Math_ga52a7716aaab729705e73d4d533e81672} 
+constexpr \mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} {\bfseries playrho\+::\+Transform} (const \mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} v, const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&A) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplies a vector by a matrix. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} \mbox{\hyperlink{group__Math_ga819a9ef6f9c3d492b5177ca25077618e}{playrho\+::\+Inverse\+Transform}} (const \mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} v, const \mbox{\hyperlink{namespaceplayrho_a02c09bb6556e3168c0085871358d2f71}{Mat22}} \&A) noexcept
+\item 
+\Hypertarget{group__Math_gab471bae6413067374ab8d8262533e402}\label{group__Math_gab471bae6413067374ab8d8262533e402} 
+constexpr \mbox{\hyperlink{namespaceplayrho_a02c09bb6556e3168c0085871358d2f71}{Mat22}} {\bfseries playrho\+::\+MulT} (const \mbox{\hyperlink{namespaceplayrho_a02c09bb6556e3168c0085871358d2f71}{Mat22}} \&A, const \mbox{\hyperlink{namespaceplayrho_a02c09bb6556e3168c0085871358d2f71}{Mat22}} \&B) noexcept
+\begin{DoxyCompactList}\small\item\em Computes A\texorpdfstring{$^\wedge$}{\string^}T \texorpdfstring{$\ast$}{*} B. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga94fee43efb2fa412b816e9e0a7df87f8}\label{group__Math_ga94fee43efb2fa412b816e9e0a7df87f8} 
+\mbox{\hyperlink{namespaceplayrho_a02c09bb6556e3168c0085871358d2f71}{Mat22}} {\bfseries playrho\+::abs} (const \mbox{\hyperlink{namespaceplayrho_a02c09bb6556e3168c0085871358d2f71}{Mat22}} \&A)
+\begin{DoxyCompactList}\small\item\em Gets the absolute value of the given value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr T \mbox{\hyperlink{group__Math_ga2e157fe9f9288debcd4be111a2485991}{playrho\+::\+Next\+Power\+Of\+Two}} (T x)
+\begin{DoxyCompactList}\small\item\em Gets the next largest power of 2. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga0c7d2525a406c1f83c0574e46a2cee32}\label{group__Math_ga0c7d2525a406c1f83c0574e46a2cee32} 
+\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} {\bfseries playrho\+::\+Normalize} (\mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} \&vector)
+\begin{DoxyCompactList}\small\item\em Converts the given vector into a unit vector and returns its original length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} \mbox{\hyperlink{group__Math_gae769785f0540a4b8960b282f6b105c14}{playrho\+::\+Compute\+Centroid}} (const \mbox{\hyperlink{classplayrho_1_1Span}{Span}}$<$ const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} $>$ \&vertices)
+\begin{DoxyCompactList}\small\item\em Computes the centroid of a counter-\/clockwise array of 3 or more vertices. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr auto \mbox{\hyperlink{group__Math_ga3970833d43e94acccda025c9f6959594}{playrho\+::\+Get\+Modulo\+Next}} (T value, T count) noexcept -\/$>$ T
+\begin{DoxyCompactList}\small\item\em Gets the modulo next value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\constexpr auto \mbox{\hyperlink{group__Math_ga1ff989523e82e44e08f8cdee3451674a}{playrho\+::\+Get\+Modulo\+Prev}} (T value, T count) noexcept -\/$>$ T
+\begin{DoxyCompactList}\small\item\em Gets the modulo previous value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} \mbox{\hyperlink{group__Math_ga8c036532db1260373b97c1d85360894c}{playrho\+::\+Get\+Delta}} (\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} a1, \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} a2) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the shortest angular distance to go from angle 1 to angle 2. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} \mbox{\hyperlink{group__Math_ga07dcf271b85b501cd2d7188902066e55}{playrho\+::\+Get\+Rev\+Rotational\+Angle}} (\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} a1, \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} a2) noexcept
+\item 
+\Hypertarget{group__Math_ga3b8e8abc999b0c63cf1921b0edcf0b36}\label{group__Math_ga3b8e8abc999b0c63cf1921b0edcf0b36} 
+std\+::vector$<$ \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} $>$ {\bfseries playrho\+::\+Get\+Circle\+Vertices} (\mbox{\hyperlink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}} radius, unsigned slices, \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} start=0\+\_\+deg, \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}} turns=\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{1\})
+\begin{DoxyCompactList}\small\item\em Gets the vertices for a circle described by the given parameters. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga0eb57dabfe8d3db9e509a6b493173358}\label{group__Math_ga0eb57dabfe8d3db9e509a6b493173358} 
+\mbox{\hyperlink{group__CheckedValues_gac74ec9c65c8f22cefed941aa486af9e3}{Non\+Negative}}$<$ \mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{Area}} $>$ {\bfseries playrho\+::\+Get\+Area\+Of\+Circle} (\mbox{\hyperlink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}} radius)
+\begin{DoxyCompactList}\small\item\em Gets the area of a circle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__CheckedValues_gac74ec9c65c8f22cefed941aa486af9e3}{Non\+Negative}}$<$ \mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{Area}} $>$ \mbox{\hyperlink{group__Math_ga118f8284073d2638e48ef8f13177e1d9}{playrho\+::\+Get\+Area\+Of\+Polygon}} (\mbox{\hyperlink{classplayrho_1_1Span}{Span}}$<$ const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} $>$ vertices)
+\begin{DoxyCompactList}\small\item\em Gets the area of a polygon. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__PhysicalQuantities_ga9ded7e1044d55beb1ca2957d671ece44}{Second\+Moment\+Of\+Area}} \mbox{\hyperlink{group__Math_ga760adfdd1cb30bdae8cd37c1ae5da485}{playrho\+::\+Get\+Polar\+Moment}} (\mbox{\hyperlink{classplayrho_1_1Span}{Span}}$<$ const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} $>$ vertices)
+\begin{DoxyCompactList}\small\item\em Gets the polar moment of the area enclosed by the given vertices. \end{DoxyCompactList}\item 
+\Hypertarget{group__Math_ga901850dd04519b8e6d642ab96a10d9ea}\label{group__Math_ga901850dd04519b8e6d642ab96a10d9ea} 
+{\footnotesize template$<$typename T , std\+::size\+\_\+t N$>$ }\\constexpr \mbox{\hyperlink{classVector}{Vector}}$<$ T, N $>$ {\bfseries abs} (const \mbox{\hyperlink{classVector}{Vector}}$<$ T, N $>$ \&v) noexcept
+\begin{DoxyCompactList}\small\item\em Absolute value function for vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Additional functions for common mathematical operations. 
+
+These are non-\/member non-\/friend functions for mathematical operations especially those with mixed input and output types. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__Math_gaab1c1d9c6655688cefde069d1a5e7020}\label{group__Math_gaab1c1d9c6655688cefde069d1a5e7020} 
+\index{Additional Math Functions@{Additional Math Functions}!AlmostZero@{AlmostZero}}
+\index{AlmostZero@{AlmostZero}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{AlmostZero()}{AlmostZero()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+arithmetic$<$ T $>$\+::value, bool $>$ playrho\+::\+Almost\+Zero (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Gets whether a given value is almost zero. 
+
+An almost zero value is "{}subnormal"{}. Dividing by these values can lead to odd results like a divide by zero trap occurring. \begin{DoxyReturn}{Returns}
+{\ttfamily true} if the given value is almost zero, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__Math_gab870a9188fcc77c905807fa718a8268d}\label{group__Math_gab870a9188fcc77c905807fa718a8268d} 
+\index{Additional Math Functions@{Additional Math Functions}!Atan2@{Atan2}}
+\index{Atan2@{Atan2}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Atan2()}{Atan2()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+auto playrho\+::\+Atan2 (\begin{DoxyParamCaption}\item[{T}]{y,  }\item[{T}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the arc-\/tangent of the given y and x values. 
+
+\begin{DoxyReturn}{Returns}
+Normalized angle -\/ an angle between -\/Pi and Pi inclusively. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/atan2}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/atan2}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_ga8ccc71ac7ccd063fd81a31d78c3d2c90}\label{group__Math_ga8ccc71ac7ccd063fd81a31d78c3d2c90} 
+\index{Additional Math Functions@{Additional Math Functions}!Bisect@{Bisect}}
+\index{Bisect@{Bisect}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Bisect()}{Bisect()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr T playrho\+::\+Bisect (\begin{DoxyParamCaption}\item[{T}]{a1,  }\item[{T}]{a2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Bisection method. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Bisection_method}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Bisection\+\_\+method}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_gae769785f0540a4b8960b282f6b105c14}\label{group__Math_gae769785f0540a4b8960b282f6b105c14} 
+\index{Additional Math Functions@{Additional Math Functions}!ComputeCentroid@{ComputeCentroid}}
+\index{ComputeCentroid@{ComputeCentroid}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{ComputeCentroid()}{ComputeCentroid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} playrho\+::\+Compute\+Centroid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1Span}{Span}}$<$ const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} $>$ \&}]{vertices }\end{DoxyParamCaption})}
+
+
+
+Computes the centroid of a counter-\/clockwise array of 3 or more vertices. 
+
+\begin{DoxyNote}{Note}
+Behavior is undefined if there are less than 3 vertices or the vertices don\textquotesingle{}t go counter-\/clockwise. 
+\end{DoxyNote}
+\Hypertarget{group__Math_ga804d55e7545685ee9841c239bdac7c8f}\label{group__Math_ga804d55e7545685ee9841c239bdac7c8f} 
+\index{Additional Math Functions@{Additional Math Functions}!Cross@{Cross}}
+\index{Cross@{Cross}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Cross()}{Cross()}}
+{\footnotesize\ttfamily template$<$class T1 , class T2 , std\+::enable\+\_\+if\+\_\+t$<$ std\+::tuple\+\_\+size$<$ T1 $>$\+::value==2 \&\&std\+::tuple\+\_\+size$<$ T2 $>$\+::value==2, int $>$  = 0$>$ \\
+constexpr auto playrho\+::\+Cross (\begin{DoxyParamCaption}\item[{T1}]{a,  }\item[{T2}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Performs the 2-\/element analog of the cross product of two vectors. 
+
+Cross-\/products the given two values.
+
+Defined as the result of\+: {\ttfamily (a.\+x \texorpdfstring{$\ast$}{*} b.\+y) -\/ (a.\+y \texorpdfstring{$\ast$}{*} b.\+x)}.
+
+\begin{DoxyNote}{Note}
+This operation is dimension squashing. I.\+e. A cross of a 2-\/D length by a 2-\/D unit vector results in a 1-\/D length value. 
+
+The unit of the result is the 1-\/D product of the inputs. 
+
+This operation is anti-\/commutative. I.\+e. Cross(a, b) == -\/Cross(b, a). 
+
+The result will be 0 if any of the following are true\+: vector A or vector B has a length of zero; vectors A and B point in the same direction; or vectors A and B point in exactly opposite direction of each other. 
+
+The result will be positive if\+: neither vector A nor B has a length of zero; and vector B is at an angle from vector A of greater than 0 and less than 180 degrees (counter-\/clockwise from A being a positive angle). 
+
+\doxylink{classResult}{Result} will be negative if\+: neither vector A nor B has a length of zero; and vector B is at an angle from vector A of less than 0 and greater than -\/180 degrees (clockwise from A being a negative angle). 
+
+The absolute value of the result is the area of the parallelogram formed by the vectors A and B.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Cross_product}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Cross\+\_\+product}}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+Cross product of the two values.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This operation is anti-\/commutative. I.\+e. Cross(a, b) == -\/Cross(b, a). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Cross_product}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Cross\+\_\+product}} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Value A of a 3-\/element type. \\
+\hline
+{\em b} & Value B of a 3-\/element type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cross product of the two values. 
+\end{DoxyReturn}
+\Hypertarget{group__Math_ga451c8554a408d41df85a41650e0ada93}\label{group__Math_ga451c8554a408d41df85a41650e0ada93} 
+\index{Additional Math Functions@{Additional Math Functions}!Dot@{Dot}}
+\index{Dot@{Dot}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Dot()}{Dot()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+constexpr auto playrho\+::\+Dot (\begin{DoxyParamCaption}\item[{const T1}]{a,  }\item[{const T2}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Performs the dot product on two vectors (A and B). 
+
+The dot product of two vectors is defined as\+: the magnitude of vector A, multiplied by, the magnitude of vector B, multiplied by, the cosine of the angle between the two vectors (A and B). Thus the dot product of two vectors is a value ranging between plus and minus the magnitudes of each vector times each other. The middle value of 0 indicates that two vectors are perpendicular to each other (at an angle of +/-\/ 90 degrees from each other).
+
+\begin{DoxyNote}{Note}
+This operation is commutative. I.\+e. Dot(a, b) == Dot(b, a). 
+
+If A and B are the same vectors, {\ttfamily Get\+Magnitude\+Squared(\+Vec2)} returns the same value using effectively one less input parameter. 
+
+This is similar to the {\ttfamily std\+::inner\+\_\+product} standard library algorithm except benchmark tests suggest this implementation is faster at least for {\ttfamily Vec2} like instances.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Dot_product}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Dot\+\_\+product}}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \doxylink{structplayrho_1_1Vector}{Vector} A. \\
+\hline
+{\em b} & \doxylink{structplayrho_1_1Vector}{Vector} B.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dot product of the vectors (0 means the two vectors are perpendicular). 
+\end{DoxyReturn}
+\Hypertarget{group__Math_ga56785e4c60180ef416fe29f68ccf525a}\label{group__Math_ga56785e4c60180ef416fe29f68ccf525a} 
+\index{Additional Math Functions@{Additional Math Functions}!GetAngle@{GetAngle}}
+\index{GetAngle@{GetAngle}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetAngle()}{GetAngle()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} playrho\+::\+Get\+Angle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the angle. 
+
+\begin{DoxyReturn}{Returns}
+Angular value in the range of -\/Pi to +Pi radians. 
+\end{DoxyReturn}
+\Hypertarget{group__Math_ga118f8284073d2638e48ef8f13177e1d9}\label{group__Math_ga118f8284073d2638e48ef8f13177e1d9} 
+\index{Additional Math Functions@{Additional Math Functions}!GetAreaOfPolygon@{GetAreaOfPolygon}}
+\index{GetAreaOfPolygon@{GetAreaOfPolygon}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetAreaOfPolygon()}{GetAreaOfPolygon()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__CheckedValues_gac74ec9c65c8f22cefed941aa486af9e3}{Non\+Negative}}$<$ \mbox{\hyperlink{group__PhysicalQuantities_ga3ea2a7de91fdafccb2e49c3a84117ab5}{Area}} $>$ playrho\+::\+Get\+Area\+Of\+Polygon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Span}{Span}}$<$ const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} $>$}]{vertices }\end{DoxyParamCaption})}
+
+
+
+Gets the area of a polygon. 
+
+\begin{DoxyNote}{Note}
+This function is valid for any non-\/self-\/intersecting (simple) polygon, which can be convex or concave. 
+
+Winding order doesn\textquotesingle{}t matter. 
+\end{DoxyNote}
+\Hypertarget{group__Math_ga8c036532db1260373b97c1d85360894c}\label{group__Math_ga8c036532db1260373b97c1d85360894c} 
+\index{Additional Math Functions@{Additional Math Functions}!GetDelta@{GetDelta}}
+\index{GetDelta@{GetDelta}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetDelta()}{GetDelta()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} playrho\+::\+Get\+Delta (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}}]{a1,  }\item[{\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}}]{a2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Gets the shortest angular distance to go from angle 1 to angle 2. 
+
+This gets the angle to rotate angle 1 by in order to get to angle 2 with the least amount of rotation. \begin{DoxyReturn}{Returns}
+Angle between -\/Pi and Pi radians inclusively. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__Math_ga156a2abff11f978a8df25efbf0c10147}{Get\+Normalized} 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_ga87b57d633b625c58f9200a201e4664a7}\label{group__Math_ga87b57d633b625c58f9200a201e4664a7} 
+\index{Additional Math Functions@{Additional Math Functions}!GetFwdPerpendicular@{GetFwdPerpendicular}}
+\index{GetFwdPerpendicular@{GetFwdPerpendicular}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetFwdPerpendicular()}{GetFwdPerpendicular()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr auto playrho\+::\+Get\+Fwd\+Perpendicular (\begin{DoxyParamCaption}\item[{const T}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a vector clockwise (forward-\/clockwise) perpendicular to the given vector. 
+
+This takes a vector of form (x, y) and returns the vector (y, -\/x). 
+\begin{DoxyParams}{Parameters}
+{\em vector} & \doxylink{structplayrho_1_1Vector}{Vector} to return a clockwise perpendicular equivalent for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A clockwise 90-\/degree rotation of the given vector. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__Math_ga6aa0aece94173885da01b5e3a6737af7}{Get\+Rev\+Perpendicular}. 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_gaeaceaa1218e1f86e27e6678db247bc79}\label{group__Math_gaeaceaa1218e1f86e27e6678db247bc79} 
+\index{Additional Math Functions@{Additional Math Functions}!GetInverse22@{GetInverse22}}
+\index{GetInverse22@{GetInverse22}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetInverse22()}{GetInverse22()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} playrho\+::\+Get\+Inverse22 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the inverse of the given matrix as a 2-\/by-\/2. 
+
+\begin{DoxyReturn}{Returns}
+Zero matrix if singular. 
+\end{DoxyReturn}
+\Hypertarget{group__Math_ga85c114f129eeee63e60ec7d4703bbd65}\label{group__Math_ga85c114f129eeee63e60ec7d4703bbd65} 
+\index{Additional Math Functions@{Additional Math Functions}!GetMagnitude@{GetMagnitude}}
+\index{GetMagnitude@{GetMagnitude}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetMagnitude()}{GetMagnitude()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+auto playrho\+::\+Get\+Magnitude (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the magnitude of the given value. 
+
+\begin{DoxyNote}{Note}
+Works for any type for which {\ttfamily Get\+Magnitude\+Squared} also works. 
+\end{DoxyNote}
+\Hypertarget{group__Math_ga1ac00e661c653f21ddbd0693bbb039ac}\label{group__Math_ga1ac00e661c653f21ddbd0693bbb039ac} 
+\index{Additional Math Functions@{Additional Math Functions}!GetMagnitudeSquared@{GetMagnitudeSquared}}
+\index{GetMagnitudeSquared@{GetMagnitudeSquared}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetMagnitudeSquared()}{GetMagnitudeSquared()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr auto playrho\+::\+Get\+Magnitude\+Squared (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the square of the magnitude of the given iterable value. 
+
+\begin{DoxyNote}{Note}
+For performance, use this instead of {\ttfamily \doxylink{group__Math_ga85c114f129eeee63e60ec7d4703bbd65}{Get\+Magnitude(\+T value)}} (if possible). 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+Non-\/negative value from 0 to infinity, or NaN. 
+\end{DoxyReturn}
+\Hypertarget{group__Math_ga3970833d43e94acccda025c9f6959594}\label{group__Math_ga3970833d43e94acccda025c9f6959594} 
+\index{Additional Math Functions@{Additional Math Functions}!GetModuloNext@{GetModuloNext}}
+\index{GetModuloNext@{GetModuloNext}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetModuloNext()}{GetModuloNext()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr auto playrho\+::\+Get\+Modulo\+Next (\begin{DoxyParamCaption}\item[{T}]{value,  }\item[{T}]{count }\end{DoxyParamCaption}) -\/$>$ T \hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the modulo next value. 
+
+\begin{DoxyPrecond}{Precondition}
+The given value is less than the given count. 
+\end{DoxyPrecond}
+\begin{DoxyWarning}{Warning}
+Behavior is undefined if the given value is not less than the given count. 
+\end{DoxyWarning}
+\Hypertarget{group__Math_ga1ff989523e82e44e08f8cdee3451674a}\label{group__Math_ga1ff989523e82e44e08f8cdee3451674a} 
+\index{Additional Math Functions@{Additional Math Functions}!GetModuloPrev@{GetModuloPrev}}
+\index{GetModuloPrev@{GetModuloPrev}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetModuloPrev()}{GetModuloPrev()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr auto playrho\+::\+Get\+Modulo\+Prev (\begin{DoxyParamCaption}\item[{T}]{value,  }\item[{T}]{count }\end{DoxyParamCaption}) -\/$>$ T \hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the modulo previous value. 
+
+\begin{DoxyPrecond}{Precondition}
+The given value is less than the given count. 
+\end{DoxyPrecond}
+\begin{DoxyWarning}{Warning}
+Behavior is undefined if the given value is not less than the given count. 
+\end{DoxyWarning}
+\Hypertarget{group__Math_ga156a2abff11f978a8df25efbf0c10147}\label{group__Math_ga156a2abff11f978a8df25efbf0c10147} 
+\index{Additional Math Functions@{Additional Math Functions}!GetNormalized@{GetNormalized}}
+\index{GetNormalized@{GetNormalized}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetNormalized()}{GetNormalized()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} playrho\+::\+Get\+Normalized (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the "{}normalized"{} value of the given angle. 
+
+\begin{DoxyReturn}{Returns}
+Angle between -\/Pi and Pi radians inclusively where 0 represents the positive X-\/axis. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__Math_gab870a9188fcc77c905807fa718a8268d}{Atan2} 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_ga760adfdd1cb30bdae8cd37c1ae5da485}\label{group__Math_ga760adfdd1cb30bdae8cd37c1ae5da485} 
+\index{Additional Math Functions@{Additional Math Functions}!GetPolarMoment@{GetPolarMoment}}
+\index{GetPolarMoment@{GetPolarMoment}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetPolarMoment()}{GetPolarMoment()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__PhysicalQuantities_ga9ded7e1044d55beb1ca2957d671ece44}{Second\+Moment\+Of\+Area}} playrho\+::\+Get\+Polar\+Moment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Span}{Span}}$<$ const \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} $>$}]{vertices }\end{DoxyParamCaption})}
+
+
+
+Gets the polar moment of the area enclosed by the given vertices. 
+
+\begin{DoxyWarning}{Warning}
+Behavior is undefined if given collection has less than 3 vertices.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & Collection of three or more vertices. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__Math_ga6aa0aece94173885da01b5e3a6737af7}\label{group__Math_ga6aa0aece94173885da01b5e3a6737af7} 
+\index{Additional Math Functions@{Additional Math Functions}!GetRevPerpendicular@{GetRevPerpendicular}}
+\index{GetRevPerpendicular@{GetRevPerpendicular}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetRevPerpendicular()}{GetRevPerpendicular()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+constexpr auto playrho\+::\+Get\+Rev\+Perpendicular (\begin{DoxyParamCaption}\item[{const T}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets a vector counter-\/clockwise (reverse-\/clockwise) perpendicular to the given vector. 
+
+This takes a vector of form (x, y) and returns the vector (-\/y, x). 
+\begin{DoxyParams}{Parameters}
+{\em vector} & \doxylink{structplayrho_1_1Vector}{Vector} to return a counter-\/clockwise perpendicular equivalent for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A counter-\/clockwise 90-\/degree rotation of the given vector. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__Math_ga87b57d633b625c58f9200a201e4664a7}{Get\+Fwd\+Perpendicular}. 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_ga07dcf271b85b501cd2d7188902066e55}\label{group__Math_ga07dcf271b85b501cd2d7188902066e55} 
+\index{Additional Math Functions@{Additional Math Functions}!GetRevRotationalAngle@{GetRevRotationalAngle}}
+\index{GetRevRotationalAngle@{GetRevRotationalAngle}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetRevRotationalAngle()}{GetRevRotationalAngle()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}} playrho\+::\+Get\+Rev\+Rotational\+Angle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}}]{a1,  }\item[{\mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}}]{a2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+Gets the reverse (counter) clockwise rotational angle to go from angle 1 to angle 2. \begin{DoxyReturn}{Returns}
+Angular rotation in the counter clockwise direction to go from angle 1 to angle 2. 
+\end{DoxyReturn}
+\Hypertarget{group__Math_gae7a513e105038f6425bfc83180a69cd3}\label{group__Math_gae7a513e105038f6425bfc83180a69cd3} 
+\index{Additional Math Functions@{Additional Math Functions}!GetSymInverse33@{GetSymInverse33}}
+\index{GetSymInverse33@{GetSymInverse33}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{GetSymInverse33()}{GetSymInverse33()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} playrho\+::\+Get\+Sym\+Inverse33 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Gets the symmetric inverse of this matrix as a 3-\/by-\/3. 
+
+\begin{DoxyReturn}{Returns}
+Zero matrix if singular. 
+\end{DoxyReturn}
+\Hypertarget{group__Math_ga819a9ef6f9c3d492b5177ca25077618e}\label{group__Math_ga819a9ef6f9c3d492b5177ca25077618e} 
+\index{Additional Math Functions@{Additional Math Functions}!InverseTransform@{InverseTransform}}
+\index{InverseTransform@{InverseTransform}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{InverseTransform()}{InverseTransform()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}} playrho\+::\+Inverse\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_ad93c0cd83df090aba6593ffac4b628ec}{Vec2}}}]{v,  }\item[{const \mbox{\hyperlink{namespaceplayrho_a02c09bb6556e3168c0085871358d2f71}{Mat22}} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+Multiply a matrix transpose times a vector. If a rotation matrix is provided, then this transforms the vector from one frame to another (inverse transform). \Hypertarget{group__Math_ga76721557b2b677d24efa2d0415954be5}\label{group__Math_ga76721557b2b677d24efa2d0415954be5} 
+\index{Additional Math Functions@{Additional Math Functions}!IsOdd@{IsOdd}}
+\index{IsOdd@{IsOdd}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{IsOdd()}{IsOdd()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr bool playrho\+::\+Is\+Odd (\begin{DoxyParamCaption}\item[{T}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Is-\/odd. 
+
+Determines whether the given integral value is odd (as opposed to being even). \Hypertarget{group__Math_ga25b52facf9e28f05e5e41f4e7b7ff54e}\label{group__Math_ga25b52facf9e28f05e5e41f4e7b7ff54e} 
+\index{Additional Math Functions@{Additional Math Functions}!ModuloViaFmod@{ModuloViaFmod}}
+\index{ModuloViaFmod@{ModuloViaFmod}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{ModuloViaFmod()}{ModuloViaFmod()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+auto playrho\+::\+Modulo\+Via\+Fmod (\begin{DoxyParamCaption}\item[{T}]{dividend,  }\item[{T}]{divisor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Modulo operation using {\ttfamily std\+::fmod}. 
+
+\begin{DoxyNote}{Note}
+Modulo via {\ttfamily std\+::fmod} appears slower than via {\ttfamily std\+::trunc}. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__Math_ga84e7cb2a415fcb956202c8d7e1b1d200}{Modulo\+Via\+Trunc} 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_ga84e7cb2a415fcb956202c8d7e1b1d200}\label{group__Math_ga84e7cb2a415fcb956202c8d7e1b1d200} 
+\index{Additional Math Functions@{Additional Math Functions}!ModuloViaTrunc@{ModuloViaTrunc}}
+\index{ModuloViaTrunc@{ModuloViaTrunc}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{ModuloViaTrunc()}{ModuloViaTrunc()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+auto playrho\+::\+Modulo\+Via\+Trunc (\begin{DoxyParamCaption}\item[{T}]{dividend,  }\item[{T}]{divisor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Modulo operation using {\ttfamily std\+::trunc}. 
+
+\begin{DoxyNote}{Note}
+Modulo via {\ttfamily std\+::fmod} appears slower than via {\ttfamily std\+::trunc}. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{group__Math_ga25b52facf9e28f05e5e41f4e7b7ff54e}{Modulo\+Via\+Fmod} 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_ga2e157fe9f9288debcd4be111a2485991}\label{group__Math_ga2e157fe9f9288debcd4be111a2485991} 
+\index{Additional Math Functions@{Additional Math Functions}!NextPowerOfTwo@{NextPowerOfTwo}}
+\index{NextPowerOfTwo@{NextPowerOfTwo}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{NextPowerOfTwo()}{NextPowerOfTwo()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr T playrho\+::\+Next\+Power\+Of\+Two (\begin{DoxyParamCaption}\item[{T}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Gets the next largest power of 2. 
+
+Given a binary integer value x, the next largest power of 2 can be computed by a S.\+W.\+A.\+R. algorithm that recursively "{}folds"{} the upper bits into the lower bits. This process yields a bit vector with the same most significant 1 as x, but all one\textquotesingle{}s below it. Adding 1 to that value yields the next largest power of 2. \Hypertarget{group__Math_ga9cf6fb58c36515834217c6b150b43772}\label{group__Math_ga9cf6fb58c36515834217c6b150b43772} 
+\index{Additional Math Functions@{Additional Math Functions}!Secant@{Secant}}
+\index{Secant@{Secant}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Secant()}{Secant()}}
+{\footnotesize\ttfamily template$<$typename T , typename U $>$ \\
+constexpr U playrho\+::\+Secant (\begin{DoxyParamCaption}\item[{T}]{target,  }\item[{U}]{a1,  }\item[{T}]{s1,  }\item[{U}]{a2,  }\item[{T}]{s2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Secant method. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Secant_method}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Secant\+\_\+method}} 
+\end{DoxySeeAlso}
+\Hypertarget{group__Math_ga3846333746b73978c91e250c6f239ce3}\label{group__Math_ga3846333746b73978c91e250c6f239ce3} 
+\index{Additional Math Functions@{Additional Math Functions}!Solve@{Solve}}
+\index{Solve@{Solve}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Solve()}{Solve()}}
+{\footnotesize\ttfamily template$<$typename T , typename U $>$ \\
+constexpr auto playrho\+::\+Solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_a26aabbb6723402cb9e12cf32e17beebc}{Matrix22}}$<$ U $>$}]{mat,  }\item[{const \mbox{\hyperlink{namespaceplayrho_a97243f194a9406d0fdcf5f6f833851ab}{Vector2}}$<$ T $>$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Solves A \texorpdfstring{$\ast$}{*} x = b, where b is a column vector. 
+
+\begin{DoxyNote}{Note}
+This is more efficient than computing the inverse in one-\/shot cases. 
+\end{DoxyNote}
+\Hypertarget{group__Math_ga0a0606abee6bd0cc122578a2a640f044}\label{group__Math_ga0a0606abee6bd0cc122578a2a640f044} 
+\index{Additional Math Functions@{Additional Math Functions}!Solve22@{Solve22}}
+\index{Solve22@{Solve22}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Solve22()}{Solve22()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr T playrho\+::\+Solve22 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&}]{mat,  }\item[{const T}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Solves A \texorpdfstring{$\ast$}{*} x = b, where b is a column vector. 
+
+\begin{DoxyNote}{Note}
+This is more efficient than computing the inverse in one-\/shot cases. 
+
+Solves only the upper 2-\/by-\/2 matrix equation. 
+\end{DoxyNote}
+\Hypertarget{group__Math_gab4795a90a377c5335ce5b1900caf6d24}\label{group__Math_gab4795a90a377c5335ce5b1900caf6d24} 
+\index{Additional Math Functions@{Additional Math Functions}!Solve33@{Solve33}}
+\index{Solve33@{Solve33}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Solve33()}{Solve33()}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespaceplayrho_a63f6dcdf3763052ea25099973c7c00ad}{Vec3}} playrho\+::\+Solve33 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceplayrho_aabd44d74c5bc530c9b6676c6a61e6b31}{Mat33}} \&}]{mat,  }\item[{const \mbox{\hyperlink{namespaceplayrho_a63f6dcdf3763052ea25099973c7c00ad}{Vec3}}}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Solves A \texorpdfstring{$\ast$}{*} x = b, where b is a column vector. 
+
+\begin{DoxyNote}{Note}
+This is more efficient than computing the inverse in one-\/shot cases. 
+\end{DoxyNote}
+\Hypertarget{group__Math_gac898f9ba1986f3886cb93c0668613c41}\label{group__Math_gac898f9ba1986f3886cb93c0668613c41} 
+\index{Additional Math Functions@{Additional Math Functions}!Transform@{Transform}}
+\index{Transform@{Transform}!Additional Math Functions@{Additional Math Functions}}
+\doxysubsubsection{\texorpdfstring{Transform()}{Transform()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t M, typename T1 , std\+::size\+\_\+t N, typename T2 $>$ \\
+constexpr auto playrho\+::\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structplayrho_1_1Vector}{Vector}}$<$ T1, M $>$}]{v,  }\item[{const \mbox{\hyperlink{namespaceplayrho_acbf97bd8e3f0f2ce4588735388f4089a}{Matrix}}$<$ T2, M, N $>$ \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Multiplies an M-\/element vector by an M-\/by-\/N matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \doxylink{structplayrho_1_1Vector}{Vector} that\textquotesingle{}s interpreted as a matrix with 1 row and M-\/columns. \\
+\hline
+{\em m} & An M-\/row by N-\/column {\itshape transformation matrix} to multiply the vector by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Transformation_matrix}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Transformation\+\_\+matrix}} 
+\end{DoxySeeAlso}

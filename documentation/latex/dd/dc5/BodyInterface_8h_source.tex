@@ -1,0 +1,178 @@
+\doxysection{Body\+Interface.\+h}
+\hypertarget{BodyInterface_8h_source}{}\label{BodyInterface_8h_source}\index{includes/jolt/Physics/Body/BodyInterface.h@{includes/jolt/Physics/Body/BodyInterface.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyID.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/EActivation.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ObjectLayer.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/MotionType.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/MotionQuality.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyType.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Reference.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBody}{Body}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyCreationSettings}{BodyCreationSettings}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyLockInterface}{BodyLockInterface}};}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBroadPhase}{BroadPhase}};}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyManager}{BodyManager}};}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTransformedShape}{TransformedShape}};}
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}};}
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSubShapeID}{SubShapeID}};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classShape}{Shape}};}
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTwoBodyConstraintSettings}{TwoBodyConstraintSettings}};}
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}};}
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}};}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAABox}{AABox}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classBodyInterface}{BodyInterface}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a53d3b19282c77d972f684abeb16b42a8}{Init}}(\mbox{\hyperlink{classBodyLockInterface}{BodyLockInterface}}\ \&inBodyLockInterface,\ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ \&inBodyManager,\ \mbox{\hyperlink{classBroadPhase}{BroadPhase}}\ \&inBroadPhase)\ \{\ mBodyLockInterface\ =\ \&inBodyLockInterface;\ mBodyManager\ =\ \&inBodyManager;\ mBroadPhase\ =\ \&inBroadPhase;\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_ae0205e33e033e932177183c7b20da0f1}{CreateBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyCreationSettings}{BodyCreationSettings}}\ \&inSettings);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_ab96c4bc3e0015772d42d48c094b72388}{CreateSoftBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}}\ \&inSettings);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a6ce6c1e2646429777f65e66e7a21e05b}{CreateBodyWithID}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyCreationSettings}{BodyCreationSettings}}\ \&inSettings);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a06ffc5520f0460fed075bced2c4de434}{CreateSoftBodyWithID}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}}\ \&inSettings);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_abb17d2706f2ee0c0aac4c82d774bece2}{CreateBodyWithoutID}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyCreationSettings}{BodyCreationSettings}}\ \&inSettings)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_ad6e464f89f991661c201fecad8dbe324}{CreateSoftBodyWithoutID}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}}\ \&inSettings)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a6263a2b21c5544789bdf4040deacc377}{DestroyBodyWithoutID}}(\mbox{\hyperlink{classBody}{Body}}\ *inBody)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a4247f0851fb8dfbe92f5b83a41863595}{AssignBodyID}}(\mbox{\hyperlink{classBody}{Body}}\ *ioBody);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a7669d5c31627d2c99fac69723fb1a219}{AssignBodyID}}(\mbox{\hyperlink{classBody}{Body}}\ *ioBody,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a90516454ed80b9ffd59dccb2dbcd8f2b}{UnassignBodyID}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a88613a7d9e6ba099b3a02faf842ac7d7}{UnassignBodyIDs}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber,\ \mbox{\hyperlink{classBody}{Body}}\ **outBodies);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a43fb4ffc35661c67642ffa804d1dad8a}{DestroyBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a95b819fbbcd8a85c25cbce1a319a9037}{DestroyBodies}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a4ba54993b7bbc05f1a6ffccbc46f0397}{AddBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ EActivation\ inActivationMode);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a522d341ddd68225e12eb510f072399f9}{RemoveBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a1a67ebf158316c8ce40768aab624680b}{IsAdded}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a1484650a796607c688529fe600dc9e9f}{CreateAndAddBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyCreationSettings}{BodyCreationSettings}}\ \&inSettings,\ EActivation\ inActivationMode);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a0424b908e93229e76b8e2577931abe3f}{CreateAndAddSoftBody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSoftBodyCreationSettings}{SoftBodyCreationSettings}}\ \&inSettings,\ EActivation\ inActivationMode);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classBodyInterface_af4706607b933c4e7d04aace99feca333}{AddState}}\ =\ \textcolor{keywordtype}{void}\ *;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{classBodyInterface_af4706607b933c4e7d04aace99feca333}{AddState}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddBodiesPrepare(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddBodiesFinalize(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber,\ \mbox{\hyperlink{classBodyInterface_af4706607b933c4e7d04aace99feca333}{AddState}}\ inAddState,\ EActivation\ inActivationMode);}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddBodiesAbort(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber,\ \mbox{\hyperlink{classBodyInterface_af4706607b933c4e7d04aace99feca333}{AddState}}\ inAddState);}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RemoveBodies(\mbox{\hyperlink{classBodyID}{BodyID}}\ *ioBodies,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ActivateBody(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ActivateBodies(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ActivateBodiesInAABox(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter);}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DeactivateBody(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DeactivateBodies(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inBodyIDs,\ \textcolor{keywordtype}{int}\ inNumber);}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IsActive(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_ac5d2f3a832968329c91af032409abc68}{CreateConstraint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classTwoBodyConstraintSettings}{TwoBodyConstraintSettings}}\ *inSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID2);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a7b4ab713c9ed9369f43930510791562b}{ActivateConstraint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classTwoBodyConstraint}{TwoBodyConstraint}}\ *inConstraint);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{classRefConst}{RefConst<Shape>}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_af67cf1a0f9c7fa744d4e2387d63e04ba}{GetShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a051a4064706509e2b1c4dcc6d688676d}{SetShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \textcolor{keywordtype}{bool}\ inUpdateMassProperties,\ EActivation\ inActivationMode)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_aa2e0c12f152375b42b3de56faf9bec86}{NotifyShapeChanged}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPreviousCenterOfMass,\ \textcolor{keywordtype}{bool}\ inUpdateMassProperties,\ EActivation\ inActivationMode)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetObjectLayer(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ ObjectLayer\ inLayer);}
+\DoxyCodeLine{00164\ \ \ \ \ ObjectLayer\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetObjectLayer(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetPositionAndRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ EActivation\ inActivationMode);}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a12c9c1534c1c6441c51f663a29eb4daf}{SetPositionAndRotationWhenChanged}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ EActivation\ inActivationMode);\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetPositionAndRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&outPosition,\ \mbox{\hyperlink{classQuat}{Quat}}\ \&outRotation)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetPosition(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ EActivation\ inActivationMode);}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetPosition(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetCenterOfMassPosition(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ EActivation\ inActivationMode);}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetRotation(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetWorldTransform(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetCenterOfMassTransform(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a511b9da7dae147b6d8d3227f30724334}{MoveKinematic}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inTargetPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inTargetRotation,\ \textcolor{keywordtype}{float}\ inDeltaTime);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a77222f0f950004cddea8170eb825dcaa}{SetLinearAndAngularVelocity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLinearVelocity,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAngularVelocity);}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetLinearAndAngularVelocity(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outLinearVelocity,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outAngularVelocity)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetLinearVelocity(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLinearVelocity);}
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetLinearVelocity(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a9a665d14b83fe63e236a0adce30d9877}{AddLinearVelocity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLinearVelocity);\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a7e4f5dc5ce2c8a045a008a93f141204b}{AddLinearAndAngularVelocity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLinearVelocity,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAngularVelocity);\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetAngularVelocity(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAngularVelocity);}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetAngularVelocity(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a0861d123b1e074d35c8f9e0151e391d6}{GetPointVelocity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPoint)\ \textcolor{keyword}{const};\ }
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_ad7e39bea301498df0e27024869a2cff9}{SetPositionRotationAndVelocity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLinearVelocity,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAngularVelocity);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_ae1847b39a468219368e2f22b0421d8ce}{AddForce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inForce);\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a319d718e0f771a30011cbf5686c2a777}{AddForce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inForce,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPoint);\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a1eaab07990cc15ff9120e75767cf3386}{AddTorque}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTorque);\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a28312485aa70776c03f1a16c987fada0}{AddForceAndTorque}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inForce,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTorque);\ }
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_add7aa9b7c776237b53d79e95d0d71c40}{AddImpulse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inImpulse);\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a7bff4d600e56557afed4417b21f6c8e4}{AddImpulse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inImpulse,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPoint);\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddAngularImpulse(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAngularImpulse);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00217\ \ \ \ \ EBodyType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetBodyType(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMotionType(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ EMotionType\ inMotionType,\ EActivation\ inActivationMode);}
+\DoxyCodeLine{00223\ \ \ \ \ EMotionType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMotionType(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMotionQuality(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ EMotionQuality\ inMotionQuality);}
+\DoxyCodeLine{00229\ \ \ \ \ EMotionQuality\ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMotionQuality(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a9f6a8905527bc1a025eda4f97f76f573}{GetInverseInertia}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetRestitution(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keywordtype}{float}\ inRestitution);}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetRestitution(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetFriction(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keywordtype}{float}\ inFriction);}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetFriction(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetGravityFactor(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keywordtype}{float}\ inGravityFactor);}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetGravityFactor(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetUseManifoldReduction(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keywordtype}{bool}\ inUseReduction);}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetUseManifoldReduction(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{classTransformedShape}{TransformedShape}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_ae468b34e460759f4cf4e76486e404ee4}{GetTransformedShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00263\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a34942329fd9b3230e938f4418302138c}{GetUserData}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetUserData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ uint64\ inUserData)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ *\ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_a4b76f55d8fcbb5bb8c170069d03c1f79}{GetMaterial}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyInterface_af554a69ffbdfb5290c03cc9562ed21e5}{InvalidateContactCache}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{classBodyLockInterface}{BodyLockInterface}}\ *\ \ \ \ \ \ \ \ \ \ \ \ mBodyLockInterface\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{classBodyManager}{BodyManager}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyManager\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{classBroadPhase}{BroadPhase}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBroadPhase\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00276\ \};}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,47 @@
+\doxysection{Transformed\+Convex\+Object\texorpdfstring{$<$}{<} Convex\+Object \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structTransformedConvexObject}{}\label{structTransformedConvexObject}\index{TransformedConvexObject$<$ ConvexObject $>$@{TransformedConvexObject$<$ ConvexObject $>$}}
+
+
+{\ttfamily \#include $<$Convex\+Support.\+h$>$}
+
+
+
+Collaboration diagram for Transformed\+Convex\+Object\texorpdfstring{$<$}{<} Convex\+Object \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/d3f/structTransformedConvexObject__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structTransformedConvexObject_aee084d15cbc724e8a28b88298a557573}\label{structTransformedConvexObject_aee084d15cbc724e8a28b88298a557573} 
+{\bfseries Transformed\+Convex\+Object} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Transform, const Convex\+Object \&in\+Object)
+\begin{DoxyCompactList}\small\item\em Create transformed convex object. \end{DoxyCompactList}\item 
+\Hypertarget{structTransformedConvexObject_a0fa745b8d15e71629ebb719716d16fa8}\label{structTransformedConvexObject_a0fa745b8d15e71629ebb719716d16fa8} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Support} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction) const
+\begin{DoxyCompactList}\small\item\em Calculate the support vector for this convex shape. \end{DoxyCompactList}\item 
+\Hypertarget{structTransformedConvexObject_ae7e5d51b4cbb01eb146274711eec26e2}\label{structTransformedConvexObject_ae7e5d51b4cbb01eb146274711eec26e2} 
+{\footnotesize template$<$class VERTEX\+\_\+\+ARRAY $>$ }\\void {\bfseries Get\+Supporting\+Face} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, VERTEX\+\_\+\+ARRAY \&out\+Vertices) const
+\begin{DoxyCompactList}\small\item\em Get the vertices of the face that faces in\+Direction the most. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structTransformedConvexObject_a4314714041c688936d9c9078af6c37e1}\label{structTransformedConvexObject_a4314714041c688936d9c9078af6c37e1} 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries m\+Transform}
+\item 
+\Hypertarget{structTransformedConvexObject_a8c84c2341aa11607eea77a7c09329f63}\label{structTransformedConvexObject_a8c84c2341aa11607eea77a7c09329f63} 
+const Convex\+Object \& {\bfseries m\+Object}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Convex\+Object$>$\newline
+struct Transformed\+Convex\+Object$<$ Convex\+Object $>$}
+Helper functions to get the support point for a convex object Structure that transforms a convex object (supports only uniform scaling) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Convex\+Support.\+h\end{DoxyCompactItemize}

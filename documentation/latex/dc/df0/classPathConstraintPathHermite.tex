@@ -1,0 +1,215 @@
+\doxysection{Path\+Constraint\+Path\+Hermite Class Reference}
+\hypertarget{classPathConstraintPathHermite}{}\label{classPathConstraintPathHermite}\index{PathConstraintPathHermite@{PathConstraintPathHermite}}
+
+
+A path that follows a Hermite spline.  
+
+
+
+
+{\ttfamily \#include $<$Path\+Constraint\+Path\+Hermite.\+h$>$}
+
+
+
+Inheritance diagram for Path\+Constraint\+Path\+Hermite\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d2/d9c/classPathConstraintPathHermite__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Path\+Constraint\+Path\+Hermite\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/d3f/classPathConstraintPathHermite__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPathConstraintPathHermite_1_1Point}{Point}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual float \mbox{\hyperlink{classPathConstraintPathHermite_aafea15f5e08786a10baea9f92e01426c}{Get\+Path\+Max\+Fraction}} () const override
+\begin{DoxyCompactList}\small\item\em Gets the max fraction along the path. I.\+e. sort of the length of the path. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classPathConstraintPathHermite_a355e9a89e6192c634d7c1c0925977930}{Get\+Closest\+Point}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position) const override
+\item 
+virtual void \mbox{\hyperlink{classPathConstraintPathHermite_ae5b4d99107b23d1b725e34a3d56171c1}{Get\+Point\+On\+Path}} (float in\+Fraction, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Path\+Position, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Path\+Tangent, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Path\+Normal, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Path\+Binormal) const override
+\item 
+\Hypertarget{classPathConstraintPathHermite_a66a08dc34277969fc1f4dc3cbbca9682}\label{classPathConstraintPathHermite_a66a08dc34277969fc1f4dc3cbbca9682} 
+void {\bfseries Add\+Point} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Tangent, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Normal)
+\begin{DoxyCompactList}\small\item\em Adds a point to the path. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPathConstraintPathHermite_ac6ba22cfaad88f9dd1e90e49d62f4919}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saves the contents of the path in binary form to in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPathConstraintPath}{Path\+Constraint\+Path}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Path\+Constraint\+Path} () override=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure that derived types get their destructors called. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Is\+Looping} (bool in\+Is\+Looping)
+\begin{DoxyCompactList}\small\item\em If the path is looping or not. If a path is looping, the first and last point are automatically connected to eachother. They should not be the same points. \end{DoxyCompactList}\item 
+bool {\bfseries Is\+Looping} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Path\+Constraint\+Path $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classPathConstraintPathHermite_adcd8244c47f8626415ad1046b21bcb1c}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classPathConstraintPath}{Path\+Constraint\+Path}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Path\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classPathConstraintPath}{Path\+Constraint\+Path}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classPathConstraintPath}{Path\+Constraint\+Path}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Path\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classShape}{Shape} of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Path\+Constraint\+Path $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Path\+Constraint\+Path $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Path\+Constraint\+Path $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A path that follows a Hermite spline. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPathConstraintPathHermite_a355e9a89e6192c634d7c1c0925977930}\label{classPathConstraintPathHermite_a355e9a89e6192c634d7c1c0925977930} 
+\index{PathConstraintPathHermite@{PathConstraintPathHermite}!GetClosestPoint@{GetClosestPoint}}
+\index{GetClosestPoint@{GetClosestPoint}!PathConstraintPathHermite@{PathConstraintPathHermite}}
+\doxysubsubsection{\texorpdfstring{GetClosestPoint()}{GetClosestPoint()}}
+{\footnotesize\ttfamily virtual float Path\+Constraint\+Path\+Hermite\+::\+Get\+Closest\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Position }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the globally closest point on the curve (Could be slow!) 
+\begin{DoxyParams}{Parameters}
+{\em in\+Position} & Position to find closest point for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Fraction of closest point along the path 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classPathConstraintPath_a2b97c79e5e5280c61e1ce019ee98e3fa}{Path\+Constraint\+Path}}.
+
+\Hypertarget{classPathConstraintPathHermite_aafea15f5e08786a10baea9f92e01426c}\label{classPathConstraintPathHermite_aafea15f5e08786a10baea9f92e01426c} 
+\index{PathConstraintPathHermite@{PathConstraintPathHermite}!GetPathMaxFraction@{GetPathMaxFraction}}
+\index{GetPathMaxFraction@{GetPathMaxFraction}!PathConstraintPathHermite@{PathConstraintPathHermite}}
+\doxysubsubsection{\texorpdfstring{GetPathMaxFraction()}{GetPathMaxFraction()}}
+{\footnotesize\ttfamily virtual float Path\+Constraint\+Path\+Hermite\+::\+Get\+Path\+Max\+Fraction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the max fraction along the path. I.\+e. sort of the length of the path. 
+
+
+
+Implements \mbox{\hyperlink{classPathConstraintPath_aae9ea1aede3ece72c5620bf88776757d}{Path\+Constraint\+Path}}.
+
+\Hypertarget{classPathConstraintPathHermite_ae5b4d99107b23d1b725e34a3d56171c1}\label{classPathConstraintPathHermite_ae5b4d99107b23d1b725e34a3d56171c1} 
+\index{PathConstraintPathHermite@{PathConstraintPathHermite}!GetPointOnPath@{GetPointOnPath}}
+\index{GetPointOnPath@{GetPointOnPath}!PathConstraintPathHermite@{PathConstraintPathHermite}}
+\doxysubsubsection{\texorpdfstring{GetPointOnPath()}{GetPointOnPath()}}
+{\footnotesize\ttfamily virtual void Path\+Constraint\+Path\+Hermite\+::\+Get\+Point\+On\+Path (\begin{DoxyParamCaption}\item[{float}]{in\+Fraction,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+Path\+Position,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+Path\+Tangent,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+Path\+Normal,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+Path\+Binormal }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Given the fraction along the path, get the point, tangent and normal. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Fraction} & Fraction along the path \mbox{[}0, \doxylink{classPathConstraintPathHermite_aafea15f5e08786a10baea9f92e01426c}{Get\+Path\+Max\+Fraction()}\mbox{]}. \\
+\hline
+{\em out\+Path\+Position} & Returns the closest position to in\+Search\+Position on the path. \\
+\hline
+{\em out\+Path\+Tangent} & Returns the tangent to the path at out\+Path\+Position (the vector that follows the direction of the path) \\
+\hline
+{\em out\+Path\+Normal} & Return the normal to the path at out\+Path\+Position (a vector that\textquotesingle{}s perpendicular to out\+Path\+Tangent) \\
+\hline
+{\em out\+Path\+Binormal} & Returns the binormal to the path at out\+Path\+Position (a vector so that normal cross tangent = binormal) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classPathConstraintPath_aa0dc6d3e2b57196ca90da9c10d37f9ea}{Path\+Constraint\+Path}}.
+
+\Hypertarget{classPathConstraintPathHermite_adcd8244c47f8626415ad1046b21bcb1c}\label{classPathConstraintPathHermite_adcd8244c47f8626415ad1046b21bcb1c} 
+\index{PathConstraintPathHermite@{PathConstraintPathHermite}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!PathConstraintPathHermite@{PathConstraintPathHermite}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Path\+Constraint\+Path\+Hermite\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classPathConstraintPath_a8c317ba6233fc6d95723ff98a1a3eef7}{Path\+Constraint\+Path}}.
+
+\Hypertarget{classPathConstraintPathHermite_ac6ba22cfaad88f9dd1e90e49d62f4919}\label{classPathConstraintPathHermite_ac6ba22cfaad88f9dd1e90e49d62f4919} 
+\index{PathConstraintPathHermite@{PathConstraintPathHermite}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!PathConstraintPathHermite@{PathConstraintPathHermite}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Path\+Constraint\+Path\+Hermite\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the contents of the path in binary form to in\+Stream. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classPathConstraintPath_ae8c7e918c76f492da5558e982ecc92be}{Path\+Constraint\+Path}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Path\+Constraint\+Path\+Hermite.\+h\end{DoxyCompactItemize}

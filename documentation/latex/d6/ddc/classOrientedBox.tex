@@ -1,0 +1,56 @@
+\doxysection{Oriented\+Box Class Reference}
+\hypertarget{classOrientedBox}{}\label{classOrientedBox}\index{OrientedBox@{OrientedBox}}
+
+
+Oriented box.  
+
+
+
+
+{\ttfamily \#include $<$Oriented\+Box.\+h$>$}
+
+
+
+Collaboration diagram for Oriented\+Box\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/d00/classOrientedBox__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOrientedBox_ac9d787ceb1d5ce11d768e463901dc8f8}\label{classOrientedBox_ac9d787ceb1d5ce11d768e463901dc8f8} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Oriented\+Box} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classOrientedBox_a79f2a5a1c1a93d269c19062895c5708e}\label{classOrientedBox_a79f2a5a1c1a93d269c19062895c5708e} 
+{\bfseries Oriented\+Box} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Orientation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Half\+Extents)
+\item 
+\Hypertarget{classOrientedBox_aa452a08a66dacf55bdfb5d8d0cff7c8c}\label{classOrientedBox_aa452a08a66dacf55bdfb5d8d0cff7c8c} 
+{\bfseries Oriented\+Box} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Orientation, const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box)
+\begin{DoxyCompactList}\small\item\em Construct from axis aligned box and transform. Only works for rotation/translation matrix (no scaling / shearing). \end{DoxyCompactList}\item 
+\Hypertarget{classOrientedBox_a7aa8b578fed70c2f340743815ed108ae}\label{classOrientedBox_a7aa8b578fed70c2f340743815ed108ae} 
+bool {\bfseries Overlaps} (const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, float in\+Epsilon=1.\+0e-\/6f) const
+\begin{DoxyCompactList}\small\item\em Test if oriented boxe overlaps with axis aligned box eachother. \end{DoxyCompactList}\item 
+\Hypertarget{classOrientedBox_a2829c629a9c5565d2aabae1f53a51c97}\label{classOrientedBox_a2829c629a9c5565d2aabae1f53a51c97} 
+bool {\bfseries Overlaps} (const \mbox{\hyperlink{classOrientedBox}{Oriented\+Box}} \&in\+Box, float in\+Epsilon=1.\+0e-\/6f) const
+\begin{DoxyCompactList}\small\item\em Test if two oriented boxes overlap eachother. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOrientedBox_a05fc57c2033ce0e75ef2bd9dbe0e0636}\label{classOrientedBox_a05fc57c2033ce0e75ef2bd9dbe0e0636} 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries m\+Orientation}
+\begin{DoxyCompactList}\small\item\em \doxylink{structTransform}{Transform} that positions and rotates the local space axis aligned box into world space. \end{DoxyCompactList}\item 
+\Hypertarget{classOrientedBox_aea20adbf3c48427f78ea4c6dfa61fb60}\label{classOrientedBox_aea20adbf3c48427f78ea4c6dfa61fb60} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Half\+Extents}
+\begin{DoxyCompactList}\small\item\em Half extents (half the size of the edge) of the local space axis aligned box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Oriented box. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Oriented\+Box.\+h\end{DoxyCompactItemize}

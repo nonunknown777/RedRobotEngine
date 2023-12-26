@@ -1,0 +1,40 @@
+\doxysection{Float2.\+h}
+\hypertarget{Float2_8h_source}{}\label{Float2_8h_source}\index{includes/jolt/Math/Float2.h@{includes/jolt/Math/Float2.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classFloat2}{Float2}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat2_a31453e22a3a71b53b16f33c8ea050fa3}{Float2}}()\ =\ \textcolor{keywordflow}{default};\ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat2}{Float2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat2}{Float2}}\ \&inRHS)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classFloat2}{Float2}}\ \&\ \ \ \ \ \ \ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat2}{Float2}}\ \&inRHS)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat2}{Float2}}(\textcolor{keywordtype}{float}\ inX,\ \textcolor{keywordtype}{float}\ inY)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ x(inX),\ y(inY)\ \{\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat2}{Float2}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ x\ ==\ inRHS.x\ \&\&\ y\ ==\ inRHS.y;\ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat2}{Float2}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ x\ !=\ inRHS.x\ ||\ y\ !=\ inRHS.y;\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{friend}\ ostream\ \&\ \ \ \ operator\ <<\ (ostream\ \&inStream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat2}{Float2}}\ \&inV)}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ inStream\ <<\ inV.x\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ inV.y;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inStream;}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y;}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{static\_assert}(is\_trivial<Float2>(),\ \textcolor{stringliteral}{"{}Is\ supposed\ to\ be\ a\ trivial\ type!"{}});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

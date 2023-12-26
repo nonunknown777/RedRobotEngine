@@ -1,0 +1,151 @@
+\doxysection{Physics\+Material Class Reference}
+\hypertarget{classPhysicsMaterial}{}\label{classPhysicsMaterial}\index{PhysicsMaterial@{PhysicsMaterial}}
+
+
+{\ttfamily \#include $<$Physics\+Material.\+h$>$}
+
+
+
+Inheritance diagram for Physics\+Material\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d6/d2c/classPhysicsMaterial__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Physics\+Material\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dc9/classPhysicsMaterial__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPhysicsMaterial_ac6d51eb48cdffbe4bc52c1ea54a988ef}\label{classPhysicsMaterial_ac6d51eb48cdffbe4bc52c1ea54a988ef} 
+using {\bfseries Physics\+Material\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPhysicsMaterial_af9a5ad5383917d85f97bc81db9786948}\label{classPhysicsMaterial_af9a5ad5383917d85f97bc81db9786948} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Physics\+Material} () override=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classPhysicsMaterial_a1ace7fb4d595955c50f02bd67a108446}\label{classPhysicsMaterial_a1ace7fb4d595955c50f02bd67a108446} 
+virtual const char \texorpdfstring{$\ast$}{*} {\bfseries Get\+Debug\+Name} () const
+\item 
+\Hypertarget{classPhysicsMaterial_af8673b7c2cefec46b38fd90fb8fe7784}\label{classPhysicsMaterial_af8673b7c2cefec46b38fd90fb8fe7784} 
+virtual \mbox{\hyperlink{classColor}{Color}} {\bfseries Get\+Debug\+Color} () const
+\item 
+virtual void \mbox{\hyperlink{classPhysicsMaterial_a77371de6bc2a9361b57486af327e7d62}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the contents of the material in binary form to in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Physics\+Material $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPhysicsMaterial_ac6095d76ac66e20d8309fb089d1b8767}\label{classPhysicsMaterial_ac6095d76ac66e20d8309fb089d1b8767} 
+static \mbox{\hyperlink{classResult}{Physics\+Material\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classPhysicsMaterial}{Physics\+Material} of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Physics\+Material $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPhysicsMaterial_af53a233202a9b9e828cc7dcc346cf28f}\label{classPhysicsMaterial_af53a233202a9b9e828cc7dcc346cf28f} 
+static \mbox{\hyperlink{classRefConst}{Ref\+Const}}$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$ {\bfseries s\+Default}
+\begin{DoxyCompactList}\small\item\em Default material that is used when a shape has no materials defined. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classPhysicsMaterial_a3e15249c125bf74f0048b1161112f6c3}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Physics\+Material $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Physics\+Material $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This structure describes the surface of (part of) a shape. You should inherit from it to define additional information that is interesting for the simulation. The 2 materials involved in a contact could be used to decide which sound or particle effects to play.
+
+If you inherit from this material, don\textquotesingle{}t forget to create a suitable default material in s\+Default 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPhysicsMaterial_a3e15249c125bf74f0048b1161112f6c3}\label{classPhysicsMaterial_a3e15249c125bf74f0048b1161112f6c3} 
+\index{PhysicsMaterial@{PhysicsMaterial}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!PhysicsMaterial@{PhysicsMaterial}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Physics\+Material\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classPhysicsMaterialSimple_ad19f2b9492bebc1e251014de9543e4b2}{Physics\+Material\+Simple}}.
+
+\Hypertarget{classPhysicsMaterial_a77371de6bc2a9361b57486af327e7d62}\label{classPhysicsMaterial_a77371de6bc2a9361b57486af327e7d62} 
+\index{PhysicsMaterial@{PhysicsMaterial}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!PhysicsMaterial@{PhysicsMaterial}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Physics\+Material\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Saves the contents of the material in binary form to in\+Stream. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classPhysicsMaterialSimple_a6bdc839b4145f08919422eec9ebc60e1}{Physics\+Material\+Simple}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Physics\+Material.\+h\end{DoxyCompactItemize}

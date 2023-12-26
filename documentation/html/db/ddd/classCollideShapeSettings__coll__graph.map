@@ -1,0 +1,7 @@
+<map id="CollideShapeSettings" name="CollideShapeSettings">
+<area shape="rect" id="Node000001" title="Settings to be passed with a collision query." alt="" coords="5,834,200,925"/>
+<area shape="rect" id="Node000002" href="$d1/d1a/classCollideSettingsBase.html" title="Settings to be passed with a collision query." alt="" coords="15,652,191,785"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,800,105,835,100,835,100,800"/>
+<area shape="rect" id="Node000003" href="$d9/de4/classVec3.html" title=" " alt="" coords="22,5,183,587"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="105,587,105,634,100,634,100,587"/>
+</map>

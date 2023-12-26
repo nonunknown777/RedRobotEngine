@@ -1,0 +1,76 @@
+\doxysection{Default\+Broad\+Phase\+Layer\+Filter Class Reference}
+\hypertarget{classDefaultBroadPhaseLayerFilter}{}\label{classDefaultBroadPhaseLayerFilter}\index{DefaultBroadPhaseLayerFilter@{DefaultBroadPhaseLayerFilter}}
+
+
+Default filter class that uses the pair filter in combination with a specified layer to filter layers.  
+
+
+
+
+{\ttfamily \#include $<$Broad\+Phase\+Layer.\+h$>$}
+
+
+
+Inheritance diagram for Default\+Broad\+Phase\+Layer\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{d1/db0/classDefaultBroadPhaseLayerFilter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Default\+Broad\+Phase\+Layer\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{d9/d08/classDefaultBroadPhaseLayerFilter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDefaultBroadPhaseLayerFilter_a6df10c5326c2190b934694510851d7b0}\label{classDefaultBroadPhaseLayerFilter_a6df10c5326c2190b934694510851d7b0} 
+{\bfseries Default\+Broad\+Phase\+Layer\+Filter} (const \mbox{\hyperlink{classObjectVsBroadPhaseLayerFilter}{Object\+Vs\+Broad\+Phase\+Layer\+Filter}} \&in\+Object\+Vs\+Broad\+Phase\+Layer\+Filter, Object\+Layer in\+Layer)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classDefaultBroadPhaseLayerFilter_af08a7bc5141b24385c4fc1a731657cda}{Should\+Collide}} (\mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}} in\+Layer) const override
+\begin{DoxyCompactList}\small\item\em Function to filter out broadphase layers when doing collision query test (return true to allow testing against objects with this layer) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Broad\+Phase\+Layer\+Filter} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Default filter class that uses the pair filter in combination with a specified layer to filter layers. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDefaultBroadPhaseLayerFilter_af08a7bc5141b24385c4fc1a731657cda}\label{classDefaultBroadPhaseLayerFilter_af08a7bc5141b24385c4fc1a731657cda} 
+\index{DefaultBroadPhaseLayerFilter@{DefaultBroadPhaseLayerFilter}!ShouldCollide@{ShouldCollide}}
+\index{ShouldCollide@{ShouldCollide}!DefaultBroadPhaseLayerFilter@{DefaultBroadPhaseLayerFilter}}
+\doxysubsubsection{\texorpdfstring{ShouldCollide()}{ShouldCollide()}}
+{\footnotesize\ttfamily virtual bool Default\+Broad\+Phase\+Layer\+Filter\+::\+Should\+Collide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBroadPhaseLayer}{Broad\+Phase\+Layer}}}]{in\+Layer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Function to filter out broadphase layers when doing collision query test (return true to allow testing against objects with this layer) 
+
+
+
+Reimplemented from \mbox{\hyperlink{classBroadPhaseLayerFilter_ac1ac3c869de6ebfe9fa1ded56faddb55}{Broad\+Phase\+Layer\+Filter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Broad\+Phase/Broad\+Phase\+Layer.\+h\end{DoxyCompactItemize}

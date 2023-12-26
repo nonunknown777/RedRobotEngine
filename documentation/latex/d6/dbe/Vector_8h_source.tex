@@ -1,0 +1,200 @@
+\doxysection{Vector.\+h}
+\hypertarget{Vector_8h_source}{}\label{Vector_8h_source}\index{includes/jolt/Math/Vector.h@{includes/jolt/Math/Vector.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}\ Rows>}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classVector}{Vector}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_acdfe438fc30b6e340cfecfd8bb04ab19}{Vector}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ *\textcolor{keyword}{this}\ =\ inRHS;\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_a8c1387fdaa60b9569f5e9acb1363b7fb}{GetRows}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ Rows;\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_a06ffa8aa3d40e7c93dde19725e77ff3a}{SetZero}}()}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ mF32[r]\ =\ 0.0f;}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classVector}{Vector}}\ \ \ \ \ \ sZero()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{classVector}{Vector}}\ v;\ v.\mbox{\hyperlink{classVector_a06ffa8aa3d40e7c93dde19725e77ff3a}{SetZero}}();\ \textcolor{keywordflow}{return}\ v;\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ OtherVector>}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_ac3bd9feb76f783d2e4168f2cf9fb3b2a}{CopyPart}}(\textcolor{keyword}{const}\ OtherVector\ \&inV,\ uint\ inSourceRow,\ uint\ inNumRows,\ uint\ inDestRow)}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ inNumRows;\ ++r)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mF32[inDestRow\ +\ r]\ =\ inV[inSourceRow\ +\ r];}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ []\ (uint\ inCoordinate)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inCoordinate\ <\ Rows);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mF32[inCoordinate];}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ []\ (uint\ inCoordinate)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inCoordinate\ <\ Rows);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mF32[inCoordinate];}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mF32[r]\ !=\ inV2.mF32[r])}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mF32[r]\ !=\ inV2.mF32[r])}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_ab1368364228755bfe9e64af3654ea995}{IsZero}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mF32[r]\ !=\ 0.0f)}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_af792d9902858de9e315caa8eddd89f29}{IsClose}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2,\ \textcolor{keywordtype}{float}\ inMaxDistSq\ =\ 1.0e-\/12f)}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (inV2\ -\/\ *\textcolor{keyword}{this}).LengthSq()\ <=\ inMaxDistSq;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ mF32[r]\ =\ inV2.mF32[r];}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}\ v;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ v.mF32[r]\ =\ mF32[r]\ *\ inV2;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ *=\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ inV2)}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ mF32[r]\ *=\ inV2;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classVector}{Vector}}\ \ \ \ \ \ operator\ *\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ inV1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)}
+\DoxyCodeLine{00109\ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inV2\ *\ inV1;}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ /\ (\textcolor{keywordtype}{float}\ inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}\ v;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ v.mF32[r]\ =\ mF32[r]\ /\ inV2;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ /=\ (\textcolor{keywordtype}{float}\ inV2)}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ mF32[r]\ /=\ inV2;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ +\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}\ v;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ v.mF32[r]\ =\ mF32[r]\ +\ inV2.mF32[r];}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ +=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ mF32[r]\ +=\ inV2.mF32[r];}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ -\/\ ()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00147\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}\ v;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ v.mF32[r]\ =\ -\/mF32[r];}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ -\/\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vector}}\ v;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ v.mF32[r]\ =\ mF32[r]\ -\/\ inV2.mF32[r];}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ -\/=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ mF32[r]\ -\/=\ inV2.mF32[r];}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_ad187891cbfdaad7c7b9ed6d496ef0606}{Dot}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00172\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dot\ =\ 0.0f;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ r\ =\ 0;\ r\ <\ Rows;\ ++r)}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ dot\ +=\ mF32[r]\ *\ inV2.mF32[r];}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dot;}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_afa80dcde530acc7b7911526d921b60e8}{LengthSq}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00181\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Dot(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_a83748e43a3d85e50140c24f0aa093cb9}{Length}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00187\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sqrt(LengthSq());}
+\DoxyCodeLine{00189\ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_a5420a12386bf0d4cdba1c3605929b6ba}{IsNormalized}}(\textcolor{keywordtype}{float}\ inToleranceSq\ =\ 1.0e-\/6f)}
+\DoxyCodeLine{00193\ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ abs(LengthSq()\ -\/\ 1.0f)\ <=\ inToleranceSq;}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVector}{Vector}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector_a0bd36049fd0025624665df06e1e390ff}{Normalized}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00199\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ /\ Length();}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{friend}\ ostream\ \&\ \ \ \ \ \ \ \ \ \ \ \ operator\ <<\ (ostream\ \&inStream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vector}}\ \&inV)}
+\DoxyCodeLine{00205\ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ inStream\ <<\ \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ i\ =\ 0;\ i\ <\ Rows\ -\/\ 1;\ ++i)}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ inStream\ <<\ inV.mF32[i]\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ inStream\ <<\ inV.mF32[Rows\ -\/\ 1]\ <<\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inStream;}
+\DoxyCodeLine{00211\ \ \ \ \ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mF32[Rows];}
+\DoxyCodeLine{00214\ \};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

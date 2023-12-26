@@ -15,22 +15,23 @@ SceneTree::SceneTree() {
     Window* main_window = root;
 
     Panel* panel = new Panel();
-    panel->style_box_flat->bg_color = DARKGRAY;
+    ((StyleBoxFlat*)panel->panel)->bg_color = BLUE;
     panel->position = Vector2(0,0);
+    panel->size = Vector2(GetScreenWidth(),GetScreenHeight());
     
     main_window->add_child(panel);
 
-    VBoxContainer* vbox = new VBoxContainer();
-    vbox->size = Vector2(40,40);
-    panel->add_child(vbox);
+    // VBoxContainer* vbox = new VBoxContainer();
+    // vbox->size = Vector2(40,40);
+    // panel->add_child(vbox);
 
-    MenuBar* menu_bar = new MenuBar();
+    // MenuBar* menu_bar = new MenuBar();
 
-    vbox->add_child(menu_bar);
+    // vbox->add_child(menu_bar);
 
-    PopupMenu* menu_popup = new PopupMenu("Scene");
+    // PopupMenu* menu_popup = new PopupMenu("Scene");
 
-    menu_bar->add_child(menu_popup);
+    // menu_bar->add_child(menu_popup);
 
 
 
@@ -53,10 +54,10 @@ void SceneTree::action(Node* node, const float& delta) {
 inline void action_down(Node* node) {
 
     node->_input();
+    if (node->visible) node->_draw();
+    // Control* control = dynamic_cast<Control*>(node);
 
-    Control* control = dynamic_cast<Control*>(node);
-
-    if (control != nullptr) control->_draw();
+    // if (control != nullptr) control->_draw();
 }
 
 
@@ -82,6 +83,10 @@ void SceneTree::update(float delta) {
         // std::cout << "name: " << current->name << "\n";
 
         if (!is_first) {
+            if (current == root && up == true) {
+                action_down(current);
+                break;
+            }
             if (current->get_parent() == root) {
                 if (current->iteration_index+1 < current->get_child_count()) {
                     if (up == false) action_down(current);
@@ -91,7 +96,13 @@ void SceneTree::update(float delta) {
                 } else {
                     action(current, delta);
                     current->iteration_index = -1;
-                    break; // finished traversing tree;
+                    if (up == false) {
+                        action_down(current);
+                        current = current->get_parent();
+                        up = true;
+                        continue;
+                    }
+                    
                 }
             }
         }

@@ -1,0 +1,5 @@
+<map id="EPAConvexHullBuilder::Triangle" name="EPAConvexHullBuilder::Triangle">
+<area shape="rect" id="Node000001" title="Class that holds the information of one triangle." alt="" coords="5,165,172,487"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,5,150,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,132,91,166,86,166,86,132"/>
+</map>

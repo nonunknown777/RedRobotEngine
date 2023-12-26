@@ -1,0 +1,172 @@
+\doxysection{Physics\+Update\+Context.\+h}
+\hypertarget{PhysicsUpdateContext_8h_source}{}\label{PhysicsUpdateContext_8h_source}\index{includes/jolt/Physics/PhysicsUpdateContext.h@{includes/jolt/Physics/PhysicsUpdateContext.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyPair.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ContactListener.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/BroadPhase/BroadPhase.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StaticArray.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Core/JobSystem.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Core/STLTempAllocator.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIslandBuilder}{IslandBuilder}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classConstraint}{Constraint}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTempAllocator}{TempAllocator}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSoftBodyUpdateContext}{SoftBodyUpdateContext}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_af926908af98ce293dff2b6e15bc70271}{PhysicsUpdateContext}}(\mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inTempAllocator);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext}{\string~PhysicsUpdateContext}}();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a914eeb78829e0177ad07274a1472aa70}{cMaxConcurrency}}\ =\ 32;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ =\ \mbox{\hyperlink{classStaticArray}{StaticArray<JobHandle,\ cMaxConcurrency>}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{Step}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysicsUpdateContext_1_1BodyPairQueue}{BodyPairQueue}}}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1BodyPairQueue_abbf11d72c4fe4c3e5f7558f1b87c0495}{mWriteIdx}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1BodyPairQueue_a6b5b5872901d9cdfa32c9507b53e4920}{mPadding1}}[JPH\_CACHE\_LINE\_SIZE\ -\/\ \textcolor{keyword}{sizeof}(atomic<uint32>)];}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1BodyPairQueue_a2022c7c479b154d1c42d4351c8d12ea4}{mReadIdx}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1BodyPairQueue_a72e1a83841d0ef254a8f242537d93b96}{mPadding2}}[JPH\_CACHE\_LINE\_SIZE\ -\/\ \textcolor{keyword}{sizeof}(atomic<uint32>)];}
+\DoxyCodeLine{00043\ \ \ \ \ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classStaticArray}{BodyPairQueues}}\ =\ \mbox{\hyperlink{classStaticArray}{StaticArray<BodyPairQueue,\ cMaxConcurrency>}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classPhysicsUpdateContext_a57722f8a1c879b71ae19337e61600b3d}{JobMask}}\ =\ uint32;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classPhysicsUpdateContext_a57722f8a1c879b71ae19337e61600b3d}{JobMask}})\ *\ 8\ >=\ \mbox{\hyperlink{classPhysicsUpdateContext_a914eeb78829e0177ad07274a1472aa70}{cMaxConcurrency}});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{Step}}}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{Step}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{Step}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{Step}}\ \&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(\textcolor{keyword}{false});\ \}\ \textcolor{comment}{//\ vector\ needs\ a\ copy\ constructor,\ but\ we're\ never\ going\ to\ call\ it}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext}{PhysicsUpdateContext}}\ *\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_acfb1fe9af1d8ea1e6c10964a1a73915d}{mContext}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a88d7397f7a46e0455738d46efa50a1ac}{mIsFirst}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a0ec883309d690e463275cb9932cb64c1}{mIsLast}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structBroadPhase_1_1UpdateState}{BroadPhase::UpdateState}}\ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_af2f3ce30f63e94c229d1363a43da9aca}{mBroadPhaseUpdateState}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a6a113f4d900ccaaf2bcc52584654f569}{mNumActiveBodiesAtStepStart}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_af1cea849e2511fadd96fec484c84ab43}{mDetermineActiveConstraintReadIdx}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a77e0a019809ed80613a75e3f7b5217c6}{mPadding1}}[JPH\_CACHE\_LINE\_SIZE\ -\/\ \textcolor{keyword}{sizeof}(atomic<uint32>)];}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_af0ee5aea31c2282efaa0df4b55401424}{mNumActiveConstraints}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a4b8740c5f4ed9785bac06320cc762487}{mPadding2}}[JPH\_CACHE\_LINE\_SIZE\ -\/\ \textcolor{keyword}{sizeof}(atomic<uint32>)];}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a6be869a18ebbdd1cc59cd2b27da5e488}{mSetupVelocityConstraintsReadIdx}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a16b0d33b3a5f7755e033bb2c400ab8ac}{mPadding3}}[JPH\_CACHE\_LINE\_SIZE\ -\/\ \textcolor{keyword}{sizeof}(atomic<uint32>)];}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a295a55ea8456a023f402bdd731b59922}{mStepListenerReadIdx}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a07c8e8051345d5106cf1cd8ee8df14d3}{mPadding4}}[JPH\_CACHE\_LINE\_SIZE\ -\/\ \textcolor{keyword}{sizeof}(atomic<uint32>)];}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_ad8016f86c45bb3092259e91ff0f6c426}{mApplyGravityReadIdx}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a806337c54e4bd1ef4dcb3eae0dd4ea72}{mPadding5}}[JPH\_CACHE\_LINE\_SIZE\ -\/\ \textcolor{keyword}{sizeof}(atomic<uint32>)];}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a5f32b22178d4cc044a96d59d41250916}{mActiveBodyReadIdx}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a16066c34dd3882810d28dc9d0e8dd2d5}{mPadding6}}[JPH\_CACHE\_LINE\_SIZE\ -\/\ \textcolor{keyword}{sizeof}(atomic<uint32>)];}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{BodyPairQueues}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_af8fbffcba6d3b5adbdeb98c1d63903fe}{mBodyPairQueues}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_ad93f9b39dad02dee27f009f63468d5f0}{mMaxBodyPairsPerQueue}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ atomic<JobMask>\ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_aa3ef4344525797671470875550d736fc}{mActiveFindCollisionJobs}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a2f4b4efc242a2e45e369bbf6cc6a9d0b}{mNumBodyPairs}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a694dd2809042d7614c64b2abdf26e73f}{mNumManifolds}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a0a81eaf0dd6d5042c7ad171c626b8ecb}{mSolveVelocityConstraintsNextIsland}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a664416b66a92b704fa6557311862c9e0}{mSolvePositionConstraintsNextIsland}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody}{CCDBody}}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody}{CCDBody}}(\mbox{\hyperlink{classBodyID}{BodyID}}\ inBodyID1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDeltaPosition,\ \textcolor{keywordtype}{float}\ inLinearCastThresholdSq,\ \textcolor{keywordtype}{float}\ inMaxPenetration)\ :\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a600b083a1951ed5d7d5bb3e622474477}{mDeltaPosition}}(inDeltaPosition),\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_aec632d3b29f373db9f7e948315e1509c}{mBodyID1}}(inBodyID1),\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a3dab2c4142f45798d20aa1d77012099a}{mLinearCastThresholdSq}}(inLinearCastThresholdSq),\ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a006b8fd2ec68238645cc7c4b48bf43fa}{mMaxPenetration}}(inMaxPenetration)\ \{\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a600b083a1951ed5d7d5bb3e622474477}{mDeltaPosition}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a977f14cb8637f2f5cfe80e7fa7a30909}{mContactNormal}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a3a66d945cc9f9f778d4309be685af2df}{mContactPointOn2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_aec632d3b29f373db9f7e948315e1509c}{mBodyID1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a795af390323d8a3fa5611c87c75c376f}{mBodyID2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_ad8fd1d07aa868351147166971b648163}{mFraction}}\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_ae085ff6f3acdcca6fb1aae40d191bf37}{mFractionPlusSlop}}\ =\ 1.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a3dab2c4142f45798d20aa1d77012099a}{mLinearCastThresholdSq}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a006b8fd2ec68238645cc7c4b48bf43fa}{mMaxPenetration}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classContactSettings}{ContactSettings}}\ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody_a993db6e5c8993fdc978f813fea921759}{mContactSettings}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_aeb6a6b1469da472e0c419341085c12e1}{mIntegrateVelocityReadIdx}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody}{CCDBody}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a895ea4985300d99b5aa9e042fe1e3f70}{mCCDBodies}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a2d6f2ae1c7e3744a5189bc8ecc958978}{mCCDBodiesCapacity}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a25ec4e61e44004a320440ed279a8da4c}{mNumCCDBodies}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_ad1486be5c2c1c60f8307cd6a2c66f1f1}{mNextCCDBody}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_aef1c5722bfe92d852c8525347e175f3d}{mActiveBodyToCCDBody}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a0d2367602d2e7b6d33387458c0eb3e8b}{mNumActiveBodyToCCDBody}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Jobs\ in\ order\ of\ execution\ (some\ run\ in\ parallel)}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_aff65a027fe90606d02f82dec03e62c3c}{mBroadPhasePrepare}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_ab660abd26126a1e92afee5e2d08dc4d5}{mStepListeners}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_aeb981c58858a0e99712f3561f12d72e9}{mDetermineActiveConstraints}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a6c7ca3641f8ae1ab1f8b808b6cf25356}{mApplyGravity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a07546c1e4391dbf65e4d5a615f5432b4}{mFindCollisions}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_abd9bafeccce1674c48d08f4edc56e739}{mUpdateBroadphaseFinalize}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_aa342675e2a78c65451953075a0facbb8}{mSetupVelocityConstraints}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a3176929769d4b2fa200a279beb127d33}{mBuildIslandsFromConstraints}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_aac4325e64e7bb9a135478c4378185dcf}{mFinalizeIslands}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_aa88b6bb72d389f72577406ed0f96cfbb}{mBodySetIslandIndex}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a17baea78265815e3873c968326eb08e6}{mSolveVelocityConstraints}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a1f089199fc6b1d0fc6fb973d2750d32a}{mPreIntegrateVelocity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a6acbdc84376f0eb1eb55e0f24bd704ec}{mIntegrateVelocity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a1c491fd0b7d20d6b49e7be2b55ef48d5}{mPostIntegrateVelocity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a6bd9110000ab8f670192a1c91677571f}{mResolveCCDContacts}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a42542a887195fdbe5451a4c6dc38d4f9}{mSolvePositionConstraints}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a2fc477198ee62afd4f842070754fe46e}{mContactRemovedCallbacks}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_afce2da019e38496dac8112213ca0cbf9}{mSoftBodyPrepare}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a15902e388880930871d31f3c93e509fa}{mSoftBodyCollide}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{JobHandleArray}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_acd7047a6c7f6bcf496cdf8250f143780}{mSoftBodySimulate}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a5b44a2bcca8b605084adaa148bcfa090}{mSoftBodyFinalize}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1JobHandle}{JobHandle}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_a8648fd2c91cb4f4fc003682c09a56779}{mStartNextStep}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{using\ }Steps\ =\ std::vector<Step,\ STLTempAllocator<Step>>;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a26f629d14c71383b17923a0544158680}{GetMaxConcurrency}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ max\_concurrency\ =\ \mbox{\hyperlink{classPhysicsUpdateContext_a914eeb78829e0177ad07274a1472aa70}{PhysicsUpdateContext::cMaxConcurrency}};\ \textcolor{keywordflow}{return}\ min(max\_concurrency,\ \mbox{\hyperlink{classPhysicsUpdateContext_a736edcba88a4a7bd3bc37d417e317ed7}{mJobSystem}}-\/>\mbox{\hyperlink{classJobSystem_a5953ad34be5c47e7896b87ac7409b7d7}{GetMaxConcurrency}}());\ \}\ }
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a081d18872fcf446aa811f95c0d66b05c}{mPhysicsSystem}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a849d877684ec2ecc251defcfe8c62e91}{mTempAllocator}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{classJobSystem}{JobSystem}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a736edcba88a4a7bd3bc37d417e317ed7}{mJobSystem}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{classJobSystem_1_1Barrier}{JobSystem::Barrier}}\ *\ \ \mbox{\hyperlink{classPhysicsUpdateContext_a26472dbbba0458cc803a6adda1d71b5f}{mBarrier}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a2f93d5ea4f409db1b4fcb5e353093276}{mStepDeltaTime}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a52d38e3dd5e6fbe7beb3a90b4ea27e1f}{mWarmStartImpulseRatio}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a57bb8d85178c1a1082cfabed7334fa75}{mErrors}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{classConstraint}{Constraint}}\ **\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a06f3d5772169584520a19f7d85820206}{mActiveConstraints}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{structBodyPair}{BodyPair}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a8b9c15a6ef1a5072d539c18a45ae457f}{mBodyPairs}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{classIslandBuilder}{IslandBuilder}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_afa015c9ca2db6ffc71181cb809cdb30a}{mIslandBuilder}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ Steps\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSteps;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_adb6496db121f7c5e1248ae9688965f49}{mNumSoftBodies}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext}{SoftBodyUpdateContext}}\ *\ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_a06ba290db66584bb880ebe95a26b67bf}{mSoftBodyUpdateContexts}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPhysicsUpdateContext_aafa3f183df8ebb23b0ac564402a383c0}{mSoftBodyToCollide}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ \};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

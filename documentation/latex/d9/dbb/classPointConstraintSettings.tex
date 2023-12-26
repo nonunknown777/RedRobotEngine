@@ -1,0 +1,188 @@
+\doxysection{Point\+Constraint\+Settings Class Reference}
+\hypertarget{classPointConstraintSettings}{}\label{classPointConstraintSettings}\index{PointConstraintSettings@{PointConstraintSettings}}
+
+
+Point constraint settings, used to create a point constraint.  
+
+
+
+
+{\ttfamily \#include $<$Point\+Constraint.\+h$>$}
+
+
+
+Inheritance diagram for Point\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/dd1/classPointConstraintSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Point\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dc/da5/classPointConstraintSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classPointConstraintSettings_a33260599b22ef3ae627726736539f6e1}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saves the contents of the constraint settings in binary form to in\+Stream. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classPointConstraintSettings_a0fe504812bad1f6b0c8d1b31681b2bca}{Create}} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2) const override
+\begin{DoxyCompactList}\small\item\em Create an an instance of this constraint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPointConstraintSettings_abebac3d7da7808a7430f01398a1d817a}\label{classPointConstraintSettings_abebac3d7da7808a7430f01398a1d817a} 
+EConstraint\+Space {\bfseries m\+Space} = EConstraint\+Space\+::\+World\+Space
+\begin{DoxyCompactList}\small\item\em This determines in which space the constraint is setup, all properties below should be in the specified space. \end{DoxyCompactList}\item 
+\Hypertarget{classPointConstraintSettings_a75e5165cface9c64e3edb866b0de9b11}\label{classPointConstraintSettings_a75e5165cface9c64e3edb866b0de9b11} 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries m\+Point1} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()
+\begin{DoxyCompactList}\small\item\em \doxylink{classBody}{Body} 1 constraint position (space determined by m\+Space). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{RVec3}} \mbox{\hyperlink{classPointConstraintSettings_aa7b0100193fa0754bcfa7011e2900195}{m\+Point2}} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries m\+Enabled} = true
+\begin{DoxyCompactList}\small\item\em If this constraint is enabled initially. Use \doxylink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Constraint\+::\+Set\+Enabled} to toggle after creation. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraintSettings_ab01ba90506d17f415054bfa6208a4939}{m\+Constraint\+Priority}} = 0
+\item 
+uint {\bfseries m\+Num\+Velocity\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries m\+Num\+Position\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+float {\bfseries m\+Draw\+Constraint\+Size} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Size of constraint when drawing it through the debug renderer. \end{DoxyCompactList}\item 
+uint64 {\bfseries m\+User\+Data} = 0
+\begin{DoxyCompactList}\small\item\em User data value (can be used by application) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classPointConstraintSettings_abc34d1b03ff76c977194efc4737999bb}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Constraint\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Constraint\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a constraint of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Point constraint settings, used to create a point constraint. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPointConstraintSettings_a0fe504812bad1f6b0c8d1b31681b2bca}\label{classPointConstraintSettings_a0fe504812bad1f6b0c8d1b31681b2bca} 
+\index{PointConstraintSettings@{PointConstraintSettings}!Create@{Create}}
+\index{Create@{Create}!PointConstraintSettings@{PointConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} Point\+Constraint\+Settings\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Create an an instance of this constraint. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraintSettings_a42e353e736b0254b02008b050a28f55b}{Two\+Body\+Constraint\+Settings}}.
+
+\Hypertarget{classPointConstraintSettings_abc34d1b03ff76c977194efc4737999bb}\label{classPointConstraintSettings_abc34d1b03ff76c977194efc4737999bb} 
+\index{PointConstraintSettings@{PointConstraintSettings}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!PointConstraintSettings@{PointConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Point\+Constraint\+Settings\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraintSettings_adcdb433a58df0924940fd8f86acd3251}{Constraint\+Settings}}.
+
+\Hypertarget{classPointConstraintSettings_a33260599b22ef3ae627726736539f6e1}\label{classPointConstraintSettings_a33260599b22ef3ae627726736539f6e1} 
+\index{PointConstraintSettings@{PointConstraintSettings}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!PointConstraintSettings@{PointConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Point\+Constraint\+Settings\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the contents of the constraint settings in binary form to in\+Stream. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraintSettings_a2f45c4a1fd6d6d74691729d5103f094a}{Constraint\+Settings}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classPointConstraintSettings_aa7b0100193fa0754bcfa7011e2900195}\label{classPointConstraintSettings_aa7b0100193fa0754bcfa7011e2900195} 
+\index{PointConstraintSettings@{PointConstraintSettings}!mPoint2@{mPoint2}}
+\index{mPoint2@{mPoint2}!PointConstraintSettings@{PointConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{mPoint2}{mPoint2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVec3}{RVec3}} Point\+Constraint\+Settings\+::m\+Point2 = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()}
+
+\doxylink{classBody}{Body} 2 constraint position (space determined by m\+Space). Note\+: Normally you would set m\+Point1 = m\+Point2 if the bodies are already placed how you want to constrain them (if m\+Space = world space). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Point\+Constraint.\+h\end{DoxyCompactItemize}

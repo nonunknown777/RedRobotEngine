@@ -1,0 +1,206 @@
+\doxysection{Ragdoll\+Settings Class Reference}
+\hypertarget{classRagdollSettings}{}\label{classRagdollSettings}\index{RagdollSettings@{RagdollSettings}}
+
+
+Contains the structure of a ragdoll.  
+
+
+
+
+{\ttfamily \#include $<$Ragdoll.\+h$>$}
+
+
+
+Inheritance diagram for Ragdoll\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/dfe/classRagdollSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ragdoll\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{da/dc0/classRagdollSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classRagdollSettings_1_1AdditionalConstraint}{Additional\+Constraint}}
+\begin{DoxyCompactList}\small\item\em A constraint that connects two bodies in a ragdoll (for non parent child related constraints) \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classRagdollSettings_1_1Part}{Part}}
+\begin{DoxyCompactList}\small\item\em A single rigid body sub part of the ragdoll. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRagdollSettings_a496ff56b454d0833f27c9894313d1228}\label{classRagdollSettings_a496ff56b454d0833f27c9894313d1228} 
+using {\bfseries Ragdoll\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classRagdollSettings}{Ragdoll\+Settings}} $>$ $>$
+\item 
+\Hypertarget{classRagdollSettings_a36195b8e16b3bc71bcace6dc5ab207e8}\label{classRagdollSettings_a36195b8e16b3bc71bcace6dc5ab207e8} 
+using {\bfseries Body\+Idx\+Pair} = pair$<$ int, int $>$
+\item 
+\Hypertarget{classRagdollSettings_afe45741614c7194437ffcafdd2552b7d}\label{classRagdollSettings_afe45741614c7194437ffcafdd2552b7d} 
+using {\bfseries Part\+Vector} = Array$<$ \mbox{\hyperlink{classRagdollSettings_1_1Part}{Part}} $>$
+\begin{DoxyCompactList}\small\item\em The constraint that connects this part to its parent part (should be null for the root) \end{DoxyCompactList}\item 
+\Hypertarget{classRagdollSettings_a9b2cdf3b1dc8ca01105aed3e626dce7f}\label{classRagdollSettings_a9b2cdf3b1dc8ca01105aed3e626dce7f} 
+using {\bfseries Additional\+Constraint\+Vector} = Array$<$ \mbox{\hyperlink{classRagdollSettings_1_1AdditionalConstraint}{Additional\+Constraint}} $>$
+\begin{DoxyCompactList}\small\item\em List of additional constraints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classRagdollSettings_ab47bfb4b4c4c9dc780307449f9907bae}{Stabilize}} ()
+\item 
+void \mbox{\hyperlink{classRagdollSettings_a4fa33727be725de16620f446fbb420f6}{Disable\+Parent\+Child\+Collisions}} (const \mbox{\hyperlink{classMat44}{Mat44}} \texorpdfstring{$\ast$}{*}in\+Joint\+Matrices=nullptr, float in\+Min\+Separation\+Distance=0.\+0f)
+\item 
+void \mbox{\hyperlink{classRagdollSettings_a5ac758eeeb02faf2d90dbf70c874fda5}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream, bool in\+Save\+Shapes, bool in\+Save\+Group\+Filter) const
+\item 
+\mbox{\hyperlink{classRagdoll}{Ragdoll}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classRagdollSettings_a6f5c2dd947c77b071431f91a1f1b6251}{Create\+Ragdoll}} (Collision\+Group\+::\+Group\+ID in\+Collision\+Group, uint64 in\+User\+Data, \mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \texorpdfstring{$\ast$}{*}in\+System) const
+\item 
+\Hypertarget{classRagdollSettings_a5f7c10c07d5cdaa2800bda61897f8852}\label{classRagdollSettings_a5f7c10c07d5cdaa2800bda61897f8852} 
+const \mbox{\hyperlink{classSkeleton}{Skeleton}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Skeleton} () const
+\begin{DoxyCompactList}\small\item\em Access to the skeleton of this ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdollSettings_a10ee1dfde20a1031ba99268be5b60157}\label{classRagdollSettings_a10ee1dfde20a1031ba99268be5b60157} 
+\mbox{\hyperlink{classSkeleton}{Skeleton}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Skeleton} ()
+\item 
+\Hypertarget{classRagdollSettings_a1e23b51741e51dd17319254ab2314e8f}\label{classRagdollSettings_a1e23b51741e51dd17319254ab2314e8f} 
+void {\bfseries Calculate\+Body\+Index\+To\+Constraint\+Index} ()
+\begin{DoxyCompactList}\small\item\em Calculate the map needed for \doxylink{classRagdollSettings_a0d32abac6067ec311bb89c65f1fd6e3e}{Get\+Body\+Index\+To\+Constraint\+Index()} \end{DoxyCompactList}\item 
+const Array$<$ int $>$ \& \mbox{\hyperlink{classRagdollSettings_a0d32abac6067ec311bb89c65f1fd6e3e}{Get\+Body\+Index\+To\+Constraint\+Index}} () const
+\item 
+\Hypertarget{classRagdollSettings_a1749cda0e9b21d71951d950561eed206}\label{classRagdollSettings_a1749cda0e9b21d71951d950561eed206} 
+int {\bfseries Get\+Constraint\+Index\+For\+Body\+Index} (int in\+Body\+Index) const
+\begin{DoxyCompactList}\small\item\em Map a single body index to a constraint index. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdollSettings_a549e9e4d95b8bb57fa1feb91fa142002}\label{classRagdollSettings_a549e9e4d95b8bb57fa1feb91fa142002} 
+void {\bfseries Calculate\+Constraint\+Index\+To\+Body\+Idx\+Pair} ()
+\begin{DoxyCompactList}\small\item\em Calculate the map needed for \doxylink{classRagdollSettings_a7e1760aeb58718b818dc1c30f7049678}{Get\+Constraint\+Index\+To\+Body\+Idx\+Pair()} \end{DoxyCompactList}\item 
+\Hypertarget{classRagdollSettings_a7e1760aeb58718b818dc1c30f7049678}\label{classRagdollSettings_a7e1760aeb58718b818dc1c30f7049678} 
+const Array$<$ Body\+Idx\+Pair $>$ \& {\bfseries Get\+Constraint\+Index\+To\+Body\+Idx\+Pair} () const
+\begin{DoxyCompactList}\small\item\em Table that maps a constraint index (index in m\+Constraints) to the indices of the bodies that the constraint is connected to (index in m\+Body\+IDs) \end{DoxyCompactList}\item 
+\Hypertarget{classRagdollSettings_abf5abd1cf5ac17cd649c7ad69366b63e}\label{classRagdollSettings_abf5abd1cf5ac17cd649c7ad69366b63e} 
+Body\+Idx\+Pair {\bfseries Get\+Body\+Indices\+For\+Constraint\+Index} (int in\+Constraint\+Index) const
+\begin{DoxyCompactList}\small\item\em Map a single constraint index (index in m\+Constraints) to the indices of the bodies that the constraint is connected to (index in m\+Body\+IDs) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Ragdoll\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRagdollSettings_a34c0baece3dba31d5317e53ab32a6cd7}\label{classRagdollSettings_a34c0baece3dba31d5317e53ab32a6cd7} 
+static \mbox{\hyperlink{classResult}{Ragdoll\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore a saved ragdoll from in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Ragdoll\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRagdollSettings_ad4fed891ce9688ea6e65b84d913be3b8}\label{classRagdollSettings_ad4fed891ce9688ea6e65b84d913be3b8} 
+\mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classSkeleton}{Skeleton}} $>$ {\bfseries m\+Skeleton}
+\begin{DoxyCompactList}\small\item\em The skeleton for this ragdoll. \end{DoxyCompactList}\item 
+\Hypertarget{classRagdollSettings_acf5a663278bc571eb621e180abc67a3b}\label{classRagdollSettings_acf5a663278bc571eb621e180abc67a3b} 
+\mbox{\hyperlink{classRagdollSettings_afe45741614c7194437ffcafdd2552b7d}{Part\+Vector}} {\bfseries m\+Parts}
+\begin{DoxyCompactList}\small\item\em For each of the joints, the body and constraint attaching it to its parent body (1-\/on-\/1 with m\+Skeleton.\+Get\+Joints()) \end{DoxyCompactList}\item 
+\Hypertarget{classRagdollSettings_aa5b99482d05587d747351f962780f91f}\label{classRagdollSettings_aa5b99482d05587d747351f962780f91f} 
+\mbox{\hyperlink{classRagdollSettings_a9b2cdf3b1dc8ca01105aed3e626dce7f}{Additional\+Constraint\+Vector}} {\bfseries m\+Additional\+Constraints}
+\begin{DoxyCompactList}\small\item\em A list of constraints that connects two bodies in a ragdoll (for non parent child related constraints) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Ragdoll\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Ragdoll\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains the structure of a ragdoll. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRagdollSettings_a6f5c2dd947c77b071431f91a1f1b6251}\label{classRagdollSettings_a6f5c2dd947c77b071431f91a1f1b6251} 
+\index{RagdollSettings@{RagdollSettings}!CreateRagdoll@{CreateRagdoll}}
+\index{CreateRagdoll@{CreateRagdoll}!RagdollSettings@{RagdollSettings}}
+\doxysubsubsection{\texorpdfstring{CreateRagdoll()}{CreateRagdoll()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRagdoll}{Ragdoll}} \texorpdfstring{$\ast$}{*} Ragdoll\+Settings\+::\+Create\+Ragdoll (\begin{DoxyParamCaption}\item[{Collision\+Group\+::\+Group\+ID}]{in\+Collision\+Group,  }\item[{uint64}]{in\+User\+Data,  }\item[{\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \texorpdfstring{$\ast$}{*}}]{in\+System }\end{DoxyParamCaption}) const}
+
+Create ragdoll instance from these settings \begin{DoxyReturn}{Returns}
+Newly created ragdoll or null when out of bodies 
+\end{DoxyReturn}
+\Hypertarget{classRagdollSettings_a4fa33727be725de16620f446fbb420f6}\label{classRagdollSettings_a4fa33727be725de16620f446fbb420f6} 
+\index{RagdollSettings@{RagdollSettings}!DisableParentChildCollisions@{DisableParentChildCollisions}}
+\index{DisableParentChildCollisions@{DisableParentChildCollisions}!RagdollSettings@{RagdollSettings}}
+\doxysubsubsection{\texorpdfstring{DisableParentChildCollisions()}{DisableParentChildCollisions()}}
+{\footnotesize\ttfamily void Ragdoll\+Settings\+::\+Disable\+Parent\+Child\+Collisions (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMat44}{Mat44}} \texorpdfstring{$\ast$}{*}}]{in\+Joint\+Matrices = {\ttfamily nullptr},  }\item[{float}]{in\+Min\+Separation\+Distance = {\ttfamily 0.0f} }\end{DoxyParamCaption})}
+
+After the ragdoll has been fully configured, call this function to automatically create and add a \doxylink{classGroupFilterTable}{Group\+Filter\+Table} collision filter to all bodies and configure them so that parent and children don\textquotesingle{}t collide.
+
+This will\+:
+\begin{DoxyItemize}
+\item Create a \doxylink{classGroupFilterTable}{Group\+Filter\+Table} and assign it to all of the bodies in a ragdoll.
+\item Each body in your ragdoll will get a Sub\+Group\+ID that is equal to the joint index in the \doxylink{classSkeleton}{Skeleton} that it is attached to.
+\item Loop over all joints in the \doxylink{classSkeleton}{Skeleton} and call Group\+Filter\+Table\+::\+Disable\+Collision(joint index, parent joint index).
+\item When a pose is provided through in\+Joint\+Matrices the function will detect collisions between joints (they must be separated by more than in\+Min\+Separation\+Distance to be treated as not colliding) and automatically disable collisions.
+\end{DoxyItemize}
+
+When you create an instance using Ragdoll\+::\+Create\+Ragdoll pass in a unique Group\+ID for each ragdoll (e.\+g. a simple counter), note that this number should be unique throughout the \doxylink{classPhysicsSystem}{Physics\+System}, so if you have different types of ragdolls they should not share the same Group\+ID. \Hypertarget{classRagdollSettings_a0d32abac6067ec311bb89c65f1fd6e3e}\label{classRagdollSettings_a0d32abac6067ec311bb89c65f1fd6e3e} 
+\index{RagdollSettings@{RagdollSettings}!GetBodyIndexToConstraintIndex@{GetBodyIndexToConstraintIndex}}
+\index{GetBodyIndexToConstraintIndex@{GetBodyIndexToConstraintIndex}!RagdollSettings@{RagdollSettings}}
+\doxysubsubsection{\texorpdfstring{GetBodyIndexToConstraintIndex()}{GetBodyIndexToConstraintIndex()}}
+{\footnotesize\ttfamily const Array$<$ int $>$ \& Ragdoll\+Settings\+::\+Get\+Body\+Index\+To\+Constraint\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get table that maps a body index to the constraint index with which it is connected to its parent. -\/1 if there is no constraint associated with the body. Note that this will only tell you which constraint connects the body to its parent, it will not look in the additional constraint list. \Hypertarget{classRagdollSettings_a5ac758eeeb02faf2d90dbf70c874fda5}\label{classRagdollSettings_a5ac758eeeb02faf2d90dbf70c874fda5} 
+\index{RagdollSettings@{RagdollSettings}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!RagdollSettings@{RagdollSettings}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily void Ragdoll\+Settings\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream,  }\item[{bool}]{in\+Save\+Shapes,  }\item[{bool}]{in\+Save\+Group\+Filter }\end{DoxyParamCaption}) const}
+
+Saves the state of this object in binary form to in\+Stream. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Stream} & The stream to save the state to \\
+\hline
+{\em in\+Save\+Shapes} & If the shapes should be saved as well (these could be shared between ragdolls, in which case the calling application may want to write custom code to restore them) \\
+\hline
+{\em in\+Save\+Group\+Filter} & If the group filter should be saved as well (these could be shared) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRagdollSettings_ab47bfb4b4c4c9dc780307449f9907bae}\label{classRagdollSettings_ab47bfb4b4c4c9dc780307449f9907bae} 
+\index{RagdollSettings@{RagdollSettings}!Stabilize@{Stabilize}}
+\index{Stabilize@{Stabilize}!RagdollSettings@{RagdollSettings}}
+\doxysubsubsection{\texorpdfstring{Stabilize()}{Stabilize()}}
+{\footnotesize\ttfamily bool Ragdoll\+Settings\+::\+Stabilize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stabilize the constraints of the ragdoll \begin{DoxyReturn}{Returns}
+True on success, false on failure. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Ragdoll/Ragdoll.\+h\end{DoxyCompactItemize}

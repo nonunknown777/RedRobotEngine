@@ -1,0 +1,146 @@
+\doxysection{Broad\+Phase\+Query Class Reference}
+\hypertarget{classBroadPhaseQuery}{}\label{classBroadPhaseQuery}\index{BroadPhaseQuery@{BroadPhaseQuery}}
+
+
+{\ttfamily \#include $<$Broad\+Phase\+Query.\+h$>$}
+
+
+
+Inheritance diagram for Broad\+Phase\+Query\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d7/d46/classBroadPhaseQuery__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Broad\+Phase\+Query\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d8/dea/classBroadPhaseQuery__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBroadPhaseQuery_a3eb1b1cf5421ba7785cff7e7aa4bd702}\label{classBroadPhaseQuery_a3eb1b1cf5421ba7785cff7e7aa4bd702} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Broad\+Phase\+Query} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_a1c74037652396c3584021f9b99341397}{Cast\+Ray}} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray, \mbox{\hyperlink{classCollisionCollector}{Ray\+Cast\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Cast a ray and add any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_a4a63335c1c6b386af32b22d4e74dbf5a}{Collide\+AABox}} (const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Get bodies intersecting with in\+Box and any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_afb74ce9d61cf7048e3ea8a48a2997d38}{Collide\+Sphere}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Center, float in\+Radius, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Get bodies intersecting with a sphere and any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_a191877420623144ad7ba7a78db56baa9}{Collide\+Point}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Get bodies intersecting with a point and any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_aeec59baf944dd3f63f172dbf732768b2}{Collide\+Oriented\+Box}} (const \mbox{\hyperlink{classOrientedBox}{Oriented\+Box}} \&in\+Box, \mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Get bodies intersecting with an oriented box and any hits to io\+Collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBroadPhaseQuery_a8df87b27367ff5e9911f7966359d326a}{Cast\+AABox}} (const \mbox{\hyperlink{structAABoxCast}{AABox\+Cast}} \&in\+Box, \mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Body\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&in\+Broad\+Phase\+Layer\+Filter=\{ \}, const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&in\+Object\+Layer\+Filter=\{ \}) const =0
+\begin{DoxyCompactList}\small\item\em Cast a box and add any hits to io\+Collector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface to the broadphase that can perform collision queries. These queries will only test the bounding box of the body to quickly determine a potential set of colliding bodies. The shapes of the bodies are not tested, if you want this then you should use the \doxylink{classNarrowPhaseQuery}{Narrow\+Phase\+Query} interface. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBroadPhaseQuery_a8df87b27367ff5e9911f7966359d326a}\label{classBroadPhaseQuery_a8df87b27367ff5e9911f7966359d326a} 
+\index{BroadPhaseQuery@{BroadPhaseQuery}!CastAABox@{CastAABox}}
+\index{CastAABox@{CastAABox}!BroadPhaseQuery@{BroadPhaseQuery}}
+\doxysubsubsection{\texorpdfstring{CastAABox()}{CastAABox()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+Query\+::\+Cast\+AABox (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structAABoxCast}{AABox\+Cast}} \&}]{in\+Box,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Cast\+Shape\+Body\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&}]{in\+Broad\+Phase\+Layer\+Filter = {\ttfamily \{~\}},  }\item[{const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&}]{in\+Object\+Layer\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Cast a box and add any hits to io\+Collector. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a20e98febaadaf8a8365338e569d508f5}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a7a56ff5c2602b7e961d5ca1b144263ca}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhaseQuery_a1c74037652396c3584021f9b99341397}\label{classBroadPhaseQuery_a1c74037652396c3584021f9b99341397} 
+\index{BroadPhaseQuery@{BroadPhaseQuery}!CastRay@{CastRay}}
+\index{CastRay@{CastRay}!BroadPhaseQuery@{BroadPhaseQuery}}
+\doxysubsubsection{\texorpdfstring{CastRay()}{CastRay()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+Query\+::\+Cast\+Ray (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&}]{in\+Ray,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Ray\+Cast\+Body\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&}]{in\+Broad\+Phase\+Layer\+Filter = {\ttfamily \{~\}},  }\item[{const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&}]{in\+Object\+Layer\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Cast a ray and add any hits to io\+Collector. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a6eff942af873719034f0f7cbb8188902}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a916963e054fbe6880da1712a83d0c472}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhaseQuery_a4a63335c1c6b386af32b22d4e74dbf5a}\label{classBroadPhaseQuery_a4a63335c1c6b386af32b22d4e74dbf5a} 
+\index{BroadPhaseQuery@{BroadPhaseQuery}!CollideAABox@{CollideAABox}}
+\index{CollideAABox@{CollideAABox}!BroadPhaseQuery@{BroadPhaseQuery}}
+\doxysubsubsection{\texorpdfstring{CollideAABox()}{CollideAABox()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+Query\+::\+Collide\+AABox (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAABox}{AABox}} \&}]{in\+Box,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&}]{in\+Broad\+Phase\+Layer\+Filter = {\ttfamily \{~\}},  }\item[{const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&}]{in\+Object\+Layer\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get bodies intersecting with in\+Box and any hits to io\+Collector. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a60c02a861a34a18e792df03e64728acb}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a3f6aefd35199485125134146a5420c80}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhaseQuery_aeec59baf944dd3f63f172dbf732768b2}\label{classBroadPhaseQuery_aeec59baf944dd3f63f172dbf732768b2} 
+\index{BroadPhaseQuery@{BroadPhaseQuery}!CollideOrientedBox@{CollideOrientedBox}}
+\index{CollideOrientedBox@{CollideOrientedBox}!BroadPhaseQuery@{BroadPhaseQuery}}
+\doxysubsubsection{\texorpdfstring{CollideOrientedBox()}{CollideOrientedBox()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+Query\+::\+Collide\+Oriented\+Box (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classOrientedBox}{Oriented\+Box}} \&}]{in\+Box,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&}]{in\+Broad\+Phase\+Layer\+Filter = {\ttfamily \{~\}},  }\item[{const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&}]{in\+Object\+Layer\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get bodies intersecting with an oriented box and any hits to io\+Collector. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_a642ce7e2e6c879c510d6582b88a9837b}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_a43e25b18f8f235dee93e471b4f46c067}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhaseQuery_a191877420623144ad7ba7a78db56baa9}\label{classBroadPhaseQuery_a191877420623144ad7ba7a78db56baa9} 
+\index{BroadPhaseQuery@{BroadPhaseQuery}!CollidePoint@{CollidePoint}}
+\index{CollidePoint@{CollidePoint}!BroadPhaseQuery@{BroadPhaseQuery}}
+\doxysubsubsection{\texorpdfstring{CollidePoint()}{CollidePoint()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+Query\+::\+Collide\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Point,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&}]{in\+Broad\+Phase\+Layer\+Filter = {\ttfamily \{~\}},  }\item[{const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&}]{in\+Object\+Layer\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get bodies intersecting with a point and any hits to io\+Collector. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_ab9201849bcf979700c30eeacdadaeb30}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_ab3c90c295258738025c32cd8a2884b3b}{Broad\+Phase\+Quad\+Tree}}.
+
+\Hypertarget{classBroadPhaseQuery_afb74ce9d61cf7048e3ea8a48a2997d38}\label{classBroadPhaseQuery_afb74ce9d61cf7048e3ea8a48a2997d38} 
+\index{BroadPhaseQuery@{BroadPhaseQuery}!CollideSphere@{CollideSphere}}
+\index{CollideSphere@{CollideSphere}!BroadPhaseQuery@{BroadPhaseQuery}}
+\doxysubsubsection{\texorpdfstring{CollideSphere()}{CollideSphere()}}
+{\footnotesize\ttfamily virtual void Broad\+Phase\+Query\+::\+Collide\+Sphere (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Center,  }\item[{float}]{in\+Radius,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Collide\+Shape\+Body\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \&}]{in\+Broad\+Phase\+Layer\+Filter = {\ttfamily \{~\}},  }\item[{const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \&}]{in\+Object\+Layer\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get bodies intersecting with a sphere and any hits to io\+Collector. 
+
+
+
+Implemented in \mbox{\hyperlink{classBroadPhaseBruteForce_abbd49d88b3684d7e4bc35b92a087a6fd}{Broad\+Phase\+Brute\+Force}}, and \mbox{\hyperlink{classBroadPhaseQuadTree_af6fdca693c8976679a13df50e81ad7c1}{Broad\+Phase\+Quad\+Tree}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Broad\+Phase/Broad\+Phase\+Query.\+h\end{DoxyCompactItemize}

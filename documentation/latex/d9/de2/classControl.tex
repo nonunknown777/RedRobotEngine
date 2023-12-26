@@ -1,0 +1,100 @@
+\doxysection{Control Class Reference}
+\hypertarget{classControl}{}\label{classControl}\index{Control@{Control}}
+
+
+Inheritance diagram for Control\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/d45/classControl__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Control\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/de6/classControl__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classControl_a2d81e0fa8da19769c9cdc2344934d8d6}\label{classControl_a2d81e0fa8da19769c9cdc2344934d8d6} 
+{\bfseries Control} (std\+::string name="{}Control"{})
+\item 
+void \mbox{\hyperlink{classControl_addfe5a292d7afb4d64a63d0117c49bef}{\+\_\+draw}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCanvasItem}{Canvas\+Item}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Canvas\+Item} (std\+::string name="{}Canvas\+Item"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNode}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Node} (std\+::string name="{}New\+Node"{})
+\item 
+std\+::string {\bfseries get\+\_\+name} () const
+\item 
+virtual void {\bfseries set\+\_\+name} (std\+::string name)
+\item 
+virtual void {\bfseries \+\_\+ready} ()
+\item 
+virtual void {\bfseries \+\_\+process} (float delta)
+\item 
+virtual void {\bfseries \+\_\+input} ()
+\item 
+virtual void {\bfseries \+\_\+unhandled\+\_\+input} (\mbox{\hyperlink{classInputEvent}{Input\+Event}} event)
+\item 
+void {\bfseries add\+\_\+child} (\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+int {\bfseries get\+\_\+child\+\_\+count} ()
+\item 
+\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+child} (int p\+\_\+index)
+\item 
+\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+parent} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+\_\+children} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classControl_a9007fba6cdb2d3424c452a5be7f09600}\label{classControl_a9007fba6cdb2d3424c452a5be7f09600} 
+\mbox{\hyperlink{structVector2}{Vector2}} {\bfseries position}
+\item 
+\Hypertarget{classControl_aa198bfd2942579e91f044fa314dd12cc}\label{classControl_aa198bfd2942579e91f044fa314dd12cc} 
+\mbox{\hyperlink{structVector2}{Vector2}} {\bfseries size}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classCanvasItem}{Canvas\+Item}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries visible} = true
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classNode}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries iteration\+\_\+index}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classControl_addfe5a292d7afb4d64a63d0117c49bef}\label{classControl_addfe5a292d7afb4d64a63d0117c49bef} 
+\index{Control@{Control}!\_draw@{\_draw}}
+\index{\_draw@{\_draw}!Control@{Control}}
+\doxysubsubsection{\texorpdfstring{\_draw()}{\_draw()}}
+{\footnotesize\ttfamily void Control\+::\+\_\+draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCanvasItem}{Canvas\+Item}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/nodes/control.\+hpp\item 
+src/nodes/control.\+cpp\end{DoxyCompactItemize}

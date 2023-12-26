@@ -1,0 +1,7 @@
+<map id="rlRenderBatch" name="rlRenderBatch">
+<area shape="rect" id="Node000001" title=" " alt="" coords="84,268,195,401"/>
+<area shape="rect" id="Node000002" href="$d7/dd5/structrlVertexBuffer.html" title=" " alt="" coords="5,5,124,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,202,93,243,96,251,91,253,87,245,76,203"/>
+<area shape="rect" id="Node000003" href="$d9/db9/structrlDrawCall.html" title=" " alt="" coords="148,37,283,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,171,189,244,185,253,180,251,183,243,203,170"/>
+</map>

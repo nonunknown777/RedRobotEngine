@@ -1,0 +1,239 @@
+\doxysection{AABBTree\+To\+Buffer.\+h}
+\hypertarget{AABBTreeToBuffer_8h_source}{}\label{AABBTreeToBuffer_8h_source}\index{includes/jolt/AABBTree/AABBTreeToBuffer.h@{includes/jolt/AABBTree/AABBTreeToBuffer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/AABBTree/AABBTreeBuilder.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/ByteBuffer.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/IndexedTriangle.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00013\ JPH\_SUPPRESS\_WARNINGS\_STD\_END}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{using\ }Deque\ =\ std::deque<T,\ STLAllocator<T>>;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ TriangleCodec,\ \textcolor{keyword}{class}\ NodeCodec>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAABBTreeToBuffer}{AABBTreeToBuffer}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classAABBTreeToBuffer_a89411f4596ab17c134c473d165ee42ba}{NodeHeader}}\ =\ \textcolor{keyword}{typename}\ NodeCodec::Header;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAABBTreeToBuffer_a950a3efaf390fd647e012bc2179e79ac}{HeaderSize}}\ =\ NodeCodec::HeaderSize;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAABBTreeToBuffer_a956ca0626883d745209ce9fceb85197c}{NumChildrenPerNode}}\ =\ NodeCodec::NumChildrenPerNode;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classAABBTreeToBuffer_a72146720e95aebf8168fd00cd7ef0f1f}{TriangleHeader}}\ =\ \textcolor{keyword}{typename}\ TriangleCodec::TriangleHeader;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classAABBTreeToBuffer_a25ee3d505ab8451bdc9742466a95ff29}{TriangleHeaderSize}}\ =\ TriangleCodec::TriangleHeaderSize;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeToBuffer_a03ce085b937332db1147e9c35b4e091b}{Convert}}(\textcolor{keyword}{const}\ VertexList\ \&inVertices,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTreeBuilder::Node}}\ *inRoot,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\&outError)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ NodeCodec::EncodingContext\ node\_ctx;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ TriangleCodec::EncodingContext\ tri\_ctx(inVertices);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Estimate\ the\ amount\ of\ memory\ required}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ uint\ tri\_count\ =\ inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ad4227473a354d52097ead61c6fa8d992}{GetTriangleCountInTree}}();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ uint\ node\_count\ =\ inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ae1245ceb7193257c465b0916c9c19f10}{GetNodeCount}}();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ uint\ nodes\_size\ =\ node\_ctx.GetPessimisticMemoryEstimate(node\_count);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ uint\ total\_size\ =\ \mbox{\hyperlink{classAABBTreeToBuffer_a950a3efaf390fd647e012bc2179e79ac}{HeaderSize}}\ +\ \mbox{\hyperlink{classAABBTreeToBuffer_a25ee3d505ab8451bdc9742466a95ff29}{TriangleHeaderSize}}\ +\ nodes\_size\ +\ tri\_ctx.GetPessimisticMemoryEstimate(tri\_count);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ mTree.reserve(total\_size);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ counters}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ mNodesSize\ =\ 0;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ headers}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeToBuffer_a89411f4596ab17c134c473d165ee42ba}{NodeHeader}}\ *header\ =\ \mbox{\hyperlink{classAABBTreeToBuffer_a950a3efaf390fd647e012bc2179e79ac}{HeaderSize}}\ >\ 0?\ mTree.\mbox{\hyperlink{classByteBuffer_a6fc1274ad81be5609f1f1e807be7cf6b}{Allocate}}<\mbox{\hyperlink{classAABBTreeToBuffer_a89411f4596ab17c134c473d165ee42ba}{NodeHeader}}>()\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeToBuffer_a72146720e95aebf8168fd00cd7ef0f1f}{TriangleHeader}}\ *triangle\_header\ =\ \mbox{\hyperlink{classAABBTreeToBuffer_a25ee3d505ab8451bdc9742466a95ff29}{TriangleHeaderSize}}\ >\ 0?\ mTree.\mbox{\hyperlink{classByteBuffer_a6fc1274ad81be5609f1f1e807be7cf6b}{Allocate}}<\mbox{\hyperlink{classAABBTreeToBuffer_a72146720e95aebf8168fd00cd7ef0f1f}{TriangleHeader}}>()\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }NodeData}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTreeBuilder::Node}}\ *\ \ mNode\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Node\ that\ this\ entry\ belongs\ to}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNodeBoundsMin;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Quantized\ node\ bounds}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNodeBoundsMax;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNodeStart\ =\ uint(-\/1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ of\ node\ in\ mTree}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTriangleStart\ =\ uint(-\/1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ of\ the\ triangle\ data\ in\ mTree}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumChildren\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ children}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mChildNodeStart[NumChildrenPerNode];\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ of\ the\ children\ of\ the\ node\ in\ mTree}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mChildTrianglesStart[NumChildrenPerNode];\ \ \ \textcolor{comment}{//\ Start\ of\ the\ triangle\ data\ in\ mTree}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mParentChildNodeStart\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Where\ to\ store\ mNodeStart\ (to\ patch\ mChildNodeStart\ of\ my\ parent)}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mParentTrianglesStart\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Where\ to\ store\ mTriangleStart\ (to\ patch\ mChildTrianglesStart\ of\ my\ parent)}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ Deque<NodeData\ *>\ to\_process;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ Deque<NodeData\ *>\ to\_process\_triangles;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ Array<NodeData>\ node\_list;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ node\_list.reserve(node\_count);\ \textcolor{comment}{//\ Needed\ to\ ensure\ that\ array\ is\ not\ reallocated,\ so\ we\ can\ keep\ pointers\ in\ the\ array}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ NodeData\ root;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ root.mNode\ =\ inRoot;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ root.mNodeBoundsMin\ =\ inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ root.mNodeBoundsMax\ =\ inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.mMax;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ node\_list.push\_back(root);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ to\_process.push\_back(\&node\_list.back());}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Child\ nodes\ out\ of\ loop\ so\ we\ don't\ constantly\ realloc\ it}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ Array<const\ AABBTreeBuilder::Node\ *>\ child\_nodes;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ child\_nodes.reserve(\mbox{\hyperlink{classAABBTreeToBuffer_a956ca0626883d745209ce9fceb85197c}{NumChildrenPerNode}});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!to\_process.empty())}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ next\ node\ to\ process}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NodeData\ *node\_data\ =\ to\_process.back();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_process.pop\_back();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Due\ to\ quantization\ box\ could\ have\ become\ bigger,\ not\ smaller}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classAABox}{AABox}}(node\_data-\/>mNodeBoundsMin,\ node\_data-\/>mNodeBoundsMax).\mbox{\hyperlink{classAABox_ae52734145d3a50ef7536bda72b553797}{Contains}}(node\_data-\/>mNode-\/>mBounds),\ \textcolor{stringliteral}{"{}AABBTreeToBuffer:\ Bounding\ box\ became\ smaller!"{}});}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Collect\ the\ first\ NumChildrenPerNode\ sub-\/nodes\ in\ the\ tree}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_nodes.clear();\ \textcolor{comment}{//\ Won't\ free\ the\ memory}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\_data-\/>mNode-\/>GetNChildren(\mbox{\hyperlink{classAABBTreeToBuffer_a956ca0626883d745209ce9fceb85197c}{NumChildrenPerNode}},\ child\_nodes);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\_data-\/>mNumChildren\ =\ (uint)child\_nodes.size();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ in\ default\ child\ bounds}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ child\_bounds\_min[\mbox{\hyperlink{classAABBTreeToBuffer_a956ca0626883d745209ce9fceb85197c}{NumChildrenPerNode}}],\ child\_bounds\_max[\mbox{\hyperlink{classAABBTreeToBuffer_a956ca0626883d745209ce9fceb85197c}{NumChildrenPerNode}}];}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classAABBTreeToBuffer_a956ca0626883d745209ce9fceb85197c}{NumChildrenPerNode}};\ ++i)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ child\_nodes.size())}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_bounds\_min[i]\ =\ child\_nodes[i]-\/>mBounds.mMin;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_bounds\_max[i]\ =\ child\_nodes[i]-\/>mBounds.mMax;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_bounds\_min[i]\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_bounds\_max[i]\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ a\ new\ node}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint\ old\_size\ =\ (uint)mTree.size();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\_data-\/>mNodeStart\ =\ node\_ctx.NodeAllocate(node\_data-\/>mNode,\ node\_data-\/>mNodeBoundsMin,\ node\_data-\/>mNodeBoundsMax,\ child\_nodes,\ child\_bounds\_min,\ child\_bounds\_max,\ mTree,\ outError);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_data-\/>mNodeStart\ ==\ uint(-\/1))}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNodesSize\ +=\ (uint)mTree.size()\ -\/\ old\_size;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_data-\/>mNode-\/>HasChildren())}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Insert\ in\ reverse\ order\ so\ we\ process\ left\ child\ first\ when\ taking\ nodes\ from\ the\ back}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ idx\ =\ \textcolor{keywordtype}{int}(child\_nodes.size())\ -\/\ 1;\ idx\ >=\ 0;\ -\/-\/idx)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Due\ to\ quantization\ box\ could\ have\ become\ bigger,\ not\ smaller}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(\mbox{\hyperlink{classAABox}{AABox}}(child\_bounds\_min[idx],\ child\_bounds\_max[idx]).Contains(child\_nodes[idx]-\/>mBounds),\ \textcolor{stringliteral}{"{}AABBTreeToBuffer:\ Bounding\ box\ became\ smaller!"{}});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ child\ to\ list\ of\ nodes\ to\ be\ processed}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NodeData\ child;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child.mNode\ =\ child\_nodes[idx];}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child.mNodeBoundsMin\ =\ child\_bounds\_min[idx];}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child.mNodeBoundsMax\ =\ child\_bounds\_max[idx];}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child.mParentChildNodeStart\ =\ \&node\_data-\/>mChildNodeStart[idx];}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child.mParentTrianglesStart\ =\ \&node\_data-\/>mChildTrianglesStart[idx];}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NodeData\ *old\ =\ \&node\_list[0];}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\_list.push\_back(child);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (old\ !=\ \&node\_list[0])}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}Internal\ Error:\ Array\ reallocated,\ memory\ corruption!"{}};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ triangles\ in\ separate\ list\ so\ we\ process\ them\ last}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_list.back().mNode-\/>HasChildren())}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_process.push\_back(\&node\_list.back());}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_process\_triangles.push\_back(\&node\_list.back());}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ triangles}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\_data-\/>mTriangleStart\ =\ tri\_ctx.Pack(node\_data-\/>mNode-\/>mTriangles,\ mTree,\ outError);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_data-\/>mTriangleStart\ ==\ uint(-\/1))}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Patch\ offset\ into\ parent}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_data-\/>mParentChildNodeStart\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\_data-\/>mParentChildNodeStart\ =\ node\_data-\/>mNodeStart;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *node\_data-\/>mParentTrianglesStart\ =\ node\_data-\/>mTriangleStart;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we've\ got\ triangles\ to\ process,\ loop\ again\ with\ just\ the\ triangles}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (to\_process\_triangles.empty())}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_process.swap(to\_process\_triangles);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finalize\ all\ nodes}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (NodeData\ \&n\ :\ node\_list)}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!node\_ctx.NodeFinalize(n.mNode,\ n.mNodeStart,\ n.mNumChildren,\ n.mChildNodeStart,\ n.mChildTrianglesStart,\ mTree,\ outError))}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finalize\ the\ triangles}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ tri\_ctx.Finalize(inVertices,\ triangle\_header,\ mTree);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ that\ we\ reserved\ enough\ memory}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nodes\_size\ <\ mNodesSize)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}Internal\ Error:\ Not\ enough\ memory\ reserved\ for\ nodes!"{}};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (total\_size\ <\ (uint)mTree.size())}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}Internal\ Error:\ Not\ enough\ memory\ reserved\ for\ triangles!"{}};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finalize\ the\ nodes}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!node\_ctx.Finalize(header,\ inRoot,\ node\_list[0].mNodeStart,\ node\_list[0].mTriangleStart,\ outError))}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Shrink\ the\ tree,\ this\ will\ invalidate\ the\ header\ and\ triangle\_header\ variables}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ mTree.shrink\_to\_fit();}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \&\ \ \ \ \ \mbox{\hyperlink{classAABBTreeToBuffer_a841bb385899da6eb30c41c225ff61ddf}{GetBuffer}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00212\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTree;}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeToBuffer_acae333f2766987a53f64a7beea67904b}{GetBuffer}}()}
+\DoxyCodeLine{00218\ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTree;}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABBTreeToBuffer_a89411f4596ab17c134c473d165ee42ba}{NodeHeader}}\ *\ \ \ \ \ \mbox{\hyperlink{classAABBTreeToBuffer_ab50a5ee87130c340d6b3cf8816ebf249}{GetNodeHeader}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00224\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTree.\mbox{\hyperlink{classByteBuffer_afc33bc408efa8e38051debb2c4f64aa8}{Get}}<\mbox{\hyperlink{classAABBTreeToBuffer_a89411f4596ab17c134c473d165ee42ba}{NodeHeader}}>(0);}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABBTreeToBuffer_a72146720e95aebf8168fd00cd7ef0f1f}{TriangleHeader}}\ *\ \mbox{\hyperlink{classAABBTreeToBuffer_aabe86791c5d2da2af6dcba505090b989}{GetTriangleHeader}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00230\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTree.\mbox{\hyperlink{classByteBuffer_afc33bc408efa8e38051debb2c4f64aa8}{Get}}<\mbox{\hyperlink{classAABBTreeToBuffer_a72146720e95aebf8168fd00cd7ef0f1f}{TriangleHeader}}>(\mbox{\hyperlink{classAABBTreeToBuffer_a950a3efaf390fd647e012bc2179e79ac}{HeaderSize}});}
+\DoxyCodeLine{00232\ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABBTreeToBuffer_ae2034a353c9336f3e7df4bcdf9f97d8c}{GetRoot}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00236\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTree.\mbox{\hyperlink{classByteBuffer_afc33bc408efa8e38051debb2c4f64aa8}{Get}}<\textcolor{keywordtype}{void}>(\mbox{\hyperlink{classAABBTreeToBuffer_a950a3efaf390fd647e012bc2179e79ac}{HeaderSize}}\ +\ \mbox{\hyperlink{classAABBTreeToBuffer_a25ee3d505ab8451bdc9742466a95ff29}{TriangleHeaderSize}});}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTree;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00242\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNodesSize;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00243\ \};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

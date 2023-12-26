@@ -1,0 +1,5 @@
+<map id="SkeletalAnimation::JointState" name="SkeletalAnimation::JointState">
+<area shape="rect" id="Node000001" title="Constains the current state of a joint, a local space transformation relative to its parent joint." alt="" coords="5,5,145,135"/>
+<area shape="rect" id="Node000002" href="$d8/d92/classSkeletalAnimation_1_1Keyframe.html" title="Contains the state of a single joint at a particular time." alt="" coords="5,183,145,269"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,150,78,183,73,183,73,150"/>
+</map>

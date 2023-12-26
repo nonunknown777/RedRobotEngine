@@ -1,0 +1,150 @@
+\doxysection{includes/playrho/\+Common/\+Settings.hpp File Reference}
+\hypertarget{Settings_8hpp}{}\label{Settings_8hpp}\index{includes/playrho/Common/Settings.hpp@{includes/playrho/Common/Settings.hpp}}
+
+
+Types and default settings file.  
+
+
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$cfloat$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$Play\+Rho/\+Common/\+Templates.\+hpp$>$}\newline
+{\ttfamily \#include $<$Play\+Rho/\+Common/\+Real\+Constants.\+hpp$>$}\newline
+{\ttfamily \#include $<$Play\+Rho/\+Common/\+Units.\+hpp$>$}\newline
+{\ttfamily \#include $<$Play\+Rho/\+Common/\+Wider.\+hpp$>$}\newline
+Include dependency graph for Settings.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/Settings_8hpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults}{playrho\+::detail\+::\+Defaults$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structplayrho_1_1detail_1_1Defaults}{Defaults} object for real types. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults_3_01Fixed_3_01std_1_1int32__t_00_01FRACTION__BITS_01_4_01_4}{playrho\+::detail\+::\+Defaults$<$ Fixed$<$ std\+::int32\+\_\+t, FRACTION\+\_\+\+BITS $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Specialization of defaults object for fixed point types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceplayrho}{playrho}}
+\item 
+namespace \mbox{\hyperlink{namespaceplayrho_1_1detail}{playrho\+::detail}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespaceplayrho_aed352724e203ca09595faf0dc6a76e5c}{playrho\+::\+Child\+Counter}} = std\+::remove\+\_\+const$<$ decltype(\mbox{\hyperlink{namespaceplayrho_af33623a59b7c701aead6d06e88dc2cc6}{Max\+Child\+Count}})$>$\+::type
+\begin{DoxyCompactList}\small\item\em Child counter type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespaceplayrho_a3898807006fd29cd5c4fc2e1a9cf5536}{playrho\+::\+Timestep\+Iters}} = std\+::uint8\+\_\+t
+\item 
+using \mbox{\hyperlink{namespaceplayrho_a16da705f1b3c51c7fd1b9b1162c258b9}{playrho\+::\+Vertex\+Counter}} = std\+::remove\+\_\+const$<$ decltype(\mbox{\hyperlink{namespaceplayrho_a0774f630ff2e5b9ed9e5f322700d44e4}{Max\+Shape\+Vertices}})$>$\+::type
+\begin{DoxyCompactList}\small\item\em Vertex count type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespaceplayrho_a15fb4e1b050424d59666b3b2b7b6c935}{playrho\+::\+Fixture\+Counter}} = std\+::remove\+\_\+const$<$ decltype(\mbox{\hyperlink{namespaceplayrho_af36288c4602f14acd96242145a546980}{Max\+Fixtures}})$>$\+::type
+\begin{DoxyCompactList}\small\item\em Counter type for fixtures. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespaceplayrho_a4106d8a0e998a2485196534514527a5a}{playrho\+::\+Body\+Counter}} = std\+::remove\+\_\+const$<$ decltype(\mbox{\hyperlink{namespaceplayrho_a7b821c4b23566defba0fd2917d95f0ba}{Max\+Bodies}})$>$\+::type
+\begin{DoxyCompactList}\small\item\em Count type for bodies. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{playrho\+::\+Contact\+Counter}} = \mbox{\hyperlink{structplayrho_1_1Wider}{Wider}}$<$ \mbox{\hyperlink{namespaceplayrho_a4106d8a0e998a2485196534514527a5a}{Body\+Counter}} $>$\+::type
+\begin{DoxyCompactList}\small\item\em Count type for contacts. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespaceplayrho_aeb8ea60dc388d1e92e2e6fa277a32495}{playrho\+::\+Joint\+Counter}} = std\+::remove\+\_\+const$<$ decltype(\mbox{\hyperlink{namespaceplayrho_a69cde8c9e938d138a9a4ae8355501684}{Max\+Joints}})$>$\+::type
+\begin{DoxyCompactList}\small\item\em Counter type for joints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceplayrho_a95591102a273a4d301f3f795d463b9ba}\label{namespaceplayrho_a95591102a273a4d301f3f795d463b9ba} 
+constexpr auto {\bfseries playrho\+::\+Max\+Simplex\+Edges} = std\+::uint8\+\_\+t\{3\}
+\begin{DoxyCompactList}\small\item\em Maximum number of supportable edges in a simplex. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_af33623a59b7c701aead6d06e88dc2cc6}\label{namespaceplayrho_af33623a59b7c701aead6d06e88dc2cc6} 
+constexpr auto {\bfseries playrho\+::\+Max\+Child\+Count} = std\+::numeric\+\_\+limits$<$std\+::uint32\+\_\+t$>$\+::max() $>$$>$ 6
+\begin{DoxyCompactList}\small\item\em Max child count. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a527c4658d275e6c04ba4b4c9f28d688b}\label{namespaceplayrho_a527c4658d275e6c04ba4b4c9f28d688b} 
+constexpr auto {\bfseries playrho\+::\+Max\+Float} = std\+::numeric\+\_\+limits$<$\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}$>$\+::max()
+\begin{DoxyCompactList}\small\item\em Maximum float value. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_aae670387c8f37f8812082b1838e18863}{playrho\+::\+Max\+Manifold\+Points}} = std\+::uint8\+\_\+t\{2\}
+\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_a0774f630ff2e5b9ed9e5f322700d44e4}{playrho\+::\+Max\+Shape\+Vertices}} = std\+::uint8\+\_\+t\{254\}
+\begin{DoxyCompactList}\small\item\em Maximum number of vertices for any shape type. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a49c511e18a6b72260126cf763c1cd8df}\label{namespaceplayrho_a49c511e18a6b72260126cf763c1cd8df} 
+constexpr auto {\bfseries playrho\+::\+Invalid\+Vertex} = static\+\_\+cast$<$\mbox{\hyperlink{namespaceplayrho_a16da705f1b3c51c7fd1b9b1162c258b9}{Vertex\+Counter}}$>$(-\/1)
+\begin{DoxyCompactList}\small\item\em Invalid vertex index. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_ad91e53ba44755653e34147d39695a0a1}{playrho\+::\+Default\+Linear\+Slop}} = \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults}{detail\+::\+Defaults}}$<$\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}$>$\+::\+Get\+Linear\+Slop()
+\begin{DoxyCompactList}\small\item\em Default linear slop. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a174cfa632eb92c15bc2e48e7d09d216a}\label{namespaceplayrho_a174cfa632eb92c15bc2e48e7d09d216a} 
+constexpr auto {\bfseries playrho\+::\+Default\+Min\+Vertex\+Radius} = \mbox{\hyperlink{namespaceplayrho_ad91e53ba44755653e34147d39695a0a1}{Default\+Linear\+Slop}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{2\}
+\begin{DoxyCompactList}\small\item\em Default minimum vertex radius. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a7beadf6067bdf66f48ee9b94c337d252}\label{namespaceplayrho_a7beadf6067bdf66f48ee9b94c337d252} 
+constexpr auto {\bfseries playrho\+::\+Default\+Max\+Vertex\+Radius} = \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults}{detail\+::\+Defaults}}$<$\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}$>$\+::\+Get\+Max\+Vertex\+Radius()
+\begin{DoxyCompactList}\small\item\em Default maximum vertex radius. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a3dd06178e859667c8f65b26c4e91972e}\label{namespaceplayrho_a3dd06178e859667c8f65b26c4e91972e} 
+constexpr auto {\bfseries playrho\+::\+Default\+Aabb\+Extension} = \mbox{\hyperlink{namespaceplayrho_ad91e53ba44755653e34147d39695a0a1}{Default\+Linear\+Slop}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{20\}
+\begin{DoxyCompactList}\small\item\em Default AABB extension amount. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_ab2898b34e4bf5fe5af48939ec34e48f6}\label{namespaceplayrho_ab2898b34e4bf5fe5af48939ec34e48f6} 
+constexpr auto {\bfseries playrho\+::\+Default\+Distance\+Multiplier} = \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{2\}
+\begin{DoxyCompactList}\small\item\em Default distance multiplier. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_adfccbc3cd8cc0bb78701f62e041acdba}{playrho\+::\+Default\+Angular\+Slop}} = (\mbox{\hyperlink{namespaceplayrho_a3fe0bdbb0ea9c449b7504f7c75840993}{Pi}} \texorpdfstring{$\ast$}{*} 2\+\_\+rad) / \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{180\}
+\begin{DoxyCompactList}\small\item\em Default angular slop. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_aa7d2cfbedb9200e2ed973eb18cc3b23b}{playrho\+::\+Default\+Max\+Linear\+Correction}} = 0.\+2\+\_\+m
+\begin{DoxyCompactList}\small\item\em Default maximum linear correction. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_ac8fea4a93f741aa800e943957fd23656}{playrho\+::\+Default\+Max\+Angular\+Correction}} = \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(8.\+0f / 180.\+0f) \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceplayrho_a3fe0bdbb0ea9c449b7504f7c75840993}{Pi}} \texorpdfstring{$\ast$}{*} 1\+\_\+rad
+\begin{DoxyCompactList}\small\item\em Default maximum angular correction. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a6b71ffce08877ce941d29616eb907114}\label{namespaceplayrho_a6b71ffce08877ce941d29616eb907114} 
+constexpr auto {\bfseries playrho\+::\+Default\+Max\+Translation} = 2\+\_\+m
+\begin{DoxyCompactList}\small\item\em Default maximum translation amount. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_a36c3a1adc34421b07e930a06ce905db1}{playrho\+::\+Default\+Max\+Rotation}} = \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}\{\mbox{\hyperlink{namespaceplayrho_a3fe0bdbb0ea9c449b7504f7c75840993}{Pi}} \texorpdfstring{$\ast$}{*} 1\+\_\+rad / \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(2)\}
+\begin{DoxyCompactList}\small\item\em Default maximum rotation per world step. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_ab6c87be197db81dde7d9f64ddd888bae}\label{namespaceplayrho_ab6c87be197db81dde7d9f64ddd888bae} 
+constexpr auto {\bfseries playrho\+::\+Default\+Max\+Toi\+Iters} = std\+::uint8\+\_\+t\{20\}
+\begin{DoxyCompactList}\small\item\em Default maximum time of impact iterations. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_ad369e106022da8a461ed8a515014ee17}\label{namespaceplayrho_ad369e106022da8a461ed8a515014ee17} 
+constexpr auto {\bfseries playrho\+::\+Default\+Max\+Toi\+Root\+Iters} = std\+::uint8\+\_\+t\{30\}
+\begin{DoxyCompactList}\small\item\em Default maximum time of impact root iterator count. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_adea893c840466088049edc292dcc9dcb}\label{namespaceplayrho_adea893c840466088049edc292dcc9dcb} 
+constexpr auto {\bfseries playrho\+::\+Default\+Max\+Distance\+Iters} = std\+::uint8\+\_\+t\{20\}
+\begin{DoxyCompactList}\small\item\em Default max number of distance iterations. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_aa678e38c906502e06a90f31e2acc952a}{playrho\+::\+Default\+Max\+Sub\+Steps}} = std\+::uint8\+\_\+t\{8\}
+\item 
+\Hypertarget{namespaceplayrho_a6497dbff92f4140c03fb29f7dc80093d}\label{namespaceplayrho_a6497dbff92f4140c03fb29f7dc80093d} 
+constexpr auto {\bfseries playrho\+::\+Default\+Velocity\+Threshold} = 1\+\_\+mps
+\begin{DoxyCompactList}\small\item\em Default velocity threshold. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_ab8eb622479d2ffb28ce1a4e88e8a211f}\label{namespaceplayrho_ab8eb622479d2ffb28ce1a4e88e8a211f} 
+constexpr auto {\bfseries playrho\+::\+Default\+Reg\+Min\+Momentum} = \mbox{\hyperlink{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8}{Momentum}}\{0\+\_\+\+Ns / 100\}
+\begin{DoxyCompactList}\small\item\em Default regular-\/phase minimum momentum. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a88e51d5b5ce397624e803df05ff1c013}\label{namespaceplayrho_a88e51d5b5ce397624e803df05ff1c013} 
+constexpr auto {\bfseries playrho\+::\+Default\+Toi\+Min\+Momentum} = \mbox{\hyperlink{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8}{Momentum}}\{0\+\_\+\+Ns / 100\}
+\begin{DoxyCompactList}\small\item\em Default TOI-\/phase minimum momentum. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_af36288c4602f14acd96242145a546980}{playrho\+::\+Max\+Fixtures}}
+\begin{DoxyCompactList}\small\item\em Maximum number of fixtures in a world. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_a7b821c4b23566defba0fd2917d95f0ba}{playrho\+::\+Max\+Bodies}}
+\begin{DoxyCompactList}\small\item\em Maximum number of bodies in a world. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a4ecc8cc059a2a3fa056888a1d405e4bc}\label{namespaceplayrho_a4ecc8cc059a2a3fa056888a1d405e4bc} 
+constexpr auto {\bfseries playrho\+::\+Invalid\+Contact\+Index} = static\+\_\+cast$<$\mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{Contact\+Counter}}$>$(-\/1)
+\begin{DoxyCompactList}\small\item\em Invalid contact index. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_a5ac18ab5fe22782c56d7ab92b397468e}{playrho\+::\+Max\+Contacts}} = \mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{Contact\+Counter}}\{\mbox{\hyperlink{namespaceplayrho_a7b821c4b23566defba0fd2917d95f0ba}{Max\+Bodies}}\} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{Contact\+Counter}}\{\mbox{\hyperlink{namespaceplayrho_a7b821c4b23566defba0fd2917d95f0ba}{Max\+Bodies}} -\/ 1\} / \mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{Contact\+Counter}}\{2\}
+\begin{DoxyCompactList}\small\item\em Maximum number of contacts in a world (2147319811). \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_a69cde8c9e938d138a9a4ae8355501684}{playrho\+::\+Max\+Joints}}
+\begin{DoxyCompactList}\small\item\em Maximum number of joints in a world. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a51e5b3bf0a53f853c75244a15b08caee}\label{namespaceplayrho_a51e5b3bf0a53f853c75244a15b08caee} 
+constexpr auto {\bfseries playrho\+::\+Default\+Step\+Time} = \mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}}\{1\+\_\+s / 60\}
+\begin{DoxyCompactList}\small\item\em Default step time. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a65202bedf970d0db4ad0d3e22ab3a0dd}\label{namespaceplayrho_a65202bedf970d0db4ad0d3e22ab3a0dd} 
+constexpr auto {\bfseries playrho\+::\+Default\+Step\+Frequency} = 60\+\_\+\+Hz
+\begin{DoxyCompactList}\small\item\em Default step frequency. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_a0e76508577c61a5bc9cc3107d60f3c1b}{playrho\+::\+Default\+Min\+Still\+Time\+To\+Sleep}} = \mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}}\{1\+\_\+s / 2\}
+\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_a490b0d336b7a74ae18cf57632eeb7aa9}{playrho\+::\+Default\+Linear\+Sleep\+Tolerance}} = 0.\+01\+\_\+mps
+\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_a31907e80be5889667f03ef86ee3bbf0a}{playrho\+::\+Default\+Angular\+Sleep\+Tolerance}} = \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{(\mbox{\hyperlink{namespaceplayrho_a3fe0bdbb0ea9c449b7504f7c75840993}{Pi}} \texorpdfstring{$\ast$}{*} 2) / 180\} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__PhysicalUnits_ga446e46852ff69dee446aadc44635865c}{Radian\+Per\+Second}}
+\item 
+constexpr auto \mbox{\hyperlink{namespaceplayrho_ac12a28e4c1a2b9138c79d895d3ccb3aa}{playrho\+::\+Default\+Circles\+Ratio}} = \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{10\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Types and default settings file. 
+

@@ -1,0 +1,137 @@
+\doxysection{Object\+Stream\+In.\+h}
+\hypertarget{ObjectStreamIn_8h_source}{}\label{ObjectStreamIn_8h_source}\index{includes/jolt/ObjectStream/ObjectStreamIn.h@{includes/jolt/ObjectStream/ObjectStreamIn.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/ObjectStream.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Reference.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/RTTI.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Core/UnorderedMap.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00014\ JPH\_SUPPRESS\_WARNINGS\_STD\_END}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classObjectStreamIn}{ObjectStreamIn}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{struct\ }ClassDescription;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classObjectStreamIn_aefafcdd9389ca4f08e6d966ced1dcffa}{sReadObject}}(istream\ \&inStream,\ T\ *\&outObject)}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ input\ stream}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectStreamIn}{ObjectStreamIn}}\ *stream\ =\ \mbox{\hyperlink{classObjectStreamIn_ac224fcbf0e768140c8c98c55fbf7ddfe}{ObjectStreamIn::Open}}(inStream);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (stream)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ the\ object}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ outObject\ =\ (T\ *)stream-\/>Read(JPH\_RTTI(T));}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ (outObject\ !=\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ stream;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classObjectStreamIn_aaa03094c441e2189fde008fa0cab5c9f}{sReadObject}}(istream\ \&inStream,\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&outObject)}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ T\ *\textcolor{keywordtype}{object}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\ =\ sReadObject(inStream,\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ outObject\ =\ object;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classObjectStreamIn_a9eb8ce4c6197d5589bb984e5599c59c9}{sReadObject}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inFileName,\ T\ *\&outObject)}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ std::ifstream\ stream;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ stream.open(inFileName,\ std::ifstream::in\ |\ std::ifstream::binary);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!stream.is\_open())}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sReadObject(stream,\ outObject);}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classObjectStreamIn_af0d35e52cfcbba526cb92f2f703c0ae7}{sReadObject}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inFileName,\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&outObject)}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ T\ *\textcolor{keywordtype}{object}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result\ =\ sReadObject(inFileName,\ \textcolor{keywordtype}{object});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ outObject\ =\ object;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ EVERYTHING\ BELOW\ THIS\ SHOULD\ NOT\ DIRECTLY\ BE\ CALLED}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Read(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *inRTTI);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadObject(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *\&\ outRTTI);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadRTTI();}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadClassData(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName,\ \textcolor{keywordtype}{void}\ *inInstance)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadClassData(\textcolor{keyword}{const}\ ClassDescription\ \&inClassDesc,\ \textcolor{keywordtype}{void}\ *inInstance);}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ReadPointerData(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *inRTTI,\ \textcolor{keywordtype}{void}\ **inPointer,\ \textcolor{keywordtype}{int}\ inRefCountOffset\ =\ -\/1)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SkipAttributeData(\textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectStreamIn_aab105e2ead02c81f3f5b737463a9631d}{ObjectStreamIn}}(istream\ \&inStream);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectStreamIn_a138fd6d8cc26d1d87f53c83da4cae9b9}{GetInfo}}(istream\ \&inStream,\ \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStreamType}}\ \&outType,\ \textcolor{keywordtype}{int}\ \&outVersion,\ \textcolor{keywordtype}{int}\ \&outRevision);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classObjectStreamIn}{ObjectStreamIn}}\ *\ \ \ \ \ \ \ \mbox{\hyperlink{classObjectStreamIn_ac224fcbf0e768140c8c98c55fbf7ddfe}{Open}}(istream\ \&inStream);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ istream\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStream;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{struct\ }AttributeDescription}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mArrayDepth\ =\ 0;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ EOSDataType\ \ \ \ \ \ \ \ \ \ \ \ \ mSourceType\ =\ EOSDataType::Invalid;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ EOSDataType\ \ \ \ \ \ \ \ \ \ \ \ \ mDestinationType\ =\ EOSDataType::Invalid;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ String\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mClassName;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mIndex\ =\ -\/1;}
+\DoxyCodeLine{00108\ \ \ \ \ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{struct\ }ClassDescription}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ClassDescription()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ClassDescription(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *inRTTI)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mRTTI(inRTTI)\ \{\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *\ \ \ \ \ \ \ \ \ \ \ \ mRTTI\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ Array<AttributeDescription>\ mAttributes;}
+\DoxyCodeLine{00117\ \ \ \ \ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{struct\ }ObjectInfo}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ObjectInfo()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ObjectInfo(\textcolor{keywordtype}{void}\ *inInstance,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *inRTTI)\ \ \ \ \ \ \ \ :\ mInstance(inInstance),\ mRTTI(inRTTI)\ \{\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInstance\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *\ \ \ \ \ \ \ \ \ \ \ \ mRTTI\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00126\ \ \ \ \ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{struct\ }Link}
+\DoxyCodeLine{00129\ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ **\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPointer;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRefCountOffset;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ Identifier\ \ \ \ \ \ \ \ \ \ \ \ \ \ mIdentifier;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRTTI}{RTTI}}\ *\ \ \ \ \ \ \ \ \ \ \ \ mRTTI;}
+\DoxyCodeLine{00134\ \ \ \ \ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{using\ }IdentifierMap\ =\ UnorderedMap<Identifier,\ ObjectInfo>;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{using\ }ClassDescriptionMap\ =\ UnorderedMap<String,\ ClassDescription>;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ ClassDescriptionMap\ \ \ \ \ \ \ \ \ mClassDescriptionMap;}
+\DoxyCodeLine{00140\ \ \ \ \ IdentifierMap\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mIdentifierMap;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ Array<Link>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnresolvedLinks;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

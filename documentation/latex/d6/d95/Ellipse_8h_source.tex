@@ -1,0 +1,75 @@
+\doxysection{Ellipse.\+h}
+\hypertarget{Ellipse_8h_source}{}\label{Ellipse_8h_source}\index{includes/jolt/Geometry/Ellipse.h@{includes/jolt/Geometry/Ellipse.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Float2.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEllipse}{Ellipse}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEllipse_a35e3c1cc223333a5e227ea0ff9b120de}{Ellipse}}(\textcolor{keywordtype}{float}\ inA,\ \textcolor{keywordtype}{float}\ inB)\ :\ mA(inA),\ mB(inB)\ \{\ JPH\_ASSERT(inA\ >\ 0.0f);\ JPH\_ASSERT(inB\ >\ 0.0f);\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEllipse_a5592d2e8e6bb560567b3c9236babd545}{IsInside}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat2}{Float2}}\ \&inPoint)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Square(inPoint.x\ /\ mA)\ +\ Square(inPoint.y\ /\ mB)\ <=\ 1.0f;}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classFloat2}{Float2}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEllipse_a07b49662cd16799da0e0b1a1d67a8d84}{GetClosestPoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat2}{Float2}}\ \&inPoint)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00031\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ a\_sq\ =\ Square(mA);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ b\_sq\ =\ Square(mB);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Equation\ of\ ellipse:\ f(x,\ y)\ =\ (x/a)\string^2\ +\ (y/b)\string^2\ -\/\ 1\ =\ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [1]}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normal\ on\ surface:\ (df/dx,\ df/dy)\ =\ (2\ x\ /\ a\string^2,\ 2\ y\ /\ b\string^2)}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Closest\ point\ (x',\ y')\ on\ ellipse\ to\ point\ (x,\ y):\ (x',\ y')\ +\ t\ (x\ /\ a\string^2,\ y\ /\ b\string^2)\ =\ (x,\ y)}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <=>\ (x',\ y')\ =\ (a\string^2\ x\ /\ (t\ +\ a\string^2),\ b\string^2\ y\ /\ (t\ +\ b\string^2))}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Requiring\ point\ to\ be\ on\ ellipse\ (substituting\ into\ [1]):\ g(t)\ =\ (a\ x\ /\ (t\ +\ a\string^2))\string^2\ +\ (b\ y\ /\ (t\ +\ b\string^2))\string^2\ -\/\ 1\ =\ 0}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Newton\ raphson\ iteration,\ starting\ at\ t\ =\ 0}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ t\ =\ 0.0f;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ g(t)}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ t\_plus\_a\_sq\ =\ t\ +\ a\_sq;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ t\_plus\_b\_sq\ =\ t\ +\ b\_sq;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ gt\ =\ Square(mA\ *\ inPoint.x\ /\ t\_plus\_a\_sq)\ +\ Square(mB\ *\ inPoint.y\ /\ t\_plus\_b\_sq)\ -\/\ 1.0f;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ g(t)\ it\ is\ close\ enough\ to\ zero}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (abs(gt)\ <\ 1.0e-\/6f)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classFloat2}{Float2}}(a\_sq\ *\ inPoint.x\ /\ t\_plus\_a\_sq,\ b\_sq\ *\ inPoint.y\ /\ t\_plus\_b\_sq);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ derivative\ dg/dt\ =\ g'(t)\ =\ -\/2\ (b\string^2\ y\string^2\ /\ (t\ +\ b\string^2)\string^3\ +\ a\string^2\ x\string^2\ /\ (t\ +\ a\string^2)\string^3)}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ gt\_accent\ =\ -\/2.0f\ *}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (a\_sq\ *\ Square(inPoint.x)\ /\ Cubed(t\_plus\_a\_sq)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ b\_sq\ *\ Square(inPoint.y)\ /\ Cubed(t\_plus\_b\_sq));}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ t\ for\ next\ iteration:\ tn+1\ =\ tn\ -\/\ g(t)\ /\ g'(t)}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tn\ =\ t\ -\/\ gt\ /\ gt\_accent;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ tn;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classFloat2}{Float2}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEllipse_a827cce3196e44e983b0fb525eb9d52ac}{GetNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat2}{Float2}}\ \&inPoint)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculated\ by\ [d/dx\ f(x,\ y),\ d/dy\ f(x,\ y)],\ where\ f(x,\ y)\ is\ the\ ellipse\ equation\ from\ above}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classFloat2}{Float2}}(inPoint.x\ /\ Square(mA),\ inPoint.y\ /\ Square(mB));}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ mA;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ mB;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

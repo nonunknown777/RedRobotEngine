@@ -1,0 +1,235 @@
+\doxysection{Ray\+AABox.\+h}
+\hypertarget{RayAABox_8h_source}{}\label{RayAABox_8h_source}\index{includes/jolt/Geometry/RayAABox.h@{includes/jolt/Geometry/RayAABox.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRayInvDirection}{RayInvDirection}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRayInvDirection_a5609464debfaa939e4c947f083a84556}{RayInvDirection}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classRayInvDirection_a5609464debfaa939e4c947f083a84556}{RayInvDirection}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\ \{\ \mbox{\hyperlink{classRayInvDirection_ac9569874f14ade61e966744af2abdc79}{Set}}(inDirection);\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \mbox{\hyperlink{classRayInvDirection_ac9569874f14ade61e966744af2abdc79}{Set}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ (abs(inDirection)\ <=\ Epsilon)\ the\ ray\ is\ nearly\ parallel\ to\ the\ slab.}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}}\ =\ \mbox{\hyperlink{classVec3_a483dc7054df9a3f8c48303a31be6c1e0}{Vec3::sLessOrEqual}}(inDirection.\mbox{\hyperlink{classVec3_a60c863c1cdad322a1af54e77a4af8f02}{Abs}}(),\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0e-\/20f));}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ 1\ /\ direction\ while\ avoiding\ division\ by\ zero}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}}\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(inDirection,\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0f),\ \mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}}).\mbox{\hyperlink{classVec3_a6bdb4929eab084e74d1e0ea3ae29d8ad}{Reciprocal}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00033\ JPH\_INLINE\ \textcolor{keywordtype}{float}\ RayAABox(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOrigin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayInvDirection}{RayInvDirection}}\ \&inInvDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inBoundsMin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inBoundsMax)}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Constants}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ flt\_min\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(-\/FLT\_MAX);}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ flt\_max\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(FLT\_MAX);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Test\ against\ all\ three\ axii\ simultaneously.}}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t1\ =\ (inBoundsMin\ -\/\ inOrigin)\ *\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}};}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t2\ =\ (inBoundsMax\ -\/\ inOrigin)\ *\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ max\ of\ min(t1,t2)\ and\ the\ min\ of\ max(t1,t2)\ ensuring\ we\ don't}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ use\ the\ results\ from\ any\ directions\ parallel\ to\ the\ slab.}}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t\_min\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(\mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t1,\ t2),\ flt\_min,\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}});}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t\_max\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(\mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t1,\ t2),\ flt\_max,\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ t\_min.xyz\ =\ maximum(t\_min.x,\ t\_min.y,\ t\_min.z);}}
+\DoxyCodeLine{00049\ \ \ \ \ t\_min\ =\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t\_min,\ t\_min.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X>());}
+\DoxyCodeLine{00050\ \ \ \ \ t\_min\ =\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t\_min,\ t\_min.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_Y>());}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ t\_max.xyz\ =\ minimum(t\_max.x,\ t\_max.y,\ t\_max.z);}}
+\DoxyCodeLine{00053\ \ \ \ \ t\_max\ =\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t\_max,\ t\_max.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X>());}
+\DoxyCodeLine{00054\ \ \ \ \ t\_max\ =\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t\_max,\ t\_max.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_Y>());}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_min\ >\ t\_max)\ return\ FLT\_MAX;}}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_intersection\ =\ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(t\_min,\ t\_max);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_max\ <\ 0.0f)\ return\ FLT\_MAX;}}
+\DoxyCodeLine{00060\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(t\_max,\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}()));}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ if\ (inInvDirection.mIsParallel\ \&\&\ !(Min\ <=\ inOrigin\ \&\&\ inOrigin\ <=\ Max))\ return\ FLT\_MAX;\ else\ return\ t\_min;}}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_parallel\_overlap\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(inOrigin,\ inBoundsMin),\ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(inOrigin,\ inBoundsMax));}
+\DoxyCodeLine{00064\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}},\ no\_parallel\_overlap));}
+\DoxyCodeLine{00065\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ no\_intersection.\mbox{\hyperlink{classUVec4_a1dad43e9c11de6562500394e3c07a491}{SplatY}}());}
+\DoxyCodeLine{00066\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ no\_intersection.\mbox{\hyperlink{classUVec4_a9e56056fab7838ecd3017281a974755d}{SplatZ}}());}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(t\_min,\ flt\_max,\ no\_intersection).\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}();}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00072\ JPH\_INLINE\ \mbox{\hyperlink{classVec4}{Vec4}}\ RayAABox4(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOrigin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayInvDirection}{RayInvDirection}}\ \&inInvDirection,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMinX,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMinY,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMinZ,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMaxX,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMaxY,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inBoundsMaxZ)}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Constants}}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ flt\_min\ =\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(-\/FLT\_MAX);}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ flt\_max\ =\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(FLT\_MAX);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ Origin}}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ originx\ =\ inOrigin.\mbox{\hyperlink{classVec3_a1b03f087ce2755a85ccba4ba56f1e64b}{SplatX}}();}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ originy\ =\ inOrigin.\mbox{\hyperlink{classVec3_aad5b4211a6d98be56362559eefd9b029}{SplatY}}();}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ originz\ =\ inOrigin.\mbox{\hyperlink{classVec3_a81f4448e17219aafda0e3b886709d1f4}{SplatZ}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ Parallel}}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ parallelx\ =\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}}.\mbox{\hyperlink{classUVec4_a434119d6c7174e6efda8bf7a9bfab3e7}{SplatX}}();}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ parallely\ =\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}}.\mbox{\hyperlink{classUVec4_a1dad43e9c11de6562500394e3c07a491}{SplatY}}();}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ parallelz\ =\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}}.\mbox{\hyperlink{classUVec4_a9e56056fab7838ecd3017281a974755d}{SplatZ}}();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Inverse\ direction}}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ invdirx\ =\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}}.\mbox{\hyperlink{classVec3_a1b03f087ce2755a85ccba4ba56f1e64b}{SplatX}}();}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ invdiry\ =\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}}.\mbox{\hyperlink{classVec3_aad5b4211a6d98be56362559eefd9b029}{SplatY}}();}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ invdirz\ =\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}}.\mbox{\hyperlink{classVec3_a81f4448e17219aafda0e3b886709d1f4}{SplatZ}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ Test\ against\ all\ three\ axii\ simultaneously.}}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t1x\ =\ (inBoundsMinX\ -\/\ originx)\ *\ invdirx;}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t1y\ =\ (inBoundsMinY\ -\/\ originy)\ *\ invdiry;}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t1z\ =\ (inBoundsMinZ\ -\/\ originz)\ *\ invdirz;}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t2x\ =\ (inBoundsMaxX\ -\/\ originx)\ *\ invdirx;}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t2y\ =\ (inBoundsMaxY\ -\/\ originy)\ *\ invdiry;}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t2z\ =\ (inBoundsMaxZ\ -\/\ originz)\ *\ invdirz;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ max\ of\ min(t1,t2)\ and\ the\ min\ of\ max(t1,t2)\ ensuring\ we\ don't}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ use\ the\ results\ from\ any\ directions\ parallel\ to\ the\ slab.}}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\_minx\ =\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(\mbox{\hyperlink{classVec4_a85510ae45bcc02e079547de4bf4b6983}{Vec4::sMin}}(t1x,\ t2x),\ flt\_min,\ parallelx);}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\_miny\ =\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(\mbox{\hyperlink{classVec4_a85510ae45bcc02e079547de4bf4b6983}{Vec4::sMin}}(t1y,\ t2y),\ flt\_min,\ parallely);}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\_minz\ =\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(\mbox{\hyperlink{classVec4_a85510ae45bcc02e079547de4bf4b6983}{Vec4::sMin}}(t1z,\ t2z),\ flt\_min,\ parallelz);}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\_maxx\ =\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(\mbox{\hyperlink{classVec4_ad41f746bf922376846050d932c0de23d}{Vec4::sMax}}(t1x,\ t2x),\ flt\_max,\ parallelx);}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\_maxy\ =\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(\mbox{\hyperlink{classVec4_ad41f746bf922376846050d932c0de23d}{Vec4::sMax}}(t1y,\ t2y),\ flt\_max,\ parallely);}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\_maxz\ =\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(\mbox{\hyperlink{classVec4_ad41f746bf922376846050d932c0de23d}{Vec4::sMax}}(t1z,\ t2z),\ flt\_max,\ parallelz);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ t\_min.xyz\ =\ maximum(t\_min.x,\ t\_min.y,\ t\_min.z);}}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\_min\ =\ \mbox{\hyperlink{classVec4_ad41f746bf922376846050d932c0de23d}{Vec4::sMax}}(\mbox{\hyperlink{classVec4_ad41f746bf922376846050d932c0de23d}{Vec4::sMax}}(t\_minx,\ t\_miny),\ t\_minz);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ t\_max.xyz\ =\ minimum(t\_max.x,\ t\_max.y,\ t\_max.z);}}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ t\_max\ =\ \mbox{\hyperlink{classVec4_a85510ae45bcc02e079547de4bf4b6983}{Vec4::sMin}}(\mbox{\hyperlink{classVec4_a85510ae45bcc02e079547de4bf4b6983}{Vec4::sMin}}(t\_maxx,\ t\_maxy),\ t\_maxz);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_min\ >\ t\_max)\ return\ FLT\_MAX;}}
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_intersection\ =\ \mbox{\hyperlink{classVec4_a0f083eb84bb57838bafaa1074a5c292e}{Vec4::sGreater}}(t\_min,\ t\_max);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_max\ <\ 0.0f)\ return\ FLT\_MAX;}}
+\DoxyCodeLine{00120\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(t\_max,\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}()));}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ if\ bounds\ are\ invalid\ return\ FLOAT\_MAX;}}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ bounds\_invalid\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classVec4_a0f083eb84bb57838bafaa1074a5c292e}{Vec4::sGreater}}(inBoundsMinX,\ inBoundsMaxX),\ \mbox{\hyperlink{classVec4_a0f083eb84bb57838bafaa1074a5c292e}{Vec4::sGreater}}(inBoundsMinY,\ inBoundsMaxY)),\ \mbox{\hyperlink{classVec4_a0f083eb84bb57838bafaa1074a5c292e}{Vec4::sGreater}}(inBoundsMinZ,\ inBoundsMaxZ));}
+\DoxyCodeLine{00124\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ bounds\_invalid);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ if\ (inInvDirection.mIsParallel\ \&\&\ !(Min\ <=\ inOrigin\ \&\&\ inOrigin\ <=\ Max))\ return\ FLT\_MAX;\ else\ return\ t\_min;}}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_parallel\_overlapx\ =\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(parallelx,\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(originx,\ inBoundsMinX),\ \mbox{\hyperlink{classVec4_a0f083eb84bb57838bafaa1074a5c292e}{Vec4::sGreater}}(originx,\ inBoundsMaxX)));}
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_parallel\_overlapy\ =\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(parallely,\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(originy,\ inBoundsMinY),\ \mbox{\hyperlink{classVec4_a0f083eb84bb57838bafaa1074a5c292e}{Vec4::sGreater}}(originy,\ inBoundsMaxY)));}
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_parallel\_overlapz\ =\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(parallelz,\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classVec4_a4c8600bd26d971542437d4f31258dea4}{Vec4::sLess}}(originz,\ inBoundsMinZ),\ \mbox{\hyperlink{classVec4_a0f083eb84bb57838bafaa1074a5c292e}{Vec4::sGreater}}(originz,\ inBoundsMaxZ)));}
+\DoxyCodeLine{00130\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_parallel\_overlapx,\ no\_parallel\_overlapy),\ no\_parallel\_overlapz));}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec4_a6ae67a60e24b50c1b59050ef3d171228}{Vec4::sSelect}}(t\_min,\ flt\_max,\ no\_intersection);}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00136\ JPH\_INLINE\ \textcolor{keywordtype}{void}\ RayAABox(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOrigin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayInvDirection}{RayInvDirection}}\ \&inInvDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inBoundsMin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inBoundsMax,\ \textcolor{keywordtype}{float}\ \&outMin,\ \textcolor{keywordtype}{float}\ \&outMax)}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ Constants}}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ flt\_min\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(-\/FLT\_MAX);}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ flt\_max\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(FLT\_MAX);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ Test\ against\ all\ three\ axii\ simultaneously.}}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t1\ =\ (inBoundsMin\ -\/\ inOrigin)\ *\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}};}
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t2\ =\ (inBoundsMax\ -\/\ inOrigin)\ *\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ max\ of\ min(t1,t2)\ and\ the\ min\ of\ max(t1,t2)\ ensuring\ we\ don't}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ use\ the\ results\ from\ any\ directions\ parallel\ to\ the\ slab.}}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t\_min\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(\mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t1,\ t2),\ flt\_min,\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}});}
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t\_max\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(\mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t1,\ t2),\ flt\_max,\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ t\_min.xyz\ =\ maximum(t\_min.x,\ t\_min.y,\ t\_min.z);}}
+\DoxyCodeLine{00152\ \ \ \ \ t\_min\ =\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t\_min,\ t\_min.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X>());}
+\DoxyCodeLine{00153\ \ \ \ \ t\_min\ =\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t\_min,\ t\_min.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_Y>());}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ t\_max.xyz\ =\ minimum(t\_max.x,\ t\_max.y,\ t\_max.z);}}
+\DoxyCodeLine{00156\ \ \ \ \ t\_max\ =\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t\_max,\ t\_max.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X>());}
+\DoxyCodeLine{00157\ \ \ \ \ t\_max\ =\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t\_max,\ t\_max.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_Y>());}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_min\ >\ t\_max)\ return\ FLT\_MAX;}}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_intersection\ =\ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(t\_min,\ t\_max);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_max\ <\ 0.0f)\ return\ FLT\_MAX;}}
+\DoxyCodeLine{00163\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(t\_max,\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}()));}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ if\ (inInvDirection.mIsParallel\ \&\&\ !(Min\ <=\ inOrigin\ \&\&\ inOrigin\ <=\ Max))\ return\ FLT\_MAX;\ else\ return\ t\_min;}}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_parallel\_overlap\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(inOrigin,\ inBoundsMin),\ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(inOrigin,\ inBoundsMax));}
+\DoxyCodeLine{00167\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}},\ no\_parallel\_overlap));}
+\DoxyCodeLine{00168\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ no\_intersection.\mbox{\hyperlink{classUVec4_a1dad43e9c11de6562500394e3c07a491}{SplatY}}());}
+\DoxyCodeLine{00169\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ no\_intersection.\mbox{\hyperlink{classUVec4_a9e56056fab7838ecd3017281a974755d}{SplatZ}}());}
+\DoxyCodeLine{00170\ \ \ \ \ outMin\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(t\_min,\ flt\_max,\ no\_intersection).\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}();}
+\DoxyCodeLine{00171\ \ \ \ \ outMax\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(t\_max,\ flt\_min,\ no\_intersection).\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}();}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00175\ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ RayAABoxHits(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOrigin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayInvDirection}{RayInvDirection}}\ \&inInvDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inBoundsMin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inBoundsMax,\ \textcolor{keywordtype}{float}\ inClosest)}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//\ Constants}}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ flt\_min\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(-\/FLT\_MAX);}
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ flt\_max\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(FLT\_MAX);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ Test\ against\ all\ three\ axii\ simultaneously.}}
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t1\ =\ (inBoundsMin\ -\/\ inOrigin)\ *\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}};}
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t2\ =\ (inBoundsMax\ -\/\ inOrigin)\ *\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a093897689117556a3a61eaaf15b543c2}{mInvDirection}};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ max\ of\ min(t1,t2)\ and\ the\ min\ of\ max(t1,t2)\ ensuring\ we\ don't}}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ use\ the\ results\ from\ any\ directions\ parallel\ to\ the\ slab.}}
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t\_min\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(\mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t1,\ t2),\ flt\_min,\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}});}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ t\_max\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(\mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t1,\ t2),\ flt\_max,\ inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}});}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//\ t\_min.xyz\ =\ maximum(t\_min.x,\ t\_min.y,\ t\_min.z);}}
+\DoxyCodeLine{00191\ \ \ \ \ t\_min\ =\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t\_min,\ t\_min.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X>());}
+\DoxyCodeLine{00192\ \ \ \ \ t\_min\ =\ \mbox{\hyperlink{classVec3_a0d01523ff685cea4e0c5173fac13fc61}{Vec3::sMax}}(t\_min,\ t\_min.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_Y>());}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{//\ t\_max.xyz\ =\ minimum(t\_max.x,\ t\_max.y,\ t\_max.z);}}
+\DoxyCodeLine{00195\ \ \ \ \ t\_max\ =\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t\_max,\ t\_max.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X>());}
+\DoxyCodeLine{00196\ \ \ \ \ t\_max\ =\ \mbox{\hyperlink{classVec3_a20b4cc5ec27717e3ee651536e2a41a29}{Vec3::sMin}}(t\_max,\ t\_max.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_X,\ SWIZZLE\_Y>());}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_min\ >\ t\_max)\ return\ false;}}
+\DoxyCodeLine{00199\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_intersection\ =\ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(t\_min,\ t\_max);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_max\ <\ 0.0f)\ return\ false;}}
+\DoxyCodeLine{00202\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(t\_max,\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}()));}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{//\ if\ (t\_min\ >\ inClosest)\ return\ false;}}
+\DoxyCodeLine{00205\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(t\_min,\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(inClosest)));}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ if\ (inInvDirection.mIsParallel\ \&\&\ !(Min\ <=\ inOrigin\ \&\&\ inOrigin\ <=\ Max))\ return\ false;\ else\ return\ true;}}
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_parallel\_overlap\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(\mbox{\hyperlink{classVec3_ad376453f8dddd6653c2ead9c02951c48}{Vec3::sLess}}(inOrigin,\ inBoundsMin),\ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(inOrigin,\ inBoundsMax));}
+\DoxyCodeLine{00209\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(inInvDirection.\mbox{\hyperlink{classRayInvDirection_a0188d384cbde315c79e1986a67efd7ce}{mIsParallel}},\ no\_parallel\_overlap));}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ !no\_intersection.\mbox{\hyperlink{classUVec4_a57a26ddd10bb99e07e68096eb10d1244}{TestAnyXYZTrue}}();}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00216\ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ RayAABoxHits(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inBoundsMin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inBoundsMax)}
+\DoxyCodeLine{00217\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ extents\ =\ inBoundsMax\ -\/\ inBoundsMin;}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ diff\ =\ 2.0f\ *\ inOrigin\ -\/\ inBoundsMin\ -\/\ inBoundsMax;}
+\DoxyCodeLine{00221\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ abs\_diff\ =\ diff.\mbox{\hyperlink{classVec3_a60c863c1cdad322a1af54e77a4af8f02}{Abs}}();}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(\mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}(abs\_diff,\ extents),\ \mbox{\hyperlink{classVec3_a3a5e5fc2d3bf17a05723d4e411e4202d}{Vec3::sGreaterOrEqual}}(diff\ *\ inDirection,\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}()));}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ abs\_dir\ =\ inDirection.\mbox{\hyperlink{classVec3_a60c863c1cdad322a1af54e77a4af8f02}{Abs}}();}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ abs\_dir\_yzz\ =\ abs\_dir.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_Z>();}
+\DoxyCodeLine{00227\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ abs\_dir\_xyx\ =\ abs\_dir.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_X,\ SWIZZLE\_Y,\ SWIZZLE\_X>();}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ extents\_yzz\ =\ extents.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_Z>();}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ extents\_xyx\ =\ extents.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_X,\ SWIZZLE\_Y,\ SWIZZLE\_X>();}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ diff\_yzx\ =\ diff.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X>();}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ dir\_yzx\ =\ inDirection.\mbox{\hyperlink{classVec3_afd477997c0834bd3080156e730ced38d}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_X>();}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ no\_intersection\ =\ \mbox{\hyperlink{classUVec4_a7a3a55e425174799fab88e508c62fa64}{UVec4::sOr}}(no\_intersection,\ \mbox{\hyperlink{classVec3_a8eae791f0661b2c625a42034f6480bd1}{Vec3::sGreater}}((inDirection\ *\ diff\_yzx\ -\/\ dir\_yzx\ *\ diff).Abs(),\ extents\_xyx\ *\ abs\_dir\_yzz\ +\ extents\_yzz\ *\ abs\_dir\_xyx));}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordflow}{return}\ !no\_intersection.TestAnyXYZTrue();}
+\DoxyCodeLine{00239\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,157 @@
+\doxysection{Soft\+Body\+Shared\+Settings Class Reference}
+\hypertarget{classSoftBodySharedSettings}{}\label{classSoftBodySharedSettings}\index{SoftBodySharedSettings@{SoftBodySharedSettings}}
+
+
+{\ttfamily \#include $<$Soft\+Body\+Shared\+Settings.\+h$>$}
+
+
+
+Inheritance diagram for Soft\+Body\+Shared\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/d1b/classSoftBodySharedSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Soft\+Body\+Shared\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{df/d6f/classSoftBodySharedSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSoftBodySharedSettings_1_1Edge}{Edge}}
+\begin{DoxyCompactList}\small\item\em An edge keeps two vertices at a constant distance using a spring\+: \texorpdfstring{$\vert$}{|}x1 -\/ x2\texorpdfstring{$\vert$}{|} = rest length. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSoftBodySharedSettings_1_1Face}{Face}}
+\begin{DoxyCompactList}\small\item\em A face defines the surface of the body. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classSoftBodySharedSettings_1_1OptimizationResults}{Optimization\+Results}}
+\begin{DoxyCompactList}\small\item\em Information about the optimization of the soft body, the indices of certain elements may have changed. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSoftBodySharedSettings_1_1Vertex}{Vertex}}
+\begin{DoxyCompactList}\small\item\em A vertex is a particle, the data in this structure is only used during creation of the soft body and not during simulation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSoftBodySharedSettings_1_1Volume}{Volume}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structSoftBodySharedSettings_1_1Volume}{Volume} constraint, keeps the volume of a tetrahedron constant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodySharedSettings_afa2f5681547b8f3f32503225c5ebdc41}\label{classSoftBodySharedSettings_afa2f5681547b8f3f32503225c5ebdc41} 
+using {\bfseries Shared\+Settings\+To\+IDMap} = Stream\+Utils\+::\+Object\+To\+IDMap$<$ \mbox{\hyperlink{classSoftBodySharedSettings}{Soft\+Body\+Shared\+Settings}} $>$
+\item 
+\Hypertarget{classSoftBodySharedSettings_a80460f3819b755482ca58b63b254995c}\label{classSoftBodySharedSettings_a80460f3819b755482ca58b63b254995c} 
+using {\bfseries IDTo\+Shared\+Settings\+Map} = Stream\+Utils\+::\+IDTo\+Object\+Map$<$ \mbox{\hyperlink{classSoftBodySharedSettings}{Soft\+Body\+Shared\+Settings}} $>$
+\item 
+\Hypertarget{classSoftBodySharedSettings_a2c32a713f6e2ebe1ab07bb45c9c9ae49}\label{classSoftBodySharedSettings_a2c32a713f6e2ebe1ab07bb45c9c9ae49} 
+using {\bfseries Material\+To\+IDMap} = Stream\+Utils\+::\+Object\+To\+IDMap$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$
+\item 
+\Hypertarget{classSoftBodySharedSettings_aa48c93ede2e6d3c177fa46d1bd5f4553}\label{classSoftBodySharedSettings_aa48c93ede2e6d3c177fa46d1bd5f4553} 
+using {\bfseries IDTo\+Material\+Map} = Stream\+Utils\+::\+IDTo\+Object\+Map$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$
+\item 
+\Hypertarget{classSoftBodySharedSettings_a61cb5299145795d65a35b455ad033be8}\label{classSoftBodySharedSettings_a61cb5299145795d65a35b455ad033be8} 
+using {\bfseries Settings\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classSoftBodySharedSettings}{Soft\+Body\+Shared\+Settings}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodySharedSettings_a519313d5c58141ceb18011defc5db644}\label{classSoftBodySharedSettings_a519313d5c58141ceb18011defc5db644} 
+void {\bfseries Calculate\+Edge\+Lengths} ()
+\begin{DoxyCompactList}\small\item\em Calculate the initial lengths of all springs of the edges of this soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_a6541281d6fc5bd27579b71774fd4745a}\label{classSoftBodySharedSettings_a6541281d6fc5bd27579b71774fd4745a} 
+void {\bfseries Calculate\+Volume\+Constraint\+Volumes} ()
+\begin{DoxyCompactList}\small\item\em Calculates the initial volume of all tetrahedra of this soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_ac449c2bf234bdf947aa9454adc728964}\label{classSoftBodySharedSettings_ac449c2bf234bdf947aa9454adc728964} 
+void {\bfseries Optimize} (\mbox{\hyperlink{classSoftBodySharedSettings_1_1OptimizationResults}{Optimization\+Results}} \&out\+Results)
+\begin{DoxyCompactList}\small\item\em Optimize the soft body settings for simulation. This will reorder constraints so they can be executed in parallel. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_a4dbaa7142dca56c869a395bc88022cd7}\label{classSoftBodySharedSettings_a4dbaa7142dca56c869a395bc88022cd7} 
+void {\bfseries Optimize} ()
+\begin{DoxyCompactList}\small\item\em Optimize the soft body settings without results. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_a237a177ff6a49cc11207c196220f321b}\label{classSoftBodySharedSettings_a237a177ff6a49cc11207c196220f321b} 
+void {\bfseries Save\+Binary\+State} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the state of this object in binary form to in\+Stream. Doesn\textquotesingle{}t store the material list. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_a2f196979f67ababeaf2ab8fe85c3243c}\label{classSoftBodySharedSettings_a2f196979f67ababeaf2ab8fe85c3243c} 
+void {\bfseries Restore\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore the state of this object from in\+Stream. Doesn\textquotesingle{}t restore the material list. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_a04cd0a82ccf0f88cf350f08dc04721db}\label{classSoftBodySharedSettings_a04cd0a82ccf0f88cf350f08dc04721db} 
+void {\bfseries Save\+With\+Materials} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream, Shared\+Settings\+To\+IDMap \&io\+Settings\+Map, Material\+To\+IDMap \&io\+Material\+Map) const
+\begin{DoxyCompactList}\small\item\em Save this shared settings and its materials. Pass in an empty map io\+Settings\+Map / io\+Material\+Map or reuse the same map while saving multiple settings objects to the same stream in order to avoid writing duplicates. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_ad408fb4eb7803dbba02dc8b669822fd2}\label{classSoftBodySharedSettings_ad408fb4eb7803dbba02dc8b669822fd2} 
+void {\bfseries Add\+Face} (const \mbox{\hyperlink{structSoftBodySharedSettings_1_1Face}{Face}} \&in\+Face)
+\begin{DoxyCompactList}\small\item\em Add a face to this soft body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_a8d9da4045f1c850f1de05c89e010b30e}\label{classSoftBodySharedSettings_a8d9da4045f1c850f1de05c89e010b30e} 
+uint {\bfseries Get\+Edge\+Group\+Size} (uint in\+Group\+Idx) const
+\begin{DoxyCompactList}\small\item\em Get the size of an edge group (edge groups can run in parallel) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Soft\+Body\+Shared\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodySharedSettings_a9fc3b6d0abdcc822e02597327e70a97d}\label{classSoftBodySharedSettings_a9fc3b6d0abdcc822e02597327e70a97d} 
+static \mbox{\hyperlink{classResult}{Settings\+Result}} {\bfseries s\+Restore\+With\+Materials} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream, IDTo\+Shared\+Settings\+Map \&io\+Settings\+Map, IDTo\+Material\+Map \&io\+Material\+Map)
+\begin{DoxyCompactList}\small\item\em Restore a shape and materials. Pass in an empty map in io\+Settings\+Map / io\+Material\+Map or reuse the same map while reading multiple settings objects from the same stream in order to restore duplicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Soft\+Body\+Shared\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSoftBodySharedSettings_a0bd7da7039e73883ca75053b37a3c872}\label{classSoftBodySharedSettings_a0bd7da7039e73883ca75053b37a3c872} 
+Array$<$ \mbox{\hyperlink{structSoftBodySharedSettings_1_1Vertex}{Vertex}} $>$ {\bfseries m\+Vertices}
+\begin{DoxyCompactList}\small\item\em The list of vertices or particles of the body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_a80e68641c026a174fe3839d841901f43}\label{classSoftBodySharedSettings_a80e68641c026a174fe3839d841901f43} 
+Array$<$ \mbox{\hyperlink{structSoftBodySharedSettings_1_1Face}{Face}} $>$ {\bfseries m\+Faces}
+\begin{DoxyCompactList}\small\item\em The list of faces of the body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_aac3d26e90a9bceedf9f030b2ae9ae1e6}\label{classSoftBodySharedSettings_aac3d26e90a9bceedf9f030b2ae9ae1e6} 
+Array$<$ \mbox{\hyperlink{structSoftBodySharedSettings_1_1Edge}{Edge}} $>$ {\bfseries m\+Edge\+Constraints}
+\begin{DoxyCompactList}\small\item\em The list of edges or springs of the body. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_adea2e58a62ac451c4b387d81e167d01c}\label{classSoftBodySharedSettings_adea2e58a62ac451c4b387d81e167d01c} 
+Array$<$ uint $>$ {\bfseries m\+Edge\+Group\+End\+Indices}
+\begin{DoxyCompactList}\small\item\em The start index of each group of edges that can be solved in parallel. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_a900de005e0c55c3000fa154a019e6e9b}\label{classSoftBodySharedSettings_a900de005e0c55c3000fa154a019e6e9b} 
+Array$<$ \mbox{\hyperlink{structSoftBodySharedSettings_1_1Volume}{Volume}} $>$ {\bfseries m\+Volume\+Constraints}
+\begin{DoxyCompactList}\small\item\em The list of volume constraints of the body that keep the volume of tetrahedra in the soft body constant. \end{DoxyCompactList}\item 
+\Hypertarget{classSoftBodySharedSettings_af75bcb99fb4bb3a23d5e62479d9b168a}\label{classSoftBodySharedSettings_af75bcb99fb4bb3a23d5e62479d9b168a} 
+Physics\+Material\+List {\bfseries m\+Materials} \{ \mbox{\hyperlink{classPhysicsMaterial_af53a233202a9b9e828cc7dcc346cf28f}{Physics\+Material\+::s\+Default}} \}
+\begin{DoxyCompactList}\small\item\em The materials of the faces of the body, referenced by \doxylink{structSoftBodySharedSettings_1_1Face_a475a4ba9dfb9a957ac0d8036ca46faba}{Face\+::m\+Material\+Index}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Soft\+Body\+Shared\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Soft\+Body\+Shared\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class defines the setup of all particles and their constraints. It is used during the simulation and can be shared between multiple soft bodies. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Soft\+Body/Soft\+Body\+Shared\+Settings.\+h\end{DoxyCompactItemize}

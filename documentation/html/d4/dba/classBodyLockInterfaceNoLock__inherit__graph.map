@@ -1,0 +1,7 @@
+<map id="BodyLockInterfaceNoLock" name="BodyLockInterfaceNoLock">
+<area shape="rect" id="Node000001" title="Implementation that performs no locking (assumes the lock has already been taken)" alt="" coords="13,731,194,1184"/>
+<area shape="rect" id="Node000002" href="$d3/d7d/classBodyLockInterface.html" title="Base class interface for locking a body. Usually you will use BodyLockRead / BodyLockWrite / BodyLock..." alt="" coords="5,165,201,683"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,698,106,731,101,731,101,698"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="42,5,165,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="106,132,106,165,101,165,101,132"/>
+</map>

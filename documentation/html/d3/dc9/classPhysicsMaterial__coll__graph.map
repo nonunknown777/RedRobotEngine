@@ -1,0 +1,13 @@
+<map id="PhysicsMaterial" name="PhysicsMaterial">
+<area shape="rect" id="Node000001" title=" " alt="" coords="201,530,404,706"/>
+<area shape="rect" id="Node000002" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="5,289,171,358"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,369,185,463,234,528,230,532,181,467,116,372"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,5,149,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,132,91,289,85,289,85,132"/>
+<area shape="rect" id="Node000004" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="195,204,410,444"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="305,459,305,530,300,530,300,459"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="238,27,367,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="305,96,305,187,300,187,300,96"/>
+<area shape="rect" id="Node000006" href="$d8/d9d/classRefConst.html" title=" " alt="" coords="435,182,640,465"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="437,454,385,518,381,515,433,451"/>
+</map>

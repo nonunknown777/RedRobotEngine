@@ -1,0 +1,174 @@
+\doxysection{Reference.\+h}
+\hypertarget{Reference_8h_source}{}\label{Reference_8h_source}\index{includes/jolt/Core/Reference.h@{includes/jolt/Core/Reference.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Atomics.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Forward\ declares}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRef}{Ref}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRefConst}{RefConst}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRefTarget}{RefTarget}}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTarget_a4c8a23738e2e1dd6369520a30e250b17}{RefTarget}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTarget_a4c8a23738e2e1dd6369520a30e250b17}{RefTarget}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}\ \&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{comment}{/*\ Do\ not\ copy\ refcount\ */}\ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTarget_ac3110b9f511287f881d7afaf26871e1b}{\string~RefTarget}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH\_IF\_ENABLE\_ASSERTS(uint32\ value\ =\ \mbox{\hyperlink{classRefTarget_a12afba0bdae7706a0afd4d96ac128231}{mRefCount}}.load(memory\_order\_relaxed);)\ JPH\_ASSERT(value\ ==\ 0\ ||\ value\ ==\ \mbox{\hyperlink{classRefTarget_ad37db773efa3c8756f6d95df3862b875}{cEmbedded}});\ \}\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{SetEmbedded}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_IF\_ENABLE\_ASSERTS(uint32\ old\ =\ )\ \mbox{\hyperlink{classRefTarget_a12afba0bdae7706a0afd4d96ac128231}{mRefCount}}.fetch\_add(\mbox{\hyperlink{classRefTarget_ad37db773efa3c8756f6d95df3862b875}{cEmbedded}},\ memory\_order\_relaxed);\ JPH\_ASSERT(old\ <\ \mbox{\hyperlink{classRefTarget_ad37db773efa3c8756f6d95df3862b875}{cEmbedded}});\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}\ \&\ \ \ \ \ \mbox{\hyperlink{classRefTarget_a1fc15bfe979bc43a7fa71c7c34f87ed0}{operator\ =\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}\ \&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{comment}{/*\ Don't\ copy\ refcount\ */}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTarget_acaf07366183c51cd8460c7d3dcd07c2d}{GetRefCount}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classRefTarget_a12afba0bdae7706a0afd4d96ac128231}{mRefCount}}.load(memory\_order\_relaxed);\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTarget_acf02c18a343bc9de9d6afb7c966f0363}{AddRef}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Adding\ a\ reference\ can\ use\ relaxed\ memory\ ordering}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTarget_a12afba0bdae7706a0afd4d96ac128231}{mRefCount}}.fetch\_add(1,\ memory\_order\_relaxed);}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ Release()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Releasing\ a\ reference\ must\ use\ release\ semantics...}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classRefTarget_a12afba0bdae7706a0afd4d96ac128231}{mRefCount}}.fetch\_sub(1,\ memory\_order\_release)\ ==\ 1)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...\ so\ that\ we\ can\ use\ aquire\ to\ ensure\ that\ we\ see\ any\ updates\ from\ other\ threads\ that\ released\ a\ ref\ before\ deleting\ the\ object}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ atomic\_thread\_fence(memory\_order\_acquire);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }T\ *\textcolor{keyword}{>}(\textcolor{keyword}{this});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTarget_a58b5a94748691b18ecf651ce918ae743}{sInternalGetRefCountOffset}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ offsetof(T,\ \mbox{\hyperlink{classRefTarget_a12afba0bdae7706a0afd4d96ac128231}{mRefCount}});\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint32\ \mbox{\hyperlink{classRefTarget_ad37db773efa3c8756f6d95df3862b875}{cEmbedded}}\ =\ 0x0ebedded;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{mutable}\ atomic<uint32>\ \ \mbox{\hyperlink{classRefTarget_a12afba0bdae7706a0afd4d96ac128231}{mRefCount}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classRefTargetVirtual}{RefTargetVirtual}}}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTargetVirtual_a716938dd06b8a5be71588e501c8c2b7d}{\string~RefTargetVirtual}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTargetVirtual_ac09162a129dc035c18ea99c7450aa94d}{AddRef}}()\ =\ 0;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefTargetVirtual_a7f4d994acaa1d389f768fd9b75bca506}{Release}}()\ =\ 0;}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00100\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRef}{Ref}}}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a41cec5ec3f778e24fc24ec8d2f2cfc4e}{Ref}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(nullptr)\ \{\ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a41cec5ec3f778e24fc24ec8d2f2cfc4e}{Ref}}(T\ *inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(inRHS)\ \{\ AddRef();\ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a41cec5ec3f778e24fc24ec8d2f2cfc4e}{Ref}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(inRHS.mPtr)\ \{\ AddRef();\ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a41cec5ec3f778e24fc24ec8d2f2cfc4e}{Ref}}(\mbox{\hyperlink{classRef}{Ref<T>}}\ \&\&inRHS)\ noexcept\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(inRHS.mPtr)\ \{\ inRHS.mPtr\ =\ \textcolor{keyword}{nullptr};\ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef}{\string~Ref}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ Release();\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a98da0b0d44b287129cf18f34f4f0eaea}{operator\ =\ }}(T\ *inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ inRHS)\ \{\ Release();\ mPtr\ =\ inRHS;\ AddRef();\ \}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a98da0b0d44b287129cf18f34f4f0eaea}{operator\ =\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ inRHS.mPtr)\ \{\ Release();\ mPtr\ =\ inRHS.mPtr;\ AddRef();\ \}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a98da0b0d44b287129cf18f34f4f0eaea}{operator\ =\ }}(\mbox{\hyperlink{classRef}{Ref<T>}}\ \&\&inRHS)\ \textcolor{keyword}{noexcept}\ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ inRHS.mPtr)\ \{\ Release();\ mPtr\ =\ inRHS.mPtr;\ inRHS.mPtr\ =\ \textcolor{keyword}{nullptr};\ \}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ T\ *()\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mPtr;\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{inline}\ T\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a67057f06ec2a5e7ee2be030c03f028a9}{operator\ -\/>\ }}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr;\ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{inline}\ T\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ *\ ()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ *mPtr;\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_ae00dda1e64272c9ba178d6ace26f68a9}{operator\ ==\ }}(\textcolor{keyword}{const}\ T\ *\ inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr\ ==\ inRHS;\ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_ae00dda1e64272c9ba178d6ace26f68a9}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr\ ==\ inRHS.mPtr;\ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ T\ *\ inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr\ !=\ inRHS;\ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr\ !=\ inRHS.mPtr;\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{inline}\ T\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a11ddc0decf3451568dc47178bed5e2aa}{GetPtr}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr;\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ **\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRef_a77d70f3060879921e889cb1bb14c676f}{InternalGetPointer}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{void}\ **\textcolor{keyword}{>}(\&mPtr);\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T2>\ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRefConst}{RefConst}};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ AddRef()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ \textcolor{keyword}{nullptr})\ mPtr-\/>AddRef();\ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ Release()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ \textcolor{keyword}{nullptr})\ mPtr-\/>Release();\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ T\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPtr;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00150\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRefConst}{RefConst}}}
+\DoxyCodeLine{00151\ \{}
+\DoxyCodeLine{00152\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a310f87cc5720b10d0059a1128b851d46}{RefConst}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(nullptr)\ \{\ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a310f87cc5720b10d0059a1128b851d46}{RefConst}}(\textcolor{keyword}{const}\ T\ *\ inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(inRHS)\ \{\ AddRef();\ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a310f87cc5720b10d0059a1128b851d46}{RefConst}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(inRHS.mPtr)\ \{\ AddRef();\ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a310f87cc5720b10d0059a1128b851d46}{RefConst}}(\mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&\&inRHS)\ noexcept\ \ \ \ \ \ \ \ \ \ \ :\ mPtr(inRHS.mPtr)\ \{\ inRHS.mPtr\ =\ \textcolor{keyword}{nullptr};\ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a310f87cc5720b10d0059a1128b851d46}{RefConst}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(inRHS.mPtr)\ \{\ AddRef();\ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a310f87cc5720b10d0059a1128b851d46}{RefConst}}(\mbox{\hyperlink{classRef}{Ref<T>}}\ \&\&inRHS)\ noexcept\ \ \ \ \ \ \ \ \ \ \ \ \ :\ mPtr(inRHS.mPtr)\ \{\ inRHS.mPtr\ =\ \textcolor{keyword}{nullptr};\ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst}{\string~RefConst}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ Release();\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&\ \mbox{\hyperlink{classRefConst_a48180be53b5fa9cd49d2ce05c7fbe006}{operator\ =\ }}(\textcolor{keyword}{const}\ T\ *\ inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ inRHS)\ \{\ Release();\ mPtr\ =\ inRHS;\ AddRef();\ \}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&\ \mbox{\hyperlink{classRefConst_a48180be53b5fa9cd49d2ce05c7fbe006}{operator\ =\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&inRHS)\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ inRHS.mPtr)\ \{\ Release();\ mPtr\ =\ inRHS.mPtr;\ AddRef();\ \}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&\ \mbox{\hyperlink{classRefConst_a48180be53b5fa9cd49d2ce05c7fbe006}{operator\ =\ }}(\mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&\&inRHS)\ \textcolor{keyword}{noexcept}\ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ inRHS.mPtr)\ \{\ Release();\ mPtr\ =\ inRHS.mPtr;\ inRHS.mPtr\ =\ \textcolor{keyword}{nullptr};\ \}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&\ \mbox{\hyperlink{classRefConst_a48180be53b5fa9cd49d2ce05c7fbe006}{operator\ =\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ inRHS.mPtr)\ \{\ Release();\ mPtr\ =\ inRHS.mPtr;\ AddRef();\ \}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&\ \mbox{\hyperlink{classRefConst_a48180be53b5fa9cd49d2ce05c7fbe006}{operator\ =\ }}(\mbox{\hyperlink{classRef}{Ref<T>}}\ \&\&inRHS)\ \textcolor{keyword}{noexcept}\ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ inRHS.mPtr)\ \{\ Release();\ mPtr\ =\ inRHS.mPtr;\ inRHS.mPtr\ =\ \textcolor{keyword}{nullptr};\ \}\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ \textcolor{keyword}{const}\ T\ *\ ()\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ mPtr;\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\ *\ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a9d1007543402ab4cf1bde9945763d202}{operator\ -\/>\ }}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr;\ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\ \&\ \ \ \ \ \ \ \ operator\ *\ ()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ *mPtr;\ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_acc0653f6d7ae2556d1a97230e87ccf2a}{operator\ ==\ }}(\textcolor{keyword}{const}\ T\ *\ inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr\ ==\ inRHS;\ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_acc0653f6d7ae2556d1a97230e87ccf2a}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&inRHS)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mPtr\ ==\ inRHS.mPtr;\ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_acc0653f6d7ae2556d1a97230e87ccf2a}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr\ ==\ inRHS.mPtr;\ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ T\ *\ inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr\ !=\ inRHS;\ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classRefConst}{RefConst<T>}}\ \&inRHS)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mPtr\ !=\ inRHS.mPtr;\ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{Ref<T>}}\ \&inRHS)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr\ !=\ inRHS.mPtr;\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ T\ *\ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a1dcd19b921fc3022e10cbde1c5ac36e2}{GetPtr}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mPtr;\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{void}\ **\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRefConst_a87a9a9c835eaabab406c8015c8ef2033}{InternalGetPointer}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{void}\ **\textcolor{keyword}{>}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{void}\ **\textcolor{keyword}{>}(\&mPtr));\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ AddRef()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ \textcolor{keyword}{nullptr})\ mPtr-\/>AddRef();\ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ Release()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{if}\ (mPtr\ !=\ \textcolor{keyword}{nullptr})\ mPtr-\/>Release();\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{const}\ T\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPtr;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \};}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ JPH\_SUPPRESS\_WARNING\_PUSH}
+\DoxyCodeLine{00201\ JPH\_CLANG\_SUPPRESS\_WARNING(\textcolor{stringliteral}{"{}-\/Wc++98-\/compat"{}})}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ namespace\ \mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{struct\ }hash<JPH::\mbox{\hyperlink{classRef}{Ref}}<T>>}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ operator\ ()\ (\textcolor{keyword}{const}\ JPH::Ref<T>\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00210\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hash<T\ *>\ \{\ \}(inRHS.GetPtr());}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{struct\ }hash<JPH::\mbox{\hyperlink{classRefConst}{RefConst}}<T>>}
+\DoxyCodeLine{00218\ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ operator\ ()\ (\textcolor{keyword}{const}\ JPH::RefConst<T>\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00220\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hash<const\ T\ *>\ \{\ \}(inRHS.GetPtr());}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \};}
+\DoxyCodeLine{00224\ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ JPH\_SUPPRESS\_WARNING\_POP}
+
+\end{DoxyCode}

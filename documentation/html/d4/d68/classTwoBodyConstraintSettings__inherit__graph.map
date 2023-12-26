@@ -1,0 +1,35 @@
+<map id="TwoBodyConstraintSettings" name="TwoBodyConstraintSettings">
+<area shape="rect" id="Node000001" title="Base class for settings for all constraints that involve 2 bodies." alt="" coords="1087,741,1278,811"/>
+<area shape="rect" id="Node000006" href="$d9/db1/classConeConstraintSettings.html" title="Cone constraint settings, used to create a cone constraint." alt="" coords="5,1083,171,1301"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1073,782,840,789,561,803,429,813,316,826,231,842,202,851,184,861,162,882,144,907,116,964,99,1024,91,1083,86,1082,94,1023,111,962,139,904,158,879,181,857,200,846,230,837,315,821,429,808,561,798,839,784,1073,777"/>
+<area shape="rect" id="Node000007" href="$dc/d93/classDistanceConstraintSettings.html" title="Distance constraint settings, used to create a distance constraint." alt="" coords="195,1083,384,1301"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1073,785,888,795,677,811,495,833,432,846,397,861,375,882,356,907,326,964,308,1024,297,1083,292,1082,302,1023,321,962,351,904,371,879,395,856,431,841,494,828,677,806,888,790,1073,779"/>
+<area shape="rect" id="Node000008" href="$de/d46/classFixedConstraintSettings.html" title="Fixed constraint settings, used to create a fixed constraint." alt="" coords="409,1061,575,1323"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1072,781,942,787,799,800,732,810,672,823,623,840,588,861,569,881,552,903,526,954,509,1008,499,1062,493,1061,503,1007,521,952,547,900,565,877,585,857,620,835,670,818,731,805,799,794,942,781,1072,776"/>
+<area shape="rect" id="Node000009" href="$d8/d1a/classGearConstraintSettings.html" title="Gear constraint settings." alt="" coords="599,1093,763,1291"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1073,789,988,800,901,815,826,835,798,847,778,861,756,884,737,911,710,971,694,1034,686,1094,680,1093,689,1033,705,969,733,909,752,881,774,857,795,842,825,830,900,809,987,794,1072,784"/>
+<area shape="rect" id="Node000010" href="$d6/d08/classHingeConstraintSettings.html" title="Hinge constraint settings, used to create a hinge constraint." alt="" coords="788,1019,961,1365"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1074,802,1021,825,997,841,975,860,948,896,927,935,910,977,897,1020,892,1018,905,975,922,933,944,893,971,857,993,837,1018,820,1072,797"/>
+<area shape="rect" id="Node000011" href="$dd/d30/classPathConstraintSettings.html" title="Path constraint settings, used to constrain the degrees of freedom between two bodies to a path." alt="" coords="986,1072,1177,1312"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1174,826,1113,1073,1108,1072,1168,824"/>
+<area shape="rect" id="Node000012" href="$d9/dbb/classPointConstraintSettings.html" title="Point constraint settings, used to create a point constraint." alt="" coords="1201,1115,1367,1269"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1197,824,1268,1114,1263,1115,1192,826"/>
+<area shape="rect" id="Node000013" href="$de/dc9/classPulleyConstraintSettings.html" title=" " alt="" coords="1391,1061,1564,1323"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1293,801,1340,824,1381,857,1414,903,1439,955,1456,1008,1468,1061,1463,1062,1451,1010,1434,957,1409,906,1377,860,1337,828,1291,806"/>
+<area shape="rect" id="Node000014" href="$dc/d06/classRackAndPinionConstraintSettings.html" title="Rack and pinion constraint (slider &amp; gear) settings." alt="" coords="1588,1093,1817,1291"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="1294,786,1375,797,1457,812,1529,832,1557,844,1578,857,1602,881,1623,908,1657,969,1679,1033,1694,1093,1688,1094,1674,1034,1652,971,1619,911,1598,884,1574,861,1555,848,1527,837,1456,817,1374,802,1293,791"/>
+<area shape="rect" id="Node000015" href="$dd/d1a/classSixDOFConstraintSettings.html" title="6 Degree Of Freedom Constraint setup structure. Allows control over each of the 6 degrees of freedom." alt="" coords="1841,955,2023,1429"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="1293,775,1434,779,1593,791,1668,802,1736,816,1791,834,1831,857,1852,877,1871,901,1899,954,1894,956,1866,904,1848,881,1828,861,1789,839,1734,821,1667,807,1592,796,1434,784,1293,780"/>
+<area shape="rect" id="Node000016" href="$d0/dbb/classSliderConstraintSettings.html" title="Slider constraint settings, used to create a slider constraint." alt="" coords="2047,997,2220,1387"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="1293,778,1493,788,1725,803,1926,826,1996,840,2036,856,2065,886,2088,920,2105,958,2118,997,2113,998,2100,960,2083,923,2061,889,2033,861,1995,845,1925,831,1724,808,1493,793,1293,784"/>
+<area shape="rect" id="Node000017" href="$da/d6a/classSwingTwistConstraintSettings.html" title=" " alt="" coords="2244,859,2449,1525"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="1293,776,1537,783,1831,797,1970,807,2091,820,2182,837,2213,846,2233,856,2246,867,2242,871,2231,861,2211,851,2180,842,2090,826,1970,813,1830,802,1536,788,1293,782"/>
+<area shape="rect" id="Node000002" href="$d5/d56/classConstraintSettings.html" title="Class used to store the configuration of a constraint. Allows run&#45;time creation of constraints." alt="" coords="1075,475,1290,693"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1185,708,1185,742,1180,742,1180,708"/>
+<area shape="rect" id="Node000003" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="991,261,1156,331"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1094,344,1144,474,1139,476,1089,346"/>
+<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="1012,5,1135,117"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1076,132,1076,261,1071,261,1071,132"/>
+<area shape="rect" id="Node000005" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="1181,165,1406,427"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="1240,442,1227,476,1222,474,1235,440"/>
+</map>

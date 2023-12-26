@@ -1,0 +1,91 @@
+\doxysection{EPAConvex\+Hull\+Builder\+::Triangle Class Reference}
+\hypertarget{classEPAConvexHullBuilder_1_1Triangle}{}\label{classEPAConvexHullBuilder_1_1Triangle}\index{EPAConvexHullBuilder::Triangle@{EPAConvexHullBuilder::Triangle}}
+
+
+Class that holds the information of one triangle.  
+
+
+
+
+{\ttfamily \#include $<$EPAConvex\+Hull\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for EPAConvex\+Hull\+Builder\+::Triangle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{d3/da5/classEPAConvexHullBuilder_1_1Triangle__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for EPAConvex\+Hull\+Builder\+::Triangle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{df/df3/classEPAConvexHullBuilder_1_1Triangle__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a92c48e626fb4a9870c5aa18dd01cba3e}\label{classEPAConvexHullBuilder_1_1Triangle_a92c48e626fb4a9870c5aa18dd01cba3e} 
+{\bfseries Triangle} (int in\+Idx0, int in\+Idx1, int in\+Idx2, const \mbox{\hyperlink{classVec3}{Vec3}} \texorpdfstring{$\ast$}{*}in\+Positions)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a60543dea65ee8e56fa77132610302412}\label{classEPAConvexHullBuilder_1_1Triangle_a60543dea65ee8e56fa77132610302412} 
+bool {\bfseries Is\+Facing} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position) const
+\begin{DoxyCompactList}\small\item\em Check if triangle is facing in\+Position. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a7c793273642a25acaf54c8b2a63a5c3a}\label{classEPAConvexHullBuilder_1_1Triangle_a7c793273642a25acaf54c8b2a63a5c3a} 
+bool {\bfseries Is\+Facing\+Origin} () const
+\begin{DoxyCompactList}\small\item\em Check if triangle is facing the origin. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a6a342146811919c9bdd18ee827e1ee87}\label{classEPAConvexHullBuilder_1_1Triangle_a6a342146811919c9bdd18ee827e1ee87} 
+const \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge}{Edge}} \& {\bfseries Get\+Next\+Edge} (int in\+Index) const
+\begin{DoxyCompactList}\small\item\em Get the next edge of edge in\+Index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a73f39336e0cda2338ca31459de675f4f}\label{classEPAConvexHullBuilder_1_1Triangle_a73f39336e0cda2338ca31459de675f4f} 
+\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge}{Edge}} {\bfseries m\+Edge} \mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em 3 edges of this triangle \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a72b60caa9b8ba3cc6380f23b4fe72a02}\label{classEPAConvexHullBuilder_1_1Triangle_a72b60caa9b8ba3cc6380f23b4fe72a02} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Normal}
+\begin{DoxyCompactList}\small\item\em Normal of this triangle, length is 2 times area of triangle. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a0452b1c401d15dcc561dad66766d45a9}\label{classEPAConvexHullBuilder_1_1Triangle_a0452b1c401d15dcc561dad66766d45a9} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Centroid}
+\begin{DoxyCompactList}\small\item\em Center of the triangle. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a89216110b3cac04a274376acaf28d7ae}\label{classEPAConvexHullBuilder_1_1Triangle_a89216110b3cac04a274376acaf28d7ae} 
+float {\bfseries m\+Closest\+Len\+Sq} = FLT\+\_\+\+MAX
+\begin{DoxyCompactList}\small\item\em Closest distance\texorpdfstring{$^\wedge$}{\string^}2 from origin to triangle. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_abf3e8715dbc37a34783e322dc2211074}\label{classEPAConvexHullBuilder_1_1Triangle_abf3e8715dbc37a34783e322dc2211074} 
+float {\bfseries m\+Lambda} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Barycentric coordinates of closest point to origin on triangle. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_ad717cb9534ef44896e91c33ab4d5ba0c}\label{classEPAConvexHullBuilder_1_1Triangle_ad717cb9534ef44896e91c33ab4d5ba0c} 
+bool {\bfseries m\+Lambda\+Relative\+To0}
+\begin{DoxyCompactList}\small\item\em How to calculate the closest point, true\+: y0 + l0 \texorpdfstring{$\ast$}{*} (y1 -\/ y0) + l1 \texorpdfstring{$\ast$}{*} (y2 -\/ y0), false\+: y1 + l0 \texorpdfstring{$\ast$}{*} (y0 -\/ y1) + l1 \texorpdfstring{$\ast$}{*} (y2 -\/ y1) \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_a0b20e81cb148777b56012bbaf28fb18b}\label{classEPAConvexHullBuilder_1_1Triangle_a0b20e81cb148777b56012bbaf28fb18b} 
+bool {\bfseries m\+Closest\+Point\+Interior} = false
+\begin{DoxyCompactList}\small\item\em Flag that indicates that the closest point from this triangle to the origin is an interior point. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_aec2b4eeafa28ea5ea8a04789e944ae4d}\label{classEPAConvexHullBuilder_1_1Triangle_aec2b4eeafa28ea5ea8a04789e944ae4d} 
+bool {\bfseries m\+Removed} = false
+\begin{DoxyCompactList}\small\item\em Flag that indicates that triangle has been removed. \end{DoxyCompactList}\item 
+\Hypertarget{classEPAConvexHullBuilder_1_1Triangle_aba25cdfa6f65d1725a9138cc062e98ea}\label{classEPAConvexHullBuilder_1_1Triangle_aba25cdfa6f65d1725a9138cc062e98ea} 
+bool {\bfseries m\+In\+Queue} = false
+\begin{DoxyCompactList}\small\item\em Flag that indicates that this triangle was placed in the sorted heap (stays true after it is popped because the triangle is freed by the main EPA algorithm loop) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that holds the information of one triangle. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/EPAConvex\+Hull\+Builder.\+h\end{DoxyCompactItemize}

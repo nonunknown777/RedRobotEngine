@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,83,115,111"/>
+<area shape="rect" id="Node000001" href="$df/d06/classAllHitCollisionCollector.html" title="Simple implementation that collects all hits and optionally sorts them on distance." alt="" coords="178,5,350,50"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="116,75,195,48,197,53,118,80"/>
+<area shape="rect" id="Node000002" href="$dd/d38/classAnyHitCollisionCollector.html" title="Simple implementation that collects any hit." alt="" coords="174,75,354,119"/>
+<area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="131,94,174,94,174,100,131,100"/>
+<area shape="rect" id="Node000003" href="$df/de8/classClosestHitCollisionCollector.html" title="Simple implementation that collects the closest / deepest hit." alt="" coords="163,144,365,189"/>
+<area shape="poly" id="edge6_Node000000_Node000003" title=" " alt="" coords="118,114,197,141,195,146,116,119"/>
+</map>

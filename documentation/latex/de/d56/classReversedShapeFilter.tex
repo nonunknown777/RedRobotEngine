@@ -1,0 +1,108 @@
+\doxysection{Reversed\+Shape\+Filter Class Reference}
+\hypertarget{classReversedShapeFilter}{}\label{classReversedShapeFilter}\index{ReversedShapeFilter@{ReversedShapeFilter}}
+
+
+Helper class to reverse the order of the shapes in the Should\+Collide function.  
+
+
+
+
+{\ttfamily \#include $<$Shape\+Filter.\+h$>$}
+
+
+
+Inheritance diagram for Reversed\+Shape\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{d8/d7f/classReversedShapeFilter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Reversed\+Shape\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d20/classReversedShapeFilter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classReversedShapeFilter_aa0287d910b05b97b4cdc4fed9851e0a0}\label{classReversedShapeFilter_aa0287d910b05b97b4cdc4fed9851e0a0} 
+{\bfseries Reversed\+Shape\+Filter} (const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Filter)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classReversedShapeFilter_a0da8f32256715a06181081750a1d6229}{Should\+Collide}} (const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape2, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+IDOf\+Shape2) const override
+\item 
+virtual bool \mbox{\hyperlink{classReversedShapeFilter_a78f5767dd29b71003df33a9743b3bb73}{Should\+Collide}} (const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape1, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+IDOf\+Shape1, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape2, const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+IDOf\+Shape2) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Shape\+Filter} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBodyID}{Body\+ID}} {\bfseries m\+Body\+ID2}
+\begin{DoxyCompactList}\small\item\em Set by the collision detection functions to the body ID of the body that we\textquotesingle{}re colliding against before calling the Should\+Collide function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper class to reverse the order of the shapes in the Should\+Collide function. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classReversedShapeFilter_a78f5767dd29b71003df33a9743b3bb73}\label{classReversedShapeFilter_a78f5767dd29b71003df33a9743b3bb73} 
+\index{ReversedShapeFilter@{ReversedShapeFilter}!ShouldCollide@{ShouldCollide}}
+\index{ShouldCollide@{ShouldCollide}!ReversedShapeFilter@{ReversedShapeFilter}}
+\doxysubsubsection{\texorpdfstring{ShouldCollide()}{ShouldCollide()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool Reversed\+Shape\+Filter\+::\+Should\+Collide (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape1,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+IDOf\+Shape1,  }\item[{const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape2,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+IDOf\+Shape2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Filter function to determine if two shapes should collide. Returns true if the filter passes. This overload is called when querying a shape vs a shape (e.\+g. collide object / cast object). It is called at each level of the shape hierarchy, so if you have a compound shape with a box, this function will be called twice. It will not be called on triangles that are part of another shape, i.\+e a mesh shape will not trigger a callback per triangle. You can filter out individual triangles in the \doxylink{classCollisionCollector_a762c35402676662897e50dd8224e496e}{Collision\+Collector\+::\+Add\+Hit} function by their sub shape ID. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Shape1} & 1st shape that is colliding \\
+\hline
+{\em in\+Sub\+Shape\+IDOf\+Shape1} & The sub shape ID that will lead from the root shape to in\+Shape1 (i.\+e. the shape that is used to collide or cast against shape 2) \\
+\hline
+{\em in\+Shape2} & 2nd shape that is colliding \\
+\hline
+{\em in\+Sub\+Shape\+IDOf\+Shape2} & The sub shape ID that will lead from the root shape to in\+Shape2 (i.\+e. the shape of m\+Body\+ID2) \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classShapeFilter_a5e0b842fca969a0b6fee6e531273db51}{Shape\+Filter}}.
+
+\Hypertarget{classReversedShapeFilter_a0da8f32256715a06181081750a1d6229}\label{classReversedShapeFilter_a0da8f32256715a06181081750a1d6229} 
+\index{ReversedShapeFilter@{ReversedShapeFilter}!ShouldCollide@{ShouldCollide}}
+\index{ShouldCollide@{ShouldCollide}!ReversedShapeFilter@{ReversedShapeFilter}}
+\doxysubsubsection{\texorpdfstring{ShouldCollide()}{ShouldCollide()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool Reversed\+Shape\+Filter\+::\+Should\+Collide (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape2,  }\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+IDOf\+Shape2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Filter function to determine if we should collide with a shape. Returns true if the filter passes. This overload is called when the query doesn\textquotesingle{}t have a source shape (e.\+g. ray cast / collide point) 
+\begin{DoxyParams}{Parameters}
+{\em in\+Shape2} & \doxylink{classShape}{Shape} we\textquotesingle{}re colliding against \\
+\hline
+{\em in\+Sub\+Shape\+IDOf\+Shape2} & The sub shape ID that will lead from the root shape to in\+Shape2 (i.\+e. the shape of m\+Body\+ID2) \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classShapeFilter_a34e0af56ee8eff11096ed8926e87f2c5}{Shape\+Filter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Shape\+Filter.\+h\end{DoxyCompactItemize}

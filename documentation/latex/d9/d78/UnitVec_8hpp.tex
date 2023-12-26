@@ -1,0 +1,76 @@
+\doxysection{includes/playrho/\+Common/\+Unit\+Vec.hpp File Reference}
+\hypertarget{UnitVec_8hpp}{}\label{UnitVec_8hpp}\index{includes/playrho/Common/UnitVec.hpp@{includes/playrho/Common/UnitVec.hpp}}
+{\ttfamily \#include $<$Play\+Rho/\+Common/\+Settings.\+hpp$>$}\newline
+{\ttfamily \#include $<$Play\+Rho/\+Common/\+Units.\+hpp$>$}\newline
+{\ttfamily \#include $<$Play\+Rho/\+Common/\+Invalid\+Argument.\+hpp$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+Include dependency graph for Unit\+Vec.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/d80/UnitVec_8hpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{playrho\+::d2\+::\+Unit\+Vec}}
+\begin{DoxyCompactList}\small\item\em 2-\/D unit vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceplayrho}{playrho}}
+\item 
+namespace \mbox{\hyperlink{namespaceplayrho_1_1d2}{playrho\+::d2}}
+\item 
+namespace \mbox{\hyperlink{namespacestd}{std}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceplayrho_1_1d2_ab54e46ffcc4d47cab7dc7194690357c0}\label{namespaceplayrho_1_1d2_ab54e46ffcc4d47cab7dc7194690357c0} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries playrho\+::d2\+::\+Get\+XAxis} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} rot) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}\+X-\/axis"{}. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_aa30dcf70f9f07cbfd26e897823a43948}{playrho\+::d2\+::\+Get\+YAxis}} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} rot) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the "{}\+Y-\/axis"{}. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_ad33b69f10a83f25ec56a520ecdaf5197}\label{namespaceplayrho_1_1d2_ad33b69f10a83f25ec56a520ecdaf5197} 
+constexpr bool {\bfseries playrho\+::d2\+::operator==} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} a, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} b) noexcept
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a80895a6660b816171be5198f566cd867}\label{namespaceplayrho_1_1d2_a80895a6660b816171be5198f566cd867} 
+constexpr bool {\bfseries playrho\+::d2\+::operator!=} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} a, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} b) noexcept
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_ae4e2af42e9c6e9d5413f99eb0da246fd}{playrho\+::d2\+::\+Get\+Rev\+Perpendicular}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} vector) noexcept
+\begin{DoxyCompactList}\small\item\em Gets a vector counter-\/clockwise (reverse-\/clockwise) perpendicular to the given vector. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_a349428868dd3c61bdd24052f7d809472}{playrho\+::d2\+::\+Get\+Fwd\+Perpendicular}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} vector) noexcept
+\begin{DoxyCompactList}\small\item\em Gets a vector clockwise (forward-\/clockwise) perpendicular to the given vector. \end{DoxyCompactList}\item 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \mbox{\hyperlink{namespaceplayrho_1_1d2_add59f66b3f4a79e797c378f516bada81}{playrho\+::d2\+::\+Rotate}} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} vector, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&angle) noexcept
+\begin{DoxyCompactList}\small\item\em Rotates a unit vector by the angle expressed by the second unit vector. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a0822c6471a0683d126eb36acc0b69bab}\label{namespaceplayrho_1_1d2_a0822c6471a0683d126eb36acc0b69bab} 
+constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries playrho\+::d2\+::\+Inverse\+Rotate} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} vector, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&angle) noexcept
+\begin{DoxyCompactList}\small\item\em Inverse rotates a vector. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a7f255d17276c91c754f80427ab5b0fe5}\label{namespaceplayrho_1_1d2_a7f255d17276c91c754f80427ab5b0fe5} 
+{\footnotesize template$<$std\+::size\+\_\+t I$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{Unit\+Vec\+::value\+\_\+type}} {\bfseries playrho\+::d2\+::get} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} v) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the specified element of the given collection. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a121348e66a018e39470850e228a32325}\label{namespaceplayrho_1_1d2_a121348e66a018e39470850e228a32325} 
+template$<$$>$ constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{Unit\+Vec\+::value\+\_\+type}} {\bfseries playrho\+::d2\+::get$<$ 0 $>$} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} v) noexcept
+\begin{DoxyCompactList}\small\item\em Gets element 0 of the given collection. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a67bf6af0b317839a31e92ef6d6f5ba52}\label{namespaceplayrho_1_1d2_a67bf6af0b317839a31e92ef6d6f5ba52} 
+template$<$$>$ constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a1a7a18b4800feac830d4375c39889da2}{Unit\+Vec\+::value\+\_\+type}} {\bfseries playrho\+::d2\+::get$<$ 1 $>$} (\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} v) noexcept
+\begin{DoxyCompactList}\small\item\em Gets element 1 of the given collection. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1d2_a825ad596535328923dfd9765ed740baf}\label{namespaceplayrho_1_1d2_a825ad596535328923dfd9765ed740baf} 
+inline \+::std\+::ostream \& {\bfseries playrho\+::d2\+::operator$<$$<$} (\+::std\+::ostream \&os, const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} \&value)
+\begin{DoxyCompactList}\small\item\em Output stream operator. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_acf5f553f51ce677b1173249928921380}\label{namespaceplayrho_acf5f553f51ce677b1173249928921380} 
+template$<$$>$ constexpr \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{d2\+::\+Unit\+Vec}} {\bfseries playrho\+::\+Get\+Invalid} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets an invalid value for the {\ttfamily Unit\+Vec} type. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_a5351f2762c5c98b723679795e0a79287}\label{namespaceplayrho_a5351f2762c5c98b723679795e0a79287} 
+template$<$$>$ constexpr bool {\bfseries playrho\+::\+Is\+Valid} (const \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{d2\+::\+Unit\+Vec}} \&value) noexcept
+\begin{DoxyCompactList}\small\item\em Determines if the given value is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declarations of the Unit\+Vec class and free functions associated with it. 

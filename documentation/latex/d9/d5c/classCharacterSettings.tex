@@ -1,0 +1,111 @@
+\doxysection{Character\+Settings Class Reference}
+\hypertarget{classCharacterSettings}{}\label{classCharacterSettings}\index{CharacterSettings@{CharacterSettings}}
+
+
+Contains the configuration of a character.  
+
+
+
+
+{\ttfamily \#include $<$Character.\+h$>$}
+
+
+
+Inheritance diagram for Character\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/d8a/classCharacterSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Character\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d7d/classCharacterSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCharacterSettings_a6ae08196eebfbd6121386a6838848dbd}\label{classCharacterSettings_a6ae08196eebfbd6121386a6838848dbd} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE Object\+Layer {\bfseries m\+Layer} = 0
+\begin{DoxyCompactList}\small\item\em Layer that this character will be added to. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterSettings_a9d6fa4613227caf468f618e34011e657}\label{classCharacterSettings_a9d6fa4613227caf468f618e34011e657} 
+float {\bfseries m\+Mass} = 80.\+0f
+\begin{DoxyCompactList}\small\item\em Mass of the character. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterSettings_ae969662f5e8bf47dc1837922dc80aa85}\label{classCharacterSettings_ae969662f5e8bf47dc1837922dc80aa85} 
+float {\bfseries m\+Friction} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Friction for the character. \end{DoxyCompactList}\item 
+\Hypertarget{classCharacterSettings_a3110e7b55981e0764c21c67351cb2115}\label{classCharacterSettings_a3110e7b55981e0764c21c67351cb2115} 
+float {\bfseries m\+Gravity\+Factor} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Value to multiply gravity with for this character. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classCharacterBaseSettings}{Character\+Base\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Up} = Vec3\+::s\+AxisY()
+\begin{DoxyCompactList}\small\item\em \doxylink{classVector}{Vector} indicating the up direction of the character. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlane}{Plane}} \mbox{\hyperlink{classCharacterBaseSettings_a31c6c2f0de04f45c657b0932319b6bfb}{m\+Supporting\+Volume}} \{ Vec3\+::s\+AxisY(), -\/1.\+0e10f \}
+\item 
+float {\bfseries m\+Max\+Slope\+Angle} = Degrees\+To\+Radians(50.\+0f)
+\begin{DoxyCompactList}\small\item\em Maximum angle of slope that character can still walk on (radians). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRefConst}{Ref\+Const}}$<$ \mbox{\hyperlink{classShape}{Shape}} $>$ \mbox{\hyperlink{classCharacterBaseSettings_aee9be06866efe751ab7e2df57edee6b1}{m\+Shape}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCharacterBaseSettings}{Character\+Base\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Character\+Base\+Settings} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Character\+Base\+Settings} (const \mbox{\hyperlink{classCharacterBaseSettings}{Character\+Base\+Settings}} \&in\+Settings)=default
+\item 
+\mbox{\hyperlink{classCharacterBaseSettings}{Character\+Base\+Settings}} \& {\bfseries operator=} (const \mbox{\hyperlink{classCharacterBaseSettings}{Character\+Base\+Settings}} \&in\+Settings)=default
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Character\+Base\+Settings} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Character\+Base\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Character\+Base\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Character\+Base\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Character\+Base\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains the configuration of a character. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Character/Character.\+h\end{DoxyCompactItemize}

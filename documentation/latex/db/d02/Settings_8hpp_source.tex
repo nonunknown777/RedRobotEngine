@@ -1,0 +1,175 @@
+\doxysection{Settings.\+hpp}
+\hypertarget{Settings_8hpp_source}{}\label{Settings_8hpp_source}\index{includes/playrho/Common/Settings.hpp@{includes/playrho/Common/Settings.hpp}}
+\mbox{\hyperlink{Settings_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2006-\/2009\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_SETTINGS\_HPP}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_SETTINGS\_HPP}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <cfloat>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Templates.hpp>}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/RealConstants.hpp>}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Units.hpp>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Wider.hpp>}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults}{Defaults}}}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults_a43a654df8fdec02cbbe2da77b4f97108}{GetLinearSlop}}()\ noexcept}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ value\ used\ by\ Box2D\ 2.3.2\ b2\_linearSlop\ define....}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.005\_m;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults_a1d49ce1c8a6c8db49591f048aba79939}{GetMaxVertexRadius}}()\ noexcept}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DefaultLinearSlop\ *\ Real\{2\ *\ 1024\ *\ 1024\};}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ linearSlop\ *\ 2550000}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 255\_m;}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FRACTION\_BITS>}
+\DoxyCodeLine{00067\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults}{Defaults}}<\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}<\mbox{\hyperlink{namespacestd}{std}}::int32\_t,FRACTION\_BITS>>}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults_3_01Fixed_3_01std_1_1int32__t_00_01FRACTION__BITS_01_4_01_4_a7115afb2832ac36ec8e186f2772c4d91}{GetLinearSlop}}()\ noexcept}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Needs\ to\ be\ big\ enough\ that\ the\ step\ tolerance\ doesn't\ go\ to\ zero.}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ex:\ FRACTION\_BITS==10,\ then\ divisor==256}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}}\{1\_m\ /\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{(1u\ <<\ (FRACTION\_BITS\ -\/\ 2))\}\};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults_3_01Fixed_3_01std_1_1int32__t_00_01FRACTION__BITS_01_4_01_4_ac2eee4337f77c98b9d34127ae52a4b72}{GetMaxVertexRadius}}()\ noexcept}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ linearSlop\ *\ 2550000}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__PhysicalQuantities_ga7361ef2e10e7853a05b64aa433651014}{Length}}\{\mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(1u\ <<\ (28\ -\/\ FRACTION\_BITS))\ *\ 1\_m\};}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \}\ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a95591102a273a4d301f3f795d463b9ba}{MaxSimplexEdges}}\ =\ std::uint8\_t\{3\};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_af33623a59b7c701aead6d06e88dc2cc6}{MaxChildCount}}\ =\ std::numeric\_limits<std::uint32\_t>::max()\ >>\ 6;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_aed352724e203ca09595faf0dc6a76e5c}{ChildCounter}}\ =\ std::remove\_const<\textcolor{keyword}{decltype}(\mbox{\hyperlink{namespaceplayrho_af33623a59b7c701aead6d06e88dc2cc6}{MaxChildCount}})>::type;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_a3898807006fd29cd5c4fc2e1a9cf5536}{TimestepIters}}\ =\ std::uint8\_t;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a527c4658d275e6c04ba4b4c9f28d688b}{MaxFloat}}\ =\ std::numeric\_limits<Real>::max();\ \textcolor{comment}{//\ FLT\_MAX}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ Collision}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aae670387c8f37f8812082b1838e18863}{MaxManifoldPoints}}\ =\ std::uint8\_t\{2\};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a0774f630ff2e5b9ed9e5f322700d44e4}{MaxShapeVertices}}\ =\ std::uint8\_t\{254\};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_a16da705f1b3c51c7fd1b9b1162c258b9}{VertexCounter}}\ =\ std::remove\_const<\textcolor{keyword}{decltype}(\mbox{\hyperlink{namespaceplayrho_a0774f630ff2e5b9ed9e5f322700d44e4}{MaxShapeVertices}})>::type;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a49c511e18a6b72260126cf763c1cd8df}{InvalidVertex}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespaceplayrho_a16da705f1b3c51c7fd1b9b1162c258b9}{VertexCounter}}\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ad91e53ba44755653e34147d39695a0a1}{DefaultLinearSlop}}\ =\ \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults_a43a654df8fdec02cbbe2da77b4f97108}{detail::Defaults<Real>::GetLinearSlop}}();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a174cfa632eb92c15bc2e48e7d09d216a}{DefaultMinVertexRadius}}\ =\ \mbox{\hyperlink{namespaceplayrho_ad91e53ba44755653e34147d39695a0a1}{DefaultLinearSlop}}\ *\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{2\};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a7beadf6067bdf66f48ee9b94c337d252}{DefaultMaxVertexRadius}}\ =\ \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults_a1d49ce1c8a6c8db49591f048aba79939}{detail::Defaults<Real>::GetMaxVertexRadius}}();}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a3dd06178e859667c8f65b26c4e91972e}{DefaultAabbExtension}}\ =\ \mbox{\hyperlink{namespaceplayrho_ad91e53ba44755653e34147d39695a0a1}{DefaultLinearSlop}}\ *\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{20\};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab2898b34e4bf5fe5af48939ec34e48f6}{DefaultDistanceMultiplier}}\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{2\};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_adfccbc3cd8cc0bb78701f62e041acdba}{DefaultAngularSlop}}\ =\ (\mbox{\hyperlink{namespaceplayrho_a3fe0bdbb0ea9c449b7504f7c75840993}{Pi}}\ *\ 2\_rad)\ /\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{180\};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aa7d2cfbedb9200e2ed973eb18cc3b23b}{DefaultMaxLinearCorrection}}\ =\ 0.2\_m;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ac8fea4a93f741aa800e943957fd23656}{DefaultMaxAngularCorrection}}\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(8.0f\ /\ 180.0f)\ *\ \mbox{\hyperlink{namespaceplayrho_a3fe0bdbb0ea9c449b7504f7c75840993}{Pi}}\ *\ 1\_rad;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a6b71ffce08877ce941d29616eb907114}{DefaultMaxTranslation}}\ =\ 2\_m;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00171\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a36c3a1adc34421b07e930a06ce905db1}{DefaultMaxRotation}}\ =\ \mbox{\hyperlink{group__PhysicalQuantities_gab999341c050df340ff56a65816a63da9}{Angle}}\{\mbox{\hyperlink{namespaceplayrho_a3fe0bdbb0ea9c449b7504f7c75840993}{Pi}}\ *\ 1\_rad\ /\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}(2)\};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00174\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab6c87be197db81dde7d9f64ddd888bae}{DefaultMaxToiIters}}\ =\ std::uint8\_t\{20\};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ad369e106022da8a461ed8a515014ee17}{DefaultMaxToiRootIters}}\ =\ std::uint8\_t\{30\};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_adea893c840466088049edc292dcc9dcb}{DefaultMaxDistanceIters}}\ =\ std::uint8\_t\{20\};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_aa678e38c906502e06a90f31e2acc952a}{DefaultMaxSubSteps}}\ =\ std::uint8\_t\{8\};}
+\DoxyCodeLine{00189\ \ \ \ \ }
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ Dynamics}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00193\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a6497dbff92f4140c03fb29f7dc80093d}{DefaultVelocityThreshold}}\ =\ 1\_mps;}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ab8eb622479d2ffb28ce1a4e88e8a211f}{DefaultRegMinMomentum}}\ =\ \mbox{\hyperlink{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8}{Momentum}}\{0\_Ns\ /\ 100\};}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a88e51d5b5ce397624e803df05ff1c013}{DefaultToiMinMomentum}}\ =\ \mbox{\hyperlink{group__PhysicalQuantities_ga1d281ffd7cf8e2c8897d03a1cae9f1f8}{Momentum}}\{0\_Ns\ /\ 100\};}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_af36288c4602f14acd96242145a546980}{MaxFixtures}}\ =\ \textcolor{keyword}{static\_cast<}std::uint16\_t\textcolor{keyword}{>}(std::numeric\_limits<std::uint16\_t>::max()\ -\/}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::uint16\_t\{1u\});}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_a15fb4e1b050424d59666b3b2b7b6c935}{FixtureCounter}}\ =\ std::remove\_const<\textcolor{keyword}{decltype}(\mbox{\hyperlink{namespaceplayrho_af36288c4602f14acd96242145a546980}{MaxFixtures}})>::type;}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00212\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a7b821c4b23566defba0fd2917d95f0ba}{MaxBodies}}\ =\ \textcolor{keyword}{static\_cast<}std::uint16\_t\textcolor{keyword}{>}(std::numeric\_limits<std::uint16\_t>::max()\ -\/}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::uint16\_t\{1\});}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00217\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_a4106d8a0e998a2485196534514527a5a}{BodyCounter}}\ =\ std::remove\_const<\textcolor{keyword}{decltype}(\mbox{\hyperlink{namespaceplayrho_a7b821c4b23566defba0fd2917d95f0ba}{MaxBodies}})>::type;}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00221\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{ContactCounter}}\ =\ \mbox{\hyperlink{structplayrho_1_1Wider}{Wider<BodyCounter>::type}};}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a4ecc8cc059a2a3fa056888a1d405e4bc}{InvalidContactIndex}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{ContactCounter}}\textcolor{keyword}{>}(-\/1);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00230\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a5ac18ab5fe22782c56d7ab92b397468e}{MaxContacts}}\ =\ \mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{ContactCounter}}\{\mbox{\hyperlink{namespaceplayrho_a7b821c4b23566defba0fd2917d95f0ba}{MaxBodies}}\}\ *\ \mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{ContactCounter}}\{\mbox{\hyperlink{namespaceplayrho_a7b821c4b23566defba0fd2917d95f0ba}{MaxBodies}}\ -\/\ 1\}\ /\ \mbox{\hyperlink{namespaceplayrho_a2bf0674233f83e8b83b30db98332e129}{ContactCounter}}\{2\};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00234\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a69cde8c9e938d138a9a4ae8355501684}{MaxJoints}}\ =\ \textcolor{keyword}{static\_cast<}std::uint16\_t\textcolor{keyword}{>}(std::numeric\_limits<std::uint16\_t>::max()\ -\/}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::uint16\_t\{1\});}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00239\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_aeb8ea60dc388d1e92e2e6fa277a32495}{JointCounter}}\ =\ std::remove\_const<\textcolor{keyword}{decltype}(\mbox{\hyperlink{namespaceplayrho_a69cde8c9e938d138a9a4ae8355501684}{MaxJoints}})>::type;}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00242\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a51e5b3bf0a53f853c75244a15b08caee}{DefaultStepTime}}\ =\ \mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}}\{1\_s\ /\ 60\};}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00245\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a65202bedf970d0db4ad0d3e22ab3a0dd}{DefaultStepFrequency}}\ =\ 60\_Hz;}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{comment}{//\ Sleep}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00251\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a0e76508577c61a5bc9cc3107d60f3c1b}{DefaultMinStillTimeToSleep}}\ =\ \mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}}\{1\_s\ /\ 2\};\ \textcolor{comment}{//\ aka\ 0.5\ secs}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00255\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a490b0d336b7a74ae18cf57632eeb7aa9}{DefaultLinearSleepTolerance}}\ =\ 0.01\_mps;\ \textcolor{comment}{//\ aka\ 0.01}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00259\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_a31907e80be5889667f03ef86ee3bbf0a}{DefaultAngularSleepTolerance}}\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{(\mbox{\hyperlink{namespaceplayrho_a3fe0bdbb0ea9c449b7504f7c75840993}{Pi}}\ *\ 2)\ /\ 180\}\ *\ \mbox{\hyperlink{group__PhysicalUnits_ga446e46852ff69dee446aadc44635865c}{RadianPerSecond}};}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00264\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceplayrho_ac12a28e4c1a2b9138c79d895d3ccb3aa}{DefaultCirclesRatio}}\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{10\};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_SETTINGS\_HPP}}
+
+\end{DoxyCode}

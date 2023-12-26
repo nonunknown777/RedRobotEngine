@@ -1,0 +1,5 @@
+<map id="LFHMAllocator" name="LFHMAllocator">
+<area shape="rect" id="Node000001" title="Allocator for a lock free hash map." alt="" coords="5,165,148,341"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="15,5,138,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,132,79,166,74,166,74,132"/>
+</map>

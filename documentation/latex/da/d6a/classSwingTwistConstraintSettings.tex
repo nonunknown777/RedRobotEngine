@@ -1,0 +1,233 @@
+\doxysection{Swing\+Twist\+Constraint\+Settings Class Reference}
+\hypertarget{classSwingTwistConstraintSettings}{}\label{classSwingTwistConstraintSettings}\index{SwingTwistConstraintSettings@{SwingTwistConstraintSettings}}
+
+
+{\ttfamily \#include $<$Swing\+Twist\+Constraint.\+h$>$}
+
+
+
+Inheritance diagram for Swing\+Twist\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/d33/classSwingTwistConstraintSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Swing\+Twist\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/db3/classSwingTwistConstraintSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classSwingTwistConstraintSettings_a23589c31f062744926e8e35c86141b62}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saves the contents of the constraint settings in binary form to in\+Stream. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSwingTwistConstraintSettings_a2e2054697e7b0491fc6bdf4d2c4592bb}{Create}} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2) const override
+\begin{DoxyCompactList}\small\item\em Create an an instance of this constraint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a72b4b2d4679bb816c48947ef24f3153e}\label{classSwingTwistConstraintSettings_a72b4b2d4679bb816c48947ef24f3153e} 
+EConstraint\+Space {\bfseries m\+Space} = EConstraint\+Space\+::\+World\+Space
+\begin{DoxyCompactList}\small\item\em This determines in which space the constraint is setup, all properties below should be in the specified space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Body 1 constraint reference frame (space determined by m\+Space)}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a30793a078b7be1fa138f53ad1c57ca50}\label{classSwingTwistConstraintSettings_a30793a078b7be1fa138f53ad1c57ca50} 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries m\+Position1} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_af7e277bd57e8b30ad5e61a440f55c923}\label{classSwingTwistConstraintSettings_af7e277bd57e8b30ad5e61a440f55c923} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Twist\+Axis1} = \mbox{\hyperlink{classVec3_a142cc5c79f08229eb11532c26f1a1e90}{Vec3\+::s\+AxisX}}()
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a2c556242704fb54589332cc3b29871b8}\label{classSwingTwistConstraintSettings_a2c556242704fb54589332cc3b29871b8} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Plane\+Axis1} = Vec3\+::s\+AxisY()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Body 2 constraint reference frame (space determined by m\+Space)}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a0f7ae7835e07b547eae7141543f3bbd5}\label{classSwingTwistConstraintSettings_a0f7ae7835e07b547eae7141543f3bbd5} 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries m\+Position2} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3\+::s\+Zero}}()
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_ad43e13d0d38989e96d77efb2cef48e5c}\label{classSwingTwistConstraintSettings_ad43e13d0d38989e96d77efb2cef48e5c} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Twist\+Axis2} = \mbox{\hyperlink{classVec3_a142cc5c79f08229eb11532c26f1a1e90}{Vec3\+::s\+AxisX}}()
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_aa8a67f8a151ed609558127f83c3ddd6a}\label{classSwingTwistConstraintSettings_aa8a67f8a151ed609558127f83c3ddd6a} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Plane\+Axis2} = Vec3\+::s\+AxisY()
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a56b16117463f015b513fd91666efe623}\label{classSwingTwistConstraintSettings_a56b16117463f015b513fd91666efe623} 
+ESwing\+Type {\bfseries m\+Swing\+Type} = ESwing\+Type\+::\+Cone
+\begin{DoxyCompactList}\small\item\em The type of swing constraint that we want to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Swing rotation limits}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a4f47f4487992a1af9da193d784a9a677}\label{classSwingTwistConstraintSettings_a4f47f4487992a1af9da193d784a9a677} 
+float {\bfseries m\+Normal\+Half\+Cone\+Angle} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em See image at Detailed Description. Angle in radians. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintSettings_acebb8bf87ee7e68a0614432fcfc13197}\label{classSwingTwistConstraintSettings_acebb8bf87ee7e68a0614432fcfc13197} 
+float {\bfseries m\+Plane\+Half\+Cone\+Angle} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em See image at Detailed Description. Angle in radians. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Twist rotation limits}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a12cd470644a292469f6d548e81554152}\label{classSwingTwistConstraintSettings_a12cd470644a292469f6d548e81554152} 
+float {\bfseries m\+Twist\+Min\+Angle} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em See image at Detailed Description. Angle in radians. Should be $\in [-\pi, \pi]$. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintSettings_a839558fbacc1371853779f96720bbb9a}\label{classSwingTwistConstraintSettings_a839558fbacc1371853779f96720bbb9a} 
+float {\bfseries m\+Twist\+Max\+Angle} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em See image at Detailed Description. Angle in radians. Should be $\in [-\pi, \pi]$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Friction}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_af34435581700a68140347036aa5bb64d}\label{classSwingTwistConstraintSettings_af34435581700a68140347036aa5bb64d} 
+float {\bfseries m\+Max\+Friction\+Torque} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Maximum amount of torque (N m) to apply as friction when the constraint is not powered by a motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries m\+Enabled} = true
+\begin{DoxyCompactList}\small\item\em If this constraint is enabled initially. Use \doxylink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Constraint\+::\+Set\+Enabled} to toggle after creation. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraintSettings_ab01ba90506d17f415054bfa6208a4939}{m\+Constraint\+Priority}} = 0
+\item 
+uint {\bfseries m\+Num\+Velocity\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries m\+Num\+Position\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+float {\bfseries m\+Draw\+Constraint\+Size} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Size of constraint when drawing it through the debug renderer. \end{DoxyCompactList}\item 
+uint64 {\bfseries m\+User\+Data} = 0
+\begin{DoxyCompactList}\small\item\em User data value (can be used by application) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{In case the constraint is powered, this determines the motor settings around the swing and twist axis}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a3e07516a7bee2dd0552197bb46663289}\label{classSwingTwistConstraintSettings_a3e07516a7bee2dd0552197bb46663289} 
+\mbox{\hyperlink{classMotorSettings}{Motor\+Settings}} {\bfseries m\+Swing\+Motor\+Settings}
+\item 
+\Hypertarget{classSwingTwistConstraintSettings_a72373f006ab5f1785c363bc03db5f5c0}\label{classSwingTwistConstraintSettings_a72373f006ab5f1785c363bc03db5f5c0} 
+\mbox{\hyperlink{classMotorSettings}{Motor\+Settings}} {\bfseries m\+Twist\+Motor\+Settings}
+\item 
+virtual void \mbox{\hyperlink{classSwingTwistConstraintSettings_a6fdc5ba99bdae7d88dd885f5711f1573}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Constraint\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Constraint\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a constraint of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Swing twist constraint settings, used to create a swing twist constraint All values in this structure are copied to the swing twist constraint and the settings object is no longer needed afterwards.
+
+This image describes the limit settings\+:  
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSwingTwistConstraintSettings_a2e2054697e7b0491fc6bdf4d2c4592bb}\label{classSwingTwistConstraintSettings_a2e2054697e7b0491fc6bdf4d2c4592bb} 
+\index{SwingTwistConstraintSettings@{SwingTwistConstraintSettings}!Create@{Create}}
+\index{Create@{Create}!SwingTwistConstraintSettings@{SwingTwistConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} Swing\+Twist\+Constraint\+Settings\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Create an an instance of this constraint. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraintSettings_a42e353e736b0254b02008b050a28f55b}{Two\+Body\+Constraint\+Settings}}.
+
+\Hypertarget{classSwingTwistConstraintSettings_a6fdc5ba99bdae7d88dd885f5711f1573}\label{classSwingTwistConstraintSettings_a6fdc5ba99bdae7d88dd885f5711f1573} 
+\index{SwingTwistConstraintSettings@{SwingTwistConstraintSettings}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!SwingTwistConstraintSettings@{SwingTwistConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Swing\+Twist\+Constraint\+Settings\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraintSettings_adcdb433a58df0924940fd8f86acd3251}{Constraint\+Settings}}.
+
+\Hypertarget{classSwingTwistConstraintSettings_a23589c31f062744926e8e35c86141b62}\label{classSwingTwistConstraintSettings_a23589c31f062744926e8e35c86141b62} 
+\index{SwingTwistConstraintSettings@{SwingTwistConstraintSettings}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!SwingTwistConstraintSettings@{SwingTwistConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Swing\+Twist\+Constraint\+Settings\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the contents of the constraint settings in binary form to in\+Stream. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraintSettings_a2f45c4a1fd6d6d74691729d5103f094a}{Constraint\+Settings}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Swing\+Twist\+Constraint.\+h\end{DoxyCompactItemize}

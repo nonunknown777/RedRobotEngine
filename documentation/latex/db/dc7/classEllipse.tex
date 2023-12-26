@@ -1,0 +1,53 @@
+\doxysection{Ellipse Class Reference}
+\hypertarget{classEllipse}{}\label{classEllipse}\index{Ellipse@{Ellipse}}
+
+
+{\ttfamily \#include $<$Ellipse.\+h$>$}
+
+
+
+Collaboration diagram for Ellipse\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{da/d2b/classEllipse__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEllipse_a35e3c1cc223333a5e227ea0ff9b120de}\label{classEllipse_a35e3c1cc223333a5e227ea0ff9b120de} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Ellipse} (float inA, float inB)
+\begin{DoxyCompactList}\small\item\em Construct ellipse with radius A along the X-\/axis and B along the Y-\/axis. \end{DoxyCompactList}\item 
+\Hypertarget{classEllipse_a5592d2e8e6bb560567b3c9236babd545}\label{classEllipse_a5592d2e8e6bb560567b3c9236babd545} 
+bool {\bfseries Is\+Inside} (const \mbox{\hyperlink{classFloat2}{Float2}} \&in\+Point) const
+\begin{DoxyCompactList}\small\item\em Check if in\+Point is inside the ellipsse. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFloat2}{Float2}} \mbox{\hyperlink{classEllipse_a07b49662cd16799da0e0b1a1d67a8d84}{Get\+Closest\+Point}} (const \mbox{\hyperlink{classFloat2}{Float2}} \&in\+Point) const
+\item 
+\Hypertarget{classEllipse_a827cce3196e44e983b0fb525eb9d52ac}\label{classEllipse_a827cce3196e44e983b0fb525eb9d52ac} 
+\mbox{\hyperlink{classFloat2}{Float2}} {\bfseries Get\+Normal} (const \mbox{\hyperlink{classFloat2}{Float2}} \&in\+Point) const
+\begin{DoxyCompactList}\small\item\em Get normal at point in\+Point (non-\/normalized vector) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classEllipse}{Ellipse} centered around the origin \begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Ellipse}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Ellipse}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classEllipse_a07b49662cd16799da0e0b1a1d67a8d84}\label{classEllipse_a07b49662cd16799da0e0b1a1d67a8d84} 
+\index{Ellipse@{Ellipse}!GetClosestPoint@{GetClosestPoint}}
+\index{GetClosestPoint@{GetClosestPoint}!Ellipse@{Ellipse}}
+\doxysubsubsection{\texorpdfstring{GetClosestPoint()}{GetClosestPoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classFloat2}{Float2}} Ellipse\+::\+Get\+Closest\+Point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classFloat2}{Float2}} \&}]{in\+Point }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the closest point on the ellipse to in\+Point Assumes in\+Point is outside the ellipse \begin{DoxySeeAlso}{See also}
+Rotation Joint Limits in Quaterion Space by Gino van den Bergen, section 10.\+1 in Game Engine Gems 3. 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Ellipse.\+h\end{DoxyCompactItemize}

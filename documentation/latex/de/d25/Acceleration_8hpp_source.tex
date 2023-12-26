@@ -1,0 +1,126 @@
+\doxysection{Acceleration.\+hpp}
+\hypertarget{Acceleration_8hpp_source}{}\label{Acceleration_8hpp_source}\index{includes/playrho/Common/Acceleration.hpp@{includes/playrho/Common/Acceleration.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2006-\/2009\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_ACCELERATION\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_ACCELERATION\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Settings.hpp>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Vector2.hpp>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }d2\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{LinearAcceleration2}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}};\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{group__PhysicalQuantities_gafcce543a0d59f313adb801e2e18ede86}{AngularAcceleration}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}};\ }
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a4e08ccbbdba321adad44c940d95c52fb}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ rhs)}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ (lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ ==\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}})\ \&\&\ (lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ ==\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}});}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a4442cd95fcdc4e62463d3e294fc7a303}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ rhs)}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ (lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ !=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}})\ ||\ (lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ !=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}});}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a381123f80f2c54ad37576e703eeb68a4}{operator*=}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ rhs)}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ *=\ rhs;}
+\DoxyCodeLine{00057\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ *=\ rhs;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a80f242d8a02779e3c73ebb380a7476c1}{operator/=}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ rhs)}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ /=\ rhs;}
+\DoxyCodeLine{00066\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ /=\ rhs;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aae7afb9157770b54dde00ee05cc3f586}{operator+=}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ rhs)}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ +=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}};}
+\DoxyCodeLine{00075\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ +=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_af1ae3bcd38f85eedaab9cfb290de1ba2}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ rhs)}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\{lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ +\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}},\ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ +\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\};}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a66e903f6e66753963a1bd82295759ddb}{operator-\/=}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ rhs)}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ -\/=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}};}
+\DoxyCodeLine{00091\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ -\/=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}};}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_af4082a55e3d2a0600855a5b626f19f41}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ rhs)}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\{lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ -\/\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}},\ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ -\/\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\};}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_af2f8aaffda4163a6733ef5aff24414e0}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ value)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\{-\/value.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}},\ -\/value.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\};}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a33f1fdc4c279009a88f064ca1dd3ff59}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ value)}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00114\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a69bd254b1dac7999ffb0d0a8cb73f64e}{operator*}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ rhs)}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\{lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ *\ rhs,\ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ *\ rhs\};}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a19e063d352181298469b751c99cad684}{operator*}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ rhs)}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\{rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ *\ lhs,\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ *\ lhs\};}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a9b895b5b826bc5349fbd007bd6e9683b}{operator/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ rhs)}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ inverseRhs\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{1\}\ /\ rhs;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{Acceleration}}\{lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_aede18b49c56f6f4612c1bbb601ab5e00}{linear}}\ *\ inverseRhs,\ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_ac9389483ab188239f61e5d0d5a8b672c}{angular}}\ *\ inverseRhs\};}
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \}\ \textcolor{comment}{//\ namespace\ d2}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration_a81b1dd82c9c8f3ec7c80b0c53e818239}{IsValid}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Acceleration}{d2::Acceleration}}\&\ value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.linear)\ \&\&\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.angular);}
+\DoxyCodeLine{00146\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_ACCELERATION\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,48 @@
+\doxysection{Narrow\+Phase\+Query.\+h}
+\hypertarget{NarrowPhaseQuery_8h_source}{}\label{NarrowPhaseQuery_8h_source}\index{includes/jolt/Physics/Collision/NarrowPhaseQuery.h@{includes/jolt/Physics/Collision/NarrowPhaseQuery.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyFilter.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyLock.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyLockInterface.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ShapeFilter.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/BroadPhase/BroadPhaseQuery.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/BackFaceMode.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classShape}{Shape}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRayCastResult}{RayCastResult}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classNarrowPhaseQuery}{NarrowPhaseQuery}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery_a85be5810a9b3d96dcb527767f499c852}{Init}}(\mbox{\hyperlink{classBodyLockInterface}{BodyLockInterface}}\ \&inBodyLockInterface,\ \mbox{\hyperlink{classBroadPhaseQuery}{BroadPhaseQuery}}\ \&inBroadPhaseQuery)\ \{\ mBodyLockInterface\ =\ \&inBodyLockInterface;\ mBroadPhaseQuery\ =\ \&inBroadPhaseQuery;\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery_a57dbce38dfc79303abacb33d0373ba46}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRRayCast}{RRayCast}}\ \&inRay,\ \mbox{\hyperlink{classRayCastResult}{RayCastResult}}\ \&ioHit,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery_a6ef59f16467096fbb0ab9f476e15c8f3}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRRayCast}{RRayCast}}\ \&inRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayCastSettings}{RayCastSettings}}\ \&inRayCastSettings,\ \mbox{\hyperlink{classCollisionCollector}{CastRayCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery_afcfabe1320517d1bdc956cded95f0f8a}{CollidePoint}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPoint,\ \mbox{\hyperlink{classCollisionCollector}{CollidePointCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery_a6874ff06a6884c2706a1bbf8ed2590a8}{CollideShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inShapeScale,\ \mbox{\hyperlink{classMat44}{RMat44Arg}}\ inCenterOfMassTransform,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}}\ \&inCollideShapeSettings,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery_a5d9ab53431ed38e7d143d5cab9df08cb}{CastShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRShapeCast}{RShapeCast}}\ \&inShapeCast,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&inShapeCastSettings,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNarrowPhaseQuery_a9cb6ed9faecacb191cb15088e6c0de1e}{CollectTransformedShapes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{TransformedShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \&inBroadPhaseLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ \&inObjectLayerFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ \&inBodyFilter\ =\ \{\ \},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classBodyLockInterface}{BodyLockInterface}}\ *\ \ \ \ \ \ \ \ \ \ \ \ mBodyLockInterface\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classBroadPhaseQuery}{BroadPhaseQuery}}\ *\ \ \ \ \ \ \ \ \ \ \ \ mBroadPhaseQuery\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

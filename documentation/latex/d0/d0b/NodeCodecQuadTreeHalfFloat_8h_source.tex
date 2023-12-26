@@ -1,0 +1,272 @@
+\doxysection{Node\+Codec\+Quad\+Tree\+Half\+Float.\+h}
+\hypertarget{NodeCodecQuadTreeHalfFloat_8h_source}{}\label{NodeCodecQuadTreeHalfFloat_8h_source}\index{includes/jolt/AABBTree/NodeCodec/NodeCodecQuadTreeHalfFloat.h@{includes/jolt/AABBTree/NodeCodec/NodeCodecQuadTreeHalfFloat.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/ByteBuffer.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Math/HalfFloat.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/AABBTree/AABBTreeBuilder.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Alignment>}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat}{NodeCodecQuadTreeHalfFloat}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a5a852e30e37f354078911cdefdcc846c}{NumChildrenPerNode}}\ =\ 4;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Header}{Header}}}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat3}{Float3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRootBoundsMin;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat3}{Float3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRootBoundsMax;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRootProperties;}
+\DoxyCodeLine{00026\ \ \ \ \ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a1baa2067968afa2567f2e6081926f80b}{HeaderSize}}\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Header}{Header}});}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a0299d198512c2ae170389ea9f5c80561}{StackSize}}\ =\ 128;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ enum\ :\ uint32}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ TRIANGLE\_COUNT\_BITS\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 4,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ TRIANGLE\_COUNT\_SHIFT\ \ \ \ \ \ \ \ \ \ \ \ =\ 28,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ TRIANGLE\_COUNT\_MASK\ \ \ \ \ \ \ \ \ \ \ \ \ =\ (1\ <<\ TRIANGLE\_COUNT\_BITS)\ -\/\ 1,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ OFFSET\_BITS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 28,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ OFFSET\_MASK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ (1\ <<\ OFFSET\_BITS)\ -\/\ 1,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ OFFSET\_NON\_SIGNIFICANT\_BITS\ \ \ \ \ =\ 2,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ OFFSET\_NON\_SIGNIFICANT\_MASK\ \ \ \ \ =\ (1\ <<\ OFFSET\_NON\_SIGNIFICANT\_BITS)\ -\/\ 1,}
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}}}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ HalfFloat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a260bf9fa0305ae1201ab7ee903c24219}{mBoundsMinX}}[4];\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ HalfFloat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBoundsMinY[4];}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ HalfFloat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBoundsMinZ[4];}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ HalfFloat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBoundsMaxX[4];}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ HalfFloat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBoundsMaxY[4];}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ HalfFloat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBoundsMaxZ[4];}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a959db7e79da8e791a53fa9a8e9f86d1c}{mNodeProperties}}[4];\ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}})\ ==\ 64,\ \textcolor{stringliteral}{"{}Node\ should\ be\ 64\ bytes"{}});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext}{EncodingContext}}}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a743407baa5c478e69bb3f36dcd4b0e5e}{GetPessimisticMemoryEstimate}}(uint\ inNodeCount)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inNodeCount\ *\ (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}})\ +\ Alignment\ -\/\ 1);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_ac621a13ec8689e7cc9ff1fb995115874}{NodeAllocate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTreeBuilder::Node}}\ *inNode,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inNodeBoundsMin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inNodeBoundsMax,\ Array<const\ AABBTreeBuilder::Node\ *>\ \&ioChildren,\ \mbox{\hyperlink{classVec3}{Vec3}}\ outChildBoundsMin[\mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a5a852e30e37f354078911cdefdcc846c}{NumChildrenPerNode}}],\ \mbox{\hyperlink{classVec3}{Vec3}}\ outChildBoundsMax[\mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a5a852e30e37f354078911cdefdcc846c}{NumChildrenPerNode}}],\ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \&ioBuffer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\&outError)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ don't\ emit\ nodes\ for\ leafs}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inNode-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ae10ed18604852aa130a4770fe72c9240}{HasChildren}}())}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (uint)ioBuffer.size();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Align\ the\ buffer}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ ioBuffer.\mbox{\hyperlink{classByteBuffer_ad30809667592e1c5b70ecd023017b692}{Align}}(Alignment);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ node\_start\ =\ (uint)ioBuffer.size();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ in\ bounds}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}}\ *node\ =\ ioBuffer.\mbox{\hyperlink{classByteBuffer_a6fc1274ad81be5609f1f1e807be7cf6b}{Allocate}}<\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}}>();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ ioChildren.size())}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTreeBuilder::Node}}\ *this\_node\ =\ ioChildren[i];}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ bounding\ box}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a260bf9fa0305ae1201ab7ee903c24219}{mBoundsMinX}}[i]\ =\ HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND\_TO\_NEG\_INF>(this\_node-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}());}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMinY[i]\ =\ HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND\_TO\_NEG\_INF>(this\_node-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}.GetY());}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMinZ[i]\ =\ HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND\_TO\_NEG\_INF>(this\_node-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}.GetZ());}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMaxX[i]\ =\ HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND\_TO\_POS\_INF>(this\_node-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.mMax.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}());}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMaxY[i]\ =\ HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND\_TO\_POS\_INF>(this\_node-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.mMax.GetY());}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMaxZ[i]\ =\ HalfFloatConversion::FromFloat<HalfFloatConversion::ROUND\_TO\_POS\_INF>(this\_node-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.mMax.GetZ());}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ triangle\ count}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a959db7e79da8e791a53fa9a8e9f86d1c}{mNodeProperties}}[i]\ =\ this\_node-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ab9f14f78dc59d08126ca910121c173e0}{GetTriangleCount}}()\ <<\ TRIANGLE\_COUNT\_SHIFT;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this\_node-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ab9f14f78dc59d08126ca910121c173e0}{GetTriangleCount}}()\ >=\ TRIANGLE\_COUNT\_MASK)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}NodeCodecQuadTreeHalfFloat:\ Too\ many\ triangles"{}};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ uint(-\/1);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ this\ an\ invalid\ triangle\ node}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a959db7e79da8e791a53fa9a8e9f86d1c}{mNodeProperties}}[i]\ =\ uint32(TRIANGLE\_COUNT\_MASK)\ <<\ TRIANGLE\_COUNT\_SHIFT;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ bounding\ box\ invalid}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a260bf9fa0305ae1201ab7ee903c24219}{mBoundsMinX}}[i]\ =\ HALF\_FLT\_MAX;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMinY[i]\ =\ HALF\_FLT\_MAX;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMinZ[i]\ =\ HALF\_FLT\_MAX;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMaxX[i]\ =\ HALF\_FLT\_MAX;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMaxY[i]\ =\ HALF\_FLT\_MAX;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>mBoundsMaxZ[i]\ =\ HALF\_FLT\_MAX;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ we\ don't\ keep\ track\ of\ the\ bounding\ box\ while\ descending\ the\ tree,\ we\ keep\ the\ root\ bounds\ at\ all\ levels\ for\ triangle\ compression}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a5a852e30e37f354078911cdefdcc846c}{NumChildrenPerNode}};\ ++i)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outChildBoundsMin[i]\ =\ inNodeBoundsMin;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outChildBoundsMax[i]\ =\ inNodeBoundsMax;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ node\_start;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a500c6a27c04555f154c00b5ad85654d3}{NodeFinalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTreeBuilder::Node}}\ *inNode,\ uint\ inNodeStart,\ uint\ inNumChildren,\ \textcolor{keyword}{const}\ uint\ *inChildrenNodeStart,\ \textcolor{keyword}{const}\ uint\ *inChildrenTrianglesStart,\ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \&ioBuffer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\&outError)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inNode-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ae10ed18604852aa130a4770fe72c9240}{HasChildren}}())}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}}\ *node\ =\ ioBuffer.\mbox{\hyperlink{classByteBuffer_afc33bc408efa8e38051debb2c4f64aa8}{Get}}<\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}}>(inNodeStart);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint\ i\ =\ 0;\ i\ <\ inNumChildren;\ ++i)}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ there\ are\ triangles,\ use\ the\ triangle\ offset\ otherwise\ use\ the\ node\ offset}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint\ offset\ =\ node-\/>\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a959db7e79da8e791a53fa9a8e9f86d1c}{mNodeProperties}}[i]\ !=\ 0?\ inChildrenTrianglesStart[i]\ :\ inChildrenNodeStart[i];}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (offset\ \&\ OFFSET\_NON\_SIGNIFICANT\_MASK)}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}NodeCodecQuadTreeHalfFloat:\ Internal\ Error:\ Offset\ has\ non-\/signifiant\ bits\ set"{}};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ offset\ >>=\ OFFSET\_NON\_SIGNIFICANT\_BITS;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (offset\ \&\ \string~OFFSET\_MASK)}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}NodeCodecQuadTreeHalfFloat:\ Offset\ too\ large.\ Too\ much\ data."{}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ offset\ of\ next\ node\ /\ triangles}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a959db7e79da8e791a53fa9a8e9f86d1c}{mNodeProperties}}[i]\ |=\ offset;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1EncodingContext_a744d6e02ea549980927d888129f8fc79}{Finalize}}(\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Header}{Header}}\ *outHeader,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTreeBuilder::Node}}\ *inRoot,\ uint\ inRootNodeStart,\ uint\ inRootTrianglesStart,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\&outError)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ offset\ =\ inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ae10ed18604852aa130a4770fe72c9240}{HasChildren}}()?\ inRootNodeStart\ :\ inRootTrianglesStart;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (offset\ \&\ OFFSET\_NON\_SIGNIFICANT\_MASK)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}NodeCodecQuadTreeHalfFloat:\ Internal\ Error:\ Offset\ has\ non-\/signifiant\ bits\ set"{}};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ offset\ >>=\ OFFSET\_NON\_SIGNIFICANT\_BITS;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (offset\ \&\ \string~OFFSET\_MASK)}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}NodeCodecQuadTreeHalfFloat:\ Offset\ too\ large.\ Too\ much\ data."{}};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.\mbox{\hyperlink{classAABox_a4082e61b6401d675d89d6b4944fd7911}{mMin}}.\mbox{\hyperlink{classVec3_ab22c62c48d2de13947c0cd3413018364}{StoreFloat3}}(\&outHeader-\/>mRootBoundsMin);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_a4549ed8b447ff95b86f267118f229f49}{mBounds}}.mMax.\mbox{\hyperlink{classVec3_ab22c62c48d2de13947c0cd3413018364}{StoreFloat3}}(\&outHeader-\/>mRootBoundsMax);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ outHeader-\/>mRootProperties\ =\ offset\ +\ (inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ab9f14f78dc59d08126ca910121c173e0}{GetTriangleCount}}()\ <<\ TRIANGLE\_COUNT\_SHIFT);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inRoot-\/>\mbox{\hyperlink{classAABBTreeBuilder_1_1Node_ab9f14f78dc59d08126ca910121c173e0}{GetTriangleCount}}()\ >=\ TRIANGLE\_COUNT\_MASK)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outError\ =\ \textcolor{stringliteral}{"{}NodeCodecQuadTreeHalfFloat:\ Too\ many\ triangles"{}};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext}{DecodingContext}}}
+\DoxyCodeLine{00196\ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ uint\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a90be34ac29998cfd210f0c1d28956a9c}{sTriangleBlockIDBits}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classByteBuffer}{ByteBuffer}}\ \&inTree)}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 32\ -\/\ CountLeadingZeros((uint32)inTree.size())\ -\/\ OFFSET\_NON\_SIGNIFICANT\_BITS;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a6897b5f58d055fde378516056dec1836}{sGetTriangleBlockStart}}(\textcolor{keyword}{const}\ uint8\ *inBufferStart,\ uint\ inTriangleBlockID)}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inBufferStart\ +\ (inTriangleBlockID\ <<\ OFFSET\_NON\_SIGNIFICANT\_BITS);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_aa3ed16d2ad735587cc31672b2db9c6f4}{DecodingContext}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Header}{Header}}\ *inHeader)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ with\ the\ root\ node\ on\ the\ stack}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ mNodeStack[0]\ =\ inHeader-\/>mRootProperties;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ TriangleContext,\ \textcolor{keyword}{class}\ Visitor>}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a084241df274ee41e4bb4908b8bd5c943}{WalkTree}}(\textcolor{keyword}{const}\ uint8\ *inBufferStart,\ \textcolor{keyword}{const}\ TriangleContext\ \&inTriangleContext,\ Visitor\ \&ioVisitor)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ if\ node\ contains\ triangles}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ node\_properties\ =\ mNodeStack[mTop];}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ tri\_count\ =\ node\_properties\ >>\ TRIANGLE\_COUNT\_SHIFT;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tri\_count\ ==\ 0)}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}}\ *node\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node}{Node}}\ *\textcolor{keyword}{>}(inBufferStart\ +\ (node\_properties\ <<\ OFFSET\_NON\_SIGNIFICANT\_BITS));}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unpack\ bounds}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ bounds\_minxy\ =\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint32\ *\textcolor{keyword}{>}(\&node-\/>\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a260bf9fa0305ae1201ab7ee903c24219}{mBoundsMinX}}[0]));}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ bounds\_minx\ =\ HalfFloatConversion::ToFloat(bounds\_minxy);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ bounds\_miny\ =\ HalfFloatConversion::ToFloat(bounds\_minxy.\mbox{\hyperlink{classUVec4_a03d1ddee4a58319e1fd6fb7a8c599874}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_UNUSED,\ SWIZZLE\_UNUSED>());}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ bounds\_minzmaxx\ =\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint32\ *\textcolor{keyword}{>}(\&node-\/>mBoundsMinZ[0]));}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ bounds\_minz\ =\ HalfFloatConversion::ToFloat(bounds\_minzmaxx);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ bounds\_maxx\ =\ HalfFloatConversion::ToFloat(bounds\_minzmaxx.\mbox{\hyperlink{classUVec4_a03d1ddee4a58319e1fd6fb7a8c599874}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_UNUSED,\ SWIZZLE\_UNUSED>());}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ bounds\_maxyz\ =\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint32\ *\textcolor{keyword}{>}(\&node-\/>mBoundsMaxY[0]));}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ bounds\_maxy\ =\ HalfFloatConversion::ToFloat(bounds\_maxyz);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ bounds\_maxz\ =\ HalfFloatConversion::ToFloat(bounds\_maxyz.\mbox{\hyperlink{classUVec4_a03d1ddee4a58319e1fd6fb7a8c599874}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_UNUSED,\ SWIZZLE\_UNUSED>());}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ properties\ for\ 4\ children}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ properties\ =\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\&node-\/>\mbox{\hyperlink{structNodeCodecQuadTreeHalfFloat_1_1Node_a959db7e79da8e791a53fa9a8e9f86d1c}{mNodeProperties}}[0]);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ which\ sub\ nodes\ to\ visit}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_results\ =\ ioVisitor.VisitNodes(bounds\_minx,\ bounds\_miny,\ bounds\_minz,\ bounds\_maxx,\ bounds\_maxy,\ bounds\_maxz,\ properties,\ mTop);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ them\ onto\ the\ stack}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(mTop\ +\ 4\ <\ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a0299d198512c2ae170389ea9f5c80561}{StackSize}});}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ properties.\mbox{\hyperlink{classUVec4_aa7b95daa78a51ef877eca777c0389023}{StoreInt4}}(\&mNodeStack[mTop]);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTop\ +=\ num\_results;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tri\_count\ !=\ TRIANGLE\_COUNT\_MASK)\ \textcolor{comment}{//\ TRIANGLE\_COUNT\_MASK\ indicates\ a\ padding\ node,\ normally\ we\ shouldn't\ visit\ these\ nodes\ but\ when\ querying\ with\ a\ big\ enough\ box\ you\ could\ touch\ HALF\_FLT\_MAX\ (about\ 65K)}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Node\ contains\ triangles,\ do\ individual\ tests}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\ triangle\_block\_id\ =\ node\_properties\ \&\ OFFSET\_MASK;}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *triangles\ =\ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a6897b5f58d055fde378516056dec1836}{sGetTriangleBlockStart}}(inBufferStart,\ triangle\_block\_id);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioVisitor.VisitTriangles(inTriangleContext,\ triangles,\ tri\_count,\ triangle\_block\_id);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we're\ done}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioVisitor.ShouldAbort())}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ next\ node\ until\ we\ find\ one\ that\ the\ visitor\ wants\ to\ see}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/mTop;}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (mTop\ >=\ 0\ \&\&\ !ioVisitor.ShouldVisitNode(mTop));}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (mTop\ >=\ 0);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_1_1DecodingContext_a497beb4af569cc217d1b6d8b311f89ae}{IsDoneWalking}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00277\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTop\ <\ 0;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNodeStack[\mbox{\hyperlink{classNodeCodecQuadTreeHalfFloat_a0299d198512c2ae170389ea9f5c80561}{StackSize}}];}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTop\ =\ 0;}
+\DoxyCodeLine{00284\ \ \ \ \ \};}
+\DoxyCodeLine{00285\ \};}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

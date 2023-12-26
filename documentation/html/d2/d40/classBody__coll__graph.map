@@ -1,0 +1,6 @@
+<map id="Body" name="Body">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,167,247,701"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="248,385,266,404,273,434,270,455,262,471,257,469,265,454,268,434,262,406,244,388"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="65,5,187,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,132,129,167,123,167,123,132"/>
+</map>

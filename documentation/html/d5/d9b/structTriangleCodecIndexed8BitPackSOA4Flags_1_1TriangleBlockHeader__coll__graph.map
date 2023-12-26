@@ -1,0 +1,3 @@
+<map id="TriangleCodecIndexed8BitPackSOA4Flags::TriangleBlockHeader" name="TriangleCodecIndexed8BitPackSOA4Flags::TriangleBlockHeader">
+<area shape="rect" id="Node000001" title="A triangle header, will be followed by one or more TriangleBlocks." alt="" coords="5,5,213,131"/>
+</map>

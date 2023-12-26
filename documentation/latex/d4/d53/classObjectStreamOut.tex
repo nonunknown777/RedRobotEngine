@@ -1,0 +1,184 @@
+\doxysection{Object\+Stream\+Out Class Reference}
+\hypertarget{classObjectStreamOut}{}\label{classObjectStreamOut}\index{ObjectStreamOut@{ObjectStreamOut}}
+
+
+{\ttfamily \#include $<$Object\+Stream\+Out.\+h$>$}
+
+
+
+Inheritance diagram for Object\+Stream\+Out\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/d85/classObjectStreamOut__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object\+Stream\+Out\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/d42/classObjectStreamOut__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStreamOut_aa2b5606b21a4dc250385941cda2ab26f}\label{classObjectStreamOut_aa2b5606b21a4dc250385941cda2ab26f} 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Write\+Object} (ostream \&in\+Stream, \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{Object\+Stream\+::\+EStream\+Type}} in\+Type, const T \&in\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to write an object to a stream. \end{DoxyCompactList}\item 
+\Hypertarget{classObjectStreamOut_a05f2b21699e0b6f60be034761681fdf6}\label{classObjectStreamOut_a05f2b21699e0b6f60be034761681fdf6} 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Write\+Object} (const char \texorpdfstring{$\ast$}{*}in\+File\+Name, \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{Object\+Stream\+::\+EStream\+Type}} in\+Type, const T \&in\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to write an object to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Serialization operations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStreamOut_ae8ab7835a47259ec7fc0d8bbeb2c3e8f}\label{classObjectStreamOut_ae8ab7835a47259ec7fc0d8bbeb2c3e8f} 
+ostream \& {\bfseries m\+Stream}
+\item 
+\Hypertarget{classObjectStreamOut_a00ac10a63cae82e5aa420739d243bb5e}\label{classObjectStreamOut_a00ac10a63cae82e5aa420739d243bb5e} 
+bool {\bfseries Write} (const void \texorpdfstring{$\ast$}{*}in\+Object, const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI)
+\item 
+\Hypertarget{classObjectStreamOut_a9277b8858ca05bb673daefecab467901}\label{classObjectStreamOut_a9277b8858ca05bb673daefecab467901} 
+void {\bfseries Write\+Object} (const void \texorpdfstring{$\ast$}{*}in\+Object)
+\item 
+\Hypertarget{classObjectStreamOut_ae90b49dd2e05f23afc92697282dc0bc2}\label{classObjectStreamOut_ae90b49dd2e05f23afc92697282dc0bc2} 
+void {\bfseries Queue\+RTTI} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI)
+\item 
+\Hypertarget{classObjectStreamOut_a959db81abfcbd73830c56f52cc953a41}\label{classObjectStreamOut_a959db81abfcbd73830c56f52cc953a41} 
+void {\bfseries Write\+RTTI} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI)
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamOut_a7587194ec9799fc886575fde7399311a}{Write\+Class\+Data}} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI, const void \texorpdfstring{$\ast$}{*}in\+Instance) override
+\item 
+virtual void \mbox{\hyperlink{classObjectStreamOut_af561adf53ccb631a1f4eacf5ac4babb8}{Write\+Pointer\+Data}} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI, const void \texorpdfstring{$\ast$}{*}in\+Pointer) override
+\item 
+\Hypertarget{classObjectStreamOut_ab15b3030422c66895dd5653fe3303d6d}\label{classObjectStreamOut_ab15b3030422c66895dd5653fe3303d6d} 
+static \mbox{\hyperlink{classObjectStreamOut}{Object\+Stream\+Out}} \texorpdfstring{$\ast$}{*} {\bfseries Open} (\mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} in\+Type, ostream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Static constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classObjectStreamOut_af407c69207c4321afdee4c9c4ceeab8f}\label{classObjectStreamOut_af407c69207c4321afdee4c9c4ceeab8f} 
+{\bfseries Object\+Stream\+Out} (ostream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}\label{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e} 
+enum class \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} \{ {\bfseries Text}
+, {\bfseries Binary}
+ \}
+\begin{DoxyCompactList}\small\item\em Stream type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Write\+Data\+Type} (EOSData\+Type in\+Type)=0
+\item 
+virtual void {\bfseries Write\+Name} (const char \texorpdfstring{$\ast$}{*}in\+Name)=0
+\item 
+virtual void {\bfseries Write\+Identifier} (\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} in\+Identifier)=0
+\item 
+virtual void {\bfseries Write\+Count} (uint32 in\+Count)=0
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const uint8 \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const uint16 \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const int \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const uint32 \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const uint64 \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const float \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const double \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const bool \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const String \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const \mbox{\hyperlink{classFloat3}{Float3}} \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const \mbox{\hyperlink{classDouble3}{Double3}} \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const \mbox{\hyperlink{classVec3}{Vec3}} \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const \mbox{\hyperlink{classDVec3}{DVec3}} \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const \mbox{\hyperlink{classVec4}{Vec4}} \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const \mbox{\hyperlink{classQuat}{Quat}} \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const \mbox{\hyperlink{classMat44}{Mat44}} \&in\+Primitive)=0
+\item 
+virtual void {\bfseries Write\+Primitive\+Data} (const \mbox{\hyperlink{classDMat44}{DMat44}} \&in\+Primitive)=0
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Hint\+Next\+Item} ()
+\item 
+virtual void {\bfseries Hint\+Indent\+Up} ()
+\item 
+virtual void {\bfseries Hint\+Indent\+Down} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Identifier} = uint32
+\begin{DoxyCompactList}\small\item\em Identifier for objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Object\+Stream} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int {\bfseries s\+Version} = 1
+\item 
+static constexpr int {\bfseries s\+Revision} = 0
+\item 
+static constexpr \mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} {\bfseries s\+Null\+Identifier} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classObjectStreamOut}{Object\+Stream\+Out} contains all logic for writing an object to disk. It is the base class for the text and binary output streams (\doxylink{classObjectStreamTextOut}{Object\+Stream\+Text\+Out} and \doxylink{classObjectStreamBinaryOut}{Object\+Stream\+Binary\+Out}). 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classObjectStreamOut_a7587194ec9799fc886575fde7399311a}\label{classObjectStreamOut_a7587194ec9799fc886575fde7399311a} 
+\index{ObjectStreamOut@{ObjectStreamOut}!WriteClassData@{WriteClassData}}
+\index{WriteClassData@{WriteClassData}!ObjectStreamOut@{ObjectStreamOut}}
+\doxysubsubsection{\texorpdfstring{WriteClassData()}{WriteClassData()}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Out\+::\+Write\+Class\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}}]{in\+RTTI,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{in\+Instance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+\Hypertarget{classObjectStreamOut_af561adf53ccb631a1f4eacf5ac4babb8}\label{classObjectStreamOut_af561adf53ccb631a1f4eacf5ac4babb8} 
+\index{ObjectStreamOut@{ObjectStreamOut}!WritePointerData@{WritePointerData}}
+\index{WritePointerData@{WritePointerData}!ObjectStreamOut@{ObjectStreamOut}}
+\doxysubsubsection{\texorpdfstring{WritePointerData()}{WritePointerData()}}
+{\footnotesize\ttfamily virtual void Object\+Stream\+Out\+::\+Write\+Pointer\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}}]{in\+RTTI,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{in\+Pointer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamOut}{IObject\+Stream\+Out}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Object\+Stream/Object\+Stream\+Out.\+h\end{DoxyCompactItemize}

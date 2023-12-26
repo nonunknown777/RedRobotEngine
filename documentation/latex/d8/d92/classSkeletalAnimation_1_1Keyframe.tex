@@ -1,0 +1,60 @@
+\doxysection{Skeletal\+Animation\+::Keyframe Class Reference}
+\hypertarget{classSkeletalAnimation_1_1Keyframe}{}\label{classSkeletalAnimation_1_1Keyframe}\index{SkeletalAnimation::Keyframe@{SkeletalAnimation::Keyframe}}
+
+
+Contains the state of a single joint at a particular time.  
+
+
+
+
+{\ttfamily \#include $<$Skeletal\+Animation.\+h$>$}
+
+
+
+Inheritance diagram for Skeletal\+Animation\+::Keyframe\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{d7/d0e/classSkeletalAnimation_1_1Keyframe__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Skeletal\+Animation\+::Keyframe\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{da/d17/classSkeletalAnimation_1_1Keyframe__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSkeletalAnimation_1_1Keyframe_a75e2a3808d0cf210cafa3bd083769340}\label{classSkeletalAnimation_1_1Keyframe_a75e2a3808d0cf210cafa3bd083769340} 
+float {\bfseries m\+Time} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Time of keyframe in seconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classSkeletalAnimation_1_1JointState}{Skeletal\+Animation\+::\+Joint\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classQuat}{Quat}} {\bfseries m\+Rotation} = \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat\+::s\+Identity}}()
+\begin{DoxyCompactList}\small\item\em Local space rotation of the joint. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Translation} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3\+::s\+Zero}}()
+\begin{DoxyCompactList}\small\item\em Local space translation of the joint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSkeletalAnimation_1_1JointState}{Skeletal\+Animation\+::\+Joint\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries From\+Matrix} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Matrix)
+\begin{DoxyCompactList}\small\item\em Convert from a local space matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMat44}{Mat44}} {\bfseries To\+Matrix} () const
+\begin{DoxyCompactList}\small\item\em Convert to matrix representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains the state of a single joint at a particular time. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Skeleton/Skeletal\+Animation.\+h\end{DoxyCompactItemize}

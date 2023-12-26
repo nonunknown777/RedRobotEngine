@@ -1,0 +1,62 @@
+\doxysection{STLAligned\+Allocator.\+h}
+\hypertarget{STLAlignedAllocator_8h_source}{}\label{STLAlignedAllocator_8h_source}\index{includes/jolt/Core/STLAlignedAllocator.h@{includes/jolt/Core/STLAlignedAllocator.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSTLAlignedAllocator}{STLAlignedAllocator}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ T;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classSTLAlignedAllocator_a00f960ad0c626b48190ed45c3a9f4f93}{pointer}}\ =\ T\ *;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{using\ }const\_pointer\ =\ \textcolor{keyword}{const}\ T\ *;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classSTLAlignedAllocator_a56b7aed0a19cfcdb3265edd1b2f128c9}{reference}}\ =\ T\ \&;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{using\ }const\_reference\ =\ \textcolor{keyword}{const}\ T\ \&;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{using\ }size\_type\ =\ size\_t;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ ptrdiff\_t;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSTLAlignedAllocator_a490bc5212d1eaa558cd629b920f7ab4f}{STLAlignedAllocator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSTLAlignedAllocator_adcbf21beef1553bd11174da4a4a4a274}{STLAlignedAllocator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSTLAlignedAllocator}{STLAlignedAllocator<T2,\ N>}}\ \&)\ \{\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classSTLAlignedAllocator_a00f960ad0c626b48190ed45c3a9f4f93}{pointer}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSTLAlignedAllocator_a3e191bdbfbb57772ab22df9ec23a6996}{allocate}}(size\_type\ inN)}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classSTLAlignedAllocator_a00f960ad0c626b48190ed45c3a9f4f93}{pointer}})AlignedAllocate(inN\ *\ \textcolor{keyword}{sizeof}(value\_type),\ N);}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSTLAlignedAllocator_a7ee785ea3499d6b21ce7872cb66988eb}{deallocate}}(\mbox{\hyperlink{classSTLAlignedAllocator_a00f960ad0c626b48190ed45c3a9f4f93}{pointer}}\ inPointer,\ size\_type)}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ AlignedFree(inPointer);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSTLAlignedAllocator_a187d266d7db5bbd12a876eb83641602e}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSTLAlignedAllocator}{STLAlignedAllocator<T,\ N>}}\ \&)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classSTLAlignedAllocator}{STLAlignedAllocator<T,\ N>}}\ \&)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T2>}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structSTLAlignedAllocator_1_1rebind}{rebind}}}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classSTLAlignedAllocator}{other}}\ =\ \mbox{\hyperlink{classSTLAlignedAllocator}{STLAlignedAllocator<T2,\ N>}};}
+\DoxyCodeLine{00063\ \ \ \ \ \};}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

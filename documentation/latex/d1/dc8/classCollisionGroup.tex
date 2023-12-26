@@ -1,0 +1,83 @@
+\doxysection{Collision\+Group Class Reference}
+\hypertarget{classCollisionGroup}{}\label{classCollisionGroup}\index{CollisionGroup@{CollisionGroup}}
+
+
+{\ttfamily \#include $<$Collision\+Group.\+h$>$}
+
+
+
+Collaboration diagram for Collision\+Group\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d6/d7e/classCollisionGroup__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollisionGroup_ab44e31c9fa83c4818b1560d71c15dddd}\label{classCollisionGroup_ab44e31c9fa83c4818b1560d71c15dddd} 
+using {\bfseries Group\+ID} = uint32
+\item 
+\Hypertarget{classCollisionGroup_ae26aaf0a13015f02f01c0e128ccebcfd}\label{classCollisionGroup_ae26aaf0a13015f02f01c0e128ccebcfd} 
+using {\bfseries Sub\+Group\+ID} = uint32
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollisionGroup_ad9f6cce170470d571b3927c44d7104ec}\label{classCollisionGroup_ad9f6cce170470d571b3927c44d7104ec} 
+{\bfseries Collision\+Group} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionGroup_a5428cf2e49b467026e833c0955d35b30}\label{classCollisionGroup_a5428cf2e49b467026e833c0955d35b30} 
+{\bfseries Collision\+Group} (const \mbox{\hyperlink{classGroupFilter}{Group\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter, Group\+ID in\+Group\+ID, Sub\+Group\+ID in\+Sub\+Group\+ID)
+\begin{DoxyCompactList}\small\item\em Construct with all properties. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionGroup_a24632cad19f63669929509eceb904290}\label{classCollisionGroup_a24632cad19f63669929509eceb904290} 
+void {\bfseries Set\+Group\+Filter} (const \mbox{\hyperlink{classGroupFilter}{Group\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter)
+\begin{DoxyCompactList}\small\item\em Set the collision group filter. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionGroup_abcda9f0cd8d5d8b2ee42bee0a19430a7}\label{classCollisionGroup_abcda9f0cd8d5d8b2ee42bee0a19430a7} 
+const \mbox{\hyperlink{classGroupFilter}{Group\+Filter}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Group\+Filter} () const
+\begin{DoxyCompactList}\small\item\em Get the collision group filter. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionGroup_ab49afbb0cbf8526e2b1ee89d8f2a34dd}\label{classCollisionGroup_ab49afbb0cbf8526e2b1ee89d8f2a34dd} 
+void {\bfseries Set\+Group\+ID} (Group\+ID in\+ID)
+\begin{DoxyCompactList}\small\item\em Set the main group id for this object. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionGroup_a1521cec7d03c83265aecca64ec684433}\label{classCollisionGroup_a1521cec7d03c83265aecca64ec684433} 
+Group\+ID {\bfseries Get\+Group\+ID} () const
+\item 
+\Hypertarget{classCollisionGroup_a9ac2eb88530e8281a130bd73539d127b}\label{classCollisionGroup_a9ac2eb88530e8281a130bd73539d127b} 
+void {\bfseries Set\+Sub\+Group\+ID} (Sub\+Group\+ID in\+ID)
+\begin{DoxyCompactList}\small\item\em Add this object to a sub group. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionGroup_a156fd729674403783be12fe41ee5b288}\label{classCollisionGroup_a156fd729674403783be12fe41ee5b288} 
+Sub\+Group\+ID {\bfseries Get\+Sub\+Group\+ID} () const
+\item 
+\Hypertarget{classCollisionGroup_aa7e60aa0b9f6e5563ab4ca690c8e2b56}\label{classCollisionGroup_aa7e60aa0b9f6e5563ab4ca690c8e2b56} 
+bool {\bfseries Can\+Collide} (const \mbox{\hyperlink{classCollisionGroup}{Collision\+Group}} \&in\+Other) const
+\begin{DoxyCompactList}\small\item\em Check if this object collides with another object. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionGroup_a687bdb750277759925f00c5fb55b6835}\label{classCollisionGroup_a687bdb750277759925f00c5fb55b6835} 
+void {\bfseries Save\+Binary\+State} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the state of this object in binary form to in\+Stream. Does not save group filter. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionGroup_abff4339a09c8ad38cc7aee4449d5ecaf}\label{classCollisionGroup_abff4339a09c8ad38cc7aee4449d5ecaf} 
+void {\bfseries Restore\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore the state of this object from in\+Stream. Does not save group filter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollisionGroup_a5d5f66e30eaab92fc7dd332b0fa768ad}\label{classCollisionGroup_a5d5f66e30eaab92fc7dd332b0fa768ad} 
+static const Group\+ID {\bfseries c\+Invalid\+Group} = \texorpdfstring{$\sim$}{\string~}Group\+ID(0)
+\item 
+\Hypertarget{classCollisionGroup_a8c7bb47aa601f240989362da21f116e8}\label{classCollisionGroup_a8c7bb47aa601f240989362da21f116e8} 
+static const Sub\+Group\+ID {\bfseries c\+Invalid\+Sub\+Group} = \texorpdfstring{$\sim$}{\string~}Sub\+Group\+ID(0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Two objects collide with each other if\+:
+\begin{DoxyItemize}
+\item Both don\textquotesingle{}t have a group filter
+\item The first group filter says that the objects can collide
+\item Or if there\textquotesingle{}s no filter for the first object, the second group filter says the objects can collide 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Collision\+Group.\+h\end{DoxyCompactItemize}

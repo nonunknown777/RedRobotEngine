@@ -1,0 +1,69 @@
+\doxysection{Body\+Lock\+Base\texorpdfstring{$<$}{<} Write, Body\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classBodyLockBase}{}\label{classBodyLockBase}\index{BodyLockBase$<$ Write, BodyType $>$@{BodyLockBase$<$ Write, BodyType $>$}}
+
+
+Base class for locking bodies for the duration of the scope of this class (do not use directly)  
+
+
+
+
+{\ttfamily \#include $<$Body\+Lock.\+h$>$}
+
+
+
+Inheritance diagram for Body\+Lock\+Base\texorpdfstring{$<$}{<} Write, Body\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{dc/d87/classBodyLockBase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Body\+Lock\+Base\texorpdfstring{$<$}{<} Write, Body\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{dd/d20/classBodyLockBase__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBodyLockBase_a6567f612e029f57f4a49aebcf54334a9}\label{classBodyLockBase_a6567f612e029f57f4a49aebcf54334a9} 
+{\bfseries Body\+Lock\+Base} (const \mbox{\hyperlink{classBodyLockInterface}{Body\+Lock\+Interface}} \&in\+Body\+Lock\+Interface, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID)
+\begin{DoxyCompactList}\small\item\em Constructor will lock the body. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockBase_ad55e418ae5441d32196be0d6433e4cec}\label{classBodyLockBase_ad55e418ae5441d32196be0d6433e4cec} 
+void {\bfseries Release\+Lock} ()
+\begin{DoxyCompactList}\small\item\em Explicitly release the lock (normally this is done in the destructor) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockBase_a30194dac9c9d2ca469894dd7c5719d40}\label{classBodyLockBase_a30194dac9c9d2ca469894dd7c5719d40} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Body\+Lock\+Base} ()
+\begin{DoxyCompactList}\small\item\em Destructor will unlock the body. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockBase_a8ee09ef1fb31697b4f965c8e5ee09e5f}\label{classBodyLockBase_a8ee09ef1fb31697b4f965c8e5ee09e5f} 
+bool {\bfseries Succeeded} () const
+\begin{DoxyCompactList}\small\item\em Test if the lock was successful (if the body ID was valid) \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockBase_a9ed231a8aea3cfa9e1e721707dcd08fb}\label{classBodyLockBase_a9ed231a8aea3cfa9e1e721707dcd08fb} 
+bool {\bfseries Succeeded\+And\+Is\+In\+Broad\+Phase} () const
+\begin{DoxyCompactList}\small\item\em Test if the lock was successful (if the body ID was valid) and the body is still in the broad phase. \end{DoxyCompactList}\item 
+\Hypertarget{classBodyLockBase_aa79bd3d8f64b4f92a2744737eddc6e59}\label{classBodyLockBase_aa79bd3d8f64b4f92a2744737eddc6e59} 
+Body\+Type \& {\bfseries Get\+Body} () const
+\begin{DoxyCompactList}\small\item\em Access the body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$bool Write, class Body\+Type$>$\newline
+class Body\+Lock\+Base$<$ Write, Body\+Type $>$}
+Base class for locking bodies for the duration of the scope of this class (do not use directly) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Body/Body\+Lock.\+h\end{DoxyCompactItemize}

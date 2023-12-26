@@ -1,0 +1,61 @@
+\doxysection{Collide\+Shape\+Settings Class Reference}
+\hypertarget{classCollideShapeSettings}{}\label{classCollideShapeSettings}\index{CollideShapeSettings@{CollideShapeSettings}}
+
+
+Settings to be passed with a collision query.  
+
+
+
+
+{\ttfamily \#include $<$Collide\+Shape.\+h$>$}
+
+
+
+Inheritance diagram for Collide\+Shape\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{df/d12/classCollideShapeSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Collide\+Shape\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{db/ddd/classCollideShapeSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollideShapeSettings_a511c99470c2fe3b2e82d06ffe26c52c1}\label{classCollideShapeSettings_a511c99470c2fe3b2e82d06ffe26c52c1} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE float {\bfseries m\+Max\+Separation\+Distance} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em When \texorpdfstring{$>$}{>} 0 contacts in the vicinity of the query shape can be found. All nearest contacts that are not further away than this distance will be found (unit\+: meter) \end{DoxyCompactList}\item 
+\Hypertarget{classCollideShapeSettings_a6fd0a08fc31725386fc3bef0b9aee212}\label{classCollideShapeSettings_a6fd0a08fc31725386fc3bef0b9aee212} 
+EBack\+Face\+Mode {\bfseries m\+Back\+Face\+Mode} = EBack\+Face\+Mode\+::\+Ignore\+Back\+Faces
+\begin{DoxyCompactList}\small\item\em How backfacing triangles should be treated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classCollideSettingsBase}{Collide\+Settings\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE EActive\+Edge\+Mode {\bfseries m\+Active\+Edge\+Mode} = EActive\+Edge\+Mode\+::\+Collide\+Only\+With\+Active
+\begin{DoxyCompactList}\small\item\em How active edges (edges that a moving object should bump into) are handled. \end{DoxyCompactList}\item 
+ECollect\+Faces\+Mode {\bfseries m\+Collect\+Faces\+Mode} = ECollect\+Faces\+Mode\+::\+No\+Faces
+\begin{DoxyCompactList}\small\item\em If colliding faces should be collected or only the collision point. \end{DoxyCompactList}\item 
+float {\bfseries m\+Collision\+Tolerance} = c\+Default\+Collision\+Tolerance
+\begin{DoxyCompactList}\small\item\em If objects are closer than this distance, they are considered to be colliding (used for GJK) (unit\+: meter) \end{DoxyCompactList}\item 
+float {\bfseries m\+Penetration\+Tolerance} = c\+Default\+Penetration\+Tolerance
+\begin{DoxyCompactList}\small\item\em A factor that determines the accuracy of the penetration depth calculation. If the change of the squared distance is less than tolerance \texorpdfstring{$\ast$}{*} current\+\_\+penetration\+\_\+depth\texorpdfstring{$^\wedge$}{\string^}2 the algorithm will terminate. (unit\+: dimensionless) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Active\+Edge\+Movement\+Direction} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3\+::s\+Zero}}()
+\begin{DoxyCompactList}\small\item\em When m\+Active\+Edge\+Mode is Collide\+Only\+With\+Active a movement direction can be provided. When hitting an inactive edge, the system will select the triangle normal as penetration depth only if it impedes the movement less than with the calculated penetration depth. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Settings to be passed with a collision query. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Collide\+Shape.\+h\end{DoxyCompactItemize}

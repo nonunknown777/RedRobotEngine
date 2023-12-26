@@ -1,0 +1,120 @@
+\doxysection{Debug\+Renderer\+Recorder.\+h}
+\hypertarget{DebugRendererRecorder_8h_source}{}\label{DebugRendererRecorder_8h_source}\index{includes/jolt/Renderer/DebugRendererRecorder.h@{includes/jolt/Renderer/DebugRendererRecorder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\ \ \ \ \#error\ This\ file\ should\ only\ be\ included\ when\ JPH\_DEBUG\_RENDERER\ is\ defined}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Renderer/DebugRenderer.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Core/StreamOut.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Mutex.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <Jolt/Core/UnorderedMap.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }JPH\_DEBUG\_RENDERER\_EXPORT\ \mbox{\hyperlink{classDebugRendererRecorder}{DebugRendererRecorder}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRendererRecorder_ae016c0c6e1951199b26be47d0e58e2e4}{DebugRendererRecorder}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ :\ mStream(inStream)\ \{\ \mbox{\hyperlink{classDebugRenderer_a1ca028ffb521cc342e2d34cfc03f5d46}{Initialize}}();\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRendererRecorder_a04f06e8b554ac04c3d83b288144288d1}{DrawLine}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inFrom,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inTo,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRendererRecorder_a8d1145a1bb9bb8fe32678e860fc01093}{DrawTriangle}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inV1,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inV2,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inV3,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \mbox{\hyperlink{classDebugRenderer_aa24dcdedf792593f83eb1091d7e456b9}{ECastShadow}}\ inCastShadow)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classRef}{Batch}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRendererRecorder_a36af91f5981503f21a70fd84e892d909}{CreateTriangleBatch}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDebugRenderer_1_1Triangle}{Triangle}}\ *inTriangles,\ \textcolor{keywordtype}{int}\ inTriangleCount)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classRef}{Batch}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a9537e347fe16d3d0c55e8409299a1979}{CreateTriangleBatch}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDebugRenderer_1_1Vertex}{Vertex}}\ *inVertices,\ \textcolor{keywordtype}{int}\ inVertexCount,\ \textcolor{keyword}{const}\ uint32\ *inIndices,\ \textcolor{keywordtype}{int}\ inIndexCount)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRendererRecorder_acc97b43c20dc06b485c4af4a9f5f1b8d}{DrawGeometry}}(\mbox{\hyperlink{classMat44}{RMat44Arg}}\ inModelMatrix,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inWorldSpaceBounds,\ \textcolor{keywordtype}{float}\ inLODScaleSq,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inModelColor,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{GeometryRef}}\ \&inGeometry,\ \mbox{\hyperlink{classDebugRenderer_a54c5367f9b1f976cfe292dfa9ad2160a}{ECullMode}}\ inCullMode,\ \mbox{\hyperlink{classDebugRenderer_aa24dcdedf792593f83eb1091d7e456b9}{ECastShadow}}\ inCastShadow,\ \mbox{\hyperlink{classDebugRenderer_ab9951f7e2a6dd10b4e8f3b40f01bba32}{EDrawMode}}\ inDrawMode)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRendererRecorder_aaa98c800a4bae5a57485f661cb7e5cc4}{DrawText3D}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \textcolor{keyword}{const}\ string\_view\ \&inString,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keywordtype}{float}\ inHeight)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRendererRecorder_a1beee4021111b00774e99dd134716b44}{EndFrame}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classDebugRendererRecorder_ab209b97db9eb9c3d5ee0735f7e1b4b3e}{ECommand}}\ :\ uint8}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ CreateBatch,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ CreateBatchIndexed,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ CreateGeometry,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ EndFrame}
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDebugRendererRecorder_1_1LineBlob}{LineBlob}}}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mFrom;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTo;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classColor}{Color}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColor;}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDebugRendererRecorder_1_1TriangleBlob}{TriangleBlob}}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mV1;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mV2;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mV3;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classColor}{Color}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColor;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_aa24dcdedf792593f83eb1091d7e456b9}{ECastShadow}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCastShadow;}
+\DoxyCodeLine{00063\ \ \ \ \ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDebugRendererRecorder_1_1TextBlob}{TextBlob}}}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structDebugRendererRecorder_1_1TextBlob}{TextBlob}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structDebugRendererRecorder_1_1TextBlob}{TextBlob}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \textcolor{keyword}{const}\ string\_view\ \&inString,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keywordtype}{float}\ inHeight)\ :\ mPosition(inPosition),\ mString(inString),\ mColor(inColor),\ mHeight(inHeight)\ \{\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPosition;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ String\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mString;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classColor}{Color}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColor;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHeight;}
+\DoxyCodeLine{00075\ \ \ \ \ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDebugRendererRecorder_1_1GeometryBlob}{GeometryBlob}}}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mModelMatrix;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classColor}{Color}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mModelColor;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGeometryID;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a54c5367f9b1f976cfe292dfa9ad2160a}{ECullMode}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCullMode;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_aa24dcdedf792593f83eb1091d7e456b9}{ECastShadow}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCastShadow;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_ab9951f7e2a6dd10b4e8f3b40f01bba32}{EDrawMode}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDrawMode;}
+\DoxyCodeLine{00086\ \ \ \ \ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDebugRendererRecorder_1_1Frame}{Frame}}}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ Array<LineBlob>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLines;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ Array<TriangleBlob>\ \ \ \ \ \ \ \ \ \ \ \ \ mTriangles;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ Array<TextBlob>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTexts;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ Array<GeometryBlob>\ \ \ \ \ \ \ \ \ \ \ \ \ mGeometries;}
+\DoxyCodeLine{00095\ \ \ \ \ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{class\ }BatchImpl\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classRefTargetVirtual}{RefTargetVirtual}}}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BatchImpl(uint32\ inID)\ \ \ \ \ \ :\ mID(inID)\ \{\ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddRef()\textcolor{keyword}{\ override\ \ \ \ \ \ \ \ \ \ \ }\{\ ++mRefCount;\ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Release()\textcolor{keyword}{\ override\ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{if}\ (-\/-\/mRefCount\ ==\ 0)\ \textcolor{keyword}{delete}\ \textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRefCount\ =\ 0;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mID;}
+\DoxyCodeLine{00111\ \ \ \ \ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ Mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMutex;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStream;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00120\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextBatchID\ =\ 1;}
+\DoxyCodeLine{00121\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextGeometryID\ =\ 1;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00124\ \ \ \ \ UnorderedMap<GeometryRef,\ uint32>\ \ \ mGeometries;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00127\ \ \ \ \ Frame\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCurrentFrame;}
+\DoxyCodeLine{00128\ \};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

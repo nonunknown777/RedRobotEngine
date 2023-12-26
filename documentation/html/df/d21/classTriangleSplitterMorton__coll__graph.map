@@ -1,0 +1,7 @@
+<map id="TriangleSplitterMorton" name="TriangleSplitterMorton">
+<area shape="rect" id="Node000001" title="Splitter using Morton codes, see: http://devblogs.nvidia.com/parallelforall/thinking&#45;parallel&#45;part&#45;ii..." alt="" coords="5,496,185,608"/>
+<area shape="rect" id="Node000002" href="$d0/d4e/classTriangleSplitter.html" title="A class that splits a triangle list into two parts for building a tree." alt="" coords="19,165,171,448"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,463,98,496,93,496,93,463"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="34,5,157,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,132,98,165,93,165,93,132"/>
+</map>

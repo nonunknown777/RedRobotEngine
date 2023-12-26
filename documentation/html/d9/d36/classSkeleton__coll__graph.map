@@ -1,0 +1,7 @@
+<map id="Skeleton" name="Skeleton">
+<area shape="rect" id="Node000001" title="Resource that contains the joint hierarchy for a skeleton." alt="" coords="6,429,219,882"/>
+<area shape="rect" id="Node000002" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,140,220,380"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,395,115,429,110,429,110,395"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="48,5,177,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,74,115,123,110,123,110,74"/>
+</map>

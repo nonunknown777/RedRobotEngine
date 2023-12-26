@@ -1,0 +1,197 @@
+\doxysection{playrho\+::detail Namespace Reference}
+\hypertarget{namespaceplayrho_1_1detail}{}\label{namespaceplayrho_1_1detail}\index{playrho::detail@{playrho::detail}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults}{Defaults}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structplayrho_1_1detail_1_1Defaults}{Defaults} object for real types. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structplayrho_1_1detail_1_1Defaults_3_01Fixed_3_01std_1_1int32__t_00_01FRACTION__BITS_01_4_01_4}{Defaults$<$ Fixed$<$ std\+::int32\+\_\+t, FRACTION\+\_\+\+BITS $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Specialization of defaults object for fixed point types. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}}
+\begin{DoxyCompactList}\small\item\em An indexable, hashable, named "{}strong type"{} template class. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structplayrho_1_1detail_1_1IsIterableImpl}{Is\+Iterable\+Impl}}
+\begin{DoxyCompactList}\small\item\em Low-\/level implementation of the is-\/iterable default value trait. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structplayrho_1_1detail_1_1IsIterableImpl_3_01T_00_01std_1_1void__t_3_01decltype_07begin_07std_13619530b21097a509a6589d454070d72}{Is\+Iterable\+Impl$<$ T, std\+::void\+\_\+t$<$ decltype(begin(std\+::declval$<$ T $>$())), decltype(end(std\+::declval$<$ T $>$())), decltype(++std\+::declval$<$ decltype(begin(std\+::declval$<$ T \& $>$()))\& $>$()), decltype(\texorpdfstring{$\ast$}{*}begin(std\+::declval$<$ T $>$())) $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Low-\/level implementation of the is-\/iterable true value trait. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceplayrho_1_1detail_a9f8231d1d9f61cb1b262cd79c62951fb}\label{namespaceplayrho_1_1detail_a9f8231d1d9f61cb1b262cd79c62951fb} 
+constexpr auto {\bfseries factorial} (std\+::int64\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Computes the factorial. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB, int N = 6$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{namespaceplayrho_1_1detail_a1927396cbd5c0bc8b224ea26ac866244}{exp}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes Euler\textquotesingle{}s number raised to the given power argument. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB, int N = 6$>$ }\\\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{namespaceplayrho_1_1detail_a67232cc0e2a8c5bd11a8e8c0e07e155c}{log}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the natural logarithm. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB, int N = 5$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{namespaceplayrho_1_1detail_a8270e591abf7976967618f53fd3fc87f}{sin}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the sine of the given argument via Maclaurin series approximation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB, int N = 5$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{namespaceplayrho_1_1detail_a23bb2e64be559ecaaf08e0b4ec2b9e7b}{cos}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the cosine of the given argument via Maclaurin series approximation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB, int N = 5$>$ }\\constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ \mbox{\hyperlink{namespaceplayrho_1_1detail_a69bc42f471491a1b5ab16d78cc94b708}{atan}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the arctangent of the given argument via Maclaurin series approximation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\constexpr auto \mbox{\hyperlink{namespaceplayrho_1_1detail_a841f7c8e6ad559c469948f3e26e7835d}{Compute\+Sqrt}} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ arg)
+\begin{DoxyCompactList}\small\item\em Computes the square root of a non-\/negative value. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1detail_a027dccab6934b3c157ef2dc01ef3ccc0}\label{namespaceplayrho_1_1detail_a027dccab6934b3c157ef2dc01ef3ccc0} 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\auto {\bfseries Angular\+Normalize} (\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ angle\+In\+Radians)
+\begin{DoxyCompactList}\small\item\em Normalizes the given angular argument. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1detail_a213f05bccf68b8d481a0bd617bb45371}\label{namespaceplayrho_1_1detail_a213f05bccf68b8d481a0bd617bb45371} 
+{\footnotesize template$<$typename T , typename Tag $>$ }\\constexpr T \& {\bfseries Underlying\+Value} (\mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}}$<$ T, Tag $>$ \&o) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the underlying value. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1detail_a958fcd90fe150730777248f78025b842}\label{namespaceplayrho_1_1detail_a958fcd90fe150730777248f78025b842} 
+{\footnotesize template$<$typename T , typename Tag $>$ }\\constexpr const T \& {\bfseries Underlying\+Value} (const \mbox{\hyperlink{classplayrho_1_1detail_1_1IndexingNamedType}{Indexing\+Named\+Type}}$<$ T, Tag $>$ \&o) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the underlying value. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3}\label{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3} 
+{\footnotesize template$<$class T $>$ }\\constexpr auto {\bfseries max\+\_\+size} (const T \&arg) -\/$>$ decltype(arg.\+max\+\_\+size())
+\begin{DoxyCompactList}\small\item\em Gets the maximum size of the given container. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceplayrho_1_1detail_a9c6ef61517707043fb5fd0891647687f}\label{namespaceplayrho_1_1detail_a9c6ef61517707043fb5fd0891647687f} 
+{\footnotesize template$<$class T $>$ }\\constexpr auto {\bfseries Is\+Full} (const T \&arg) -\/$>$ decltype(size(arg)==\mbox{\hyperlink{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3}{max\+\_\+size}}(arg))
+\begin{DoxyCompactList}\small\item\em Checks whether the given container is full. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \mbox{\hyperlink{namespaceplayrho_1_1detail_a228b07f06592b994f9692fd50d071220}{Type\+Name\+As\+String}} ()
+\begin{DoxyCompactList}\small\item\em Gets the template type parameter\textquotesingle{}s type name as a non-\/empty unique string. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceplayrho_1_1detail_af0173373df31445699ddc2c7fcfa3c41}{Get\+Name\+For\+Type\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Gets a null-\/terminated byte string identifying this function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceplayrho_1_1detail_a42d6cb8328944dfa9318f28ab0972130}\label{namespaceplayrho_1_1detail_a42d6cb8328944dfa9318f28ab0972130} 
+{\footnotesize template$<$typename BT , unsigned int FB$>$ }\\constexpr auto {\bfseries Fixed\+Pi} = \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$BT, FB$>$\{3.\+14159265358979323846264338327950288\}
+\begin{DoxyCompactList}\small\item\em \doxylink{classplayrho_1_1Fixed}{Fixed} point pi value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Name space for internal/detail related Play\+Rho names. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceplayrho_1_1detail_a69bc42f471491a1b5ab16d78cc94b708}\label{namespaceplayrho_1_1detail_a69bc42f471491a1b5ab16d78cc94b708} 
+\index{playrho::detail@{playrho::detail}!atan@{atan}}
+\index{atan@{atan}!playrho::detail@{playrho::detail}}
+\doxysubsubsection{\texorpdfstring{atan()}{atan()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB, int N = 5$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::detail\+::atan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Computes the arctangent of the given argument via Maclaurin series approximation. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/atan}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/atan}} 
+
+\href{https://en.wikipedia.org/wiki/Taylor_series}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Taylor\+\_\+series}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1detail_a841f7c8e6ad559c469948f3e26e7835d}\label{namespaceplayrho_1_1detail_a841f7c8e6ad559c469948f3e26e7835d} 
+\index{playrho::detail@{playrho::detail}!ComputeSqrt@{ComputeSqrt}}
+\index{ComputeSqrt@{ComputeSqrt}!playrho::detail@{playrho::detail}}
+\doxysubsubsection{\texorpdfstring{ComputeSqrt()}{ComputeSqrt()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB$>$ \\
+constexpr auto playrho\+::detail\+::\+Compute\+Sqrt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Computes the square root of a non-\/negative value. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Methods_of_computing_square_roots}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Methods\+\_\+of\+\_\+computing\+\_\+square\+\_\+roots}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1detail_a23bb2e64be559ecaaf08e0b4ec2b9e7b}\label{namespaceplayrho_1_1detail_a23bb2e64be559ecaaf08e0b4ec2b9e7b} 
+\index{playrho::detail@{playrho::detail}!cos@{cos}}
+\index{cos@{cos}!playrho::detail@{playrho::detail}}
+\doxysubsubsection{\texorpdfstring{cos()}{cos()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB, int N = 5$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::detail\+::cos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Computes the cosine of the given argument via Maclaurin series approximation. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Taylor_series}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Taylor\+\_\+series}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1detail_a1927396cbd5c0bc8b224ea26ac866244}\label{namespaceplayrho_1_1detail_a1927396cbd5c0bc8b224ea26ac866244} 
+\index{playrho::detail@{playrho::detail}!exp@{exp}}
+\index{exp@{exp}!playrho::detail@{playrho::detail}}
+\doxysubsubsection{\texorpdfstring{exp()}{exp()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB, int N = 6$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::detail\+::exp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Computes Euler\textquotesingle{}s number raised to the given power argument. 
+
+\begin{DoxyNote}{Note}
+Uses Maclaurin series approximation. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/exp}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/exp}} 
+
+\href{https://en.wikipedia.org/wiki/Taylor_series}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Taylor\+\_\+series}} 
+
+\href{https://en.wikipedia.org/wiki/Exponentiation}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Exponentiation}} 
+
+\href{https://en.wikipedia.org/wiki/Exponential_function}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Exponential\+\_\+function}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1detail_af0173373df31445699ddc2c7fcfa3c41}\label{namespaceplayrho_1_1detail_af0173373df31445699ddc2c7fcfa3c41} 
+\index{playrho::detail@{playrho::detail}!GetNameForTypeInfo@{GetNameForTypeInfo}}
+\index{GetNameForTypeInfo@{GetNameForTypeInfo}!playrho::detail@{playrho::detail}}
+\doxysubsubsection{\texorpdfstring{GetNameForTypeInfo()}{GetNameForTypeInfo()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const char \texorpdfstring{$\ast$}{*} playrho\+::detail\+::\+Get\+Name\+For\+Type\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets a null-\/terminated byte string identifying this function. 
+
+\begin{DoxyNote}{Note}
+Intended for use by {\ttfamily \doxylink{structplayrho_1_1TypeInfo}{Type\+Info}} to set the value of its {\ttfamily name} variable to something dependent on the type and avoid issues like {\ttfamily \doxylink{structplayrho_1_1TypeInfo_a8b2fb3a860bc5cb91dba839bacb4d055}{Type\+Info\+::name}} being a non-\/unique address like happens on MSVC when whole program is turned on. Such an issue is documented in Issue \#370. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://github.com/louis-langholtz/PlayRho/issues/370}{\texttt{ https\+://github.\+com/louis-\/langholtz/\+Play\+Rho/issues/370}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1detail_a67232cc0e2a8c5bd11a8e8c0e07e155c}\label{namespaceplayrho_1_1detail_a67232cc0e2a8c5bd11a8e8c0e07e155c} 
+\index{playrho::detail@{playrho::detail}!log@{log}}
+\index{log@{log}!playrho::detail@{playrho::detail}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB, int N = 6$>$ \\
+\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::detail\+::log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Computes the natural logarithm. 
+
+\begin{DoxyNote}{Note}
+A better method may be explained in \href{https://math.stackexchange.com/a/61236/408405}{\texttt{ https\+://math.\+stackexchange.\+com/a/61236/408405}} 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://en.cppreference.com/w/cpp/numeric/math/log}{\texttt{ https\+://en.\+cppreference.\+com/w/cpp/numeric/math/log}} 
+
+\href{https://en.wikipedia.org/wiki/Natural_logarithm}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Natural\+\_\+logarithm}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1detail_a8270e591abf7976967618f53fd3fc87f}\label{namespaceplayrho_1_1detail_a8270e591abf7976967618f53fd3fc87f} 
+\index{playrho::detail@{playrho::detail}!sin@{sin}}
+\index{sin@{sin}!playrho::detail@{playrho::detail}}
+\doxysubsubsection{\texorpdfstring{sin()}{sin()}}
+{\footnotesize\ttfamily template$<$typename BT , unsigned int FB, int N = 5$>$ \\
+constexpr \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$ playrho\+::detail\+::sin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}$<$ BT, FB $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Computes the sine of the given argument via Maclaurin series approximation. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Taylor_series}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Taylor\+\_\+series}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespaceplayrho_1_1detail_a228b07f06592b994f9692fd50d071220}\label{namespaceplayrho_1_1detail_a228b07f06592b994f9692fd50d071220} 
+\index{playrho::detail@{playrho::detail}!TypeNameAsString@{TypeNameAsString}}
+\index{TypeNameAsString@{TypeNameAsString}!playrho::detail@{playrho::detail}}
+\doxysubsubsection{\texorpdfstring{TypeNameAsString()}{TypeNameAsString()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string playrho\+::detail\+::\+Type\+Name\+As\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the template type parameter\textquotesingle{}s type name as a non-\/empty unique string. 
+
+\begin{DoxyNote}{Note}
+This string is the demangled name on supporting compilers, otherwise the mangled name is used and C++ run-\/time type information (\doxylink{classRTTI}{RTTI}) needs to be available. 
+
+This code relies on the compiler being clang or GCC compatible supporting the {\ttfamily {\bfseries{clang}}} or {\ttfamily {\bfseries{GNUC}}} preprocessor macro and the {\ttfamily {\bfseries{PRETTY\+\_\+\+FUNCTION}}} identifier, or the compiler supporting the Microsoft Visual C++ style {\ttfamily {\bfseries{FUNCSIG}}} macro. C++20\textquotesingle{}s support for {\ttfamily std\+::source\+\_\+location\+::function\+\_\+name} could help make this function more portable, but only slightly since the returned string\textquotesingle{}s format is still implementation defined. 
+\end{DoxyNote}

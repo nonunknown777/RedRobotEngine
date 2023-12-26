@@ -1,0 +1,7 @@
+<map id="IObjectStreamIn" name="IObjectStreamIn">
+<area shape="rect" id="Node000001" title="Interface class for reading from an object stream." alt="" coords="5,325,164,1099"/>
+<area shape="rect" id="Node000002" href="$d6/db1/classObjectStream.html" title="Base class for object stream input and output streams." alt="" coords="17,165,153,277"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,292,87,326,82,326,82,292"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="23,5,146,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,133,87,166,82,166,82,133"/>
+</map>

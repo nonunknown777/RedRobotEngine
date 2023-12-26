@@ -1,0 +1,202 @@
+\doxysection{Physics\+Update\+Context\+::Step Struct Reference}
+\hypertarget{structPhysicsUpdateContext_1_1Step}{}\label{structPhysicsUpdateContext_1_1Step}\index{PhysicsUpdateContext::Step@{PhysicsUpdateContext::Step}}
+
+
+Structure that contains data needed for each collision step.  
+
+
+
+
+{\ttfamily \#include $<$Physics\+Update\+Context.\+h$>$}
+
+
+
+Collaboration diagram for Physics\+Update\+Context\+::Step\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d44/structPhysicsUpdateContext_1_1Step__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody}{CCDBody}}
+\begin{DoxyCompactList}\small\item\em Contains the information needed to cast a body through the scene to do continuous collision detection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a806fa33748fb5724711d2244c55ac119}\label{structPhysicsUpdateContext_1_1Step_a806fa33748fb5724711d2244c55ac119} 
+{\bfseries Step} (const \mbox{\hyperlink{structPhysicsUpdateContext_1_1Step}{Step}} \&)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_acfb1fe9af1d8ea1e6c10964a1a73915d}\label{structPhysicsUpdateContext_1_1Step_acfb1fe9af1d8ea1e6c10964a1a73915d} 
+\mbox{\hyperlink{classPhysicsUpdateContext}{Physics\+Update\+Context}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Context}
+\begin{DoxyCompactList}\small\item\em The physics update context. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a88d7397f7a46e0455738d46efa50a1ac}\label{structPhysicsUpdateContext_1_1Step_a88d7397f7a46e0455738d46efa50a1ac} 
+bool {\bfseries m\+Is\+First}
+\begin{DoxyCompactList}\small\item\em If this is the first step. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a0ec883309d690e463275cb9932cb64c1}\label{structPhysicsUpdateContext_1_1Step_a0ec883309d690e463275cb9932cb64c1} 
+bool {\bfseries m\+Is\+Last}
+\begin{DoxyCompactList}\small\item\em If this is the last step. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_af2f3ce30f63e94c229d1363a43da9aca}\label{structPhysicsUpdateContext_1_1Step_af2f3ce30f63e94c229d1363a43da9aca} 
+\mbox{\hyperlink{structBroadPhase_1_1UpdateState}{Broad\+Phase\+::\+Update\+State}} {\bfseries m\+Broad\+Phase\+Update\+State}
+\begin{DoxyCompactList}\small\item\em Handle returned by Broadphase\+::\+Update\+Prepare. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a6a113f4d900ccaaf2bcc52584654f569}\label{structPhysicsUpdateContext_1_1Step_a6a113f4d900ccaaf2bcc52584654f569} 
+uint32 {\bfseries m\+Num\+Active\+Bodies\+At\+Step\+Start}
+\begin{DoxyCompactList}\small\item\em Number of bodies that were active at the start of the physics update step. Only these bodies will receive gravity (they are the first N in the active body list). \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_af1cea849e2511fadd96fec484c84ab43}\label{structPhysicsUpdateContext_1_1Step_af1cea849e2511fadd96fec484c84ab43} 
+atomic$<$ uint32 $>$ {\bfseries m\+Determine\+Active\+Constraint\+Read\+Idx} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next constraint for determine active constraints. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a77e0a019809ed80613a75e3f7b5217c6}\label{structPhysicsUpdateContext_1_1Step_a77e0a019809ed80613a75e3f7b5217c6} 
+uint8 {\bfseries m\+Padding1} \mbox{[}JPH\+\_\+\+CACHE\+\_\+\+LINE\+\_\+\+SIZE -\/ sizeof(atomic$<$ uint32 $>$)\mbox{]}
+\begin{DoxyCompactList}\small\item\em Padding to avoid sharing cache line with the next atomic. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_af0ee5aea31c2282efaa0df4b55401424}\label{structPhysicsUpdateContext_1_1Step_af0ee5aea31c2282efaa0df4b55401424} 
+atomic$<$ uint32 $>$ {\bfseries m\+Num\+Active\+Constraints} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Number of constraints in the m\+Active\+Constraints array. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a4b8740c5f4ed9785bac06320cc762487}\label{structPhysicsUpdateContext_1_1Step_a4b8740c5f4ed9785bac06320cc762487} 
+uint8 {\bfseries m\+Padding2} \mbox{[}JPH\+\_\+\+CACHE\+\_\+\+LINE\+\_\+\+SIZE -\/ sizeof(atomic$<$ uint32 $>$)\mbox{]}
+\begin{DoxyCompactList}\small\item\em Padding to avoid sharing cache line with the next atomic. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a6be869a18ebbdd1cc59cd2b27da5e488}\label{structPhysicsUpdateContext_1_1Step_a6be869a18ebbdd1cc59cd2b27da5e488} 
+atomic$<$ uint32 $>$ {\bfseries m\+Setup\+Velocity\+Constraints\+Read\+Idx} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next constraint for setting up velocity constraints. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a16b0d33b3a5f7755e033bb2c400ab8ac}\label{structPhysicsUpdateContext_1_1Step_a16b0d33b3a5f7755e033bb2c400ab8ac} 
+uint8 {\bfseries m\+Padding3} \mbox{[}JPH\+\_\+\+CACHE\+\_\+\+LINE\+\_\+\+SIZE -\/ sizeof(atomic$<$ uint32 $>$)\mbox{]}
+\begin{DoxyCompactList}\small\item\em Padding to avoid sharing cache line with the next atomic. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a295a55ea8456a023f402bdd731b59922}\label{structPhysicsUpdateContext_1_1Step_a295a55ea8456a023f402bdd731b59922} 
+atomic$<$ uint32 $>$ {\bfseries m\+Step\+Listener\+Read\+Idx} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next step listener to call. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a07c8e8051345d5106cf1cd8ee8df14d3}\label{structPhysicsUpdateContext_1_1Step_a07c8e8051345d5106cf1cd8ee8df14d3} 
+uint8 {\bfseries m\+Padding4} \mbox{[}JPH\+\_\+\+CACHE\+\_\+\+LINE\+\_\+\+SIZE -\/ sizeof(atomic$<$ uint32 $>$)\mbox{]}
+\begin{DoxyCompactList}\small\item\em Padding to avoid sharing cache line with the next atomic. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_ad8016f86c45bb3092259e91ff0f6c426}\label{structPhysicsUpdateContext_1_1Step_ad8016f86c45bb3092259e91ff0f6c426} 
+atomic$<$ uint32 $>$ {\bfseries m\+Apply\+Gravity\+Read\+Idx} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next body to apply gravity to. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a806337c54e4bd1ef4dcb3eae0dd4ea72}\label{structPhysicsUpdateContext_1_1Step_a806337c54e4bd1ef4dcb3eae0dd4ea72} 
+uint8 {\bfseries m\+Padding5} \mbox{[}JPH\+\_\+\+CACHE\+\_\+\+LINE\+\_\+\+SIZE -\/ sizeof(atomic$<$ uint32 $>$)\mbox{]}
+\begin{DoxyCompactList}\small\item\em Padding to avoid sharing cache line with the next atomic. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a5f32b22178d4cc044a96d59d41250916}\label{structPhysicsUpdateContext_1_1Step_a5f32b22178d4cc044a96d59d41250916} 
+atomic$<$ uint32 $>$ {\bfseries m\+Active\+Body\+Read\+Idx} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Index of fist active body that has not yet been processed by the broadphase. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a16066c34dd3882810d28dc9d0e8dd2d5}\label{structPhysicsUpdateContext_1_1Step_a16066c34dd3882810d28dc9d0e8dd2d5} 
+uint8 {\bfseries m\+Padding6} \mbox{[}JPH\+\_\+\+CACHE\+\_\+\+LINE\+\_\+\+SIZE -\/ sizeof(atomic$<$ uint32 $>$)\mbox{]}
+\begin{DoxyCompactList}\small\item\em Padding to avoid sharing cache line with the next atomic. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_af8fbffcba6d3b5adbdeb98c1d63903fe}\label{structPhysicsUpdateContext_1_1Step_af8fbffcba6d3b5adbdeb98c1d63903fe} 
+\mbox{\hyperlink{classStaticArray}{Body\+Pair\+Queues}} {\bfseries m\+Body\+Pair\+Queues}
+\begin{DoxyCompactList}\small\item\em Queues in which to put body pairs that need to be tested by the narrowphase. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_ad93f9b39dad02dee27f009f63468d5f0}\label{structPhysicsUpdateContext_1_1Step_ad93f9b39dad02dee27f009f63468d5f0} 
+uint32 {\bfseries m\+Max\+Body\+Pairs\+Per\+Queue}
+\begin{DoxyCompactList}\small\item\em Amount of body pairs that we can queue per queue. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_aa3ef4344525797671470875550d736fc}\label{structPhysicsUpdateContext_1_1Step_aa3ef4344525797671470875550d736fc} 
+atomic$<$ \mbox{\hyperlink{classPhysicsUpdateContext_a57722f8a1c879b71ae19337e61600b3d}{Job\+Mask}} $>$ {\bfseries m\+Active\+Find\+Collision\+Jobs}
+\begin{DoxyCompactList}\small\item\em A bitmask that indicates which jobs are still active. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a2f4b4efc242a2e45e369bbf6cc6a9d0b}\label{structPhysicsUpdateContext_1_1Step_a2f4b4efc242a2e45e369bbf6cc6a9d0b} 
+atomic$<$ uint $>$ {\bfseries m\+Num\+Body\+Pairs} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em The number of body pairs found in this step (used to size the contact cache in the next step) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a694dd2809042d7614c64b2abdf26e73f}\label{structPhysicsUpdateContext_1_1Step_a694dd2809042d7614c64b2abdf26e73f} 
+atomic$<$ uint $>$ {\bfseries m\+Num\+Manifolds} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em The number of manifolds found in this step (used to size the contact cache in the next step) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a0a81eaf0dd6d5042c7ad171c626b8ecb}\label{structPhysicsUpdateContext_1_1Step_a0a81eaf0dd6d5042c7ad171c626b8ecb} 
+atomic$<$ uint32 $>$ {\bfseries m\+Solve\+Velocity\+Constraints\+Next\+Island} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next island that needs to be processed for the solve velocity constraints step (doesn\textquotesingle{}t need own cache line since position jobs don\textquotesingle{}t run at same time) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a664416b66a92b704fa6557311862c9e0}\label{structPhysicsUpdateContext_1_1Step_a664416b66a92b704fa6557311862c9e0} 
+atomic$<$ uint32 $>$ {\bfseries m\+Solve\+Position\+Constraints\+Next\+Island} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next island that needs to be processed for the solve position constraints step (doesn\textquotesingle{}t need own cache line since velocity jobs don\textquotesingle{}t run at same time) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_aeb6a6b1469da472e0c419341085c12e1}\label{structPhysicsUpdateContext_1_1Step_aeb6a6b1469da472e0c419341085c12e1} 
+atomic$<$ uint32 $>$ {\bfseries m\+Integrate\+Velocity\+Read\+Idx} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next active body index to take when integrating velocities. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a895ea4985300d99b5aa9e042fe1e3f70}\label{structPhysicsUpdateContext_1_1Step_a895ea4985300d99b5aa9e042fe1e3f70} 
+\mbox{\hyperlink{structPhysicsUpdateContext_1_1Step_1_1CCDBody}{CCDBody}} \texorpdfstring{$\ast$}{*} {\bfseries m\+CCDBodies} = nullptr
+\begin{DoxyCompactList}\small\item\em List of bodies that need to do continuous collision detection. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a2d6f2ae1c7e3744a5189bc8ecc958978}\label{structPhysicsUpdateContext_1_1Step_a2d6f2ae1c7e3744a5189bc8ecc958978} 
+uint32 {\bfseries m\+CCDBodies\+Capacity} = 0
+\begin{DoxyCompactList}\small\item\em Capacity of the m\+CCDBodies list. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a25ec4e61e44004a320440ed279a8da4c}\label{structPhysicsUpdateContext_1_1Step_a25ec4e61e44004a320440ed279a8da4c} 
+atomic$<$ uint32 $>$ {\bfseries m\+Num\+CCDBodies} = 0
+\begin{DoxyCompactList}\small\item\em Number of CCD bodies in m\+CCDBodies. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_ad1486be5c2c1c60f8307cd6a2c66f1f1}\label{structPhysicsUpdateContext_1_1Step_ad1486be5c2c1c60f8307cd6a2c66f1f1} 
+atomic$<$ uint32 $>$ {\bfseries m\+Next\+CCDBody} \{ 0 \}
+\begin{DoxyCompactList}\small\item\em Next unprocessed body index in m\+CCDBodies. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_aef1c5722bfe92d852c8525347e175f3d}\label{structPhysicsUpdateContext_1_1Step_aef1c5722bfe92d852c8525347e175f3d} 
+int \texorpdfstring{$\ast$}{*} {\bfseries m\+Active\+Body\+To\+CCDBody} = nullptr
+\begin{DoxyCompactList}\small\item\em A mapping between an index in Body\+Manager\+::m\+Active\+Bodies and the index in m\+CCDBodies. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a0d2367602d2e7b6d33387458c0eb3e8b}\label{structPhysicsUpdateContext_1_1Step_a0d2367602d2e7b6d33387458c0eb3e8b} 
+uint32 {\bfseries m\+Num\+Active\+Body\+To\+CCDBody} = 0
+\begin{DoxyCompactList}\small\item\em Number of indices in m\+Active\+Body\+To\+CCDBody. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_aff65a027fe90606d02f82dec03e62c3c}\label{structPhysicsUpdateContext_1_1Step_aff65a027fe90606d02f82dec03e62c3c} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Broad\+Phase\+Prepare}
+\begin{DoxyCompactList}\small\item\em Prepares the new tree in the background. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_ab660abd26126a1e92afee5e2d08dc4d5}\label{structPhysicsUpdateContext_1_1Step_ab660abd26126a1e92afee5e2d08dc4d5} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Step\+Listeners}
+\begin{DoxyCompactList}\small\item\em Listeners to notify of the beginning of a physics step. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_aeb981c58858a0e99712f3561f12d72e9}\label{structPhysicsUpdateContext_1_1Step_aeb981c58858a0e99712f3561f12d72e9} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Determine\+Active\+Constraints}
+\begin{DoxyCompactList}\small\item\em Determine which constraints will be active during this step. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a6c7ca3641f8ae1ab1f8b808b6cf25356}\label{structPhysicsUpdateContext_1_1Step_a6c7ca3641f8ae1ab1f8b808b6cf25356} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Apply\+Gravity}
+\begin{DoxyCompactList}\small\item\em Update velocities of bodies with gravity. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a07546c1e4391dbf65e4d5a615f5432b4}\label{structPhysicsUpdateContext_1_1Step_a07546c1e4391dbf65e4d5a615f5432b4} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Find\+Collisions}
+\begin{DoxyCompactList}\small\item\em Find all collisions between active bodies an the world. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_abd9bafeccce1674c48d08f4edc56e739}\label{structPhysicsUpdateContext_1_1Step_abd9bafeccce1674c48d08f4edc56e739} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Update\+Broadphase\+Finalize}
+\begin{DoxyCompactList}\small\item\em Swap the newly built tree with the current tree. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_aa342675e2a78c65451953075a0facbb8}\label{structPhysicsUpdateContext_1_1Step_aa342675e2a78c65451953075a0facbb8} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Setup\+Velocity\+Constraints}
+\begin{DoxyCompactList}\small\item\em Calculate properties for all constraints in the constraint manager. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a3176929769d4b2fa200a279beb127d33}\label{structPhysicsUpdateContext_1_1Step_a3176929769d4b2fa200a279beb127d33} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Build\+Islands\+From\+Constraints}
+\begin{DoxyCompactList}\small\item\em Go over all constraints and assign the bodies they\textquotesingle{}re attached to to an island. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_aac4325e64e7bb9a135478c4378185dcf}\label{structPhysicsUpdateContext_1_1Step_aac4325e64e7bb9a135478c4378185dcf} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Finalize\+Islands}
+\begin{DoxyCompactList}\small\item\em Finalize calculation simulation islands. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_aa88b6bb72d389f72577406ed0f96cfbb}\label{structPhysicsUpdateContext_1_1Step_aa88b6bb72d389f72577406ed0f96cfbb} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Body\+Set\+Island\+Index}
+\begin{DoxyCompactList}\small\item\em Set the current island index on each body (not used by the simulation, only for drawing purposes) \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a17baea78265815e3873c968326eb08e6}\label{structPhysicsUpdateContext_1_1Step_a17baea78265815e3873c968326eb08e6} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Solve\+Velocity\+Constraints}
+\begin{DoxyCompactList}\small\item\em Solve the constraints in the velocity domain. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a1f089199fc6b1d0fc6fb973d2750d32a}\label{structPhysicsUpdateContext_1_1Step_a1f089199fc6b1d0fc6fb973d2750d32a} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Pre\+Integrate\+Velocity}
+\begin{DoxyCompactList}\small\item\em Setup integration of all body positions. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a6acbdc84376f0eb1eb55e0f24bd704ec}\label{structPhysicsUpdateContext_1_1Step_a6acbdc84376f0eb1eb55e0f24bd704ec} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Integrate\+Velocity}
+\begin{DoxyCompactList}\small\item\em Integrate all body positions. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a1c491fd0b7d20d6b49e7be2b55ef48d5}\label{structPhysicsUpdateContext_1_1Step_a1c491fd0b7d20d6b49e7be2b55ef48d5} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Post\+Integrate\+Velocity}
+\begin{DoxyCompactList}\small\item\em Finalize integration of all body positions. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a6bd9110000ab8f670192a1c91677571f}\label{structPhysicsUpdateContext_1_1Step_a6bd9110000ab8f670192a1c91677571f} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Resolve\+CCDContacts}
+\begin{DoxyCompactList}\small\item\em Updates the positions and velocities for all bodies that need continuous collision detection. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a42542a887195fdbe5451a4c6dc38d4f9}\label{structPhysicsUpdateContext_1_1Step_a42542a887195fdbe5451a4c6dc38d4f9} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Solve\+Position\+Constraints}
+\begin{DoxyCompactList}\small\item\em Solve all constraints in the position domain. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a2fc477198ee62afd4f842070754fe46e}\label{structPhysicsUpdateContext_1_1Step_a2fc477198ee62afd4f842070754fe46e} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Contact\+Removed\+Callbacks}
+\begin{DoxyCompactList}\small\item\em Calls the contact removed callbacks. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_afce2da019e38496dac8112213ca0cbf9}\label{structPhysicsUpdateContext_1_1Step_afce2da019e38496dac8112213ca0cbf9} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Soft\+Body\+Prepare}
+\begin{DoxyCompactList}\small\item\em Prepares updating the soft bodies. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a15902e388880930871d31f3c93e509fa}\label{structPhysicsUpdateContext_1_1Step_a15902e388880930871d31f3c93e509fa} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Soft\+Body\+Collide}
+\begin{DoxyCompactList}\small\item\em Finds all colliding shapes for soft bodies. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_acd7047a6c7f6bcf496cdf8250f143780}\label{structPhysicsUpdateContext_1_1Step_acd7047a6c7f6bcf496cdf8250f143780} 
+\mbox{\hyperlink{classStaticArray}{Job\+Handle\+Array}} {\bfseries m\+Soft\+Body\+Simulate}
+\begin{DoxyCompactList}\small\item\em Simulates all particles. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a5b44a2bcca8b605084adaa148bcfa090}\label{structPhysicsUpdateContext_1_1Step_a5b44a2bcca8b605084adaa148bcfa090} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Soft\+Body\+Finalize}
+\begin{DoxyCompactList}\small\item\em Finalizes the soft body update. \end{DoxyCompactList}\item 
+\Hypertarget{structPhysicsUpdateContext_1_1Step_a8648fd2c91cb4f4fc003682c09a56779}\label{structPhysicsUpdateContext_1_1Step_a8648fd2c91cb4f4fc003682c09a56779} 
+\mbox{\hyperlink{classJobSystem_1_1JobHandle}{Job\+Handle}} {\bfseries m\+Start\+Next\+Step}
+\begin{DoxyCompactList}\small\item\em Job that kicks the next step (empty for the last step) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure that contains data needed for each collision step. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/Physics\+Update\+Context.\+h\end{DoxyCompactItemize}

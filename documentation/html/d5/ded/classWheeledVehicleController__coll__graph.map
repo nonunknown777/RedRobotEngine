@@ -1,0 +1,31 @@
+<map id="WheeledVehicleController" name="WheeledVehicleController">
+<area shape="rect" id="Node000001" title="Runtime controller class." alt="" coords="646,1924,858,2519"/>
+<area shape="rect" id="Node000002" href="$d6/d05/classVehicleController.html" title="Runtime data for interface that controls acceleration / decelleration of the vehicle." alt="" coords="403,1600,615,1857"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="581,1869,649,2005,644,2007,576,1871"/>
+<area shape="rect" id="Node000003" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,404,221,644"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,659,93,774,94,907,99,977,108,1048,121,1117,140,1184,163,1246,192,1306,260,1422,334,1526,406,1613,402,1617,330,1529,255,1425,187,1309,158,1248,135,1186,116,1118,102,1048,93,978,88,907,87,773,94,658"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="110,5,239,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="135,76,118,100,97,170,87,245,86,318,91,387,86,387,80,318,81,244,91,169,114,98,130,73"/>
+<area shape="rect" id="Node000008" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="155,140,370,380"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="199,73,212,98,223,123,218,125,207,100,194,76"/>
+<area shape="rect" id="Node000005" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="479,204,601,316"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="555,330,580,484,600,667,612,917,612,1112,606,1307,603,1557,603,1574,594,1601,588,1599,597,1573,597,1557,601,1306,606,1112,607,917,595,668,574,485,550,331"/>
+<area shape="rect" id="Node000007" href="$d8/dcd/classConstraint.html" title="Base class for all physics constraints. A constraint removes one or more degrees of freedom for a rig..." alt="" coords="149,668,384,1185"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="514,330,375,669,370,667,510,328"/>
+<area shape="rect" id="Node000006" href="$da/d72/classVehicleConstraint.html" title=" " alt="" coords="387,1250,586,1533"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="499,1532,502,1583,497,1583,493,1533"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="393,1186,423,1249,418,1251,388,1189"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="266,395,268,668,262,668,261,395"/>
+<area shape="rect" id="Node000009" href="$dc/d85/classPhysicsStepListener.html" title="A listener class that receives a callback before every physics simulation step." alt="" coords="409,881,586,972"/>
+<area shape="poly" id="edge10_Node000006_Node000009" title=" " alt="" coords="499,987,493,1250,487,1250,493,987"/>
+<area shape="rect" id="Node000010" href="$d8/d11/classVehicleEngine.html" title="Runtime data for engine." alt="" coords="663,1598,841,1859"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="755,1858,755,1907,749,1907,749,1858"/>
+<area shape="rect" id="Node000011" href="$d0/dbd/classVehicleEngineSettings.html" title="Generic properties for a vehicle engine." alt="" coords="662,1293,842,1490"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="755,1505,755,1598,749,1598,749,1505"/>
+<area shape="rect" id="Node000012" href="$db/dc4/classLinearCurve.html" title=" " alt="" coords="671,806,833,1046"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="755,1046,755,1276,749,1276,749,1046"/>
+<area shape="rect" id="Node000013" href="$de/dbb/classVehicleTransmission.html" title="Runtime data for transmission." alt="" coords="879,1608,1027,1848"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="907,1849,867,1947,862,1945,902,1847"/>
+<area shape="rect" id="Node000014" href="$df/dc1/classVehicleTransmissionSettings.html" title="Configuration for the transmission of a vehicle (gear box)" alt="" coords="867,1261,1064,1522"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="963,1537,960,1609,955,1608,957,1537"/>
+</map>

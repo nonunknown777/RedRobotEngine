@@ -1,0 +1,9 @@
+<map id="LargeIslandSplitter::Splits" name="LargeIslandSplitter::Splits">
+<area shape="rect" id="Node000001" title="Structure that describes the resulting splits from the large island splitter." alt="" coords="189,264,364,628"/>
+<area shape="rect" id="Node000002" href="$de/d4f/structLargeIslandSplitter_1_1Split.html" title="Describes a split of constraints and contacts." alt="" coords="5,5,188,199"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,197,184,263,179,266,144,200"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="212,67,341,137"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="279,137,279,247,274,247,274,137"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="365,67,479,137"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="410,138,363,249,358,247,405,136"/>
+</map>

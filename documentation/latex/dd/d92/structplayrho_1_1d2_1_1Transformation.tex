@@ -1,0 +1,57 @@
+\doxysection{playrho\+::d2\+::Transformation Struct Reference}
+\hypertarget{structplayrho_1_1d2_1_1Transformation}{}\label{structplayrho_1_1d2_1_1Transformation}\index{playrho::d2::Transformation@{playrho::d2::Transformation}}
+
+
+Describes a geometric transformation.  
+
+
+
+
+{\ttfamily \#include $<$Transformation.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::d2\+::Transformation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/da6/structplayrho_1_1d2_1_1Transformation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structplayrho_1_1d2_1_1Transformation_ab2b20471f74fef015279a0bb396210e1}\label{structplayrho_1_1d2_1_1Transformation_ab2b20471f74fef015279a0bb396210e1} 
+\mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}} {\bfseries p} = \mbox{\hyperlink{namespaceplayrho_a7dc68cd0ce177e175ae0bb6c39db158d}{Length2}}\{\}
+\begin{DoxyCompactList}\small\item\em Translational portion of the transformation. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1d2_1_1Transformation_a1f21f610db905ad56edc7720dd8598f4}\label{structplayrho_1_1d2_1_1Transformation_a1f21f610db905ad56edc7720dd8598f4} 
+\mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec}{Unit\+Vec}} {\bfseries q} = \mbox{\hyperlink{classplayrho_1_1d2_1_1UnitVec_a989ef293213c6b3a4d1901533445cd85}{Unit\+Vec\+::\+Get\+Right}}()
+\begin{DoxyCompactList}\small\item\em Rotational/directional portion of the transformation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Related Symbols}
+(Note that these are not member symbols.) \begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structplayrho_1_1d2_1_1Transformation_a9f366fc4f9a298d3dded719b628a9933}\label{structplayrho_1_1d2_1_1Transformation_a9f366fc4f9a298d3dded719b628a9933} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1d2_1_1Transformation_ac100cc2e77031bd058367006ddd2ebe1}\label{structplayrho_1_1d2_1_1Transformation_ac100cc2e77031bd058367006ddd2ebe1} 
+constexpr bool {\bfseries operator!=} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&lhs, const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{Transformation}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\Hypertarget{structplayrho_1_1d2_1_1Transformation_af76924a9aee97c42840a3867b3cb612c}\label{structplayrho_1_1d2_1_1Transformation_af76924a9aee97c42840a3867b3cb612c} 
+template$<$$>$ constexpr bool {\bfseries Is\+Valid} (const \mbox{\hyperlink{structplayrho_1_1d2_1_1Transformation}{d2\+::\+Transformation}} \&value) noexcept
+\begin{DoxyCompactList}\small\item\em Determines if the given value is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Describes a geometric transformation. 
+
+A transformation contains translation and rotation. It\textquotesingle{}s used to represent the location and direction of things like bodies. \begin{DoxyNote}{Note}
+The default transformation is the identity transformation -\/ the transformation which neither translates nor rotates a location. 
+
+This data structure is 16-\/bytes large (on at least one 64-\/bit platform). 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/\mbox{\hyperlink{Transformation_8hpp}{Transformation.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,13 @@
+<map id="DecoratedShape" name="DecoratedShape">
+<area shape="rect" id="Node000001" title="Base class for shapes that decorate another shape with extra functionality (e.g. scale,..." alt="" coords="195,1131,422,1457"/>
+<area shape="rect" id="Node000002" href="$de/d0a/classShape.html" title="Base class for all shapes (collision volume of a body). Defines a virtual interface for collision det..." alt="" coords="103,429,315,1066"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,1080,282,1131,276,1132,267,1081"/>
+<area shape="rect" id="Node000003" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,140,220,380"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="142,393,149,429,143,430,136,394"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="48,5,177,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="115,74,115,123,110,123,110,74"/>
+<area shape="rect" id="Node000005" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="245,204,367,316"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="295,331,275,430,270,428,290,330"/>
+<area shape="rect" id="Node000006" href="$d8/d9d/classRefConst.html" title=" " alt="" coords="339,606,481,889"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="387,889,344,1115,339,1114,381,888"/>
+</map>

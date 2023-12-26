@@ -1,0 +1,94 @@
+\doxysection{Popup Class Reference}
+\hypertarget{classPopup}{}\label{classPopup}\index{Popup@{Popup}}
+
+
+Inheritance diagram for Popup\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d3/dac/classPopup__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Popup\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d2/dba/classPopup__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPopup_a8036280e7d7dbf9cc34e0e08ea7ef40e}\label{classPopup_a8036280e7d7dbf9cc34e0e08ea7ef40e} 
+{\bfseries Popup} (std\+::string name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classWindow}{Window}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Window} (std\+::string name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classViewport}{Viewport}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Viewport} (std\+::string name="{}Viewport"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNode}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Node} (std\+::string name="{}New\+Node"{})
+\item 
+std\+::string {\bfseries get\+\_\+name} () const
+\item 
+virtual void {\bfseries set\+\_\+name} (std\+::string name)
+\item 
+virtual void {\bfseries \+\_\+ready} ()
+\item 
+virtual void {\bfseries \+\_\+process} (float delta)
+\item 
+virtual void {\bfseries \+\_\+input} ()
+\item 
+virtual void {\bfseries \+\_\+unhandled\+\_\+input} (\mbox{\hyperlink{classInputEvent}{Input\+Event}} event)
+\item 
+void {\bfseries add\+\_\+child} (\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+int {\bfseries get\+\_\+child\+\_\+count} ()
+\item 
+\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+child} (int p\+\_\+index)
+\item 
+\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+parent} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+\_\+children} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPopup_a8ebf185070a123ecc1850c73e598a05a}\label{classPopup_a8ebf185070a123ecc1850c73e598a05a} 
+bool {\bfseries visible} = true
+\item 
+\Hypertarget{classPopup_a85ad2356c20209994f7fc275379a0c6e}\label{classPopup_a85ad2356c20209994f7fc275379a0c6e} 
+\mbox{\hyperlink{classStyleBox}{Style\+Box}} {\bfseries panel}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classWindow}{Window}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries flags} = 0
+\item 
+\mbox{\hyperlink{structVector2}{Vector2}} {\bfseries size}
+\item 
+\mbox{\hyperlink{structVector2}{Vector2}} {\bfseries position}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classNode}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries iteration\+\_\+index}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/nodes/popup.\+hpp\item 
+src/nodes/popup.\+cpp\end{DoxyCompactItemize}

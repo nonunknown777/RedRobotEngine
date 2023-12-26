@@ -1,0 +1,66 @@
+\doxysection{Calculate\+Solver\+Steps.\+h}
+\hypertarget{CalculateSolverSteps_8h_source}{}\label{CalculateSolverSteps_8h_source}\index{includes/jolt/Physics/Constraints/CalculateSolverSteps.h@{includes/jolt/Physics/Constraints/CalculateSolverSteps.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2023\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/PhysicsSettings.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCalculateSolverSteps}{CalculateSolverSteps}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ JPH\_INLINE\ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCalculateSolverSteps_a0729dfc06ab52170861d1494fe051087}{CalculateSolverSteps}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysicsSettings}{PhysicsSettings}}\ \&inSettings)\ :\ mSettings(inSettings)\ \{\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Type>}
+\DoxyCodeLine{00020\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCalculateSolverSteps_a9fce04eeb077b4f258a71de586113359}{operator\ ()\ }}(\textcolor{keyword}{const}\ Type\ *inObject)}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ uint\ num\_velocity\_steps\ =\ inObject-\/>GetNumVelocityStepsOverride();}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ mNumVelocitySteps\ =\ max(mNumVelocitySteps,\ num\_velocity\_steps);}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ mApplyDefaultVelocity\ |=\ num\_velocity\_steps\ ==\ 0;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ uint\ num\_position\_steps\ =\ inObject-\/>GetNumPositionStepsOverride();}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ mNumPositionSteps\ =\ max(mNumPositionSteps,\ num\_position\_steps);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ mApplyDefaultPosition\ |=\ num\_position\_steps\ ==\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCalculateSolverSteps_a589b3b000f0552ebbaf507f133d73046}{Finalize}}()}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ have\ a\ default\ velocity/position\ step\ count,\ take\ the\ max\ of\ the\ default\ and\ the\ overrides}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mApplyDefaultVelocity)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ mNumVelocitySteps\ =\ max(mNumVelocitySteps,\ mSettings.\mbox{\hyperlink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{mNumVelocitySteps}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mApplyDefaultPosition)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ mNumPositionSteps\ =\ max(mNumPositionSteps,\ mSettings.\mbox{\hyperlink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{mNumPositionSteps}});}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ JPH\_INLINE\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCalculateSolverSteps_acdbd82e652ad5f8e4f1ebd10081dbae3}{GetNumPositionSteps}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumPositionSteps;\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ JPH\_INLINE\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ GetNumVelocitySteps()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumVelocitySteps;\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysicsSettings}{PhysicsSettings}}\ \&\ \ \ \ \ \ mSettings;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumVelocitySteps\ =\ 0;}
+\DoxyCodeLine{00049\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumPositionSteps\ =\ 0;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mApplyDefaultVelocity\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mApplyDefaultPosition\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDummyCalculateSolverSteps}{DummyCalculateSolverSteps}}}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Type>}
+\DoxyCodeLine{00060\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ()\ (\textcolor{keyword}{const}\ Type\ *)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Nothing\ to\ do\ */}}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

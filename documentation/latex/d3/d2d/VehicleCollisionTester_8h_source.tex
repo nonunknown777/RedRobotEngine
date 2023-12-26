@@ -1,0 +1,105 @@
+\doxysection{Vehicle\+Collision\+Tester.\+h}
+\hypertarget{VehicleCollisionTester_8h_source}{}\label{VehicleCollisionTester_8h_source}\index{includes/jolt/Physics/Vehicle/VehicleCollisionTester.h@{includes/jolt/Physics/Vehicle/VehicleCollisionTester.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/Body.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}};}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBodyFilter}{BodyFilter}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classVehicleCollisionTester}{VehicleCollisionTester}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classRefTarget}{RefTarget}}<VehicleCollisionTester>,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester_a69adc68284ed5dae7c4b5a1ca7568aca}{VehicleCollisionTester}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester}{VehicleCollisionTester}}(ObjectLayer\ inObjectLayer)\ :\ mObjectLayer(inObjectLayer)\ \{\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester_a7c6e0505cf0d7741f501a03ac3228bb6}{\string~VehicleCollisionTester}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ ObjectLayer\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester_a168d396a1e2431a984b36e83c2affe07}{GetObjectLayer}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mObjectLayer;\ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetObjectLayer(ObjectLayer\ inObjectLayer)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mObjectLayer\ =\ inObjectLayer;\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester_aa70cb825859a651d7693b78a906eee52}{SetBroadPhaseLayerFilter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ *inFilter)\ \ \ \ \ \ \ \ \{\ mBroadPhaseLayerFilter\ =\ inFilter;\ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ *\ \ GetBroadPhaseLayerFilter()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBroadPhaseLayerFilter;\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester_aea6c61dd5cc33e4e27ec5c5a3aa043bc}{SetObjectLayerFilter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ *inFilter)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mObjectLayerFilter\ =\ inFilter;\ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ *\ \ \ \ \ \ GetObjectLayerFilter()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mObjectLayerFilter;\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester_a46d45f0e1c06f4c8b08aba185e9279ac}{SetBodyFilter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ *inFilter)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mBodyFilter\ =\ inFilter;\ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetBodyFilter()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBodyFilter;\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester_a2af9d0d5ab81d3321133ec0b408752b7}{Collide}}(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inVehicleConstraint,\ uint\ inWheelIndex,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inVehicleBodyID,\ \mbox{\hyperlink{classBody}{Body}}\ *\&outBody,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&outSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&outContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outContactNormal,\ \textcolor{keywordtype}{float}\ \&outSuspensionLength)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTester_a3e8069ca50a846d4984a99314ecc3aa6}{PredictContactProperties}}(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inVehicleConstraint,\ uint\ inWheelIndex,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inVehicleBodyID,\ \mbox{\hyperlink{classBody}{Body}}\ *\&ioBody,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&ioSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&ioContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioContactNormal,\ \textcolor{keywordtype}{float}\ \&ioSuspensionLength)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBroadPhaseLayerFilter}{BroadPhaseLayerFilter}}\ \ \ \ *\ \ \ mBroadPhaseLayerFilter\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObjectLayerFilter}{ObjectLayerFilter}}\ *\ \ \ \ \ \ mObjectLayerFilter\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyFilter}{BodyFilter}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyFilter\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00080\ \ \ \ \ ObjectLayer\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mObjectLayer\ =\ cObjectLayerInvalid;}
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classVehicleCollisionTesterRay}{VehicleCollisionTesterRay}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVehicleCollisionTester}{VehicleCollisionTester}}}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00087\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterRay_a05872b64dc0fc8b3206f24b513da2a91}{VehicleCollisionTesterRay}}(ObjectLayer\ inObjectLayer,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inUp\ =\ Vec3::sAxisY(),\ \textcolor{keywordtype}{float}\ inMaxSlopeAngle\ =\ DegreesToRadians(80.0f))\ :\ \mbox{\hyperlink{classVehicleCollisionTester}{VehicleCollisionTester}}(inObjectLayer),\ mUp(inUp),\ mCosMaxSlopeAngle(Cos(inMaxSlopeAngle))\ \{\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ See:\ VehicleCollisionTester}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterRay_ae84704a052b56317a95af888d127aea1}{Collide}}(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inVehicleConstraint,\ uint\ inWheelIndex,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inVehicleBodyID,\ \mbox{\hyperlink{classBody}{Body}}\ *\&outBody,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&outSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&outContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outContactNormal,\ \textcolor{keywordtype}{float}\ \&outSuspensionLength)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterRay_a684c172d339c8ab5edaca602a5973c4a}{PredictContactProperties}}(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inVehicleConstraint,\ uint\ inWheelIndex,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inVehicleBodyID,\ \mbox{\hyperlink{classBody}{Body}}\ *\&ioBody,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&ioSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&ioContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioContactNormal,\ \textcolor{keywordtype}{float}\ \&ioSuspensionLength)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUp;}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCosMaxSlopeAngle;}
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classVehicleCollisionTesterCastSphere}{VehicleCollisionTesterCastSphere}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVehicleCollisionTester}{VehicleCollisionTester}}}
+\DoxyCodeLine{00106\ \{}
+\DoxyCodeLine{00107\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00108\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterCastSphere_a6b514d0516167670bc2358b5073ba62d}{VehicleCollisionTesterCastSphere}}(ObjectLayer\ inObjectLayer,\ \textcolor{keywordtype}{float}\ inRadius,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inUp\ =\ Vec3::sAxisY(),\ \textcolor{keywordtype}{float}\ inMaxSlopeAngle\ =\ DegreesToRadians(80.0f))\ :\ \mbox{\hyperlink{classVehicleCollisionTester}{VehicleCollisionTester}}(inObjectLayer),\ mRadius(inRadius),\ mUp(inUp),\ mCosMaxSlopeAngle(Cos(inMaxSlopeAngle))\ \{\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ See:\ VehicleCollisionTester}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterCastSphere_a8ad09f12d061e33e36f5b22162638fa4}{Collide}}(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inVehicleConstraint,\ uint\ inWheelIndex,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inVehicleBodyID,\ \mbox{\hyperlink{classBody}{Body}}\ *\&outBody,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&outSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&outContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outContactNormal,\ \textcolor{keywordtype}{float}\ \&outSuspensionLength)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterCastSphere_ad5b4828b6f7519c4d8fa874c16357c54}{PredictContactProperties}}(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inVehicleConstraint,\ uint\ inWheelIndex,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inVehicleBodyID,\ \mbox{\hyperlink{classBody}{Body}}\ *\&ioBody,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&ioSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&ioContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioContactNormal,\ \textcolor{keywordtype}{float}\ \&ioSuspensionLength)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRadius;}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUp;}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCosMaxSlopeAngle;}
+\DoxyCodeLine{00125\ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classVehicleCollisionTesterCastCylinder}{VehicleCollisionTesterCastCylinder}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVehicleCollisionTester}{VehicleCollisionTester}}}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00131\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterCastCylinder_a416a774b8cf740d496abe37d67d223ff}{VehicleCollisionTesterCastCylinder}}(ObjectLayer\ inObjectLayer,\ \textcolor{keywordtype}{float}\ inConvexRadiusFraction\ =\ 0.1f)\ :\ \mbox{\hyperlink{classVehicleCollisionTester}{VehicleCollisionTester}}(inObjectLayer),\ mConvexRadiusFraction(inConvexRadiusFraction)\ \{\ JPH\_ASSERT(mConvexRadiusFraction\ >=\ 0.0f\ \&\&\ mConvexRadiusFraction\ <=\ 1.0f);\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ See:\ VehicleCollisionTester}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterCastCylinder_adcff065257d33b712be0a24ab0d246c5}{Collide}}(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inVehicleConstraint,\ uint\ inWheelIndex,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inVehicleBodyID,\ \mbox{\hyperlink{classBody}{Body}}\ *\&outBody,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&outSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&outContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outContactNormal,\ \textcolor{keywordtype}{float}\ \&outSuspensionLength)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVehicleCollisionTesterCastCylinder_ae8e5fd7df02403d282326c04b891ae55}{PredictContactProperties}}(\mbox{\hyperlink{classPhysicsSystem}{PhysicsSystem}}\ \&inPhysicsSystem,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVehicleConstraint}{VehicleConstraint}}\ \&inVehicleConstraint,\ uint\ inWheelIndex,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inOrigin,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inVehicleBodyID,\ \mbox{\hyperlink{classBody}{Body}}\ *\&ioBody,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&ioSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3}}\ \&ioContactPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&ioContactNormal,\ \textcolor{keywordtype}{float}\ \&ioSuspensionLength)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConvexRadiusFraction;}
+\DoxyCodeLine{00144\ \};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

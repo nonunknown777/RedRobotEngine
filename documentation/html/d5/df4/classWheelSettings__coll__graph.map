@@ -1,0 +1,15 @@
+<map id="WheelSettings" name="WheelSettings">
+<area shape="rect" id="Node000001" title="Base class for wheel settings, each VehicleController can implement a derived class of this." alt="" coords="345,914,570,1111"/>
+<area shape="rect" id="Node000002" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="5,438,171,508"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,522,110,574,127,636,152,701,185,762,220,810,261,854,347,930,343,934,257,858,216,813,180,765,147,703,122,638,105,576,93,523"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,5,149,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,132,91,439,85,439,85,132"/>
+<area shape="rect" id="Node000004" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="195,353,410,593"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="344,606,432,913,427,915,338,608"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="238,27,367,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="305,96,305,336,300,336,300,96"/>
+<area shape="rect" id="Node000006" href="$d9/de4/classVec3.html" title=" " alt="" coords="434,182,595,764"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="486,764,472,897,467,897,481,763"/>
+<area shape="rect" id="Node000007" href="$da/d78/classSpringSettings.html" title="Settings for a linear or angular spring." alt="" coords="625,332,788,614"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="720,614,717,682,707,754,687,825,672,859,654,891,624,927,586,957,583,952,620,923,650,888,667,857,682,824,702,753,712,682,715,614"/>
+</map>

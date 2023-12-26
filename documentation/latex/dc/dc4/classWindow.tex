@@ -1,0 +1,83 @@
+\doxysection{Window Class Reference}
+\hypertarget{classWindow}{}\label{classWindow}\index{Window@{Window}}
+
+
+Inheritance diagram for Window\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/d7b/classWindow__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Window\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/d01/classWindow__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWindow_adbe20c8c0490dde321b60d02100cec02}\label{classWindow_adbe20c8c0490dde321b60d02100cec02} 
+{\bfseries Window} (std\+::string name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classViewport}{Viewport}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Viewport} (std\+::string name="{}Viewport"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNode}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Node} (std\+::string name="{}New\+Node"{})
+\item 
+std\+::string {\bfseries get\+\_\+name} () const
+\item 
+virtual void {\bfseries set\+\_\+name} (std\+::string name)
+\item 
+virtual void {\bfseries \+\_\+ready} ()
+\item 
+virtual void {\bfseries \+\_\+process} (float delta)
+\item 
+virtual void {\bfseries \+\_\+input} ()
+\item 
+virtual void {\bfseries \+\_\+unhandled\+\_\+input} (\mbox{\hyperlink{classInputEvent}{Input\+Event}} event)
+\item 
+void {\bfseries add\+\_\+child} (\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+int {\bfseries get\+\_\+child\+\_\+count} ()
+\item 
+\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+child} (int p\+\_\+index)
+\item 
+\mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} {\bfseries get\+\_\+parent} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classNode}{Node}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+\_\+children} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWindow_aa0f39396d037c411323af3b256fb72e6}\label{classWindow_aa0f39396d037c411323af3b256fb72e6} 
+int {\bfseries flags} = 0
+\item 
+\Hypertarget{classWindow_a5141f3601ccf259653e32d71b1b9af93}\label{classWindow_a5141f3601ccf259653e32d71b1b9af93} 
+\mbox{\hyperlink{structVector2}{Vector2}} {\bfseries size}
+\item 
+\Hypertarget{classWindow_a71f3b6c608b7977609152734f3baaa7c}\label{classWindow_a71f3b6c608b7977609152734f3baaa7c} 
+\mbox{\hyperlink{structVector2}{Vector2}} {\bfseries position}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classNode}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries iteration\+\_\+index}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/nodes/window.\+hpp\item 
+src/nodes/window.\+cpp\end{DoxyCompactItemize}

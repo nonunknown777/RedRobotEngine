@@ -1,0 +1,76 @@
+\doxysection{Triangle\+Codec\+Indexed8\+Bit\+Pack\+SOA4\+Flags Class Reference}
+\hypertarget{classTriangleCodecIndexed8BitPackSOA4Flags}{}\label{classTriangleCodecIndexed8BitPackSOA4Flags}\index{TriangleCodecIndexed8BitPackSOA4Flags@{TriangleCodecIndexed8BitPackSOA4Flags}}
+
+
+{\ttfamily \#include $<$Triangle\+Codec\+Indexed8\+Bit\+Pack\+SOA4\+Flags.\+h$>$}
+
+
+
+Collaboration diagram for Triangle\+Codec\+Indexed8\+Bit\+Pack\+SOA4\+Flags\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{dc/d73/classTriangleCodecIndexed8BitPackSOA4Flags__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1DecodingContext}{Decoding\+Context}}
+\begin{DoxyCompactList}\small\item\em This class is used to decode and decompress triangle data packed by the \doxylink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1EncodingContext}{Encoding\+Context}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1EncodingContext}{Encoding\+Context}}
+\begin{DoxyCompactList}\small\item\em This class is used to encode and compress triangle data into a byte buffer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{Triangle\+Block}}
+\begin{DoxyCompactList}\small\item\em A block of 4 triangles. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{Triangle\+Block\+Header}}
+\begin{DoxyCompactList}\small\item\em A triangle header, will be followed by one or more Triangle\+Blocks. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader}{Triangle\+Header}}
+\item 
+struct \mbox{\hyperlink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{Vertex\+Data}}
+\begin{DoxyCompactList}\small\item\em A single packed vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTriangleCodecIndexed8BitPackSOA4Flags_a9ae76041d1be874601839088c1e62bef}\label{classTriangleCodecIndexed8BitPackSOA4Flags_a9ae76041d1be874601839088c1e62bef} 
+enum \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_a9ae76041d1be874601839088c1e62bef}{EComponent\+Data}} \+: uint32 \{ {\bfseries COMPONENT\+\_\+\+BITS} = 21
+, {\bfseries COMPONENT\+\_\+\+MASK} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} COMPONENT\+\_\+\+BITS) -\/ 1
+ \}
+\begin{DoxyCompactList}\small\item\em Amount of bits per component. \end{DoxyCompactList}\item 
+\Hypertarget{classTriangleCodecIndexed8BitPackSOA4Flags_ad85eb72dec6aa3c370e9ad969c46c4d2}\label{classTriangleCodecIndexed8BitPackSOA4Flags_ad85eb72dec6aa3c370e9ad969c46c4d2} 
+enum \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_ad85eb72dec6aa3c370e9ad969c46c4d2}{EVertex\+XY}} \+: uint32 \{ {\bfseries COMPONENT\+\_\+X} = 0
+, {\bfseries COMPONENT\+\_\+\+Y1} = COMPONENT\+\_\+\+BITS
+, {\bfseries COMPONENT\+\_\+\+Y1\+\_\+\+BITS} = 32 -\/ COMPONENT\+\_\+\+BITS
+ \}
+\begin{DoxyCompactList}\small\item\em Packed X and Y coordinate. \end{DoxyCompactList}\item 
+\Hypertarget{classTriangleCodecIndexed8BitPackSOA4Flags_adf7b4eade64871b3f53059bdacf9aace}\label{classTriangleCodecIndexed8BitPackSOA4Flags_adf7b4eade64871b3f53059bdacf9aace} 
+enum \mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_adf7b4eade64871b3f53059bdacf9aace}{EVertex\+ZY}} \+: uint32 \{ {\bfseries COMPONENT\+\_\+Z} = 0
+, {\bfseries COMPONENT\+\_\+\+Y2} = COMPONENT\+\_\+\+BITS
+, {\bfseries COMPONENT\+\_\+\+Y2\+\_\+\+BITS} = 31 -\/ COMPONENT\+\_\+\+BITS
+ \}
+\begin{DoxyCompactList}\small\item\em Packed Z and Y coordinate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTriangleCodecIndexed8BitPackSOA4Flags_a7685e55750d8ba3c748d97b3eecdc57b}\label{classTriangleCodecIndexed8BitPackSOA4Flags_a7685e55750d8ba3c748d97b3eecdc57b} 
+static constexpr int {\bfseries Triangle\+Header\+Size} = sizeof(\mbox{\hyperlink{classTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleHeader}{Triangle\+Header}})
+\begin{DoxyCompactList}\small\item\em Size of the header (an empty struct is always \texorpdfstring{$>$}{>} 0 bytes so this needs a separate variable) \end{DoxyCompactList}\item 
+\Hypertarget{classTriangleCodecIndexed8BitPackSOA4Flags_a6bcee096cce9bd21231620f20ab90f10}\label{classTriangleCodecIndexed8BitPackSOA4Flags_a6bcee096cce9bd21231620f20ab90f10} 
+static constexpr bool {\bfseries Changes\+Offset\+On\+Pack} = false
+\begin{DoxyCompactList}\small\item\em If this codec could return a different offset than the current buffer size when calling Pack() \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Store vertices in 64 bits and indices in 8 bits + 8 bit of flags per triangle like this\+:
+
+\doxylink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlockHeader}{Triangle\+Block\+Header}, \doxylink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{Triangle\+Block} (4 triangles and their flags in 16 bytes), \doxylink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1TriangleBlock}{Triangle\+Block}...
+
+Vertices are stored\+:
+
+\doxylink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{Vertex\+Data} (1 vertex in 64 bits), \doxylink{structTriangleCodecIndexed8BitPackSOA4Flags_1_1VertexData}{Vertex\+Data}...
+
+They\textquotesingle{}re compressed relative to the bounding box as provided by the node codec. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+AABBTree/\+Triangle\+Codec/Triangle\+Codec\+Indexed8\+Bit\+Pack\+SOA4\+Flags.\+h\end{DoxyCompactItemize}

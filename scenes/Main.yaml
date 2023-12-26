@@ -1,0 +1,204 @@
+gd_scene:
+  load_steps: 3
+  format: 3
+  uid: "uid://cgfiv5gnocaa5"
+
+sub_resources:
+  - type: "StyleBoxFlat"
+    id: "StyleBoxFlat_sop1o"
+    bg_color: Color(0.0705882, 0.0823529, 0.101961, 1)
+
+  - type: "StyleBoxFlat"
+    id: "StyleBoxFlat_3nekv"
+
+nodes:
+  - name: "Panel"
+    type: "Panel"
+    anchors_preset: 15
+    anchor_right: 1.0
+    anchor_bottom: 1.0
+    offset_left: 95.0
+    offset_top: 1.0
+    offset_right: 223.0
+    offset_bottom: 73.0
+    grow_horizontal: 2
+    grow_vertical: 2
+    theme_override_styles:
+      panel: SubResource("StyleBoxFlat_sop1o")
+
+  - name: "VBoxContainer"
+    type: "VBoxContainer"
+    parent: "."
+    layout_mode: 1
+    anchors_preset: 15
+    anchor_right: 1.0
+    anchor_bottom: 1.0
+    offset_left: 13.0
+    offset_top: 12.0
+    offset_right: -13.0
+    offset_bottom: -12.0
+    grow_horizontal: 2
+    grow_vertical: 2
+
+  - name: "HBoxContainer"
+    type: "HBoxContainer"
+    parent: "VBoxContainer"
+    layout_mode: 2
+
+  - name: "MenuBar"
+    type: "MenuBar"
+    parent: "VBoxContainer/HBoxContainer"
+    layout_mode: 2
+
+  - name: "Scene"
+    type: "PopupMenu"
+    parent: "VBoxContainer/HBoxContainer/MenuBar"
+    size: Vector2i(113, 100)
+    theme_override_styles:
+      panel: SubResource("StyleBoxFlat_3nekv")
+    item_count: 1
+    item_0:
+      text: "New Scene"
+      id: 0
+
+  - name: "Project"
+    type: "PopupMenu"
+    parent: "VBoxContainer/HBoxContainer/MenuBar"
+    size: Vector2i(113, 100)
+    theme_override_styles:
+      panel: SubResource("StyleBoxFlat_3nekv")
+    item_count: 1
+    item_0:
+      text: "New Scene"
+      id: 0
+
+  - name: "Debug"
+    type: "PopupMenu"
+    parent: "VBoxContainer/HBoxContainer/MenuBar"
+    size: Vector2i(113, 100)
+    theme_override_styles:
+      panel: SubResource("StyleBoxFlat_3nekv")
+    item_count: 1
+    item_0:
+      text: "New Scene"
+      id: 0
+
+  - name: "Editor"
+    type: "PopupMenu"
+    parent: "VBoxContainer/HBoxContainer/MenuBar"
+    size: Vector2i(113, 100)
+    theme_override_styles:
+      panel: SubResource("StyleBoxFlat_3nekv")
+    item_count: 1
+    item_0:
+      text: "New Scene"
+      id: 0
+
+  - name: "Help"
+    type: "PopupMenu"
+    parent: "VBoxContainer/HBoxContainer/MenuBar"
+    size: Vector2i(113, 100)
+    theme_override_styles:
+      panel: SubResource("StyleBoxFlat_3nekv")
+    item_count: 1
+    item_0:
+      text: "New Scene"
+      id: 0
+
+  - name: "HBoxContainer"
+    type: "HBoxContainer"
+    parent: "VBoxContainer/HBoxContainer"
+    layout_mode: 2
+    size_flags_horizontal: 3
+
+  - name: "HBoxContainer2"
+    type: "HBoxContainer"
+    parent: "VBoxContainer/HBoxContainer"
+    layout_mode: 2
+
+  - name: "bt_2d"
+    type: "Button"
+    parent: "VBoxContainer/HBoxContainer/HBoxContainer2"
+    layout_mode: 2
+    text: "2D"
+
+  - name: "bt_3d"
+    type: "Button"
+    parent: "VBoxContainer/HBoxContainer/HBoxContainer2"
+    layout_mode: 2
+    text: "3d"
+
+  - name: "bt_script"
+    type: "Button"
+    parent: "VBoxContainer/HBoxContainer/HBoxContainer2"
+    layout_mode: 2
+    text: "Script"
+
+  - name: "bt_asset"
+    type: "Button"
+    parent: "VBoxContainer/HBoxContainer/HBoxContainer2"
+    layout_mode: 2
+    text: "SeetLib"
+
+  - name: "HBoxContainer3"
+    type: "HBoxContainer"
+    parent: "VBoxContainer/HBoxContainer"
+    layout_mode: 2
+    size_flags_horizontal: 3
+
+  - name: "HBoxContainer4"
+    type: "HBoxContainer"
+    parent: "VBoxContainer/HBoxContainer"
+    layout_mode: 2
+    size_flags_horizontal: 3
+
+  - name: "bt_play"
+    type: "Button"
+    parent: "VBoxContainer/HBoxContainer/HBoxContainer4"
+    layout_mode: 2
+    text: "Play"
+
+  - name: "bt_pause"
+    type: "Button"
+    parent: "VBoxContainer/HBoxContainer/HBoxContainer4"
+    layout_mode: 2
+    text: "Pause"
+
+  - name: "bt_stop"
+    type: "Button"
+    parent: "VBoxContainer/HBoxContainer/HBoxContainer4"
+    layout_mode: 2
+    text: "Stop"
+
+  - name: "bt_run"
+    type: "Button"
+    parent: "VBoxContainer/HBoxContainer/HBoxContainer4"
+    layout_mode: 2
+    text: "Run Current"
+
+  - name: "HSplitContainer"
+    type: "HSplitContainer"
+    parent: "VBoxContainer"
+    layout_mode: 2
+    size_flags_vertical: 3
+
+  - name: "VSplitContainer"
+    type: "VSplitContainer"
+    parent: "VBoxContainer/HSplitContainer"
+    layout_mode: 2
+
+  - name: "TabContainer"
+    type: "TabContainer"
+    parent: "VBoxContainer/HSplitContainer/VSplitContainer"
+    layout_mode: 2
+
+  - name: "Scene"
+    type: "TabBar"
+    parent: "VBoxContainer/HSplitContainer/VSplitContainer/TabContainer"
+    layout_mode: 2
+
+  - name: "Import"
+    type: "TabBar"
+    parent: "VBoxContainer/HSplitContainer/VSplitContainer/TabContainer"
+    visible: false
+    layout_mode: 2

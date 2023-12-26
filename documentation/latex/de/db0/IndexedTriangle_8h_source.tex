@@ -1,0 +1,109 @@
+\doxysection{Indexed\+Triangle.\+h}
+\hypertarget{IndexedTriangle_8h_source}{}\label{IndexedTriangle_8h_source}\index{includes/jolt/Geometry/IndexedTriangle.h@{includes/jolt/Geometry/IndexedTriangle.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/HashCombine.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIndexedTriangleNoMaterial}{IndexedTriangleNoMaterial}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangleNoMaterial_a23f00d353bda9289c5a686975d443a81}{IndexedTriangleNoMaterial}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{constexpr}\ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangleNoMaterial_a23f00d353bda9289c5a686975d443a81}{IndexedTriangleNoMaterial}}(uint32\ inI1,\ uint32\ inI2,\ uint32\ inI3)\ :\ mIdx\ \{\ inI1,\ inI2,\ inI3\ \}\ \{\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangleNoMaterial_ae51f167ef9a45334dad213a2f46cf79e}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classIndexedTriangleNoMaterial}{IndexedTriangleNoMaterial}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mIdx[0]\ ==\ inRHS.mIdx[0]\ \&\&\ mIdx[1]\ ==\ inRHS.mIdx[1]\ \&\&\ mIdx[2]\ ==\ inRHS.mIdx[2];}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangleNoMaterial_ac0ae1c29594b849761b0db20c1f84fb9}{IsEquivalent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classIndexedTriangleNoMaterial}{IndexedTriangleNoMaterial}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (mIdx[0]\ ==\ inRHS.mIdx[0]\ \&\&\ mIdx[1]\ ==\ inRHS.mIdx[1]\ \&\&\ mIdx[2]\ ==\ inRHS.mIdx[2])}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (mIdx[0]\ ==\ inRHS.mIdx[1]\ \&\&\ mIdx[1]\ ==\ inRHS.mIdx[2]\ \&\&\ mIdx[2]\ ==\ inRHS.mIdx[0])}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (mIdx[0]\ ==\ inRHS.mIdx[2]\ \&\&\ mIdx[1]\ ==\ inRHS.mIdx[0]\ \&\&\ mIdx[2]\ ==\ inRHS.mIdx[1]);}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangleNoMaterial_ac117960e5b26bec04ed736d18b99219d}{IsOpposite}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classIndexedTriangleNoMaterial}{IndexedTriangleNoMaterial}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (mIdx[0]\ ==\ inRHS.mIdx[0]\ \&\&\ mIdx[1]\ ==\ inRHS.mIdx[2]\ \&\&\ mIdx[2]\ ==\ inRHS.mIdx[1])}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (mIdx[0]\ ==\ inRHS.mIdx[1]\ \&\&\ mIdx[1]\ ==\ inRHS.mIdx[0]\ \&\&\ mIdx[2]\ ==\ inRHS.mIdx[2])}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (mIdx[0]\ ==\ inRHS.mIdx[2]\ \&\&\ mIdx[1]\ ==\ inRHS.mIdx[1]\ \&\&\ mIdx[2]\ ==\ inRHS.mIdx[0]);}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangleNoMaterial_a439540e1770cfdda6ef0a663ef5eff3c}{IsDegenerate}}(\textcolor{keyword}{const}\ VertexList\ \&inVertices)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v0(inVertices[mIdx[0]]);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v1(inVertices[mIdx[1]]);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ v2(inVertices[mIdx[2]]);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (v1\ -\/\ v0).Cross(v2\ -\/\ v0).IsNearZero();}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangleNoMaterial_a69f086f68d6d6231ffc90033c9c1acb9}{Rotate}}()}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ uint32\ tmp\ =\ mIdx[0];}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ mIdx[0]\ =\ mIdx[1];}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ mIdx[1]\ =\ mIdx[2];}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ mIdx[2]\ =\ tmp;}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangleNoMaterial_a279fe96ec89d38fe6eaafa515ff27cb1}{GetCentroid}}(\textcolor{keyword}{const}\ VertexList\ \&inVertices)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classVec3}{Vec3}}(inVertices[mIdx[0]])\ +\ \mbox{\hyperlink{classVec3}{Vec3}}(inVertices[mIdx[1]])\ +\ \mbox{\hyperlink{classVec3}{Vec3}}(inVertices[mIdx[2]]))\ /\ 3.0f;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ mIdx[3];}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classIndexedTriangleNoMaterial}{IndexedTriangleNoMaterial}}}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classIndexedTriangleNoMaterial_a23f00d353bda9289c5a686975d443a81}{IndexedTriangleNoMaterial::IndexedTriangleNoMaterial}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{constexpr}\ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangle_ac734d6cdf3c771b9836629ec91193b70}{IndexedTriangle}}(uint32\ inI1,\ uint32\ inI2,\ uint32\ inI3,\ uint32\ inMaterialIndex)\ :\ \mbox{\hyperlink{classIndexedTriangleNoMaterial}{IndexedTriangleNoMaterial}}(inI1,\ inI2,\ inI3),\ mMaterialIndex(inMaterialIndex)\ \{\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIndexedTriangle_a8c2db62a600bd2f296c8473fc0ee44dc}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mMaterialIndex\ ==\ inRHS.mMaterialIndex\ \&\&\ \mbox{\hyperlink{classIndexedTriangleNoMaterial_ae51f167ef9a45334dad213a2f46cf79e}{IndexedTriangleNoMaterial::operator==}}(inRHS);}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}}\ \ \mbox{\hyperlink{classIndexedTriangle_ab22b9836ef1955232fd0ec1099d69965}{GetLowestIndexFirst}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mIdx[0]\ <\ mIdx[1])}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mIdx[0]\ <\ mIdx[2])}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}}(mIdx[0],\ mIdx[1],\ mIdx[2],\ mMaterialIndex);\ \textcolor{comment}{//\ 0\ is\ smallest}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}}(mIdx[2],\ mIdx[0],\ mIdx[1],\ mMaterialIndex);\ \textcolor{comment}{//\ 2\ is\ smallest}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mIdx[1]\ <\ mIdx[2])}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}}(mIdx[1],\ mIdx[2],\ mIdx[0],\ mMaterialIndex);\ \textcolor{comment}{//\ 1\ is\ smallest}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}}(mIdx[2],\ mIdx[0],\ mIdx[1],\ mMaterialIndex);\ \textcolor{comment}{//\ 2\ is\ smallest}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ mMaterialIndex\ =\ 0;}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{using\ }IndexedTriangleNoMaterialList\ =\ Array<IndexedTriangleNoMaterial>;}
+\DoxyCodeLine{00109\ \textcolor{keyword}{using\ }IndexedTriangleList\ =\ Array<IndexedTriangle>;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ Create\ a\ std::hash\ for\ IndexedTriangleNoMaterial\ and\ IndexedTriangle}}
+\DoxyCodeLine{00114\ JPH\_MAKE\_HASHABLE(JPH::IndexedTriangleNoMaterial,\ t.mIdx[0],\ t.mIdx[1],\ t.mIdx[2])}
+\DoxyCodeLine{00115\ JPH\_MAKE\_HASHABLE(JPH::\mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}},\ t.mIdx[0],\ t.mIdx[1],\ t.mIdx[2],\ t.mMaterialIndex)}
+
+\end{DoxyCode}

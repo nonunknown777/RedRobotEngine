@@ -1,0 +1,136 @@
+\doxysection{Transformed\+Shape.\+h}
+\hypertarget{TransformedShape_8h_source}{}\label{TransformedShape_8h_source}\index{includes/jolt/Physics/Collision/TransformedShape.h@{includes/jolt/Physics/Collision/TransformedShape.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ObjectLayer.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ShapeFilter.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/Shape.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/SubShapeID.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/BackFaceMode.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyID.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structRRayCast}{RRayCast}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structRShapeCast}{RShapeCast}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRayCastResult}{RayCastResult}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classTransformedShape}{TransformedShape}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_aa2bca98098fc17f1d18ea542a619eff0}{TransformedShape}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape}{TransformedShape}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPositionCOM,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBodyID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator\ =\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}())\ :\ mShapePositionCOM(inPositionCOM),\ mShapeRotation(inRotation),\ mShape(inShape),\ mBodyID(inBodyID),\ mSubShapeIDCreator(inSubShapeIDCreator)\ \{\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a462f692bcc4e6d26950ab7e2db8aacd2}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRRayCast}{RRayCast}}\ \&inRay,\ \mbox{\hyperlink{classRayCastResult}{RayCastResult}}\ \&ioHit)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_ae4af56e1fa6544074e06b589de4d77b9}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRRayCast}{RRayCast}}\ \&inRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayCastSettings}{RayCastSettings}}\ \&inRayCastSettings,\ \mbox{\hyperlink{classCollisionCollector}{CastRayCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_ad589cfe7574f79645c39f917e15aff08}{CollidePoint}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPoint,\ \mbox{\hyperlink{classCollisionCollector}{CollidePointCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_ad302129a3ff14b43463ec6514a79f988}{CollideShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inShapeScale,\ \mbox{\hyperlink{classMat44}{RMat44Arg}}\ inCenterOfMassTransform,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}}\ \&inCollideShapeSettings,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_ab9b03e726e2992e5a4ca1df568d5ae75}{CastShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRShapeCast}{RShapeCast}}\ \&inShapeCast,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&inShapeCastSettings,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a5379d6bf4807440be14c96829e7fa5bd}{CollectTransformedShapes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \mbox{\hyperlink{classCollisionCollector}{TransformedShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{GetTrianglesContext}}\ =\ \mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Shape::GetTrianglesContext}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_ab5c4bf71ad1569f890bccf3b71248b43}{GetTrianglesStart}}(\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{GetTrianglesContext}}\ \&ioContext,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a7f4d127145d57e13ff41523a3c8ecd9e}{GetTrianglesNext}}(\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{GetTrianglesContext}}\ \&ioContext,\ \textcolor{keywordtype}{int}\ inMaxTrianglesRequested,\ \mbox{\hyperlink{classFloat3}{Float3}}\ *outTriangleVertices,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ **outMaterials\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a9f0559c4106b9b17becd5f401389b354}{GetShapeScale}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_aea30fe731618ffa249ecdcba2c66ab4e}{Vec3::sLoadFloat3Unsafe}}(mShapeScale);\ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetShapeScale(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ inScale.\mbox{\hyperlink{classVec3_ab22c62c48d2de13947c0cd3413018364}{StoreFloat3}}(\&mShapeScale);\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_afba760db30ccff8c59547cce78bd97a4}{GetCenterOfMassTransform}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_aba5427f45393b40263d52ec614cfa985}{RMat44::sRotationTranslation}}(mShapeRotation,\ mShapePositionCOM);\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a928f396b885e8fea11417ba0e651c678}{GetInverseCenterOfMassTransform}}()\textcolor{keyword}{\ const\ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ac8be820a7eeb44bf570abb8dc01f4c59}{RMat44::sInverseRotationTranslation}}(mShapeRotation,\ mShapePositionCOM);\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a8499fda3638a4246e152a2a298905852}{SetWorldTransform}}(\mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ mShapePositionCOM\ =\ inPosition\ +\ inRotation\ *\ (inScale\ *\ mShape-\/>GetCenterOfMass());}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ mShapeRotation\ =\ inRotation;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ SetShapeScale(inScale);}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a6634ea434c5877c1f458137d0b05e137}{SetWorldTransform}}(\mbox{\hyperlink{classMat44}{RMat44Arg}}\ inTransform)}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ scale;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ rot\_trans\ =\ inTransform.\mbox{\hyperlink{classMat44_aa11f571efdce00289f87a65317fbdd58}{Decompose}}(scale);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ SetWorldTransform(rot\_trans.GetTranslation(),\ rot\_trans.\mbox{\hyperlink{classMat44_a4cc37dcc7b9be4ab8f8e94bf49e06204}{GetRotation}}().\mbox{\hyperlink{classMat44_a1e977c53b5f6a0c03f8da33ebef2c05a}{GetQuaternion}}(),\ scale);}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_af233e9488d9738108c192ab850758cd9}{GetWorldTransform}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ transform\ =\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{RMat44::sRotation}}(mShapeRotation).\mbox{\hyperlink{classMat44_af9c9948eced621a54424f05c397824dd}{PreScaled}}(GetShapeScale());}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ transform.SetTranslation(mShapePositionCOM\ -\/\ transform.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(mShape-\/>GetCenterOfMass()));}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ transform;}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a33b12d09ebaf2071dd49a3873978ac0a}{GetWorldSpaceBounds}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mShape\ !=\ \textcolor{keyword}{nullptr}?\ mShape-\/>GetWorldSpaceBounds(GetCenterOfMassTransform(),\ GetShapeScale())\ :\ \mbox{\hyperlink{classAABox}{AABox}}();\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a1ac86317085e88189d1b8a2635dcec44}{MakeSubShapeIDRelativeToShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Take\ off\ the\ sub\ shape\ ID\ part\ that\ comes\ from\ mSubShapeIDCreator\ and\ validate\ that\ it\ is\ the\ same}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ sub\_shape\_id;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ uint\ num\_bits\_written\ =\ mSubShapeIDCreator.GetNumBitsWritten();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ JPH\_IF\_ENABLE\_ASSERTS(uint32\ root\_id\ =)\ inSubShapeID.\mbox{\hyperlink{classSubShapeID_a8f78ff809c7af2dfbd2e61ba2314ca9d}{PopID}}(num\_bits\_written,\ sub\_shape\_id);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ JPH\_ASSERT(root\_id\ ==\ (mSubShapeIDCreator.GetID().GetValue()\ \&\ ((1\ <<\ num\_bits\_written)\ -\/\ 1)));}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sub\_shape\_id;}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a38fdd1585da3137083b8ee9f9bdcdd98}{GetWorldSpaceSurfaceNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inPosition)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ inv\_com\ =\ GetInverseCenterOfMassTransform();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ scale\ =\ GetShapeScale();\ \textcolor{comment}{//\ See\ comment\ at\ ScaledShape::GetSurfaceNormal\ for\ the\ math\ behind\ the\ scaling\ of\ the\ normal}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inv\_com.\mbox{\hyperlink{classMat44_a3ed66bc4c5e8e010657bd5bb109f1406}{Multiply3x3Transposed}}(mShape-\/>GetSurfaceNormal(MakeSubShapeIDRelativeToShape(inSubShapeID),\ \mbox{\hyperlink{classVec3}{Vec3}}(inv\_com\ *\ inPosition)\ /\ scale)\ /\ scale).\mbox{\hyperlink{classVec3_a0f7559f2691ad67826f42ca19916b7a9}{Normalized}}();}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_abf8db8122d754ad62720f3da6f67be4d}{GetSupportingFace}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset,\ \mbox{\hyperlink{classStaticArray}{Shape::SupportingFace}}\ \&outVertices)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00152\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ com\ =\ GetCenterOfMassTransform().\mbox{\hyperlink{classMat44_a16b90363d2e120bd570c4200e29f5ba6}{PostTranslated}}(-\/inBaseOffset).\mbox{\hyperlink{classMat44_a3445a728646fe8ad80381a0e55ea2289}{ToMat44}}();}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ mShape-\/>GetSupportingFace(MakeSubShapeIDRelativeToShape(inSubShapeID),\ com.\mbox{\hyperlink{classMat44_a3ed66bc4c5e8e010657bd5bb109f1406}{Multiply3x3Transposed}}(inDirection),\ GetShapeScale(),\ com,\ outVertices);}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ *\mbox{\hyperlink{classTransformedShape_a8995638ea07aab36ba41e63bce603002}{GetMaterial}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mShape-\/>GetMaterial(MakeSubShapeIDRelativeToShape(inSubShapeID));}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{inline}\ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a98ca3c64d2bc65548a4845085c53eba5}{GetSubShapeUserData}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00165\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mShape-\/>GetSubShapeUserData(MakeSubShapeIDRelativeToShape(inSubShapeID));}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{classTransformedShape}{TransformedShape}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a8ef1a33902094dcdd6f20f63868c5ea2}{GetSubShapeTransformedShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&outRemainder)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00174\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape}{TransformedShape}}\ ts\ =\ mShape-\/>\mbox{\hyperlink{classTransformedShape_a8ef1a33902094dcdd6f20f63868c5ea2}{GetSubShapeTransformedShape}}(inSubShapeID,\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}(),\ mShapeRotation,\ GetShapeScale(),\ outRemainder);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ ts.\mbox{\hyperlink{classTransformedShape_a37f8180dfc1c74cf7d97aca0eca7a0f5}{mShapePositionCOM}}\ +=\ mShapePositionCOM;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ts;}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a2a845c1bfaae3c821a7c8b0f517bd02d}{sGetBodyID}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classTransformedShape}{TransformedShape}}\ *inTS)\ \ \{\ \textcolor{keywordflow}{return}\ inTS\ !=\ \textcolor{keyword}{nullptr}?\ inTS-\/>\mbox{\hyperlink{classTransformedShape_ae45d21f8b2ee5407c3ca2264ab2a5ebe}{mBodyID}}\ :\ \mbox{\hyperlink{classBodyID}{BodyID}}();\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a37f8180dfc1c74cf7d97aca0eca7a0f5}{mShapePositionCOM}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a329c136e38910229e39c31971819a34b}{mShapeRotation}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{classRefConst}{RefConst<Shape>}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_ac6aaf976fee41c402c791012e4a2a3f9}{mShape}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{classFloat3}{Float3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mShapeScale\ \{\ 1,\ 1,\ 1\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_ae45d21f8b2ee5407c3ca2264ab2a5ebe}{mBodyID}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTransformedShape_a3d0b38db0aacff1c3188a0c20f45e713}{mSubShapeIDCreator}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00189\ \};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classTransformedShape}{TransformedShape}})\ ==\ JPH\_IF\_SINGLE\_PRECISION\_ELSE(64,\ 96),\ \textcolor{stringliteral}{"{}Not\ properly\ packed"{}});}
+\DoxyCodeLine{00192\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{alignof}(\mbox{\hyperlink{classTransformedShape}{TransformedShape}})\ ==\ JPH\_RVECTOR\_ALIGNMENT,\ \textcolor{stringliteral}{"{}Not\ properly\ aligned"{}});}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

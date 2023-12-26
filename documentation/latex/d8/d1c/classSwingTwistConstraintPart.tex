@@ -1,0 +1,148 @@
+\doxysection{Swing\+Twist\+Constraint\+Part Class Reference}
+\hypertarget{classSwingTwistConstraintPart}{}\label{classSwingTwistConstraintPart}\index{SwingTwistConstraintPart@{SwingTwistConstraintPart}}
+
+
+{\ttfamily \#include $<$Swing\+Twist\+Constraint\+Part.\+h$>$}
+
+
+
+Collaboration diagram for Swing\+Twist\+Constraint\+Part\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{d7/de4/classSwingTwistConstraintPart__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintPart_a848425a649ffd87b994ea1efe3cf9944}\label{classSwingTwistConstraintPart_a848425a649ffd87b994ea1efe3cf9944} 
+void {\bfseries Set\+Swing\+Type} (ESwing\+Type in\+Swing\+Type)
+\begin{DoxyCompactList}\small\item\em Override the swing type. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_a1e8cca76a13bf4490e18086adfe44fb5}\label{classSwingTwistConstraintPart_a1e8cca76a13bf4490e18086adfe44fb5} 
+ESwing\+Type {\bfseries Get\+Swing\+Type} () const
+\begin{DoxyCompactList}\small\item\em Get the swing type for this part. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_aad526f8386b3e605f88fddf583ec215b}\label{classSwingTwistConstraintPart_aad526f8386b3e605f88fddf583ec215b} 
+void {\bfseries Set\+Limits} (float in\+Twist\+Min\+Angle, float in\+Twist\+Max\+Angle, float in\+Swing\+YMin\+Angle, float in\+Swing\+YMax\+Angle, float in\+Swing\+ZMin\+Angle, float in\+Swing\+ZMax\+Angle)
+\begin{DoxyCompactList}\small\item\em Set limits for this constraint (see description above for parameters) \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_a63a4870b93b5bb0d90555edbacbf5229}\label{classSwingTwistConstraintPart_a63a4870b93b5bb0d90555edbacbf5229} 
+void {\bfseries Clamp\+Swing\+Twist} (\mbox{\hyperlink{classQuat}{Quat}} \&io\+Swing, \mbox{\hyperlink{classQuat}{Quat}} \&io\+Twist, uint \&out\+Clamped\+Axis) const
+\begin{DoxyCompactList}\small\item\em Clamp twist and swing against the constraint limits, returns which parts were clamped (everything assumed in constraint space) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSwingTwistConstraintPart_aaf0e7de8bc6c556f7d1a1d2ef4c32317}{Calculate\+Constraint\+Properties}} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Constraint\+Rotation, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Constraint\+To\+World)
+\item 
+\Hypertarget{classSwingTwistConstraintPart_ae76162c3dfe72782a020162752a7ccf5}\label{classSwingTwistConstraintPart_ae76162c3dfe72782a020162752a7ccf5} 
+void {\bfseries Deactivate} ()
+\begin{DoxyCompactList}\small\item\em Deactivate this constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_af3c12b4e902bc93120df5ec5a706de99}\label{classSwingTwistConstraintPart_af3c12b4e902bc93120df5ec5a706de99} 
+bool {\bfseries Is\+Active} () const
+\begin{DoxyCompactList}\small\item\em Check if constraint is active. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_a507f0506fd29b63f244e73670d85d55d}\label{classSwingTwistConstraintPart_a507f0506fd29b63f244e73670d85d55d} 
+void {\bfseries Warm\+Start} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, float in\+Warm\+Start\+Impulse\+Ratio)
+\begin{DoxyCompactList}\small\item\em Must be called from the Warm\+Start\+Velocity\+Constraint call to apply the previous frame\textquotesingle{}s impulses. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_ad62155a6ac18bfc95a038b72df927e02}\label{classSwingTwistConstraintPart_ad62155a6ac18bfc95a038b72df927e02} 
+bool {\bfseries Solve\+Velocity\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2)
+\begin{DoxyCompactList}\small\item\em Iteratively update the velocity constraint. Makes sure d/dt C(...) = 0, where C is the constraint equation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSwingTwistConstraintPart_ae8a947eca657db9a653b0d3de921e7c1}{Solve\+Position\+Constraint}} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Constraint\+Rotation, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Constraint\+To\+Body1, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Constraint\+To\+Body2, float in\+Baumgarte) const
+\item 
+\Hypertarget{classSwingTwistConstraintPart_a16832ee912d335e0865e78f37fe7ad81}\label{classSwingTwistConstraintPart_a16832ee912d335e0865e78f37fe7ad81} 
+float {\bfseries Get\+Total\+Swing\+YLambda} () const
+\begin{DoxyCompactList}\small\item\em Return lagrange multiplier for swing. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_a31a518f141eab3f601906193d7b56ada}\label{classSwingTwistConstraintPart_a31a518f141eab3f601906193d7b56ada} 
+float {\bfseries Get\+Total\+Swing\+ZLambda} () const
+\item 
+\Hypertarget{classSwingTwistConstraintPart_a45a880db0765176f7e807f4aba08da6e}\label{classSwingTwistConstraintPart_a45a880db0765176f7e807f4aba08da6e} 
+float {\bfseries Get\+Total\+Twist\+Lambda} () const
+\begin{DoxyCompactList}\small\item\em Return lagrange multiplier for twist. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_a901f23c5450f15ee2c8979776fcdbf15}\label{classSwingTwistConstraintPart_a901f23c5450f15ee2c8979776fcdbf15} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Save state of this constraint part. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_a2964a0ed18137258a244d1b4926fa290}\label{classSwingTwistConstraintPart_a2964a0ed18137258a244d1b4926fa290} 
+void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore state of this constraint part. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintPart_a6588973f6ab2b380c62caaa2d3658f20}\label{classSwingTwistConstraintPart_a6588973f6ab2b380c62caaa2d3658f20} 
+static JPH\+\_\+\+INLINE bool {\bfseries s\+Distance\+To\+Min\+Shorter} (float in\+Delta\+Min, float in\+Delta\+Max)
+\begin{DoxyCompactList}\small\item\em Helper function to determine if we\textquotesingle{}re clamped against the min or max limit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSwingTwistConstraintPart_a52114d8a17117ba0e7db21c6d65ac317}\label{classSwingTwistConstraintPart_a52114d8a17117ba0e7db21c6d65ac317} 
+static constexpr uint {\bfseries c\+Clamped\+Twist\+Min} = 1 $<$$<$ 0
+\begin{DoxyCompactList}\small\item\em Flags to indicate which axis got clamped by Clamp\+Swing\+Twist. \end{DoxyCompactList}\item 
+\Hypertarget{classSwingTwistConstraintPart_a6b558e5a79ffce7ef3fcc4a10df1c932}\label{classSwingTwistConstraintPart_a6b558e5a79ffce7ef3fcc4a10df1c932} 
+static constexpr uint {\bfseries c\+Clamped\+Twist\+Max} = 1 $<$$<$ 1
+\item 
+\Hypertarget{classSwingTwistConstraintPart_a9b80a201af6ea27d2d35b485c88c9b0e}\label{classSwingTwistConstraintPart_a9b80a201af6ea27d2d35b485c88c9b0e} 
+static constexpr uint {\bfseries c\+Clamped\+Swing\+YMin} = 1 $<$$<$ 2
+\item 
+\Hypertarget{classSwingTwistConstraintPart_a480178e78f7f5c4bd4dd9043bcea0f03}\label{classSwingTwistConstraintPart_a480178e78f7f5c4bd4dd9043bcea0f03} 
+static constexpr uint {\bfseries c\+Clamped\+Swing\+YMax} = 1 $<$$<$ 3
+\item 
+\Hypertarget{classSwingTwistConstraintPart_a808d818a63cd8380799ace91d9a2b94c}\label{classSwingTwistConstraintPart_a808d818a63cd8380799ace91d9a2b94c} 
+static constexpr uint {\bfseries c\+Clamped\+Swing\+ZMin} = 1 $<$$<$ 4
+\item 
+\Hypertarget{classSwingTwistConstraintPart_ac96e6d6e42458d8ca8d230763c451321}\label{classSwingTwistConstraintPart_ac96e6d6e42458d8ca8d230763c451321} 
+static constexpr uint {\bfseries c\+Clamped\+Swing\+ZMax} = 1 $<$$<$ 5
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Quaternion based constraint that decomposes the rotation in constraint space in swing and twist\+: q = q\+\_\+swing \texorpdfstring{$\ast$}{*} q\+\_\+twist where q\+\_\+swing.\+x = 0 and where q\+\_\+twist.\+y = q\+\_\+twist.\+z = 0
+
+
+\begin{DoxyItemize}
+\item Rotation around the twist (x-\/axis) is within \mbox{[}in\+Twist\+Min\+Angle, in\+Twist\+Max\+Angle\mbox{]}.
+\item Rotation around the swing axis (y and z axis) are limited to an ellipsoid in quaternion space formed by the equation\+:
+\end{DoxyItemize}
+
+(q\+\_\+swing.\+y / sin(in\+Swing\+YHalf\+Angle / 2))\texorpdfstring{$^\wedge$}{\string^}2 + (q\+\_\+swing.\+z / sin(in\+Swing\+ZHalf\+Angle / 2))\texorpdfstring{$^\wedge$}{\string^}2 \texorpdfstring{$<$}{<}= 1
+
+Which roughly corresponds to an elliptic cone shape with major axis (in\+Swing\+YHalf\+Angle, in\+Swing\+ZHalf\+Angle).
+
+In case in\+Swing\+YHalf\+Angle = 0, the rotation around Y will be constrained to 0 and the rotation around Z will be constrained between \mbox{[}-\/in\+Swing\+ZHalf\+Angle, in\+Swing\+ZHalf\+Angle\mbox{]}. Vice versa if in\+Swing\+ZHalf\+Angle = 0. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSwingTwistConstraintPart_aaf0e7de8bc6c556f7d1a1d2ef4c32317}\label{classSwingTwistConstraintPart_aaf0e7de8bc6c556f7d1a1d2ef4c32317} 
+\index{SwingTwistConstraintPart@{SwingTwistConstraintPart}!CalculateConstraintProperties@{CalculateConstraintProperties}}
+\index{CalculateConstraintProperties@{CalculateConstraintProperties}!SwingTwistConstraintPart@{SwingTwistConstraintPart}}
+\doxysubsubsection{\texorpdfstring{CalculateConstraintProperties()}{CalculateConstraintProperties()}}
+{\footnotesize\ttfamily void Swing\+Twist\+Constraint\+Part\+::\+Calculate\+Constraint\+Properties (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{const \mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Constraint\+Rotation,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Constraint\+To\+World }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate properties used during the functions below 
+\begin{DoxyParams}{Parameters}
+{\em in\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em in\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+Constraint\+Rotation} & The current rotation of the constraint in constraint space \\
+\hline
+{\em in\+Constraint\+To\+World} & Rotates from constraint space into world space \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSwingTwistConstraintPart_ae8a947eca657db9a653b0d3de921e7c1}\label{classSwingTwistConstraintPart_ae8a947eca657db9a653b0d3de921e7c1} 
+\index{SwingTwistConstraintPart@{SwingTwistConstraintPart}!SolvePositionConstraint@{SolvePositionConstraint}}
+\index{SolvePositionConstraint@{SolvePositionConstraint}!SwingTwistConstraintPart@{SwingTwistConstraintPart}}
+\doxysubsubsection{\texorpdfstring{SolvePositionConstraint()}{SolvePositionConstraint()}}
+{\footnotesize\ttfamily bool Swing\+Twist\+Constraint\+Part\+::\+Solve\+Position\+Constraint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{io\+Body2,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Constraint\+Rotation,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Constraint\+To\+Body1,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Constraint\+To\+Body2,  }\item[{float}]{in\+Baumgarte }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iteratively update the position constraint. Makes sure C(...) = 0. 
+\begin{DoxyParams}{Parameters}
+{\em io\+Body1} & The first body that this constraint is attached to \\
+\hline
+{\em io\+Body2} & The second body that this constraint is attached to \\
+\hline
+{\em in\+Constraint\+Rotation} & The current rotation of the constraint in constraint space \\
+\hline
+{\em in\+Constraint\+To\+Body1,in\+Constraint\+To\+Body2} & Rotates from constraint space to body 1/2 space \\
+\hline
+{\em in\+Baumgarte} & Baumgarte constant (fraction of the error to correct) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/\+Constraint\+Part/Swing\+Twist\+Constraint\+Part.\+h\end{DoxyCompactItemize}

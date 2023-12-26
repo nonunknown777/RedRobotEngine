@@ -1,0 +1,108 @@
+\doxysection{State\+Recorder Class Reference}
+\hypertarget{classStateRecorder}{}\label{classStateRecorder}\index{StateRecorder@{StateRecorder}}
+
+
+{\ttfamily \#include $<$State\+Recorder.\+h$>$}
+
+
+
+Inheritance diagram for State\+Recorder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d6/d9d/classStateRecorder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for State\+Recorder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{d3/d9d/classStateRecorder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStateRecorder_ae41b09b37188ba73227dae4e070c53a8}\label{classStateRecorder_ae41b09b37188ba73227dae4e070c53a8} 
+{\bfseries State\+Recorder} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classStateRecorder_a3818f8d05147108719da00491da8569a}\label{classStateRecorder_a3818f8d05147108719da00491da8569a} 
+{\bfseries State\+Recorder} (const \mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+RHS)
+\item 
+void \mbox{\hyperlink{classStateRecorder_a94551fc91c9a1580a818dab49ba6e26d}{Set\+Validating}} (bool in\+Validating)
+\item 
+\Hypertarget{classStateRecorder_a347912d4c7bbcb1e1c1e3689a3fccd56}\label{classStateRecorder_a347912d4c7bbcb1e1c1e3689a3fccd56} 
+bool {\bfseries Is\+Validating} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStreamIn}{Stream\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Stream\+In} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStreamIn_a85303621b160dd9280ca9b7ff67d8217}{Read\+Bytes}} (void \texorpdfstring{$\ast$}{*}out\+Data, size\+\_\+t in\+Num\+Bytes)=0
+\begin{DoxyCompactList}\small\item\em Read a string of bytes from the binary stream. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classStreamIn_a9a2a616b63703ec5c80423ad2692d06e}{Is\+EOF}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns true when an attempt has been made to read past the end of the file. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classStreamIn_abda7a049c94885abd04a6e583e4c5b37}{Is\+Failed}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns true if there was an IO failure. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void {\bfseries Read} (T \&outT)
+\begin{DoxyCompactList}\small\item\em Read a primitive (e.\+g. float, int, etc.) from the binary stream. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , class A $>$ }\\void {\bfseries Read} (std\+::vector$<$ T, A $>$ \&outT)
+\begin{DoxyCompactList}\small\item\em Read a vector of primitives from the binary stream. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Type , class Traits , class Allocator $>$ }\\void {\bfseries Read} (std\+::basic\+\_\+string$<$ Type, Traits, Allocator $>$ \&out\+String)
+\begin{DoxyCompactList}\small\item\em Read a string from the binary stream (reads the number of characters and then the characters) \end{DoxyCompactList}\item 
+void {\bfseries Read} (\mbox{\hyperlink{classVec3}{Vec3}} \&out\+Vec)
+\begin{DoxyCompactList}\small\item\em Read a \doxylink{classVec3}{Vec3} (don\textquotesingle{}t read W) \end{DoxyCompactList}\item 
+void {\bfseries Read} (\mbox{\hyperlink{classDVec3}{DVec3}} \&out\+Vec)
+\begin{DoxyCompactList}\small\item\em Read a \doxylink{classDVec3}{DVec3} (don\textquotesingle{}t read W) \end{DoxyCompactList}\item 
+void {\bfseries Read} (\mbox{\hyperlink{classDMat44}{DMat44}} \&out\+Vec)
+\begin{DoxyCompactList}\small\item\em Read a \doxylink{classDMat44}{DMat44} (don\textquotesingle{}t read W component of translation) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStreamOut}{Stream\+Out}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Stream\+Out} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classStreamOut_aa80bff3216178ef392693f1997803d99}{Write\+Bytes}} (const void \texorpdfstring{$\ast$}{*}in\+Data, size\+\_\+t in\+Num\+Bytes)=0
+\begin{DoxyCompactList}\small\item\em Write a string of bytes to the binary stream. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classStreamOut_a30c9fa2d50a64c0da4d6dc5ae614e756}{Is\+Failed}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns true if there was an IO failure. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void {\bfseries Write} (const T \&inT)
+\begin{DoxyCompactList}\small\item\em Write a primitive (e.\+g. float, int, etc.) to the binary stream. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , class A $>$ }\\void {\bfseries Write} (const std\+::vector$<$ T, A $>$ \&inT)
+\begin{DoxyCompactList}\small\item\em Write a vector of primitives from the binary stream. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Type , class Traits , class Allocator $>$ }\\void {\bfseries Write} (const std\+::basic\+\_\+string$<$ Type, Traits, Allocator $>$ \&in\+String)
+\begin{DoxyCompactList}\small\item\em Write a string to the binary stream (writes the number of characters and then the characters) \end{DoxyCompactList}\item 
+void {\bfseries Write} (const \mbox{\hyperlink{classVec3}{Vec3}} \&in\+Vec)
+\begin{DoxyCompactList}\small\item\em Write a \doxylink{classVec3}{Vec3} (don\textquotesingle{}t write W) \end{DoxyCompactList}\item 
+void {\bfseries Write} (const \mbox{\hyperlink{classDVec3}{DVec3}} \&in\+Vec)
+\begin{DoxyCompactList}\small\item\em Write a \doxylink{classDVec3}{DVec3} (don\textquotesingle{}t write W) \end{DoxyCompactList}\item 
+void {\bfseries Write} (const \mbox{\hyperlink{classDMat44}{DMat44}} \&in\+Vec)
+\begin{DoxyCompactList}\small\item\em Write a \doxylink{classDMat44}{DMat44} (don\textquotesingle{}t write W component of translation) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that records the state of a physics system. Can be used to check if the simulation is deterministic by putting the recorder in validation mode. Can be used to restore the state to an earlier point in time. Note that only the state that is modified by the simulation is saved, configuration settings like body friction or restitution, motion quality etc. are not saved and need to be saved by the user if desired. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStateRecorder_a94551fc91c9a1580a818dab49ba6e26d}\label{classStateRecorder_a94551fc91c9a1580a818dab49ba6e26d} 
+\index{StateRecorder@{StateRecorder}!SetValidating@{SetValidating}}
+\index{SetValidating@{SetValidating}!StateRecorder@{StateRecorder}}
+\doxysubsubsection{\texorpdfstring{SetValidating()}{SetValidating()}}
+{\footnotesize\ttfamily void State\+Recorder\+::\+Set\+Validating (\begin{DoxyParamCaption}\item[{bool}]{in\+Validating }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the stream in validation mode. In this case the physics system ensures that before it calls Read\+Bytes that it will ensure that those bytes contain the current state. This makes it possible to step and save the state, restore to the previous step and step again and when the recorded state is not the same it can restore the expected state and any byte that changes due to a Read\+Bytes function can be caught to find out which part of the simulation is not deterministic. Note that validation only works when saving the full state of the simulation (EState\+Recorder\+State\+::\+All, \doxylink{classStateRecorderFilter}{State\+Recorder\+Filter} == nullptr). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/State\+Recorder.\+h\end{DoxyCompactItemize}

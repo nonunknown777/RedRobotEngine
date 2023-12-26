@@ -1,0 +1,4 @@
+<map id="DebugRenderer" name="DebugRenderer">
+<area shape="rect" id="Node000001" title="Simple triangle renderer for debugging purposes." alt="" coords="5,5,196,331"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="197,110,208,119,216,132,221,148,223,168,219,194,211,213,206,211,214,193,217,168,216,149,211,134,204,122,194,114"/>
+</map>

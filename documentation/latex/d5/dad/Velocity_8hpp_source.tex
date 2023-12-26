@@ -1,0 +1,135 @@
+\doxysection{Velocity.\+hpp}
+\hypertarget{Velocity_8hpp_source}{}\label{Velocity_8hpp_source}\index{includes/playrho/Common/Velocity.hpp@{includes/playrho/Common/Velocity.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_VELOCITY\_HPP}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_VELOCITY\_HPP}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Settings.hpp>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Vector2.hpp>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }MovementConf;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{namespace\ }d2\ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structplayrho_1_1Vector}{LinearVelocity2}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}};\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{group__PhysicalQuantities_gac33f92018f7e8821550296aece465028}{AngularVelocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}};\ }
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afe4f2bcd98877c4562293dfe2dbcfa8b}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ rhs)}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ (lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ ==\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}})\ \&\&\ (lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ ==\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}});}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_a50aa6c2021393ced745d056c34b3bc07}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ rhs)}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ (lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ !=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}})\ ||\ (lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ !=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}});}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_a7083f8551c8713a94d38f614a7ebc3b5}{operator*=}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ rhs)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ *=\ rhs;}
+\DoxyCodeLine{00062\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ *=\ rhs;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afafe86dc357999a8933a71f73dcce818}{operator/=}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ rhs)}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ /=\ rhs;}
+\DoxyCodeLine{00071\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ /=\ rhs;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_a3be07a7714bf76d380af60fa8ef623d3}{operator+=}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ rhs)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ +=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}};}
+\DoxyCodeLine{00080\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ +=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}};}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_a7608d9d4b5ffcc571a17bacf9faa411e}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ rhs)}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\{lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ +\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}},\ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ +\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\};}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_ad2577d7502ee2442b81d0e6570c00d6f}{operator-\/=}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ rhs)}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ -\/=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}};}
+\DoxyCodeLine{00096\ \ \ \ \ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ -\/=\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_ab2f3370383aaf9a8443cacef7841c5a0}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ rhs)}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\{lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ -\/\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}},\ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ -\/\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\};}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_ab9cbc07fb71929600cae9ef2f69e35ac}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ value)}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\{-\/value.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}},\ -\/value.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\};}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_acf1a262569fd1d300ef359200d514d6a}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ value)}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00119\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_a5d52ed09352bfd1dd80dc6b138a19f55}{operator*}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ rhs)}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\{lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ *\ rhs,\ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ *\ rhs\};}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_a285d8d7bdef58a4c7210516b1060beef}{operator*}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ rhs)}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\{rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ *\ lhs,\ rhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ *\ lhs\};}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_aec5f4967a3c7e58ccf6c9fb4aafa90a1}{operator/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\ rhs)}
+\DoxyCodeLine{00138\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ inverseRhs\ =\ \mbox{\hyperlink{namespaceplayrho_a1fc125070a08100d083a1360f7167f87}{Real}}\{1\}\ /\ rhs;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\{lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_afc8399d7200b4299a0e21cc184db0f0e}{linear}}\ *\ inverseRhs,\ lhs.\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_accc1d801801fb20a83fb5451ad8dd46d}{angular}}\ *\ inverseRhs\};}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespaceplayrho_1_1d2_aa577189e0996ba8d7897fa12b80726c8}{VelocityPair}}\ =\ std::pair<Velocity,\ Velocity>;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_a3d2551fe26d1aa448d4d4b337e5aa66c}{Cap}}(\mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{Velocity}}\ velocity,\ \mbox{\hyperlink{group__PhysicalQuantities_ga250898c9929b0e6eaf56a1967c568888}{Time}}\ h,\ \textcolor{keyword}{const}\ MovementConf\&\ conf)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \}\ \textcolor{comment}{//\ namespace\ d2}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00159\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity_a1735a28e0a25cc77e59fafe1d840c242}{IsValid}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayrho_1_1d2_1_1Velocity}{d2::Velocity}}\&\ value)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.linear)\ \&\&\ \mbox{\hyperlink{namespaceplayrho_a299c547b3a13504426688a0c968e2891}{IsValid}}(value.angular);}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_VELOCITY\_HPP}}
+
+\end{DoxyCode}

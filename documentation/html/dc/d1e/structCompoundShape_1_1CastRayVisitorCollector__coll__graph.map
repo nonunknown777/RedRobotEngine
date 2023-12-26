@@ -1,0 +1,26 @@
+<map id="CompoundShape::CastRayVisitorCollector" name="CompoundShape::CastRayVisitorCollector">
+<area shape="rect" id="Node000001" title=" " alt="" coords="493,1595,720,1745"/>
+<area shape="rect" id="Node000002" href="$de/d01/classRayInvDirection.html" title="Helper structure holding the reciprocal of a ray for Ray vs AABox testing." alt="" coords="203,850,343,962"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,962,253,1094,242,1262,241,1345,245,1421,256,1484,264,1509,274,1528,293,1552,314,1573,365,1607,421,1631,477,1648,476,1653,419,1636,362,1611,311,1577,289,1556,269,1531,259,1511,250,1485,240,1421,235,1345,236,1261,248,1094,263,961"/>
+<area shape="rect" id="Node000003" href="$d9/de4/classVec3.html" title=" " alt="" coords="50,37,211,619"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="185,618,208,708,249,833,243,835,202,709,180,619"/>
+<area shape="rect" id="Node000006" href="$db/d36/structRayCastT.html" title=" " alt="" coords="5,809,179,1003"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="100,619,96,675,93,792,87,792,90,675,94,618"/>
+<area shape="rect" id="Node000004" href="$d4/da3/classUVec4.html" title=" " alt="" coords="273,5,421,651"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="328,651,320,709,295,834,289,833,315,708,322,650"/>
+<area shape="rect" id="Node000005" href="$d7/de8/structRayCast.html" title=" " alt="" coords="133,1302,200,1372"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="162,1372,155,1416,155,1469,165,1522,175,1547,190,1569,209,1584,235,1597,306,1621,391,1639,477,1652,476,1657,390,1644,305,1626,233,1602,206,1588,186,1572,170,1549,159,1524,149,1469,150,1415,156,1371"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="114,1017,163,1302,158,1303,109,1018"/>
+<area shape="rect" id="Node000007" href="$d6/d53/classCollisionCollector.html" title="Virtual interface that allows collecting multiple collision results." alt="" coords="391,1144,609,1530"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="564,1529,580,1578,575,1579,559,1530"/>
+<area shape="rect" id="Node000008" href="$d6/d11/classSubShapeIDCreator.html" title=" " alt="" coords="633,1281,796,1393"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="710,1393,694,1478,667,1572,663,1580,658,1578,661,1570,689,1477,705,1392"/>
+<area shape="rect" id="Node000009" href="$d6/dc1/classRayCastSettings.html" title="Settings to be passed with a ray cast." alt="" coords="820,1292,988,1382"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="903,1383,896,1426,882,1476,861,1527,830,1572,787,1609,737,1635,735,1630,784,1604,826,1569,856,1525,877,1475,890,1425,898,1382"/>
+<area shape="rect" id="Node000010" href="$da/d44/classShapeFilter.html" title="Filter class." alt="" coords="1012,1281,1137,1393"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="1070,1394,1060,1438,1043,1486,1018,1533,983,1573,927,1610,864,1637,799,1654,737,1665,736,1660,798,1649,862,1632,924,1605,980,1569,1014,1530,1038,1484,1055,1436,1065,1392"/>
+<area shape="rect" id="Node000011" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="912,850,1035,962"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="992,976,1064,1281,1059,1282,987,977"/>
+<area shape="rect" id="Node000012" href="$df/d4d/classBodyID.html" title="ID of a body. This is a way of reasoning about bodies in a multithreaded simulation while avoiding ra..." alt="" coords="1059,733,1293,1079"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="1138,1080,1094,1265,1089,1264,1133,1078"/>
+</map>

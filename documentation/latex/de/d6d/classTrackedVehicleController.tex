@@ -1,0 +1,275 @@
+\doxysection{Tracked\+Vehicle\+Controller Class Reference}
+\hypertarget{classTrackedVehicleController}{}\label{classTrackedVehicleController}\index{TrackedVehicleController@{TrackedVehicleController}}
+
+
+Runtime controller class for vehicle with tank tracks.  
+
+
+
+
+{\ttfamily \#include $<$Tracked\+Vehicle\+Controller.\+h$>$}
+
+
+
+Inheritance diagram for Tracked\+Vehicle\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dc/d96/classTrackedVehicleController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Tracked\+Vehicle\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{df/da3/classTrackedVehicleController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTrackedVehicleController_a68263b8fa9c3fc0a170ea81e4fa2bfda}\label{classTrackedVehicleController_a68263b8fa9c3fc0a170ea81e4fa2bfda} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Tracked\+Vehicle\+Controller} (const \mbox{\hyperlink{classTrackedVehicleControllerSettings}{Tracked\+Vehicle\+Controller\+Settings}} \&in\+Settings, \mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&in\+Constraint)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTrackedVehicleController_af01b954bba5b8876b3e33d0303f516ed}{Set\+Driver\+Input}} (float in\+Forward, float in\+Left\+Ratio, float in\+Right\+Ratio, float in\+Brake)
+\item 
+\Hypertarget{classTrackedVehicleController_af035163b8e7f810c7c397186c35d577a}\label{classTrackedVehicleController_af035163b8e7f810c7c397186c35d577a} 
+void {\bfseries Set\+Forward\+Input} (float in\+Forward)
+\begin{DoxyCompactList}\small\item\em Value between -\/1 and 1 for auto transmission and value between 0 and 1 indicating desired driving direction and amount the gas pedal is pressed. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_ab6609714cd395abb6a9d29552dc5fb85}\label{classTrackedVehicleController_ab6609714cd395abb6a9d29552dc5fb85} 
+float {\bfseries Get\+Forward\+Input} () const
+\item 
+\Hypertarget{classTrackedVehicleController_a7865699eb6947060c4a117d67e39806d}\label{classTrackedVehicleController_a7865699eb6947060c4a117d67e39806d} 
+void {\bfseries Set\+Left\+Ratio} (float in\+Left\+Ratio)
+\begin{DoxyCompactList}\small\item\em Value between -\/1 and 1 indicating an extra multiplier to the rotation rate of the left track (used for steering) \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a21f5ddb54144f1978e08491e236f2969}\label{classTrackedVehicleController_a21f5ddb54144f1978e08491e236f2969} 
+float {\bfseries Get\+Left\+Ratio} () const
+\item 
+\Hypertarget{classTrackedVehicleController_a34fbd77864cfdbdb0e4bce68adff3d73}\label{classTrackedVehicleController_a34fbd77864cfdbdb0e4bce68adff3d73} 
+void {\bfseries Set\+Right\+Ratio} (float in\+Right\+Ratio)
+\begin{DoxyCompactList}\small\item\em Value between -\/1 and 1 indicating an extra multiplier to the rotation rate of the right track (used for steering) \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a56d16548d8180759d16746c4e4024ba5}\label{classTrackedVehicleController_a56d16548d8180759d16746c4e4024ba5} 
+float {\bfseries Get\+Right\+Ratio} () const
+\item 
+\Hypertarget{classTrackedVehicleController_ae97359340349c437523f88b953a70759}\label{classTrackedVehicleController_ae97359340349c437523f88b953a70759} 
+void {\bfseries Set\+Brake\+Input} (float in\+Brake)
+\begin{DoxyCompactList}\small\item\em Value between 0 and 1 indicating how strong the brake pedal is pressed. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a3643a17beaee68e91eb2777b8a6639c7}\label{classTrackedVehicleController_a3643a17beaee68e91eb2777b8a6639c7} 
+float {\bfseries Get\+Brake\+Input} () const
+\item 
+\Hypertarget{classTrackedVehicleController_a8e4de97e46ec73d36fce4d32d38f6ed2}\label{classTrackedVehicleController_a8e4de97e46ec73d36fce4d32d38f6ed2} 
+const \mbox{\hyperlink{classVehicleEngine}{Vehicle\+Engine}} \& {\bfseries Get\+Engine} () const
+\begin{DoxyCompactList}\small\item\em Get current engine state. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_acb2deddabb17190a97fbeee604d6a845}\label{classTrackedVehicleController_acb2deddabb17190a97fbeee604d6a845} 
+\mbox{\hyperlink{classVehicleEngine}{Vehicle\+Engine}} \& {\bfseries Get\+Engine} ()
+\begin{DoxyCompactList}\small\item\em Get current engine state (writable interface, allows you to make changes to the configuration which will take effect the next time step) \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a18af9ade5be94c6740c888b61c922419}\label{classTrackedVehicleController_a18af9ade5be94c6740c888b61c922419} 
+const \mbox{\hyperlink{classVehicleTransmission}{Vehicle\+Transmission}} \& {\bfseries Get\+Transmission} () const
+\begin{DoxyCompactList}\small\item\em Get current transmission state. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_af251172b17a496ce895bd39709b86065}\label{classTrackedVehicleController_af251172b17a496ce895bd39709b86065} 
+\mbox{\hyperlink{classVehicleTransmission}{Vehicle\+Transmission}} \& {\bfseries Get\+Transmission} ()
+\begin{DoxyCompactList}\small\item\em Get current transmission state (writable interface, allows you to make changes to the configuration which will take effect the next time step) \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a197ca759987300cb86170ac747e34d61}\label{classTrackedVehicleController_a197ca759987300cb86170ac747e34d61} 
+const Vehicle\+Tracks \& {\bfseries Get\+Tracks} () const
+\begin{DoxyCompactList}\small\item\em Get the tracks this vehicle has. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a778d53e87c6d3c769079b71961123745}\label{classTrackedVehicleController_a778d53e87c6d3c769079b71961123745} 
+Vehicle\+Tracks \& {\bfseries Get\+Tracks} ()
+\begin{DoxyCompactList}\small\item\em Get the tracks this vehicle has (writable interface, allows you to make changes to the configuration which will take effect the next time step) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Vehicle\+Controller} (\mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&in\+Constraint)
+\begin{DoxyCompactList}\small\item\em Constructor / destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Controller $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTrackedVehicleController_ab5064addb31d8c35e87492b48221503c}\label{classTrackedVehicleController_ab5064addb31d8c35e87492b48221503c} 
+void {\bfseries Sync\+Left\+Right\+Tracks} ()
+\begin{DoxyCompactList}\small\item\em Synchronize angular velocities of left and right tracks according to their ratios. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classWheel}{Wheel}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classTrackedVehicleController_a66ae1eabf51f75a52b2c53f43228454d}{Construct\+Wheel}} (const \mbox{\hyperlink{classWheelSettings}{Wheel\+Settings}} \&in\+Wheel) const override
+\item 
+virtual bool \mbox{\hyperlink{classTrackedVehicleController_aa466156a2a5c4591ebbd92347807b509}{Allow\+Sleep}} () const override
+\item 
+virtual void \mbox{\hyperlink{classTrackedVehicleController_ac15db6224d7285dceec67dd18a8a44c3}{Pre\+Collide}} (float in\+Delta\+Time, \mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&in\+Physics\+System) override
+\item 
+virtual void \mbox{\hyperlink{classTrackedVehicleController_a3b6f12cbc339da486592cb4675d6c253}{Post\+Collide}} (float in\+Delta\+Time, \mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&in\+Physics\+System) override
+\item 
+virtual bool \mbox{\hyperlink{classTrackedVehicleController_acd1edbcc7801968efd8962a6efd54277}{Solve\+Longitudinal\+And\+Lateral\+Constraints}} (float in\+Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{classTrackedVehicleController_ae8d0a200e00e18fabc6674c81e8230d6}{Save\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const override
+\item 
+virtual void \mbox{\hyperlink{classTrackedVehicleController_ab962e7fd76bba876bae21b5fea72762f}{Restore\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classTrackedVehicleController_ad44aa72b04fbd715a4690cc9343b0693}\label{classTrackedVehicleController_ad44aa72b04fbd715a4690cc9343b0693} 
+float {\bfseries m\+Forward\+Input} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Value between -\/1 and 1 for auto transmission and value between 0 and 1 indicating desired driving direction and amount the gas pedal is pressed. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a09bd9910c15055a76e5d524fef8c9f0f}\label{classTrackedVehicleController_a09bd9910c15055a76e5d524fef8c9f0f} 
+float {\bfseries m\+Left\+Ratio} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Value between -\/1 and 1 indicating an extra multiplier to the rotation rate of the left track (used for steering) \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_ae051ddbdc41f87fb80f32f72e829729d}\label{classTrackedVehicleController_ae051ddbdc41f87fb80f32f72e829729d} 
+float {\bfseries m\+Right\+Ratio} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Value between -\/1 and 1 indicating an extra multiplier to the rotation rate of the right track (used for steering) \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_ae1eed09587eafa6e49d744ffa180d6ae}\label{classTrackedVehicleController_ae1eed09587eafa6e49d744ffa180d6ae} 
+float {\bfseries m\+Brake\+Input} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Value between 0 and 1 indicating how strong the brake pedal is pressed. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a03666420e6389d5678d3b9756c381914}\label{classTrackedVehicleController_a03666420e6389d5678d3b9756c381914} 
+\mbox{\hyperlink{classVehicleEngine}{Vehicle\+Engine}} {\bfseries m\+Engine}
+\begin{DoxyCompactList}\small\item\em Engine state of the vehicle. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a56eef9473ecf210d41d0c7a3994c79cd}\label{classTrackedVehicleController_a56eef9473ecf210d41d0c7a3994c79cd} 
+\mbox{\hyperlink{classVehicleTransmission}{Vehicle\+Transmission}} {\bfseries m\+Transmission}
+\begin{DoxyCompactList}\small\item\em Transmission state of the vehicle. \end{DoxyCompactList}\item 
+\Hypertarget{classTrackedVehicleController_a1488f414bfa1cd59e4165b1157e42858}\label{classTrackedVehicleController_a1488f414bfa1cd59e4165b1157e42858} 
+Vehicle\+Tracks {\bfseries m\+Tracks}
+\begin{DoxyCompactList}\small\item\em Tracks of the vehicle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \& {\bfseries m\+Constraint}
+\begin{DoxyCompactList}\small\item\em The vehicle constraint we belong to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Controller $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Controller $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Controller $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Runtime controller class for vehicle with tank tracks. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTrackedVehicleController_aa466156a2a5c4591ebbd92347807b509}\label{classTrackedVehicleController_aa466156a2a5c4591ebbd92347807b509} 
+\index{TrackedVehicleController@{TrackedVehicleController}!AllowSleep@{AllowSleep}}
+\index{AllowSleep@{AllowSleep}!TrackedVehicleController@{TrackedVehicleController}}
+\doxysubsubsection{\texorpdfstring{AllowSleep()}{AllowSleep()}}
+{\footnotesize\ttfamily virtual bool Tracked\+Vehicle\+Controller\+::\+Allow\+Sleep (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}.
+
+\Hypertarget{classTrackedVehicleController_a66ae1eabf51f75a52b2c53f43228454d}\label{classTrackedVehicleController_a66ae1eabf51f75a52b2c53f43228454d} 
+\index{TrackedVehicleController@{TrackedVehicleController}!ConstructWheel@{ConstructWheel}}
+\index{ConstructWheel@{ConstructWheel}!TrackedVehicleController@{TrackedVehicleController}}
+\doxysubsubsection{\texorpdfstring{ConstructWheel()}{ConstructWheel()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classWheel}{Wheel}} \texorpdfstring{$\ast$}{*} Tracked\+Vehicle\+Controller\+::\+Construct\+Wheel (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classWheelSettings}{Wheel\+Settings}} \&}]{in\+Wheel }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}.
+
+\Hypertarget{classTrackedVehicleController_a3b6f12cbc339da486592cb4675d6c253}\label{classTrackedVehicleController_a3b6f12cbc339da486592cb4675d6c253} 
+\index{TrackedVehicleController@{TrackedVehicleController}!PostCollide@{PostCollide}}
+\index{PostCollide@{PostCollide}!TrackedVehicleController@{TrackedVehicleController}}
+\doxysubsubsection{\texorpdfstring{PostCollide()}{PostCollide()}}
+{\footnotesize\ttfamily virtual void Tracked\+Vehicle\+Controller\+::\+Post\+Collide (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time,  }\item[{\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&}]{in\+Physics\+System }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}.
+
+\Hypertarget{classTrackedVehicleController_ac15db6224d7285dceec67dd18a8a44c3}\label{classTrackedVehicleController_ac15db6224d7285dceec67dd18a8a44c3} 
+\index{TrackedVehicleController@{TrackedVehicleController}!PreCollide@{PreCollide}}
+\index{PreCollide@{PreCollide}!TrackedVehicleController@{TrackedVehicleController}}
+\doxysubsubsection{\texorpdfstring{PreCollide()}{PreCollide()}}
+{\footnotesize\ttfamily virtual void Tracked\+Vehicle\+Controller\+::\+Pre\+Collide (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time,  }\item[{\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&}]{in\+Physics\+System }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}.
+
+\Hypertarget{classTrackedVehicleController_ab962e7fd76bba876bae21b5fea72762f}\label{classTrackedVehicleController_ab962e7fd76bba876bae21b5fea72762f} 
+\index{TrackedVehicleController@{TrackedVehicleController}!RestoreState@{RestoreState}}
+\index{RestoreState@{RestoreState}!TrackedVehicleController@{TrackedVehicleController}}
+\doxysubsubsection{\texorpdfstring{RestoreState()}{RestoreState()}}
+{\footnotesize\ttfamily virtual void Tracked\+Vehicle\+Controller\+::\+Restore\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}.
+
+\Hypertarget{classTrackedVehicleController_ae8d0a200e00e18fabc6674c81e8230d6}\label{classTrackedVehicleController_ae8d0a200e00e18fabc6674c81e8230d6} 
+\index{TrackedVehicleController@{TrackedVehicleController}!SaveState@{SaveState}}
+\index{SaveState@{SaveState}!TrackedVehicleController@{TrackedVehicleController}}
+\doxysubsubsection{\texorpdfstring{SaveState()}{SaveState()}}
+{\footnotesize\ttfamily virtual void Tracked\+Vehicle\+Controller\+::\+Save\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}.
+
+\Hypertarget{classTrackedVehicleController_af01b954bba5b8876b3e33d0303f516ed}\label{classTrackedVehicleController_af01b954bba5b8876b3e33d0303f516ed} 
+\index{TrackedVehicleController@{TrackedVehicleController}!SetDriverInput@{SetDriverInput}}
+\index{SetDriverInput@{SetDriverInput}!TrackedVehicleController@{TrackedVehicleController}}
+\doxysubsubsection{\texorpdfstring{SetDriverInput()}{SetDriverInput()}}
+{\footnotesize\ttfamily void Tracked\+Vehicle\+Controller\+::\+Set\+Driver\+Input (\begin{DoxyParamCaption}\item[{float}]{in\+Forward,  }\item[{float}]{in\+Left\+Ratio,  }\item[{float}]{in\+Right\+Ratio,  }\item[{float}]{in\+Brake }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set input from driver 
+\begin{DoxyParams}{Parameters}
+{\em in\+Forward} & Value between -\/1 and 1 for auto transmission and value between 0 and 1 indicating desired driving direction and amount the gas pedal is pressed \\
+\hline
+{\em in\+Left\+Ratio} & Value between -\/1 and 1 indicating an extra multiplier to the rotation rate of the left track (used for steering) \\
+\hline
+{\em in\+Right\+Ratio} & Value between -\/1 and 1 indicating an extra multiplier to the rotation rate of the right track (used for steering) \\
+\hline
+{\em in\+Brake} & Value between 0 and 1 indicating how strong the brake pedal is pressed \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTrackedVehicleController_acd1edbcc7801968efd8962a6efd54277}\label{classTrackedVehicleController_acd1edbcc7801968efd8962a6efd54277} 
+\index{TrackedVehicleController@{TrackedVehicleController}!SolveLongitudinalAndLateralConstraints@{SolveLongitudinalAndLateralConstraints}}
+\index{SolveLongitudinalAndLateralConstraints@{SolveLongitudinalAndLateralConstraints}!TrackedVehicleController@{TrackedVehicleController}}
+\doxysubsubsection{\texorpdfstring{SolveLongitudinalAndLateralConstraints()}{SolveLongitudinalAndLateralConstraints()}}
+{\footnotesize\ttfamily virtual bool Tracked\+Vehicle\+Controller\+::\+Solve\+Longitudinal\+And\+Lateral\+Constraints (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classVehicleController}{Vehicle\+Controller}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Vehicle/Tracked\+Vehicle\+Controller.\+h\end{DoxyCompactItemize}

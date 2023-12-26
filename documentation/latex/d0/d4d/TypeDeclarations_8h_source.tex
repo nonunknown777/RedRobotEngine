@@ -1,0 +1,47 @@
+\doxysection{Type\+Declarations.\+h}
+\hypertarget{TypeDeclarations_8h_source}{}\label{TypeDeclarations_8h_source}\index{includes/jolt/ObjectStream/TypeDeclarations.h@{includes/jolt/ObjectStream/TypeDeclarations.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableObject.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Color.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/AABox.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/Triangle.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/IndexedTriangle.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ uint8);}
+\DoxyCodeLine{00016\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ uint16);}
+\DoxyCodeLine{00017\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{00018\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ uint32);}
+\DoxyCodeLine{00019\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ uint64);}
+\DoxyCodeLine{00020\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \textcolor{keywordtype}{float});}
+\DoxyCodeLine{00021\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \textcolor{keywordtype}{double});}
+\DoxyCodeLine{00022\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \textcolor{keywordtype}{bool});}
+\DoxyCodeLine{00023\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ String);}
+\DoxyCodeLine{00024\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classFloat3}{Float3}});}
+\DoxyCodeLine{00025\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classDouble3}{Double3}});}
+\DoxyCodeLine{00026\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classVec3}{Vec3}});}
+\DoxyCodeLine{00027\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classDVec3}{DVec3}});}
+\DoxyCodeLine{00028\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classVec4}{Vec4}});}
+\DoxyCodeLine{00029\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classQuat}{Quat}});}
+\DoxyCodeLine{00030\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classMat44}{Mat44}});}
+\DoxyCodeLine{00031\ JPH\_DECLARE\_RTTI\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classDMat44}{DMat44}});}
+\DoxyCodeLine{00032\ JPH\_DECLARE\_SERIALIZABLE\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classColor}{Color}});}
+\DoxyCodeLine{00033\ JPH\_DECLARE\_SERIALIZABLE\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classAABox}{AABox}});}
+\DoxyCodeLine{00034\ JPH\_DECLARE\_SERIALIZABLE\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classTriangle}{Triangle}});}
+\DoxyCodeLine{00035\ JPH\_DECLARE\_SERIALIZABLE\_OUTSIDE\_CLASS(JPH\_EXPORT,\ \mbox{\hyperlink{classIndexedTriangle}{IndexedTriangle}});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ These\ need\ to\ be\ added\ after\ all\ types\ have\ been\ registered\ or\ else\ clang\ under\ linux\ will\ not\ find\ GetRTTIOfType\ for\ the\ type}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableAttributeTyped.h>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableAttributeEnum.h>}}
+
+\end{DoxyCode}

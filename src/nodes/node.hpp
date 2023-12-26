@@ -23,11 +23,13 @@ class Node {
         virtual void set_name(std::string name);
 
         int iteration_index;
-
+        bool visible = true;
         virtual void _ready();
         virtual void _process(float delta);
         virtual void _input();
         virtual void _unhandled_input(InputEvent event);
+        virtual void _draw();
+
         // virtual void _physics_process(float delta);
         void add_child(Node* node);
         int get_child_count();

@@ -1,0 +1,76 @@
+\doxysection{Vehicle\+Track Class Reference}
+\hypertarget{classVehicleTrack}{}\label{classVehicleTrack}\index{VehicleTrack@{VehicleTrack}}
+
+
+Runtime data for tank tracks.  
+
+
+
+
+{\ttfamily \#include $<$Vehicle\+Track.\+h$>$}
+
+
+
+Inheritance diagram for Vehicle\+Track\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d0/dd2/classVehicleTrack__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Vehicle\+Track\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d0/d87/classVehicleTrack__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVehicleTrack_af25ef64c8e7fcdab73dc212f4f40d383}\label{classVehicleTrack_af25ef64c8e7fcdab73dc212f4f40d383} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleTrack_a0252bddefcd767ca47517706f168bc00}\label{classVehicleTrack_a0252bddefcd767ca47517706f168bc00} 
+void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classVehicleTrackSettings}{Vehicle\+Track\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Save\+Binary\+State} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the contents in binary form to in\+Stream. \end{DoxyCompactList}\item 
+void {\bfseries Restore\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restores the contents in binary form to in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVehicleTrack_a5f6ed5aff504c081d9ad67fc3dc8edec}\label{classVehicleTrack_a5f6ed5aff504c081d9ad67fc3dc8edec} 
+float {\bfseries m\+Angular\+Velocity} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Angular velocity of the driven wheel, will determine the speed of the entire track. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classVehicleTrackSettings}{Vehicle\+Track\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+uint {\bfseries m\+Driven\+Wheel}
+\begin{DoxyCompactList}\small\item\em Which wheel on the track is connected to the engine. \end{DoxyCompactList}\item 
+Array$<$ uint $>$ {\bfseries m\+Wheels}
+\begin{DoxyCompactList}\small\item\em Indices of wheels that are inside this track, should include the driven wheel too. \end{DoxyCompactList}\item 
+float {\bfseries m\+Inertia} = 10.\+0f
+\begin{DoxyCompactList}\small\item\em Moment of inertia (kg m\texorpdfstring{$^\wedge$}{\string^}2) of the track and its wheels as seen on the driven wheel. \end{DoxyCompactList}\item 
+float {\bfseries m\+Angular\+Damping} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em Damping factor of track and its wheels\+: dw/dt = -\/c \texorpdfstring{$\ast$}{*} w as seen on the driven wheel. \end{DoxyCompactList}\item 
+float {\bfseries m\+Max\+Brake\+Torque} = 15000.\+0f
+\begin{DoxyCompactList}\small\item\em How much torque (Nm) the brakes can apply on the driven wheel. \end{DoxyCompactList}\item 
+float {\bfseries m\+Differential\+Ratio} = 6.\+0f
+\begin{DoxyCompactList}\small\item\em Ratio between rotation speed of gear box and driven wheel of track. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Runtime data for tank tracks. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Vehicle/Vehicle\+Track.\+h\end{DoxyCompactItemize}

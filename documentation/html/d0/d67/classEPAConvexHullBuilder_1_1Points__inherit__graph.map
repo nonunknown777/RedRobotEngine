@@ -1,0 +1,5 @@
+<map id="EPAConvexHullBuilder::Points" name="EPAConvexHullBuilder::Points">
+<area shape="rect" id="Node000001" title="Specialized points list that allows direct access to the size." alt="" coords="5,379,163,465"/>
+<area shape="rect" id="Node000002" href="$de/d35/classStaticArray.html" title="Simple variable length array backed by a fixed size buffer." alt="" coords="19,5,149,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,346,87,379,81,379,81,346"/>
+</map>

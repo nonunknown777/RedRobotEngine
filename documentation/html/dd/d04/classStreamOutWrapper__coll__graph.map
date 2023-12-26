@@ -1,0 +1,7 @@
+<map id="StreamOutWrapper" name="StreamOutWrapper">
+<area shape="rect" id="Node000001" title="Wrapper around std::ostream." alt="" coords="5,453,167,565"/>
+<area shape="rect" id="Node000002" href="$dd/d39/classStreamOut.html" title="Simple binary output stream." alt="" coords="27,165,145,405"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,420,89,453,83,453,83,420"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="25,5,147,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,132,89,166,83,166,83,132"/>
+</map>

@@ -1,0 +1,121 @@
+\doxysection{Shape\+Settings Class Reference}
+\hypertarget{classShapeSettings}{}\label{classShapeSettings}\index{ShapeSettings@{ShapeSettings}}
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+
+
+Inheritance diagram for Shape\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/dde/classShapeSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Shape\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/dc7/classShapeSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classShapeSettings_a988ca04438dfad8edfe4e16d5394b6a8}\label{classShapeSettings_a988ca04438dfad8edfe4e16d5394b6a8} 
+using {\bfseries Shape\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classShape}{Shape}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classResult}{Shape\+Result}} \mbox{\hyperlink{classShapeSettings_a21e53b5758542a5527c7941d61d838fa}{Create}} () const =0
+\begin{DoxyCompactList}\small\item\em Create a shape according to the settings specified by this object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classShapeSettings_acd32835291c84d23e49c15194c1b0424}\label{classShapeSettings_acd32835291c84d23e49c15194c1b0424} 
+uint64 {\bfseries m\+User\+Data} = 0
+\begin{DoxyCompactList}\small\item\em User data (to be used freely by the application) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classShapeSettings_ac8e243f3e923ee07d58111a0dd88c547}\label{classShapeSettings_ac8e243f3e923ee07d58111a0dd88c547} 
+\mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries m\+Cached\+Result}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that can construct shapes and that is serializable using the \doxylink{classObjectStream}{Object\+Stream} system. Can be used to store shape data in \textquotesingle{}uncooked\textquotesingle{} form (i.\+e. in a form that is still human readable and authorable). Once the shape has been created using the \doxylink{classShapeSettings_a21e53b5758542a5527c7941d61d838fa}{Create()} function, the data will be moved into the \doxylink{classShape}{Shape} class in a form that is optimized for collision detection. After this, the \doxylink{classShapeSettings}{Shape\+Settings} object is no longer needed and can be destroyed. Each shape class has a derived class of the \doxylink{classShapeSettings}{Shape\+Settings} object to store shape specific data. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classShapeSettings_a21e53b5758542a5527c7941d61d838fa}\label{classShapeSettings_a21e53b5758542a5527c7941d61d838fa} 
+\index{ShapeSettings@{ShapeSettings}!Create@{Create}}
+\index{Create@{Create}!ShapeSettings@{ShapeSettings}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classResult}{Shape\+Result}} Shape\+Settings\+::\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Create a shape according to the settings specified by this object. 
+
+
+
+Implemented in \mbox{\hyperlink{classBoxShapeSettings_ae664f44a60cd71ec805e7871843dab93}{Box\+Shape\+Settings}}, \mbox{\hyperlink{classConvexHullShapeSettings_ab00b21a1c65d6ef7d4a3e4ae79ada3d3}{Convex\+Hull\+Shape\+Settings}}, \mbox{\hyperlink{classCylinderShapeSettings_a063c88606275bae1cd6c1cbea6560cab}{Cylinder\+Shape\+Settings}}, \mbox{\hyperlink{classHeightFieldShapeSettings_a9bccce0245f148f03112b84c92d6c8d0}{Height\+Field\+Shape\+Settings}}, \mbox{\hyperlink{classMeshShapeSettings_aa7f210d860a9d5a8e54ec96348878394}{Mesh\+Shape\+Settings}}, \mbox{\hyperlink{classMutableCompoundShapeSettings_a9e4dac61779f046e6b24056d1cb296f9}{Mutable\+Compound\+Shape\+Settings}}, \mbox{\hyperlink{classOffsetCenterOfMassShapeSettings_a252bedfba3d967fc06a69f2450b1c801}{Offset\+Center\+Of\+Mass\+Shape\+Settings}}, \mbox{\hyperlink{classRotatedTranslatedShapeSettings_ac3a152622eb13745965da2d3d717bf5f}{Rotated\+Translated\+Shape\+Settings}}, \mbox{\hyperlink{classSphereShapeSettings_a74e7afa5e9dde56a94421ae21c6f663c}{Sphere\+Shape\+Settings}}, \mbox{\hyperlink{classStaticCompoundShapeSettings_aacfd8939253a9f9e8d58051a365d688d}{Static\+Compound\+Shape\+Settings}}, and \mbox{\hyperlink{classTriangleShapeSettings_ada2a14e9bbc672c5bbc56fcec2502458}{Triangle\+Shape\+Settings}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Shape.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,33 @@
+<map id="CollideConvexVsTriangles" name="CollideConvexVsTriangles">
+<area shape="rect" id="Node000001" title="Collision detection helper that collides a convex object vs one or more triangles." alt="" coords="905,2413,1109,2504"/>
+<area shape="rect" id="Node000002" href="$d6/df7/classCollideShapeSettings.html" title="Settings to be passed with a collision query." alt="" coords="181,2027,376,2118"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,2118,246,2178,235,2251,236,2288,242,2324,254,2358,275,2387,304,2402,359,2415,522,2434,714,2446,888,2452,888,2457,714,2451,521,2439,358,2420,302,2407,271,2391,250,2360,237,2325,230,2288,230,2250,241,2177,259,2117"/>
+<area shape="rect" id="Node000003" href="$d1/d1a/classCollideSettingsBase.html" title="Settings to be passed with a collision query." alt="" coords="184,1055,360,1188"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="275,1203,281,2027,276,2027,270,1203"/>
+<area shape="rect" id="Node000004" href="$d9/de4/classVec3.html" title=" " alt="" coords="115,140,277,721"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="118,710,82,869,49,1053,23,1255,9,1469,9,1579,13,1690,22,1801,38,1911,60,2020,89,2126,126,2230,172,2330,187,2353,203,2367,250,2386,303,2401,372,2414,543,2433,727,2445,888,2451,887,2457,726,2450,542,2438,371,2419,301,2406,249,2392,200,2371,183,2356,167,2332,121,2232,84,2128,55,2021,33,1912,17,1802,7,1691,3,1580,4,1469,17,1254,43,1052,77,868,113,709"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="196,721,201,779,223,916,252,1038,247,1039,218,917,195,779,191,721"/>
+<area shape="rect" id="Node000012" href="$d0/db4/classAABox.html" title="Axis aligned box." alt="" coords="387,1464,528,1790"/>
+<area shape="poly" id="edge13_Node000012_Node000004" title=" " alt="" coords="279,510,321,558,363,615,401,678,431,744,457,834,476,927,488,1021,495,1115,495,1294,485,1447,479,1447,490,1293,489,1115,483,1022,471,928,452,835,426,746,397,680,359,618,317,562,275,513"/>
+<area shape="rect" id="Node000005" href="$d6/d53/classCollisionCollector.html" title="Virtual interface that allows collecting multiple collision results." alt="" coords="651,1880,869,2265"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="836,2263,873,2328,917,2387,930,2400,926,2404,913,2391,868,2331,831,2266"/>
+<area shape="rect" id="Node000006" href="$da/d3a/classConvexShape.html" title="Base class for all convex shapes. Defines a virtual interface." alt="" coords="893,1910,1120,2235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1009,2235,1009,2396,1004,2396,1004,2235"/>
+<area shape="rect" id="Node000007" href="$de/d0a/classShape.html" title="Base class for all shapes (collision volume of a body). Defines a virtual interface for collision det..." alt="" coords="901,803,1113,1440"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1009,1455,1009,1910,1004,1910,1004,1455"/>
+<area shape="rect" id="Node000008" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="762,310,977,550"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="899,564,946,803,941,804,893,565"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="805,5,934,75"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="872,74,872,294,867,294,867,74"/>
+<area shape="rect" id="Node000010" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="1001,374,1124,486"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="1060,502,1035,803,1030,803,1054,501"/>
+<area shape="rect" id="Node000011" href="$de/d0e/classMat44.html" title="Holds a 4x4 matrix of floats, but supports also operations on the 3x3 upper left part of the matrix." alt="" coords="1145,1814,1325,2331"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="1147,2314,1121,2354,1090,2391,1077,2404,1073,2400,1086,2387,1116,2351,1143,2311"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="441,1790,429,1940,426,2098,429,2172,438,2238,452,2291,472,2329,498,2351,538,2371,588,2389,646,2404,771,2428,888,2443,888,2449,770,2433,645,2409,587,2394,536,2376,495,2356,468,2333,447,2293,432,2239,424,2173,420,2098,424,1939,436,1789"/>
+<area shape="rect" id="Node000013" href="$da/d65/classSubShapeID.html" title="A sub shape id contains a path to an element (usually a triangle or other primitive type) of a compou..." alt="" coords="1349,1974,1464,2171"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="1401,2171,1393,2212,1381,2254,1363,2295,1340,2333,1319,2356,1295,2376,1241,2408,1183,2431,1126,2446,1125,2440,1181,2426,1239,2403,1292,2372,1315,2352,1335,2329,1358,2293,1376,2252,1388,2211,1396,2170"/>
+<area shape="rect" id="Node000014" href="$d7/d32/classConvexShape_1_1SupportBuffer.html" title="Buffer to hold a Support object, used to avoid dynamic memory allocations." alt="" coords="1489,2038,1687,2107"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="1586,2108,1572,2172,1544,2252,1524,2292,1499,2330,1468,2364,1432,2391,1378,2412,1300,2428,1126,2450,1125,2445,1299,2423,1376,2407,1430,2387,1465,2360,1495,2327,1519,2289,1539,2249,1567,2170,1581,2106"/>
+<area shape="rect" id="Node000015" href="$d2/d84/classConvexShape_1_1Support.html" title="Function that provides an interface for GJK." alt="" coords="1712,2016,1872,2128"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="1787,2129,1770,2197,1740,2274,1719,2310,1693,2344,1662,2371,1625,2391,1584,2404,1531,2415,1400,2433,1256,2446,1126,2454,1125,2449,1256,2440,1399,2428,1530,2410,1583,2399,1623,2387,1659,2367,1689,2340,1714,2307,1735,2271,1765,2196,1782,2128"/>
+</map>

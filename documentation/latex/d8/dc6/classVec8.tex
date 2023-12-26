@@ -1,0 +1,141 @@
+\doxysection{Vec8 Class Reference}
+\hypertarget{classVec8}{}\label{classVec8}\index{Vec8@{Vec8}}
+
+
+Collaboration diagram for Vec8\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{d5/dd6/classVec8__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE \mbox{\hyperlink{classVec8_abbdb68a45ef818a365f358803a2d5820}{Vec8}} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a3af12a0d40c2e64712a16b6e5d596eac}\label{classVec8_a3af12a0d40c2e64712a16b6e5d596eac} 
+{\bfseries Vec8} (const \mbox{\hyperlink{classVec8}{Vec8}} \&in\+RHS)=default
+\item 
+\Hypertarget{classVec8_a87dec3a15cde53d9ab439daa4ffe95d3}\label{classVec8_a87dec3a15cde53d9ab439daa4ffe95d3} 
+JPH\+\_\+\+INLINE {\bfseries Vec8} (\+\_\+\+\_\+m256 in\+RHS)
+\item 
+\Hypertarget{classVec8_a535af944b1f32c306fb37a393ec16bd4}\label{classVec8_a535af944b1f32c306fb37a393ec16bd4} 
+JPH\+\_\+\+INLINE {\bfseries Vec8} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Lo, \mbox{\hyperlink{classVec4}{Vec4\+Arg}} in\+Hi)
+\begin{DoxyCompactList}\small\item\em Set 256 bit vector from 2 128 bit vectors. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_ac1997a67bd8996f29bf165b26f45ab06}\label{classVec8_ac1997a67bd8996f29bf165b26f45ab06} 
+JPH\+\_\+\+INLINE float {\bfseries operator\mbox{[}$\,$\mbox{]}} (uint in\+Coordinate) const
+\begin{DoxyCompactList}\small\item\em Get float component by index. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_ad43ee4cb80f186dcdd2f0a71fc64fe13}\label{classVec8_ad43ee4cb80f186dcdd2f0a71fc64fe13} 
+JPH\+\_\+\+INLINE float \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (uint in\+Coordinate)
+\item 
+\Hypertarget{classVec8_a8c58ab6a636af411c1aa0484c2378f0c}\label{classVec8_a8c58ab6a636af411c1aa0484c2378f0c} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2) const
+\begin{DoxyCompactList}\small\item\em Multiply two float vectors. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a5b527ce885b1b22c56173d4e48425bb3}\label{classVec8_a5b527ce885b1b22c56173d4e48425bb3} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries operator\texorpdfstring{$\ast$}{*}} (float in\+V2) const
+\begin{DoxyCompactList}\small\item\em Multiply vector by float. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_aefa8b1857e93a3e0afc29f5ffc2eed8e}\label{classVec8_aefa8b1857e93a3e0afc29f5ffc2eed8e} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries operator+} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2) const
+\begin{DoxyCompactList}\small\item\em Add two float vectors. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a4eabbb36d0b5c18dd521daa41d202b3c}\label{classVec8_a4eabbb36d0b5c18dd521daa41d202b3c} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries operator-\/} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2) const
+\begin{DoxyCompactList}\small\item\em Subtract two float vectors. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a7ba524244b34059777fa93a63d551fda}\label{classVec8_a7ba524244b34059777fa93a63d551fda} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries operator/} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2) const
+\begin{DoxyCompactList}\small\item\em Divide. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a246f5b59817c707715bd69d292e7610f}\label{classVec8_a246f5b59817c707715bd69d292e7610f} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries Reciprocal} () const
+\begin{DoxyCompactList}\small\item\em Reciprocal vector. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_afa43e457f8368acb7b249d9f13e484eb}\label{classVec8_afa43e457f8368acb7b249d9f13e484eb} 
+{\footnotesize template$<$uint32 SwizzleX, uint32 SwizzleY, uint32 SwizzleZ, uint32 SwizzleW$>$ }\\JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries Swizzle} () const
+\begin{DoxyCompactList}\small\item\em 256 bit variant of Vec\+::\+Swizzle (no cross 128 bit lane swizzle) \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a606b5595b25bd34a37820541b9e14c3e}\label{classVec8_a606b5595b25bd34a37820541b9e14c3e} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries Abs} () const
+\begin{DoxyCompactList}\small\item\em Get absolute value of all components. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_ac6b079a5fb892087e7f29eb49d8de0ed}\label{classVec8_ac6b079a5fb892087e7f29eb49d8de0ed} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec4}{Vec4}} {\bfseries Lower\+Vec4} () const
+\begin{DoxyCompactList}\small\item\em Fetch the lower 128 bit from a 256 bit variable. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a176799d71ae225bcdc87f3c9ed821a4d}\label{classVec8_a176799d71ae225bcdc87f3c9ed821a4d} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec4}{Vec4}} {\bfseries Upper\+Vec4} () const
+\begin{DoxyCompactList}\small\item\em Fetch the higher 128 bit from a 256 bit variable. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a045d854d2e5034a8fdd06b1946143c73}\label{classVec8_a045d854d2e5034a8fdd06b1946143c73} 
+JPH\+\_\+\+INLINE float {\bfseries Reduce\+Min} () const
+\begin{DoxyCompactList}\small\item\em Get the minimum value of the 8 floats. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a7e104be6684316118f94a6a0f2a8f488}\label{classVec8_a7e104be6684316118f94a6a0f2a8f488} 
+{\footnotesize template$<$uint32 SwizzleX, uint32 SwizzleY, uint32 SwizzleZ, uint32 SwizzleW$>$ }\\\mbox{\hyperlink{classVec8}{Vec8}} {\bfseries Swizzle} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVec8_abb275faf149d6f691487dcd3055a0898}\label{classVec8_abb275faf149d6f691487dcd3055a0898} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+Zero} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{classVector}{Vector} with all zeros. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_affc8f77dd2b5411c7b27e8f037c2dcee}\label{classVec8_affc8f77dd2b5411c7b27e8f037c2dcee} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+Replicate} (float inV)
+\begin{DoxyCompactList}\small\item\em Replicate across all components. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a33fb5192697f9c095b075025a067c4f4}\label{classVec8_a33fb5192697f9c095b075025a067c4f4} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+SplatX} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Replicate the X component of inV to all components. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a6204d9f1086b05b6e5a6932337b12c80}\label{classVec8_a6204d9f1086b05b6e5a6932337b12c80} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+SplatY} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Replicate the Y component of inV to all components. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_ade8178e79b24927bb220857640b09bc0}\label{classVec8_ade8178e79b24927bb220857640b09bc0} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+SplatZ} (\mbox{\hyperlink{classVec4}{Vec4\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Replicate the Z component of inV to all components. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a035b3515cf4ea077d4c78ccccb81f127}\label{classVec8_a035b3515cf4ea077d4c78ccccb81f127} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+Fused\+Multiply\+Add} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+Mul1, \mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+Mul2, \mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+Add)
+\begin{DoxyCompactList}\small\item\em Calculates in\+Mul1 \texorpdfstring{$\ast$}{*} in\+Mul2 + in\+Add. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_ace631572dfd1ef87806ef62714d3fd89}\label{classVec8_ace631572dfd1ef87806ef62714d3fd89} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+Select} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V1, \mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2, \mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+Control)
+\begin{DoxyCompactList}\small\item\em Component wise select, returns in\+V1 when highest bit of in\+Control = 0 and in\+V2 when highest bit of in\+Control = 1. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_ad98f554b3a8aa0bbaccbf6a73e5f6509}\label{classVec8_ad98f554b3a8aa0bbaccbf6a73e5f6509} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+Min} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V1, \mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Component wise min. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a688b26c034b1554a636581deaa721c08}\label{classVec8_a688b26c034b1554a636581deaa721c08} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+Max} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V1, \mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Component wise max. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a239c0570785757c04ada2de8164df6f9}\label{classVec8_a239c0570785757c04ada2de8164df6f9} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+Less} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V1, \mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Less than. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_aa38a759ebef47cb63db5adc0f569d1c0}\label{classVec8_aa38a759ebef47cb63db5adc0f569d1c0} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+Greater} (\mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V1, \mbox{\hyperlink{classVec8}{Vec8\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Greater than. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_af75fe8a764ca70357fbc20786fd1909b}\label{classVec8_af75fe8a764ca70357fbc20786fd1909b} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+Load\+Float8} (const float \texorpdfstring{$\ast$}{*}inV)
+\begin{DoxyCompactList}\small\item\em Load from memory. \end{DoxyCompactList}\item 
+\Hypertarget{classVec8_a9078055cdd0cbcf99c3d2ddc0cfeaaab}\label{classVec8_a9078055cdd0cbcf99c3d2ddc0cfeaaab} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries s\+Load\+Float8\+Aligned} (const float \texorpdfstring{$\ast$}{*}inV)
+\begin{DoxyCompactList}\small\item\em Load 8 floats from memory, 32 bytes aligned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVec8_aa7d863df4d4d73981e63285336a86369}\label{classVec8_aa7d863df4d4d73981e63285336a86369} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\_\_m256 {\bfseries mValue}\\
+\>float {\bfseries mF32} \mbox{[}8\mbox{]}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classVec8_abbdb68a45ef818a365f358803a2d5820}\label{classVec8_abbdb68a45ef818a365f358803a2d5820} 
+\index{Vec8@{Vec8}!Vec8@{Vec8}}
+\index{Vec8@{Vec8}!Vec8@{Vec8}}
+\doxysubsubsection{\texorpdfstring{Vec8()}{Vec8()}}
+{\footnotesize\ttfamily JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE Vec8\+::\+Vec8 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Constructor. 
+
+Intentionally not initialized for performance reasons 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Math/Vec8.\+h\item 
+includes/jolt/\+Math/Vec8.\+inl\end{DoxyCompactItemize}

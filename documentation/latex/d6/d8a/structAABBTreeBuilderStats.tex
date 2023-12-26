@@ -1,0 +1,64 @@
+\doxysection{AABBTree\+Builder\+Stats Struct Reference}
+\hypertarget{structAABBTreeBuilderStats}{}\label{structAABBTreeBuilderStats}\index{AABBTreeBuilderStats@{AABBTreeBuilderStats}}
+
+
+Collaboration diagram for AABBTree\+Builder\+Stats\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{da/de9/structAABBTreeBuilderStats__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{Indent}\textbf{ Splitter stats}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structAABBTreeBuilderStats_ab1b2df872750bdff4622582ab59b1aa3}\label{structAABBTreeBuilderStats_ab1b2df872750bdff4622582ab59b1aa3} 
+\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Triangle\+Splitter\+::\+Stats}} {\bfseries m\+Splitter\+Stats}
+\begin{DoxyCompactList}\small\item\em Stats returned by the triangle splitter algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Tree structure}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structAABBTreeBuilderStats_a3864a59872b7d9ae1241a9e2d9561b04}\label{structAABBTreeBuilderStats_a3864a59872b7d9ae1241a9e2d9561b04} 
+float {\bfseries m\+SAHCost} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Surface Area Heuristic cost of this tree. \end{DoxyCompactList}\item 
+\Hypertarget{structAABBTreeBuilderStats_aa59fbfa1cd92eb27ca7c1e13c4d28163}\label{structAABBTreeBuilderStats_aa59fbfa1cd92eb27ca7c1e13c4d28163} 
+int {\bfseries m\+Min\+Depth} = 0
+\begin{DoxyCompactList}\small\item\em Minimal depth of tree (number of nodes) \end{DoxyCompactList}\item 
+\Hypertarget{structAABBTreeBuilderStats_a5722b3c6619dc1793e79e902685aaaa5}\label{structAABBTreeBuilderStats_a5722b3c6619dc1793e79e902685aaaa5} 
+int {\bfseries m\+Max\+Depth} = 0
+\begin{DoxyCompactList}\small\item\em Maximum depth of tree (number of nodes) \end{DoxyCompactList}\item 
+\Hypertarget{structAABBTreeBuilderStats_ab3bb28a53eb8276008b3be628713ab4e}\label{structAABBTreeBuilderStats_ab3bb28a53eb8276008b3be628713ab4e} 
+int {\bfseries m\+Node\+Count} = 0
+\begin{DoxyCompactList}\small\item\em Number of nodes in the tree. \end{DoxyCompactList}\item 
+\Hypertarget{structAABBTreeBuilderStats_a62c8f089af5a357cf40d50d27961ee1b}\label{structAABBTreeBuilderStats_a62c8f089af5a357cf40d50d27961ee1b} 
+int {\bfseries m\+Leaf\+Node\+Count} = 0
+\begin{DoxyCompactList}\small\item\em Number of leaf nodes (that contain triangles) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Configured stats}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structAABBTreeBuilderStats_a567b593b4f4bb7cdc2977a2a624da662}\label{structAABBTreeBuilderStats_a567b593b4f4bb7cdc2977a2a624da662} 
+int {\bfseries m\+Max\+Triangles\+Per\+Leaf} = 0
+\begin{DoxyCompactList}\small\item\em Configured max triangles per leaf. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Actual stats}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structAABBTreeBuilderStats_a18bfd03d4c5760089e7a6900965a7dc1}\label{structAABBTreeBuilderStats_a18bfd03d4c5760089e7a6900965a7dc1} 
+int {\bfseries m\+Tree\+Min\+Triangles\+Per\+Leaf} = 0
+\begin{DoxyCompactList}\small\item\em Minimal amount of triangles in a leaf. \end{DoxyCompactList}\item 
+\Hypertarget{structAABBTreeBuilderStats_aee50ad973c7fe3651d81dcd0377b5299}\label{structAABBTreeBuilderStats_aee50ad973c7fe3651d81dcd0377b5299} 
+int {\bfseries m\+Tree\+Max\+Triangles\+Per\+Leaf} = 0
+\begin{DoxyCompactList}\small\item\em Maximal amount of triangles in a leaf. \end{DoxyCompactList}\item 
+\Hypertarget{structAABBTreeBuilderStats_a7d0f12dbcbee2af06c05d40ae3df5f93}\label{structAABBTreeBuilderStats_a7d0f12dbcbee2af06c05d40ae3df5f93} 
+float {\bfseries m\+Tree\+Avg\+Triangles\+Per\+Leaf} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Average amount of triangles in leaf nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+AABBTree/AABBTree\+Builder.\+h\end{DoxyCompactItemize}

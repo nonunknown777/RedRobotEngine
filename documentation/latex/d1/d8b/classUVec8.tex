@@ -1,0 +1,126 @@
+\doxysection{UVec8 Class Reference}
+\hypertarget{classUVec8}{}\label{classUVec8}\index{UVec8@{UVec8}}
+
+
+Collaboration diagram for UVec8\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{d8/d0c/classUVec8__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUVec8_a01713cf88c3edb46c73aca8927447be3}\label{classUVec8_a01713cf88c3edb46c73aca8927447be3} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries UVec8} ()=default
+\begin{DoxyCompactList}\small\item\em Intentionally not initialized for performance reasons. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a99e3f32c276a508019f29aea02853158}\label{classUVec8_a99e3f32c276a508019f29aea02853158} 
+{\bfseries UVec8} (const \mbox{\hyperlink{classUVec8}{UVec8}} \&in\+RHS)=default
+\item 
+\Hypertarget{classUVec8_a8e85ff9a76203b1907bdf9fd43620512}\label{classUVec8_a8e85ff9a76203b1907bdf9fd43620512} 
+JPH\+\_\+\+INLINE {\bfseries UVec8} (\+\_\+\+\_\+m256i in\+RHS)
+\item 
+\Hypertarget{classUVec8_a364573a06edffdbc4b6bcf321932aa2f}\label{classUVec8_a364573a06edffdbc4b6bcf321932aa2f} 
+JPH\+\_\+\+INLINE {\bfseries UVec8} (\mbox{\hyperlink{classUVec4}{UVec4\+Arg}} in\+Lo, \mbox{\hyperlink{classUVec4}{UVec4\+Arg}} in\+Hi)
+\begin{DoxyCompactList}\small\item\em Set 256 bit vector from 2 128 bit vectors. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a42797ff3cc1bf751ce42d71302851d13}\label{classUVec8_a42797ff3cc1bf751ce42d71302851d13} 
+JPH\+\_\+\+INLINE bool {\bfseries operator==} (\mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V2) const
+\begin{DoxyCompactList}\small\item\em Comparison. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_af273dd7e633a1508222b9092cb334180}\label{classUVec8_af273dd7e633a1508222b9092cb334180} 
+JPH\+\_\+\+INLINE bool {\bfseries operator!=} (\mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V2) const
+\item 
+\Hypertarget{classUVec8_af4b5d732eccd1cce573ea07e1d005dea}\label{classUVec8_af4b5d732eccd1cce573ea07e1d005dea} 
+JPH\+\_\+\+INLINE uint32 {\bfseries operator\mbox{[}$\,$\mbox{]}} (uint in\+Coordinate) const
+\begin{DoxyCompactList}\small\item\em Get float component by index. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_ac83adccdf335b7fab19aa812bfc4f140}\label{classUVec8_ac83adccdf335b7fab19aa812bfc4f140} 
+JPH\+\_\+\+INLINE uint32 \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (uint in\+Coordinate)
+\item 
+\Hypertarget{classUVec8_a2e355553378c7ecbac97bf9a52760f20}\label{classUVec8_a2e355553378c7ecbac97bf9a52760f20} 
+{\footnotesize template$<$uint32 SwizzleX, uint32 SwizzleY, uint32 SwizzleZ, uint32 SwizzleW$>$ }\\JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries Swizzle} () const
+\begin{DoxyCompactList}\small\item\em 256 bit variant of Vec\+::\+Swizzle (no cross 128 bit lane swizzle) \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a7cc280bb498d1da896005b682a768db9}\label{classUVec8_a7cc280bb498d1da896005b682a768db9} 
+JPH\+\_\+\+INLINE bool {\bfseries Test\+Any\+True} () const
+\begin{DoxyCompactList}\small\item\em Test if any of the components are true (true is when highest bit of component is set) \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a3269b59051bb75bdb3c9f22ceb272492}\label{classUVec8_a3269b59051bb75bdb3c9f22ceb272492} 
+JPH\+\_\+\+INLINE bool {\bfseries Test\+All\+True} () const
+\begin{DoxyCompactList}\small\item\em Test if all components are true (true is when highest bit of component is set) \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_ac1befe2c88fff8ac646f1c34bedbc9d3}\label{classUVec8_ac1befe2c88fff8ac646f1c34bedbc9d3} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec4}{UVec4}} {\bfseries Lower\+Vec4} () const
+\begin{DoxyCompactList}\small\item\em Fetch the lower 128 bit from a 256 bit variable. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a11d69b0b6000ceac965236eb6ff5a4da}\label{classUVec8_a11d69b0b6000ceac965236eb6ff5a4da} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec4}{UVec4}} {\bfseries Upper\+Vec4} () const
+\begin{DoxyCompactList}\small\item\em Fetch the higher 128 bit from a 256 bit variable. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_aca1ec9006b80aa9845b81cdef795731d}\label{classUVec8_aca1ec9006b80aa9845b81cdef795731d} 
+JPH\+\_\+\+INLINE \mbox{\hyperlink{classVec8}{Vec8}} {\bfseries To\+Float} () const
+\begin{DoxyCompactList}\small\item\em Converts int to float. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_af26e70e8e238b9765bc5ab12b817e5d1}\label{classUVec8_af26e70e8e238b9765bc5ab12b817e5d1} 
+{\footnotesize template$<$const uint Count$>$ }\\JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries Logical\+Shift\+Left} () const
+\begin{DoxyCompactList}\small\item\em Shift all components by Count bits to the left (filling with zeros from the left) \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a4d13b9d84a398e856caf4f072483bf0d}\label{classUVec8_a4d13b9d84a398e856caf4f072483bf0d} 
+{\footnotesize template$<$const uint Count$>$ }\\JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries Logical\+Shift\+Right} () const
+\begin{DoxyCompactList}\small\item\em Shift all components by Count bits to the right (filling with zeros from the right) \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a49a21bc576313ae676fb2064904ed506}\label{classUVec8_a49a21bc576313ae676fb2064904ed506} 
+{\footnotesize template$<$const uint Count$>$ }\\JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries Arithmetic\+Shift\+Right} () const
+\begin{DoxyCompactList}\small\item\em Shift all components by Count bits to the right (shifting in the value of the highest bit) \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a907862ab1fd7c2886e2b75a1c6a2e9ac}\label{classUVec8_a907862ab1fd7c2886e2b75a1c6a2e9ac} 
+{\footnotesize template$<$uint32 SwizzleX, uint32 SwizzleY, uint32 SwizzleZ, uint32 SwizzleW$>$ }\\\mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries Swizzle} () const
+\item 
+\Hypertarget{classUVec8_a5f5de5fcc8c6ac9e44b2bc79f82df48c}\label{classUVec8_a5f5de5fcc8c6ac9e44b2bc79f82df48c} 
+{\footnotesize template$<$const uint Count$>$ }\\\mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries Logical\+Shift\+Left} () const
+\item 
+\Hypertarget{classUVec8_a6ec179075eeb442c9fde60f6a997c414}\label{classUVec8_a6ec179075eeb442c9fde60f6a997c414} 
+{\footnotesize template$<$const uint Count$>$ }\\\mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries Logical\+Shift\+Right} () const
+\item 
+\Hypertarget{classUVec8_ab477a12a379656e5aeb518621b308854}\label{classUVec8_ab477a12a379656e5aeb518621b308854} 
+{\footnotesize template$<$const uint Count$>$ }\\\mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries Arithmetic\+Shift\+Right} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUVec8_a980a0e87ee35f33a2778022f6e95e50f}\label{classUVec8_a980a0e87ee35f33a2778022f6e95e50f} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+Replicate} (uint32 inV)
+\begin{DoxyCompactList}\small\item\em Replicate int across all components. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a8feae856c89191c68f06b805203df53f}\label{classUVec8_a8feae856c89191c68f06b805203df53f} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+SplatX} (\mbox{\hyperlink{classUVec4}{UVec4\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Replicate the X component of inV to all components. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a7f27a397508f57859f2e8c87c4be3d3b}\label{classUVec8_a7f27a397508f57859f2e8c87c4be3d3b} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+SplatY} (\mbox{\hyperlink{classUVec4}{UVec4\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Replicate the Y component of inV to all components. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a284219a34c2eef183e1b66bfe96ae186}\label{classUVec8_a284219a34c2eef183e1b66bfe96ae186} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+SplatZ} (\mbox{\hyperlink{classUVec4}{UVec4\+Arg}} inV)
+\begin{DoxyCompactList}\small\item\em Replicate the Z component of inV to all components. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a1652f07d05b02ca36a8f6c35f18c1cb6}\label{classUVec8_a1652f07d05b02ca36a8f6c35f18c1cb6} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+Equals} (\mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V1, \mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Equals (component wise) \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_af6073e4bae8355de6c0965306f3d8c02}\label{classUVec8_af6073e4bae8355de6c0965306f3d8c02} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+Select} (\mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V1, \mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V2, \mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+Control)
+\begin{DoxyCompactList}\small\item\em Component wise select, returns in\+V1 when highest bit of in\+Control = 0 and in\+V2 when highest bit of in\+Control = 1. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_abaa2dd18e4ff3fee6465bb322733e7e6}\label{classUVec8_abaa2dd18e4ff3fee6465bb322733e7e6} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+Or} (\mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V1, \mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Logical or. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_ac76cd233870c4735b88b298883e0569e}\label{classUVec8_ac76cd233870c4735b88b298883e0569e} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+Xor} (\mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V1, \mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Logical xor. \end{DoxyCompactList}\item 
+\Hypertarget{classUVec8_a50253d7ab7872642a1cbe8c200759432}\label{classUVec8_a50253d7ab7872642a1cbe8c200759432} 
+static JPH\+\_\+\+INLINE \mbox{\hyperlink{classUVec8}{UVec8}} {\bfseries s\+And} (\mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V1, \mbox{\hyperlink{classUVec8}{UVec8\+Arg}} in\+V2)
+\begin{DoxyCompactList}\small\item\em Logical and. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classUVec8_aa3999fbee6ac22792c0b00f8b9f94c41}\label{classUVec8_aa3999fbee6ac22792c0b00f8b9f94c41} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\_\_m256i {\bfseries mValue}\\
+\>uint32 {\bfseries mU32} \mbox{[}8\mbox{]}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Math/UVec8.\+h\item 
+includes/jolt/\+Math/UVec8.\+inl\end{DoxyCompactItemize}

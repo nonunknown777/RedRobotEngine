@@ -1,0 +1,48 @@
+\doxysection{Atomics.\+h}
+\hypertarget{Atomics_8h_source}{}\label{Atomics_8h_source}\index{includes/jolt/Core/Atomics.h@{includes/jolt/Core/Atomics.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00009\ JPH\_SUPPRESS\_WARNINGS\_STD\_END}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Things\ we're\ using\ from\ STL}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ }std::atomic;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }std::memory\_order;}
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ }std::memory\_order\_relaxed;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }std::memory\_order\_acquire;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ }std::memory\_order\_release;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{using\ }std::memory\_order\_acq\_rel;}
+\DoxyCodeLine{00020\ \textcolor{keyword}{using\ }std::memory\_order\_seq\_cst;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{bool}\ AtomicMin(atomic<T>\ \&ioAtomic,\ \textcolor{keyword}{const}\ T\ inValue,\ \textcolor{keyword}{const}\ memory\_order\ inMemoryOrder\ =\ memory\_order\_seq\_cst)}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ T\ cur\_value\ =\ ioAtomic.load(memory\_order\_relaxed);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{while}\ (cur\_value\ >\ inValue)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioAtomic.compare\_exchange\_weak(cur\_value,\ inValue,\ inMemoryOrder))}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{bool}\ AtomicMax(atomic<T>\ \&ioAtomic,\ \textcolor{keyword}{const}\ T\ inValue,\ \textcolor{keyword}{const}\ memory\_order\ inMemoryOrder\ =\ memory\_order\_seq\_cst)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ T\ cur\_value\ =\ ioAtomic.load(memory\_order\_relaxed);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{while}\ (cur\_value\ <\ inValue)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioAtomic.compare\_exchange\_weak(cur\_value,\ inValue,\ inMemoryOrder))}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

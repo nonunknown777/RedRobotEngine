@@ -1,0 +1,198 @@
+\doxysection{Gear\+Constraint\+Settings Class Reference}
+\hypertarget{classGearConstraintSettings}{}\label{classGearConstraintSettings}\index{GearConstraintSettings@{GearConstraintSettings}}
+
+
+Gear constraint settings.  
+
+
+
+
+{\ttfamily \#include $<$Gear\+Constraint.\+h$>$}
+
+
+
+Inheritance diagram for Gear\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/da9/classGearConstraintSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Gear\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{da/d8a/classGearConstraintSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classGearConstraintSettings_a101dbb806271fa962ce86a699c54cbf8}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saves the contents of the constraint settings in binary form to in\+Stream. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGearConstraintSettings_aff4822e62c003ce5ce6211c29fceed5b}{Create}} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2) const override
+\begin{DoxyCompactList}\small\item\em Create an an instance of this constraint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGearConstraintSettings_a739f3d8c130d47170adb958626978b5a}{Set\+Ratio}} (int in\+Num\+Teeth\+Gear1, int in\+Num\+Teeth\+Gear2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGearConstraintSettings_a0cc02f07332e14d49c7e280639cde9d8}\label{classGearConstraintSettings_a0cc02f07332e14d49c7e280639cde9d8} 
+EConstraint\+Space {\bfseries m\+Space} = EConstraint\+Space\+::\+World\+Space
+\begin{DoxyCompactList}\small\item\em This determines in which space the constraint is setup, all properties below should be in the specified space. \end{DoxyCompactList}\item 
+\Hypertarget{classGearConstraintSettings_a5fb2af5b7aacc6b5d9c093b20fcabfe9}\label{classGearConstraintSettings_a5fb2af5b7aacc6b5d9c093b20fcabfe9} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Hinge\+Axis1} = \mbox{\hyperlink{classVec3_a142cc5c79f08229eb11532c26f1a1e90}{Vec3\+::s\+AxisX}}()
+\begin{DoxyCompactList}\small\item\em \doxylink{classBody}{Body} 1 constraint reference frame (space determined by m\+Space). \end{DoxyCompactList}\item 
+\Hypertarget{classGearConstraintSettings_a7064ccff3e5ee1826b469487e56abe94}\label{classGearConstraintSettings_a7064ccff3e5ee1826b469487e56abe94} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Hinge\+Axis2} = \mbox{\hyperlink{classVec3_a142cc5c79f08229eb11532c26f1a1e90}{Vec3\+::s\+AxisX}}()
+\begin{DoxyCompactList}\small\item\em \doxylink{classBody}{Body} 2 constraint reference frame (space determined by m\+Space) \end{DoxyCompactList}\item 
+\Hypertarget{classGearConstraintSettings_a81c6ec84001d897ae53d900a2cf11d33}\label{classGearConstraintSettings_a81c6ec84001d897ae53d900a2cf11d33} 
+float {\bfseries m\+Ratio} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Ratio between both gears, see Set\+Ratio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries m\+Enabled} = true
+\begin{DoxyCompactList}\small\item\em If this constraint is enabled initially. Use \doxylink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Constraint\+::\+Set\+Enabled} to toggle after creation. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraintSettings_ab01ba90506d17f415054bfa6208a4939}{m\+Constraint\+Priority}} = 0
+\item 
+uint {\bfseries m\+Num\+Velocity\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries m\+Num\+Position\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+float {\bfseries m\+Draw\+Constraint\+Size} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Size of constraint when drawing it through the debug renderer. \end{DoxyCompactList}\item 
+uint64 {\bfseries m\+User\+Data} = 0
+\begin{DoxyCompactList}\small\item\em User data value (can be used by application) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classGearConstraintSettings_a2589d816142cf552c1f0820ad4d74b6e}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Constraint\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Constraint\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a constraint of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gear constraint settings. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGearConstraintSettings_aff4822e62c003ce5ce6211c29fceed5b}\label{classGearConstraintSettings_aff4822e62c003ce5ce6211c29fceed5b} 
+\index{GearConstraintSettings@{GearConstraintSettings}!Create@{Create}}
+\index{Create@{Create}!GearConstraintSettings@{GearConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} Gear\+Constraint\+Settings\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Create an an instance of this constraint. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraintSettings_a42e353e736b0254b02008b050a28f55b}{Two\+Body\+Constraint\+Settings}}.
+
+\Hypertarget{classGearConstraintSettings_a2589d816142cf552c1f0820ad4d74b6e}\label{classGearConstraintSettings_a2589d816142cf552c1f0820ad4d74b6e} 
+\index{GearConstraintSettings@{GearConstraintSettings}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!GearConstraintSettings@{GearConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Gear\+Constraint\+Settings\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraintSettings_adcdb433a58df0924940fd8f86acd3251}{Constraint\+Settings}}.
+
+\Hypertarget{classGearConstraintSettings_a101dbb806271fa962ce86a699c54cbf8}\label{classGearConstraintSettings_a101dbb806271fa962ce86a699c54cbf8} 
+\index{GearConstraintSettings@{GearConstraintSettings}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!GearConstraintSettings@{GearConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Gear\+Constraint\+Settings\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the contents of the constraint settings in binary form to in\+Stream. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraintSettings_a2f45c4a1fd6d6d74691729d5103f094a}{Constraint\+Settings}}.
+
+\Hypertarget{classGearConstraintSettings_a739f3d8c130d47170adb958626978b5a}\label{classGearConstraintSettings_a739f3d8c130d47170adb958626978b5a} 
+\index{GearConstraintSettings@{GearConstraintSettings}!SetRatio@{SetRatio}}
+\index{SetRatio@{SetRatio}!GearConstraintSettings@{GearConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{SetRatio()}{SetRatio()}}
+{\footnotesize\ttfamily void Gear\+Constraint\+Settings\+::\+Set\+Ratio (\begin{DoxyParamCaption}\item[{int}]{in\+Num\+Teeth\+Gear1,  }\item[{int}]{in\+Num\+Teeth\+Gear2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Defines the ratio between the rotation of both gears The ratio is defined as\+: Gear1\+Rotation(t) = -\/ratio \texorpdfstring{$\ast$}{*} Gear2\+Rotation(t) 
+\begin{DoxyParams}{Parameters}
+{\em in\+Num\+Teeth\+Gear1} & Number of teeth that body 1 has \\
+\hline
+{\em in\+Num\+Teeth\+Gear2} & Number of teeth that body 2 has \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Gear\+Constraint.\+h\end{DoxyCompactItemize}

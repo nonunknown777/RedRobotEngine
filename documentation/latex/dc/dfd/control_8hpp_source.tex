@@ -1,0 +1,43 @@
+\doxysection{control.\+hpp}
+\hypertarget{control_8hpp_source}{}\label{control_8hpp_source}\index{src/nodes/control.hpp@{src/nodes/control.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CONTROL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CONTROL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}canvas\_item.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{enum}\ LayoutPreset\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ PRESET\_TOP\_LEFT,}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ PRESET\_TOP\_RIGHT,}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ PRESET\_BOTTOM\_LEFT,}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ PRESET\_BOTTOM\_RIGHT,}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ PRESET\_CENTER\_LEFT,}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ PRESET\_CENTER\_TOP,}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ PRESET\_CENTER\_RIGHT,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ PRESET\_CENTER\_BOTTOM,}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ PRESET\_CENTER,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ PRESET\_LEFT\_WIDE,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ PRESET\_TOP\_WIDE,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ PRESET\_RIGHT\_WIDE,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ PRESET\_BOTTOM\_WIDE,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ PRESET\_VCENTER\_WIDE,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ PRESET\_HCENTER\_WIDE,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ PRESET\_FULL\_RECT}
+\DoxyCodeLine{00023\ \ \ \ \ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classControl}{Control}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCanvasItem}{CanvasItem}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classControl}{Control}}(std::string\ name\ =\ \textcolor{stringliteral}{"{}Control"{}});}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classControl}{\string~Control}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ position;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structVector2}{Vector2}}\ size;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_draw()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

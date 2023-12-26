@@ -1,0 +1,113 @@
+\doxysection{Island\+Builder.\+h}
+\hypertarget{IslandBuilder_8h_source}{}\label{IslandBuilder_8h_source}\index{includes/jolt/Physics/IslandBuilder.h@{includes/jolt/Physics/IslandBuilder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyID.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/Atomics.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTempAllocator}{TempAllocator}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\#define\ JPH\_VALIDATE\_ISLAND\_BUILDER}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIslandBuilder}{IslandBuilder}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_a0e4acdd5666ec1a58e8f4e1d469b5d73}{\string~IslandBuilder}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_a060b323839a30c3096ec581b4684290d}{Init}}(uint32\ inMaxActiveBodies);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_aaf615d7e17f6b82156eef5932a4bc9d6}{PrepareContactConstraints}}(uint32\ inMaxContactConstraints,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_ac70b90cc284ac3999e18b865724392da}{PrepareNonContactConstraints}}(uint32\ inNumConstraints,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_ad3c6e43cef523989bab88ed8cc11575f}{LinkBodies}}(uint32\ inFirst,\ uint32\ inSecond);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_a323b5204fe8c9fdb7a15791469780259}{LinkConstraint}}(uint32\ inConstraintIndex,\ uint32\ inFirst,\ uint32\ inSecond);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_a32b2a16b2eca88110ad2604e2b129132}{LinkContact}}(uint32\ inContactIndex,\ uint32\ inFirst,\ uint32\ inSecond);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_af8e0ac69b3e021ab24317116ded1c622}{Finalize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inActiveBodies,\ uint32\ inNumActiveBodies,\ uint32\ inNumContacts,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_a6f0d6d67425a9d02cf561a06784431f4}{GetNumIslands}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mNumIslands;\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_ace0201e247b5fcb9639bba23b385e718}{GetBodiesInIsland}}(uint32\ inIslandIndex,\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *\&outBodiesBegin,\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *\&outBodiesEnd)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetConstraintsInIsland(uint32\ inIslandIndex,\ uint32\ *\&outConstraintsBegin,\ uint32\ *\&outConstraintsEnd)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetContactsInIsland(uint32\ inIslandIndex,\ uint32\ *\&outContactsBegin,\ uint32\ *\&outContactsEnd)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_a576814bc0405702b74174635e0b44d6d}{SetNumPositionSteps}}(uint32\ inIslandIndex,\ uint\ inNumPositionSteps)\ \ \ \{\ JPH\_ASSERT(inIslandIndex\ <\ mNumIslands);\ JPH\_ASSERT(inNumPositionSteps\ <\ 256);\ mNumPositionSteps[inIslandIndex]\ =\ uint8(inNumPositionSteps);\ \}}
+\DoxyCodeLine{00055\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetNumPositionSteps(uint32\ inIslandIndex)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(inIslandIndex\ <\ mNumIslands);\ \textcolor{keywordflow}{return}\ mNumPositionSteps[inIslandIndex];\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIslandBuilder_a3a23a4981c11d55933cc2533504eb38a}{ResetIslands}}(\mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00062\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetLowestBodyIndex(uint32\ inActiveBodyIndex)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifdef\ JPH\_VALIDATE\_ISLAND\_BUILDER}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidateIslands(uint32\ inNumActiveBodies)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ Helper\ functions\ to\ build\ various\ islands}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BuildBodyIslands(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ *inActiveBodies,\ uint32\ inNumActiveBodies,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator);}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BuildConstraintIslands(\textcolor{keyword}{const}\ uint32\ *inConstraintToBody,\ uint32\ inNumConstraints,\ uint32\ *\&outConstraints,\ uint32\ *\&outConstraintsEnd,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SortIslands(\mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ *inTempAllocator);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{struct\ }BodyLink}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ atomic<uint32>\ \ \ \ \ \ mLinkedTo;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ mIslandIndex;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ Intermediate\ data}}
+\DoxyCodeLine{00086\ \ \ \ \ BodyLink\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyLinks\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConstraintLinks\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContactLinks\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ Final\ data}}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyIslands\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBodyIslandEnds\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConstraintIslands\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mConstraintIslandEnds\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContactIslands\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mContactIslandEnds\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ uint32\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mIslandsSorted\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ uint8\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumPositionSteps\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ Counters}}
+\DoxyCodeLine{00105\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxActiveBodies;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumActiveBodies\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumConstraints\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxContacts\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumContacts\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumIslands\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#ifdef\ JPH\_VALIDATE\_ISLAND\_BUILDER}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{struct\ }LinkValidation}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ mFirst;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ mSecond;}
+\DoxyCodeLine{00118\ \ \ \ \ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ LinkValidation\ *\ \ \ \ \ \ \ \ mLinkValidation\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00121\ \ \ \ \ atomic<uint32>\ \ \ \ \ \ \ \ \ \ mNumLinkValidation;}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

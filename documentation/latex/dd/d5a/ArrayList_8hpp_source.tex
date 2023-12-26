@@ -1,0 +1,210 @@
+\doxysection{Array\+List.\+hpp}
+\hypertarget{ArrayList_8hpp_source}{}\label{ArrayList_8hpp_source}\index{includes/playrho/Common/ArrayList.hpp@{includes/playrho/Common/ArrayList.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Original\ work\ Copyright\ (c)\ 2006-\/2009\ Erin\ Catto\ http://www.box2d.org}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Modified\ work\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_ARRAYLIST\_HPP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_ARRAYLIST\_HPP}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <PlayRho/Defines.hpp>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <initializer\_list>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ VALUE\_TYPE,\ std::\textcolor{keywordtype}{size\_t}\ MAXSIZE,\ \textcolor{keyword}{typename}\ SIZE\_TYPE\ =\ std::\textcolor{keywordtype}{size\_t}>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1ArrayList_a4a0c35a082d030d92f764690e732b37f}{size\_type}}\ =\ SIZE\_TYPE;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1ArrayList_a0276dcd7122ecfae3448abb1b559e694}{value\_type}}\ =\ VALUE\_TYPE;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1ArrayList_af8df8532d007eec85164392f49348636}{reference}}\ =\ \mbox{\hyperlink{classplayrho_1_1ArrayList_a0276dcd7122ecfae3448abb1b559e694}{value\_type}}\&;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1ArrayList_a5294f5d27bbabd0ed897275d82f79cff}{const\_reference}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1ArrayList_a0276dcd7122ecfae3448abb1b559e694}{value\_type}}\&;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1ArrayList_a73cf30a1be6070f8cb00e3bca971aafd}{pointer}}\ =\ \mbox{\hyperlink{classplayrho_1_1ArrayList_a0276dcd7122ecfae3448abb1b559e694}{value\_type}}*;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1ArrayList_a3d78678c4d77afb2c4b69a1e4b452614}{const\_pointer}}\ =\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1ArrayList_a0276dcd7122ecfae3448abb1b559e694}{value\_type}}*;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList}}()\ noexcept}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ defaulting\ this\ method\ instead\ of\ writing\ it\ out\ here,}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ causes\ issues\ with\ gcc.}}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{template}\ <std::size\_t\ COPY\_MAXSIZE,\ \textcolor{keyword}{typename}\ COPY\_SIZE\_TYPE,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ =\ std::enable\_if\_t<COPY\_MAXSIZE\ <=\ MAXSIZE>>}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList<VALUE\_TYPE,\ COPY\_MAXSIZE,\ SIZE\_TYPE>}}\&\ copy)}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ :\ m\_size\{size(copy)\},\ m\_elements\{data(copy)\}}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty}}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{template}\ <std::size\_t\ COPY\_MAXSIZE,\ \textcolor{keyword}{typename}\ COPY\_SIZE\_TYPE,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ =\ std::enable\_if\_t<COPY\_MAXSIZE\ <=\ MAXSIZE>>}
+\DoxyCodeLine{00078\ \ \ \ \ ArrayList\&\ operator=(\textcolor{keyword}{const}\ ArrayList<VALUE\_TYPE,\ COPY\_MAXSIZE,\ COPY\_SIZE\_TYPE>\&\ copy)}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ m\_size\ =\ \textcolor{keyword}{static\_cast<}SIZE\_TYPE\textcolor{keyword}{>}(size(copy));}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ m\_elements\ =\ data(copy);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{template}\ <std::\textcolor{keywordtype}{size\_t}\ SIZE,\ \textcolor{keyword}{typename}\ =\ std::enable\_if\_t<SIZE\ <=\ MAXSIZE>>}
+\DoxyCodeLine{00086\ \ \ \ \ explicit\ ArrayList(value\_type\ (\&value)[SIZE])\ noexcept}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ for\ (auto\&\&\ elem\ :\ value)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ push\_back(elem);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ ArrayList(std::initializer\_list<value\_type>\ list)}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ for\ (auto\&\&\ elem\ :\ list)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ push\_back(elem);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ constexpr\ ArrayList\&\ Append(const\ value\_type\&\ value)}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ push\_back(value);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ return\ *this;}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ constexpr\ \textcolor{keywordtype}{void}\ push\_back(const\ value\_type\&\ value)\ noexcept}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ assert(m\_size\ <\ MAXSIZE);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ m\_elements[m\_size]\ =\ value;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ ++m\_size;}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ size(\textcolor{keywordtype}{size\_t}ype\ value)\ noexcept}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ assert(value\ <=\ MAXSIZE);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ m\_size\ =\ value;}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ clear()\ noexcept}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ m\_size\ =\ 0;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{bool}\ empty()\ const\ noexcept}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ return\ m\_size\ ==\ 0;}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{bool}\ add(value\_type\ value)\ noexcept}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ if\ (m\_size\ <\ MAXSIZE)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ m\_elements[m\_size]\ =\ value;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ ++m\_size;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ return\ true;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ return\ false;}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ reference\ operator[](\textcolor{keywordtype}{size\_t}ype\ index)\ noexcept}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ assert(index\ <\ MAXSIZE);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ return\ m\_elements[index];}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ constexpr\ const\_reference\ operator[](\textcolor{keywordtype}{size\_t}ype\ index)\ const\ noexcept}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ assert(index\ <\ MAXSIZE);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ return\ m\_elements[index];}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ \ \ \ \ constexpr\ \textcolor{keywordtype}{size\_t}ype\ size()\ const\ noexcept}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ return\ m\_size;}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00162\ \ \ \ \ constexpr\ \textcolor{keywordtype}{size\_t}ype\ max\_size()\ const\ noexcept}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ return\ MAXSIZE;}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ auto\ data()\ const\ noexcept}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ return\ m\_elements.data();}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ po\textcolor{keywordtype}{int}er\ begin()\ noexcept}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ return\ m\_elements.data();}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ po\textcolor{keywordtype}{int}er\ end()\ noexcept}
+\DoxyCodeLine{00177\ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ return\ m\_elements.data()\ +\ m\_size;}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ const\_po\textcolor{keywordtype}{int}er\ begin()\ const\ noexcept}
+\DoxyCodeLine{00182\ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ return\ m\_elements.data();}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ const\_po\textcolor{keywordtype}{int}er\ end()\ const\ noexcept}
+\DoxyCodeLine{00186\ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ return\ m\_elements.data()\ +\ m\_size;}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ private:}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{size\_t}ype\ m\_size\ =\ \textcolor{keywordtype}{size\_t}ype\{0\};}
+\DoxyCodeLine{00192\ \ \ \ \ std::array<value\_type,\ MAXSIZE>\ m\_elements;}
+\DoxyCodeLine{00193\ \};}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ S>}
+\DoxyCodeLine{00197\ \mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList<T,\ S>}}\&\ \mbox{\hyperlink{namespaceplayrho_a094d875570578b0f46ac09fa6afeee38}{operator+=}}(\mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList<T,\ S>}}\&\ lhs,\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList<T,\ S>::data\_type}}\&\ rhs)}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ lhs.push\_back(rhs);}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00204\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ std::\textcolor{keywordtype}{size\_t}\ S>}
+\DoxyCodeLine{00205\ \mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList<T,\ S>}}\ \mbox{\hyperlink{namespaceplayrho_ab0007f3b80a0bc77615b4566b5860111}{operator+}}(\mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList<T,\ S>}}\ lhs,\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classplayrho_1_1ArrayList}{ArrayList<T,\ S>::data\_type}}\&\ rhs)}
+\DoxyCodeLine{00206\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ lhs.push\_back(rhs);}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \}\ \textcolor{comment}{/*\ namespace\ playrho\ */}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}\ \{}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00216\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ SIZE\_TYPE>}
+\DoxyCodeLine{00217\ \textcolor{keyword}{class\ }tuple\_size<playrho::ArrayList<T,\ N,\ SIZE\_TYPE>>\ :\ \textcolor{keyword}{public}\ integral\_constant<std::size\_t,\ N>}
+\DoxyCodeLine{00218\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00220\ \};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \}\ \textcolor{comment}{//\ namespace\ std}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_ARRAYLIST\_HPP}}
+
+\end{DoxyCode}

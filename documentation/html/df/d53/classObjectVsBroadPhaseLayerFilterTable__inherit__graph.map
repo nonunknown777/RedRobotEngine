@@ -1,0 +1,7 @@
+<map id="ObjectVsBroadPhaseLayerFilterTable" name="ObjectVsBroadPhaseLayerFilterTable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,321,236,447"/>
+<area shape="rect" id="Node000002" href="$df/d43/classObjectVsBroadPhaseLayerFilter.html" title="Class to test if an object can collide with a broadphase layer. Used while finding collision pairs." alt="" coords="12,165,229,273"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,289,123,322,118,322,118,289"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="59,5,182,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,132,123,166,118,166,118,132"/>
+</map>

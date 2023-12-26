@@ -1,0 +1,432 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="63,2080,172,2108"/>
+<area shape="rect" id="Node000001" href="$dd/dba/classBodyLockBase.html" title=" " alt="" coords="311,3766,478,3811"/>
+<area shape="poly" id="edge23_Node000000_Node000001" title=" " alt="" coords="122,2123,135,2449,163,2968,185,3236,211,3473,226,3572,243,3654,261,3715,280,3752,294,3765,311,3774,309,3779,291,3769,276,3755,256,3717,238,3655,221,3573,206,3474,179,3236,158,2969,129,2449,117,2123"/>
+<area shape="rect" id="Node000003" href="$dd/dba/classBodyLockBase.html" title=" " alt="" coords="314,3836,475,3880"/>
+<area shape="poly" id="edge25_Node000000_Node000003" title=" " alt="" coords="122,2123,134,2460,161,3002,182,3282,209,3530,225,3633,241,3719,260,3783,280,3822,295,3835,315,3845,312,3850,292,3840,276,3825,255,3785,236,3720,219,3634,204,3530,177,3282,156,3003,128,2461,117,2123"/>
+<area shape="rect" id="Node000005" href="$d8/d77/classBodyLockMultiBase.html" title=" " alt="" coords="314,3905,475,3950"/>
+<area shape="poly" id="edge27_Node000000_Node000005" title=" " alt="" coords="122,2123,133,2472,144,2742,159,3036,180,3327,207,3586,223,3694,240,3784,259,3850,280,3891,296,3905,315,3915,313,3919,293,3909,276,3894,254,3852,235,3785,218,3695,202,3587,175,3328,154,3037,138,2742,127,2472,117,2123"/>
+<area shape="rect" id="Node000007" href="$d8/d77/classBodyLockMultiBase.html" title=" " alt="" coords="314,3974,475,4019"/>
+<area shape="poly" id="edge29_Node000000_Node000007" title=" " alt="" coords="122,2123,132,2485,142,2765,157,3071,178,3374,205,3643,221,3756,239,3849,258,3918,280,3960,296,3974,315,3984,313,3989,293,3979,276,3963,254,3920,234,3850,216,3757,200,3644,173,3374,152,3072,137,2765,126,2485,117,2123"/>
+<area shape="rect" id="Node000009" href="$de/d28/classFixedSizeFreeList.html" title=" " alt="" coords="322,446,467,491"/>
+<area shape="poly" id="edge31_Node000000_Node000009" title=" " alt="" coords="117,2064,130,1751,160,1253,182,998,208,771,223,676,239,597,256,538,276,501,296,484,321,474,323,479,299,489,280,505,261,540,244,598,228,677,213,771,187,998,165,1254,136,1751,122,2065"/>
+<area shape="rect" id="Node000010" href="$de/d28/classFixedSizeFreeList.html" title=" " alt="" coords="322,516,467,560"/>
+<area shape="poly" id="edge32_Node000000_Node000010" title=" " alt="" coords="117,2064,131,1763,162,1288,184,1044,210,827,224,737,240,662,257,606,276,571,296,554,321,543,323,548,299,558,280,574,262,608,245,663,230,738,215,828,189,1044,167,1288,137,1764,123,2065"/>
+<area shape="rect" id="Node000011" href="$db/d2c/classLockFreeHashMap.html" title=" " alt="" coords="285,585,504,630"/>
+<area shape="poly" id="edge33_Node000000_Node000011" title=" " alt="" coords="117,2064,133,1775,164,1321,186,1090,212,884,242,727,258,673,276,640,289,628,292,632,280,643,263,675,247,728,217,885,191,1090,169,1322,138,1775,123,2064"/>
+<area shape="rect" id="Node000012" href="$db/d2c/classLockFreeHashMap.html" title=" " alt="" coords="286,654,503,699"/>
+<area shape="poly" id="edge34_Node000000_Node000012" title=" " alt="" coords="118,2064,134,1787,166,1356,188,1136,214,941,243,792,259,741,276,710,289,697,292,701,280,713,264,743,248,793,219,942,193,1137,171,1357,139,1788,123,2064"/>
+<area shape="rect" id="Node000013" href="$d0/da7/classMutexArray.html" title=" " alt="" coords="288,723,501,750"/>
+<area shape="poly" id="edge35_Node000000_Node000013" title=" " alt="" coords="118,2065,134,1797,166,1382,188,1170,214,982,243,840,259,791,276,761,291,749,294,753,280,765,264,793,248,841,219,983,193,1171,171,1382,139,1797,123,2065"/>
+<area shape="rect" id="Node000014" href="$d0/d71/classAABBTreeBuilder_1_1Node.html" title="A node in the tree, contains the AABox for the tree and any child nodes or triangles." alt="" coords="308,775,481,802"/>
+<area shape="poly" id="edge36_Node000000_Node000014" title=" " alt="" coords="118,2064,135,1805,168,1407,190,1204,215,1025,244,888,259,842,276,813,290,801,306,793,309,798,293,806,280,817,264,844,249,890,221,1026,195,1205,173,1408,140,1806,123,2064"/>
+<area shape="rect" id="Node000015" href="$d7/d80/classBody.html" title=" " alt="" coords="367,827,422,854"/>
+<area shape="poly" id="edge37_Node000000_Node000015" title=" " alt="" coords="116,2065,116,1833,121,1660,132,1472,151,1282,180,1107,199,1031,221,963,246,908,276,865,296,850,320,841,367,836,367,841,321,846,299,855,280,869,251,910,226,965,204,1032,185,1109,156,1283,137,1472,126,1661,121,1833,121,2065"/>
+<area shape="rect" id="Node000016" href="$d4/d7d/classBodyFilter.html" title="Class function to filter out bodies, returns true if test should collide with body." alt="" coords="351,395,438,422"/>
+<area shape="poly" id="edge38_Node000000_Node000016" title=" " alt="" coords="117,2064,128,1738,156,1217,177,950,204,712,219,613,236,531,255,470,276,432,292,419,310,410,350,404,351,409,312,416,294,423,280,436,260,472,241,532,224,614,209,713,182,950,161,1218,134,1738,122,2065"/>
+<area shape="rect" id="Node000019" href="$d7/d6f/classBodyInterface.html" title=" " alt="" coords="338,879,451,906"/>
+<area shape="poly" id="edge41_Node000000_Node000019" title=" " alt="" coords="116,2064,117,1840,123,1675,135,1494,154,1313,182,1147,201,1073,222,1009,247,956,276,916,289,905,304,897,337,889,338,894,306,902,292,909,280,920,252,959,227,1011,206,1075,188,1148,159,1314,140,1495,129,1675,123,1840,121,2065"/>
+<area shape="rect" id="Node000020" href="$dd/dba/classBodyLockBase.html" title="Base class for locking bodies for the duration of the scope of this class (do not use directly)" alt="" coords="309,930,480,975"/>
+<area shape="poly" id="edge42_Node000000_Node000020" title=" " alt="" coords="116,2064,121,1853,129,1698,142,1529,161,1360,189,1204,207,1135,227,1074,250,1024,276,985,290,972,307,963,310,968,293,977,280,989,254,1027,232,1076,212,1136,195,1205,167,1361,147,1530,134,1699,126,1853,122,2065"/>
+<area shape="rect" id="Node000021" href="$d3/d7d/classBodyLockInterface.html" title="Base class interface for locking a body. Usually you will use BodyLockRead / BodyLockWrite / BodyLock..." alt="" coords="323,1172,466,1200"/>
+<area shape="poly" id="edge43_Node000000_Node000021" title=" " alt="" coords="117,2064,127,1891,138,1767,153,1634,174,1501,200,1379,216,1326,234,1279,254,1240,276,1211,297,1195,322,1186,324,1191,300,1200,280,1214,258,1243,239,1281,221,1327,205,1380,179,1502,158,1634,143,1768,133,1891,123,2065"/>
+<area shape="rect" id="Node000024" href="$d8/d77/classBodyLockMultiBase.html" title="Base class for locking multiple bodies for the duration of the scope of this class (do not use direct..." alt="" coords="314,1000,475,1044"/>
+<area shape="poly" id="edge46_Node000000_Node000024" title=" " alt="" coords="117,2064,123,1864,132,1720,146,1562,166,1404,193,1258,210,1194,229,1138,251,1091,276,1055,293,1040,313,1030,315,1035,296,1045,280,1058,256,1093,234,1140,215,1195,198,1259,171,1404,151,1562,137,1720,129,1865,122,2064"/>
+<area shape="rect" id="Node000025" href="$d2/d50/classBodyManager.html" title="Class that contains all bodies." alt="" coords="339,1068,450,1096"/>
+<area shape="poly" id="edge47_Node000000_Node000025" title=" " alt="" coords="117,2064,124,1872,133,1734,147,1584,167,1434,194,1297,211,1237,230,1184,252,1140,276,1107,305,1088,338,1079,339,1084,307,1093,280,1110,256,1143,235,1186,216,1238,199,1298,172,1435,152,1585,138,1735,129,1873,122,2064"/>
+<area shape="rect" id="Node000026" href="$dd/d02/classBroadPhaseLayerFilter.html" title="Filter class for broadphase layers." alt="" coords="311,1899,478,1926"/>
+<area shape="poly" id="edge48_Node000000_Node000026" title=" " alt="" coords="136,2066,194,2001,233,1966,276,1937,309,1923,311,1928,279,1942,236,1970,198,2004,140,2070"/>
+<area shape="rect" id="Node000029" href="$d5/d94/classBroadPhaseLayerInterface.html" title="Interface that the application should implement to allow mapping object layers to broadphase layers." alt="" coords="298,1951,491,1978"/>
+<area shape="poly" id="edge51_Node000000_Node000029" title=" " alt="" coords="147,2068,205,2027,277,1989,313,1976,315,1981,279,1994,208,2032,150,2073"/>
+<area shape="rect" id="Node000032" href="$db/d46/classBroadPhaseQuery.html" title=" " alt="" coords="326,2055,463,2082"/>
+<area shape="poly" id="edge54_Node000000_Node000032" title=" " alt="" coords="186,2085,325,2072,325,2077,187,2090"/>
+<area shape="rect" id="Node000036" href="$d3/dfb/classCharacterBase.html" title="Base class for character class." alt="" coords="336,239,453,266"/>
+<area shape="poly" id="edge58_Node000000_Node000036" title=" " alt="" coords="117,2064,126,1710,136,1438,152,1140,172,846,199,586,215,476,233,386,253,319,276,277,303,258,335,250,337,255,305,263,280,281,258,321,239,388,221,477,205,586,178,847,157,1141,142,1438,131,1711,122,2064"/>
+<area shape="rect" id="Node000040" href="$d8/dcd/classConstraint.html" title="Base class for all physics constraints. A constraint removes one or more degrees of freedom for a rig..." alt="" coords="350,291,439,318"/>
+<area shape="poly" id="edge61_Node000000_Node000040" title=" " alt="" coords="117,2065,127,1721,138,1456,153,1167,174,882,201,629,217,523,234,435,254,370,276,329,292,316,310,307,350,300,350,305,312,313,294,321,280,333,259,372,240,437,222,524,206,629,179,882,158,1167,143,1456,132,1721,122,2065"/>
+<area shape="rect" id="Node000057" href="$d2/d1d/classConstraintManager.html" title="A constraint manager manages all constraints of the same type." alt="" coords="322,1224,467,1252"/>
+<area shape="poly" id="edge76_Node000000_Node000057" title=" " alt="" coords="118,2065,129,1900,156,1659,177,1534,203,1420,236,1326,255,1290,276,1263,296,1248,320,1239,322,1244,299,1252,280,1266,259,1293,241,1329,208,1422,182,1535,161,1660,134,1901,123,2065"/>
+<area shape="rect" id="Node000058" href="$d4/d3f/classContactConstraintManager.html" title=" " alt="" coords="297,1276,492,1304"/>
+<area shape="poly" id="edge77_Node000000_Node000058" title=" " alt="" coords="118,2064,131,1908,160,1683,181,1567,207,1461,238,1374,256,1340,276,1315,295,1301,298,1305,280,1318,261,1343,243,1376,212,1462,186,1568,165,1684,136,1909,123,2065"/>
+<area shape="rect" id="Node000059" href="$d3/d28/classConvexHullBuilder.html" title="A convex hull builder that tries to create hulls as accurately as possible. Used for offline processi..." alt="" coords="323,1328,466,1356"/>
+<area shape="poly" id="edge78_Node000000_Node000059" title=" " alt="" coords="118,2064,133,1918,163,1708,184,1601,210,1502,240,1422,257,1390,276,1367,297,1351,322,1343,323,1348,300,1356,280,1370,262,1393,245,1424,215,1504,189,1602,168,1709,138,1919,124,2065"/>
+<area shape="rect" id="Node000060" href="$d8/d7f/classConvexHullBuilder2D.html" title="A convex hull builder that tries to create 2D hulls as accurately as possible. Used for offline proce..." alt="" coords="314,1380,475,1408"/>
+<area shape="poly" id="edge79_Node000000_Node000060" title=" " alt="" coords="119,2064,135,1927,166,1733,188,1634,213,1543,242,1469,258,1440,276,1419,293,1406,313,1397,315,1402,296,1410,280,1422,263,1443,247,1471,218,1545,193,1635,172,1734,141,1928,124,2065"/>
+<area shape="rect" id="Node000061" href="$df/d6e/classConvexHullBuilder_1_1Edge.html" title="Class that holds the information of an edge." alt="" coords="303,1432,486,1460"/>
+<area shape="poly" id="edge80_Node000000_Node000061" title=" " alt="" coords="120,2064,137,1937,170,1758,191,1667,216,1585,244,1517,259,1490,276,1471,301,1454,304,1458,279,1474,264,1494,249,1519,221,1586,196,1669,175,1760,143,1938,125,2065"/>
+<area shape="rect" id="Node000062" href="$d8/da2/classConvexHullBuilder_1_1Face.html" title="Class that holds the information of one face." alt="" coords="305,1484,484,1512"/>
+<area shape="poly" id="edge81_Node000000_Node000062" title=" " alt="" coords="120,2064,140,1946,173,1784,195,1701,219,1626,246,1564,276,1523,303,1506,306,1510,279,1526,251,1567,224,1628,200,1702,178,1785,145,1947,126,2065"/>
+<area shape="rect" id="Node000063" href="$db/d97/classEPAConvexHullBuilder.html" title="A convex hull builder specifically made for the EPA penetration depth calculation...." alt="" coords="311,1536,478,1564"/>
+<area shape="poly" id="edge82_Node000000_Node000063" title=" " alt="" coords="116,2064,120,1969,128,1906,141,1837,160,1765,189,1695,227,1630,250,1600,276,1573,292,1562,310,1554,312,1559,294,1566,279,1577,254,1604,231,1633,193,1697,165,1767,146,1838,133,1907,125,1970,121,2065"/>
+<area shape="rect" id="Node000064" href="$d6/d30/classEPAConvexHullBuilder_1_1Triangle.html" title="Class that holds the information of one triangle." alt="" coords="311,1588,478,1632"/>
+<area shape="poly" id="edge83_Node000000_Node000064" title=" " alt="" coords="118,2064,127,1982,137,1927,152,1868,172,1808,199,1748,233,1692,276,1643,292,1630,310,1622,312,1626,295,1635,279,1646,238,1695,204,1750,177,1810,157,1870,142,1929,133,1983,123,2065"/>
+<area shape="rect" id="Node000065" href="$de/d91/classEPAConvexHullBuilder_1_1TriangleFactory.html" title="Factory that creates triangles in a fixed size buffer." alt="" coords="311,1657,478,1702"/>
+<area shape="poly" id="edge84_Node000000_Node000065" title=" " alt="" coords="120,2064,133,1993,161,1898,181,1848,207,1798,238,1752,276,1712,309,1692,312,1696,279,1716,243,1756,212,1801,186,1850,166,1900,139,1994,125,2065"/>
+<area shape="rect" id="Node000066" href="$de/d28/classFixedSizeFreeList.html" title=" " alt="" coords="322,1726,467,1771"/>
+<area shape="poly" id="edge85_Node000000_Node000066" title=" " alt="" coords="123,2064,140,2005,170,1929,191,1889,215,1849,243,1813,276,1781,297,1767,321,1758,323,1763,300,1772,279,1785,247,1817,219,1852,195,1891,175,1931,145,2007,128,2066"/>
+<area shape="rect" id="Node000067" href="$dd/da6/classGJKClosestPoint.html" title=" " alt="" coords="332,1795,457,1822"/>
+<area shape="poly" id="edge86_Node000000_Node000067" title=" " alt="" coords="125,2065,145,2014,176,1951,220,1887,246,1858,276,1833,303,1819,331,1811,332,1816,305,1824,279,1837,250,1862,224,1890,181,1954,150,2016,130,2067"/>
+<area shape="rect" id="Node000068" href="$da/d8a/classIslandBuilder.html" title="Keeps track of connected bodies and builds islands for multithreaded velocity/position update." alt="" coords="341,1847,448,1874"/>
+<area shape="poly" id="edge87_Node000000_Node000068" title=" " alt="" coords="130,2065,152,2024,185,1975,226,1926,276,1885,307,1870,340,1862,341,1867,309,1875,279,1889,230,1930,189,1978,157,2027,134,2067"/>
+<area shape="rect" id="Node000069" href="$df/dff/classJobSystem.html" title=" " alt="" coords="349,2159,440,2186"/>
+<area shape="poly" id="edge88_Node000000_Node000069" title=" " alt="" coords="175,2111,278,2143,350,2161,348,2166,277,2148,173,2116"/>
+<area shape="rect" id="Node000073" href="$d1/d64/classJobSystem_1_1Barrier.html" title="A job barrier keeps track of a number of jobs and allows waiting until they are all completed." alt="" coords="323,2211,466,2238"/>
+<area shape="poly" id="edge92_Node000000_Node000073" title=" " alt="" coords="150,2115,207,2157,279,2195,324,2210,322,2215,277,2200,205,2161,147,2120"/>
+<area shape="rect" id="Node000075" href="$de/df3/classLFHMAllocator.html" title="Allocator for a lock free hash map." alt="" coords="336,2003,453,2030"/>
+<area shape="poly" id="edge94_Node000000_Node000075" title=" " alt="" coords="174,2072,277,2041,335,2026,337,2031,278,2046,176,2077"/>
+<area shape="rect" id="Node000076" href="$d6/d9f/classLFHMAllocatorContext.html" title=" " alt="" coords="311,2263,478,2290"/>
+<area shape="poly" id="edge95_Node000000_Node000076" title=" " alt="" coords="140,2118,197,2184,236,2219,279,2247,311,2261,309,2266,276,2252,233,2223,194,2188,136,2122"/>
+<area shape="rect" id="Node000078" href="$db/df1/classLargeIslandSplitter.html" title=" " alt="" coords="323,2315,466,2342"/>
+<area shape="poly" id="edge97_Node000000_Node000078" title=" " alt="" coords="134,2120,157,2161,189,2210,230,2259,279,2300,300,2310,323,2318,321,2323,298,2315,276,2304,226,2263,185,2213,152,2164,130,2123"/>
+<area shape="rect" id="Node000079" href="$db/d2c/classLockFreeHashMap.html" title=" " alt="" coords="303,2366,486,2411"/>
+<area shape="poly" id="edge98_Node000000_Node000079" title=" " alt="" coords="131,2121,151,2171,182,2234,225,2297,251,2326,279,2352,304,2366,301,2371,276,2356,247,2330,221,2301,178,2236,146,2173,126,2123"/>
+<area shape="rect" id="Node000080" href="$d0/da7/classMutexArray.html" title=" " alt="" coords="295,2435,494,2462"/>
+<area shape="poly" id="edge99_Node000000_Node000080" title=" " alt="" coords="127,2122,142,2185,171,2267,191,2309,216,2351,245,2389,279,2421,297,2432,294,2436,276,2425,241,2392,211,2354,186,2312,166,2269,137,2187,121,2123"/>
+<area shape="rect" id="Node000081" href="$d1/dd4/classNarrowPhaseQuery.html" title=" " alt="" coords="321,2487,468,2514"/>
+<area shape="poly" id="edge100_Node000000_Node000081" title=" " alt="" coords="125,2123,137,2194,164,2289,184,2339,210,2388,241,2433,279,2472,299,2484,322,2492,320,2497,297,2489,276,2476,237,2436,205,2391,180,2342,159,2291,132,2196,119,2124"/>
+<area shape="rect" id="Node000082" href="$d0/d86/classObjectLayerFilter.html" title="Filter class for object layers." alt="" coords="328,2539,461,2566"/>
+<area shape="poly" id="edge101_Node000000_Node000082" title=" " alt="" coords="123,2123,133,2203,143,2255,157,2312,177,2370,204,2426,238,2479,279,2524,302,2538,329,2546,327,2551,300,2543,276,2528,233,2482,199,2429,172,2372,152,2313,137,2256,127,2204,118,2123"/>
+<area shape="rect" id="Node000085" href="$d7/d05/classObjectLayerPairFilter.html" title="Filter class to test if two objects can collide based on their object layer. Used while finding colli..." alt="" coords="316,2591,473,2618"/>
+<area shape="poly" id="edge104_Node000000_Node000085" title=" " alt="" coords="122,2123,128,2212,137,2270,150,2334,170,2400,198,2465,234,2524,279,2576,297,2588,317,2596,315,2601,294,2592,276,2580,229,2527,193,2467,165,2402,145,2336,132,2271,123,2212,116,2123"/>
+<area shape="rect" id="Node000088" href="$d6/db1/classObjectStream.html" title="Base class for object stream input and output streams." alt="" coords="339,2643,450,2670"/>
+<area shape="poly" id="edge107_Node000000_Node000088" title=" " alt="" coords="121,2123,124,2220,131,2285,144,2357,164,2430,192,2503,230,2570,253,2600,279,2628,307,2645,339,2653,338,2658,305,2650,276,2632,249,2604,225,2573,187,2505,158,2432,139,2358,126,2286,119,2220,115,2123"/>
+<area shape="rect" id="Node000097" href="$df/d43/classObjectVsBroadPhaseLayerFilter.html" title="Class to test if an object can collide with a broadphase layer. Used while finding collision pairs." alt="" coords="282,2695,507,2722"/>
+<area shape="poly" id="edge116_Node000000_Node000097" title=" " alt="" coords="125,2123,144,2244,177,2412,199,2497,223,2575,250,2638,265,2662,279,2680,296,2692,293,2696,276,2684,260,2665,245,2640,218,2577,194,2499,172,2413,139,2245,120,2124"/>
+<area shape="rect" id="Node000100" href="$d5/d74/classPhysicsSystem.html" title=" " alt="" coords="335,3127,454,3154"/>
+<area shape="poly" id="edge119_Node000000_Node000100" title=" " alt="" coords="122,2123,128,2321,136,2464,149,2620,169,2775,197,2918,214,2980,233,3035,255,3080,280,3113,305,3130,335,3138,333,3143,303,3135,276,3117,251,3083,228,3037,209,2982,192,2919,164,2776,144,2620,131,2464,122,2321,116,2123"/>
+<area shape="rect" id="Node000101" href="$d7/ddb/classPhysicsUpdateContext.html" title="Information used during the Update call." alt="" coords="310,3335,479,3362"/>
+<area shape="poly" id="edge120_Node000000_Node000101" title=" " alt="" coords="121,2123,121,2355,126,2528,137,2716,156,2906,185,3080,204,3157,225,3224,251,3279,280,3320,294,3332,311,3340,309,3345,291,3336,276,3324,246,3281,221,3226,198,3158,180,3081,151,2906,132,2717,121,2528,116,2355,116,2123"/>
+<area shape="rect" id="Node000102" href="$d2/dae/classQuadTree.html" title=" " alt="" coords="353,3387,436,3414"/>
+<area shape="poly" id="edge121_Node000000_Node000102" title=" " alt="" coords="123,2123,140,2382,173,2781,195,2984,221,3163,249,3299,264,3345,280,3372,295,3384,313,3393,353,3399,352,3405,312,3398,292,3389,276,3376,259,3347,244,3301,215,3164,190,2984,168,2781,135,2383,118,2124"/>
+<area shape="rect" id="Node000103" href="$d5/d69/classRagdoll.html" title="Runtime ragdoll information." alt="" coords="359,4043,430,4070"/>
+<area shape="poly" id="edge122_Node000000_Node000103" title=" " alt="" coords="122,2123,129,2498,139,2789,153,3108,173,3422,201,3702,217,3819,236,3915,257,3987,268,4012,280,4029,296,4043,317,4051,359,4056,359,4062,315,4056,294,4047,276,4033,263,4014,252,3988,231,3916,212,3820,195,3703,168,3423,148,3108,133,2789,124,2498,117,2123"/>
+<area shape="rect" id="Node000105" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="325,3179,464,3206"/>
+<area shape="poly" id="edge123_Node000000_Node000105" title=" " alt="" coords="122,2123,126,2330,134,2480,147,2644,166,2808,194,2958,212,3024,232,3081,254,3128,280,3164,300,3179,325,3188,324,3193,298,3184,276,3168,250,3131,227,3083,206,3025,189,2959,161,2808,141,2644,128,2481,121,2330,116,2124"/>
+<area shape="rect" id="Node000159" href="$de/d0a/classShape.html" title="Base class for all shapes (collision volume of a body). Defines a virtual interface for collision det..." alt="" coords="364,4175,425,4202"/>
+<area shape="poly" id="edge170_Node000000_Node000159" title=" " alt="" coords="123,2123,138,2502,171,3121,193,3443,219,3731,248,3954,264,4031,280,4081,299,4110,322,4135,371,4172,367,4176,319,4139,294,4113,275,4083,259,4033,243,3955,214,3731,188,3443,166,3122,133,2503,117,2124"/>
+<area shape="rect" id="Node000179" href="$da/d44/classShapeFilter.html" title="Filter class." alt="" coords="347,2747,442,2774"/>
+<area shape="poly" id="edge189_Node000000_Node000179" title=" " alt="" coords="125,2123,142,2254,174,2438,195,2531,220,2616,248,2686,263,2712,280,2732,294,2743,311,2751,347,2758,346,2763,309,2756,291,2747,276,2736,259,2715,243,2688,215,2618,190,2533,169,2439,137,2255,119,2124"/>
+<area shape="rect" id="Node000181" href="$d4/dfe/classSharedLock.html" title="Helper class that is similar to std::shared_lock." alt="" coords="301,3507,488,3534"/>
+<area shape="poly" id="edge191_Node000000_Node000181" title=" " alt="" coords="123,2123,138,2404,169,2841,191,3065,217,3263,246,3413,263,3463,280,3493,302,3510,299,3514,276,3497,258,3465,241,3414,211,3264,186,3066,164,2842,132,2404,117,2123"/>
+<area shape="rect" id="Node000182" href="$d0/d48/classSoftBodyUpdateContext.html" title="Temporary data used by the update of a soft body." alt="" coords="306,3559,483,3586"/>
+<area shape="poly" id="edge192_Node000000_Node000182" title=" " alt="" coords="123,2123,137,2412,168,2866,189,3098,215,3304,230,3390,246,3460,262,3513,280,3544,292,3555,306,3562,304,3567,289,3559,276,3548,257,3515,240,3462,225,3391,210,3305,184,3099,162,2867,132,2413,117,2123"/>
+<area shape="rect" id="Node000183" href="$da/db6/classStreamIn.html" title="Simple binary input stream." alt="" coords="354,2851,435,2878"/>
+<area shape="poly" id="edge193_Node000000_Node000183" title=" " alt="" coords="124,2123,138,2273,167,2488,188,2598,214,2699,244,2781,261,2812,280,2836,296,2848,314,2856,354,2863,353,2868,313,2861,293,2853,276,2840,257,2815,239,2783,209,2700,183,2599,162,2489,132,2273,118,2124"/>
+<area shape="rect" id="Node000186" href="$dd/d39/classStreamOut.html" title="Simple binary output stream." alt="" coords="349,2799,440,2826"/>
+<area shape="poly" id="edge197_Node000000_Node000186" title=" " alt="" coords="124,2123,140,2264,170,2463,192,2565,217,2658,246,2733,262,2762,280,2784,294,2795,312,2803,349,2810,348,2816,310,2808,292,2800,276,2788,258,2765,241,2736,212,2659,186,2566,165,2464,135,2264,119,2124"/>
+<area shape="rect" id="Node000189" href="$de/d88/classTempAllocator.html" title=" " alt="" coords="337,2903,452,2930"/>
+<area shape="poly" id="edge200_Node000000_Node000189" title=" " alt="" coords="123,2123,136,2281,164,2512,184,2631,210,2740,242,2829,260,2863,279,2888,306,2905,338,2913,336,2919,304,2910,276,2892,256,2865,237,2831,205,2741,179,2632,158,2513,130,2282,118,2123"/>
+<area shape="rect" id="Node000192" href="$dc/d2a/classTriangleGrouper.html" title="A class that groups triangles in batches of N (according to closeness)" alt="" coords="332,3663,457,3690"/>
+<area shape="poly" id="edge203_Node000000_Node000192" title=" " alt="" coords="122,2123,135,2431,165,2918,186,3168,212,3389,227,3482,244,3558,261,3614,280,3648,304,3665,333,3673,331,3679,301,3670,276,3652,256,3616,238,3559,222,3483,207,3390,181,3169,159,2919,130,2431,117,2123"/>
+<area shape="rect" id="Node000195" href="$d0/d4e/classTriangleSplitter.html" title="A class that splits a triangle list into two parts for building a tree." alt="" coords="335,3715,454,3742"/>
+<area shape="poly" id="edge206_Node000000_Node000195" title=" " alt="" coords="122,2123,134,2440,163,2944,184,3202,211,3432,226,3528,243,3606,261,3665,280,3700,305,3718,335,3726,334,3731,302,3722,276,3704,256,3667,237,3608,221,3528,205,3432,179,3203,158,2944,129,2440,117,2123"/>
+<area shape="rect" id="Node000201" href="$d4/d78/classUniqueLock.html" title="Helper class that is similar to std::unique_lock." alt="" coords="301,1120,488,1148"/>
+<area shape="poly" id="edge212_Node000000_Node000201" title=" " alt="" coords="117,2064,126,1882,135,1751,150,1609,170,1468,197,1338,214,1281,232,1231,253,1190,276,1159,298,1142,302,1147,280,1162,257,1193,237,1233,219,1283,202,1339,175,1469,155,1610,141,1751,131,1882,122,2065"/>
+<area shape="rect" id="Node000202" href="$d1/db2/classVehicleCollisionTester.html" title="Class that does collision detection between wheels and ground." alt="" coords="313,4425,476,4453"/>
+<area shape="poly" id="edge213_Node000000_Node000202" title=" " alt="" coords="122,2123,132,2486,159,3096,180,3427,207,3742,240,4013,259,4123,280,4213,303,4277,333,4337,385,4423,381,4426,328,4340,299,4279,275,4215,254,4124,235,4013,201,3742,174,3428,154,3096,127,2486,117,2123"/>
+<area shape="rect" id="Node000207" href="$d6/d05/classVehicleController.html" title="Runtime data for interface that controls acceleration / decelleration of the vehicle." alt="" coords="328,4572,461,4600"/>
+<area shape="poly" id="edge217_Node000000_Node000207" title=" " alt="" coords="123,2123,198,3373,247,4112,267,4358,280,4464,299,4497,324,4526,374,4569,371,4573,321,4530,295,4500,275,4465,262,4359,242,4113,193,3373,118,2123"/>
+<area shape="rect" id="Node000212" href="$d0/db1/classWheel.html" title="Base class for runtime data for a wheel, each VehicleController can implement a derived class of this..." alt="" coords="363,2107,426,2134"/>
+<area shape="poly" id="edge221_Node000000_Node000212" title=" " alt="" coords="187,2098,363,2115,363,2120,186,2103"/>
+<area shape="rect" id="Node000002" href="$df/d5a/classBodyLockRead.html" title=" " alt="" coords="631,3863,748,3890"/>
+<area shape="poly" id="edge24_Node000001_Node000002" title=" " alt="" coords="493,3813,512,3821,536,3835,560,3847,631,3866,630,3871,558,3852,534,3839,510,3826,491,3818"/>
+<area shape="rect" id="Node000004" href="$d8/d02/classBodyLockWrite.html" title="Specialization that locks a body for writing to." alt="" coords="630,3915,749,3942"/>
+<area shape="poly" id="edge26_Node000003_Node000004" title=" " alt="" coords="491,3882,560,3899,630,3915,629,3920,558,3904,489,3887"/>
+<area shape="rect" id="Node000006" href="$db/d71/classBodyLockMultiRead.html" title=" " alt="" coords="614,3967,764,3994"/>
+<area shape="poly" id="edge28_Node000005_Node000006" title=" " alt="" coords="491,3942,614,3964,613,3970,490,3947"/>
+<area shape="rect" id="Node000008" href="$d0/d6c/classBodyLockMultiWrite.html" title="Specialization that locks multiple bodies for writing to." alt="" coords="613,4019,765,4046"/>
+<area shape="poly" id="edge30_Node000007_Node000008" title=" " alt="" coords="490,4005,613,4021,612,4026,490,4011"/>
+<area shape="rect" id="Node000017" href="$df/d62/classIgnoreMultipleBodiesFilter.html" title="A simple body filter implementation that ignores multiple, specified bodies." alt="" coords="593,395,785,422"/>
+<area shape="poly" id="edge39_Node000016_Node000017" title=" " alt="" coords="453,406,593,406,593,411,453,411"/>
+<area shape="rect" id="Node000018" href="$d3/d21/classIgnoreSingleBodyFilter.html" title="A simple body filter implementation that ignores a single, specified body." alt="" coords="605,447,773,474"/>
+<area shape="poly" id="edge40_Node000016_Node000018" title=" " alt="" coords="453,416,607,443,606,449,452,421"/>
+<area shape="rect" id="Node000022" href="$d3/deb/classBodyLockInterfaceLocking.html" title="Implementation that uses the body manager to lock the correct mutex for a body." alt="" coords="593,1197,785,1225"/>
+<area shape="poly" id="edge44_Node000021_Node000022" title=" " alt="" coords="481,1191,593,1200,592,1206,481,1196"/>
+<area shape="rect" id="Node000023" href="$d4/d99/classBodyLockInterfaceNoLock.html" title="Implementation that performs no locking (assumes the lock has already been taken)" alt="" coords="594,1145,784,1173"/>
+<area shape="poly" id="edge45_Node000021_Node000023" title=" " alt="" coords="481,1175,594,1165,594,1170,482,1181"/>
+<area shape="rect" id="Node000027" href="$de/d43/classDefaultBroadPhaseLayerFilter.html" title="Default filter class that uses the pair filter in combination with a specified layer to filter layers..." alt="" coords="582,1761,797,1789"/>
+<area shape="poly" id="edge49_Node000026_Node000027" title=" " alt="" coords="491,1895,509,1884,526,1864,532,1842,539,1820,557,1798,580,1786,583,1791,561,1803,544,1822,537,1844,531,1866,513,1888,494,1899"/>
+<area shape="rect" id="Node000028" href="$d2/df4/classSpecifiedBroadPhaseLayerFilter.html" title="Allows objects from a specific broad phase layer only." alt="" coords="593,1693,786,1738"/>
+<area shape="poly" id="edge50_Node000026_Node000028" title=" " alt="" coords="490,1896,509,1884,523,1868,529,1852,533,1818,536,1783,543,1765,557,1748,591,1727,594,1732,561,1752,548,1768,541,1784,538,1818,535,1853,527,1871,513,1888,493,1901"/>
+<area shape="rect" id="Node000030" href="$d3/df4/classBroadPhaseLayerInterfaceMask.html" title=" " alt="" coords="576,1881,803,1909"/>
+<area shape="poly" id="edge52_Node000029_Node000030" title=" " alt="" coords="477,1944,510,1935,558,1919,610,1907,611,1912,560,1924,512,1940,478,1949"/>
+<area shape="rect" id="Node000031" href="$d5/d2b/classBroadPhaseLayerInterfaceTable.html" title=" " alt="" coords="593,1813,785,1858"/>
+<area shape="poly" id="edge53_Node000029_Node000031" title=" " alt="" coords="500,1942,509,1936,525,1920,533,1903,541,1885,557,1868,591,1850,594,1855,561,1872,545,1888,538,1905,529,1923,513,1940,502,1946"/>
+<area shape="rect" id="Node000033" href="$d5/d23/classBroadPhase.html" title="Used to do coarse collision detection operations to quickly prune out bodies that will not collide." alt="" coords="640,1933,738,1961"/>
+<area shape="poly" id="edge55_Node000032_Node000033" title=" " alt="" coords="476,2055,509,2040,525,2024,532,2007,541,1989,557,1972,598,1954,639,1946,640,1951,600,1959,561,1976,545,1992,537,2009,529,2027,513,2044,479,2060"/>
+<area shape="rect" id="Node000034" href="$db/d8a/classBroadPhaseBruteForce.html" title="Test BroadPhase implementation that does not do anything to speed up the operations...." alt="" coords="883,1959,1051,1986"/>
+<area shape="poly" id="edge56_Node000033_Node000034" title=" " alt="" coords="754,1950,883,1962,882,1968,753,1956"/>
+<area shape="rect" id="Node000035" href="$dc/d25/classBroadPhaseQuadTree.html" title="Fast SIMD based quad tree BroadPhase that is multithreading aware and tries to do a minimal amount of..." alt="" coords="887,1907,1047,1934"/>
+<area shape="poly" id="edge57_Node000033_Node000035" title=" " alt="" coords="753,1938,887,1925,887,1931,754,1944"/>
+<area shape="rect" id="Node000037" href="$d7/ddd/classCharacter.html" title=" " alt="" coords="647,187,731,214"/>
+<area shape="poly" id="edge59_Node000036_Node000037" title=" " alt="" coords="468,237,646,205,647,210,468,242"/>
+<area shape="rect" id="Node000038" href="$d4/d19/classCharacterVirtual.html" title=" " alt="" coords="626,239,753,266"/>
+<area shape="poly" id="edge60_Node000036_Node000038" title=" " alt="" coords="468,250,625,250,625,255,468,255"/>
+<area shape="rect" id="Node000041" href="$d8/d87/classTwoBodyConstraint.html" title="Base class for all constraints that involve 2 bodies. Body1 is usually considered the parent,..." alt="" coords="616,291,762,318"/>
+<area shape="poly" id="edge62_Node000040_Node000041" title=" " alt="" coords="454,302,616,302,616,307,454,307"/>
+<area shape="rect" id="Node000054" href="$da/d72/classVehicleConstraint.html" title=" " alt="" coords="622,343,757,370"/>
+<area shape="poly" id="edge75_Node000040_Node000054" title=" " alt="" coords="454,312,622,342,621,347,453,317"/>
+<area shape="rect" id="Node000042" href="$dc/d16/classConeConstraint.html" title=" " alt="" coords="906,5,1028,33"/>
+<area shape="poly" id="edge63_Node000041_Node000042" title=" " alt="" coords="776,298,799,290,817,276,837,248,845,221,846,192,842,163,837,134,837,104,845,74,865,44,884,30,905,22,907,27,886,35,869,48,850,76,843,104,843,133,847,162,851,192,851,221,842,251,821,280,801,294,778,303"/>
+<area shape="rect" id="Node000043" href="$d9/d91/classDistanceConstraint.html" title="This constraint is a stiff spring that holds 2 points at a fixed distance from each other." alt="" coords="894,57,1040,85"/>
+<area shape="poly" id="edge64_Node000041_Node000043" title=" " alt="" coords="777,298,799,289,817,276,834,255,841,233,843,211,841,189,841,142,849,119,866,96,892,79,895,83,869,100,853,121,846,143,847,188,848,211,847,235,839,257,821,280,801,294,779,302"/>
+<area shape="rect" id="Node000044" href="$d8/d5a/classFixedConstraint.html" title=" " alt="" coords="906,109,1028,137"/>
+<area shape="poly" id="edge65_Node000041_Node000044" title=" " alt="" coords="776,296,798,288,818,276,831,261,837,246,841,214,845,181,852,164,866,148,884,135,905,128,906,132,886,140,869,152,857,167,850,182,846,215,843,248,835,264,821,280,801,293,778,301"/>
+<area shape="rect" id="Node000045" href="$dc/df8/classGearConstraint.html" title=" " alt="" coords="907,161,1027,189"/>
+<area shape="poly" id="edge66_Node000041_Node000045" title=" " alt="" coords="777,294,798,286,818,276,834,258,841,239,849,219,866,200,885,189,906,181,908,186,887,193,869,204,853,222,846,241,838,261,821,280,800,291,778,299"/>
+<area shape="rect" id="Node000046" href="$d0/d22/classHingeConstraint.html" title="A hinge constraint constrains 2 bodies on a single point and allows only a single axis of rotation." alt="" coords="904,213,1030,241"/>
+<area shape="poly" id="edge67_Node000041_Node000046" title=" " alt="" coords="777,287,818,275,842,264,866,251,904,239,906,244,868,256,845,268,820,280,778,292"/>
+<area shape="rect" id="Node000047" href="$d9/d26/classPathConstraint.html" title="Path constraint, used to constrain the degrees of freedom between two bodies to a path." alt="" coords="909,265,1025,293"/>
+<area shape="poly" id="edge68_Node000041_Node000047" title=" " alt="" coords="777,294,908,282,909,287,778,299"/>
+<area shape="rect" id="Node000048" href="$da/d4c/classPointConstraint.html" title="A point constraint constrains 2 bodies on a single point (removing 3 degrees of freedom)" alt="" coords="906,317,1028,345"/>
+<area shape="poly" id="edge69_Node000041_Node000048" title=" " alt="" coords="778,310,906,323,906,328,778,316"/>
+<area shape="rect" id="Node000049" href="$de/dc3/classPulleyConstraint.html" title="A pulley constraint." alt="" coords="903,369,1031,397"/>
+<area shape="poly" id="edge70_Node000041_Node000049" title=" " alt="" coords="778,316,820,329,845,341,868,354,905,366,903,371,866,359,842,346,818,334,777,322"/>
+<area shape="rect" id="Node000050" href="$df/dcf/classRackAndPinionConstraint.html" title=" " alt="" coords="874,421,1060,449"/>
+<area shape="poly" id="edge71_Node000041_Node000050" title=" " alt="" coords="779,310,800,318,821,329,839,348,846,369,853,388,869,406,891,418,888,423,866,411,849,391,841,370,834,351,818,333,798,323,777,315"/>
+<area shape="rect" id="Node000051" href="$d4/dde/classSixDOFConstraint.html" title="6 Degree Of Freedom Constraint. Allows control over each of the 6 degrees of freedom." alt="" coords="899,473,1035,501"/>
+<area shape="poly" id="edge72_Node000041_Node000051" title=" " alt="" coords="778,308,801,316,821,329,835,345,843,362,846,395,850,428,856,443,869,458,900,476,897,480,866,463,852,446,845,429,841,396,838,363,831,348,818,333,798,321,777,313"/>
+<area shape="rect" id="Node000052" href="$da/de6/classSliderConstraint.html" title="A slider constraint allows movement in only 1 axis (and no rotation). Also known as a prismatic const..." alt="" coords="904,525,1030,553"/>
+<area shape="poly" id="edge73_Node000041_Node000052" title=" " alt="" coords="779,307,801,315,821,329,839,352,847,375,848,398,847,421,845,444,846,467,853,489,869,511,885,523,905,530,903,535,883,527,865,514,849,491,841,468,840,444,841,421,843,398,841,376,834,354,817,333,799,320,777,311"/>
+<area shape="rect" id="Node000053" href="$d6/df6/classSwingTwistConstraint.html" title=" " alt="" coords="887,577,1047,605"/>
+<area shape="poly" id="edge74_Node000041_Node000053" title=" " alt="" coords="778,306,801,315,821,329,842,358,851,388,851,418,847,447,843,477,842,506,850,534,869,563,888,576,885,581,865,566,845,537,837,506,837,476,842,447,846,417,846,389,838,361,817,333,799,319,776,311"/>
+<area shape="rect" id="Node000070" href="$d3/d08/classJobSystemSingleThreaded.html" title="Implementation of a JobSystem without threads, runs jobs as soon as they are added." alt="" coords="594,2089,785,2117"/>
+<area shape="poly" id="edge89_Node000069_Node000070" title=" " alt="" coords="454,2157,510,2143,558,2127,610,2115,611,2120,560,2132,512,2148,455,2163"/>
+<area shape="rect" id="Node000071" href="$d7/dda/classJobSystemWithBarrier.html" title=" " alt="" coords="607,2141,771,2169"/>
+<area shape="poly" id="edge90_Node000069_Node000071" title=" " alt="" coords="455,2166,606,2157,607,2163,455,2172"/>
+<area shape="rect" id="Node000072" href="$dd/d71/classJobSystemThreadPool.html" title=" " alt="" coords="885,2141,1049,2169"/>
+<area shape="poly" id="edge91_Node000071_Node000072" title=" " alt="" coords="787,2153,885,2153,885,2158,787,2158"/>
+<area shape="rect" id="Node000074" href="$d7/d4e/classJobSystemSingleThreaded_1_1BarrierImpl.html" title=" " alt="" coords="594,2193,785,2238"/>
+<area shape="poly" id="edge93_Node000073_Node000074" title=" " alt="" coords="481,2219,593,2216,593,2221,481,2224"/>
+<area shape="rect" id="Node000077" href="$df/dfa/classContactConstraintManager_1_1ContactAllocator.html" title="Contacts are allocated in a lock free hash map." alt="" coords="592,2262,787,2307"/>
+<area shape="poly" id="edge96_Node000076_Node000077" title=" " alt="" coords="494,2277,591,2279,591,2285,494,2282"/>
+<area shape="rect" id="Node000083" href="$d4/dfa/classDefaultObjectLayerFilter.html" title="Default filter class that uses the pair filter in combination with a specified layer to filter layers..." alt="" coords="599,2331,779,2358"/>
+<area shape="poly" id="edge102_Node000082_Node000083" title=" " alt="" coords="475,2543,493,2535,509,2524,524,2506,531,2487,532,2448,534,2408,541,2388,557,2369,576,2356,598,2348,600,2352,579,2361,561,2373,546,2391,539,2409,537,2448,536,2488,528,2508,513,2528,496,2540,477,2548"/>
+<area shape="rect" id="Node000084" href="$d9/def/classSpecifiedObjectLayerFilter.html" title="Allows objects from a specific layer only." alt="" coords="594,2383,785,2410"/>
+<area shape="poly" id="edge103_Node000082_Node000084" title=" " alt="" coords="474,2542,493,2534,509,2524,521,2512,527,2500,532,2474,538,2447,545,2434,557,2421,592,2403,594,2408,561,2425,549,2437,543,2449,537,2475,532,2502,525,2515,513,2528,495,2539,476,2547"/>
+<area shape="rect" id="Node000086" href="$d7/d59/classObjectLayerPairFilterMask.html" title=" " alt="" coords="594,2435,785,2462"/>
+<area shape="poly" id="edge105_Node000085_Node000086" title=" " alt="" coords="485,2590,509,2576,521,2564,527,2552,532,2526,538,2499,545,2486,557,2473,592,2455,594,2460,561,2477,549,2489,543,2501,537,2527,532,2554,525,2567,513,2580,488,2594"/>
+<area shape="rect" id="Node000087" href="$d7/d65/classObjectLayerPairFilterTable.html" title=" " alt="" coords="594,2487,784,2514"/>
+<area shape="poly" id="edge106_Node000085_Node000087" title=" " alt="" coords="486,2586,510,2576,524,2564,533,2551,542,2537,558,2525,593,2511,595,2515,560,2529,546,2541,537,2554,528,2567,512,2580,488,2591"/>
+<area shape="rect" id="Node000089" href="$d4/d5d/classIObjectStreamIn.html" title="Interface class for reading from an object stream." alt="" coords="626,2539,752,2566"/>
+<area shape="poly" id="edge108_Node000088_Node000089" title=" " alt="" coords="464,2645,510,2628,524,2616,533,2603,542,2589,558,2577,591,2563,625,2555,626,2560,592,2568,560,2581,546,2593,537,2606,528,2619,512,2632,466,2650"/>
+<area shape="rect" id="Node000093" href="$dc/d8a/classIObjectStreamOut.html" title="Interface class for writing to an object stream." alt="" coords="621,2591,758,2618"/>
+<area shape="poly" id="edge112_Node000088_Node000093" title=" " alt="" coords="464,2642,620,2614,620,2619,465,2647"/>
+<area shape="rect" id="Node000090" href="$d4/def/classObjectStreamIn.html" title=" " alt="" coords="906,2295,1028,2322"/>
+<area shape="poly" id="edge109_Node000089_Node000090" title=" " alt="" coords="767,2547,794,2539,818,2524,832,2508,840,2493,845,2460,848,2425,854,2406,865,2386,901,2348,939,2321,942,2325,905,2352,869,2389,859,2408,853,2426,850,2461,845,2494,836,2511,821,2528,796,2543,768,2552"/>
+<area shape="rect" id="Node000091" href="$d1/dda/classObjectStreamBinaryIn.html" title="Implementation of ObjectStream binary input stream." alt="" coords="1155,2295,1320,2322"/>
+<area shape="poly" id="edge110_Node000090_Node000091" title=" " alt="" coords="1044,2306,1155,2306,1155,2311,1044,2311"/>
+<area shape="rect" id="Node000092" href="$d7/dcb/classObjectStreamTextIn.html" title="Implementation of ObjectStream text input stream." alt="" coords="1163,2243,1312,2270"/>
+<area shape="poly" id="edge111_Node000090_Node000092" title=" " alt="" coords="1043,2291,1162,2268,1163,2273,1044,2296"/>
+<area shape="rect" id="Node000094" href="$d4/d53/classObjectStreamOut.html" title=" " alt="" coords="900,2399,1034,2426"/>
+<area shape="poly" id="edge113_Node000093_Node000094" title=" " alt="" coords="772,2593,818,2576,865,2541,904,2498,935,2457,955,2425,960,2428,939,2460,908,2502,868,2544,821,2580,774,2598"/>
+<area shape="rect" id="Node000095" href="$d4/de3/classObjectStreamBinaryOut.html" title="Implementation of ObjectStream binary output stream." alt="" coords="1150,2399,1325,2426"/>
+<area shape="poly" id="edge114_Node000094_Node000095" title=" " alt="" coords="1049,2410,1149,2410,1149,2415,1049,2415"/>
+<area shape="rect" id="Node000096" href="$d7/daa/classObjectStreamTextOut.html" title="Implementation of ObjectStream text output stream." alt="" coords="1157,2347,1318,2374"/>
+<area shape="poly" id="edge115_Node000094_Node000096" title=" " alt="" coords="1049,2394,1161,2372,1162,2378,1050,2399"/>
+<area shape="rect" id="Node000098" href="$d8/d7b/classObjectVsBroadPhaseLayerFilterMask.html" title=" " alt="" coords="559,2643,819,2670"/>
+<area shape="poly" id="edge117_Node000097_Node000098" title=" " alt="" coords="492,2689,606,2668,607,2674,493,2694"/>
+<area shape="rect" id="Node000099" href="$d5/df1/classObjectVsBroadPhaseLayerFilterTable.html" title=" " alt="" coords="577,2694,802,2739"/>
+<area shape="poly" id="edge118_Node000097_Node000099" title=" " alt="" coords="522,2709,576,2711,576,2716,522,2715"/>
+<area shape="rect" id="Node000106" href="$d5/d56/classConstraintSettings.html" title="Class used to store the configuration of a constraint. Allows run&#45;time creation of constraints." alt="" coords="619,3075,760,3102"/>
+<area shape="poly" id="edge124_Node000105_Node000106" title=" " alt="" coords="478,3177,510,3164,524,3152,533,3139,542,3125,558,3113,587,3100,617,3092,619,3098,589,3105,560,3117,546,3129,537,3142,528,3155,512,3168,480,3182"/>
+<area shape="rect" id="Node000122" href="$d1/d64/classGroupFilter.html" title="Abstract class that checks if two CollisionGroups collide." alt="" coords="643,3127,736,3154"/>
+<area shape="poly" id="edge139_Node000105_Node000122" title=" " alt="" coords="479,3175,642,3146,643,3151,480,3180"/>
+<area shape="rect" id="Node000125" href="$d4/dc9/classPathConstraintPath.html" title="The path for a path constraint. It allows attaching two bodies to each other while giving the second ..." alt="" coords="617,3179,761,3206"/>
+<area shape="poly" id="edge141_Node000105_Node000125" title=" " alt="" coords="479,3190,616,3190,616,3195,479,3195"/>
+<area shape="rect" id="Node000128" href="$df/df1/classPhysicsMaterial.html" title=" " alt="" coords="627,3231,751,3258"/>
+<area shape="poly" id="edge143_Node000105_Node000128" title=" " alt="" coords="480,3205,627,3231,626,3236,479,3210"/>
+<area shape="rect" id="Node000131" href="$d6/d55/classShapeSettings.html" title=" " alt="" coords="632,3335,746,3362"/>
+<area shape="poly" id="edge145_Node000105_Node000131" title=" " alt="" coords="480,3203,512,3217,528,3229,538,3241,547,3254,561,3268,613,3304,661,3332,658,3337,610,3309,557,3272,543,3258,534,3245,525,3233,510,3221,478,3208"/>
+<area shape="rect" id="Node000150" href="$d8/d76/classVehicleControllerSettings.html" title="Basic settings object for interface that controls acceleration / decelleration of the vehicle." alt="" coords="597,3395,782,3422"/>
+<area shape="poly" id="edge163_Node000105_Node000150" title=" " alt="" coords="480,3198,497,3206,513,3217,528,3236,536,3256,538,3296,540,3335,547,3354,561,3372,578,3384,597,3394,595,3399,575,3389,557,3376,542,3356,534,3336,533,3296,531,3258,524,3239,509,3221,495,3211,478,3203"/>
+<area shape="rect" id="Node000155" href="$d1/dc1/classWheelSettings.html" title="Base class for wheel settings, each VehicleController can implement a derived class of this." alt="" coords="632,3447,747,3474"/>
+<area shape="poly" id="edge167_Node000105_Node000155" title=" " alt="" coords="480,3197,497,3205,513,3217,532,3244,540,3272,541,3300,537,3327,534,3354,534,3381,542,3407,561,3432,576,3443,594,3451,632,3459,631,3465,592,3457,573,3448,557,3436,537,3409,529,3382,529,3354,532,3326,535,3299,535,3273,528,3247,509,3221,495,3210,478,3202"/>
+<area shape="rect" id="Node000107" href="$d0/d78/classTwoBodyConstraintSettings.html" title="Base class for settings for all constraints that involve 2 bodies." alt="" coords="867,2789,1067,2817"/>
+<area shape="poly" id="edge125_Node000106_Node000107" title=" " alt="" coords="775,3079,797,3071,818,3060,849,3033,875,3001,898,2966,917,2931,945,2864,960,2816,965,2818,950,2866,922,2933,903,2969,880,3004,852,3036,821,3064,800,3076,776,3084"/>
+<area shape="rect" id="Node000120" href="$da/de1/classVehicleConstraintSettings.html" title=" " alt="" coords="873,3075,1061,3102"/>
+<area shape="poly" id="edge138_Node000106_Node000120" title=" " alt="" coords="775,3086,873,3086,873,3091,775,3091"/>
+<area shape="rect" id="Node000108" href="$d9/db1/classConeConstraintSettings.html" title="Cone constraint settings, used to create a cone constraint." alt="" coords="1150,2659,1325,2686"/>
+<area shape="poly" id="edge126_Node000107_Node000108" title=" " alt="" coords="1057,2780,1065,2774,1081,2756,1088,2737,1096,2716,1113,2697,1149,2680,1151,2685,1116,2701,1100,2719,1093,2738,1086,2759,1068,2779,1060,2784"/>
+<area shape="rect" id="Node000109" href="$dc/d93/classDistanceConstraintSettings.html" title="Distance constraint settings, used to create a distance constraint." alt="" coords="1138,2711,1337,2738"/>
+<area shape="poly" id="edge127_Node000107_Node000109" title=" " alt="" coords="1044,2782,1066,2774,1089,2761,1114,2749,1155,2736,1156,2742,1116,2754,1092,2766,1068,2779,1045,2787"/>
+<area shape="rect" id="Node000110" href="$de/d46/classFixedConstraintSettings.html" title="Fixed constraint settings, used to create a fixed constraint." alt="" coords="1150,2763,1325,2790"/>
+<area shape="poly" id="edge128_Node000107_Node000110" title=" " alt="" coords="1082,2789,1149,2782,1150,2788,1082,2795"/>
+<area shape="rect" id="Node000111" href="$d8/d1a/classGearConstraintSettings.html" title="Gear constraint settings." alt="" coords="1151,2815,1324,2842"/>
+<area shape="poly" id="edge129_Node000107_Node000111" title=" " alt="" coords="1082,2811,1151,2818,1150,2823,1082,2817"/>
+<area shape="rect" id="Node000112" href="$d6/d08/classHingeConstraintSettings.html" title="Hinge constraint settings, used to create a hinge constraint." alt="" coords="1148,2867,1327,2894"/>
+<area shape="poly" id="edge130_Node000107_Node000112" title=" " alt="" coords="1021,2820,1115,2851,1164,2863,1163,2869,1114,2856,1019,2825"/>
+<area shape="rect" id="Node000113" href="$dd/d30/classPathConstraintSettings.html" title="Path constraint settings, used to constrain the degrees of freedom between two bodies to a path." alt="" coords="1153,2919,1322,2946"/>
+<area shape="poly" id="edge131_Node000107_Node000113" title=" " alt="" coords="997,2825,1050,2866,1116,2903,1153,2916,1152,2921,1114,2908,1047,2870,994,2830"/>
+<area shape="rect" id="Node000114" href="$d9/dbb/classPointConstraintSettings.html" title="Point constraint settings, used to create a point constraint." alt="" coords="1150,2971,1325,2998"/>
+<area shape="poly" id="edge132_Node000107_Node000114" title=" " alt="" coords="988,2828,1040,2893,1076,2927,1116,2955,1151,2970,1149,2975,1113,2960,1072,2931,1036,2897,984,2832"/>
+<area shape="rect" id="Node000115" href="$de/dc9/classPulleyConstraintSettings.html" title=" " alt="" coords="1147,3023,1328,3050"/>
+<area shape="poly" id="edge133_Node000107_Node000115" title=" " alt="" coords="982,2830,1002,2870,1032,2919,1070,2967,1116,3008,1147,3022,1145,3027,1113,3012,1066,2971,1027,2922,998,2873,978,2832"/>
+<area shape="rect" id="Node000116" href="$dc/d06/classRackAndPinionConstraintSettings.html" title="Rack and pinion constraint (slider &amp; gear) settings." alt="" coords="1118,2451,1357,2478"/>
+<area shape="poly" id="edge134_Node000107_Node000116" title=" " alt="" coords="1061,2778,1065,2775,1087,2740,1095,2705,1094,2669,1087,2634,1081,2598,1079,2561,1088,2525,1113,2489,1129,2477,1132,2481,1117,2493,1093,2527,1085,2562,1086,2597,1092,2633,1099,2669,1101,2705,1092,2742,1069,2778,1065,2782"/>
+<area shape="rect" id="Node000117" href="$dd/d1a/classSixDOFConstraintSettings.html" title="6 Degree Of Freedom Constraint setup structure. Allows control over each of the 6 degrees of freedom." alt="" coords="1143,2503,1332,2530"/>
+<area shape="poly" id="edge135_Node000107_Node000117" title=" " alt="" coords="1061,2778,1065,2775,1084,2746,1092,2718,1091,2689,1087,2660,1083,2630,1083,2600,1092,2571,1113,2541,1141,2523,1144,2528,1117,2545,1097,2573,1089,2601,1089,2630,1093,2659,1097,2688,1097,2718,1089,2749,1069,2778,1065,2782"/>
+<area shape="rect" id="Node000118" href="$d0/dbb/classSliderConstraintSettings.html" title="Slider constraint settings, used to create a slider constraint." alt="" coords="1148,2555,1327,2582"/>
+<area shape="poly" id="edge136_Node000107_Node000118" title=" " alt="" coords="1061,2778,1065,2775,1081,2753,1088,2731,1089,2708,1087,2685,1086,2662,1087,2639,1095,2616,1113,2593,1129,2581,1147,2573,1149,2578,1132,2586,1117,2597,1100,2618,1093,2640,1091,2662,1093,2685,1094,2708,1093,2732,1086,2755,1069,2778,1064,2782"/>
+<area shape="rect" id="Node000119" href="$da/d6a/classSwingTwistConstraintSettings.html" title=" " alt="" coords="1131,2607,1344,2634"/>
+<area shape="poly" id="edge137_Node000107_Node000119" title=" " alt="" coords="1060,2779,1065,2775,1078,2759,1084,2744,1088,2711,1091,2678,1099,2661,1113,2645,1132,2633,1135,2637,1116,2649,1103,2664,1097,2679,1093,2712,1089,2745,1082,2762,1069,2778,1063,2783"/>
+<area shape="rect" id="Node000123" href="$d2/d11/classGroupFilterTable.html" title=" " alt="" coords="903,3127,1031,3154"/>
+<area shape="poly" id="edge140_Node000122_Node000123" title=" " alt="" coords="751,3138,903,3138,903,3143,751,3143"/>
+<area shape="rect" id="Node000126" href="$dc/df0/classPathConstraintPathHermite.html" title="A path that follows a Hermite spline." alt="" coords="868,3179,1066,3206"/>
+<area shape="poly" id="edge142_Node000125_Node000126" title=" " alt="" coords="777,3190,868,3190,868,3195,777,3195"/>
+<area shape="rect" id="Node000129" href="$d6/daf/classPhysicsMaterialSimple.html" title="Sample implementation of PhysicsMaterial that just holds the needed properties directly." alt="" coords="882,3231,1052,3258"/>
+<area shape="poly" id="edge144_Node000128_Node000129" title=" " alt="" coords="767,3242,882,3242,882,3247,767,3247"/>
+<area shape="rect" id="Node000132" href="$d9/de1/classCompoundShapeSettings.html" title="Base class settings to construct a compound shape." alt="" coords="875,3491,1059,3518"/>
+<area shape="poly" id="edge146_Node000131_Node000132" title=" " alt="" coords="762,3354,793,3364,821,3381,833,3393,840,3405,846,3430,852,3454,858,3465,869,3476,889,3488,886,3492,866,3480,854,3468,847,3456,841,3431,835,3407,828,3396,818,3385,791,3369,760,3359"/>
+<area shape="rect" id="Node000135" href="$d1/d5d/classConvexShapeSettings.html" title="Class that constructs a ConvexShape (abstract)" alt="" coords="885,3283,1049,3310"/>
+<area shape="poly" id="edge149_Node000131_Node000135" title=" " alt="" coords="761,3332,889,3308,890,3314,762,3338"/>
+<area shape="rect" id="Node000143" href="$d8/d27/classDecoratedShapeSettings.html" title="Class that constructs a DecoratedShape." alt="" coords="876,3335,1058,3362"/>
+<area shape="poly" id="edge157_Node000131_Node000143" title=" " alt="" coords="762,3346,876,3346,876,3351,762,3351"/>
+<area shape="rect" id="Node000147" href="$dd/dc1/classHeightFieldShapeSettings.html" title="Class that constructs a HeightFieldShape." alt="" coords="873,3387,1061,3414"/>
+<area shape="poly" id="edge161_Node000131_Node000147" title=" " alt="" coords="762,3359,890,3383,889,3389,761,3365"/>
+<area shape="rect" id="Node000148" href="$d1/d02/classMeshShapeSettings.html" title="Class that constructs a MeshShape." alt="" coords="892,3439,1042,3466"/>
+<area shape="poly" id="edge162_Node000131_Node000148" title=" " alt="" coords="762,3359,792,3368,821,3381,836,3392,845,3403,855,3413,869,3424,897,3436,895,3441,866,3428,851,3417,841,3406,832,3396,818,3385,790,3373,760,3364"/>
+<area shape="rect" id="Node000133" href="$d1/d66/classMutableCompoundShapeSettings.html" title="Class that constructs a MutableCompoundShape." alt="" coords="1119,3595,1356,3622"/>
+<area shape="poly" id="edge147_Node000132_Node000133" title=" " alt="" coords="1058,3522,1068,3528,1084,3541,1093,3555,1101,3568,1116,3580,1143,3592,1141,3597,1113,3584,1097,3571,1088,3557,1080,3544,1065,3532,1056,3527"/>
+<area shape="rect" id="Node000134" href="$d3/d53/classStaticCompoundShapeSettings.html" title="Class that constructs a StaticCompoundShape. Note that if you only want a compound of 1 shape,..." alt="" coords="1127,3647,1348,3674"/>
+<area shape="poly" id="edge148_Node000132_Node000134" title=" " alt="" coords="1064,3525,1068,3528,1081,3541,1088,3554,1093,3582,1098,3608,1105,3620,1116,3632,1136,3644,1133,3648,1113,3636,1101,3623,1093,3610,1088,3583,1083,3556,1076,3544,1065,3532,1061,3529"/>
+<area shape="rect" id="Node000136" href="$df/d73/classBoxShapeSettings.html" title="Class that constructs a BoxShape." alt="" coords="1168,3075,1307,3102"/>
+<area shape="poly" id="edge150_Node000135_Node000136" title=" " alt="" coords="1060,3272,1065,3268,1079,3250,1086,3231,1088,3192,1089,3152,1097,3132,1113,3113,1138,3097,1166,3088,1168,3094,1140,3102,1116,3117,1102,3135,1095,3153,1093,3192,1091,3232,1084,3252,1069,3272,1063,3276"/>
+<area shape="rect" id="Node000137" href="$da/d48/classCapsuleShapeSettings.html" title="Class that constructs a CapsuleShape." alt="" coords="1154,3127,1321,3154"/>
+<area shape="poly" id="edge151_Node000135_Node000137" title=" " alt="" coords="1059,3272,1065,3268,1076,3256,1082,3244,1088,3218,1093,3191,1101,3178,1113,3165,1132,3153,1153,3145,1155,3150,1134,3158,1116,3169,1105,3181,1098,3193,1093,3219,1087,3245,1080,3259,1068,3272,1062,3277"/>
+<area shape="rect" id="Node000138" href="$de/d5c/classConvexHullShapeSettings.html" title="Class that constructs a ConvexHullShape." alt="" coords="1143,3179,1332,3206"/>
+<area shape="poly" id="edge152_Node000135_Node000138" title=" " alt="" coords="1053,3274,1065,3268,1080,3256,1088,3243,1098,3229,1113,3217,1142,3204,1144,3209,1116,3221,1101,3233,1093,3246,1084,3259,1068,3272,1055,3279"/>
+<area shape="rect" id="Node000139" href="$d9/d48/classCylinderShapeSettings.html" title="Class that constructs a CylinderShape." alt="" coords="1153,3231,1322,3258"/>
+<area shape="poly" id="edge153_Node000135_Node000139" title=" " alt="" coords="1057,3277,1161,3256,1162,3262,1058,3282"/>
+<area shape="rect" id="Node000140" href="$d0/d03/classSphereShapeSettings.html" title="Class that constructs a SphereShape." alt="" coords="1158,3283,1317,3310"/>
+<area shape="poly" id="edge154_Node000135_Node000140" title=" " alt="" coords="1064,3294,1157,3294,1157,3299,1064,3299"/>
+<area shape="rect" id="Node000141" href="$df/db1/classTaperedCapsuleShapeSettings.html" title="Class that constructs a TaperedCapsuleShape." alt="" coords="1129,3335,1346,3362"/>
+<area shape="poly" id="edge155_Node000135_Node000141" title=" " alt="" coords="1058,3311,1162,3331,1161,3337,1057,3316"/>
+<area shape="rect" id="Node000142" href="$de/ddf/classTriangleShapeSettings.html" title="Class that constructs a TriangleShape." alt="" coords="1155,3387,1320,3414"/>
+<area shape="poly" id="edge156_Node000135_Node000142" title=" " alt="" coords="1055,3314,1068,3321,1084,3334,1093,3347,1101,3360,1116,3372,1156,3387,1154,3392,1113,3376,1098,3364,1088,3350,1080,3337,1065,3325,1053,3319"/>
+<area shape="rect" id="Node000144" href="$d9/dd0/classOffsetCenterOfMassShapeSettings.html" title="Class that constructs an OffsetCenterOfMassShape." alt="" coords="1115,3491,1360,3518"/>
+<area shape="poly" id="edge158_Node000143_Node000144" title=" " alt="" coords="1062,3368,1068,3373,1080,3386,1087,3400,1093,3426,1098,3452,1105,3464,1116,3476,1136,3488,1133,3492,1113,3480,1101,3467,1093,3454,1088,3427,1082,3401,1076,3389,1065,3377,1059,3373"/>
+<area shape="rect" id="Node000145" href="$da/d3f/classRotatedTranslatedShapeSettings.html" title="Class that constructs a RotatedTranslatedShape." alt="" coords="1121,3543,1354,3570"/>
+<area shape="poly" id="edge159_Node000143_Node000145" title=" " alt="" coords="1064,3369,1069,3373,1084,3393,1091,3413,1093,3453,1095,3492,1102,3510,1116,3528,1134,3540,1131,3544,1113,3532,1097,3513,1089,3493,1088,3453,1086,3414,1079,3395,1065,3377,1060,3373"/>
+<area shape="rect" id="Node000146" href="$df/d80/classScaledShapeSettings.html" title="Class that constructs a ScaledShape." alt="" coords="1159,3439,1316,3466"/>
+<area shape="poly" id="edge160_Node000143_Node000146" title=" " alt="" coords="1055,3366,1068,3373,1084,3386,1093,3399,1101,3412,1116,3424,1159,3440,1157,3445,1113,3428,1098,3416,1088,3402,1080,3389,1065,3377,1053,3371"/>
+<area shape="rect" id="Node000151" href="$d4/de0/classTrackedVehicleControllerSettings.html" title=" " alt="" coords="876,3542,1058,3587"/>
+<area shape="poly" id="edge164_Node000150_Node000151" title=" " alt="" coords="798,3420,821,3433,833,3445,840,3457,847,3481,853,3505,869,3528,886,3540,883,3544,865,3532,848,3507,842,3482,835,3459,829,3448,818,3437,795,3424"/>
+<area shape="rect" id="Node000152" href="$d2/d95/classWheeledVehicleControllerSettings.html" title=" " alt="" coords="872,3612,1062,3656"/>
+<area shape="poly" id="edge165_Node000150_Node000152" title=" " alt="" coords="798,3418,821,3433,838,3453,846,3474,847,3516,848,3557,855,3577,869,3597,883,3609,880,3613,865,3601,850,3580,843,3558,842,3516,840,3475,833,3456,818,3437,795,3422"/>
+<area shape="rect" id="Node000153" href="$db/d42/classMotorcycleControllerSettings.html" title=" " alt="" coords="1132,3699,1343,3726"/>
+<area shape="poly" id="edge166_Node000152_Node000153" title=" " alt="" coords="1048,3659,1068,3666,1115,3683,1164,3696,1162,3701,1114,3688,1066,3671,1047,3664"/>
+<area shape="rect" id="Node000156" href="$da/d15/classWheelSettingsTV.html" title="WheelSettings object specifically for TrackedVehicleController." alt="" coords="901,3680,1033,3708"/>
+<area shape="poly" id="edge168_Node000155_Node000156" title=" " alt="" coords="763,3459,794,3468,821,3485,839,3508,847,3531,848,3554,847,3577,845,3600,846,3623,853,3645,869,3667,884,3677,901,3685,899,3690,881,3682,865,3670,848,3647,841,3624,839,3600,841,3577,843,3554,841,3532,834,3510,818,3489,792,3473,761,3464"/>
+<area shape="rect" id="Node000157" href="$de/d4a/classWheelSettingsWV.html" title="WheelSettings object specifically for WheeledVehicleController." alt="" coords="898,3732,1036,3760"/>
+<area shape="poly" id="edge169_Node000155_Node000157" title=" " alt="" coords="763,3458,794,3467,821,3485,842,3514,851,3544,851,3573,847,3603,843,3632,843,3661,850,3689,869,3717,883,3728,899,3736,897,3740,880,3733,865,3721,845,3691,837,3661,837,3631,842,3602,846,3573,845,3544,837,3517,817,3489,792,3472,761,3463"/>
+<area shape="rect" id="Node000160" href="$db/d1d/classCompoundShape.html" title="Base class for a compound shape." alt="" coords="624,4331,755,4358"/>
+<area shape="poly" id="edge171_Node000159_Node000160" title=" " alt="" coords="421,4211,481,4265,519,4292,560,4315,591,4327,624,4335,622,4340,590,4332,558,4320,516,4297,478,4269,418,4215"/>
+<area shape="rect" id="Node000163" href="$da/d3a/classConvexShape.html" title="Base class for all convex shapes. Defines a virtual interface." alt="" coords="634,4071,744,4098"/>
+<area shape="poly" id="edge174_Node000159_Node000163" title=" " alt="" coords="433,4165,491,4136,558,4109,633,4090,634,4095,560,4114,493,4141,435,4169"/>
+<area shape="rect" id="Node000171" href="$d2/d5e/classDecoratedShape.html" title="Base class for shapes that decorate another shape with extra functionality (e.g. scale,..." alt="" coords="625,4123,753,4150"/>
+<area shape="poly" id="edge182_Node000159_Node000171" title=" " alt="" coords="440,4178,624,4145,625,4150,441,4183"/>
+<area shape="rect" id="Node000175" href="$da/dec/classHeightFieldShape.html" title="A height field shape. Cannot be used as a dynamic object." alt="" coords="622,4175,757,4202"/>
+<area shape="poly" id="edge186_Node000159_Node000175" title=" " alt="" coords="440,4186,621,4186,621,4191,440,4191"/>
+<area shape="rect" id="Node000176" href="$d4/d36/classMeshShape.html" title=" " alt="" coords="641,4227,737,4254"/>
+<area shape="poly" id="edge187_Node000159_Node000176" title=" " alt="" coords="441,4194,641,4229,640,4235,440,4199"/>
+<area shape="rect" id="Node000177" href="$d7/d58/classSoftBodyShape.html" title="Shape used exclusively for soft bodies. Adds the ability to perform collision checks against soft bod..." alt="" coords="630,4279,749,4306"/>
+<area shape="poly" id="edge188_Node000159_Node000177" title=" " alt="" coords="435,4208,493,4236,560,4263,630,4281,629,4286,558,4268,491,4241,433,4212"/>
+<area shape="rect" id="Node000161" href="$db/d6b/classMutableCompoundShape.html" title=" " alt="" coords="875,4383,1059,4410"/>
+<area shape="poly" id="edge172_Node000160_Node000161" title=" " alt="" coords="771,4357,890,4379,889,4385,770,4362"/>
+<area shape="rect" id="Node000162" href="$d4/d37/classStaticCompoundShape.html" title=" " alt="" coords="883,4331,1051,4358"/>
+<area shape="poly" id="edge173_Node000160_Node000162" title=" " alt="" coords="771,4342,882,4342,882,4347,771,4347"/>
+<area shape="rect" id="Node000164" href="$d6/dcc/classBoxShape.html" title="A box, centered around the origin." alt="" coords="924,3915,1010,3942"/>
+<area shape="poly" id="edge175_Node000163_Node000164" title=" " alt="" coords="759,4079,790,4071,818,4056,829,4044,836,4032,841,4006,847,3980,854,3966,866,3953,893,3937,923,3929,924,3935,895,3942,869,3957,858,3969,852,3981,846,4007,841,4034,833,4047,821,4060,792,4076,760,4085"/>
+<area shape="rect" id="Node000165" href="$d2/d8d/classCapsuleShape.html" title="A capsule, implemented as a line segment with convex radius." alt="" coords="910,3967,1024,3994"/>
+<area shape="poly" id="edge176_Node000163_Node000165" title=" " alt="" coords="759,4076,789,4068,818,4056,833,4044,841,4031,850,4018,866,4005,909,3988,911,3992,869,4009,854,4021,846,4034,836,4048,821,4060,791,4073,760,4081"/>
+<area shape="rect" id="Node000166" href="$d7/dbb/classConvexHullShape.html" title="A convex hull." alt="" coords="899,4019,1035,4046"/>
+<area shape="poly" id="edge177_Node000163_Node000166" title=" " alt="" coords="759,4069,898,4043,899,4048,760,4074"/>
+<area shape="rect" id="Node000167" href="$d5/de6/classCylinderShape.html" title="A cylinder." alt="" coords="909,4071,1025,4098"/>
+<area shape="poly" id="edge178_Node000163_Node000167" title=" " alt="" coords="760,4082,909,4082,909,4087,760,4087"/>
+<area shape="rect" id="Node000168" href="$d7/db5/classSphereShape.html" title=" " alt="" coords="914,4123,1020,4150"/>
+<area shape="poly" id="edge179_Node000163_Node000168" title=" " alt="" coords="760,4095,914,4124,913,4129,759,4100"/>
+<area shape="rect" id="Node000169" href="$dc/dfd/classTaperedCapsuleShape.html" title="A capsule with different top and bottom radii." alt="" coords="885,3811,1049,3838"/>
+<area shape="poly" id="edge180_Node000163_Node000169" title=" " alt="" coords="759,4082,791,4073,818,4056,836,4032,843,4007,844,3981,841,3956,839,3929,839,3902,847,3876,865,3849,883,3836,886,3841,869,3853,852,3878,844,3903,844,3929,847,3955,850,3981,849,4008,840,4034,821,4060,793,4078,760,4087"/>
+<area shape="rect" id="Node000170" href="$d3/d01/classTriangleShape.html" title="A single triangle, not the most efficient way of creating a world filled with triangles but can be us..." alt="" coords="911,3863,1023,3890"/>
+<area shape="poly" id="edge181_Node000163_Node000170" title=" " alt="" coords="758,4081,790,4073,818,4056,832,4038,839,4020,841,3981,843,3941,850,3921,866,3901,886,3887,909,3879,911,3884,889,3892,869,3905,855,3923,848,3942,847,3981,845,4021,837,4041,821,4060,792,4077,760,4086"/>
+<area shape="rect" id="Node000172" href="$dc/dfe/classOffsetCenterOfMassShape.html" title="This shape will shift the center of mass of a child shape, it can e.g. be used to lower the center of..." alt="" coords="871,4175,1063,4202"/>
+<area shape="poly" id="edge183_Node000171_Node000172" title=" " alt="" coords="769,4149,890,4171,889,4177,768,4154"/>
+<area shape="rect" id="Node000173" href="$d5/d1a/classRotatedTranslatedShape.html" title=" " alt="" coords="877,4227,1057,4254"/>
+<area shape="poly" id="edge184_Node000171_Node000173" title=" " alt="" coords="769,4142,795,4150,821,4161,836,4173,846,4187,854,4200,869,4212,895,4224,893,4228,866,4216,850,4203,841,4190,833,4177,818,4165,794,4155,767,4147"/>
+<area shape="rect" id="Node000174" href="$df/d54/classScaledShape.html" title="A shape that scales a child shape in local space of that shape. The scale can be non&#45;uniform and can ..." alt="" coords="915,4279,1019,4306"/>
+<area shape="poly" id="edge185_Node000171_Node000174" title=" " alt="" coords="770,4138,796,4147,821,4161,833,4174,841,4187,846,4214,852,4240,858,4252,869,4264,891,4277,915,4285,913,4290,888,4282,866,4268,854,4255,847,4241,841,4215,836,4189,829,4177,818,4165,794,4152,768,4143"/>
+<area shape="rect" id="Node000180" href="$de/d56/classReversedShapeFilter.html" title="Helper class to reverse the order of the shapes in the ShouldCollide function." alt="" coords="612,2763,767,2790"/>
+<area shape="poly" id="edge190_Node000179_Node000180" title=" " alt="" coords="457,2761,611,2770,611,2775,457,2767"/>
+<area shape="rect" id="Node000184" href="$d4/d97/classStateRecorder.html" title=" " alt="" coords="633,2867,746,2894"/>
+<area shape="poly" id="edge194_Node000183_Node000184" title=" " alt="" coords="450,2865,632,2875,632,2880,450,2870"/>
+<area shape="rect" id="Node000188" href="$d8/d4e/classStreamInWrapper.html" title="Wrapper around std::istream." alt="" coords="622,2919,757,2946"/>
+<area shape="poly" id="edge196_Node000183_Node000188" title=" " alt="" coords="450,2874,512,2889,560,2903,622,2917,621,2923,558,2908,510,2894,449,2879"/>
+<area shape="rect" id="Node000185" href="$d6/de7/classStateRecorderImpl.html" title="Implementation of the StateRecorder class that uses a stringstream as underlying store and that imple..." alt="" coords="896,2737,1038,2765"/>
+<area shape="poly" id="edge195_Node000184_Node000185" title=" " alt="" coords="761,2874,791,2865,818,2852,834,2834,841,2815,849,2795,866,2776,894,2761,897,2766,869,2780,853,2798,846,2817,838,2837,821,2856,793,2870,762,2879"/>
+<area shape="poly" id="edge198_Node000186_Node000184" title=" " alt="" coords="456,2823,512,2837,560,2851,633,2868,632,2873,558,2856,510,2842,454,2828"/>
+<area shape="rect" id="Node000187" href="$d0/d4d/classStreamOutWrapper.html" title="Wrapper around std::ostream." alt="" coords="616,2815,762,2842"/>
+<area shape="poly" id="edge199_Node000186_Node000187" title=" " alt="" coords="455,2813,616,2822,616,2827,455,2818"/>
+<area shape="rect" id="Node000190" href="$df/d64/classTempAllocatorImpl.html" title="Default implementation of the temp allocator that allocates a large block through malloc upfront." alt="" coords="618,3023,761,3050"/>
+<area shape="poly" id="edge201_Node000189_Node000190" title=" " alt="" coords="467,2922,491,2930,513,2941,529,2958,537,2976,545,2992,561,3008,588,3021,618,3029,616,3034,586,3026,557,3012,541,2995,532,2978,525,2961,509,2945,489,2934,466,2927"/>
+<area shape="rect" id="Node000191" href="$dc/de7/classTempAllocatorMalloc.html" title=" " alt="" coords="611,2971,768,2998"/>
+<area shape="poly" id="edge202_Node000189_Node000191" title=" " alt="" coords="467,2929,512,2941,560,2955,613,2967,611,2973,558,2960,510,2946,466,2935"/>
+<area shape="rect" id="Node000193" href="$db/d8a/classTriangleGrouperClosestCentroid.html" title=" " alt="" coords="576,3551,803,3578"/>
+<area shape="poly" id="edge204_Node000192_Node000193" title=" " alt="" coords="470,3664,510,3648,524,3634,533,3619,541,3604,558,3589,584,3576,587,3581,560,3593,545,3607,537,3622,529,3637,512,3652,473,3669"/>
+<area shape="rect" id="Node000194" href="$dd/d38/classTriangleGrouperMorton.html" title=" " alt="" coords="604,3499,774,3526"/>
+<area shape="poly" id="edge205_Node000192_Node000194" title=" " alt="" coords="471,3667,491,3659,509,3648,521,3635,527,3622,532,3594,537,3565,545,3551,557,3537,579,3524,603,3515,604,3520,581,3529,561,3541,549,3554,542,3567,537,3595,533,3624,525,3638,513,3652,494,3664,473,3672"/>
+<area shape="rect" id="Node000196" href="$d0/d30/classTriangleSplitterBinning.html" title="Binning splitter approach taken from: Realtime Ray Tracing on GPU with BVH&#45;based Packet Traversal by ..." alt="" coords="605,3603,773,3630"/>
+<area shape="poly" id="edge207_Node000195_Node000196" title=" " alt="" coords="468,3717,510,3700,524,3686,533,3671,541,3656,558,3641,580,3630,604,3623,605,3628,582,3635,560,3645,545,3659,537,3674,529,3689,512,3704,470,3722"/>
+<area shape="rect" id="Node000197" href="$d9/d7f/classTriangleSplitterFixedLeafSize.html" title=" " alt="" coords="585,3655,793,3682"/>
+<area shape="poly" id="edge208_Node000195_Node000197" title=" " alt="" coords="469,3711,617,3680,618,3686,470,3716"/>
+<area shape="rect" id="Node000198" href="$d9/dcd/classTriangleSplitterLongestAxis.html" title="Splitter using center of bounding box with longest axis." alt="" coords="590,3707,788,3734"/>
+<area shape="poly" id="edge209_Node000195_Node000198" title=" " alt="" coords="469,3724,589,3721,590,3726,470,3729"/>
+<area shape="rect" id="Node000199" href="$df/dad/classTriangleSplitterMean.html" title="Splitter using mean of axis with biggest centroid deviation." alt="" coords="612,3759,767,3786"/>
+<area shape="poly" id="edge210_Node000195_Node000199" title=" " alt="" coords="470,3737,611,3758,610,3764,469,3742"/>
+<area shape="rect" id="Node000200" href="$dc/d6a/classTriangleSplitterMorton.html" title="Splitter using Morton codes, see: http://devblogs.nvidia.com/parallelforall/thinking&#45;parallel&#45;part&#45;ii..." alt="" coords="607,3811,772,3838"/>
+<area shape="poly" id="edge211_Node000195_Node000200" title=" " alt="" coords="470,3736,512,3751,528,3763,537,3774,546,3785,560,3795,607,3812,605,3817,558,3800,542,3789,533,3778,524,3766,510,3756,468,3741"/>
+<area shape="rect" id="Node000203" href="$de/dc2/classVehicleCollisionTesterCastCylinder.html" title="Collision tester that tests collision using a cylinder shape." alt="" coords="593,4382,785,4427"/>
+<area shape="poly" id="edge214_Node000202_Node000203" title=" " alt="" coords="491,4425,592,4413,593,4418,492,4430"/>
+<area shape="rect" id="Node000204" href="$d3/d55/classVehicleCollisionTesterCastSphere.html" title="Collision tester that tests collision using a sphere cast." alt="" coords="593,4452,785,4496"/>
+<area shape="poly" id="edge215_Node000202_Node000204" title=" " alt="" coords="492,4448,593,4460,592,4465,491,4453"/>
+<area shape="rect" id="Node000205" href="$d1/d5a/classVehicleCollisionTesterRay.html" title="Collision tester that tests collision using a raycast." alt="" coords="595,4520,783,4548"/>
+<area shape="poly" id="edge216_Node000202_Node000205" title=" " alt="" coords="439,4458,496,4483,560,4506,602,4517,601,4522,558,4511,494,4488,437,4462"/>
+<area shape="rect" id="Node000208" href="$de/d6d/classTrackedVehicleController.html" title="Runtime controller class for vehicle with tank tracks." alt="" coords="599,4572,780,4600"/>
+<area shape="poly" id="edge218_Node000207_Node000208" title=" " alt="" coords="476,4583,598,4583,598,4589,476,4589"/>
+<area shape="rect" id="Node000209" href="$da/d66/classWheeledVehicleController.html" title="Runtime controller class." alt="" coords="595,4624,784,4652"/>
+<area shape="poly" id="edge219_Node000207_Node000209" title=" " alt="" coords="476,4597,607,4621,606,4626,475,4603"/>
+<area shape="rect" id="Node000210" href="$d3/d17/classMotorcycleController.html" title="Runtime controller class." alt="" coords="888,4624,1046,4652"/>
+<area shape="poly" id="edge220_Node000209_Node000210" title=" " alt="" coords="800,4635,888,4635,888,4641,800,4641"/>
+<area shape="rect" id="Node000213" href="$df/d7f/classWheelTV.html" title="Wheel object specifically for TrackedVehicleController." alt="" coords="650,1985,729,2013"/>
+<area shape="poly" id="edge222_Node000212_Node000213" title=" " alt="" coords="440,2115,476,2107,509,2092,525,2076,532,2059,541,2041,557,2024,579,2012,603,2004,649,1997,649,2002,604,2010,582,2017,561,2028,545,2044,537,2061,529,2079,513,2096,477,2112,441,2120"/>
+<area shape="rect" id="Node000214" href="$d6/d37/classWheelWV.html" title="Wheel object specifically for WheeledVehicleController." alt="" coords="647,2037,731,2065"/>
+<area shape="poly" id="edge223_Node000212_Node000214" title=" " alt="" coords="440,2109,510,2091,558,2075,646,2056,647,2061,560,2080,512,2096,441,2114"/>
+<area shape="rect" id="Node000055" href="$dc/d85/classPhysicsStepListener.html" title="A listener class that receives a callback before every physics simulation step." alt="" coords="319,343,470,370"/>
+<area shape="poly" id="edge224_Node000055_Node000054" title=" " alt="" coords="486,354,621,354,621,359,486,359"/>
+<area shape="rect" id="Node000039" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="13,239,222,266"/>
+<area shape="poly" id="edge225_Node000039_Node000036" title=" " alt="" coords="237,250,336,250,336,255,237,255"/>
+<area shape="rect" id="Node000056" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="27,291,208,318"/>
+<area shape="poly" id="edge226_Node000056_Node000040" title=" " alt="" coords="224,302,350,302,350,307,224,307"/>
+<area shape="rect" id="Node000121" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="278,2955,511,2982"/>
+<area shape="poly" id="edge227_Node000121_Node000106" title=" " alt="" coords="502,2987,513,2993,529,3010,537,3028,545,3044,561,3060,588,3073,619,3081,617,3086,587,3078,557,3064,541,3047,532,3030,525,3013,509,2997,500,2992"/>
+<area shape="rect" id="Node000124" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="302,3007,487,3034"/>
+<area shape="poly" id="edge228_Node000124_Node000122" title=" " alt="" coords="502,3038,513,3044,529,3061,537,3079,545,3096,561,3112,601,3129,643,3137,642,3142,599,3134,557,3116,541,3099,533,3081,525,3064,509,3048,500,3042"/>
+<area shape="rect" id="Node000127" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="298,3058,491,3103"/>
+<area shape="poly" id="edge229_Node000127_Node000125" title=" " alt="" coords="503,3107,513,3113,528,3126,537,3139,546,3152,560,3164,588,3175,617,3183,616,3188,586,3180,558,3168,542,3156,533,3142,524,3130,509,3117,500,3112"/>
+<area shape="rect" id="Node000130" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="286,3231,503,3258"/>
+<area shape="poly" id="edge230_Node000130_Node000128" title=" " alt="" coords="518,3242,627,3242,627,3247,518,3247"/>
+<area shape="rect" id="Node000104" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="36,4043,199,4070"/>
+<area shape="poly" id="edge231_Node000104_Node000103" title=" " alt="" coords="214,4054,359,4054,359,4059,214,4059"/>
+<area shape="rect" id="Node000178" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="41,4175,194,4202"/>
+<area shape="poly" id="edge232_Node000178_Node000159" title=" " alt="" coords="210,4186,363,4186,363,4191,210,4191"/>
+<area shape="rect" id="Node000149" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="291,3283,498,3310"/>
+<area shape="poly" id="edge233_Node000149_Node000131" title=" " alt="" coords="492,3311,632,3336,631,3341,491,3316"/>
+<area shape="rect" id="Node000206" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="17,4417,218,4462"/>
+<area shape="poly" id="edge234_Node000206_Node000202" title=" " alt="" coords="234,4437,312,4437,312,4442,234,4442"/>
+<area shape="rect" id="Node000211" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,4572,230,4600"/>
+<area shape="poly" id="edge235_Node000211_Node000207" title=" " alt="" coords="245,4583,328,4583,328,4589,245,4589"/>
+<area shape="rect" id="Node000154" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="290,3438,499,3483"/>
+<area shape="poly" id="edge236_Node000154_Node000150" title=" " alt="" coords="514,3437,606,3420,607,3426,515,3442"/>
+<area shape="rect" id="Node000158" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="291,3611,498,3638"/>
+<area shape="poly" id="edge237_Node000158_Node000155" title=" " alt="" coords="503,3600,509,3596,521,3583,527,3570,532,3542,537,3513,545,3499,557,3485,592,3467,630,3458,631,3464,594,3472,561,3489,549,3502,542,3515,537,3543,533,3572,525,3586,513,3600,506,3605"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="GroupFilter" name="GroupFilter">
+<area shape="rect" id="Node000001" title="Abstract class that checks if two CollisionGroups collide." alt="" coords="93,472,296,626"/>
+<area shape="rect" id="Node000002" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="5,268,171,337"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,349,164,471,159,473,106,351"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,5,149,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,132,91,268,85,268,85,132"/>
+<area shape="rect" id="Node000004" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="195,182,410,422"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="247,437,231,473,226,471,242,435"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="238,27,367,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="305,96,305,165,300,165,300,96"/>
+</map>

@@ -1,0 +1,56 @@
+\doxysection{Triangle\+Splitter\+Binning.\+h}
+\hypertarget{TriangleSplitterBinning_8h_source}{}\label{TriangleSplitterBinning_8h_source}\index{includes/jolt/TriangleSplitter/TriangleSplitterBinning.h@{includes/jolt/TriangleSplitter/TriangleSplitterBinning.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/TriangleSplitter/TriangleSplitter.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/AABox.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classTriangleSplitterBinning}{TriangleSplitterBinning}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classTriangleSplitter}{TriangleSplitter}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleSplitterBinning_a5144340f4d9e3a00189a7c5aa552d118}{TriangleSplitterBinning}}(\textcolor{keyword}{const}\ VertexList\ \&inVertices,\ \textcolor{keyword}{const}\ IndexedTriangleList\ \&inTriangles,\ uint\ inMinNumBins\ =\ 8,\ uint\ inMaxNumBins\ =\ 128,\ uint\ inNumTrianglesPerBin\ =\ 6);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ See\ TriangleSplitter::GetStats}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleSplitterBinning_a528500c9d8c6ba8225ec945e135c9588}{GetStats}}(\mbox{\hyperlink{structTriangleSplitter_1_1Stats}{Stats}}\ \&outStats)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00021\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ outStats.mSplitterName\ =\ \textcolor{stringliteral}{"{}TriangleSplitterBinning"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ See\ TriangleSplitter::Split}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangleSplitterBinning_a0ac3faf26cbd21d2e54c00e282c0facd}{Split}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}}\ \&inTriangles,\ \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}}\ \&outLeft,\ \mbox{\hyperlink{structTriangleSplitter_1_1Range}{Range}}\ \&outRight)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Configuration}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinNumBins;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxNumBins;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumTrianglesPerBin;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }Bin}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Properties\ of\ this\ bin}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBounds;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinCentroid;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumTriangles;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Accumulated\ data\ from\ left\ most\ /\ right\ most\ bin\ to\ current\ (including\ this\ bin)}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBoundsAccumulatedLeft;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBoundsAccumulatedRight;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumTrianglesAccumulatedLeft;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumTrianglesAccumulatedRight;}
+\DoxyCodeLine{00046\ \ \ \ \ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Scratch\ area\ to\ store\ the\ bins}}
+\DoxyCodeLine{00049\ \ \ \ \ Array<Bin>\ \ \ \ \ \ \ \ \ \ \ \ \ \ mBins;}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

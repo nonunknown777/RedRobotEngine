@@ -1,0 +1,158 @@
+\doxysection{Motion\+Properties.\+inl}
+\hypertarget{MotionProperties_8inl_source}{}\label{MotionProperties_8inl_source}\index{includes/jolt/Physics/Body/MotionProperties.inl@{includes/jolt/Physics/Body/MotionProperties.inl}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMotionProperties_afc2471d63f11da6c88141a1adedf6149}{MotionProperties::MoveKinematic}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDeltaPosition,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inDeltaRotation,\ \textcolor{keywordtype}{float}\ inDeltaTime)}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ JPH\_ASSERT(BodyAccess::sCheckRights(BodyAccess::sVelocityAccess,\ BodyAccess::EAccess::ReadWrite));}
+\DoxyCodeLine{00012\ \ \ \ \ JPH\_ASSERT(BodyAccess::sCheckRights(BodyAccess::sPositionAccess,\ BodyAccess::EAccess::Read));}
+\DoxyCodeLine{00013\ \ \ \ \ JPH\_ASSERT(mCachedBodyType\ ==\ EBodyType::RigidBody);}
+\DoxyCodeLine{00014\ \ \ \ \ JPH\_ASSERT(mCachedMotionType\ !=\ EMotionType::Static);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ Calculate\ required\ linear\ velocity}}
+\DoxyCodeLine{00017\ \ \ \ \ mLinearVelocity\ =\ inDeltaPosition\ /\ inDeltaTime;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Calculate\ required\ angular\ velocity}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ axis;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ angle;}
+\DoxyCodeLine{00022\ \ \ \ \ inDeltaRotation.\mbox{\hyperlink{classQuat_a618a8eb64122263b8c64109f03ac47b5}{GetAxisAngle}}(axis,\ angle);}
+\DoxyCodeLine{00023\ \ \ \ \ mAngularVelocity\ =\ axis\ *\ (angle\ /\ inDeltaTime);}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMotionProperties_a2cc70977a90ef8a3bed8a60902f3c2db}{MotionProperties::ClampLinearVelocity}}()}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ JPH\_ASSERT(BodyAccess::sCheckRights(BodyAccess::sVelocityAccess,\ BodyAccess::EAccess::ReadWrite));}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ len\_sq\ =\ mLinearVelocity.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00031\ \ \ \ \ JPH\_ASSERT(isfinite(len\_sq));}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\_sq\ >\ Square(mMaxLinearVelocity))}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ mLinearVelocity\ *=\ mMaxLinearVelocity\ /\ sqrt(len\_sq);}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ MotionProperties::ClampAngularVelocity()}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ JPH\_ASSERT(BodyAccess::sCheckRights(BodyAccess::sVelocityAccess,\ BodyAccess::EAccess::ReadWrite));}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{float}\ len\_sq\ =\ mAngularVelocity.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00041\ \ \ \ \ JPH\_ASSERT(isfinite(len\_sq));}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\_sq\ >\ Square(mMaxAngularVelocity))}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ mAngularVelocity\ *=\ mMaxAngularVelocity\ /\ sqrt(len\_sq);}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMotionProperties_a994dad1b2bf71b0f0394bec77fcb9b8e}{MotionProperties::GetLocalSpaceInverseInertiaUnchecked}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ rotation\ =\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{Mat44::sRotation}}(mInertiaRotation);}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ rotation\_mul\_scale\_transposed(mInvInertiaDiagonal.\mbox{\hyperlink{classVec3_a1b03f087ce2755a85ccba4ba56f1e64b}{SplatX}}()\ *\ rotation.GetColumn4(0),\ mInvInertiaDiagonal.\mbox{\hyperlink{classVec3_aad5b4211a6d98be56362559eefd9b029}{SplatY}}()\ *\ rotation.GetColumn4(1),\ mInvInertiaDiagonal.\mbox{\hyperlink{classVec3_a81f4448e17219aafda0e3b886709d1f4}{SplatZ}}()\ *\ rotation.GetColumn4(2),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ rotation.\mbox{\hyperlink{classMat44_a595ae3cf26d9fb87761e20b6b35d3d10}{Multiply3x3RightTransposed}}(rotation\_mul\_scale\_transposed);}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMotionProperties_ad52e9ac8d614918a8dc9c80f22b4847e}{MotionProperties::GetLocalSpaceInverseInertia}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00055\ \ \ \ \ JPH\_ASSERT(mCachedMotionType\ ==\ EMotionType::Dynamic);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMotionProperties_a994dad1b2bf71b0f0394bec77fcb9b8e}{GetLocalSpaceInverseInertiaUnchecked}}();}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMotionProperties_ab95f2b1c9b6bd9b6082f8cee8a7e1858}{MotionProperties::GetInverseInertiaForRotation}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00061\ \ \ \ \ JPH\_ASSERT(mCachedMotionType\ ==\ EMotionType::Dynamic);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ rotation\ =\ inRotation.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(\mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{Mat44::sRotation}}(mInertiaRotation));}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ rotation\_mul\_scale\_transposed(mInvInertiaDiagonal.\mbox{\hyperlink{classVec3_a1b03f087ce2755a85ccba4ba56f1e64b}{SplatX}}()\ *\ rotation.GetColumn4(0),\ mInvInertiaDiagonal.\mbox{\hyperlink{classVec3_aad5b4211a6d98be56362559eefd9b029}{SplatY}}()\ *\ rotation.GetColumn4(1),\ mInvInertiaDiagonal.\mbox{\hyperlink{classVec3_a81f4448e17219aafda0e3b886709d1f4}{SplatZ}}()\ *\ rotation.GetColumn4(2),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ rotation.\mbox{\hyperlink{classMat44_a595ae3cf26d9fb87761e20b6b35d3d10}{Multiply3x3RightTransposed}}(rotation\_mul\_scale\_transposed);}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{classMotionProperties_aa8a73ea7940a316151262ed9a28c4fbb}{MotionProperties::MultiplyWorldSpaceInverseInertiaByVector}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inBodyRotation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00070\ \ \ \ \ JPH\_ASSERT(mCachedMotionType\ ==\ EMotionType::Dynamic);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ rotation\ =\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{Mat44::sRotation}}(inBodyRotation\ *\ mInertiaRotation);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ rotation.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(mInvInertiaDiagonal\ *\ rotation.\mbox{\hyperlink{classMat44_a3ed66bc4c5e8e010657bd5bb109f1406}{Multiply3x3Transposed}}(inV));}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMotionProperties_a78c58cb27772068a0aa3cbe286ddaf0b}{MotionProperties::ApplyGyroscopicForceInternal}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inBodyRotation,\ \textcolor{keywordtype}{float}\ inDeltaTime)}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ JPH\_ASSERT(BodyAccess::sCheckRights(BodyAccess::sVelocityAccess,\ BodyAccess::EAccess::ReadWrite));}
+\DoxyCodeLine{00079\ \ \ \ \ JPH\_ASSERT(mCachedBodyType\ ==\ EBodyType::RigidBody);}
+\DoxyCodeLine{00080\ \ \ \ \ JPH\_ASSERT(mCachedMotionType\ ==\ EMotionType::Dynamic);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ Calculate\ local\ space\ inertia\ tensor\ (a\ diagonal\ in\ local\ space)}}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ is\_zero\ =\ \mbox{\hyperlink{classVec3_acd0e4130c1b2863b203812f4922b3642}{Vec3::sEquals}}(mInvInertiaDiagonal,\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}());}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ denominator\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(mInvInertiaDiagonal,\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0f),\ is\_zero);}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ nominator\ =\ \mbox{\hyperlink{classVec3_a9f893b7c7bc6ef51c19ceeb3c195dd22}{Vec3::sSelect}}(\mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0f),\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}(),\ is\_zero);}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ local\_inertia\ =\ nominator\ /\ denominator;\ \textcolor{comment}{//\ Avoid\ dividing\ by\ zero,\ inertia\ in\ this\ axis\ will\ be\ zero}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ Calculate\ local\ space\ angular\ momentum}}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ inertia\_space\_to\_world\_space\ =\ inBodyRotation\ *\ mInertiaRotation;}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ local\_angular\_velocity\ =\ inertia\_space\_to\_world\_space.\mbox{\hyperlink{classQuat_ac69dfd8cdf79a19b8c3f385125ff5ddc}{Conjugated}}()\ *\ mAngularVelocity;}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ local\_momentum\ =\ local\_inertia\ *\ local\_angular\_velocity;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ The\ gyroscopic\ force\ applies\ a\ torque:\ T\ =\ -\/w\ x\ I\ w\ where\ w\ is\ angular\ velocity\ and\ I\ the\ inertia\ tensor}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ new\ angular\ momentum\ by\ applying\ the\ gyroscopic\ force\ and\ make\ sure\ the\ new\ magnitude\ is\ the\ same\ as\ the\ old\ one}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ to\ avoid\ introducing\ energy\ into\ the\ system\ due\ to\ the\ Euler\ step}}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ new\_local\_momentum\ =\ local\_momentum\ -\/\ inDeltaTime\ *\ local\_angular\_velocity.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(local\_momentum);}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{float}\ new\_local\_momentum\_len\_sq\ =\ new\_local\_momentum.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00098\ \ \ \ \ new\_local\_momentum\ =\ new\_local\_momentum\_len\_sq\ >\ 0.0f?\ new\_local\_momentum\ *\ sqrt(local\_momentum.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}()\ /\ new\_local\_momentum\_len\_sq)\ :\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ Convert\ back\ to\ world\ space\ angular\ velocity}}
+\DoxyCodeLine{00101\ \ \ \ \ mAngularVelocity\ =\ inertia\_space\_to\_world\_space\ *\ (mInvInertiaDiagonal\ *\ new\_local\_momentum);}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMotionProperties_ae1d0e7670106211909852cd6844286d9}{MotionProperties::ApplyForceTorqueAndDragInternal}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inBodyRotation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inGravity,\ \textcolor{keywordtype}{float}\ inDeltaTime)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ JPH\_ASSERT(BodyAccess::sCheckRights(BodyAccess::sVelocityAccess,\ BodyAccess::EAccess::ReadWrite));}
+\DoxyCodeLine{00107\ \ \ \ \ JPH\_ASSERT(mCachedBodyType\ ==\ EBodyType::RigidBody);}
+\DoxyCodeLine{00108\ \ \ \ \ JPH\_ASSERT(mCachedMotionType\ ==\ EMotionType::Dynamic);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ Update\ linear\ velocity}}
+\DoxyCodeLine{00111\ \ \ \ \ mLinearVelocity\ =\ \mbox{\hyperlink{classMotionProperties_a22a74ac0a487b11551bd7ce6b9468554}{LockTranslation}}(mLinearVelocity\ +\ inDeltaTime\ *\ (mGravityFactor\ *\ inGravity\ +\ mInvMass\ *\ GetAccumulatedForce()));}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ Update\ angular\ velocity}}
+\DoxyCodeLine{00114\ \ \ \ \ mAngularVelocity\ +=\ inDeltaTime\ *\ \mbox{\hyperlink{classMotionProperties_aa8a73ea7940a316151262ed9a28c4fbb}{MultiplyWorldSpaceInverseInertiaByVector}}(inBodyRotation,\ GetAccumulatedTorque());}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ Linear\ damping:\ dv/dt\ =\ -\/c\ *\ v}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ Solution:\ v(t)\ =\ v(0)\ *\ e\string^(-\/c\ *\ t)\ or\ v2\ =\ v1\ *\ e\string^(-\/c\ *\ dt)}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ Taylor\ expansion\ of\ e\string^(-\/c\ *\ dt)\ =\ 1\ -\/\ c\ *\ dt\ +\ ...}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ Since\ dt\ is\ usually\ in\ the\ order\ of\ 1/60\ and\ c\ is\ a\ low\ number\ too\ this\ approximation\ is\ good\ enough}}
+\DoxyCodeLine{00120\ \ \ \ \ mLinearVelocity\ *=\ max(0.0f,\ 1.0f\ -\/\ mLinearDamping\ *\ inDeltaTime);}
+\DoxyCodeLine{00121\ \ \ \ \ mAngularVelocity\ *=\ max(0.0f,\ 1.0f\ -\/\ mAngularDamping\ *\ inDeltaTime);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ Clamp\ velocities}}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{classMotionProperties_a2cc70977a90ef8a3bed8a60902f3c2db}{ClampLinearVelocity}}();}
+\DoxyCodeLine{00125\ \ \ \ \ ClampAngularVelocity();}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMotionProperties_aad3b333b7af3e3b39be95edf9b69d133}{MotionProperties::ResetSleepTestSpheres}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{RVec3}}\ *inPoints)}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#ifdef\ JPH\_DOUBLE\_PRECISION}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Make\ spheres\ relative\ to\ the\ first\ point\ and\ initialize\ them\ to\ zero\ radius}}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{classDVec3}{DVec3}}\ offset\ =\ inPoints[0];}
+\DoxyCodeLine{00133\ \ \ \ \ offset.\mbox{\hyperlink{classDVec3_a660cd286454202510b44fa18c2283d4d}{StoreDouble3}}(\&mSleepTestOffset);}
+\DoxyCodeLine{00134\ \ \ \ \ mSleepTestSpheres[0]\ =\ \mbox{\hyperlink{classSphere}{Sphere}}(\mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}(),\ 0.0f);}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ 3;\ ++i)}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ mSleepTestSpheres[i]\ =\ \mbox{\hyperlink{classSphere}{Sphere}}(\mbox{\hyperlink{classVec3}{Vec3}}(inPoints[i]\ -\/\ offset),\ 0.0f);}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ spheres\ to\ zero\ radius\ around\ the\ supplied\ points}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ ++i)}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ mSleepTestSpheres[i]\ =\ \mbox{\hyperlink{classSphere}{Sphere}}(inPoints[i],\ 0.0f);}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ mSleepTestTimer\ =\ 0.0f;}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ ECanSleep\ \mbox{\hyperlink{classMotionProperties_a1342087f5bae51bc6d46542ae29bca66}{MotionProperties::AccumulateSleepTime}}(\textcolor{keywordtype}{float}\ inDeltaTime,\ \textcolor{keywordtype}{float}\ inTimeBeforeSleep)}
+\DoxyCodeLine{00147\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ mSleepTestTimer\ +=\ inDeltaTime;}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ mSleepTestTimer\ >=\ inTimeBeforeSleep?\ ECanSleep::CanSleep\ :\ ECanSleep::CannotSleep;}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

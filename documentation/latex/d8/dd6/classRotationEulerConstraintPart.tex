@@ -1,0 +1,132 @@
+\doxysection{Rotation\+Euler\+Constraint\+Part Class Reference}
+\hypertarget{classRotationEulerConstraintPart}{}\label{classRotationEulerConstraintPart}\index{RotationEulerConstraintPart@{RotationEulerConstraintPart}}
+
+
+{\ttfamily \#include $<$Rotation\+Euler\+Constraint\+Part.\+h$>$}
+
+
+
+Collaboration diagram for Rotation\+Euler\+Constraint\+Part\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{dc/d80/classRotationEulerConstraintPart__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRotationEulerConstraintPart_af37f613895af10af42c71f644fe3f2f5}\label{classRotationEulerConstraintPart_af37f613895af10af42c71f644fe3f2f5} 
+void {\bfseries Calculate\+Constraint\+Properties} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Rotation1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Rotation2)
+\begin{DoxyCompactList}\small\item\em Calculate properties used during the functions below. \end{DoxyCompactList}\item 
+\Hypertarget{classRotationEulerConstraintPart_ab5ff022582eb45db942a196a32795661}\label{classRotationEulerConstraintPart_ab5ff022582eb45db942a196a32795661} 
+void {\bfseries Deactivate} ()
+\begin{DoxyCompactList}\small\item\em Deactivate this constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classRotationEulerConstraintPart_a5580f01673bcbbde31fd75108d2866b4}\label{classRotationEulerConstraintPart_a5580f01673bcbbde31fd75108d2866b4} 
+bool {\bfseries Is\+Active} () const
+\begin{DoxyCompactList}\small\item\em Check if constraint is active. \end{DoxyCompactList}\item 
+\Hypertarget{classRotationEulerConstraintPart_a492a0801dd2881d0ab58f9c8b0abfec8}\label{classRotationEulerConstraintPart_a492a0801dd2881d0ab58f9c8b0abfec8} 
+void {\bfseries Warm\+Start} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, float in\+Warm\+Start\+Impulse\+Ratio)
+\begin{DoxyCompactList}\small\item\em Must be called from the Warm\+Start\+Velocity\+Constraint call to apply the previous frame\textquotesingle{}s impulses. \end{DoxyCompactList}\item 
+\Hypertarget{classRotationEulerConstraintPart_af9a7e556643d4162eb300045d9a40df1}\label{classRotationEulerConstraintPart_af9a7e556643d4162eb300045d9a40df1} 
+bool {\bfseries Solve\+Velocity\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2)
+\begin{DoxyCompactList}\small\item\em Iteratively update the velocity constraint. Makes sure d/dt C(...) = 0, where C is the constraint equation. \end{DoxyCompactList}\item 
+\Hypertarget{classRotationEulerConstraintPart_ab2276b37dd0f8eaf4229469def2627b6}\label{classRotationEulerConstraintPart_ab2276b37dd0f8eaf4229469def2627b6} 
+bool {\bfseries Solve\+Position\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&io\+Body1, \mbox{\hyperlink{classBody}{Body}} \&io\+Body2, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Inv\+Initial\+Orientation, float in\+Baumgarte) const
+\begin{DoxyCompactList}\small\item\em Iteratively update the position constraint. Makes sure C(...) = 0. \end{DoxyCompactList}\item 
+\Hypertarget{classRotationEulerConstraintPart_aada1e7c8fcf62c1674aa5080cd70687e}\label{classRotationEulerConstraintPart_aada1e7c8fcf62c1674aa5080cd70687e} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Total\+Lambda} () const
+\begin{DoxyCompactList}\small\item\em Return lagrange multiplier. \end{DoxyCompactList}\item 
+\Hypertarget{classRotationEulerConstraintPart_afda34f355272d02e5daf8103639b22bf}\label{classRotationEulerConstraintPart_afda34f355272d02e5daf8103639b22bf} 
+void {\bfseries Save\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Save state of this constraint part. \end{DoxyCompactList}\item 
+\Hypertarget{classRotationEulerConstraintPart_aba8f2a3ca2aa7ab982b16499cf938ee3}\label{classRotationEulerConstraintPart_aba8f2a3ca2aa7ab982b16499cf938ee3} 
+void {\bfseries Restore\+State} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore state of this constraint part. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRotationEulerConstraintPart_a40c10735335691be99e7911139dc2884}\label{classRotationEulerConstraintPart_a40c10735335691be99e7911139dc2884} 
+static \mbox{\hyperlink{classQuat}{Quat}} {\bfseries s\+Get\+Inv\+Initial\+Orientation} (const \mbox{\hyperlink{classBody}{Body}} \&in\+Body1, const \mbox{\hyperlink{classBody}{Body}} \&in\+Body2)
+\begin{DoxyCompactList}\small\item\em Return inverse of initial rotation from body 1 to body 2 in body 1 space. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classQuat}{Quat}} \mbox{\hyperlink{classRotationEulerConstraintPart_a6757c3b96eff4a145d9228fb1679222d}{s\+Get\+Inv\+Initial\+Orientation\+XY}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis\+X1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis\+Y1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis\+X2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis\+Y2)
+\begin{DoxyCompactList}\small\item\em Return inverse of initial rotation from body 1 to body 2 in body 1 space. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classQuat}{Quat}} \mbox{\hyperlink{classRotationEulerConstraintPart_ae84f7a33a2d609dd5138c9a7f3f82f65}{s\+Get\+Inv\+Initial\+Orientation\+XZ}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis\+X1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis\+Z1, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis\+X2, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Axis\+Z2)
+\begin{DoxyCompactList}\small\item\em Return inverse of initial rotation from body 1 to body 2 in body 1 space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Constrains rotation around all axis so that only translation is allowed
+
+Based on\+: "{}\+Constraints Derivation for Rigid Body Simulation in 3\+D"{} -\/ Daniel Chappuis, section 2.\+5.\+1
+
+\doxylink{classConstraint}{Constraint} equation (eq 129)\+:
+
+\[C = \begin{bmatrix}\Delta\theta_x, \Delta\theta_y, \Delta\theta_z\end{bmatrix}\]
+
+Jacobian (eq 131)\+:
+
+\[J = \begin{bmatrix}0 & -E & 0 & E\end{bmatrix}\]
+
+Used terms (here and below, everything in world space)\+:~\newline
+delta\+\_\+theta\+\_\+\texorpdfstring{$\ast$}{*} = difference in rotation between initial rotation of bodyies 1 and 2.~\newline
+x1, x2 = center of mass for the bodies.~\newline
+v = \mbox{[}v1, w1, v2, w2\mbox{]}.~\newline
+v1, v2 = linear velocity of body 1 and 2.~\newline
+w1, w2 = angular velocity of body 1 and 2.~\newline
+M = mass matrix, a diagonal matrix of the mass and inertia with diagonal \mbox{[}m1, I1, m2, I2\mbox{]}.~\newline
+ $K^{-1} = \left( J M^{-1} J^T \right)^{-1}$ = effective mass.~\newline
+b = velocity bias.~\newline
+ $\beta$ = baumgarte constant.~\newline
+E = identity matrix.~\newline
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRotationEulerConstraintPart_a6757c3b96eff4a145d9228fb1679222d}\label{classRotationEulerConstraintPart_a6757c3b96eff4a145d9228fb1679222d} 
+\index{RotationEulerConstraintPart@{RotationEulerConstraintPart}!sGetInvInitialOrientationXY@{sGetInvInitialOrientationXY}}
+\index{sGetInvInitialOrientationXY@{sGetInvInitialOrientationXY}!RotationEulerConstraintPart@{RotationEulerConstraintPart}}
+\doxysubsubsection{\texorpdfstring{sGetInvInitialOrientationXY()}{sGetInvInitialOrientationXY()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classQuat}{Quat}} Rotation\+Euler\+Constraint\+Part\+::s\+Get\+Inv\+Initial\+Orientation\+XY (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Axis\+X1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Axis\+Y1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Axis\+X2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Axis\+Y2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Return inverse of initial rotation from body 1 to body 2 in body 1 space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Axis\+X1} & Reference axis X for body 1 \\
+\hline
+{\em in\+Axis\+Y1} & Reference axis Y for body 1 \\
+\hline
+{\em in\+Axis\+X2} & Reference axis X for body 2 \\
+\hline
+{\em in\+Axis\+Y2} & Reference axis Y for body 2 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRotationEulerConstraintPart_ae84f7a33a2d609dd5138c9a7f3f82f65}\label{classRotationEulerConstraintPart_ae84f7a33a2d609dd5138c9a7f3f82f65} 
+\index{RotationEulerConstraintPart@{RotationEulerConstraintPart}!sGetInvInitialOrientationXZ@{sGetInvInitialOrientationXZ}}
+\index{sGetInvInitialOrientationXZ@{sGetInvInitialOrientationXZ}!RotationEulerConstraintPart@{RotationEulerConstraintPart}}
+\doxysubsubsection{\texorpdfstring{sGetInvInitialOrientationXZ()}{sGetInvInitialOrientationXZ()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classQuat}{Quat}} Rotation\+Euler\+Constraint\+Part\+::s\+Get\+Inv\+Initial\+Orientation\+XZ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Axis\+X1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Axis\+Z1,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Axis\+X2,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Axis\+Z2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Return inverse of initial rotation from body 1 to body 2 in body 1 space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Axis\+X1} & Reference axis X for body 1 \\
+\hline
+{\em in\+Axis\+Z1} & Reference axis Z for body 1 \\
+\hline
+{\em in\+Axis\+X2} & Reference axis X for body 2 \\
+\hline
+{\em in\+Axis\+Z2} & Reference axis Z for body 2 \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/\+Constraint\+Part/Rotation\+Euler\+Constraint\+Part.\+h\end{DoxyCompactItemize}

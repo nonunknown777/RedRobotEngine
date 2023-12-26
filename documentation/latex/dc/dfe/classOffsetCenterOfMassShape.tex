@@ -1,0 +1,578 @@
+\doxysection{Offset\+Center\+Of\+Mass\+Shape Class Reference}
+\hypertarget{classOffsetCenterOfMassShape}{}\label{classOffsetCenterOfMassShape}\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+
+
+This shape will shift the center of mass of a child shape, it can e.\+g. be used to lower the center of mass of an unstable object like a boat to make it stable.  
+
+
+
+
+{\ttfamily \#include $<$Offset\+Center\+Of\+Mass\+Shape.\+h$>$}
+
+
+
+Inheritance diagram for Offset\+Center\+Of\+Mass\+Shape\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/d2c/classOffsetCenterOfMassShape__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Offset\+Center\+Of\+Mass\+Shape\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d3/d7b/classOffsetCenterOfMassShape__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOffsetCenterOfMassShape_a4066cbb4b851269605cd5ad0a31694ef}\label{classOffsetCenterOfMassShape_a4066cbb4b851269605cd5ad0a31694ef} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Offset\+Center\+Of\+Mass\+Shape} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classOffsetCenterOfMassShape_a8e82168a95eb463f51e2c109b789c22b}\label{classOffsetCenterOfMassShape_a8e82168a95eb463f51e2c109b789c22b} 
+{\bfseries Offset\+Center\+Of\+Mass\+Shape} (const \mbox{\hyperlink{classOffsetCenterOfMassShapeSettings}{Offset\+Center\+Of\+Mass\+Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+\Hypertarget{classOffsetCenterOfMassShape_a5ea993204b5ccaad71e55e4d0bfed76b}\label{classOffsetCenterOfMassShape_a5ea993204b5ccaad71e55e4d0bfed76b} 
+{\bfseries Offset\+Center\+Of\+Mass\+Shape} (const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Offset)
+\item 
+\Hypertarget{classOffsetCenterOfMassShape_a39dd403b80dac228ece27bae9f03cf90}\label{classOffsetCenterOfMassShape_a39dd403b80dac228ece27bae9f03cf90} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Offset} () const
+\begin{DoxyCompactList}\small\item\em Access the offset that is applied to the center of mass. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classVec3}{Vec3}} \mbox{\hyperlink{classOffsetCenterOfMassShape_a9479ac77a9f53c5664f85b7a93135d95}{Get\+Center\+Of\+Mass}} () const override
+\begin{DoxyCompactList}\small\item\em All shapes are centered around their center of mass. This function returns the center of mass position that needs to be applied to transform the shape to where it was created. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classOffsetCenterOfMassShape_acb9e88f95f8a4401201bab45fc14f433}{Get\+Local\+Bounds}} () const override
+\begin{DoxyCompactList}\small\item\em Get local bounding box including convex radius, this box is centered around the center of mass rather than the world transform. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classOffsetCenterOfMassShape_a4653197218b666104d24146884375531}{Get\+World\+Space\+Bounds}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual float \mbox{\hyperlink{classOffsetCenterOfMassShape_a032a8fc143be25c8194a28c3a491c702}{Get\+Inner\+Radius}} () const override
+\item 
+virtual \mbox{\hyperlink{classMassProperties}{Mass\+Properties}} \mbox{\hyperlink{classOffsetCenterOfMassShape_ac1699a722db6d84580b59a3058af572c}{Get\+Mass\+Properties}} () const override
+\begin{DoxyCompactList}\small\item\em Calculate the mass and inertia of this shape. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTransformedShape}{Transformed\+Shape}} \mbox{\hyperlink{classOffsetCenterOfMassShape_ae51c88d96c6f14d70b1fc92d67ffd9c0}{Get\+Sub\+Shape\+Transformed\+Shape}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&out\+Remainder) const override
+\item 
+virtual \mbox{\hyperlink{classVec3}{Vec3}} \mbox{\hyperlink{classOffsetCenterOfMassShape_ade9c61a824b74af8630cd64c6ae3d60c}{Get\+Surface\+Normal}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Local\+Surface\+Position) const override
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_a4896f09ca18efab9d00f9dbcc5b48115}{Get\+Supporting\+Face}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classShape_a95d3060318d33c1ef314c5b856a70cb8}{Supporting\+Face}} \&out\+Vertices) const override
+\item 
+\Hypertarget{classOffsetCenterOfMassShape_af28cad61adb62fb4396f955ded95a1e5}\label{classOffsetCenterOfMassShape_af28cad61adb62fb4396f955ded95a1e5} 
+virtual void {\bfseries Get\+Submerged\+Volume} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classPlane}{Plane}} \&in\+Surface, float \&out\+Total\+Volume, float \&out\+Submerged\+Volume, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Center\+Of\+Buoyancy JPH\+\_\+\+IF\+\_\+\+DEBUG\+\_\+\+RENDERER(, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Base\+Offset)) const override
+\item 
+virtual bool \mbox{\hyperlink{classOffsetCenterOfMassShape_a7b79b7db340481f4c25124a71db214ad}{Cast\+Ray}} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classRayCastResult}{Ray\+Cast\+Result}} \&io\+Hit) const override
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_af564244149693a02bfac1f2a3c7575e2}{Cast\+Ray}} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray, const \mbox{\hyperlink{classRayCastSettings}{Ray\+Cast\+Settings}} \&in\+Ray\+Cast\+Settings, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Cast\+Ray\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter=\{ \}) const override
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_aee7805b335b6295cef69df4aad1e0ced}{Collide\+Point}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Collide\+Point\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter=\{ \}) const override
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_a2f213cf7851c8db7d2830882cfe6ea75}{Collide\+Soft\+Body\+Vertices}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}} \texorpdfstring{$\ast$}{*}io\+Vertices, uint in\+Num\+Vertices, float in\+Delta\+Time, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Displacement\+Due\+To\+Gravity, int in\+Colliding\+Shape\+Index) const override
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_a47aa5c828bf51bd1136263f724d199c7}{Collect\+Transformed\+Shapes}} (const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter) const override
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_af133924bb5f771c51419f5e81121e820}{Transform\+Shape}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&io\+Collector) const override
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_a928422bd2dd3f8a9ac2107bdf503446e}{Get\+Triangles\+Start}} (\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Get\+Triangles\+Context}} \&io\+Context, const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual int \mbox{\hyperlink{classOffsetCenterOfMassShape_a5a7033c9950e7ec7253047e8a257c360}{Get\+Triangles\+Next}} (\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Get\+Triangles\+Context}} \&io\+Context, int in\+Max\+Triangles\+Requested, \mbox{\hyperlink{classFloat3}{Float3}} \texorpdfstring{$\ast$}{*}out\+Triangle\+Vertices, const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+Materials=nullptr) const override
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_afd4890554dc92e060fb963d452bf443b}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saves the contents of the shape in binary form to in\+Stream. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} \mbox{\hyperlink{classOffsetCenterOfMassShape_a656e5b4eee8f07b32ef59fb20858771b}{Get\+Stats}} () const override
+\begin{DoxyCompactList}\small\item\em Get stats of this shape. Use for logging / data collection purposes only. Does not add values from child shapes, use Get\+Stats\+Recursive for this. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classOffsetCenterOfMassShape_a92a8fbf01df9c36b9176c18889b92f58}{Get\+Volume}} () const override
+\item 
+virtual bool \mbox{\hyperlink{classOffsetCenterOfMassShape_a37de81ebbfc8e90325d3a483e8da0400}{Is\+Valid\+Scale}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classOffsetCenterOfMassShape_a9f8379fa338802436700b86a07fab3be}{Get\+World\+Space\+Bounds}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\item 
+\Hypertarget{classOffsetCenterOfMassShape_adc0e48fe3e684665c0b4ba3ec9e9ed6b}\label{classOffsetCenterOfMassShape_adc0e48fe3e684665c0b4ba3ec9e9ed6b} 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries Get\+World\+Space\+Bounds} (\mbox{\hyperlink{classDMat44}{DMat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\begin{DoxyCompactList}\small\item\em Get world space bounds including convex radius. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classDecoratedShape}{Decorated\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Decorated\+Shape} (EShape\+Sub\+Type in\+Sub\+Type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Decorated\+Shape} (EShape\+Sub\+Type in\+Sub\+Type, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Inner\+Shape)
+\item 
+{\bfseries Decorated\+Shape} (EShape\+Sub\+Type in\+Sub\+Type, const \mbox{\hyperlink{classDecoratedShapeSettings}{Decorated\+Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Inner\+Shape} () const
+\begin{DoxyCompactList}\small\item\em Access to the decorated inner shape. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classDecoratedShape_ae68d25802b5bbe3e86cb3cb71698b78b}{Must\+Be\+Static}} () const override
+\begin{DoxyCompactList}\small\item\em Check if this shape can only be used to create a static body or if it can also be dynamic/kinematic. \end{DoxyCompactList}\item 
+virtual uint \mbox{\hyperlink{classDecoratedShape_a0369b0f4e52b29f3625022bfd98a6924}{Get\+Sub\+Shape\+IDBits\+Recursive}} () const override
+\begin{DoxyCompactList}\small\item\em Get the max number of sub shape ID bits that are needed to be able to address any leaf shape in this shape. Used mainly for checking that it is smaller or equal than \doxylink{classSubShapeID_a74d6785fe41b99c0d783fb6e66c39f4d}{Sub\+Shape\+ID\+::\+Max\+Bits}. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classDecoratedShape_a97f8a35cfcd4cbd10b38496e120927e3}{Get\+Material}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID) const override
+\begin{DoxyCompactList}\small\item\em Get the material assigned to a particular sub shape ID. \end{DoxyCompactList}\item 
+virtual uint64 \mbox{\hyperlink{classDecoratedShape_a629d49dce1a2aeeea9d1bf3c22a4e7d6}{Get\+Sub\+Shape\+User\+Data}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID) const override
+\begin{DoxyCompactList}\small\item\em Get the user data of a particular sub shape ID. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDecoratedShape_aac5abd00667b3f3e769a565a6833f442}{Save\+Sub\+Shape\+State}} (Shape\+List \&out\+Sub\+Shapes) const override
+\begin{DoxyCompactList}\small\item\em Outputs the shape references that this shape has to out\+Sub\+Shapes. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDecoratedShape_a74637476937867e42c8113cdad9e6768}{Restore\+Sub\+Shape\+State}} (const \mbox{\hyperlink{classRefConst}{Shape\+RefC}} \texorpdfstring{$\ast$}{*}in\+Sub\+Shapes, uint in\+Num\+Shapes) override
+\begin{DoxyCompactList}\small\item\em Restore the shape references after calling s\+Restore\+From\+Binary\+State. Note that the exact same shapes need to be provided in the same order as returned by Save\+Sub\+Shape\+State. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} \mbox{\hyperlink{classDecoratedShape_a07df7fa95d30497b42009ab41cfcb095}{Get\+Stats\+Recursive}} (Visited\+Shapes \&io\+Visited\+Shapes) const override
+\begin{DoxyCompactList}\small\item\em Volume of this shape (m\texorpdfstring{$^\wedge$}{\string^}3). Note that for compound shapes the volume may be incorrect since child shapes can overlap which is not accounted for. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Shape} (EShape\+Type in\+Type, EShape\+Sub\+Type in\+Sub\+Type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Shape} (EShape\+Type in\+Type, EShape\+Sub\+Type in\+Sub\+Type, const \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Shape} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+EShape\+Type {\bfseries Get\+Type} () const
+\begin{DoxyCompactList}\small\item\em Get type. \end{DoxyCompactList}\item 
+EShape\+Sub\+Type {\bfseries Get\+Sub\+Type} () const
+\item 
+uint64 {\bfseries Get\+User\+Data} () const
+\begin{DoxyCompactList}\small\item\em User data (to be used freely by the application) \end{DoxyCompactList}\item 
+void {\bfseries Set\+User\+Data} (uint64 in\+User\+Data)
+\item 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries Get\+World\+Space\+Bounds} (\mbox{\hyperlink{classDMat44}{DMat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\begin{DoxyCompactList}\small\item\em Get world space bounds including convex radius. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classShape_ab3ab834243d410f4074036264928f0ff}{Get\+Submerged\+Volume}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classPlane}{Plane}} \&in\+Surface, float \&out\+Total\+Volume, float \&out\+Submerged\+Volume, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Center\+Of\+Buoyancy) const =0
+\item 
+\mbox{\hyperlink{classResult}{Shape\+Result}} \mbox{\hyperlink{classShape_aca293aaf9bb3c999ad09687e11bfd70f}{Scale\+Shape}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Save\+Material\+State} (Physics\+Material\+List \&out\+Materials) const
+\begin{DoxyCompactList}\small\item\em Outputs the material references that this shape has to out\+Materials. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classShape_a6e823e7198f22ec824cacf9998d9904c}{Restore\+Material\+State}} (const \mbox{\hyperlink{classRefConst}{Physics\+Material\+RefC}} \texorpdfstring{$\ast$}{*}in\+Materials, uint in\+Num\+Materials)
+\begin{DoxyCompactList}\small\item\em Restore the material references after calling s\+Restore\+From\+Binary\+State. Note that the exact same materials need to be provided in the same order as returned by Save\+Material\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Save\+With\+Children} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream, Shape\+To\+IDMap \&io\+Shape\+Map, Material\+To\+IDMap \&io\+Material\+Map) const
+\begin{DoxyCompactList}\small\item\em Save this shape, all its children and its materials. Pass in an empty map in io\+Shape\+Map / io\+Material\+Map or reuse the same map while saving multiple shapes to the same stream in order to avoid writing duplicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOffsetCenterOfMassShape_a409f2a84f2dae386e438d6be3ff50e78}\label{classOffsetCenterOfMassShape_a409f2a84f2dae386e438d6be3ff50e78} 
+static void {\bfseries s\+Register} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classShape}{Shape} of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries s\+Restore\+With\+Children} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream, IDTo\+Shape\+Map \&io\+Shape\+Map, IDTo\+Material\+Map \&io\+Material\+Map)
+\begin{DoxyCompactList}\small\item\em Restore a shape, all its children and materials. Pass in an empty map in io\+Shape\+Map / io\+Material\+Map or reuse the same map while reading multiple shapes from the same stream in order to restore duplicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classOffsetCenterOfMassShape_ac47b9debd0086f2b4318f9374c74cf33}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Shape\+Result} = \mbox{\hyperlink{classResult}{Shape\+Settings\+::\+Shape\+Result}}
+\item 
+using {\bfseries Supporting\+Face} = \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classVec3}{Vec3}}, 32 $>$
+\begin{DoxyCompactList}\small\item\em Type definition for a supporting face. \end{DoxyCompactList}\item 
+using {\bfseries Visited\+Shapes} = Unordered\+Set$<$ const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Shape\+To\+IDMap} = Stream\+Utils\+::\+Object\+To\+IDMap$<$ \mbox{\hyperlink{classShape}{Shape}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries IDTo\+Shape\+Map} = Stream\+Utils\+::\+IDTo\+Object\+Map$<$ \mbox{\hyperlink{classShape}{Shape}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Material\+To\+IDMap} = Stream\+Utils\+::\+Object\+To\+IDMap$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries IDTo\+Material\+Map} = Stream\+Utils\+::\+IDTo\+Object\+Map$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int {\bfseries c\+Get\+Triangles\+Min\+Triangles\+Requested} = 32
+\begin{DoxyCompactList}\small\item\em This is the minimum amount of triangles that should be requested through Get\+Triangles\+Next. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries s\+Collide\+Point\+Using\+Ray\+Cast} (const \mbox{\hyperlink{classShape}{Shape}} \&in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Collide\+Point\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter)
+\begin{DoxyCompactList}\small\item\em A fallback version of Collide\+Point that uses a ray cast and counts the number of hits to determine if the point is inside the shape. Odd number of hits means inside, even number of hits means outside. \end{DoxyCompactList}\item 
+static void {\bfseries s\+Collide\+Soft\+Body\+Vertices\+Using\+Ray\+Cast} (const \mbox{\hyperlink{classShape}{Shape}} \&in\+Shape, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}} \texorpdfstring{$\ast$}{*}io\+Vertices, uint in\+Num\+Vertices, float in\+Delta\+Time, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Displacement\+Due\+To\+Gravity, int in\+Colliding\+Shape\+Index)
+\begin{DoxyCompactList}\small\item\em A fallback version of Collide\+Soft\+Body\+Vertices that uses a raycast to collide the vertices with the shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classDecoratedShape}{Decorated\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRefConst}{Ref\+Const}}$<$ \mbox{\hyperlink{classShape}{Shape}} $>$ {\bfseries m\+Inner\+Shape}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This shape will shift the center of mass of a child shape, it can e.\+g. be used to lower the center of mass of an unstable object like a boat to make it stable. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOffsetCenterOfMassShape_af564244149693a02bfac1f2a3c7575e2}\label{classOffsetCenterOfMassShape_af564244149693a02bfac1f2a3c7575e2} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!CastRay@{CastRay}}
+\index{CastRay@{CastRay}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{CastRay()}{CastRay()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Cast\+Ray (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&}]{in\+Ray,  }\item[{const \mbox{\hyperlink{classRayCastSettings}{Ray\+Cast\+Settings}} \&}]{in\+Ray\+Cast\+Settings,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Cast\+Ray\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Cast a ray against this shape. Allows returning multiple hits through io\+Collector. Note that this version is more flexible but also slightly slower than the Cast\+Ray function that returns only a single hit. If you want the surface normal of the hit use Get\+Surface\+Normal(collected sub shape ID, in\+Ray.\+Get\+Point\+On\+Ray(collected faction)). 
+
+Implements \mbox{\hyperlink{classShape_a54b33219a3685aa4b964f6b69a2cfa7d}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a7b79b7db340481f4c25124a71db214ad}\label{classOffsetCenterOfMassShape_a7b79b7db340481f4c25124a71db214ad} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!CastRay@{CastRay}}
+\index{CastRay@{CastRay}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{CastRay()}{CastRay()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool Offset\+Center\+Of\+Mass\+Shape\+::\+Cast\+Ray (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&}]{in\+Ray,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator,  }\item[{\mbox{\hyperlink{classRayCastResult}{Ray\+Cast\+Result}} \&}]{io\+Hit }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Cast a ray against this shape, returns true if it finds a hit closer than io\+Hit.\+m\+Fraction and updates that fraction. Otherwise io\+Hit is left untouched and the function returns false. Note that the ray should be relative to the center of mass of this shape (i.\+e. subtract \doxylink{classShape_a7e34b0626a40c31db0b2a761922adb1a}{Shape\+::\+Get\+Center\+Of\+Mass()} from \doxylink{structRayCastT_ae66dc4b0c20b242f17bcf70cb5507e51}{Ray\+Cast\+::m\+Origin} if you want to cast against the shape in the space it was created). Convex objects will be treated as solid (meaning if the ray starts inside, you\textquotesingle{}ll get a hit fraction of 0) and back face hits against triangles are returned. If you want the surface normal of the hit use Get\+Surface\+Normal(io\+Hit.\+m\+Sub\+Shape\+ID2, in\+Ray.\+Get\+Point\+On\+Ray(io\+Hit.\+m\+Fraction)). 
+
+Implements \mbox{\hyperlink{classShape_a955ec1953bc94c6c910dc4dc16114732}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a47aa5c828bf51bd1136263f724d199c7}\label{classOffsetCenterOfMassShape_a47aa5c828bf51bd1136263f724d199c7} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!CollectTransformedShapes@{CollectTransformedShapes}}
+\index{CollectTransformedShapes@{CollectTransformedShapes}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{CollectTransformedShapes()}{CollectTransformedShapes()}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Collect\+Transformed\+Shapes (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAABox}{AABox}} \&}]{in\+Box,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Position\+COM,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Rotation,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Collect the leaf transformed shapes of all leaf shapes of this shape. in\+Box is the world space axis aligned box which leaf shapes should collide with. in\+Position\+COM/in\+Rotation/in\+Scale describes the transform of this shape. in\+Sub\+Shape\+IDCeator represents the current sub shape ID of this shape. 
+
+Reimplemented from \mbox{\hyperlink{classShape_a878715858fc2494068183d9eb82d16b0}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_aee7805b335b6295cef69df4aad1e0ced}\label{classOffsetCenterOfMassShape_aee7805b335b6295cef69df4aad1e0ced} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!CollidePoint@{CollidePoint}}
+\index{CollidePoint@{CollidePoint}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{CollidePoint()}{CollidePoint()}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Collide\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Point,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Collide\+Point\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Check if in\+Point is inside this shape. For this tests all shapes are treated as if they were solid. Note that in\+Point should be relative to the center of mass of this shape (i.\+e. subtract \doxylink{classShape_a7e34b0626a40c31db0b2a761922adb1a}{Shape\+::\+Get\+Center\+Of\+Mass()} from in\+Point if you want to test against the shape in the space it was created). For a mesh shape, this test will only provide sensible information if the mesh is a closed manifold. For each shape that collides, io\+Collector will receive a hit. 
+
+Implements \mbox{\hyperlink{classShape_af6e77d16736434769d72152bf059a126}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a2f213cf7851c8db7d2830882cfe6ea75}\label{classOffsetCenterOfMassShape_a2f213cf7851c8db7d2830882cfe6ea75} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!CollideSoftBodyVertices@{CollideSoftBodyVertices}}
+\index{CollideSoftBodyVertices@{CollideSoftBodyVertices}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{CollideSoftBodyVertices()}{CollideSoftBodyVertices()}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Collide\+Soft\+Body\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{\mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}} \texorpdfstring{$\ast$}{*}}]{io\+Vertices,  }\item[{uint}]{in\+Num\+Vertices,  }\item[{float}]{in\+Delta\+Time,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Displacement\+Due\+To\+Gravity,  }\item[{int}]{in\+Colliding\+Shape\+Index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Collides all vertices of a soft body with this shape and updates \doxylink{classSoftBodyVertex_ad875325c3ade4ca33d6b96716b8a2b07}{Soft\+Body\+Vertex\+::m\+Collision\+Plane}, \doxylink{classSoftBodyVertex_a887112c6a59e554fd15aac62b7e84dfe}{Soft\+Body\+Vertex\+::m\+Colliding\+Shape\+Index} and \doxylink{classSoftBodyVertex_a8277ada20f83ca568c1e6173720fbf23}{Soft\+Body\+Vertex\+::m\+Largest\+Penetration} if a collision with more penetration was found. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Center\+Of\+Mass\+Transform} & Center of mass transform for this shape relative to the vertices. \\
+\hline
+{\em in\+Scale} & The scale to use for this shape \\
+\hline
+{\em io\+Vertices} & The vertices of the soft body \\
+\hline
+{\em in\+Num\+Vertices} & The number of vertices in io\+Vertices \\
+\hline
+{\em in\+Delta\+Time} & Delta time of this time step (can be used to extrapolate the position using the velocity of the particle) \\
+\hline
+{\em in\+Displacement\+Due\+To\+Gravity} & Displacement due to gravity during this time step \\
+\hline
+{\em in\+Colliding\+Shape\+Index} & Value to store in \doxylink{classSoftBodyVertex_a887112c6a59e554fd15aac62b7e84dfe}{Soft\+Body\+Vertex\+::m\+Colliding\+Shape\+Index} when a collision was found \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classShape_ac351f347171376cd988ec415748a78ff}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a9479ac77a9f53c5664f85b7a93135d95}\label{classOffsetCenterOfMassShape_a9479ac77a9f53c5664f85b7a93135d95} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetCenterOfMass@{GetCenterOfMass}}
+\index{GetCenterOfMass@{GetCenterOfMass}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetCenterOfMass()}{GetCenterOfMass()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classVec3}{Vec3}} Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Center\+Of\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+All shapes are centered around their center of mass. This function returns the center of mass position that needs to be applied to transform the shape to where it was created. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classDecoratedShape_aa17a9fb29ce78eafc01cc8140d754dd6}{Decorated\+Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a032a8fc143be25c8194a28c3a491c702}\label{classOffsetCenterOfMassShape_a032a8fc143be25c8194a28c3a491c702} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetInnerRadius@{GetInnerRadius}}
+\index{GetInnerRadius@{GetInnerRadius}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetInnerRadius()}{GetInnerRadius()}}
+{\footnotesize\ttfamily virtual float Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Inner\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the radius of the biggest sphere that fits entirely in the shape. In case this shape consists of multiple sub shapes, it returns the smallest sphere of the parts. This can be used as a measure of how far the shape can be moved without risking going through geometry. 
+
+Implements \mbox{\hyperlink{classShape_a249fa4e0fc7fdd25071be9f45db6a25a}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_acb9e88f95f8a4401201bab45fc14f433}\label{classOffsetCenterOfMassShape_acb9e88f95f8a4401201bab45fc14f433} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetLocalBounds@{GetLocalBounds}}
+\index{GetLocalBounds@{GetLocalBounds}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetLocalBounds()}{GetLocalBounds()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classAABox}{AABox}} Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Local\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get local bounding box including convex radius, this box is centered around the center of mass rather than the world transform. 
+
+
+
+Implements \mbox{\hyperlink{classShape_a30ea165596e01df087f6e4980ed6b0cb}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_ac1699a722db6d84580b59a3058af572c}\label{classOffsetCenterOfMassShape_ac1699a722db6d84580b59a3058af572c} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetMassProperties@{GetMassProperties}}
+\index{GetMassProperties@{GetMassProperties}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetMassProperties()}{GetMassProperties()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMassProperties}{Mass\+Properties}} Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Mass\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculate the mass and inertia of this shape. 
+
+
+
+Implements \mbox{\hyperlink{classShape_a00d0953c120d9e175960c9e6629f108f}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a656e5b4eee8f07b32ef59fb20858771b}\label{classOffsetCenterOfMassShape_a656e5b4eee8f07b32ef59fb20858771b} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetStats@{GetStats}}
+\index{GetStats@{GetStats}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetStats()}{GetStats()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Stats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get stats of this shape. Use for logging / data collection purposes only. Does not add values from child shapes, use Get\+Stats\+Recursive for this. 
+
+
+
+Implements \mbox{\hyperlink{classShape_a87ae161e649ab6af75a60fe130dd195b}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_ae51c88d96c6f14d70b1fc92d67ffd9c0}\label{classOffsetCenterOfMassShape_ae51c88d96c6f14d70b1fc92d67ffd9c0} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetSubShapeTransformedShape@{GetSubShapeTransformedShape}}
+\index{GetSubShapeTransformedShape@{GetSubShapeTransformedShape}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetSubShapeTransformedShape()}{GetSubShapeTransformedShape()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classTransformedShape}{Transformed\+Shape}} Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Sub\+Shape\+Transformed\+Shape (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Position\+COM,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Rotation,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{out\+Remainder }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the direct child sub shape and its transform for a sub shape ID. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Sub\+Shape\+ID} & Sub shape ID that indicates the path to the leaf shape \\
+\hline
+{\em in\+Position\+COM} & The position of the center of mass of this shape \\
+\hline
+{\em in\+Rotation} & The orientation of this shape \\
+\hline
+{\em in\+Scale} & Scale of this shape \\
+\hline
+{\em out\+Remainder} & The remainder of the sub shape ID after removing the sub shape \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Direct child sub shape and its transform, note that the body ID and sub shape ID will be invalid 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classShape_a80ec65fef5853ea01cad86e528bdca5d}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a4896f09ca18efab9d00f9dbcc5b48115}\label{classOffsetCenterOfMassShape_a4896f09ca18efab9d00f9dbcc5b48115} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetSupportingFace@{GetSupportingFace}}
+\index{GetSupportingFace@{GetSupportingFace}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetSupportingFace()}{GetSupportingFace()}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Supporting\+Face (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Direction,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classShape_a95d3060318d33c1ef314c5b856a70cb8}{Supporting\+Face}} \&}]{out\+Vertices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the vertices of the face that faces in\+Direction the most (includes any convex radius). Note that this function can only return faces of convex shapes or triangles, which is why a sub shape ID to get to that leaf must be provided. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Sub\+Shape\+ID} & Sub shape ID of target shape \\
+\hline
+{\em in\+Direction} & Direction that the face should be facing (in local space to this shape) \\
+\hline
+{\em in\+Center\+Of\+Mass\+Transform} & \doxylink{structTransform}{Transform} to transform out\+Vertices with \\
+\hline
+{\em in\+Scale} & Scale of this shape \\
+\hline
+{\em out\+Vertices} & Resulting face. The returned face can be empty if the shape doesn\textquotesingle{}t have polygons to return (e.\+g. because it\textquotesingle{}s a sphere). The face will be returned in world space. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classDecoratedShape_a9d0a86dfa09850e01080bd9a53266682}{Decorated\+Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_ade9c61a824b74af8630cd64c6ae3d60c}\label{classOffsetCenterOfMassShape_ade9c61a824b74af8630cd64c6ae3d60c} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetSurfaceNormal@{GetSurfaceNormal}}
+\index{GetSurfaceNormal@{GetSurfaceNormal}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetSurfaceNormal()}{GetSurfaceNormal()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classVec3}{Vec3}} Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Surface\+Normal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{in\+Sub\+Shape\+ID,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Local\+Surface\+Position }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the surface normal of a particular sub shape ID and point on surface (all vectors are relative to center of mass for this shape). Note\+: When you have a \doxylink{classCollideShapeResult}{Collide\+Shape\+Result} or \doxylink{classShapeCastResult}{Shape\+Cast\+Result} you should use -\/m\+Penetration\+Axis.\+Normalized() as contact normal as Get\+Surface\+Normal will only return face normals (and not vertex or edge normals). 
+
+Implements \mbox{\hyperlink{classShape_adc7c6aeed1cde2ae1be099a4a5a4bd0c}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a5a7033c9950e7ec7253047e8a257c360}\label{classOffsetCenterOfMassShape_a5a7033c9950e7ec7253047e8a257c360} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetTrianglesNext@{GetTrianglesNext}}
+\index{GetTrianglesNext@{GetTrianglesNext}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetTrianglesNext()}{GetTrianglesNext()}}
+{\footnotesize\ttfamily virtual int Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Triangles\+Next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Get\+Triangles\+Context}} \&}]{io\+Context,  }\item[{int}]{in\+Max\+Triangles\+Requested,  }\item[{\mbox{\hyperlink{classFloat3}{Float3}} \texorpdfstring{$\ast$}{*}}]{out\+Triangle\+Vertices,  }\item[{const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{out\+Materials = {\ttfamily nullptr} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Call this repeatedly to get all triangles in the box. out\+Triangle\+Vertices should be large enough to hold 3 \texorpdfstring{$\ast$}{*} in\+Max\+Triangle\+Requested entries. out\+Materials (if it is not null) should contain in\+Max\+Triangles\+Requested entries. The function returns the amount of triangles that it found (which will be \texorpdfstring{$<$}{<}= in\+Max\+Triangles\+Requested), or 0 if there are no more triangles. Note that the function can return a value \texorpdfstring{$<$}{<} in\+Max\+Triangles\+Requested and still have more triangles to process (triangles can be returned in blocks). Note that the function may return triangles outside of the requested box, only coarse culling is performed on the returned triangles. 
+
+Implements \mbox{\hyperlink{classShape_a4b6ba637f676d38c24bdb5da9a2f345f}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a928422bd2dd3f8a9ac2107bdf503446e}\label{classOffsetCenterOfMassShape_a928422bd2dd3f8a9ac2107bdf503446e} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetTrianglesStart@{GetTrianglesStart}}
+\index{GetTrianglesStart@{GetTrianglesStart}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetTrianglesStart()}{GetTrianglesStart()}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Triangles\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Get\+Triangles\+Context}} \&}]{io\+Context,  }\item[{const \mbox{\hyperlink{classAABox}{AABox}} \&}]{in\+Box,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Position\+COM,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Rotation,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+To start iterating over triangles, call this function first. io\+Context is a temporary buffer and should remain untouched until the last call to Get\+Triangles\+Next. in\+Box is the world space bounding in which you want to get the triangles. in\+Position\+COM/in\+Rotation/in\+Scale describes the transform of this shape. To get the actual triangles call Get\+Triangles\+Next. 
+
+Implements \mbox{\hyperlink{classShape_a703f5419cf3f3cb216cbe0433ce1a625}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a92a8fbf01df9c36b9176c18889b92f58}\label{classOffsetCenterOfMassShape_a92a8fbf01df9c36b9176c18889b92f58} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetVolume@{GetVolume}}
+\index{GetVolume@{GetVolume}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetVolume()}{GetVolume()}}
+{\footnotesize\ttfamily virtual float Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classShape}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a9f8379fa338802436700b86a07fab3be}\label{classOffsetCenterOfMassShape_a9f8379fa338802436700b86a07fab3be} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetWorldSpaceBounds@{GetWorldSpaceBounds}}
+\index{GetWorldSpaceBounds@{GetWorldSpaceBounds}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetWorldSpaceBounds()}{GetWorldSpaceBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classAABox}{AABox}} Shape\+::\+Get\+World\+Space\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Get world space bounds including convex radius. This shape is scaled by in\+Scale in local space first. This function can be overridden to return a closer fitting world space bounding box, by default it will just transform what \doxylink{classOffsetCenterOfMassShape_acb9e88f95f8a4401201bab45fc14f433}{Get\+Local\+Bounds()} returns. 
+
+Reimplemented from \mbox{\hyperlink{classShape_a9f8379fa338802436700b86a07fab3be}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a4653197218b666104d24146884375531}\label{classOffsetCenterOfMassShape_a4653197218b666104d24146884375531} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!GetWorldSpaceBounds@{GetWorldSpaceBounds}}
+\index{GetWorldSpaceBounds@{GetWorldSpaceBounds}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{GetWorldSpaceBounds()}{GetWorldSpaceBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classAABox}{AABox}} Offset\+Center\+Of\+Mass\+Shape\+::\+Get\+World\+Space\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get world space bounds including convex radius. This shape is scaled by in\+Scale in local space first. This function can be overridden to return a closer fitting world space bounding box, by default it will just transform what \doxylink{classOffsetCenterOfMassShape_acb9e88f95f8a4401201bab45fc14f433}{Get\+Local\+Bounds()} returns. 
+
+Reimplemented from \mbox{\hyperlink{classShape_a9f8379fa338802436700b86a07fab3be}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_a37de81ebbfc8e90325d3a483e8da0400}\label{classOffsetCenterOfMassShape_a37de81ebbfc8e90325d3a483e8da0400} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!IsValidScale@{IsValidScale}}
+\index{IsValidScale@{IsValidScale}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{IsValidScale()}{IsValidScale()}}
+{\footnotesize\ttfamily virtual bool Offset\+Center\+Of\+Mass\+Shape\+::\+Is\+Valid\+Scale (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Test if in\+Scale is a valid scale for this shape. Some shapes can only be scaled uniformly, compound shapes cannot handle shapes being rotated and scaled (this would cause shearing), scale can never be zero. When the scale is invalid, the function will return false.
+
+Here\textquotesingle{}s a list of supported scales\+:
+\begin{DoxyItemize}
+\item \doxylink{classSphereShape}{Sphere\+Shape}\+: Scale must be uniform (signs of scale are ignored).
+\item \doxylink{classBoxShape}{Box\+Shape}\+: Any scale supported (signs of scale are ignored).
+\item \doxylink{classTriangleShape}{Triangle\+Shape}\+: Any scale supported when convex radius is zero, otherwise only uniform scale supported.
+\item \doxylink{classCapsuleShape}{Capsule\+Shape}\+: Scale must be uniform (signs of scale are ignored).
+\item \doxylink{classTaperedCapsuleShape}{Tapered\+Capsule\+Shape}\+: Scale must be uniform (sign of Y scale can be used to flip the capsule).
+\item \doxylink{classCylinderShape}{Cylinder\+Shape}\+: Scale must be uniform in XZ plane, Y can scale independently (signs of scale are ignored).
+\item \doxylink{classRotatedTranslatedShape}{Rotated\+Translated\+Shape}\+: Scale must not cause shear in the child shape.
+\item \doxylink{classCompoundShape}{Compound\+Shape}\+: Scale must not cause shear in any of the child shapes. 
+\end{DoxyItemize}
+
+Reimplemented from \mbox{\hyperlink{classShape_a705685386feede5b6e0473ee00f5cdc1}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_ac47b9debd0086f2b4318f9374c74cf33}\label{classOffsetCenterOfMassShape_ac47b9debd0086f2b4318f9374c74cf33} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classShape_ac5e363e4fab915e43c78bd43ea8a51e3}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_afd4890554dc92e060fb963d452bf443b}\label{classOffsetCenterOfMassShape_afd4890554dc92e060fb963d452bf443b} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the contents of the shape in binary form to in\+Stream. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classShape_aa77d38652e25d56dc473e19e9cc2f8ad}{Shape}}.
+
+\Hypertarget{classOffsetCenterOfMassShape_af133924bb5f771c51419f5e81121e820}\label{classOffsetCenterOfMassShape_af133924bb5f771c51419f5e81121e820} 
+\index{OffsetCenterOfMassShape@{OffsetCenterOfMassShape}!TransformShape@{TransformShape}}
+\index{TransformShape@{TransformShape}!OffsetCenterOfMassShape@{OffsetCenterOfMassShape}}
+\doxysubsubsection{\texorpdfstring{TransformShape()}{TransformShape()}}
+{\footnotesize\ttfamily virtual void Offset\+Center\+Of\+Mass\+Shape\+::\+Transform\+Shape (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44\+Arg}}}]{in\+Center\+Of\+Mass\+Transform,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&}]{io\+Collector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Transforms this shape and all of its children with in\+Transform, resulting shape(s) are passed to io\+Collector. Note that not all shapes support all transforms (especially true for scaling), the resulting shape will try to match the transform as accurately as possible. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Center\+Of\+Mass\+Transform} & The transform (rotation, translation, scale) that the center of mass of the shape should get \\
+\hline
+{\em io\+Collector} & The transformed shapes will be passed to this collector \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classShape_afad198eea6c3e9e08a5e8f8d646817a0}{Shape}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Offset\+Center\+Of\+Mass\+Shape.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,24,199,68"/>
+<area shape="rect" id="Node000001" href="$db/d13/classCharacterBaseSettings.html" title="Base class for configuration of a character." alt="" coords="247,32,416,60"/>
+<area shape="poly" id="edge243_Node000000_Node000001" title=" " alt="" coords="214,43,246,43,246,49,214,49"/>
+<area shape="rect" id="Node000002" href="$d9/d5c/classCharacterSettings.html" title="Contains the configuration of a character." alt="" coords="486,5,623,33"/>
+<area shape="poly" id="edge244_Node000001_Node000002" title=" " alt="" coords="431,31,485,25,485,30,432,37"/>
+<area shape="rect" id="Node000003" href="$d2/d9b/classCharacterVirtualSettings.html" title="Contains the configuration of a character." alt="" coords="464,57,644,85"/>
+<area shape="poly" id="edge245_Node000001_Node000003" title=" " alt="" coords="432,55,464,58,463,64,431,60"/>
+</map>

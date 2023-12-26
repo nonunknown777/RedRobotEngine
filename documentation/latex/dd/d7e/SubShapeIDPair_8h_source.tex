@@ -1,0 +1,81 @@
+\doxysection{Sub\+Shape\+IDPair.\+h}
+\hypertarget{SubShapeIDPair_8h_source}{}\label{SubShapeIDPair_8h_source}\index{includes/jolt/Physics/Collision/Shape/SubShapeIDPair.h@{includes/jolt/Physics/Collision/Shape/SubShapeIDPair.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/BodyID.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/SubShapeID.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Core/HashCombine.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeIDPair_a899aaabfed0fe32af496bf293e446228}{SubShapeIDPair}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeIDPair_a899aaabfed0fe32af496bf293e446228}{SubShapeIDPair}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBody1ID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&inBody2ID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID2)\ :\ mBody1ID(inBody1ID),\ mSubShapeID1(inSubShapeID1),\ mBody2ID(inBody2ID),\ mSubShapeID2(inSubShapeID2)\ \{\ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}\ \&\ \ \ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}\ \&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeIDPair_a899aaabfed0fe32af496bf293e446228}{SubShapeIDPair}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}\ \&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeIDPair_a553026ae2b87e33df1b3c5a82b48287b}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint32\ *\textcolor{keyword}{>}(\textcolor{keyword}{this}))\ ==\ \mbox{\hyperlink{classUVec4_ab85dca4074b1a0cb400b92b2e50993c1}{UVec4::sLoadInt4}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }uint32\ *\textcolor{keyword}{>}(\&inRHS));}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeIDPair_ae6188138a93c9a7121c01d043e537631}{operator\ <\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mBody1ID\ !=\ inRHS.mBody1ID)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mBody1ID\ <\ inRHS.mBody1ID;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mSubShapeID1.\mbox{\hyperlink{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b}{GetValue}}()\ !=\ inRHS.mSubShapeID1.\mbox{\hyperlink{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b}{GetValue}}())}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSubShapeID1.\mbox{\hyperlink{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b}{GetValue}}()\ <\ inRHS.mSubShapeID1.\mbox{\hyperlink{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b}{GetValue}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mBody2ID\ !=\ inRHS.mBody2ID)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mBody2ID\ <\ inRHS.mBody2ID;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSubShapeID2.\mbox{\hyperlink{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b}{GetValue}}()\ <\ inRHS.mSubShapeID2.\mbox{\hyperlink{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b}{GetValue}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ GetBody1ID()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBody1ID;\ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&\ \ \ \ \ \ \ \ GetSubShapeID1()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mSubShapeID1;\ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBodyID}{BodyID}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ GetBody2ID()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBody2ID;\ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&\ \ \ \ \ \ \ \ GetSubShapeID2()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mSubShapeID2;\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetHash()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ HashBytes(\textcolor{keyword}{this},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}));\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBody1ID;}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSubShapeID1;}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classBodyID}{BodyID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBody2ID;}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSubShapeID2;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}})\ ==\ 16,\ \textcolor{stringliteral}{"{}Unexpected\ size"{}});}
+\DoxyCodeLine{00061\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{alignof}(\mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}})\ ==\ 4,\ \textcolor{stringliteral}{"{}Assuming\ 4\ byte\ aligned"{}});}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{struct\ }hash<JPH::\mbox{\hyperlink{classSubShapeIDPair}{SubShapeIDPair}}>}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\ operator\ ()\ (\textcolor{keyword}{const}\ JPH::SubShapeIDPair\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(inRHS.GetHash());}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \};}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ JPH\_SUPPRESS\_WARNINGS\_STD\_END}
+
+\end{DoxyCode}

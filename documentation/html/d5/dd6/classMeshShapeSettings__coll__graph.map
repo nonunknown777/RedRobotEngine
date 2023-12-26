@@ -1,0 +1,17 @@
+<map id="MeshShapeSettings" name="MeshShapeSettings">
+<area shape="rect" id="Node000001" title="Class that constructs a MeshShape." alt="" coords="184,819,421,1059"/>
+<area shape="rect" id="Node000002" href="$d6/d55/classShapeSettings.html" title=" " alt="" coords="250,701,355,770"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="305,785,305,819,300,819,300,785"/>
+<area shape="rect" id="Node000003" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="5,460,171,529"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="117,540,147,587,185,634,221,669,258,699,254,703,217,673,181,637,143,590,112,543"/>
+<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,91,149,203"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="91,218,91,460,85,460,85,218"/>
+<area shape="rect" id="Node000005" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="195,374,410,614"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="305,629,305,701,300,701,300,629"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="238,112,367,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="305,181,305,357,300,357,300,181"/>
+<area shape="rect" id="Node000007" href="$d8/dce/classResult.html" title=" " alt="" coords="435,353,611,636"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="437,622,423,638,363,692,360,688,419,634,433,619"/>
+<area shape="rect" id="Node000008" href="$d5/d7f/classRef.html" title=" " alt="" coords="449,5,596,288"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="525,288,525,336,520,336,520,288"/>
+</map>

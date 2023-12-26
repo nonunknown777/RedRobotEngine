@@ -1,0 +1,7 @@
+<map id="LFHMAllocatorContext" name="LFHMAllocatorContext">
+<area shape="rect" id="Node000001" title=" " alt="" coords="7,165,190,256"/>
+<area shape="rect" id="Node000003" href="$df/dfa/classContactConstraintManager_1_1ContactAllocator.html" title="Contacts are allocated in a lock free hash map." alt="" coords="5,304,192,433"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="101,271,101,304,96,304,96,271"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="37,5,160,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,133,101,166,96,166,96,133"/>
+</map>

@@ -1,0 +1,233 @@
+\doxysection{Dual\+Axis\+Constraint\+Part.\+h}
+\hypertarget{DualAxisConstraintPart_8h_source}{}\label{DualAxisConstraintPart_8h_source}\index{includes/jolt/Physics/Constraints/ConstraintPart/DualAxisConstraintPart.h@{includes/jolt/Physics/Constraints/ConstraintPart/DualAxisConstraintPart.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/Body.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/StateRecorder.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Vector.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Matrix.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDualAxisConstraintPart}{DualAxisConstraintPart}}}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classVector}{Vec2}}\ =\ \mbox{\hyperlink{classVector}{Vector<2>}};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classMatrix}{Mat22}}\ =\ \mbox{\hyperlink{classMatrix}{Matrix<2,\ 2>}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ ApplyVelocityStep(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&ioBody2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vec2}}\ \&inLambda)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ impulse\ if\ delta\ is\ not\ zero}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inLambda.\mbox{\hyperlink{classVector_ab1368364228755bfe9e64af3654ea995}{IsZero}}())}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ velocity\ change\ due\ to\ constraint}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Impulse:}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ P\ =\ J\string^T\ lambda}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Euler\ velocity\ integration:}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v'\ =\ v\ +\ M\string^-\/1\ P}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ impulse\ =\ inN1\ *\ inLambda[0]\ +\ inN2\ *\ inLambda[1];}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioBody1.\mbox{\hyperlink{classBody_a1b21c30907c8c9ce30c176a054057bef}{IsDynamic}}())}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMotionProperties}{MotionProperties}}\ *mp1\ =\ ioBody1.\mbox{\hyperlink{classBody_a0d39987255227c4221fcea66cb1fc041}{GetMotionProperties}}();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mp1-\/>SubLinearVelocityStep(mp1-\/>\mbox{\hyperlink{classMotionProperties_a8a959bd2f7d8eb581d999e3b01920aa8}{GetInverseMass}}()\ *\ impulse);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mp1-\/>SubAngularVelocityStep(mInvI1\_R1PlusUxN1\ *\ inLambda[0]\ +\ mInvI1\_R1PlusUxN2\ *\ inLambda[1]);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioBody2.\mbox{\hyperlink{classBody_a1b21c30907c8c9ce30c176a054057bef}{IsDynamic}}())}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMotionProperties}{MotionProperties}}\ *mp2\ =\ ioBody2.\mbox{\hyperlink{classBody_a0d39987255227c4221fcea66cb1fc041}{GetMotionProperties}}();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mp2-\/>AddLinearVelocityStep(mp2-\/>\mbox{\hyperlink{classMotionProperties_a8a959bd2f7d8eb581d999e3b01920aa8}{GetInverseMass}}()\ *\ impulse);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mp2-\/>AddAngularVelocityStep(mInvI2\_R2xN1\ *\ inLambda[0]\ +\ mInvI2\_R2xN2\ *\ inLambda[1]);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateLagrangeMultiplier(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN2,\ \mbox{\hyperlink{classVector}{Vec2}}\ \&outLambda)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ lagrange\ multiplier:}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lambda\ =\ -\/K\string^-\/1\ (J\ v\ +\ b)}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ delta\_lin\ =\ inBody1.\mbox{\hyperlink{classBody_a6451197a038f1d99b4b92beae4656842}{GetLinearVelocity}}()\ -\/\ inBody2.\mbox{\hyperlink{classBody_a6451197a038f1d99b4b92beae4656842}{GetLinearVelocity}}();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vec2}}\ jv;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ jv[0]\ =\ inN1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(delta\_lin)\ +\ mR1PlusUxN1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inBody1.\mbox{\hyperlink{classBody_adb1bb49db094ac2ef7c4951d07ba8417}{GetAngularVelocity}}())\ -\/\ mR2xN1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inBody2.\mbox{\hyperlink{classBody_adb1bb49db094ac2ef7c4951d07ba8417}{GetAngularVelocity}}());}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ jv[1]\ =\ inN2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(delta\_lin)\ +\ mR1PlusUxN2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inBody1.\mbox{\hyperlink{classBody_adb1bb49db094ac2ef7c4951d07ba8417}{GetAngularVelocity}}())\ -\/\ mR2xN2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inBody2.\mbox{\hyperlink{classBody_adb1bb49db094ac2ef7c4951d07ba8417}{GetAngularVelocity}}());}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ outLambda\ =\ mEffectiveMass\ *\ jv;}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_af13f5a570f5b9f26edf310cf4eab5f23}{CalculateConstraintProperties}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inR1PlusU,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inR2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN2)}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inN1.\mbox{\hyperlink{classVec3_a2f10743d69960eaac721399e4ede190a}{IsNormalized}}(1.0e-\/5f));}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inN2.\mbox{\hyperlink{classVec3_a2f10743d69960eaac721399e4ede190a}{IsNormalized}}(1.0e-\/5f));}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ properties\ used\ during\ constraint\ solving}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ mR1PlusUxN1\ =\ inR1PlusU.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(inN1);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ mR1PlusUxN2\ =\ inR1PlusU.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(inN2);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ mR2xN1\ =\ inR2.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(inN1);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ mR2xN2\ =\ inR2.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(inN2);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ effective\ mass:\ K\string^-\/1\ =\ (J\ M\string^-\/1\ J\string^T)\string^-\/1,\ eq\ 59}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMatrix}{Mat22}}\ inv\_effective\_mass;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inBody1.\mbox{\hyperlink{classBody_a1b21c30907c8c9ce30c176a054057bef}{IsDynamic}}())}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMotionProperties}{MotionProperties}}\ *mp1\ =\ inBody1.\mbox{\hyperlink{classBody_a0d39987255227c4221fcea66cb1fc041}{GetMotionProperties}}();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ inv\_i1\ =\ mp1-\/>\mbox{\hyperlink{classMotionProperties_ab95f2b1c9b6bd9b6082f8cee8a7e1858}{GetInverseInertiaForRotation}}(inRotation1);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ mInvI1\_R1PlusUxN1\ =\ inv\_i1.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(mR1PlusUxN1);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ mInvI1\_R1PlusUxN2\ =\ inv\_i1.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(mR1PlusUxN2);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass(0,\ 0)\ =\ mp1-\/>\mbox{\hyperlink{classMotionProperties_a8a959bd2f7d8eb581d999e3b01920aa8}{GetInverseMass}}()\ +\ mR1PlusUxN1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(mInvI1\_R1PlusUxN1);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass(0,\ 1)\ =\ mR1PlusUxN1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(mInvI1\_R1PlusUxN2);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass(1,\ 0)\ =\ mR1PlusUxN2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(mInvI1\_R1PlusUxN1);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass(1,\ 1)\ =\ mp1-\/>\mbox{\hyperlink{classMotionProperties_a8a959bd2f7d8eb581d999e3b01920aa8}{GetInverseMass}}()\ +\ mR1PlusUxN2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(mInvI1\_R1PlusUxN2);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_IF\_DEBUG(mInvI1\_R1PlusUxN1\ =\ \mbox{\hyperlink{classVec3_aee68177ac267822e1823a9a0f7525014}{Vec3::sNaN}}();)}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_IF\_DEBUG(mInvI1\_R1PlusUxN2\ =\ \mbox{\hyperlink{classVec3_aee68177ac267822e1823a9a0f7525014}{Vec3::sNaN}}();)}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass\ =\ Mat22::sZero();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inBody2.\mbox{\hyperlink{classBody_a1b21c30907c8c9ce30c176a054057bef}{IsDynamic}}())}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMotionProperties}{MotionProperties}}\ *mp2\ =\ inBody2.\mbox{\hyperlink{classBody_a0d39987255227c4221fcea66cb1fc041}{GetMotionProperties}}();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ inv\_i2\ =\ mp2-\/>\mbox{\hyperlink{classMotionProperties_ab95f2b1c9b6bd9b6082f8cee8a7e1858}{GetInverseInertiaForRotation}}(inRotation2);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ mInvI2\_R2xN1\ =\ inv\_i2.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(mR2xN1);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ mInvI2\_R2xN2\ =\ inv\_i2.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(mR2xN2);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass(0,\ 0)\ +=\ mp2-\/>\mbox{\hyperlink{classMotionProperties_a8a959bd2f7d8eb581d999e3b01920aa8}{GetInverseMass}}()\ +\ mR2xN1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(mInvI2\_R2xN1);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass(0,\ 1)\ +=\ mR2xN1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(mInvI2\_R2xN2);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass(1,\ 0)\ +=\ mR2xN2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(mInvI2\_R2xN1);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ inv\_effective\_mass(1,\ 1)\ +=\ mp2-\/>\mbox{\hyperlink{classMotionProperties_a8a959bd2f7d8eb581d999e3b01920aa8}{GetInverseMass}}()\ +\ mR2xN2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(mInvI2\_R2xN2);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_IF\_DEBUG(mInvI2\_R2xN1\ =\ \mbox{\hyperlink{classVec3_aee68177ac267822e1823a9a0f7525014}{Vec3::sNaN}}();)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_IF\_DEBUG(mInvI2\_R2xN2\ =\ \mbox{\hyperlink{classVec3_aee68177ac267822e1823a9a0f7525014}{Vec3::sNaN}}();)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!mEffectiveMass.\mbox{\hyperlink{classMatrix_a1e2531318f995ae102d4428c3bdba738}{SetInversed}}(inv\_effective\_mass))}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_ad42c35a8c5bd8b609c1a3910a71194f6}{Deactivate}}();}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_ad42c35a8c5bd8b609c1a3910a71194f6}{Deactivate}}()}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ mEffectiveMass.\mbox{\hyperlink{classMatrix_a7b98e3c672cc83e50b0cb6cf33b1ec65}{SetZero}}();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ mTotalLambda.\mbox{\hyperlink{classVector_a06ffa8aa3d40e7c93dde19725e77ff3a}{SetZero}}();}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_abb7c86b1b65526e284e71c3b126a53e1}{IsActive}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00166\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !mEffectiveMass.\mbox{\hyperlink{classMatrix_a8d6bed263967c53112cafe858e32eb9e}{IsZero}}();}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_a5eb24d0267626b638b94b33f09efa53b}{WarmStart}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&ioBody2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN2,\ \textcolor{keywordtype}{float}\ inWarmStartImpulseRatio)}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ mTotalLambda\ *=\ inWarmStartImpulseRatio;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ ApplyVelocityStep(ioBody1,\ ioBody2,\ inN1,\ inN2,\ mTotalLambda);}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_a05cd7b92a7bdf55e64e1e924fe941a29}{SolveVelocityConstraint}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&ioBody2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN2)}
+\DoxyCodeLine{00181\ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vec2}}\ lambda;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ CalculateLagrangeMultiplier(ioBody1,\ ioBody2,\ inN1,\ inN2,\ lambda);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ accumulated\ lambda}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ mTotalLambda\ +=\ lambda;}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ApplyVelocityStep(ioBody1,\ ioBody2,\ inN1,\ inN2,\ lambda);}
+\DoxyCodeLine{00189\ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_a61414f76e664b04fc7b99b4a96cfe032}{SolvePositionConstraint}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&ioBody2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inU,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inN2,\ \textcolor{keywordtype}{float}\ inBaumgarte)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00194\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vec2}}\ c;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ c[0]\ =\ inU.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inN1);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ c[1]\ =\ inU.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inN2);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!c.\mbox{\hyperlink{classVector_ab1368364228755bfe9e64af3654ea995}{IsZero}}())}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ lagrange\ multiplier\ (lambda)\ for\ Baumgarte\ stabilization:}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lambda\ =\ -\/K\string^-\/1\ *\ beta\ /\ dt\ *\ C}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ should\ divide\ by\ inDeltaTime,\ but\ we\ should\ multiply\ by\ inDeltaTime\ in\ the\ Euler\ step\ below\ so\ they're\ cancelled\ out}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVector}{Vec2}}\ lambda\ =\ -\/inBaumgarte\ *\ (mEffectiveMass\ *\ c);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Directly\ integrate\ velocity\ change\ for\ one\ time\ step}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Euler\ velocity\ integration:}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dv\ =\ M\string^-\/1\ P}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Impulse:}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ P\ =\ J\string^T\ lambda}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Euler\ position\ integration:}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ x'\ =\ x\ +\ dv\ *\ dt}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ we\ don't\ accumulate\ velocities\ for\ the\ stabilization.\ This\ is\ using\ the\ approach\ described\ in\ 'Modeling\ and}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solving\ Constraints'\ by\ Erin\ Catto\ presented\ at\ GDC\ 2007.\ On\ slide\ 78\ it\ is\ suggested\ to\ split\ up\ the\ Baumgarte}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ stabilization\ for\ positional\ drift\ so\ that\ it\ does\ not\ actually\ add\ to\ the\ momentum.\ We\ combine\ an\ Euler\ velocity}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ integrate\ +\ a\ position\ integrate\ and\ then\ discard\ the\ velocity\ change.}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ impulse\ =\ inN1\ *\ lambda[0]\ +\ inN2\ *\ lambda[1];}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioBody1.\mbox{\hyperlink{classBody_a1b21c30907c8c9ce30c176a054057bef}{IsDynamic}}())}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioBody1.SubPositionStep(ioBody1.\mbox{\hyperlink{classBody_a0d39987255227c4221fcea66cb1fc041}{GetMotionProperties}}()-\/>\mbox{\hyperlink{classMotionProperties_a8a959bd2f7d8eb581d999e3b01920aa8}{GetInverseMass}}()\ *\ impulse);}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioBody1.SubRotationStep(mInvI1\_R1PlusUxN1\ *\ lambda[0]\ +\ mInvI1\_R1PlusUxN2\ *\ lambda[1]);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioBody2.\mbox{\hyperlink{classBody_a1b21c30907c8c9ce30c176a054057bef}{IsDynamic}}())}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioBody2.\mbox{\hyperlink{classBody_af98f831df76bd7e54eeb92d79fa3c8cd}{AddPositionStep}}(ioBody2.\mbox{\hyperlink{classBody_a0d39987255227c4221fcea66cb1fc041}{GetMotionProperties}}()-\/>\mbox{\hyperlink{classMotionProperties_a8a959bd2f7d8eb581d999e3b01920aa8}{GetInverseMass}}()\ *\ impulse);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioBody2.\mbox{\hyperlink{classBody_a3385650a73d75c7d9c16d13ea2d5519f}{AddRotationStep}}(mInvI2\_R2xN1\ *\ lambda[0]\ +\ mInvI2\_R2xN2\ *\ lambda[1]);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00237\ \ \ \ \ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_ab75b06acf448414fefc7001524167795}{SetTotalLambda}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vec2}}\ \&inLambda)}
+\DoxyCodeLine{00241\ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ mTotalLambda\ =\ inLambda;}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVector}{Vec2}}\ \&\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_a89e53a1884747a98a2b2e8647f219c2c}{GetTotalLambda}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00247\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTotalLambda;}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_a88aa1c3d00a9b0bcdcbbb3fa964dd18f}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00253\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ inStream.\mbox{\hyperlink{classStreamOut_ab6cde59b6c5efff58855641a44e6275e}{Write}}(mTotalLambda);}
+\DoxyCodeLine{00255\ \ \ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDualAxisConstraintPart_a06562f096c62e631bb4e8571a731ffb0}{RestoreState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)}
+\DoxyCodeLine{00259\ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ inStream.\mbox{\hyperlink{classStreamIn_a2a6ed7571089f1156ee7a480b67c22d1}{Read}}(mTotalLambda);}
+\DoxyCodeLine{00261\ \ \ \ \ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mR1PlusUxN1;}
+\DoxyCodeLine{00265\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mR1PlusUxN2;}
+\DoxyCodeLine{00266\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mR2xN1;}
+\DoxyCodeLine{00267\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mR2xN2;}
+\DoxyCodeLine{00268\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInvI1\_R1PlusUxN1;}
+\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInvI1\_R1PlusUxN2;}
+\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInvI2\_R2xN1;}
+\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mInvI2\_R2xN2;}
+\DoxyCodeLine{00272\ \ \ \ \ Mat22\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEffectiveMass;}
+\DoxyCodeLine{00273\ \ \ \ \ Vec2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTotalLambda\ \{\ Vec2::sZero()\ \};}
+\DoxyCodeLine{00274\ \};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

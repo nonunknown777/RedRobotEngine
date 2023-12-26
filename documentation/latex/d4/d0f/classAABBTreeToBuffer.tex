@@ -1,0 +1,73 @@
+\doxysection{AABBTree\+To\+Buffer\texorpdfstring{$<$}{<} Triangle\+Codec, Node\+Codec \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classAABBTreeToBuffer}{}\label{classAABBTreeToBuffer}\index{AABBTreeToBuffer$<$ TriangleCodec, NodeCodec $>$@{AABBTreeToBuffer$<$ TriangleCodec, NodeCodec $>$}}
+
+
+Conversion algorithm that converts an AABB tree to an optimized binary buffer.  
+
+
+
+
+{\ttfamily \#include $<$AABBTree\+To\+Buffer.\+h$>$}
+
+
+
+Collaboration diagram for AABBTree\+To\+Buffer\texorpdfstring{$<$}{<} Triangle\+Codec, Node\+Codec \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{d7/d74/classAABBTreeToBuffer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAABBTreeToBuffer_a89411f4596ab17c134c473d165ee42ba}\label{classAABBTreeToBuffer_a89411f4596ab17c134c473d165ee42ba} 
+using {\bfseries Node\+Header} = typename Node\+Codec\+::\+Header
+\begin{DoxyCompactList}\small\item\em Header for the tree. \end{DoxyCompactList}\item 
+\Hypertarget{classAABBTreeToBuffer_a72146720e95aebf8168fd00cd7ef0f1f}\label{classAABBTreeToBuffer_a72146720e95aebf8168fd00cd7ef0f1f} 
+using {\bfseries Triangle\+Header} = typename Triangle\+Codec\+::\+Triangle\+Header
+\begin{DoxyCompactList}\small\item\em Header for the triangles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAABBTreeToBuffer_a03ce085b937332db1147e9c35b4e091b}\label{classAABBTreeToBuffer_a03ce085b937332db1147e9c35b4e091b} 
+bool {\bfseries Convert} (const Vertex\+List \&in\+Vertices, const \mbox{\hyperlink{classAABBTreeBuilder_1_1Node}{AABBTree\+Builder\+::\+Node}} \texorpdfstring{$\ast$}{*}in\+Root, const char \texorpdfstring{$\ast$}{*}\&out\+Error)
+\begin{DoxyCompactList}\small\item\em Convert AABB tree. Returns false if failed. \end{DoxyCompactList}\item 
+\Hypertarget{classAABBTreeToBuffer_a841bb385899da6eb30c41c225ff61ddf}\label{classAABBTreeToBuffer_a841bb385899da6eb30c41c225ff61ddf} 
+const \mbox{\hyperlink{classByteBuffer}{Byte\+Buffer}} \& {\bfseries Get\+Buffer} () const
+\begin{DoxyCompactList}\small\item\em Get resulting data. \end{DoxyCompactList}\item 
+\Hypertarget{classAABBTreeToBuffer_acae333f2766987a53f64a7beea67904b}\label{classAABBTreeToBuffer_acae333f2766987a53f64a7beea67904b} 
+\mbox{\hyperlink{classByteBuffer}{Byte\+Buffer}} \& {\bfseries Get\+Buffer} ()
+\begin{DoxyCompactList}\small\item\em Get resulting data. \end{DoxyCompactList}\item 
+\Hypertarget{classAABBTreeToBuffer_ab50a5ee87130c340d6b3cf8816ebf249}\label{classAABBTreeToBuffer_ab50a5ee87130c340d6b3cf8816ebf249} 
+const \mbox{\hyperlink{classAABBTreeToBuffer_a89411f4596ab17c134c473d165ee42ba}{Node\+Header}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Node\+Header} () const
+\begin{DoxyCompactList}\small\item\em Get header for tree. \end{DoxyCompactList}\item 
+\Hypertarget{classAABBTreeToBuffer_aabe86791c5d2da2af6dcba505090b989}\label{classAABBTreeToBuffer_aabe86791c5d2da2af6dcba505090b989} 
+const \mbox{\hyperlink{classAABBTreeToBuffer_a72146720e95aebf8168fd00cd7ef0f1f}{Triangle\+Header}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Triangle\+Header} () const
+\begin{DoxyCompactList}\small\item\em Get header for triangles. \end{DoxyCompactList}\item 
+\Hypertarget{classAABBTreeToBuffer_ae2034a353c9336f3e7df4bcdf9f97d8c}\label{classAABBTreeToBuffer_ae2034a353c9336f3e7df4bcdf9f97d8c} 
+const void \texorpdfstring{$\ast$}{*} {\bfseries Get\+Root} () const
+\begin{DoxyCompactList}\small\item\em Get root of resulting tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAABBTreeToBuffer_a950a3efaf390fd647e012bc2179e79ac}\label{classAABBTreeToBuffer_a950a3efaf390fd647e012bc2179e79ac} 
+static const int {\bfseries Header\+Size} = Node\+Codec\+::\+Header\+Size
+\begin{DoxyCompactList}\small\item\em Size in bytes of the header of the tree. \end{DoxyCompactList}\item 
+\Hypertarget{classAABBTreeToBuffer_a956ca0626883d745209ce9fceb85197c}\label{classAABBTreeToBuffer_a956ca0626883d745209ce9fceb85197c} 
+static const int {\bfseries Num\+Children\+Per\+Node} = Node\+Codec\+::\+Num\+Children\+Per\+Node
+\begin{DoxyCompactList}\small\item\em Maximum number of children per node in the tree. \end{DoxyCompactList}\item 
+\Hypertarget{classAABBTreeToBuffer_a25ee3d505ab8451bdc9742466a95ff29}\label{classAABBTreeToBuffer_a25ee3d505ab8451bdc9742466a95ff29} 
+static const int {\bfseries Triangle\+Header\+Size} = Triangle\+Codec\+::\+Triangle\+Header\+Size
+\begin{DoxyCompactList}\small\item\em Size in bytes of the header for the triangles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Triangle\+Codec, class Node\+Codec$>$\newline
+class AABBTree\+To\+Buffer$<$ Triangle\+Codec, Node\+Codec $>$}
+Conversion algorithm that converts an AABB tree to an optimized binary buffer. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+AABBTree/AABBTree\+To\+Buffer.\+h\end{DoxyCompactItemize}

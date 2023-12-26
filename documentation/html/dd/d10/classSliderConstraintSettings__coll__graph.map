@@ -1,0 +1,22 @@
+<map id="SliderConstraintSettings" name="SliderConstraintSettings">
+<area shape="rect" id="Node000001" title="Slider constraint settings, used to create a slider constraint." alt="" coords="378,1551,547,1769"/>
+<area shape="rect" id="Node000002" href="$d0/d78/classTwoBodyConstraintSettings.html" title="Base class for settings for all constraints that involve 2 bodies." alt="" coords="102,1075,293,1145"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,1158,253,1270,306,1400,341,1464,381,1525,396,1549,391,1552,376,1528,337,1466,302,1402,248,1272,209,1160"/>
+<area shape="rect" id="Node000003" href="$d5/d56/classConstraintSettings.html" title="Class used to store the configuration of a constraint. Allows run&#45;time creation of constraints." alt="" coords="90,504,305,722"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="200,737,200,1075,195,1075,195,737"/>
+<area shape="rect" id="Node000004" href="$d0/df3/classSerializableObject.html" title=" " alt="" coords="5,268,171,337"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="107,350,162,503,157,505,102,352"/>
+<area shape="rect" id="Node000005" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="27,5,149,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="91,132,91,268,85,268,85,132"/>
+<area shape="rect" id="Node000006" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="195,182,421,422"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="263,437,239,505,234,503,258,435"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="243,27,373,96"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="311,96,311,165,305,165,305,96"/>
+<area shape="rect" id="Node000008" href="$d9/de4/classVec3.html" title=" " alt="" coords="317,819,478,1401"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="384,1400,390,1464,401,1526,403,1534,398,1535,396,1527,385,1465,379,1401"/>
+<area shape="rect" id="Node000009" href="$da/d78/classSpringSettings.html" title="Settings for a linear or angular spring." alt="" coords="527,472,689,754"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="560,755,545,820,530,926,525,1017,526,1098,531,1173,536,1249,536,1330,530,1421,513,1527,512,1535,506,1534,508,1526,525,1420,531,1329,530,1249,526,1174,521,1098,520,1017,525,926,539,819,555,754"/>
+<area shape="rect" id="Node000010" href="$da/df4/classMotorSettings.html" title=" " alt="" coords="716,926,879,1294"/>
+<area shape="poly" id="edge10_Node000010_Node000009" title=" " alt="" coords="673,753,700,818,733,909,728,911,695,820,668,755"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="749,1295,727,1350,700,1402,669,1449,634,1493,561,1573,557,1569,630,1490,665,1446,695,1399,722,1348,744,1293"/>
+</map>

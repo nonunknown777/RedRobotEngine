@@ -1,0 +1,403 @@
+\doxysection{Object\+Stream\+Text\+In Class Reference}
+\hypertarget{classObjectStreamTextIn}{}\label{classObjectStreamTextIn}\index{ObjectStreamTextIn@{ObjectStreamTextIn}}
+
+
+Implementation of \doxylink{classObjectStream}{Object\+Stream} text input stream.  
+
+
+
+
+{\ttfamily \#include $<$Object\+Stream\+Text\+In.\+h$>$}
+
+
+
+Inheritance diagram for Object\+Stream\+Text\+In\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/d06/classObjectStreamTextIn__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object\+Stream\+Text\+In\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d1/d84/classObjectStreamTextIn__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStreamTextIn_ad21a9463a928535deb0f8c52a642d09a}\label{classObjectStreamTextIn_ad21a9463a928535deb0f8c52a642d09a} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Object\+Stream\+Text\+In} (istream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classObjectStreamIn}{Object\+Stream\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} {\bfseries Read} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} {\bfseries Read\+Object} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}\&out\+RTTI)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Read\+RTTI} ()
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamIn_a11c8669af3b1bea80f764813a2973f8d}{Read\+Class\+Data}} (const char \texorpdfstring{$\ast$}{*}in\+Class\+Name, void \texorpdfstring{$\ast$}{*}in\+Instance) override
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Read\+Class\+Data} (const Class\+Description \&in\+Class\+Desc, void \texorpdfstring{$\ast$}{*}in\+Instance)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamIn_abc7e88c40efa2dac3ea9cd9d0f5f87b7}{Read\+Pointer\+Data}} (const \mbox{\hyperlink{classRTTI}{RTTI}} \texorpdfstring{$\ast$}{*}in\+RTTI, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}in\+Pointer, int in\+Ref\+Count\+Offset=-\/1) override
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries Skip\+Attribute\+Data} (int in\+Array\+Depth, EOSData\+Type in\+Data\+Type, const char \texorpdfstring{$\ast$}{*}in\+Class\+Name)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Input type specific operations}\par
+\end{Indent}
+\begin{Indent}\textbf{ Read primitives}\par
+\end{Indent}
+\begin{Indent}\textbf{ Read compounds}\par
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Input type specific operations}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a7008be7d547e2352aace3cdc09764b29}{Read\+Data\+Type}} (EOSData\+Type \&out\+Type) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a224fd0fec1f5d577d91c21245f8af971}{Read\+Name}} (String \&out\+Name) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a6e03226c2fc058c86d4cc0fa32f91fbc}{Read\+Identifier}} (\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} \&out\+Identifier) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a9d22ce9a3a817e25540c9764563117f6}{Read\+Count}} (uint32 \&out\+Count) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a18b3364bc36bdb86671e2f8f9249c570}{Read\+Primitive\+Data}} (uint8 \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a53e442f37cdb7db1def757edb0bf62d2}{Read\+Primitive\+Data}} (uint16 \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a45247f17f122f7ab5401be2fa0bc4450}{Read\+Primitive\+Data}} (int \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a22639bc0331fd7814e04df5275c1c5de}{Read\+Primitive\+Data}} (uint32 \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_aebd5c15ed94f0bef277d6e30a2c62d8b}{Read\+Primitive\+Data}} (uint64 \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a1d1d074b4b058661f102e665c402871d}{Read\+Primitive\+Data}} (float \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a06414dcd1076c4af305f6cd866616bc6}{Read\+Primitive\+Data}} (double \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a7ebfe66a374132bc19b4222ad0d22a94}{Read\+Primitive\+Data}} (bool \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a9920f7e00eb2e4d0e592dcaccf5af1df}{Read\+Primitive\+Data}} (String \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a3b73c32b9ae928132781b2ab226dc5ac}{Read\+Primitive\+Data}} (\mbox{\hyperlink{classFloat3}{Float3}} \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_af33971c7844d516c94d535d7939cc189}{Read\+Primitive\+Data}} (\mbox{\hyperlink{classDouble3}{Double3}} \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a96f286a80da5cae65185ca73f93a20eb}{Read\+Primitive\+Data}} (\mbox{\hyperlink{classVec3}{Vec3}} \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_af544756b95737302b37a5d561b59663d}{Read\+Primitive\+Data}} (\mbox{\hyperlink{classDVec3}{DVec3}} \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a7167334e50dc205c2975280a3f738378}{Read\+Primitive\+Data}} (\mbox{\hyperlink{classVec4}{Vec4}} \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_afa8596f4766e71f99bdd3ae00cd904d6}{Read\+Primitive\+Data}} (\mbox{\hyperlink{classQuat}{Quat}} \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a4a0fe339b25204834599ea20239ebc21}{Read\+Primitive\+Data}} (\mbox{\hyperlink{classMat44}{Mat44}} \&out\+Primitive) override
+\item 
+virtual bool \mbox{\hyperlink{classObjectStreamTextIn_a2380e17ce81189700996cff2c8e47972}{Read\+Primitive\+Data}} (\mbox{\hyperlink{classDMat44}{DMat44}} \&out\+Primitive) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}\label{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e} 
+enum class \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} \{ {\bfseries Text}
+, {\bfseries Binary}
+ \}
+\begin{DoxyCompactList}\small\item\em Stream type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classObjectStreamIn}{Object\+Stream\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Read\+Object} (istream \&in\+Stream, T \texorpdfstring{$\ast$}{*}\&out\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to read an object from a stream. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Read\+Object} (istream \&in\+Stream, \mbox{\hyperlink{classRef}{Ref}}$<$ T $>$ \&out\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to read an object from a stream (reference counting pointer version) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Read\+Object} (const char \texorpdfstring{$\ast$}{*}in\+File\+Name, T \texorpdfstring{$\ast$}{*}\&out\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to read an object from a file. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static bool {\bfseries s\+Read\+Object} (const char \texorpdfstring{$\ast$}{*}in\+File\+Name, \mbox{\hyperlink{classRef}{Ref}}$<$ T $>$ \&out\+Object)
+\begin{DoxyCompactList}\small\item\em Main function to read an object from a file (reference counting pointer version) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Identifier} = uint32
+\begin{DoxyCompactList}\small\item\em Identifier for objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classObjectStreamIn}{Object\+Stream\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Object\+Stream\+In} (istream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Object\+Stream} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classObjectStreamIn}{Object\+Stream\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+static bool {\bfseries Get\+Info} (istream \&in\+Stream, \mbox{\hyperlink{classObjectStream_a5feef3b87da292623ebf2a04c7c3482e}{EStream\+Type}} \&out\+Type, int \&out\+Version, int \&out\+Revision)
+\begin{DoxyCompactList}\small\item\em Determine the type and version of an object stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classObjectStreamIn}{Object\+Stream\+In}} \texorpdfstring{$\ast$}{*} {\bfseries Open} (istream \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Static constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classObjectStreamIn}{Object\+Stream\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+istream \& {\bfseries m\+Stream}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classObjectStream}{Object\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int {\bfseries s\+Version} = 1
+\item 
+static constexpr int {\bfseries s\+Revision} = 0
+\item 
+static constexpr \mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} {\bfseries s\+Null\+Identifier} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of \doxylink{classObjectStream}{Object\+Stream} text input stream. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classObjectStreamTextIn_a9d22ce9a3a817e25540c9764563117f6}\label{classObjectStreamTextIn_a9d22ce9a3a817e25540c9764563117f6} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadCount@{ReadCount}}
+\index{ReadCount@{ReadCount}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadCount()}{ReadCount()}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Count (\begin{DoxyParamCaption}\item[{uint32 \&}]{out\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a7008be7d547e2352aace3cdc09764b29}\label{classObjectStreamTextIn_a7008be7d547e2352aace3cdc09764b29} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadDataType@{ReadDataType}}
+\index{ReadDataType@{ReadDataType}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadDataType()}{ReadDataType()}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Data\+Type (\begin{DoxyParamCaption}\item[{EOSData\+Type \&}]{out\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a6e03226c2fc058c86d4cc0fa32f91fbc}\label{classObjectStreamTextIn_a6e03226c2fc058c86d4cc0fa32f91fbc} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadIdentifier@{ReadIdentifier}}
+\index{ReadIdentifier@{ReadIdentifier}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadIdentifier()}{ReadIdentifier()}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Identifier (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classObjectStream_a03085cd2aa375ca2c773579947434455}{Identifier}} \&}]{out\+Identifier }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a224fd0fec1f5d577d91c21245f8af971}\label{classObjectStreamTextIn_a224fd0fec1f5d577d91c21245f8af971} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadName@{ReadName}}
+\index{ReadName@{ReadName}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadName()}{ReadName()}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Name (\begin{DoxyParamCaption}\item[{String \&}]{out\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a7ebfe66a374132bc19b4222ad0d22a94}\label{classObjectStreamTextIn_a7ebfe66a374132bc19b4222ad0d22a94} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{bool \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a2380e17ce81189700996cff2c8e47972}\label{classObjectStreamTextIn_a2380e17ce81189700996cff2c8e47972} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDMat44}{DMat44}} \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a06414dcd1076c4af305f6cd866616bc6}\label{classObjectStreamTextIn_a06414dcd1076c4af305f6cd866616bc6} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [3/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{double \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_af33971c7844d516c94d535d7939cc189}\label{classObjectStreamTextIn_af33971c7844d516c94d535d7939cc189} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [4/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDouble3}{Double3}} \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_af544756b95737302b37a5d561b59663d}\label{classObjectStreamTextIn_af544756b95737302b37a5d561b59663d} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [5/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDVec3}{DVec3}} \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a1d1d074b4b058661f102e665c402871d}\label{classObjectStreamTextIn_a1d1d074b4b058661f102e665c402871d} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [6/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{float \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a3b73c32b9ae928132781b2ab226dc5ac}\label{classObjectStreamTextIn_a3b73c32b9ae928132781b2ab226dc5ac} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [7/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classFloat3}{Float3}} \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a45247f17f122f7ab5401be2fa0bc4450}\label{classObjectStreamTextIn_a45247f17f122f7ab5401be2fa0bc4450} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [8/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{int \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a4a0fe339b25204834599ea20239ebc21}\label{classObjectStreamTextIn_a4a0fe339b25204834599ea20239ebc21} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [9/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMat44}{Mat44}} \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_afa8596f4766e71f99bdd3ae00cd904d6}\label{classObjectStreamTextIn_afa8596f4766e71f99bdd3ae00cd904d6} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [10/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classQuat}{Quat}} \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a9920f7e00eb2e4d0e592dcaccf5af1df}\label{classObjectStreamTextIn_a9920f7e00eb2e4d0e592dcaccf5af1df} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [11/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{String \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a53e442f37cdb7db1def757edb0bf62d2}\label{classObjectStreamTextIn_a53e442f37cdb7db1def757edb0bf62d2} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [12/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{uint16 \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a22639bc0331fd7814e04df5275c1c5de}\label{classObjectStreamTextIn_a22639bc0331fd7814e04df5275c1c5de} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [13/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{uint32 \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_aebd5c15ed94f0bef277d6e30a2c62d8b}\label{classObjectStreamTextIn_aebd5c15ed94f0bef277d6e30a2c62d8b} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [14/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{uint64 \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a18b3364bc36bdb86671e2f8f9249c570}\label{classObjectStreamTextIn_a18b3364bc36bdb86671e2f8f9249c570} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [15/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{uint8 \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a96f286a80da5cae65185ca73f93a20eb}\label{classObjectStreamTextIn_a96f286a80da5cae65185ca73f93a20eb} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [16/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+\Hypertarget{classObjectStreamTextIn_a7167334e50dc205c2975280a3f738378}\label{classObjectStreamTextIn_a7167334e50dc205c2975280a3f738378} 
+\index{ObjectStreamTextIn@{ObjectStreamTextIn}!ReadPrimitiveData@{ReadPrimitiveData}}
+\index{ReadPrimitiveData@{ReadPrimitiveData}!ObjectStreamTextIn@{ObjectStreamTextIn}}
+\doxysubsubsection{\texorpdfstring{ReadPrimitiveData()}{ReadPrimitiveData()}\hspace{0.1cm}{\footnotesize\ttfamily [17/17]}}
+{\footnotesize\ttfamily virtual bool Object\+Stream\+Text\+In\+::\+Read\+Primitive\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec4}{Vec4}} \&}]{out\+Primitive }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIObjectStreamIn}{IObject\+Stream\+In}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Object\+Stream/Object\+Stream\+Text\+In.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,95 @@
+\doxysection{Sub\+Shape\+ID Class Reference}
+\hypertarget{classSubShapeID}{}\label{classSubShapeID}\index{SubShapeID@{SubShapeID}}
+
+
+A sub shape id contains a path to an element (usually a triangle or other primitive type) of a compound shape.  
+
+
+
+
+{\ttfamily \#include $<$Sub\+Shape\+ID.\+h$>$}
+
+
+
+Collaboration diagram for Sub\+Shape\+ID\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{dd/d0f/classSubShapeID__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSubShapeID_a242b350b7f76646203b8f71879e260b3}\label{classSubShapeID_a242b350b7f76646203b8f71879e260b3} 
+using {\bfseries Type} = uint32
+\begin{DoxyCompactList}\small\item\em Underlying storage type. \end{DoxyCompactList}\item 
+\Hypertarget{classSubShapeID_af668479f6a45736649f0881db72637a7}\label{classSubShapeID_af668479f6a45736649f0881db72637a7} 
+using {\bfseries Bigger\+Type} = uint64
+\begin{DoxyCompactList}\small\item\em Type that is bigger than the underlying storage type for operations that would otherwise overflow. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSubShapeID_af367dd3acaba3f507a19ba0d27abd299}\label{classSubShapeID_af367dd3acaba3f507a19ba0d27abd299} 
+{\bfseries Sub\+Shape\+ID} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classSubShapeID_a8f78ff809c7af2dfbd2e61ba2314ca9d}\label{classSubShapeID_a8f78ff809c7af2dfbd2e61ba2314ca9d} 
+\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}} {\bfseries Pop\+ID} (uint in\+Bits, \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&out\+Remainder) const
+\begin{DoxyCompactList}\small\item\em Get the next id in the chain of ids (pops parents before children) \end{DoxyCompactList}\item 
+\Hypertarget{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b}\label{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b} 
+\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}} {\bfseries Get\+Value} () const
+\begin{DoxyCompactList}\small\item\em Get the value of the path to the sub shape ID. \end{DoxyCompactList}\item 
+\Hypertarget{classSubShapeID_a1a908b7e19b2d792793830b751a66a27}\label{classSubShapeID_a1a908b7e19b2d792793830b751a66a27} 
+void {\bfseries Set\+Value} (\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}} in\+Value)
+\begin{DoxyCompactList}\small\item\em Set the value of the sub shape ID (use with care!) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSubShapeID_a353cb40946046c09d50b31d73c122729}{Is\+Empty}} () const
+\item 
+\Hypertarget{classSubShapeID_a08bb5c298b21da17f8ff31502f5f90d7}\label{classSubShapeID_a08bb5c298b21da17f8ff31502f5f90d7} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Check equal. \end{DoxyCompactList}\item 
+\Hypertarget{classSubShapeID_a139169c43883bdc72791c61a4c40f30d}\label{classSubShapeID_a139169c43883bdc72791c61a4c40f30d} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+RHS) const
+\begin{DoxyCompactList}\small\item\em Check not-\/equal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSubShapeID_a74d6785fe41b99c0d783fb6e66c39f4d}\label{classSubShapeID_a74d6785fe41b99c0d783fb6e66c39f4d} 
+static constexpr uint {\bfseries Max\+Bits} = 8 \texorpdfstring{$\ast$}{*} sizeof(\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}})
+\begin{DoxyCompactList}\small\item\em How many bits we can store in this ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSubShapeID_a2ce5af4bbd248b1e44de16419d09beee}\label{classSubShapeID_a2ce5af4bbd248b1e44de16419d09beee} 
+class {\bfseries Sub\+Shape\+IDCreator}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A sub shape id contains a path to an element (usually a triangle or other primitive type) of a compound shape. 
+
+Each sub shape knows how many bits it needs to encode its ID, so knows how many bits to take from the sub shape ID.
+
+For example\+:
+\begin{DoxyItemize}
+\item We have a \doxylink{classCompoundShape}{Compound\+Shape} A with 5 child shapes (identify sub shape using 3 bits AAA)
+\item One of its child shapes is \doxylink{classCompoundShape}{Compound\+Shape} B which has 3 child shapes (identify sub shape using 2 bits BB)
+\item One of its child shapes is \doxylink{classMeshShape}{Mesh\+Shape} C which contains enough triangles to need 7 bits to identify a triangle (identify sub shape using 7 bits CCCCCCC, note that \doxylink{classMeshShape}{Mesh\+Shape} is block based and sorts triangles spatially, you can\textquotesingle{}t assume that the first triangle will have bit pattern 0000000).
+\end{DoxyItemize}
+
+The bit pattern of the sub shape ID to identify a triangle in \doxylink{classMeshShape}{Mesh\+Shape} C will then be CCCCCCCBBAAA.
+
+A sub shape ID will become invalid when the structure of the shape changes. For example, if a child shape is removed from a compound shape, the sub shape ID will no longer be valid. This can be a problem when caching sub shape IDs from one frame to the next. See comments at \doxylink{classContactListener_aa11e4d0107c2764e1c7e04eef72cb404}{Contact\+Listener\+::\+On\+Contact\+Persisted} / On\+Contact\+Removed. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSubShapeID_a353cb40946046c09d50b31d73c122729}\label{classSubShapeID_a353cb40946046c09d50b31d73c122729} 
+\index{SubShapeID@{SubShapeID}!IsEmpty@{IsEmpty}}
+\index{IsEmpty@{IsEmpty}!SubShapeID@{SubShapeID}}
+\doxysubsubsection{\texorpdfstring{IsEmpty()}{IsEmpty()}}
+{\footnotesize\ttfamily bool Sub\+Shape\+ID\+::\+Is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if there is any bits of subshape ID left. Note that this is not a 100\% guarantee as the subshape ID could consist of all 1 bits. Use for asserts only. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Sub\+Shape\+ID.\+h\end{DoxyCompactItemize}

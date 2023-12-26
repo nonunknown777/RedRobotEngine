@@ -1,0 +1,5 @@
+<map id="Triangle" name="Triangle">
+<area shape="rect" id="Node000001" title="A simple triangle and its material." alt="" coords="5,310,135,465"/>
+<area shape="rect" id="Node000002" href="$d9/ded/classFloat3.html" title="Class that holds 3 floats. Used as a storage class. Convert to Vec3 for calculations." alt="" coords="13,5,127,245"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,245,73,293,67,293,67,245"/>
+</map>

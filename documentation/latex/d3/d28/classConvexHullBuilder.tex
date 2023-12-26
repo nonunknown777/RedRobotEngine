@@ -1,0 +1,172 @@
+\doxysection{Convex\+Hull\+Builder Class Reference}
+\hypertarget{classConvexHullBuilder}{}\label{classConvexHullBuilder}\index{ConvexHullBuilder@{ConvexHullBuilder}}
+
+
+A convex hull builder that tries to create hulls as accurately as possible. Used for offline processing.  
+
+
+
+
+{\ttfamily \#include $<$Convex\+Hull\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for Convex\+Hull\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{d6/d5f/classConvexHullBuilder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Convex\+Hull\+Builder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{d6/dca/classConvexHullBuilder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classConvexHullBuilder_1_1Edge}{Edge}}
+\begin{DoxyCompactList}\small\item\em Class that holds the information of an edge. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classConvexHullBuilder_1_1Face}{Face}}
+\begin{DoxyCompactList}\small\item\em Class that holds the information of one face. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469a}{EResult}} \{ \newline
+\mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa505a83f220c02df2f85c3810cd9ceb38}{Success}}
+, \mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa7cc57ee56f4f29991173f4efa7a469e9}{Max\+Vertices\+Reached}}
+, \mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa675071632f91d793892ece6ed205483f}{Too\+Few\+Points}}
+, \mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa04477b2749feb6999bd3cb1c9f6fd963}{Too\+Few\+Faces}}
+, \newline
+\mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa24c813faee6d26cc144bec89a984824d}{Degenerate}}
+ \}
+\begin{DoxyCompactList}\small\item\em \doxylink{classResult}{Result} enum that indicates how the hull got created. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_ace24021747e9c5b273b5ed357622564c}\label{classConvexHullBuilder_ace24021747e9c5b273b5ed357622564c} 
+using {\bfseries Conflict\+List} = Array$<$ int $>$
+\item 
+\Hypertarget{classConvexHullBuilder_ae813b9da0b02f643f5075e121aa6880b}\label{classConvexHullBuilder_ae813b9da0b02f643f5075e121aa6880b} 
+using {\bfseries Positions} = Array$<$ \mbox{\hyperlink{classVec3}{Vec3}} $>$
+\item 
+\Hypertarget{classConvexHullBuilder_ae9f7a2eb095de53f76a7d3ea9198f7b4}\label{classConvexHullBuilder_ae9f7a2eb095de53f76a7d3ea9198f7b4} 
+using {\bfseries Faces} = Array$<$ \mbox{\hyperlink{classConvexHullBuilder_1_1Face}{Face}} \texorpdfstring{$\ast$}{*} $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classConvexHullBuilder_a245e3c9f2ac5137c9ee5d66c9f7a7b9d}\label{classConvexHullBuilder_a245e3c9f2ac5137c9ee5d66c9f7a7b9d} 
+{\bfseries Convex\+Hull\+Builder} (const Positions \&in\+Positions)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_a3182f05659156aba23773cd1cdb5c0cd}\label{classConvexHullBuilder_a3182f05659156aba23773cd1cdb5c0cd} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Convex\+Hull\+Builder} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469a}{EResult}} \mbox{\hyperlink{classConvexHullBuilder_a967df14e05165d2a3b55c718fd28caee}{Initialize}} (int in\+Max\+Vertices, float in\+Tolerance, const char \texorpdfstring{$\ast$}{*}\&out\+Error)
+\item 
+\Hypertarget{classConvexHullBuilder_af5deecbd010d00845107696af6797e63}\label{classConvexHullBuilder_af5deecbd010d00845107696af6797e63} 
+int {\bfseries Get\+Num\+Vertices\+Used} () const
+\begin{DoxyCompactList}\small\item\em Returns the amount of vertices that are currently used by the hull. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_a423d9e378746f1e9d6edb19bb2afa11f}\label{classConvexHullBuilder_a423d9e378746f1e9d6edb19bb2afa11f} 
+bool {\bfseries Contains\+Face} (const Array$<$ int $>$ \&in\+Indices) const
+\begin{DoxyCompactList}\small\item\em Returns true if the hull contains a polygon with in\+Indices (counter clockwise indices in m\+Positions) \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_a4e3fbe324250233f9a3d527004d08c09}\label{classConvexHullBuilder_a4e3fbe324250233f9a3d527004d08c09} 
+void {\bfseries Get\+Center\+Of\+Mass\+And\+Volume} (\mbox{\hyperlink{classVec3}{Vec3}} \&out\+Center\+Of\+Mass, float \&out\+Volume) const
+\begin{DoxyCompactList}\small\item\em Calculate the center of mass and the volume of the current convex hull. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConvexHullBuilder_aae519c2ae09443413ef0c9e91dd26076}{Determine\+Max\+Error}} (\mbox{\hyperlink{classConvexHullBuilder_1_1Face}{Face}} \texorpdfstring{$\ast$}{*}\&out\+Face\+With\+Max\+Error, float \&out\+Max\+Error, int \&out\+Max\+Error\+Position\+Idx, float \&out\+Coplanar\+Distance) const
+\item 
+\Hypertarget{classConvexHullBuilder_a2eade6ba63e25c3bda4eaf159d1128ce}\label{classConvexHullBuilder_a2eade6ba63e25c3bda4eaf159d1128ce} 
+const Faces \& {\bfseries Get\+Faces} () const
+\begin{DoxyCompactList}\small\item\em Access to the created faces. Memory is owned by the convex hull builder. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A convex hull builder that tries to create hulls as accurately as possible. Used for offline processing. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469a}\label{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469a} 
+\index{ConvexHullBuilder@{ConvexHullBuilder}!EResult@{EResult}}
+\index{EResult@{EResult}!ConvexHullBuilder@{ConvexHullBuilder}}
+\doxysubsubsection{\texorpdfstring{EResult}{EResult}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469a}{Convex\+Hull\+Builder\+::\+EResult}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+\doxylink{classResult}{Result} enum that indicates how the hull got created. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Success@{Success}!ConvexHullBuilder@{ConvexHullBuilder}}\index{ConvexHullBuilder@{ConvexHullBuilder}!Success@{Success}}}\Hypertarget{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa505a83f220c02df2f85c3810cd9ceb38}\label{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa505a83f220c02df2f85c3810cd9ceb38} 
+Success&Hull building finished successfully. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MaxVerticesReached@{MaxVerticesReached}!ConvexHullBuilder@{ConvexHullBuilder}}\index{ConvexHullBuilder@{ConvexHullBuilder}!MaxVerticesReached@{MaxVerticesReached}}}\Hypertarget{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa7cc57ee56f4f29991173f4efa7a469e9}\label{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa7cc57ee56f4f29991173f4efa7a469e9} 
+Max\+Vertices\+Reached&Hull building finished successfully, but the desired accuracy was not reached because the max vertices limit was reached. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TooFewPoints@{TooFewPoints}!ConvexHullBuilder@{ConvexHullBuilder}}\index{ConvexHullBuilder@{ConvexHullBuilder}!TooFewPoints@{TooFewPoints}}}\Hypertarget{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa675071632f91d793892ece6ed205483f}\label{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa675071632f91d793892ece6ed205483f} 
+Too\+Few\+Points&Too few points to create a hull. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TooFewFaces@{TooFewFaces}!ConvexHullBuilder@{ConvexHullBuilder}}\index{ConvexHullBuilder@{ConvexHullBuilder}!TooFewFaces@{TooFewFaces}}}\Hypertarget{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa04477b2749feb6999bd3cb1c9f6fd963}\label{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa04477b2749feb6999bd3cb1c9f6fd963} 
+Too\+Few\+Faces&Too few faces in the created hull (signifies precision errors during building) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Degenerate@{Degenerate}!ConvexHullBuilder@{ConvexHullBuilder}}\index{ConvexHullBuilder@{ConvexHullBuilder}!Degenerate@{Degenerate}}}\Hypertarget{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa24c813faee6d26cc144bec89a984824d}\label{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469aa24c813faee6d26cc144bec89a984824d} 
+Degenerate&Degenerate hull detected. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classConvexHullBuilder_aae519c2ae09443413ef0c9e91dd26076}\label{classConvexHullBuilder_aae519c2ae09443413ef0c9e91dd26076} 
+\index{ConvexHullBuilder@{ConvexHullBuilder}!DetermineMaxError@{DetermineMaxError}}
+\index{DetermineMaxError@{DetermineMaxError}!ConvexHullBuilder@{ConvexHullBuilder}}
+\doxysubsubsection{\texorpdfstring{DetermineMaxError()}{DetermineMaxError()}}
+{\footnotesize\ttfamily void Convex\+Hull\+Builder\+::\+Determine\+Max\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classConvexHullBuilder_1_1Face}{Face}} \texorpdfstring{$\ast$}{*}\&}]{out\+Face\+With\+Max\+Error,  }\item[{float \&}]{out\+Max\+Error,  }\item[{int \&}]{out\+Max\+Error\+Position\+Idx,  }\item[{float \&}]{out\+Coplanar\+Distance }\end{DoxyParamCaption}) const}
+
+Determines the point that is furthest outside of the hull and reports how far it is outside of the hull (which indicates a failure during hull building) 
+\begin{DoxyParams}{Parameters}
+{\em out\+Face\+With\+Max\+Error} & The face that caused the error \\
+\hline
+{\em out\+Max\+Error} & The maximum distance of a point to the hull \\
+\hline
+{\em out\+Max\+Error\+Position\+Idx} & The index of the point that had this distance \\
+\hline
+{\em out\+Coplanar\+Distance} & Points that are less than this distance from the hull are considered on the hull. This should be used as a lowerbound for the allowed error. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classConvexHullBuilder_a967df14e05165d2a3b55c718fd28caee}\label{classConvexHullBuilder_a967df14e05165d2a3b55c718fd28caee} 
+\index{ConvexHullBuilder@{ConvexHullBuilder}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!ConvexHullBuilder@{ConvexHullBuilder}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classConvexHullBuilder_aa49a23c340decb519ae98cfa2a9e469a}{EResult}} Convex\+Hull\+Builder\+::\+Initialize (\begin{DoxyParamCaption}\item[{int}]{in\+Max\+Vertices,  }\item[{float}]{in\+Tolerance,  }\item[{const char \texorpdfstring{$\ast$}{*}\&}]{out\+Error }\end{DoxyParamCaption})}
+
+Takes all positions as provided by the constructor and use them to build a hull Any points that are closer to the hull than in\+Tolerance will be discarded 
+\begin{DoxyParams}{Parameters}
+{\em in\+Max\+Vertices} & Max vertices to allow in the hull. Specify INT\+\_\+\+MAX if there is no limit. \\
+\hline
+{\em in\+Tolerance} & Max distance that a point is allowed to be outside of the hull \\
+\hline
+{\em out\+Error} & Error message when building fails \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code that reports if the hull was created or not 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Convex\+Hull\+Builder.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,245 @@
+\doxysection{Height\+Field\+Shape.\+h}
+\hypertarget{HeightFieldShape_8h_source}{}\label{HeightFieldShape_8h_source}\index{includes/jolt/Physics/Collision/Shape/HeightFieldShape.h@{includes/jolt/Physics/Collision/Shape/HeightFieldShape.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/Shape/Shape.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/PhysicsMaterial.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Renderer/DebugRenderer.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classConvexShape}{ConvexShape}};}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTempAllocator}{TempAllocator}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceHeightFieldShapeConstants}{HeightFieldShapeConstants}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_ab430dbc1ec621a77f590c281791c0922}{cNoCollisionValue}}\ =\ FLT\_MAX;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_a37ca4958b8fd6b37a4982941ca479a85}{cStackSize}}\ =\ 128;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_a19db7caf3f2b0d72c438471292289306}{cNumBitsXY}}\ =\ 14;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cMaskBitsXY\ =\ (1\ <<\ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_a19db7caf3f2b0d72c438471292289306}{cNumBitsXY}})\ -\/\ 1;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cLevelShift\ =\ 2\ *\ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_a19db7caf3f2b0d72c438471292289306}{cNumBitsXY}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint16\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_ac7f85b459fc57cd090cdd118a0072d4b}{cNoCollisionValue16}}\ =\ 0xffff;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint16\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_aa0b10266b35328efd7344f83bd4d9e8c}{cMaxHeightValue16}}\ =\ 0xfffe;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classHeightFieldShapeSettings}{HeightFieldShapeSettings}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classShapeSettings}{ShapeSettings}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ JPH\_DECLARE\_SERIALIZABLE\_VIRTUAL(JPH\_EXPORT,\ \mbox{\hyperlink{classHeightFieldShapeSettings}{HeightFieldShapeSettings}})}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShapeSettings}{HeightFieldShapeSettings}}()\ =\ default;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShapeSettings}{HeightFieldShapeSettings}}(const\ \textcolor{keywordtype}{float}\ *inSamples,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inOffset,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ uint32\ inSampleCount,\ const\ uint8\ *inMaterialIndices\ =\ \textcolor{keywordtype}{nullptr},\ const\ PhysicsMaterialList\ \&inMaterialList\ =\ PhysicsMaterialList());}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ See:\ ShapeSettings}}
+\DoxyCodeLine{00056\ \ \ \ \ virtual\ \mbox{\hyperlink{classResult}{ShapeResult}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ Create()\ const\ override;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DetermineMinAndMaxSample(\textcolor{keywordtype}{float}\ \&outMinValue,\ \textcolor{keywordtype}{float}\ \&outMaxValue,\ \textcolor{keywordtype}{float}\ \&outQuantizationScale)\ const;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateBitsPerSampleForError(\textcolor{keywordtype}{float}\ inMaxError)\ const;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mOffset\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sZero();}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mScale\ =\ \mbox{\hyperlink{classVec3}{Vec3}}::sReplicate(1.0f);}
+\DoxyCodeLine{00073\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSampleCount\ =\ 0;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinHeightValue\ =\ FLT\_MAX;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxHeightValue\ =\ -\/FLT\_MAX;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBlockSize\ =\ 2;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBitsPerSample\ =\ 8;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ Array<\textcolor{keywordtype}{float}>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHeightSamples;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ Array<uint8>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaterialIndices;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ PhysicsMaterialList\ \ \ \ \ \ \ \ \ \ \ \ \ mMaterials;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mActiveEdgeCosThresholdAngle\ =\ 0.996195f;\ \ \ \textcolor{comment}{//\ cos(5\ degrees)}}
+\DoxyCodeLine{00104\ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ class\ JPH\_EXPORT\ \mbox{\hyperlink{classHeightFieldShape}{HeightFieldShape}}\ final\ :\ public\ \mbox{\hyperlink{classShape}{Shape}}}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00110\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_aa3defa4f1ee1a3e606a4dbe41cd6f515}{HeightFieldShape}}()\ :\ \mbox{\hyperlink{classShape}{Shape}}(EShapeType::HeightField,\ EShapeSubType::HeightField)\ \{\ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape}{HeightFieldShape}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classHeightFieldShapeSettings}{HeightFieldShapeSettings}}\ \&inSettings,\ ShapeResult\ \&outResult);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::MustBeStatic}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_ab850b5af741a24d3abc431d4b73d7caf}{MustBeStatic}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a574a78817c0d2bfe1b46dc7e1ca2c9a5}{GetSampleCount}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mSampleCount;\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_ad67c93d5bb0e12774afb528509767a7e}{GetBlockSize}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mBlockSize;\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetLocalBounds}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classAABox}{AABox}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_ac416d47a2e131dd7d490a6b13ab9cc74}{GetLocalBounds}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSubShapeIDBitsRecursive}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{virtual}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_ab7c2e6fc0f60fa4290474d758473b3ab}{GetSubShapeIDBitsRecursive}}()\textcolor{keyword}{\ const\ override\ \ \ }\{\ \textcolor{keywordflow}{return}\ GetSubShapeIDBits();\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetInnerRadius}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a6546d622ca1ff86ea3c3cf7dc39753d3}{GetInnerRadius}}()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ 0.0f;\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetMassProperties}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classMassProperties}{MassProperties}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_acb87be8952e30539b4da5b219c1b0d05}{GetMassProperties}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetMaterial}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ *\ \ \mbox{\hyperlink{classHeightFieldShape_a184fbdeea49ebc60dca382f0288e86e7}{GetMaterial}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_aceccce9f2e21821c5e4f34c6f1e556b1}{GetMaterial}}(uint\ inX,\ uint\ inY)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSurfaceNormal}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a3c8805d1ace6baaae1d399dd9eb8ba60}{GetSurfaceNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLocalSurfacePosition)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSupportingFace}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_afa5a9b8f5df9b2b8e33e8e1b268c6983}{GetSupportingFace}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classStaticArray}{SupportingFace}}\ \&outVertices)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetSubmergedVolume}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetSubmergedVolume(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPlane}{Plane}}\ \&inSurface,\ \textcolor{keywordtype}{float}\ \&outTotalVolume,\ \textcolor{keywordtype}{float}\ \&outSubmergedVolume,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outCenterOfBuoyancy\ JPH\_IF\_DEBUG\_RENDERER(,\ \mbox{\hyperlink{classVec3}{RVec3Arg}}\ inBaseOffset))\textcolor{keyword}{\ const\ override\ }\{\ JPH\_ASSERT(\textcolor{keyword}{false},\ \textcolor{stringliteral}{"{}Not\ supported"{}});\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::Draw}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Draw(\mbox{\hyperlink{classDebugRenderer}{DebugRenderer}}\ *inRenderer,\ \mbox{\hyperlink{classMat44}{RMat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keywordtype}{bool}\ inUseMaterialColors,\ \textcolor{keywordtype}{bool}\ inDrawWireframe)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::CastRay}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_aa711d40a7ae29c563427f98233b664cc}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRayCast}{RayCast}}\ \&inRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classRayCastResult}{RayCastResult}}\ \&ioHit)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_ab9f32d7526764018b65ce9dd4820cd5c}{CastRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structRayCast}{RayCast}}\ \&inRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classRayCastSettings}{RayCastSettings}}\ \&inRayCastSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classCollisionCollector}{CastRayCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const}\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::CollidePoint}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a0ef4e39a103aada86908f80569553db6}{CollidePoint}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPoint,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator,\ \mbox{\hyperlink{classCollisionCollector}{CollidePointCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter\ =\ \{\ \})\ \textcolor{keyword}{const}\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::ColideSoftBodyVertices}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_ae7ea99a3a32493dfa71f26892f29cead}{CollideSoftBodyVertices}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classSoftBodyVertex}{SoftBodyVertex}}\ *ioVertices,\ uint\ inNumVertices,\ \textcolor{keywordtype}{float}\ inDeltaTime,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDisplacementDueToGravity,\ \textcolor{keywordtype}{int}\ inCollidingShapeIndex)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetTrianglesStart}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a48e5e391e7c6e960fe1485f242496f66}{GetTrianglesStart}}(\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{GetTrianglesContext}}\ \&ioContext,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classAABox}{AABox}}\ \&inBox,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPositionCOM,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inRotation,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetTrianglesNext}}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a80530bc404f0d11b8cd804311426fb92}{GetTrianglesNext}}(\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{GetTrianglesContext}}\ \&ioContext,\ \textcolor{keywordtype}{int}\ inMaxTrianglesRequested,\ \mbox{\hyperlink{classFloat3}{Float3}}\ *outTriangleVertices,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classPhysicsMaterial}{PhysicsMaterial}}\ **outMaterials\ =\ \textcolor{keyword}{nullptr})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a402509e2c2280d728b9e0a1290e680ba}{GetPosition}}(uint\ inX,\ uint\ inY)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_abc679be9c4d45bd5217dc7ef9a1b1511}{IsNoCollision}}(uint\ inX,\ uint\ inY)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a177f33234760b2fcf48a9b23e8a17fec}{ProjectOntoSurface}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inLocalPosition,\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&outSurfacePosition,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&outSubShapeID)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_ae7f91dfccc248ac4a5f558acc788d461}{GetHeights}}(uint\ inX,\ uint\ inY,\ uint\ inSizeX,\ uint\ inSizeY,\ \textcolor{keywordtype}{float}\ *outHeights,\ uint\ inHeightsStride)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_afe91487842b1dc4fea520e677393cf4c}{SetHeights}}(uint\ inX,\ uint\ inY,\ uint\ inSizeX,\ uint\ inSizeY,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ *inHeights,\ uint\ inHeightsStride,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator,\ \textcolor{keywordtype}{float}\ inActiveEdgeCosThresholdAngle\ =\ 0.996195f);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{//\ See\ Shape}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_af894acfc2c008687d3aa5062898df018}{SaveBinaryState}}(\mbox{\hyperlink{classStreamOut}{StreamOut}}\ \&inStream)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveMaterialState(PhysicsMaterialList\ \&outMaterials)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a795157310bf9e6b1cadbfd14ced0851b}{RestoreMaterialState}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRefConst}{PhysicsMaterialRefC}}\ *inMaterials,\ uint\ inNumMaterials)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetStats}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{structShape_1_1Stats}{Stats}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_a3fb0aa9432c2f37fd49b809f3a37bb78}{GetStats}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{//\ See\ Shape::GetVolume}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetVolume()\textcolor{keyword}{\ const\ override\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{comment}{//\ Settings}}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sDrawTriangleOutlines;}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{comment}{//\ Register\ shape\ functions\ with\ the\ registry}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sRegister();}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{comment}{//\ See:\ Shape::RestoreBinaryState}}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHeightFieldShape_aa37a7106a6f4527f65d9fbe28d192d27}{RestoreBinaryState}}(\mbox{\hyperlink{classStreamIn}{StreamIn}}\ \&inStream)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keyword}{class\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }DecodingContext;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{struct\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }HSGetTrianglesContext;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CacheValues();}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateActiveEdges(uint\ inX,\ uint\ inY,\ uint\ inSizeX,\ uint\ inSizeY,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ *inHeights,\ uint\ inHeightsStartX,\ uint\ inHeightsStartY,\ uint\ inHeightsStride,\ \textcolor{keywordtype}{float}\ inHeightsScale,\ \textcolor{keywordtype}{float}\ inActiveEdgeCosThresholdAngle,\ \mbox{\hyperlink{classTempAllocator}{TempAllocator}}\ \&inAllocator);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CalculateActiveEdges(\textcolor{keyword}{const}\ \mbox{\hyperlink{classHeightFieldShapeSettings}{HeightFieldShapeSettings}}\ \&inSettings);}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StoreMaterialIndices(\textcolor{keyword}{const}\ \mbox{\hyperlink{classHeightFieldShapeSettings}{HeightFieldShapeSettings}}\ \&inSettings);}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetNumBlocks()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mSampleCount\ /\ mBlockSize;\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ sGetMaxLevel(uint\ inNumBlocks)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ 32\ -\/\ CountLeadingZeros(inNumBlocks\ -\/\ 1);\ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ sGetRangeBlockOffsetAndStride(uint\ inNumBlocks,\ uint\ inMaxLevel,\ uint\ \&outRangeBlockOffset,\ uint\ \&outRangeBlockStride);}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetBlockOffsetAndScale(uint\ inBlockX,\ uint\ inBlockY,\ uint\ inRangeBlockOffset,\ uint\ inRangeBlockStride,\ \textcolor{keywordtype}{float}\ \&outBlockOffset,\ \textcolor{keywordtype}{float}\ \&outBlockScale)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{inline}\ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetHeightSample(uint\ inX,\ uint\ inY)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_1_1d2_aaf9f3a11a5c60b5832946d9fb0a43164}{GetPosition}}(uint\ inX,\ uint\ inY,\ \textcolor{keywordtype}{float}\ inBlockOffset,\ \textcolor{keywordtype}{float}\ inBlockScale,\ \textcolor{keywordtype}{bool}\ \&outNoCollision)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00264\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetSubShapeIDBits()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \ \ \ \ EncodeSubShapeID(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inCreator,\ uint\ inX,\ uint\ inY,\ uint\ inTriangle)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DecodeSubShapeID(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID,\ uint\ \&outX,\ uint\ \&outY,\ uint\ \&outTriangle)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keyword}{inline}\ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetEdgeFlags(uint\ inX,\ uint\ inY,\ uint\ inTriangle)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//\ Helper\ functions\ called\ by\ CollisionDispatch}}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCollideConvexVsHeightField(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale2,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}}\ \&inCollideShapeSettings,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter);}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCollideSphereVsHeightField(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale2,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform1,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classCollideShapeSettings}{CollideShapeSettings}}\ \&inCollideShapeSettings,\ \mbox{\hyperlink{classCollisionCollector}{CollideShapeCollector}}\ \&ioCollector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter);}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCastConvexVsHeightField(\textcolor{keyword}{const}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}\ \&inShapeCast,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&inShapeCastSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&ioCollector);}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCastSphereVsHeightField(\textcolor{keyword}{const}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}\ \&inShapeCast,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&inShapeCastSettings,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShape}{Shape}}\ *inShape,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeFilter}{ShapeFilter}}\ \&inShapeFilter,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator2,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&ioCollector);}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Visitor>}
+\DoxyCodeLine{00281\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WalkHeightField(Visitor\ \&ioVisitor)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{struct\ }\textcolor{keyword}{alignas}(16)\ RangeBlock}
+\DoxyCodeLine{00285\ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ uint16\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMin[4];}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ uint16\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMax[4];}
+\DoxyCodeLine{00288\ \ \ \ \ \};}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetRangeBlock(uint\ inBlockX,\ uint\ inBlockY,\ uint\ inRangeBlockOffset,\ uint\ inRangeBlockStride,\ RangeBlock\ *\&outBlock,\ uint\ \&outIndexInBlock);}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sGridOffsets[];}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00298\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mOffset\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3::sZero}}();}
+\DoxyCodeLine{00299\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mScale\ =\ \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(1.0f);}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00302\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSampleCount\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00303\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBlockSize\ =\ 2;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00304\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBitsPerSample\ =\ 8;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00305\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSampleMask\ =\ 0xff;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00306\ \ \ \ \ uint16\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMinSample\ =\ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_ac7f85b459fc57cd090cdd118a0072d4b}{HeightFieldShapeConstants::cNoCollisionValue16}};\ }
+\DoxyCodeLine{00307\ \ \ \ \ uint16\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaxSample\ =\ \mbox{\hyperlink{namespaceHeightFieldShapeConstants_ac7f85b459fc57cd090cdd118a0072d4b}{HeightFieldShapeConstants::cNoCollisionValue16}};}
+\DoxyCodeLine{00308\ \ \ \ \ Array<RangeBlock>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRangeBlocks;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00309\ \ \ \ \ Array<uint8>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mHeightSamples;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00310\ \ \ \ \ Array<uint8>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mActiveEdges;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00313\ \ \ \ \ PhysicsMaterialList\ \ \ \ \ \ \ \ \ \ \ \ \ mMaterials;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00314\ \ \ \ \ Array<uint8>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMaterialIndices;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00315\ \ \ \ \ uint32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNumBitsPerMaterialIndex\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#ifdef\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{mutable}\ Array<DebugRenderer::GeometryRef>\ mGeometry;}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCachedUseMaterialColors\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_DEBUG\_RENDERER}}
+\DoxyCodeLine{00322\ \};}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

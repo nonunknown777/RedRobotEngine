@@ -1,0 +1,55 @@
+\doxysection{Serializable\+Attribute\+Typed.\+h}
+\hypertarget{SerializableAttributeTyped_8h_source}{}\label{SerializableAttributeTyped_8h_source}\index{includes/jolt/ObjectStream/SerializableAttributeTyped.h@{includes/jolt/ObjectStream/SerializableAttributeTyped.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/SerializableAttribute.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/GetPrimitiveTypeOfType.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/ObjectStream/ObjectStream.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Macros\ to\ add\ properties\ to\ be\ serialized}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ MemberType>}
+\DoxyCodeLine{00018\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ AddSerializableAttributeTyped(\mbox{\hyperlink{classRTTI}{RTTI}}\ \&inRTTI,\ uint\ inOffset,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inName)}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ inRTTI.\mbox{\hyperlink{classRTTI_a5672a76cf4f12f280889d711341b2b32}{AddAttribute}}(\mbox{\hyperlink{classSerializableAttribute}{SerializableAttribute}}(inName,\ inOffset,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ []()}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GetPrimitiveTypeOfType((MemberType\ *)\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ [](\textcolor{keywordtype}{int}\ inArrayDepth,\ EOSDataType\ inDataType,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *inClassName)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OSIsType((MemberType\ *)\textcolor{keyword}{nullptr},\ inArrayDepth,\ inDataType,\ inClassName);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ [](\mbox{\hyperlink{classIObjectStreamIn}{IObjectStreamIn}}\ \&ioStream,\ \textcolor{keywordtype}{void}\ *inObject)}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OSReadData(ioStream,\ *\textcolor{keyword}{reinterpret\_cast<}MemberType\ *\textcolor{keyword}{>}(inObject));}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ [](\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inObject)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ OSWriteData(ioStream,\ *\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }MemberType\ *\textcolor{keyword}{>}(inObject));}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ [](\mbox{\hyperlink{classIObjectStreamOut}{IObjectStreamOut}}\ \&ioStream)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ OSWriteDataType(ioStream,\ (MemberType\ *)\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ JPH\_ADD\_ATTRIBUTE}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ JPH\_ADD\_ATTRIBUTE\_WITH\_ALIAS(class\_name,\ member\_name,\ alias\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ AddSerializableAttributeTyped<decltype(class\_name::member\_name)>(inRTTI,\ offsetof(class\_name,\ member\_name),\ alias\_name);}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ JPH\_ADD\_ATTRIBUTE}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ JPH\_ADD\_ATTRIBUTE(class\_name,\ member\_name)\ \(\backslash\)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \ \ JPH\_ADD\_ATTRIBUTE\_WITH\_ALIAS(class\_name,\ member\_name,\ \#member\_name)}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

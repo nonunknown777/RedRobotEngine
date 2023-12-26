@@ -1,0 +1,482 @@
+\doxysection{Mutable\+Compound\+Shape Class Reference}
+\hypertarget{classMutableCompoundShape}{}\label{classMutableCompoundShape}\index{MutableCompoundShape@{MutableCompoundShape}}
+
+
+{\ttfamily \#include $<$Mutable\+Compound\+Shape.\+h$>$}
+
+
+
+Inheritance diagram for Mutable\+Compound\+Shape\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d3d/classMutableCompoundShape__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Mutable\+Compound\+Shape\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/d1b/classMutableCompoundShape__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMutableCompoundShape_a661ed40beb5af222c420b5746c16f431}\label{classMutableCompoundShape_a661ed40beb5af222c420b5746c16f431} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Mutable\+Compound\+Shape} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classMutableCompoundShape_aa1412a6fbb245ef5476d7c72597f7aa9}\label{classMutableCompoundShape_aa1412a6fbb245ef5476d7c72597f7aa9} 
+{\bfseries Mutable\+Compound\+Shape} (const \mbox{\hyperlink{classMutableCompoundShapeSettings}{Mutable\+Compound\+Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+virtual bool \mbox{\hyperlink{classMutableCompoundShape_a55cc19d38b3eda1fb2399895d5422217}{Cast\+Ray}} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classRayCastResult}{Ray\+Cast\+Result}} \&io\+Hit) const override
+\item 
+virtual void \mbox{\hyperlink{classMutableCompoundShape_a7efb0edaed299ca33de9a469c280bdc6}{Cast\+Ray}} (const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&in\+Ray, const \mbox{\hyperlink{classRayCastSettings}{Ray\+Cast\+Settings}} \&in\+Ray\+Cast\+Settings, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Cast\+Ray\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter=\{ \}) const override
+\item 
+virtual void \mbox{\hyperlink{classMutableCompoundShape_a8b1884398b79955ef6ba058939c18388}{Collide\+Point}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Collide\+Point\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter=\{ \}) const override
+\item 
+virtual void \mbox{\hyperlink{classMutableCompoundShape_a8ce33b7618405bf406a318a14d5d336c}{Collect\+Transformed\+Shapes}} (const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter) const override
+\item 
+virtual int \mbox{\hyperlink{classMutableCompoundShape_a54f90f67aaa20068117cf7f687b72062}{Get\+Intersecting\+Sub\+Shapes}} (const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, uint \texorpdfstring{$\ast$}{*}out\+Sub\+Shape\+Indices, int in\+Max\+Sub\+Shape\+Indices) const override
+\item 
+virtual int \mbox{\hyperlink{classMutableCompoundShape_accfe7ae7b7ca09a084af2bc6a0abdc26}{Get\+Intersecting\+Sub\+Shapes}} (const \mbox{\hyperlink{classOrientedBox}{Oriented\+Box}} \&in\+Box, uint \texorpdfstring{$\ast$}{*}out\+Sub\+Shape\+Indices, int in\+Max\+Sub\+Shape\+Indices) const override
+\item 
+virtual void \mbox{\hyperlink{classMutableCompoundShape_ae9e0c36b04f54f5dd78859341d838d45}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saves the contents of the shape in binary form to in\+Stream. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} \mbox{\hyperlink{classMutableCompoundShape_aabd799e121f048e83a6ef43490422fbe}{Get\+Stats}} () const override
+\begin{DoxyCompactList}\small\item\em Get stats of this shape. Use for logging / data collection purposes only. Does not add values from child shapes, use Get\+Stats\+Recursive for this. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Mutating shapes. Note that this is not thread safe, so you need to ensure that any bodies that use this shape are locked at the time of modification using Body\+Lock\+Write. After modification you need to call Body\+Interface\+::Notify\+Shape\+Changed to update the broadphase and collision caches.}\par
+\begin{DoxyCompactItemize}
+\item 
+uint \mbox{\hyperlink{classMutableCompoundShape_a66c4e1e058a06ddb1718604254d15c4d}{Add\+Shape}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, uint32 in\+User\+Data=0)
+\item 
+\Hypertarget{classMutableCompoundShape_ab91b4cd767b396eca6a341e98501daea}\label{classMutableCompoundShape_ab91b4cd767b396eca6a341e98501daea} 
+void {\bfseries Remove\+Shape} (uint in\+Index)
+\begin{DoxyCompactList}\small\item\em Remove a shape by index. \end{DoxyCompactList}\item 
+\Hypertarget{classMutableCompoundShape_a3992cb7a984307a08139812e44da14ae}\label{classMutableCompoundShape_a3992cb7a984307a08139812e44da14ae} 
+void {\bfseries Modify\+Shape} (uint in\+Index, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation)
+\begin{DoxyCompactList}\small\item\em Modify the position / orientation of a shape. \end{DoxyCompactList}\item 
+\Hypertarget{classMutableCompoundShape_a6b947de024a9a91039f4b472072efdba}\label{classMutableCompoundShape_a6b947de024a9a91039f4b472072efdba} 
+void {\bfseries Modify\+Shape} (uint in\+Index, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape)
+\begin{DoxyCompactList}\small\item\em Modify the position / orientation and shape at the same time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMutableCompoundShape_a48172d558ec67cb67e4a4d0ec7b48133}{Modify\+Shapes}} (uint in\+Start\+Index, uint in\+Number, const \mbox{\hyperlink{classVec3}{Vec3}} \texorpdfstring{$\ast$}{*}in\+Positions, const \mbox{\hyperlink{classQuat}{Quat}} \texorpdfstring{$\ast$}{*}in\+Rotations, uint in\+Position\+Stride=sizeof(\mbox{\hyperlink{classVec3}{Vec3}}), uint in\+Rotation\+Stride=sizeof(\mbox{\hyperlink{classQuat}{Quat}}))
+\begin{DoxyCompactList}\small\item\em Batch set positions / orientations, this avoids duplicate work due to bounding box calculation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMutableCompoundShape_aadb711e8d328adc04397be0cf44d4f4c}{Adjust\+Center\+Of\+Mass}} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCompoundShape}{Compound\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Compound\+Shape} (EShape\+Sub\+Type in\+Sub\+Type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Compound\+Shape} (EShape\+Sub\+Type in\+Sub\+Type, const \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+virtual \mbox{\hyperlink{classVec3}{Vec3}} \mbox{\hyperlink{classCompoundShape_aeec4b7c1a31225a01b314f2528f27b24}{Get\+Center\+Of\+Mass}} () const override
+\begin{DoxyCompactList}\small\item\em All shapes are centered around their center of mass. This function returns the center of mass position that needs to be applied to transform the shape to where it was created. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCompoundShape_aae7ee1e3ba82078a22d9f38a12e80d4a}{Must\+Be\+Static}} () const override
+\begin{DoxyCompactList}\small\item\em Check if this shape can only be used to create a static body or if it can also be dynamic/kinematic. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classCompoundShape_aed1247824e7919d8a948293f586b15dc}{Get\+Local\+Bounds}} () const override
+\begin{DoxyCompactList}\small\item\em Get local bounding box including convex radius, this box is centered around the center of mass rather than the world transform. \end{DoxyCompactList}\item 
+virtual uint \mbox{\hyperlink{classCompoundShape_ae8ed178f2cc684277a68095e7ebb436a}{Get\+Sub\+Shape\+IDBits\+Recursive}} () const override
+\begin{DoxyCompactList}\small\item\em Get the max number of sub shape ID bits that are needed to be able to address any leaf shape in this shape. Used mainly for checking that it is smaller or equal than \doxylink{classSubShapeID_a74d6785fe41b99c0d783fb6e66c39f4d}{Sub\+Shape\+ID\+::\+Max\+Bits}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classCompoundShape_aa23c189e0289a3ecbe0ebec8fb17676f}{Get\+World\+Space\+Bounds}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual float \mbox{\hyperlink{classCompoundShape_ae17025f3ed04cdf063dc0f3b180468a4}{Get\+Inner\+Radius}} () const override
+\item 
+virtual \mbox{\hyperlink{classMassProperties}{Mass\+Properties}} \mbox{\hyperlink{classCompoundShape_aa1a588ace119b9cb09d263aa66a39a7b}{Get\+Mass\+Properties}} () const override
+\begin{DoxyCompactList}\small\item\em Calculate the mass and inertia of this shape. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCompoundShape_ab79f515378f7a6ec69e57415cc6ed233}{Get\+Material}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID) const override
+\begin{DoxyCompactList}\small\item\em Get the material assigned to a particular sub shape ID. \end{DoxyCompactList}\item 
+virtual uint64 \mbox{\hyperlink{classCompoundShape_a7de3a2463cf627bba7a5bcb8d512ecbc}{Get\+Sub\+Shape\+User\+Data}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID) const override
+\begin{DoxyCompactList}\small\item\em Get the user data of a particular sub shape ID. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTransformedShape}{Transformed\+Shape}} \mbox{\hyperlink{classCompoundShape_aba545fe34509ad358b9b56bcf37529e4}{Get\+Sub\+Shape\+Transformed\+Shape}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&out\+Remainder) const override
+\item 
+virtual \mbox{\hyperlink{classVec3}{Vec3}} \mbox{\hyperlink{classCompoundShape_a492821bc66382ed70ab11312b9b154f1}{Get\+Surface\+Normal}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Local\+Surface\+Position) const override
+\item 
+virtual void \mbox{\hyperlink{classCompoundShape_a6ee65fc20f0e760189321a54a5ab4c9f}{Get\+Supporting\+Face}} (const \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&in\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classShape_a95d3060318d33c1ef314c5b856a70cb8}{Supporting\+Face}} \&out\+Vertices) const override
+\item 
+virtual void {\bfseries Get\+Submerged\+Volume} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classPlane}{Plane}} \&in\+Surface, float \&out\+Total\+Volume, float \&out\+Submerged\+Volume, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Center\+Of\+Buoyancy JPH\+\_\+\+IF\+\_\+\+DEBUG\+\_\+\+RENDERER(, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Base\+Offset)) const override
+\item 
+virtual void \mbox{\hyperlink{classCompoundShape_a77182c414834e266906ce7ea981d684e}{Collide\+Soft\+Body\+Vertices}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}} \texorpdfstring{$\ast$}{*}io\+Vertices, uint in\+Num\+Vertices, float in\+Delta\+Time, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Displacement\+Due\+To\+Gravity, int in\+Colliding\+Shape\+Index) const override
+\item 
+virtual void \mbox{\hyperlink{classCompoundShape_a7d97cdd8b866c2bab394472290c5fc66}{Transform\+Shape}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&io\+Collector) const override
+\item 
+virtual void \mbox{\hyperlink{classCompoundShape_a1e3571fbe4835d1bfec50d9d7a1a2b1f}{Get\+Triangles\+Start}} (\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Get\+Triangles\+Context}} \&io\+Context, const \mbox{\hyperlink{classAABox}{AABox}} \&in\+Box, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position\+COM, \mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Rotation, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual int \mbox{\hyperlink{classCompoundShape_a86dbc7e794fdf43a39fed13e60731a0b}{Get\+Triangles\+Next}} (\mbox{\hyperlink{structShape_1_1GetTrianglesContext}{Get\+Triangles\+Context}} \&io\+Context, int in\+Max\+Triangles\+Requested, \mbox{\hyperlink{classFloat3}{Float3}} \texorpdfstring{$\ast$}{*}out\+Triangle\+Vertices, const \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+Materials=nullptr) const override
+\item 
+const Sub\+Shapes \& {\bfseries Get\+Sub\+Shapes} () const
+\begin{DoxyCompactList}\small\item\em Access to the sub shapes of this compound. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Sub\+Shapes} () const
+\begin{DoxyCompactList}\small\item\em Get the total number of sub shapes. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structCompoundShape_1_1SubShape}{Sub\+Shape}} \& {\bfseries Get\+Sub\+Shape} (uint in\+Idx) const
+\begin{DoxyCompactList}\small\item\em Access to a particular sub shape. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Compound\+User\+Data} (uint in\+Idx) const
+\begin{DoxyCompactList}\small\item\em Get the user data associated with a shape in this compound. \end{DoxyCompactList}\item 
+void {\bfseries Set\+Compound\+User\+Data} (uint in\+Idx, uint32 in\+User\+Data)
+\begin{DoxyCompactList}\small\item\em Set the user data associated with a shape in this compound. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCompoundShape_a3fd5589e3e33b94b8c112393b431152b}{Is\+Sub\+Shape\+IDValid}} (\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} in\+Sub\+Shape\+ID) const
+\item 
+uint32 \mbox{\hyperlink{classCompoundShape_a6ff804957bb05620ab762532d2f2ab3d}{Get\+Sub\+Shape\+Index\+From\+ID}} (\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} in\+Sub\+Shape\+ID, \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&out\+Remainder) const
+\item 
+\mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \mbox{\hyperlink{classCompoundShape_a66ae55d5b737c492d73286dff4615215}{Get\+Sub\+Shape\+IDFrom\+Index}} (int in\+Idx, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Parent\+Sub\+Shape\+ID) const
+\begin{DoxyCompactList}\small\item\em Convert a sub shape index to a sub shape ID. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCompoundShape_a6e1e993122d531b41410ed887c7cebf1}{Save\+Sub\+Shape\+State}} (Shape\+List \&out\+Sub\+Shapes) const override
+\begin{DoxyCompactList}\small\item\em Outputs the shape references that this shape has to out\+Sub\+Shapes. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCompoundShape_ab5a9e4a5f34c4d3f08cc3078c74ffdf0}{Restore\+Sub\+Shape\+State}} (const \mbox{\hyperlink{classRefConst}{Shape\+RefC}} \texorpdfstring{$\ast$}{*}in\+Sub\+Shapes, uint in\+Num\+Shapes) override
+\begin{DoxyCompactList}\small\item\em Restore the shape references after calling s\+Restore\+From\+Binary\+State. Note that the exact same shapes need to be provided in the same order as returned by Save\+Sub\+Shape\+State. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} \mbox{\hyperlink{classCompoundShape_a9ab38e34c6c6ba8a929d88808a408227}{Get\+Stats\+Recursive}} (Visited\+Shapes \&io\+Visited\+Shapes) const override
+\begin{DoxyCompactList}\small\item\em Volume of this shape (m\texorpdfstring{$^\wedge$}{\string^}3). Note that for compound shapes the volume may be incorrect since child shapes can overlap which is not accounted for. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classCompoundShape_a1c9ac12b3262c4508bb161cce1cfa2d6}{Get\+Volume}} () const override
+\item 
+virtual bool \mbox{\hyperlink{classCompoundShape_a6eb75bc1119528f824eb8f1b28370dd8}{Is\+Valid\+Scale}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const override
+\item 
+virtual \mbox{\hyperlink{classAABox}{AABox}} \mbox{\hyperlink{classCompoundShape_a9f8379fa338802436700b86a07fab3be}{Get\+World\+Space\+Bounds}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\item 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries Get\+World\+Space\+Bounds} (\mbox{\hyperlink{classDMat44}{DMat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\begin{DoxyCompactList}\small\item\em Get world space bounds including convex radius. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Shape} (EShape\+Type in\+Type, EShape\+Sub\+Type in\+Sub\+Type)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Shape} (EShape\+Type in\+Type, EShape\+Sub\+Type in\+Sub\+Type, const \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}} \&in\+Settings, \mbox{\hyperlink{classResult}{Shape\+Result}} \&out\+Result)
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Shape} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+EShape\+Type {\bfseries Get\+Type} () const
+\begin{DoxyCompactList}\small\item\em Get type. \end{DoxyCompactList}\item 
+EShape\+Sub\+Type {\bfseries Get\+Sub\+Type} () const
+\item 
+uint64 {\bfseries Get\+User\+Data} () const
+\begin{DoxyCompactList}\small\item\em User data (to be used freely by the application) \end{DoxyCompactList}\item 
+void {\bfseries Set\+User\+Data} (uint64 in\+User\+Data)
+\item 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries Get\+World\+Space\+Bounds} (\mbox{\hyperlink{classDMat44}{DMat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\begin{DoxyCompactList}\small\item\em Get world space bounds including convex radius. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classShape_ab3ab834243d410f4074036264928f0ff}{Get\+Submerged\+Volume}} (\mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, const \mbox{\hyperlink{classPlane}{Plane}} \&in\+Surface, float \&out\+Total\+Volume, float \&out\+Submerged\+Volume, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Center\+Of\+Buoyancy) const =0
+\item 
+\mbox{\hyperlink{classResult}{Shape\+Result}} \mbox{\hyperlink{classShape_aca293aaf9bb3c999ad09687e11bfd70f}{Scale\+Shape}} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale) const
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Save\+Material\+State} (Physics\+Material\+List \&out\+Materials) const
+\begin{DoxyCompactList}\small\item\em Outputs the material references that this shape has to out\+Materials. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classShape_a6e823e7198f22ec824cacf9998d9904c}{Restore\+Material\+State}} (const \mbox{\hyperlink{classRefConst}{Physics\+Material\+RefC}} \texorpdfstring{$\ast$}{*}in\+Materials, uint in\+Num\+Materials)
+\begin{DoxyCompactList}\small\item\em Restore the material references after calling s\+Restore\+From\+Binary\+State. Note that the exact same materials need to be provided in the same order as returned by Save\+Material\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Save\+With\+Children} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream, Shape\+To\+IDMap \&io\+Shape\+Map, Material\+To\+IDMap \&io\+Material\+Map) const
+\begin{DoxyCompactList}\small\item\em Save this shape, all its children and its materials. Pass in an empty map in io\+Shape\+Map / io\+Material\+Map or reuse the same map while saving multiple shapes to the same stream in order to avoid writing duplicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMutableCompoundShape_ab38bd2a08a9e036647a390c14063e242}\label{classMutableCompoundShape_ab38bd2a08a9e036647a390c14063e242} 
+static void {\bfseries s\+Register} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classCompoundShape}{Compound\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries s\+Register} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a \doxylink{classShape}{Shape} of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries s\+Restore\+With\+Children} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream, IDTo\+Shape\+Map \&io\+Shape\+Map, IDTo\+Material\+Map \&io\+Material\+Map)
+\begin{DoxyCompactList}\small\item\em Restore a shape, all its children and materials. Pass in an empty map in io\+Shape\+Map / io\+Material\+Map or reuse the same map while reading multiple shapes from the same stream in order to restore duplicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classMutableCompoundShape_ac4871effbbfa65966136fb6c6e2bd278}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classCompoundShape}{Compound\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+uint {\bfseries Get\+Sub\+Shape\+IDBits} () const
+\begin{DoxyCompactList}\small\item\em Determine amount of bits needed to encode sub shape id. \end{DoxyCompactList}\item 
+void {\bfseries Calculate\+Inner\+Radius} ()
+\begin{DoxyCompactList}\small\item\em Determine the inner radius of this shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classCompoundShape}{Compound\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Sub\+Shapes} = Array$<$ \mbox{\hyperlink{structCompoundShape_1_1SubShape}{Sub\+Shape}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Shape\+Result} = \mbox{\hyperlink{classResult}{Shape\+Settings\+::\+Shape\+Result}}
+\item 
+using {\bfseries Supporting\+Face} = \mbox{\hyperlink{classStaticArray}{Static\+Array}}$<$ \mbox{\hyperlink{classVec3}{Vec3}}, 32 $>$
+\begin{DoxyCompactList}\small\item\em Type definition for a supporting face. \end{DoxyCompactList}\item 
+using {\bfseries Visited\+Shapes} = Unordered\+Set$<$ const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Shape\+To\+IDMap} = Stream\+Utils\+::\+Object\+To\+IDMap$<$ \mbox{\hyperlink{classShape}{Shape}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries IDTo\+Shape\+Map} = Stream\+Utils\+::\+IDTo\+Object\+Map$<$ \mbox{\hyperlink{classShape}{Shape}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Material\+To\+IDMap} = Stream\+Utils\+::\+Object\+To\+IDMap$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries IDTo\+Material\+Map} = Stream\+Utils\+::\+IDTo\+Object\+Map$<$ \mbox{\hyperlink{classPhysicsMaterial}{Physics\+Material}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int {\bfseries c\+Get\+Triangles\+Min\+Triangles\+Requested} = 32
+\begin{DoxyCompactList}\small\item\em This is the minimum amount of triangles that should be requested through Get\+Triangles\+Next. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \mbox{\hyperlink{classShape}{Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries s\+Collide\+Point\+Using\+Ray\+Cast} (const \mbox{\hyperlink{classShape}{Shape}} \&in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Point, const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&in\+Sub\+Shape\+IDCreator, \mbox{\hyperlink{classCollisionCollector}{Collide\+Point\+Collector}} \&io\+Collector, const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&in\+Shape\+Filter)
+\begin{DoxyCompactList}\small\item\em A fallback version of Collide\+Point that uses a ray cast and counts the number of hits to determine if the point is inside the shape. Odd number of hits means inside, even number of hits means outside. \end{DoxyCompactList}\item 
+static void {\bfseries s\+Collide\+Soft\+Body\+Vertices\+Using\+Ray\+Cast} (const \mbox{\hyperlink{classShape}{Shape}} \&in\+Shape, \mbox{\hyperlink{classMat44}{Mat44\+Arg}} in\+Center\+Of\+Mass\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, \mbox{\hyperlink{classSoftBodyVertex}{Soft\+Body\+Vertex}} \texorpdfstring{$\ast$}{*}io\+Vertices, uint in\+Num\+Vertices, float in\+Delta\+Time, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Displacement\+Due\+To\+Gravity, int in\+Colliding\+Shape\+Index)
+\begin{DoxyCompactList}\small\item\em A fallback version of Collide\+Soft\+Body\+Vertices that uses a raycast to collide the vertices with the shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classCompoundShape}{Compound\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Center\+Of\+Mass} \{ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3\+::s\+Zero}}() \}
+\begin{DoxyCompactList}\small\item\em Center of mass of the compound. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAABox}{AABox}} {\bfseries m\+Local\+Bounds}
+\item 
+Sub\+Shapes {\bfseries m\+Sub\+Shapes}
+\item 
+float {\bfseries m\+Inner\+Radius} = FLT\+\_\+\+MAX
+\begin{DoxyCompactList}\small\item\em Smallest radius of \doxylink{classCompoundShape_ae17025f3ed04cdf063dc0f3b180468a4}{Get\+Inner\+Radius()} of child shapes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A compound shape, sub shapes can be rotated and translated. This shape is optimized for adding / removing and changing the rotation / translation of sub shapes but is less efficient in querying. Shifts all child objects so that they\textquotesingle{}re centered around the center of mass (which needs to be kept up to date by calling Adjust\+Center\+Of\+Mass).
+
+Note\+: If you\textquotesingle{}re using Mutable\+Compound\+Shapes and are querying data while modifying the shape you\textquotesingle{}ll have a race condition. In this case it is best to create a new \doxylink{classMutableCompoundShape}{Mutable\+Compound\+Shape} and set the new shape on the body using \doxylink{classBodyInterface_a051a4064706509e2b1c4dcc6d688676d}{Body\+Interface\+::\+Set\+Shape}. If a query is still working on the old shape, it will have taken a reference and keep the old shape alive until the query finishes. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMutableCompoundShape_a66c4e1e058a06ddb1718604254d15c4d}\label{classMutableCompoundShape_a66c4e1e058a06ddb1718604254d15c4d} 
+\index{MutableCompoundShape@{MutableCompoundShape}!AddShape@{AddShape}}
+\index{AddShape@{AddShape}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{AddShape()}{AddShape()}}
+{\footnotesize\ttfamily uint Mutable\+Compound\+Shape\+::\+Add\+Shape (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Position,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Rotation,  }\item[{const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}}]{in\+Shape,  }\item[{uint32}]{in\+User\+Data = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Adding a new shape \begin{DoxyReturn}{Returns}
+The index of the newly added shape 
+\end{DoxyReturn}
+\Hypertarget{classMutableCompoundShape_aadb711e8d328adc04397be0cf44d4f4c}\label{classMutableCompoundShape_aadb711e8d328adc04397be0cf44d4f4c} 
+\index{MutableCompoundShape@{MutableCompoundShape}!AdjustCenterOfMass@{AdjustCenterOfMass}}
+\index{AdjustCenterOfMass@{AdjustCenterOfMass}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{AdjustCenterOfMass()}{AdjustCenterOfMass()}}
+{\footnotesize\ttfamily void Mutable\+Compound\+Shape\+::\+Adjust\+Center\+Of\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Recalculate the center of mass and shift all objects so they\textquotesingle{}re centered around it (this needs to be done of dynamic bodies and if the center of mass changes significantly due to adding / removing / repositioning sub shapes or else the simulation will look unnatural) Note that after adjusting the center of mass of an object you need to call \doxylink{classBodyInterface_aa2e0c12f152375b42b3de56faf9bec86}{Body\+Interface\+::\+Notify\+Shape\+Changed} and \doxylink{classConstraint_a3072411d2c9da10356f2087cdc02ec70}{Constraint\+::\+Notify\+Shape\+Changed} on the relevant bodies / constraints. \Hypertarget{classMutableCompoundShape_a7efb0edaed299ca33de9a469c280bdc6}\label{classMutableCompoundShape_a7efb0edaed299ca33de9a469c280bdc6} 
+\index{MutableCompoundShape@{MutableCompoundShape}!CastRay@{CastRay}}
+\index{CastRay@{CastRay}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{CastRay()}{CastRay()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void Mutable\+Compound\+Shape\+::\+Cast\+Ray (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&}]{in\+Ray,  }\item[{const \mbox{\hyperlink{classRayCastSettings}{Ray\+Cast\+Settings}} \&}]{in\+Ray\+Cast\+Settings,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Cast\+Ray\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Cast a ray against this shape. Allows returning multiple hits through io\+Collector. Note that this version is more flexible but also slightly slower than the Cast\+Ray function that returns only a single hit. If you want the surface normal of the hit use Get\+Surface\+Normal(collected sub shape ID, in\+Ray.\+Get\+Point\+On\+Ray(collected faction)). 
+
+Implements \mbox{\hyperlink{classShape_a54b33219a3685aa4b964f6b69a2cfa7d}{Shape}}.
+
+\Hypertarget{classMutableCompoundShape_a55cc19d38b3eda1fb2399895d5422217}\label{classMutableCompoundShape_a55cc19d38b3eda1fb2399895d5422217} 
+\index{MutableCompoundShape@{MutableCompoundShape}!CastRay@{CastRay}}
+\index{CastRay@{CastRay}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{CastRay()}{CastRay()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool Mutable\+Compound\+Shape\+::\+Cast\+Ray (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRayCast}{Ray\+Cast}} \&}]{in\+Ray,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator,  }\item[{\mbox{\hyperlink{classRayCastResult}{Ray\+Cast\+Result}} \&}]{io\+Hit }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Cast a ray against this shape, returns true if it finds a hit closer than io\+Hit.\+m\+Fraction and updates that fraction. Otherwise io\+Hit is left untouched and the function returns false. Note that the ray should be relative to the center of mass of this shape (i.\+e. subtract \doxylink{classShape_a7e34b0626a40c31db0b2a761922adb1a}{Shape\+::\+Get\+Center\+Of\+Mass()} from \doxylink{structRayCastT_ae66dc4b0c20b242f17bcf70cb5507e51}{Ray\+Cast\+::m\+Origin} if you want to cast against the shape in the space it was created). Convex objects will be treated as solid (meaning if the ray starts inside, you\textquotesingle{}ll get a hit fraction of 0) and back face hits against triangles are returned. If you want the surface normal of the hit use Get\+Surface\+Normal(io\+Hit.\+m\+Sub\+Shape\+ID2, in\+Ray.\+Get\+Point\+On\+Ray(io\+Hit.\+m\+Fraction)). 
+
+Implements \mbox{\hyperlink{classShape_a955ec1953bc94c6c910dc4dc16114732}{Shape}}.
+
+\Hypertarget{classMutableCompoundShape_a8ce33b7618405bf406a318a14d5d336c}\label{classMutableCompoundShape_a8ce33b7618405bf406a318a14d5d336c} 
+\index{MutableCompoundShape@{MutableCompoundShape}!CollectTransformedShapes@{CollectTransformedShapes}}
+\index{CollectTransformedShapes@{CollectTransformedShapes}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{CollectTransformedShapes()}{CollectTransformedShapes()}}
+{\footnotesize\ttfamily virtual void Mutable\+Compound\+Shape\+::\+Collect\+Transformed\+Shapes (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAABox}{AABox}} \&}]{in\+Box,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Position\+COM,  }\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Rotation,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Transformed\+Shape\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Collect the leaf transformed shapes of all leaf shapes of this shape. in\+Box is the world space axis aligned box which leaf shapes should collide with. in\+Position\+COM/in\+Rotation/in\+Scale describes the transform of this shape. in\+Sub\+Shape\+IDCeator represents the current sub shape ID of this shape. 
+
+Reimplemented from \mbox{\hyperlink{classShape_a878715858fc2494068183d9eb82d16b0}{Shape}}.
+
+\Hypertarget{classMutableCompoundShape_a8b1884398b79955ef6ba058939c18388}\label{classMutableCompoundShape_a8b1884398b79955ef6ba058939c18388} 
+\index{MutableCompoundShape@{MutableCompoundShape}!CollidePoint@{CollidePoint}}
+\index{CollidePoint@{CollidePoint}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{CollidePoint()}{CollidePoint()}}
+{\footnotesize\ttfamily virtual void Mutable\+Compound\+Shape\+::\+Collide\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Point,  }\item[{const \mbox{\hyperlink{classSubShapeIDCreator}{Sub\+Shape\+IDCreator}} \&}]{in\+Sub\+Shape\+IDCreator,  }\item[{\mbox{\hyperlink{classCollisionCollector}{Collide\+Point\+Collector}} \&}]{io\+Collector,  }\item[{const \mbox{\hyperlink{classShapeFilter}{Shape\+Filter}} \&}]{in\+Shape\+Filter = {\ttfamily \{~\}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Check if in\+Point is inside this shape. For this tests all shapes are treated as if they were solid. Note that in\+Point should be relative to the center of mass of this shape (i.\+e. subtract \doxylink{classShape_a7e34b0626a40c31db0b2a761922adb1a}{Shape\+::\+Get\+Center\+Of\+Mass()} from in\+Point if you want to test against the shape in the space it was created). For a mesh shape, this test will only provide sensible information if the mesh is a closed manifold. For each shape that collides, io\+Collector will receive a hit. 
+
+Implements \mbox{\hyperlink{classShape_af6e77d16736434769d72152bf059a126}{Shape}}.
+
+\Hypertarget{classMutableCompoundShape_a54f90f67aaa20068117cf7f687b72062}\label{classMutableCompoundShape_a54f90f67aaa20068117cf7f687b72062} 
+\index{MutableCompoundShape@{MutableCompoundShape}!GetIntersectingSubShapes@{GetIntersectingSubShapes}}
+\index{GetIntersectingSubShapes@{GetIntersectingSubShapes}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{GetIntersectingSubShapes()}{GetIntersectingSubShapes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual int Mutable\+Compound\+Shape\+::\+Get\+Intersecting\+Sub\+Shapes (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAABox}{AABox}} \&}]{in\+Box,  }\item[{uint \texorpdfstring{$\ast$}{*}}]{out\+Sub\+Shape\+Indices,  }\item[{int}]{in\+Max\+Sub\+Shape\+Indices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get which sub shape\textquotesingle{}s bounding boxes overlap with an axis aligned box 
+\begin{DoxyParams}{Parameters}
+{\em in\+Box} & The axis aligned box to test against (relative to the center of mass of this shape) \\
+\hline
+{\em out\+Sub\+Shape\+Indices} & Buffer where to place the indices of the sub shapes that intersect \\
+\hline
+{\em in\+Max\+Sub\+Shape\+Indices} & How many indices will fit in the buffer (normally you\textquotesingle{}d provide a buffer of \doxylink{classCompoundShape_abe1e5333a667ccd80b6146b951abf918}{Get\+Num\+Sub\+Shapes()} indices) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+How many indices were placed in out\+Sub\+Shape\+Indices 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classCompoundShape_abe5c3a8558c840abba213a6a48149f85}{Compound\+Shape}}.
+
+\Hypertarget{classMutableCompoundShape_accfe7ae7b7ca09a084af2bc6a0abdc26}\label{classMutableCompoundShape_accfe7ae7b7ca09a084af2bc6a0abdc26} 
+\index{MutableCompoundShape@{MutableCompoundShape}!GetIntersectingSubShapes@{GetIntersectingSubShapes}}
+\index{GetIntersectingSubShapes@{GetIntersectingSubShapes}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{GetIntersectingSubShapes()}{GetIntersectingSubShapes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual int Mutable\+Compound\+Shape\+::\+Get\+Intersecting\+Sub\+Shapes (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classOrientedBox}{Oriented\+Box}} \&}]{in\+Box,  }\item[{uint \texorpdfstring{$\ast$}{*}}]{out\+Sub\+Shape\+Indices,  }\item[{int}]{in\+Max\+Sub\+Shape\+Indices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get which sub shape\textquotesingle{}s bounding boxes overlap with an axis aligned box 
+\begin{DoxyParams}{Parameters}
+{\em in\+Box} & The axis aligned box to test against (relative to the center of mass of this shape) \\
+\hline
+{\em out\+Sub\+Shape\+Indices} & Buffer where to place the indices of the sub shapes that intersect \\
+\hline
+{\em in\+Max\+Sub\+Shape\+Indices} & How many indices will fit in the buffer (normally you\textquotesingle{}d provide a buffer of \doxylink{classCompoundShape_abe1e5333a667ccd80b6146b951abf918}{Get\+Num\+Sub\+Shapes()} indices) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+How many indices were placed in out\+Sub\+Shape\+Indices 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classCompoundShape_a3f38b90e13eccc4d52de7bbc2cbcb9aa}{Compound\+Shape}}.
+
+\Hypertarget{classMutableCompoundShape_aabd799e121f048e83a6ef43490422fbe}\label{classMutableCompoundShape_aabd799e121f048e83a6ef43490422fbe} 
+\index{MutableCompoundShape@{MutableCompoundShape}!GetStats@{GetStats}}
+\index{GetStats@{GetStats}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{GetStats()}{GetStats()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{structShape_1_1Stats}{Stats}} Mutable\+Compound\+Shape\+::\+Get\+Stats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get stats of this shape. Use for logging / data collection purposes only. Does not add values from child shapes, use Get\+Stats\+Recursive for this. 
+
+
+
+Implements \mbox{\hyperlink{classShape_a87ae161e649ab6af75a60fe130dd195b}{Shape}}.
+
+\Hypertarget{classMutableCompoundShape_a48172d558ec67cb67e4a4d0ec7b48133}\label{classMutableCompoundShape_a48172d558ec67cb67e4a4d0ec7b48133} 
+\index{MutableCompoundShape@{MutableCompoundShape}!ModifyShapes@{ModifyShapes}}
+\index{ModifyShapes@{ModifyShapes}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{ModifyShapes()}{ModifyShapes()}}
+{\footnotesize\ttfamily void Mutable\+Compound\+Shape\+::\+Modify\+Shapes (\begin{DoxyParamCaption}\item[{uint}]{in\+Start\+Index,  }\item[{uint}]{in\+Number,  }\item[{const \mbox{\hyperlink{classVec3}{Vec3}} \texorpdfstring{$\ast$}{*}}]{in\+Positions,  }\item[{const \mbox{\hyperlink{classQuat}{Quat}} \texorpdfstring{$\ast$}{*}}]{in\+Rotations,  }\item[{uint}]{in\+Position\+Stride = {\ttfamily sizeof(\mbox{\hyperlink{classVec3}{Vec3}})},  }\item[{uint}]{in\+Rotation\+Stride = {\ttfamily sizeof(\mbox{\hyperlink{classQuat}{Quat}})} }\end{DoxyParamCaption})}
+
+
+
+Batch set positions / orientations, this avoids duplicate work due to bounding box calculation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Start\+Index} & Index of first shape to update \\
+\hline
+{\em in\+Number} & Number of shapes to update \\
+\hline
+{\em in\+Positions} & A list of positions with arbitrary stride \\
+\hline
+{\em in\+Rotations} & A list of orientations with arbitrary stride \\
+\hline
+{\em in\+Position\+Stride} & The position stride (the number of bytes between the first and second element) \\
+\hline
+{\em in\+Rotation\+Stride} & The orientation stride (the number of bytes between the first and second element) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMutableCompoundShape_ac4871effbbfa65966136fb6c6e2bd278}\label{classMutableCompoundShape_ac4871effbbfa65966136fb6c6e2bd278} 
+\index{MutableCompoundShape@{MutableCompoundShape}!RestoreBinaryState@{RestoreBinaryState}}
+\index{RestoreBinaryState@{RestoreBinaryState}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{RestoreBinaryState()}{RestoreBinaryState()}}
+{\footnotesize\ttfamily virtual void Mutable\+Compound\+Shape\+::\+Restore\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classCompoundShape_a95f2f0cf4d43f9d77366dc0a5006007a}{Compound\+Shape}}.
+
+\Hypertarget{classMutableCompoundShape_ae9e0c36b04f54f5dd78859341d838d45}\label{classMutableCompoundShape_ae9e0c36b04f54f5dd78859341d838d45} 
+\index{MutableCompoundShape@{MutableCompoundShape}!SaveBinaryState@{SaveBinaryState}}
+\index{SaveBinaryState@{SaveBinaryState}!MutableCompoundShape@{MutableCompoundShape}}
+\doxysubsubsection{\texorpdfstring{SaveBinaryState()}{SaveBinaryState()}}
+{\footnotesize\ttfamily virtual void Mutable\+Compound\+Shape\+::\+Save\+Binary\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the contents of the shape in binary form to in\+Stream. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classCompoundShape_adf1e7101410fa38032535b835dc17433}{Compound\+Shape}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Mutable\+Compound\+Shape.\+h\end{DoxyCompactItemize}

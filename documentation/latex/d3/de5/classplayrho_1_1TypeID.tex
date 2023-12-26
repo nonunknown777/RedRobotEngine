@@ -1,0 +1,116 @@
+\doxysection{playrho\+::Type\+ID Class Reference}
+\hypertarget{classplayrho_1_1TypeID}{}\label{classplayrho_1_1TypeID}\index{playrho::TypeID@{playrho::TypeID}}
+
+
+Type identifier.  
+
+
+
+
+{\ttfamily \#include $<$Type\+Info.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Type\+ID\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{d4/d8d/classplayrho_1_1TypeID__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classplayrho_1_1TypeID_a6b7ffdbea3e307f5214d1df59354e296}{Type\+ID}} () noexcept=default
+\item 
+\Hypertarget{classplayrho_1_1TypeID_a90a8699e3040854f27e1689beff1e3e0}\label{classplayrho_1_1TypeID_a90a8699e3040854f27e1689beff1e3e0} 
+constexpr const char \texorpdfstring{$\ast$}{*} {\bfseries Get\+Name} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets demangled name of the type this was generated for as a a non-\/null, null terminated string buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classplayrho_1_1TypeID_aa7de39654fb03fa5729a07697d80a31e}\label{classplayrho_1_1TypeID_aa7de39654fb03fa5729a07697d80a31e} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Equality operator support via "{}hidden friend"{} function. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1TypeID_a318b41ddc6c40bcfa5c9760bfe218db4}\label{classplayrho_1_1TypeID_a318b41ddc6c40bcfa5c9760bfe218db4} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&rhs) noexcept
+\begin{DoxyCompactList}\small\item\em Inequality operator support via "{}hidden friend"{} function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classplayrho_1_1TypeID_afa623cfaa1da630f060a6606563110b4}{operator$<$}} (const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&rhs) noexcept
+\item 
+bool \mbox{\hyperlink{classplayrho_1_1TypeID_af658aed91bbc85f35fb421bc55950ea3}{operator$<$=}} (const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&rhs) noexcept
+\item 
+bool \mbox{\hyperlink{classplayrho_1_1TypeID_a2d1d3eeab4a222706711af96bd303687}{operator$>$}} (const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&rhs) noexcept
+\item 
+bool \mbox{\hyperlink{classplayrho_1_1TypeID_aecfeaa1d740c59a52b35b92328d0709a}{operator$>$=}} (const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&lhs, const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&rhs) noexcept
+\item 
+\Hypertarget{classplayrho_1_1TypeID_ab8288dbdc38a94e0030b60947cf717d8}\label{classplayrho_1_1TypeID_ab8288dbdc38a94e0030b60947cf717d8} 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} {\bfseries Get\+Type\+ID} () noexcept
+\begin{DoxyCompactList}\small\item\em Gets the type ID for the function\textquotesingle{}s template parameter type with its name demangled. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1TypeID_a3ad5cdd03ce44fac293672482232e1e0}\label{classplayrho_1_1TypeID_a3ad5cdd03ce44fac293672482232e1e0} 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} {\bfseries Get\+Type\+ID} (const T \&) noexcept
+\begin{DoxyCompactList}\small\item\em Gets the type ID for the function parameter type with its name demangled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Type identifier. 
+
+\begin{DoxyNote}{Note}
+This provides value semantics like being copyable, assignable, and equality comparable. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classplayrho_1_1TypeID_a6b7ffdbea3e307f5214d1df59354e296}\label{classplayrho_1_1TypeID_a6b7ffdbea3e307f5214d1df59354e296} 
+\index{playrho::TypeID@{playrho::TypeID}!TypeID@{TypeID}}
+\index{TypeID@{TypeID}!playrho::TypeID@{playrho::TypeID}}
+\doxysubsubsection{\texorpdfstring{TypeID()}{TypeID()}}
+{\footnotesize\ttfamily playrho\+::\+Type\+ID\+::\+Type\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}, {\ttfamily [noexcept]}}
+
+Default constructor. \begin{DoxyPostcond}{Postcondition}
+A type identifier equivalent to the value returned by {\ttfamily \doxylink{classplayrho_1_1TypeID_ab8288dbdc38a94e0030b60947cf717d8}{Get\+Type\+ID$<$void$>$()}}. 
+\end{DoxyPostcond}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classplayrho_1_1TypeID_afa623cfaa1da630f060a6606563110b4}\label{classplayrho_1_1TypeID_afa623cfaa1da630f060a6606563110b4} 
+\index{playrho::TypeID@{playrho::TypeID}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!playrho::TypeID@{playrho::TypeID}}
+\doxysubsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Less-\/than operator support via "{}hidden friend"{} function. \begin{DoxyNote}{Note}
+The ordering of type IDs is unspecified. This is provided anyway to support things like associative containers. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1TypeID_af658aed91bbc85f35fb421bc55950ea3}\label{classplayrho_1_1TypeID_af658aed91bbc85f35fb421bc55950ea3} 
+\index{playrho::TypeID@{playrho::TypeID}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!playrho::TypeID@{playrho::TypeID}}
+\doxysubsubsection{\texorpdfstring{operator$<$=}{operator<=}}
+{\footnotesize\ttfamily bool operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Less-\/than-\/or-\/equal operator support via "{}hidden friend"{} function. \begin{DoxyNote}{Note}
+The ordering of type IDs is unspecified. This is provided anyway to support things like associative containers. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1TypeID_a2d1d3eeab4a222706711af96bd303687}\label{classplayrho_1_1TypeID_a2d1d3eeab4a222706711af96bd303687} 
+\index{playrho::TypeID@{playrho::TypeID}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!playrho::TypeID@{playrho::TypeID}}
+\doxysubsubsection{\texorpdfstring{operator$>$}{operator>}}
+{\footnotesize\ttfamily bool operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Greater-\/than operator support via "{}hidden friend"{} function. \begin{DoxyNote}{Note}
+The ordering of type IDs is unspecified. This is provided anyway to support things like associative containers. 
+\end{DoxyNote}
+\Hypertarget{classplayrho_1_1TypeID_aecfeaa1d740c59a52b35b92328d0709a}\label{classplayrho_1_1TypeID_aecfeaa1d740c59a52b35b92328d0709a} 
+\index{playrho::TypeID@{playrho::TypeID}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!playrho::TypeID@{playrho::TypeID}}
+\doxysubsubsection{\texorpdfstring{operator$>$=}{operator>=}}
+{\footnotesize\ttfamily bool operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classplayrho_1_1TypeID}{Type\+ID}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Greater-\/than-\/or-\/equal operator support via "{}hidden friend"{} function. \begin{DoxyNote}{Note}
+The ordering of type IDs is unspecified. This is provided anyway to support things like associative containers. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Type\+Info.\+hpp\end{DoxyCompactItemize}

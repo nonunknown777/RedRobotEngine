@@ -1,0 +1,82 @@
+\doxysection{playrho\+::Flag\+Guard\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classplayrho_1_1FlagGuard}{}\label{classplayrho_1_1FlagGuard}\index{playrho::FlagGuard$<$ T $>$@{playrho::FlagGuard$<$ T $>$}}
+
+
+Flag guard type.  
+
+
+
+
+{\ttfamily \#include $<$Flag\+Guard.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Flag\+Guard\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{d2/d73/classplayrho_1_1FlagGuard__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classplayrho_1_1FlagGuard_ac104fceea41a9806de0fda376f3d39df}{Flag\+Guard}} (T \&flag, T value)
+\begin{DoxyCompactList}\small\item\em Initializing constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1FlagGuard_aab62ecc09e99a7544135fbb72371f0b2}\label{classplayrho_1_1FlagGuard_aab62ecc09e99a7544135fbb72371f0b2} 
+{\bfseries Flag\+Guard} (const \mbox{\hyperlink{classplayrho_1_1FlagGuard}{Flag\+Guard}}$<$ T $>$ \&value)=delete
+\begin{DoxyCompactList}\small\item\em Copy constructor is deleted. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1FlagGuard_af487c3ee0e823dce4c17ef7e4663f6a3}\label{classplayrho_1_1FlagGuard_af487c3ee0e823dce4c17ef7e4663f6a3} 
+{\bfseries Flag\+Guard} (\mbox{\hyperlink{classplayrho_1_1FlagGuard}{Flag\+Guard}}$<$ T $>$ \&\&value) noexcept=default
+\begin{DoxyCompactList}\small\item\em Move constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1FlagGuard_a5e23d9cb157a824b827067531dc62411}\label{classplayrho_1_1FlagGuard_a5e23d9cb157a824b827067531dc62411} 
+\mbox{\hyperlink{classplayrho_1_1FlagGuard}{Flag\+Guard}}$<$ T $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{classplayrho_1_1FlagGuard}{Flag\+Guard}}$<$ T $>$ \&value)=delete
+\begin{DoxyCompactList}\small\item\em Copy assignment operator is deleted. \end{DoxyCompactList}\item 
+\Hypertarget{classplayrho_1_1FlagGuard_a781ce7a1dfedd99c00239398b8138270}\label{classplayrho_1_1FlagGuard_a781ce7a1dfedd99c00239398b8138270} 
+\mbox{\hyperlink{classplayrho_1_1FlagGuard}{Flag\+Guard}}$<$ T $>$ \& {\bfseries operator=} (\mbox{\hyperlink{classplayrho_1_1FlagGuard}{Flag\+Guard}}$<$ T $>$ \&\&value) noexcept=default
+\begin{DoxyCompactList}\small\item\em Move assignment operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classplayrho_1_1FlagGuard_a1649a18e1024ccbc6e8704b2f381f31e}{\texorpdfstring{$\sim$}{\string~}\+Flag\+Guard}} () noexcept
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class playrho\+::\+Flag\+Guard$<$ T $>$}
+Flag guard type. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classplayrho_1_1FlagGuard_ac104fceea41a9806de0fda376f3d39df}\label{classplayrho_1_1FlagGuard_ac104fceea41a9806de0fda376f3d39df} 
+\index{playrho::FlagGuard$<$ T $>$@{playrho::FlagGuard$<$ T $>$}!FlagGuard@{FlagGuard}}
+\index{FlagGuard@{FlagGuard}!playrho::FlagGuard$<$ T $>$@{playrho::FlagGuard$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{FlagGuard()}{FlagGuard()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classplayrho_1_1FlagGuard}{playrho\+::\+Flag\+Guard}}$<$ T $>$\+::\+Flag\+Guard (\begin{DoxyParamCaption}\item[{T \&}]{flag,  }\item[{T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializing constructor. 
+
+Sets the given flag variable to the bitwise or of it with the given value and then unsets those bits on destruction of this instance. 
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag variable to set until the destruction of this instance. \\
+\hline
+{\em value} & Bit value to or with the flag variable on construction. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classplayrho_1_1FlagGuard_a1649a18e1024ccbc6e8704b2f381f31e}\label{classplayrho_1_1FlagGuard_a1649a18e1024ccbc6e8704b2f381f31e} 
+\index{playrho::FlagGuard$<$ T $>$@{playrho::FlagGuard$<$ T $>$}!````~FlagGuard@{\texorpdfstring{$\sim$}{\string~}FlagGuard}}
+\index{````~FlagGuard@{\texorpdfstring{$\sim$}{\string~}FlagGuard}!playrho::FlagGuard$<$ T $>$@{playrho::FlagGuard$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FlagGuard()}{\string~FlagGuard()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classplayrho_1_1FlagGuard}{playrho\+::\+Flag\+Guard}}$<$ T $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classplayrho_1_1FlagGuard}{Flag\+Guard}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Destructor. 
+
+Unsets the bits that were set on construction. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Flag\+Guard.\+hpp\end{DoxyCompactItemize}

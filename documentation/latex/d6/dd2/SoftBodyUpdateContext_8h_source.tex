@@ -1,0 +1,67 @@
+\doxysection{Soft\+Body\+Update\+Context.\+h}
+\hypertarget{SoftBodyUpdateContext_8h_source}{}\label{SoftBodyUpdateContext_8h_source}\index{includes/jolt/Physics/SoftBody/SoftBodyUpdateContext.h@{includes/jolt/Physics/SoftBody/SoftBodyUpdateContext.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2023\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Body/MotionProperties.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBody}{Body}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSoftBodyMotionProperties}{SoftBodyMotionProperties}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSoftBodyUpdateContext}{SoftBodyUpdateContext}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_af008cc95bb849ed4b84ee656f775ead1}{cVertexCollisionBatch}}\ =\ 64;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a74e1371072e34f9abfa50725f6e677f0}{cEdgeConstraintBatch}}\ =\ 256;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Input}}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classBody}{Body}}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a88b6c3a98493e002dc691f90520ad05b}{mBody}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classSoftBodyMotionProperties}{SoftBodyMotionProperties}}\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a9562dabc569151bf015943cea75f2d12}{mMotionProperties}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a7a6a0aecd66518f1b46cbde25f522c34}{mCenterOfMassTransform}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_aa8cc078898b92ddb1f55822b01ccac66}{mGravity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_ac0b07375d564d77c2ecf16cd4a619896}{mDisplacementDueToGravity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a74ad9a6e4da4c7e81d669d0d2643417d}{mDeltaTime}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a0900465027d74b085a1a3138cb2e84f6}{mSubStepDeltaTime}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5}{EState}}}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5a6985815cf22d36349d3183058c186205}{DetermineCollisionPlanes}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5ab9d2711957f631c71313ff90f81fc1a1}{ApplyEdgeConstraints}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5af92965e2c8a7afb3c1b9a5c09a263636}{Done}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a62a2e9852eb6b92218e7ad08aa099721}{sGetEdgeGroupStart}}(uint32\ inGroup)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ uint64(inGroup)\ <<\ 32;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a4794679402ae8fdc23b8b0e4bba9ac61}{sGetEdgeGroupAndStartIdx}}(uint64\ inNextEdgeConstraint,\ uint32\ \&outGroup,\ uint32\ \&outStartIdx)}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ outGroup\ =\ uint32(inNextEdgeConstraint\ >>\ 32);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ outStartIdx\ =\ uint32(inNextEdgeConstraint);}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ State\ of\ the\ update}}
+\DoxyCodeLine{00053\ \ \ \ \ atomic<EState>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a17a280895e22b255d4938b2504f4a850}{mState}}\ \{\ \mbox{\hyperlink{classSoftBodyUpdateContext_aeef08cf407990a9950c06a5418bd11e5a6985815cf22d36349d3183058c186205}{EState::DetermineCollisionPlanes}}\ \};}
+\DoxyCodeLine{00054\ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a01554dcdf826c0c1e71061939467f389}{mNextCollisionVertex}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a34ccaf27bfe9bd6436fe8b933822d144}{mNumCollisionVerticesProcessed}}\ \{\ 0\ \};\ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a5016ad1e602ce57f0927262ad59ec4ef}{mNextIteration}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ atomic<uint64>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a86b84dd4797de46f8de2e7ab71267f3d}{mNextEdgeConstraint}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ atomic<uint>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a138461f1681bfc86b5e6e4ee96af61a4}{mNumEdgeConstraintsProcessed}}\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Output}}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_a6cce0079d538ff50a6a77688e44116e1}{mDeltaPosition}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ ECanSleep\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoftBodyUpdateContext_af78fae54587cbbc41f185d1c4e477925}{mCanSleep}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

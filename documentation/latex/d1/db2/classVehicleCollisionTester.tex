@@ -1,0 +1,212 @@
+\doxysection{Vehicle\+Collision\+Tester Class Reference}
+\hypertarget{classVehicleCollisionTester}{}\label{classVehicleCollisionTester}\index{VehicleCollisionTester@{VehicleCollisionTester}}
+
+
+Class that does collision detection between wheels and ground.  
+
+
+
+
+{\ttfamily \#include $<$Vehicle\+Collision\+Tester.\+h$>$}
+
+
+
+Inheritance diagram for Vehicle\+Collision\+Tester\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/df7/classVehicleCollisionTester__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Vehicle\+Collision\+Tester\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d5/de5/classVehicleCollisionTester__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVehicleCollisionTester_a69adc68284ed5dae7c4b5a1ca7568aca}\label{classVehicleCollisionTester_a69adc68284ed5dae7c4b5a1ca7568aca} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Vehicle\+Collision\+Tester} ()=default
+\begin{DoxyCompactList}\small\item\em Constructors. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleCollisionTester_a787dc72b49f3d3681d41785b54f9d33f}\label{classVehicleCollisionTester_a787dc72b49f3d3681d41785b54f9d33f} 
+{\bfseries Vehicle\+Collision\+Tester} (Object\+Layer in\+Object\+Layer)
+\item 
+\Hypertarget{classVehicleCollisionTester_a7c6e0505cf0d7741f501a03ac3228bb6}\label{classVehicleCollisionTester_a7c6e0505cf0d7741f501a03ac3228bb6} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Vehicle\+Collision\+Tester} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleCollisionTester_a168d396a1e2431a984b36e83c2affe07}\label{classVehicleCollisionTester_a168d396a1e2431a984b36e83c2affe07} 
+Object\+Layer {\bfseries Get\+Object\+Layer} () const
+\begin{DoxyCompactList}\small\item\em Object layer to use for collision detection, this is used when the filters are not overridden. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleCollisionTester_af09e06e5ebd7ea9311d657f14725dd5e}\label{classVehicleCollisionTester_af09e06e5ebd7ea9311d657f14725dd5e} 
+void {\bfseries Set\+Object\+Layer} (Object\+Layer in\+Object\+Layer)
+\item 
+\Hypertarget{classVehicleCollisionTester_aa70cb825859a651d7693b78a906eee52}\label{classVehicleCollisionTester_aa70cb825859a651d7693b78a906eee52} 
+void {\bfseries Set\+Broad\+Phase\+Layer\+Filter} (const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter)
+\begin{DoxyCompactList}\small\item\em Access to the broad phase layer filter, when set this overrides the object layer supplied in the constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleCollisionTester_aab2fe07b1c74654b925b64409d5a6210}\label{classVehicleCollisionTester_aab2fe07b1c74654b925b64409d5a6210} 
+const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Broad\+Phase\+Layer\+Filter} () const
+\item 
+\Hypertarget{classVehicleCollisionTester_aea6c61dd5cc33e4e27ec5c5a3aa043bc}\label{classVehicleCollisionTester_aea6c61dd5cc33e4e27ec5c5a3aa043bc} 
+void {\bfseries Set\+Object\+Layer\+Filter} (const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter)
+\begin{DoxyCompactList}\small\item\em Access to the object layer filter, when set this overrides the object layer supplied in the constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleCollisionTester_ae02f257dee03c198b8ae2acd26143236}\label{classVehicleCollisionTester_ae02f257dee03c198b8ae2acd26143236} 
+const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Object\+Layer\+Filter} () const
+\item 
+\Hypertarget{classVehicleCollisionTester_a46d45f0e1c06f4c8b08aba185e9279ac}\label{classVehicleCollisionTester_a46d45f0e1c06f4c8b08aba185e9279ac} 
+void {\bfseries Set\+Body\+Filter} (const \mbox{\hyperlink{classBodyFilter}{Body\+Filter}} \texorpdfstring{$\ast$}{*}in\+Filter)
+\begin{DoxyCompactList}\small\item\em Access to the body filter, when set this overrides the default filter that filters out the vehicle body. \end{DoxyCompactList}\item 
+\Hypertarget{classVehicleCollisionTester_a939d34aac9aaf7f481c4959784597605}\label{classVehicleCollisionTester_a939d34aac9aaf7f481c4959784597605} 
+const \mbox{\hyperlink{classBodyFilter}{Body\+Filter}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body\+Filter} () const
+\item 
+virtual bool \mbox{\hyperlink{classVehicleCollisionTester_a2af9d0d5ab81d3321133ec0b408752b7}{Collide}} (\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&in\+Physics\+System, const \mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&in\+Vehicle\+Constraint, uint in\+Wheel\+Index, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Origin, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Vehicle\+Body\+ID, \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}\&out\+Body, \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&out\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{RVec3}} \&out\+Contact\+Position, \mbox{\hyperlink{classVec3}{Vec3}} \&out\+Contact\+Normal, float \&out\+Suspension\+Length) const =0
+\item 
+virtual void \mbox{\hyperlink{classVehicleCollisionTester_a3e8069ca50a846d4984a99314ecc3aa6}{Predict\+Contact\+Properties}} (\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&in\+Physics\+System, const \mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&in\+Vehicle\+Constraint, uint in\+Wheel\+Index, \mbox{\hyperlink{classVec3}{RVec3\+Arg}} in\+Origin, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Vehicle\+Body\+ID, \mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}\&io\+Body, \mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&io\+Sub\+Shape\+ID, \mbox{\hyperlink{classVec3}{RVec3}} \&io\+Contact\+Position, \mbox{\hyperlink{classVec3}{Vec3}} \&io\+Contact\+Normal, float \&io\+Suspension\+Length) const =0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Collision\+Tester $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classVehicleCollisionTester_a4b2a65db4174dffb7dc46ee44f7b6ab0}\label{classVehicleCollisionTester_a4b2a65db4174dffb7dc46ee44f7b6ab0} 
+const \mbox{\hyperlink{classBroadPhaseLayerFilter}{Broad\+Phase\+Layer\+Filter}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Broad\+Phase\+Layer\+Filter} = nullptr
+\item 
+\Hypertarget{classVehicleCollisionTester_a1fbc50043ae7ae56b6cd96a4e0d82a32}\label{classVehicleCollisionTester_a1fbc50043ae7ae56b6cd96a4e0d82a32} 
+const \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Object\+Layer\+Filter} = nullptr
+\item 
+\Hypertarget{classVehicleCollisionTester_a53aceef23d5a984d0d1bdc05ecd83844}\label{classVehicleCollisionTester_a53aceef23d5a984d0d1bdc05ecd83844} 
+const \mbox{\hyperlink{classBodyFilter}{Body\+Filter}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body\+Filter} = nullptr
+\item 
+\Hypertarget{classVehicleCollisionTester_a2c9666896a28a8aa899171dfb1bf4a4e}\label{classVehicleCollisionTester_a2c9666896a28a8aa899171dfb1bf4a4e} 
+Object\+Layer {\bfseries m\+Object\+Layer} = c\+Object\+Layer\+Invalid
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Collision\+Tester $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Collision\+Tester $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Vehicle\+Collision\+Tester $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that does collision detection between wheels and ground. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVehicleCollisionTester_a2af9d0d5ab81d3321133ec0b408752b7}\label{classVehicleCollisionTester_a2af9d0d5ab81d3321133ec0b408752b7} 
+\index{VehicleCollisionTester@{VehicleCollisionTester}!Collide@{Collide}}
+\index{Collide@{Collide}!VehicleCollisionTester@{VehicleCollisionTester}}
+\doxysubsubsection{\texorpdfstring{Collide()}{Collide()}}
+{\footnotesize\ttfamily virtual bool Vehicle\+Collision\+Tester\+::\+Collide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&}]{in\+Physics\+System,  }\item[{const \mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&}]{in\+Vehicle\+Constraint,  }\item[{uint}]{in\+Wheel\+Index,  }\item[{\mbox{\hyperlink{classVec3}{RVec3\+Arg}}}]{in\+Origin,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Direction,  }\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Vehicle\+Body\+ID,  }\item[{\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}\&}]{out\+Body,  }\item[{\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{out\+Sub\+Shape\+ID,  }\item[{\mbox{\hyperlink{classVec3}{RVec3}} \&}]{out\+Contact\+Position,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{out\+Contact\+Normal,  }\item[{float \&}]{out\+Suspension\+Length }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Do a collision test with the world 
+\begin{DoxyParams}{Parameters}
+{\em in\+Physics\+System} & The physics system that should be tested against \\
+\hline
+{\em in\+Vehicle\+Constraint} & The vehicle constraint \\
+\hline
+{\em in\+Wheel\+Index} & Index of the wheel that we\textquotesingle{}re testing collision for \\
+\hline
+{\em in\+Origin} & Origin for the test, corresponds to the world space position for the suspension attachment point \\
+\hline
+{\em in\+Direction} & Direction for the test (unit vector, world space) \\
+\hline
+{\em in\+Vehicle\+Body\+ID} & This body should be filtered out during collision detection to avoid self collisions \\
+\hline
+{\em out\+Body} & \doxylink{classBody}{Body} that the wheel collided with \\
+\hline
+{\em out\+Sub\+Shape\+ID} & Sub shape ID that the wheel collided with \\
+\hline
+{\em out\+Contact\+Position} & Contact point between wheel and floor, in world space \\
+\hline
+{\em out\+Contact\+Normal} & Contact normal between wheel and floor, pointing away from the floor \\
+\hline
+{\em out\+Suspension\+Length} & New length of the suspension \mbox{[}0, in\+Suspension\+Max\+Length\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True when collision found, false if not 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classVehicleCollisionTesterRay_ae84704a052b56317a95af888d127aea1}{Vehicle\+Collision\+Tester\+Ray}}, \mbox{\hyperlink{classVehicleCollisionTesterCastSphere_a8ad09f12d061e33e36f5b22162638fa4}{Vehicle\+Collision\+Tester\+Cast\+Sphere}}, and \mbox{\hyperlink{classVehicleCollisionTesterCastCylinder_adcff065257d33b712be0a24ab0d246c5}{Vehicle\+Collision\+Tester\+Cast\+Cylinder}}.
+
+\Hypertarget{classVehicleCollisionTester_a3e8069ca50a846d4984a99314ecc3aa6}\label{classVehicleCollisionTester_a3e8069ca50a846d4984a99314ecc3aa6} 
+\index{VehicleCollisionTester@{VehicleCollisionTester}!PredictContactProperties@{PredictContactProperties}}
+\index{PredictContactProperties@{PredictContactProperties}!VehicleCollisionTester@{VehicleCollisionTester}}
+\doxysubsubsection{\texorpdfstring{PredictContactProperties()}{PredictContactProperties()}}
+{\footnotesize\ttfamily virtual void Vehicle\+Collision\+Tester\+::\+Predict\+Contact\+Properties (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPhysicsSystem}{Physics\+System}} \&}]{in\+Physics\+System,  }\item[{const \mbox{\hyperlink{classVehicleConstraint}{Vehicle\+Constraint}} \&}]{in\+Vehicle\+Constraint,  }\item[{uint}]{in\+Wheel\+Index,  }\item[{\mbox{\hyperlink{classVec3}{RVec3\+Arg}}}]{in\+Origin,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Direction,  }\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Vehicle\+Body\+ID,  }\item[{\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*}\&}]{io\+Body,  }\item[{\mbox{\hyperlink{classSubShapeID}{Sub\+Shape\+ID}} \&}]{io\+Sub\+Shape\+ID,  }\item[{\mbox{\hyperlink{classVec3}{RVec3}} \&}]{io\+Contact\+Position,  }\item[{\mbox{\hyperlink{classVec3}{Vec3}} \&}]{io\+Contact\+Normal,  }\item[{float \&}]{io\+Suspension\+Length }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Do a cheap contact properties prediction based on the contact properties from the last collision test (provided as input parameters) 
+\begin{DoxyParams}{Parameters}
+{\em in\+Physics\+System} & The physics system that should be tested against \\
+\hline
+{\em in\+Vehicle\+Constraint} & The vehicle constraint \\
+\hline
+{\em in\+Wheel\+Index} & Index of the wheel that we\textquotesingle{}re testing collision for \\
+\hline
+{\em in\+Origin} & Origin for the test, corresponds to the world space position for the suspension attachment point \\
+\hline
+{\em in\+Direction} & Direction for the test (unit vector, world space) \\
+\hline
+{\em in\+Vehicle\+Body\+ID} & The body ID for the vehicle itself \\
+\hline
+{\em io\+Body} & \doxylink{classBody}{Body} that the wheel previously collided with \\
+\hline
+{\em io\+Sub\+Shape\+ID} & Sub shape ID that the wheel collided with during the last check \\
+\hline
+{\em io\+Contact\+Position} & Contact point between wheel and floor during the last check, in world space \\
+\hline
+{\em io\+Contact\+Normal} & Contact normal between wheel and floor during the last check, pointing away from the floor \\
+\hline
+{\em io\+Suspension\+Length} & New length of the suspension \mbox{[}0, in\+Suspension\+Max\+Length\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classVehicleCollisionTesterRay_a684c172d339c8ab5edaca602a5973c4a}{Vehicle\+Collision\+Tester\+Ray}}, \mbox{\hyperlink{classVehicleCollisionTesterCastSphere_ad5b4828b6f7519c4d8fa874c16357c54}{Vehicle\+Collision\+Tester\+Cast\+Sphere}}, and \mbox{\hyperlink{classVehicleCollisionTesterCastCylinder_ae8e5fd7df02403d282326c04b891ae55}{Vehicle\+Collision\+Tester\+Cast\+Cylinder}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Vehicle/Vehicle\+Collision\+Tester.\+h\end{DoxyCompactItemize}

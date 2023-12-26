@@ -1,0 +1,9 @@
+<map id="TempAllocator" name="TempAllocator">
+<area shape="rect" id="Node000001" title=" " alt="" coords="112,165,252,277"/>
+<area shape="rect" id="Node000003" href="$df/d64/classTempAllocatorImpl.html" title="Default implementation of the temp allocator that allocates a large block through malloc upfront." alt="" coords="5,325,175,480"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,292,131,327,127,324,145,290"/>
+<area shape="rect" id="Node000004" href="$dc/de7/classTempAllocatorMalloc.html" title=" " alt="" coords="199,357,349,448"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="219,289,254,357,249,359,214,292"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="121,5,243,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,133,185,166,179,166,179,133"/>
+</map>

@@ -1,0 +1,110 @@
+\doxysection{Skeletal\+Animation Class Reference}
+\hypertarget{classSkeletalAnimation}{}\label{classSkeletalAnimation}\index{SkeletalAnimation@{SkeletalAnimation}}
+
+
+\doxylink{classResource}{Resource} for a skinned animation.  
+
+
+
+
+{\ttfamily \#include $<$Skeletal\+Animation.\+h$>$}
+
+
+
+Inheritance diagram for Skeletal\+Animation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{d3/dba/classSkeletalAnimation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Skeletal\+Animation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{d1/d5a/classSkeletalAnimation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classSkeletalAnimation_1_1AnimatedJoint}{Animated\+Joint}}
+\begin{DoxyCompactList}\small\item\em Contains the animation for a single joint. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classSkeletalAnimation_1_1JointState}{Joint\+State}}
+\begin{DoxyCompactList}\small\item\em Constains the current state of a joint, a local space transformation relative to its parent joint. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classSkeletalAnimation_1_1Keyframe}{Keyframe}}
+\begin{DoxyCompactList}\small\item\em Contains the state of a single joint at a particular time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSkeletalAnimation_ae9603ef068dbb1fde3b1dde64fe232cc}\label{classSkeletalAnimation_ae9603ef068dbb1fde3b1dde64fe232cc} 
+using {\bfseries Keyframe\+Vector} = Array$<$ \mbox{\hyperlink{classSkeletalAnimation_1_1Keyframe}{Keyframe}} $>$
+\item 
+\Hypertarget{classSkeletalAnimation_afcf962a25906787e317084b81e4d4435}\label{classSkeletalAnimation_afcf962a25906787e317084b81e4d4435} 
+using {\bfseries Animated\+Joint\+Vector} = Array$<$ \mbox{\hyperlink{classSkeletalAnimation_1_1AnimatedJoint}{Animated\+Joint}} $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSkeletalAnimation_abfab43ab605ec8a52b89adc38e1e092d}\label{classSkeletalAnimation_abfab43ab605ec8a52b89adc38e1e092d} 
+float {\bfseries Get\+Duration} () const
+\begin{DoxyCompactList}\small\item\em Get the length (in seconds) of this animation. \end{DoxyCompactList}\item 
+\Hypertarget{classSkeletalAnimation_a2af19e78e177662f1f8c3c3e5924d55e}\label{classSkeletalAnimation_a2af19e78e177662f1f8c3c3e5924d55e} 
+void {\bfseries Scale\+Joints} (float in\+Scale)
+\begin{DoxyCompactList}\small\item\em Scale the size of all joints by in\+Scale. \end{DoxyCompactList}\item 
+\Hypertarget{classSkeletalAnimation_a1cc26e80f2a36deac4cbe3ecee10299b}\label{classSkeletalAnimation_a1cc26e80f2a36deac4cbe3ecee10299b} 
+void {\bfseries Sample} (float in\+Time, \mbox{\hyperlink{classSkeletonPose}{Skeleton\+Pose}} \&io\+Pose) const
+\begin{DoxyCompactList}\small\item\em Get the (interpolated) joint transforms at time in\+Time. \end{DoxyCompactList}\item 
+\Hypertarget{classSkeletalAnimation_a97437c1bae4626bb0c1e289db73dd712}\label{classSkeletalAnimation_a97437c1bae4626bb0c1e289db73dd712} 
+const Animated\+Joint\+Vector \& {\bfseries Get\+Animated\+Joints} () const
+\begin{DoxyCompactList}\small\item\em Get joint samples. \end{DoxyCompactList}\item 
+\Hypertarget{classSkeletalAnimation_a364b26f699464be275b70b5cf9f4f76c}\label{classSkeletalAnimation_a364b26f699464be275b70b5cf9f4f76c} 
+Animated\+Joint\+Vector \& {\bfseries Get\+Animated\+Joints} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Skeletal\+Animation $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Skeletal\+Animation $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Skeletal\+Animation $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Skeletal\+Animation $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classResource}{Resource} for a skinned animation. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Skeleton/Skeletal\+Animation.\+h\end{DoxyCompactItemize}

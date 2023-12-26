@@ -1,0 +1,5 @@
+<map id="TriangleSplitter" name="TriangleSplitter">
+<area shape="rect" id="Node000001" title="A class that splits a triangle list into two parts for building a tree." alt="" coords="5,165,157,448"/>
+<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="20,5,143,117"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,132,84,165,79,165,79,132"/>
+</map>

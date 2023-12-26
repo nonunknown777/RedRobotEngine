@@ -1,0 +1,25 @@
+\chapter{Play\+Rho API Documentation}
+\hypertarget{index}{}\label{index}\index{PlayRho API Documentation@{PlayRho API Documentation}}
+\hypertarget{index_intro_sec}{}\doxysection{\texorpdfstring{Overview}{Overview}}\label{index_intro_sec}
+Hello and welcome to Play\+Rho\textquotesingle{}s API documentation!
+
+Play\+Rho is an interactive, real-\/time oriented, C++ based, physics engine and library currently best suited for 2-\/dimensional games. To view its source code, please see\+: \href{https://github.com/louis-langholtz/PlayRho}{\texttt{ https\+://github.\+com/louis-\/langholtz/\+Play\+Rho}}. For issues, visit\+: \href{https://github.com/louis-langholtz/PlayRho/issues}{\texttt{ https\+://github.\+com/louis-\/langholtz/\+Play\+Rho/issues}}. For mathematical insight into how a physics engine works, see\+: \href{http://box2d.org/files/GDC2009/GDC2009_Catto_Erin_Solver.ppt}{\texttt{ Erin Catto\textquotesingle{}s 2009 Modeling and Solving Constraints slides}}.\hypertarget{index_coding_sec}{}\doxysection{\texorpdfstring{Getting Started}{Getting Started}}\label{index_coding_sec}
+For coding, purists may want to begin by just including the {\ttfamily World.\+hpp} header file and making an instance of the \href{classplayrho_1_1d2_1_1World.html}{\texttt{ {\ttfamily playrho\+::d2\+::\+World}}} class. Here\textquotesingle{}s what this might look like\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <PlayRho/Dynamics/World.hpp>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{auto}\ world\ =\ playrho::d2::World\{\};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ body\ =\ world.CreateBody();}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ do\ more\ things\ with\ the\ world\ instance\ and\ body\ identifier.}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ world\ and\ associated\ resources\ go\ away\ automatically}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ Pragmatists may instead want to begin by including this file, {\ttfamily \doxylink{PlayRho_8hpp_source}{Play\+Rho.\+hpp}}, which includes headers for most of the entire Play\+Rho public API.\hypertarget{index_helloworld_sec}{}\doxysection{\texorpdfstring{An Entire Application}{An Entire Application}}\label{index_helloworld_sec}
+For a more elaborate example, that\textquotesingle{}s of an entire application, see \href{HelloWorld_8cpp-example.html}{\texttt{ {\ttfamily Hello\+World.\+cpp}}}.
+
+\begin{DoxySeeAlso}{See also}
+playrho\+::d2\+::\+World, Physical\+Entities 
+\end{DoxySeeAlso}

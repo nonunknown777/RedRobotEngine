@@ -1,0 +1,112 @@
+\doxysection{Sub\+Shape\+ID.\+h}
+\hypertarget{SubShapeID_8h_source}{}\label{SubShapeID_8h_source}\index{includes/jolt/Physics/Collision/Shape/SubShapeID.h@{includes/jolt/Physics/Collision/Shape/SubShapeID.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSubShapeID}{SubShapeID}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ =\ uint32;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classSubShapeID_af668479f6a45736649f0881db72637a7}{BiggerType}}\ =\ uint64;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classSubShapeID_af668479f6a45736649f0881db72637a7}{BiggerType}})\ >\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}),\ \textcolor{stringliteral}{"{}The\ calculation\ below\ assumes\ BiggerType\ is\ a\ bigger\ type\ than\ Type"{}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \mbox{\hyperlink{classSubShapeID_a74d6785fe41b99c0d783fb6e66c39f4d}{MaxBits}}\ =\ 8\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_af367dd3acaba3f507a19ba0d27abd299}{SubShapeID}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a8f78ff809c7af2dfbd2e61ba2314ca9d}{PopID}}(uint\ inBits,\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&outRemainder)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ mask\_bits\ =\ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}((\mbox{\hyperlink{classSubShapeID_af668479f6a45736649f0881db72637a7}{BiggerType}}(1)\ <<\ inBits)\ -\/\ 1);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ fill\_bits\ =\ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}(\mbox{\hyperlink{classSubShapeID_af668479f6a45736649f0881db72637a7}{BiggerType}}(cEmpty)\ <<\ (\mbox{\hyperlink{classSubShapeID_a74d6785fe41b99c0d783fb6e66c39f4d}{MaxBits}}\ -\/\ inBits));\ \textcolor{comment}{//\ Fill\ left\ side\ bits\ with\ 1\ so\ that\ if\ there's\ no\ remainder\ all\ bits\ will\ be\ set,\ note\ that\ we\ do\ this\ using\ a\ BiggerType\ since\ on\ intel\ 0xffffffff\ <<\ 32\ ==\ 0xffffffff}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ v\ =\ mValue\ \&\ mask\_bits;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ outRemainder\ =\ \mbox{\hyperlink{classSubShapeID_af367dd3acaba3f507a19ba0d27abd299}{SubShapeID}}(\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}(\mbox{\hyperlink{classSubShapeID_af668479f6a45736649f0881db72637a7}{BiggerType}}(mValue)\ >>\ inBits)\ |\ fill\_bits);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a93de7475867625a7b2dc053d2af57c2b}{GetValue}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mValue;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a1a908b7e19b2d792793830b751a66a27}{SetValue}}(\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ inValue)}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ mValue\ =\ inValue;}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a353cb40946046c09d50b31d73c122729}{IsEmpty}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mValue\ ==\ cEmpty;}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a08bb5c298b21da17f8ff31502f5f90d7}{operator\ ==\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mValue\ ==\ inRHS.mValue;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a139169c43883bdc72791c61a4c40f30d}{operator\ !=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inRHS)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mValue\ !=\ inRHS.mValue;}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ cEmpty\ =\ \string~Type(0);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeID_af367dd3acaba3f507a19ba0d27abd299}{SubShapeID}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ \&inValue)\ :\ mValue(inValue)\ \{\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PushID(\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ inValue,\ uint\ inFirstBit,\ uint\ inBits)}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ clear\ the\ bits}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ mValue\ \&=\ \string~(\mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}((\mbox{\hyperlink{classSubShapeID_af668479f6a45736649f0881db72637a7}{BiggerType}}(1)\ <<\ inBits)\ -\/\ 1)\ <<\ inFirstBit);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then\ set\ them\ to\ the\ new\ value}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ mValue\ |=\ inValue\ <<\ inFirstBit;}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classSubShapeID_a242b350b7f76646203b8f71879e260b3}{Type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mValue\ =\ cEmpty;}
+\DoxyCodeLine{00103\ \};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \ \mbox{\hyperlink{classSubShapeIDCreator_a29997885833b2c9625bcbcba4548273d}{PushID}}(uint\ inValue,\ uint\ inBits)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inValue\ <\ (\mbox{\hyperlink{classSubShapeID_af668479f6a45736649f0881db72637a7}{SubShapeID::BiggerType}}(1)\ <<\ inBits));}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ copy\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ copy.mID.PushID(inValue,\ mCurrentBit,\ inBits);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ copy.mCurrentBit\ +=\ inBits;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ JPH\_ASSERT(copy.mCurrentBit\ <=\ \mbox{\hyperlink{classSubShapeID_a74d6785fe41b99c0d783fb6e66c39f4d}{SubShapeID::MaxBits}});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ copy;}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ resulting\ sub\ shape\ ID}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&\ \ \ \ GetID()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mID;}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{inline}\ uint\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSubShapeIDCreator_a788289a4af585ce7f0bc7416d6b5d93c}{GetNumBitsWritten}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCurrentBit;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \ \ \ \ \ \ \ \ \ \ \ mID;}
+\DoxyCodeLine{00135\ \ \ \ \ uint\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCurrentBit\ =\ 0;}
+\DoxyCodeLine{00136\ \};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

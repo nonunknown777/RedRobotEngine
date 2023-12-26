@@ -1,0 +1,68 @@
+\doxysection{RShape\+Cast Struct Reference}
+\hypertarget{structRShapeCast}{}\label{structRShapeCast}\index{RShapeCast@{RShapeCast}}
+
+
+Inheritance diagram for RShape\+Cast\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{dd/dd4/structRShapeCast__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for RShape\+Cast\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dd/d4c/structRShapeCast__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structRShapeCast_a006aae5be875eba47b5bdd3778e36e2f}\label{structRShapeCast_a006aae5be875eba47b5bdd3778e36e2f} 
+{\bfseries RShape\+Cast} (const \mbox{\hyperlink{structShapeCast}{Shape\+Cast}} \&in\+Cast)
+\begin{DoxyCompactList}\small\item\em Convert from \doxylink{structShapeCast}{Shape\+Cast}, converts single to double precision. \end{DoxyCompactList}\item 
+\Hypertarget{structRShapeCast_a991ebdb11b9ea565ddf0d3ad68bcdfaa}\label{structRShapeCast_a991ebdb11b9ea565ddf0d3ad68bcdfaa} 
+{\bfseries operator Shape\+Cast} () const
+\begin{DoxyCompactList}\small\item\em Convert to \doxylink{structShapeCast}{Shape\+Cast}, which implies casting from double precision to single precision. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structShapeCastT}{Shape\+Cast\+T$<$ RVec3, RMat44, RShape\+Cast $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Shape\+CastT} (const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, typename Mat\+::\+Arg\+Type in\+Center\+Of\+Mass\+Start, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction, const \mbox{\hyperlink{classAABox}{AABox}} \&in\+World\+Space\+Bounds)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Shape\+CastT} (const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, typename Mat\+::\+Arg\+Type in\+Center\+Of\+Mass\+Start, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRShapeCast}{RShape\+Cast}} {\bfseries Post\+Transformed} (typename Mat\+::\+Arg\+Type in\+Transform) const
+\begin{DoxyCompactList}\small\item\em \doxylink{structTransform}{Transform} this shape cast using in\+Transform. Multiply transform on the left left hand side. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRShapeCast}{RShape\+Cast}} {\bfseries Post\+Translated} (typename Vec\+::\+Arg\+Type in\+Translation) const
+\begin{DoxyCompactList}\small\item\em Translate this shape cast by in\+Translation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVec3}{RVec3}} {\bfseries Get\+Point\+On\+Ray} (float in\+Fraction) const
+\begin{DoxyCompactList}\small\item\em Get point with fraction in\+Fraction on ray from m\+Center\+Of\+Mass\+Start to m\+Center\+Of\+Mass\+Start + m\+Direction (0 = start of ray, 1 = end of ray) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{structShapeCastT}{Shape\+Cast\+T$<$ RVec3, RMat44, RShape\+Cast $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structRShapeCast}{RShape\+Cast}} {\bfseries s\+From\+World\+Transform} (const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*}in\+Shape, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, typename Mat\+::\+Arg\+Type in\+World\+Transform, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Direction)
+\begin{DoxyCompactList}\small\item\em Construct a shape cast using a world transform for a shape instead of a center of mass transform. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structShapeCastT}{Shape\+Cast\+T$<$ RVec3, RMat44, RShape\+Cast $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classShape}{Shape}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Shape}
+\begin{DoxyCompactList}\small\item\em \doxylink{classShape}{Shape} that\textquotesingle{}s being cast (cannot be mesh shape). Note that this structure does not assume ownership over the shape for performance reasons. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Scale}
+\begin{DoxyCompactList}\small\item\em Scale in local space of the shape being cast. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classMat44}{RMat44}} {\bfseries m\+Center\+Of\+Mass\+Start}
+\begin{DoxyCompactList}\small\item\em Start position and orientation of the center of mass of the shape (construct using s\+From\+World\+Transform if you have a world transform for your shape) \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Direction}
+\begin{DoxyCompactList}\small\item\em Direction and length of the cast (anything beyond this length will not be reported as a hit) \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classAABox}{AABox}} {\bfseries m\+Shape\+World\+Bounds}
+\begin{DoxyCompactList}\small\item\em Cached shape\textquotesingle{}s world bounds, calculated in constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Shape\+Cast.\+h\end{DoxyCompactItemize}

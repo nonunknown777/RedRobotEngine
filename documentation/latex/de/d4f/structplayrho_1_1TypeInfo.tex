@@ -1,0 +1,63 @@
+\doxysection{playrho\+::Type\+Info\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structplayrho_1_1TypeInfo}{}\label{structplayrho_1_1TypeInfo}\index{playrho::TypeInfo$<$ T $>$@{playrho::TypeInfo$<$ T $>$}}
+
+
+Type information.  
+
+
+
+
+{\ttfamily \#include $<$Type\+Info.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Type\+Info\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d3/de6/structplayrho_1_1TypeInfo__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*}const \mbox{\hyperlink{structplayrho_1_1TypeInfo_a8b2fb3a860bc5cb91dba839bacb4d055}{name}} = \mbox{\hyperlink{namespaceplayrho_1_1detail_af0173373df31445699ddc2c7fcfa3c41}{detail\+::\+Get\+Name\+For\+Type\+Info}}$<$T$>$()
+\begin{DoxyCompactList}\small\item\em The name of the templated type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct playrho\+::\+Type\+Info$<$ T $>$}
+Type information. 
+
+\begin{DoxyNote}{Note}
+Users may specialize this to provide an alternative name for a type so long as the provided name is still non-\/empty and unique for the application otherwise behavior is undefined. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structplayrho_1_1TypeInfo_a8b2fb3a860bc5cb91dba839bacb4d055}\label{structplayrho_1_1TypeInfo_a8b2fb3a860bc5cb91dba839bacb4d055} 
+\index{playrho::TypeInfo$<$ T $>$@{playrho::TypeInfo$<$ T $>$}!name@{name}}
+\index{name@{name}!playrho::TypeInfo$<$ T $>$@{playrho::TypeInfo$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const char\texorpdfstring{$\ast$}{*} const \mbox{\hyperlink{structplayrho_1_1TypeInfo}{playrho\+::\+Type\+Info}}$<$ T $>$\+::name = \mbox{\hyperlink{namespaceplayrho_1_1detail_af0173373df31445699ddc2c7fcfa3c41}{detail\+::\+Get\+Name\+For\+Type\+Info}}$<$T$>$()\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The name of the templated type. 
+
+\begin{DoxyNote}{Note}
+This is also a static member providing a unique ID, via its address, for the type T without resorting to using C++ run-\/time type information (\doxylink{classRTTI}{RTTI}). 
+
+Setting this to a null-\/terminated byte string that\textquotesingle{}s unique to at least the template\textquotesingle{}s type {\ttfamily T} prevents issue \#370. Credit for this technique goes to Li Jin (github user pigpigyyy). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://github.com/louis-langholtz/PlayRho/issues/370}{\texttt{ https\+://github.\+com/louis-\/langholtz/\+Play\+Rho/issues/370}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Type\+Info.\+hpp\end{DoxyCompactItemize}

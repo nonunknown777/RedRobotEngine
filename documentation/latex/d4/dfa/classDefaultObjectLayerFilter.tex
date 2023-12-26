@@ -1,0 +1,79 @@
+\doxysection{Default\+Object\+Layer\+Filter Class Reference}
+\hypertarget{classDefaultObjectLayerFilter}{}\label{classDefaultObjectLayerFilter}\index{DefaultObjectLayerFilter@{DefaultObjectLayerFilter}}
+
+
+Default filter class that uses the pair filter in combination with a specified layer to filter layers.  
+
+
+
+
+{\ttfamily \#include $<$Object\+Layer.\+h$>$}
+
+
+
+Inheritance diagram for Default\+Object\+Layer\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{d4/d70/classDefaultObjectLayerFilter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Default\+Object\+Layer\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{d5/d9b/classDefaultObjectLayerFilter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDefaultObjectLayerFilter_aadd5a15cd5f3f980b89a95a843155a51}\label{classDefaultObjectLayerFilter_aadd5a15cd5f3f980b89a95a843155a51} 
+{\bfseries Default\+Object\+Layer\+Filter} (const \mbox{\hyperlink{classObjectLayerPairFilter}{Object\+Layer\+Pair\+Filter}} \&in\+Object\+Layer\+Pair\+Filter, Object\+Layer in\+Layer)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classDefaultObjectLayerFilter_abeeea7ecb8636d9c103ed66cf016fcbd}\label{classDefaultObjectLayerFilter_abeeea7ecb8636d9c103ed66cf016fcbd} 
+{\bfseries Default\+Object\+Layer\+Filter} (const \mbox{\hyperlink{classDefaultObjectLayerFilter}{Default\+Object\+Layer\+Filter}} \&in\+RHS)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classDefaultObjectLayerFilter_a454d7b668f25a6301eba8a0a17276b79}{Should\+Collide}} (Object\+Layer in\+Layer) const override
+\begin{DoxyCompactList}\small\item\em Function to filter out object layers when doing collision query test (return true to allow testing against objects with this layer) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classObjectLayerFilter}{Object\+Layer\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Object\+Layer\+Filter} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Default filter class that uses the pair filter in combination with a specified layer to filter layers. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDefaultObjectLayerFilter_a454d7b668f25a6301eba8a0a17276b79}\label{classDefaultObjectLayerFilter_a454d7b668f25a6301eba8a0a17276b79} 
+\index{DefaultObjectLayerFilter@{DefaultObjectLayerFilter}!ShouldCollide@{ShouldCollide}}
+\index{ShouldCollide@{ShouldCollide}!DefaultObjectLayerFilter@{DefaultObjectLayerFilter}}
+\doxysubsubsection{\texorpdfstring{ShouldCollide()}{ShouldCollide()}}
+{\footnotesize\ttfamily virtual bool Default\+Object\+Layer\+Filter\+::\+Should\+Collide (\begin{DoxyParamCaption}\item[{Object\+Layer}]{in\+Layer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Function to filter out object layers when doing collision query test (return true to allow testing against objects with this layer) 
+
+
+
+Reimplemented from \mbox{\hyperlink{classObjectLayerFilter_aa5d1889ba4f6adf8f7f4c46e57cd166b}{Object\+Layer\+Filter}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/Object\+Layer.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="DebugRenderer::Geometry" name="DebugRenderer::Geometry">
+<area shape="rect" id="Node000001" title="A geometry primitive containing triangle batches for various lods." alt="" coords="19,315,206,427"/>
+<area shape="rect" id="Node000002" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,5,220,267"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,282,115,315,110,315,110,282"/>
+</map>

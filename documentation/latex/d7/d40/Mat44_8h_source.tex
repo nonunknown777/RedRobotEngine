@@ -1,0 +1,182 @@
+\doxysection{Mat44.\+h}
+\hypertarget{Mat44_8h_source}{}\label{Mat44_8h_source}\index{includes/jolt/Math/Mat44.h@{includes/jolt/Math/Mat44.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Math/MathTypes.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }[[nodiscard]]\ alignas(JPH\_VECTOR\_ALIGNMENT)\ \mbox{\hyperlink{classMat44}{Mat44}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Underlying\ column\ type}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{using\ }Type\ =\ Vec4::Type;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Argument\ type}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classMat44}{ArgType}}\ =\ \mbox{\hyperlink{classMat44}{Mat44Arg}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}()\ =\ \textcolor{keywordflow}{default};\ }
+\DoxyCodeLine{00025\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC1,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC2,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC3,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC4);}
+\DoxyCodeLine{00026\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC1,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC2,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC3,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inC4);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \&inM2)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \&inM2)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00029\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}(Type\ inC1,\ Type\ inC2,\ Type\ inC3,\ Type\ inC4);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sZero();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sIdentity();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sNaN();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sLoadFloat4x4(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat4}{Float4}}\ *inV);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sLoadFloat4x4Aligned(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat4}{Float4}}\ *inV);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sRotationX(\textcolor{keywordtype}{float}\ inX);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sRotationY(\textcolor{keywordtype}{float}\ inY);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sRotationZ(\textcolor{keywordtype}{float}\ inZ);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sRotation(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAxis,\ \textcolor{keywordtype}{float}\ inAngle);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sRotation(\mbox{\hyperlink{classQuat}{QuatArg}}\ inQuat);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sTranslation(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sRotationTranslation(\mbox{\hyperlink{classQuat}{QuatArg}}\ inR,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inT);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sInverseRotationTranslation(\mbox{\hyperlink{classQuat}{QuatArg}}\ inR,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inT);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sScale(\textcolor{keywordtype}{float}\ inScale);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sScale(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sOuterProduct(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sCrossProduct(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sQuatLeftMultiply(\mbox{\hyperlink{classQuat}{QuatArg}}\ inQ);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sQuatRightMultiply(\mbox{\hyperlink{classQuat}{QuatArg}}\ inQ);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ sLookAt(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPos,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTarget,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inUp);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ operator\ ()\ (uint\ inRow,\ uint\ inColumn)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(inRow\ <\ 4);\ JPH\_ASSERT(inColumn\ <\ 4);\ \textcolor{keywordflow}{return}\ mCol[inColumn].mF32[inRow];\ \}}
+\DoxyCodeLine{00092\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{float}\ \&\ \ \ \ \ \ \ \ \ \ operator\ ()\ (uint\ inRow,\ uint\ inColumn)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inRow\ <\ 4);\ JPH\_ASSERT(inColumn\ <\ 4);\ \textcolor{keywordflow}{return}\ mCol[inColumn].mF32[inRow];\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ ==\ (\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ !=\ (\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM2)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ inM2);\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ IsClose(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM2,\ \textcolor{keywordtype}{float}\ inMaxDistSq\ =\ 1.0e-\/12f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00105\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00106\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ Multiply3x3(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00112\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ Multiply3x3Transposed(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Multiply3x3(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00118\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Multiply3x3LeftTransposed(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00121\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Multiply3x3RightTransposed(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00124\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\textcolor{keywordtype}{float}\ inV)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{friend}\ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ operator\ *\ (\textcolor{keywordtype}{float}\ inV,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ inM\ *\ inV;\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \&\ \ \ \ \ \ \ \ \ operator\ *=\ (\textcolor{keywordtype}{float}\ inV);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00131\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ operator\ +\ (\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00134\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ operator\ -\/\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ operator\ -\/\ (\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00140\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \&\ \ \ \ \ \ \ \ \ operator\ +=\ (\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44_aa71942f9a684cf2e0e55f8c9ba8f5b99}{GetAxisX}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mCol[0]);\ \}}
+\DoxyCodeLine{00144\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetAxisX(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mCol[0]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(inV,\ 0.0f);\ \}}
+\DoxyCodeLine{00145\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ GetAxisY()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mCol[1]);\ \}}
+\DoxyCodeLine{00146\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetAxisY(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mCol[1]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(inV,\ 0.0f);\ \}}
+\DoxyCodeLine{00147\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ GetAxisZ()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mCol[2]);\ \}}
+\DoxyCodeLine{00148\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetAxisZ(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mCol[2]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(inV,\ 0.0f);\ \}}
+\DoxyCodeLine{00149\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ GetTranslation()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mCol[3]);\ \}}
+\DoxyCodeLine{00150\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetTranslation(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mCol[3]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(inV,\ 1.0f);\ \}}
+\DoxyCodeLine{00151\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ GetDiagonal3()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mCol[0][0],\ mCol[1][1],\ mCol[2][2]);\ \}}
+\DoxyCodeLine{00152\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetDiagonal3(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mCol[0][0]\ =\ inV.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}();\ mCol[1][1]\ =\ inV.GetY();\ mCol[2][2]\ =\ inV.GetZ();\ \}}
+\DoxyCodeLine{00153\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ GetDiagonal4()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec4}{Vec4}}(mCol[0][0],\ mCol[1][1],\ mCol[2][2],\ mCol[3][3]);\ \}}
+\DoxyCodeLine{00154\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetDiagonal4(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ mCol[0][0]\ =\ inV.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();\ mCol[1][1]\ =\ inV.GetY();\ mCol[2][2]\ =\ inV.GetZ();\ mCol[3][3]\ =\ inV.GetW();\ \}}
+\DoxyCodeLine{00155\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ GetColumn3(uint\ inCol)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(inCol\ <\ 4);\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(mCol[inCol]);\ \}}
+\DoxyCodeLine{00156\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetColumn3(uint\ inCol,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inCol\ <\ 4);\ mCol[inCol]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(inV,\ inCol\ ==\ 3?\ 1.0f\ :\ 0.0f);\ \}}
+\DoxyCodeLine{00157\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ GetColumn4(uint\ inCol)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(inCol\ <\ 4);\ \textcolor{keywordflow}{return}\ mCol[inCol];\ \}}
+\DoxyCodeLine{00158\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetColumn4(uint\ inCol,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inCol\ <\ 4);\ mCol[inCol]\ =\ inV;\ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00161\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ StoreFloat4x4(\mbox{\hyperlink{classFloat4}{Float4}}\ *outV)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00164\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Transposed()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Transposed3x3()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00170\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Inversed()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ InversedRotationTranslation()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00176\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ GetDeterminant3x3()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00179\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Adjointed3x3()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00182\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Inversed3x3()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00185\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ SetInversed3x3(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00188\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ GetRotation()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00191\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ GetRotationSafe()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00194\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ SetRotation(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00197\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classQuat}{Quat}}\ \ \ \ \ \ \ \ \ \ \ \ \ GetQuaternion()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00200\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44_a2bb16051fdd324325ac9be5e5e7619b7}{GetDirectionPreservingMatrix}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ GetRotation().\mbox{\hyperlink{classMat44_ad9f5df546296a7bdc816e6be5627926b}{Inversed3x3}}().\mbox{\hyperlink{classMat44_a29830ba9d80d31e00d30abcc0c099e7c}{Transposed3x3}}();\ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00203\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ PreTranslated(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTranslation)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00206\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ PostTranslated(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTranslation)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00209\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ PreScaled(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00212\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ PostScaled(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00218\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ Decompose(\mbox{\hyperlink{classVec3}{Vec3}}\ \&outScale)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#ifndef\ JPH\_DOUBLE\_PRECISION}}
+\DoxyCodeLine{00222\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44_a3445a728646fe8ad80381a0e55ea2289}{ToMat44}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !JPH\_DOUBLE\_PRECISION}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{friend}\ ostream\ \&\ \ \ \ \ \ \ \ \ \ \ \ operator\ <<\ (ostream\ \&inStream,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)}
+\DoxyCodeLine{00227\ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ inStream\ <<\ inM.mCol[0]\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ inM.mCol[1]\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ inM.mCol[2]\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ inM.mCol[3];}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inStream;}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCol[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00234\ \};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{keyword}{static\_assert}(is\_trivial<Mat44>(),\ \textcolor{stringliteral}{"{}Is\ supposed\ to\ be\ a\ trivial\ type!"{}});}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#include\ "{}Mat44.inl"{}}}
+
+\end{DoxyCode}

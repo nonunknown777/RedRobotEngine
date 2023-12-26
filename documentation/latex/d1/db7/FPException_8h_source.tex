@@ -1,0 +1,68 @@
+\doxysection{FPException.\+h}
+\hypertarget{FPException_8h_source}{}\label{FPException_8h_source}\index{includes/jolt/Core/FPException.h@{includes/jolt/Core/FPException.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/FPControlWord.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifdef\ JPH\_FLOATING\_POINT\_EXCEPTIONS\_ENABLED}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionsEnable}{FPExceptionsEnable}}\ :\ \textcolor{keyword}{public}\ FPControlWord<0,\ \_MM\_MASK\_DIV\_ZERO\ |\ \_MM\_MASK\_INVALID>\ \{\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableInvalid}{FPExceptionDisableInvalid}}\ :\ \textcolor{keyword}{public}\ FPControlWord<\_MM\_MASK\_INVALID,\ \_MM\_MASK\_INVALID>\ \{\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableDivByZero}{FPExceptionDisableDivByZero}}\ :\ \textcolor{keyword}{public}\ FPControlWord<\_MM\_MASK\_DIV\_ZERO,\ \_MM\_MASK\_DIV\_ZERO>\ \{\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_ARM)\ \&\&\ defined(JPH\_COMPILER\_MSVC)}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionsEnable}{FPExceptionsEnable}}\ :\ \textcolor{keyword}{public}\ FPControlWord<0,\ \_EM\_INVALID\ |\ \_EM\_ZERODIVIDE>\ \{\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableInvalid}{FPExceptionDisableInvalid}}\ :\ \textcolor{keyword}{public}\ FPControlWord<\_EM\_INVALID,\ \_EM\_INVALID>\ \{\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableDivByZero}{FPExceptionDisableDivByZero}}\ :\ \textcolor{keyword}{public}\ FPControlWord<\_EM\_ZERODIVIDE,\ \_EM\_ZERODIVIDE>\ \{\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_ARM)}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\ FP\_IOE\ =\ 1\ <<\ 8;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\ FP\_DZE\ =\ 1\ <<\ 9;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionsEnable}{FPExceptionsEnable}}\ :\ \textcolor{keyword}{public}\ FPControlWord<FP\_IOE\ |\ FP\_DZE,\ FP\_IOE\ |\ FP\_DZE>\ \{\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableInvalid}{FPExceptionDisableInvalid}}\ :\ \textcolor{keyword}{public}\ FPControlWord<0,\ FP\_IOE>\ \{\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableDivByZero}{FPExceptionDisableDivByZero}}\ :\ \textcolor{keyword}{public}\ FPControlWord<0,\ FP\_DZE>\ \{\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_WASM)}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ Not\ supported}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionsEnable}{FPExceptionsEnable}}\ \{\ \};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableInvalid}{FPExceptionDisableInvalid}}\ \{\ \};}
+\DoxyCodeLine{00057\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableDivByZero}{FPExceptionDisableDivByZero}}\ \{\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#error\ Unsupported\ CPU\ architecture}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionsEnable}{FPExceptionsEnable}}\ \{\ \};}
+\DoxyCodeLine{00069\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableInvalid}{FPExceptionDisableInvalid}}\ \{\ \};}
+\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFPExceptionDisableDivByZero}{FPExceptionDisableDivByZero}}\ \{\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

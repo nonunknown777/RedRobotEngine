@@ -1,0 +1,88 @@
+\doxysection{playrho\+::Unit\+Interval\+Checker\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structplayrho_1_1UnitIntervalChecker}{}\label{structplayrho_1_1UnitIntervalChecker}\index{playrho::UnitIntervalChecker$<$ T $>$@{playrho::UnitIntervalChecker$<$ T $>$}}
+
+
+Unit-\/interval constrained value checker.  
+
+
+
+
+{\ttfamily \#include $<$Unit\+Interval.\+hpp$>$}
+
+
+
+Collaboration diagram for playrho\+::Unit\+Interval\+Checker\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{d5/d8f/structplayrho_1_1UnitIntervalChecker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structplayrho_1_1UnitIntervalChecker_ab6f889eefd2d058cfeb7b7f238a805ad}\label{structplayrho_1_1UnitIntervalChecker_ab6f889eefd2d058cfeb7b7f238a805ad} 
+using {\bfseries exception\+\_\+type} = std\+::invalid\+\_\+argument
+\begin{DoxyCompactList}\small\item\em Exception type possibly thrown by this checker. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr auto \mbox{\hyperlink{structplayrho_1_1UnitIntervalChecker_adf2c0abb5fc8ef659327602093e509af}{operator()}} () noexcept -\/$>$ decltype(static\+\_\+cast$<$ T $>$(0))
+\begin{DoxyCompactList}\small\item\em Valid value supplying functor. \end{DoxyCompactList}\item 
+constexpr auto \mbox{\hyperlink{structplayrho_1_1UnitIntervalChecker_a1b254e932bfd7daab71585738e2b0194}{operator()}} (const T \&v) -\/$>$ decltype((v $>$=static\+\_\+cast$<$ T $>$(0) \&\&v$<$=static\+\_\+cast$<$ T $>$(1)), T(v))
+\begin{DoxyCompactList}\small\item\em Value checking functor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct playrho\+::\+Unit\+Interval\+Checker$<$ T $>$}
+Unit-\/interval constrained value checker. 
+
+Provides functors ensuring values are\+: greater-\/than or equal-\/to zero, and less-\/than or equal-\/to one. \begin{DoxyNote}{Note}
+This is meant to be used as a checker with types like {\ttfamily \doxylink{classplayrho_1_1CheckedValue}{Checked\+Value}}. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classplayrho_1_1CheckedValue}{Checked\+Value}. 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structplayrho_1_1UnitIntervalChecker_adf2c0abb5fc8ef659327602093e509af}\label{structplayrho_1_1UnitIntervalChecker_adf2c0abb5fc8ef659327602093e509af} 
+\index{playrho::UnitIntervalChecker$<$ T $>$@{playrho::UnitIntervalChecker$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!playrho::UnitIntervalChecker$<$ T $>$@{playrho::UnitIntervalChecker$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr auto \mbox{\hyperlink{structplayrho_1_1UnitIntervalChecker}{playrho\+::\+Unit\+Interval\+Checker}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) -\/$>$ decltype(static\+\_\+cast$<$T$>$(0))     \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Valid value supplying functor. 
+
+\begin{DoxyReturn}{Returns}
+Zero casted to the checked type. 
+\end{DoxyReturn}
+\Hypertarget{structplayrho_1_1UnitIntervalChecker_a1b254e932bfd7daab71585738e2b0194}\label{structplayrho_1_1UnitIntervalChecker_a1b254e932bfd7daab71585738e2b0194} 
+\index{playrho::UnitIntervalChecker$<$ T $>$@{playrho::UnitIntervalChecker$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!playrho::UnitIntervalChecker$<$ T $>$@{playrho::UnitIntervalChecker$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+constexpr auto \mbox{\hyperlink{structplayrho_1_1UnitIntervalChecker}{playrho\+::\+Unit\+Interval\+Checker}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{const T \&}]{v }\end{DoxyParamCaption}) -\/$>$ decltype((v $>$= static\+\_\+cast$<$T$>$(0) \&\& v $<$= static\+\_\+cast$<$T$>$(1)), T(v))     \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Value checking functor. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em exception\+\_\+type} & if given value is not valid. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+Value given if greater-\/than or equal-\/to zero and less-\/than or equal-\/to one. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/playrho/\+Common/Unit\+Interval.\+hpp\end{DoxyCompactItemize}

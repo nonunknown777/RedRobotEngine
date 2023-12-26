@@ -1,0 +1,98 @@
+\doxysection{Spring\+Settings Class Reference}
+\hypertarget{classSpringSettings}{}\label{classSpringSettings}\index{SpringSettings@{SpringSettings}}
+
+
+Settings for a linear or angular spring.  
+
+
+
+
+{\ttfamily \#include $<$Spring\+Settings.\+h$>$}
+
+
+
+Collaboration diagram for Spring\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d8/d13/classSpringSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSpringSettings_aefa8b0caa0840d58f74b297ad275c1cf}\label{classSpringSettings_aefa8b0caa0840d58f74b297ad275c1cf} 
+{\bfseries Spring\+Settings} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classSpringSettings_ad21b30d2d06ed66e8660ccfc14403827}\label{classSpringSettings_ad21b30d2d06ed66e8660ccfc14403827} 
+{\bfseries Spring\+Settings} (const \mbox{\hyperlink{classSpringSettings}{Spring\+Settings}} \&)=default
+\item 
+\Hypertarget{classSpringSettings_a035ab930afc30365053d1814f838f335}\label{classSpringSettings_a035ab930afc30365053d1814f838f335} 
+\mbox{\hyperlink{classSpringSettings}{Spring\+Settings}} \& {\bfseries operator=} (const \mbox{\hyperlink{classSpringSettings}{Spring\+Settings}} \&)=default
+\item 
+\Hypertarget{classSpringSettings_a3cf17470851be12c258e0c2f200f27e4}\label{classSpringSettings_a3cf17470851be12c258e0c2f200f27e4} 
+{\bfseries Spring\+Settings} (ESpring\+Mode in\+Mode, float in\+Frequency\+Or\+Stiffness, float in\+Damping)
+\item 
+\Hypertarget{classSpringSettings_a8da853a3005b1797148dd6c8350d0c62}\label{classSpringSettings_a8da853a3005b1797148dd6c8350d0c62} 
+void {\bfseries Save\+Binary\+State} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the contents of the spring settings in binary form to in\+Stream. \end{DoxyCompactList}\item 
+\Hypertarget{classSpringSettings_af6f75e6e5167b54a2cff64808a106297}\label{classSpringSettings_af6f75e6e5167b54a2cff64808a106297} 
+void {\bfseries Restore\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restores contents from the binary stream in\+Stream. \end{DoxyCompactList}\item 
+\Hypertarget{classSpringSettings_afb683eddb2db25f62403a6af6410eebb}\label{classSpringSettings_afb683eddb2db25f62403a6af6410eebb} 
+bool {\bfseries Has\+Stiffness} () const
+\begin{DoxyCompactList}\small\item\em Check if the spring has a valid frequency / stiffness, if not the spring will be hard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ESpring\+Mode \mbox{\hyperlink{classSpringSettings_a7d27c541e7d25d9da0c263ec99ea528a}{m\+Mode}} = ESpring\+Mode\+::\+Frequency\+And\+Damping
+\item 
+\Hypertarget{classSpringSettings_ac46d72e7a0f0e88c8a26441dc84fab8f}\label{classSpringSettings_ac46d72e7a0f0e88c8a26441dc84fab8f} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>float \mbox{\hyperlink{classSpringSettings_acea8e3f5767edbfaffa01417733b5dc0}{mFrequency}} = 0.0f\\
+\>float \mbox{\hyperlink{classSpringSettings_a688815c0e85518f1ac42f1d077415472}{mStiffness}}\\
+\}; \\
+
+\end{tabbing}\item 
+float \mbox{\hyperlink{classSpringSettings_a72165bbe14974afb17df18e88f6d205e}{m\+Damping}} = 0.\+0f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Settings for a linear or angular spring. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSpringSettings_a72165bbe14974afb17df18e88f6d205e}\label{classSpringSettings_a72165bbe14974afb17df18e88f6d205e} 
+\index{SpringSettings@{SpringSettings}!mDamping@{mDamping}}
+\index{mDamping@{mDamping}!SpringSettings@{SpringSettings}}
+\doxysubsubsection{\texorpdfstring{mDamping}{mDamping}}
+{\footnotesize\ttfamily float Spring\+Settings\+::m\+Damping = 0.\+0f}
+
+When m\+Spring\+Mode = ESpring\+Mode\+::\+Frequency\+And\+Damping m\+Damping is the damping ratio (0 = no damping, 1 = critical damping). When m\+Spring\+Mode = ESpring\+Mode\+::\+Stiffness\+And\+Damping m\+Damping is the damping (c) in the spring equation F = -\/k \texorpdfstring{$\ast$}{*} x -\/ c \texorpdfstring{$\ast$}{*} v for a linear or T = -\/k \texorpdfstring{$\ast$}{*} theta -\/ c \texorpdfstring{$\ast$}{*} w for an angular spring. Note that if you set m\+Damping = 0, you will not get an infinite oscillation. Because we integrate physics using an explicit Euler scheme, there is always energy loss. This is done to keep the simulation from exploding, because with a damping of 0 and even the slightest rounding error, the oscillation could become bigger and bigger until the simluation explodes. \Hypertarget{classSpringSettings_acea8e3f5767edbfaffa01417733b5dc0}\label{classSpringSettings_acea8e3f5767edbfaffa01417733b5dc0} 
+\index{SpringSettings@{SpringSettings}!mFrequency@{mFrequency}}
+\index{mFrequency@{mFrequency}!SpringSettings@{SpringSettings}}
+\doxysubsubsection{\texorpdfstring{mFrequency}{mFrequency}}
+{\footnotesize\ttfamily float Spring\+Settings\+::m\+Frequency = 0.\+0f}
+
+Valid when m\+Spring\+Mode = ESpring\+Mode\+::\+Frequency\+And\+Damping. If m\+Frequency \texorpdfstring{$>$}{>} 0 the constraint will be soft and m\+Frequency specifies the oscillation frequency in Hz. If m\+Frequency \texorpdfstring{$<$}{<}= 0, m\+Damping is ignored and the constraint will have hard limits (as hard as the time step / the number of velocity / position solver steps allows). \Hypertarget{classSpringSettings_a7d27c541e7d25d9da0c263ec99ea528a}\label{classSpringSettings_a7d27c541e7d25d9da0c263ec99ea528a} 
+\index{SpringSettings@{SpringSettings}!mMode@{mMode}}
+\index{mMode@{mMode}!SpringSettings@{SpringSettings}}
+\doxysubsubsection{\texorpdfstring{mMode}{mMode}}
+{\footnotesize\ttfamily ESpring\+Mode Spring\+Settings\+::m\+Mode = ESpring\+Mode\+::\+Frequency\+And\+Damping}
+
+Selects the way in which the spring is defined If the mode is Stiffness\+And\+Damping then m\+Frequency becomes the stiffness (k) and m\+Damping becomes the damping ratio (c) in the spring equation F = -\/k \texorpdfstring{$\ast$}{*} x -\/ c \texorpdfstring{$\ast$}{*} v. Otherwise the properties are as documented. \Hypertarget{classSpringSettings_a688815c0e85518f1ac42f1d077415472}\label{classSpringSettings_a688815c0e85518f1ac42f1d077415472} 
+\index{SpringSettings@{SpringSettings}!mStiffness@{mStiffness}}
+\index{mStiffness@{mStiffness}!SpringSettings@{SpringSettings}}
+\doxysubsubsection{\texorpdfstring{mStiffness}{mStiffness}}
+{\footnotesize\ttfamily float Spring\+Settings\+::m\+Stiffness}
+
+Valid when m\+Spring\+Mode = ESpring\+Mode\+::\+Stiffness\+And\+Damping. If m\+Stiffness \texorpdfstring{$>$}{>} 0 the constraint will be soft and m\+Stiffness specifies the stiffness (k) in the spring equation F = -\/k \texorpdfstring{$\ast$}{*} x -\/ c \texorpdfstring{$\ast$}{*} v for a linear or T = -\/k \texorpdfstring{$\ast$}{*} theta -\/ c \texorpdfstring{$\ast$}{*} w for an angular spring. If m\+Stiffness \texorpdfstring{$<$}{<}= 0, m\+Damping is ignored and the constraint will have hard limits (as hard as the time step / the number of velocity / position solver steps allows).
+
+Note that stiffness values are large numbers. To calculate a ballpark value for the needed stiffness you can use\+: force = stiffness \texorpdfstring{$\ast$}{*} delta\+\_\+spring\+\_\+length = mass \texorpdfstring{$\ast$}{*} gravity \texorpdfstring{$<$}{<}=\texorpdfstring{$>$}{>} stiffness = mass \texorpdfstring{$\ast$}{*} gravity / delta\+\_\+spring\+\_\+length. So if your object weighs 1500 kg and the spring compresses by 2 meters, you need a stiffness in the order of 1500 \texorpdfstring{$\ast$}{*} 9.\+81 / 2 \texorpdfstring{$\sim$}{\string~} 7500 N/m. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Spring\+Settings.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,807 @@
+\doxysection{EPAConvex\+Hull\+Builder.\+h}
+\hypertarget{EPAConvexHullBuilder_8h_source}{}\label{EPAConvexHullBuilder_8h_source}\index{includes/jolt/Geometry/EPAConvexHullBuilder.h@{includes/jolt/Geometry/EPAConvexHullBuilder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Define\ to\ validate\ the\ integrity\ of\ the\ hull\ structure}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#define\ JPH\_EPA\_CONVEX\_BUILDER\_VALIDATE}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Define\ to\ draw\ the\ building\ of\ the\ hull\ for\ debugging\ purposes}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\#define\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Renderer/DebugRenderer.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ \#include\ <Jolt/Core/StringTools.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEPAConvexHullBuilder}{EPAConvexHullBuilder}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ Real\ cDrawScale\ =\ 10;}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Due\ to\ the\ Euler\ characteristic\ (https://en.wikipedia.org/wiki/Euler\_characteristic)\ we\ know\ that\ Vertices\ -\/\ Edges\ +\ Faces\ =\ 2}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ In\ our\ case\ we\ only\ have\ triangles\ and\ they\ are\ always\ fully\ connected,\ so\ each\ edge\ is\ shared\ exactly\ between\ 2\ faces:\ Edges\ =\ Faces\ *\ 3\ /\ 2}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Substituting:\ Vertices\ =\ Faces\ /\ 2\ +\ 2\ which\ is\ approximately\ Faces\ /\ 2.}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEPAConvexHullBuilder_a4513da2adce7a49aff9314455b8e669d}{cMaxTriangles}}\ =\ 256;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEPAConvexHullBuilder_a6968898ef16408b14c1000bebf2f2576}{cMaxPoints}}\ =\ \mbox{\hyperlink{classEPAConvexHullBuilder_a4513da2adce7a49aff9314455b8e669d}{cMaxTriangles}}\ /\ 2;\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Constants}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classEPAConvexHullBuilder_a745bd64c5b95a736c502901a1bd3d7c0}{cMaxEdgeLength}}\ =\ 128;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classEPAConvexHullBuilder_a4aa8fa12b1aa66a498dcca309be791bb}{cMinTriangleArea}}\ =\ 1.0e-\/10f;\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d}{cBarycentricEpsilon}}\ =\ 1.0e-\/3f;\ \ \ \ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Forward\ declare}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge}{Edge}}}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge_a45f60a45dad1b7eb5e49d513a15229a5}{mNeighbourTriangle}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge_aebdd46a0c839c10261765f466b8fa00b}{mNeighbourEdge}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge_a3198dfe7323ed3f875dca4e00821a53c}{mStartIdx}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classStaticArray}{Edges}}\ =\ \mbox{\hyperlink{classStaticArray}{StaticArray<Edge,\ cMaxEdgeLength>}};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classStaticArray}{NewTriangles}}\ =\ \mbox{\hyperlink{classStaticArray}{StaticArray<Triangle\ *,\ cMaxEdgeLength>}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}(\textcolor{keywordtype}{int}\ inIdx0,\ \textcolor{keywordtype}{int}\ inIdx1,\ \textcolor{keywordtype}{int}\ inIdx2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{Vec3}}\ *inPositions);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a60543dea65ee8e56fa77132610302412}{IsFacing}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(!\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_aec2b4eeafa28ea5ea8a04789e944ae4d}{mRemoved}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a72b60caa9b8ba3cc6380f23b4fe72a02}{mNormal}}.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inPosition\ -\/\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a0452b1c401d15dcc561dad66766d45a9}{mCentroid}})\ >\ 0.0f;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a7c793273642a25acaf54c8b2a63a5c3a}{IsFacingOrigin}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(!\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_aec2b4eeafa28ea5ea8a04789e944ae4d}{mRemoved}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a72b60caa9b8ba3cc6380f23b4fe72a02}{mNormal}}.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a0452b1c401d15dcc561dad66766d45a9}{mCentroid}})\ <\ 0.0f;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge}{Edge}}\ \&\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a6a342146811919c9bdd18ee827e1ee87}{GetNextEdge}}(\textcolor{keywordtype}{int}\ inIndex)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00083\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a73f39336e0cda2338ca31459de675f4f}{mEdge}}[(inIndex\ +\ 1)\ \%\ 3];}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge}{Edge}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a73f39336e0cda2338ca31459de675f4f}{mEdge}}[3];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a72b60caa9b8ba3cc6380f23b4fe72a02}{mNormal}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a0452b1c401d15dcc561dad66766d45a9}{mCentroid}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a89216110b3cac04a274376acaf28d7ae}{mClosestLenSq}}\ =\ FLT\_MAX;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_abf3e8715dbc37a34783e322dc2211074}{mLambda}}[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_ad717cb9534ef44896e91c33ab4d5ba0c}{mLambdaRelativeTo0}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a0b20e81cb148777b56012bbaf28fb18b}{mClosestPointInterior}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_aec2b4eeafa28ea5ea8a04789e944ae4d}{mRemoved}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_aba25cdfa6f65d1725a9138cc062e98ea}{mInQueue}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ mIteration;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00099\ \ \ \ \ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory}{TriangleFactory}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{union\ }alignas(Triangle)\ Block}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\ \ \ \ \ \ \ mTriangle[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}})];}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ Block\ *\ \ \ \ \ mNextFree;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ Block\ \ \ \ \ \ \ \ \ \ \ mTriangles[cMaxTriangles];\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ Block\ *\ \ \ \ \ \ \ \ \ mNextFree\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ mHighWatermark\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory_afbc2d65081b44d5574cdfa81e6b908ea}{Clear}}()}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ mNextFree\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ mHighWatermark\ =\ 0;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory_a10150659d6967c3da5444f42b257eda8}{CreateTriangle}}(\textcolor{keywordtype}{int}\ inIdx0,\ \textcolor{keywordtype}{int}\ inIdx1,\ \textcolor{keywordtype}{int}\ inIdx2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{Vec3}}\ *inPositions)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *t;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mNextFree\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Entry\ available\ from\ the\ free\ list}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\textcolor{keyword}{>}(\&mNextFree-\/>mTriangle);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextFree\ =\ mNextFree-\/>mNextFree;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allocate\ from\ never\ used\ before\ triangle\ store}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mHighWatermark\ >=\ cMaxTriangles)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};\ \textcolor{comment}{//\ Buffer\ full}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\textcolor{keyword}{>}(\&mTriangles[mHighWatermark].mTriangle);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++mHighWatermark;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ constructor}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ (t)\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}(inIdx0,\ inIdx1,\ inIdx2,\ inPositions);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory_a9a830ace866a248b1238eed4157e8925}{FreeTriangle}}(\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *inT)}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destruct\ triangle}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ inT-\/>\string~Triangle();}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ memset(inT,\ 0xcd,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}));}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ triangle\ to\ the\ free\ list}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ Block\ *tu\ =\ \textcolor{keyword}{reinterpret\_cast<}Block\ *\textcolor{keyword}{>}(inT);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ tu-\/>mNextFree\ =\ mNextFree;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ mNextFree\ =\ tu;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ Typedefs}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{using\ }PointsBase\ =\ \mbox{\hyperlink{classStaticArray}{StaticArray<Vec3,\ cMaxPoints>}};}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{using\ }Triangles\ =\ \mbox{\hyperlink{classStaticArray}{StaticArray<Triangle\ *,\ cMaxTriangles>}};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Points}{Points}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaticArray}{PointsBase}}}
+\DoxyCodeLine{00172\ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ size\_type\ \&\ \ \ \ \ GetSizeRef()}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSize;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleQueue}{TriangleQueue}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classStaticArray}{Triangles}}}
+\DoxyCodeLine{00182\ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleQueue_abcdf1b5b997b6520dc8123ac8e9bf84f}{sTriangleSorter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *inT1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *inT2)}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inT1-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a89216110b3cac04a274376acaf28d7ae}{mClosestLenSq}}\ >\ inT2-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a89216110b3cac04a274376acaf28d7ae}{mClosestLenSq}};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleQueue_a10ca88c6483424a3c1853759cde34cbd}{push\_back}}(\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *inT)}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ to\ base}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ Triangles::push\_back(inT);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mark\ in\ queue}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ inT-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_aba25cdfa6f65d1725a9138cc062e98ea}{mInQueue}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Resort\ heap}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ std::push\_heap(begin(),\ end(),\ sTriangleSorter);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleQueue_a13516948e75d7fd3dca02c1ec7b72504}{PeekClosest}}()}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ front();}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleQueue_a1d5149d9d7342650de71477538043991}{PopClosest}}()}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Move\ closest\ to\ end}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ std::pop\_heap(begin(),\ end(),\ sTriangleSorter);}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ last\ triangle}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *t\ =\ back();}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ pop\_back();}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_ae55b89fd27a0cab9a97a1475245dec9d}{EPAConvexHullBuilder}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Points}{Points}}\ \&inPositions)\ :}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ mPositions(inPositions)}
+\DoxyCodeLine{00225\ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ mIteration\ =\ 0;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ mOffset\ =\ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{RVec3::sZero}}();}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_ac6b69723ed9d2c1b815769f9953ef8e7}{Initialize}}(\textcolor{keywordtype}{int}\ inIdx1,\ \textcolor{keywordtype}{int}\ inIdx2,\ \textcolor{keywordtype}{int}\ inIdx3)}
+\DoxyCodeLine{00234\ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Release\ triangles}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ mFactory.Clear();}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ triangles\ (back\ to\ back)}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *t1\ =\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory_a10150659d6967c3da5444f42b257eda8}{CreateTriangle}}(inIdx1,\ inIdx2,\ inIdx3);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *t2\ =\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory_a10150659d6967c3da5444f42b257eda8}{CreateTriangle}}(inIdx1,\ inIdx3,\ inIdx2);}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Link\ triangles\ edges}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ sLinkTriangle(t1,\ 0,\ t2,\ 2);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ sLinkTriangle(t1,\ 1,\ t2,\ 1);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ sLinkTriangle(t1,\ 2,\ t2,\ 0);}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Always\ add\ both\ triangles\ to\ the\ priority\ queue}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ mTriangleQueue.push\_back(t1);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ mTriangleQueue.push\_back(t2);}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ current\ state}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ DrawState();}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Increment\ iteration\ counter}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ ++mIteration;}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_a233403c7274da823fb6b96b539dc5f95}{HasNextTriangle}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00262\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !mTriangleQueue.empty();}
+\DoxyCodeLine{00264\ \ \ \ \ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00267\ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_a0b52c132a7365cd272f3ca14a8f25145}{PeekClosestTriangleInQueue}}()}
+\DoxyCodeLine{00268\ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTriangleQueue.PeekClosest();}
+\DoxyCodeLine{00270\ \ \ \ \ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_a7095af90fda9266b9ae7258025623499}{PopClosestTriangleFromQueue}}()}
+\DoxyCodeLine{00274\ \ \ \ \ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTriangleQueue.PopClosest();}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_aba8a5ac94c67e4c96e5eb533dfca3a83}{FindFacingTriangle}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition,\ \textcolor{keywordtype}{float}\ \&outBestDistSq)}
+\DoxyCodeLine{00281\ \ \ \ \ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *best\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ best\_dist\_sq\ =\ 0.0f;}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *t\ :\ mTriangleQueue)}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!t-\/>mRemoved)}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dot\ =\ t-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a72b60caa9b8ba3cc6380f23b4fe72a02}{mNormal}}.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inPosition\ -\/\ t-\/>mCentroid);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dot\ >\ 0.0f)}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dist\_sq\ =\ dot\ *\ dot\ /\ t-\/>mNormal.LengthSq();}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\_sq\ >\ best\_dist\_sq)}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\ =\ t;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dist\_sq\ =\ dist\_sq;}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ outBestDistSq\ =\ best\_dist\_sq;}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ best;}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_ae1b6e6eb12d8723eeab4265f9510b7c2}{AddPoint}}(\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *inFacingTriangle,\ \textcolor{keywordtype}{int}\ inIdx,\ \textcolor{keywordtype}{float}\ inClosestDistSq,\ \mbox{\hyperlink{classStaticArray}{NewTriangles}}\ \&outTriangles)}
+\DoxyCodeLine{00306\ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ position}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ pos\ =\ mPositions[inIdx];}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ new\ support\ point}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ DrawMarker(pos,\ Color::sYellow,\ 1.0f);}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_VALIDATE}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ structure\ is\ intact}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ ValidateTriangles();}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ edge\ of\ convex\ hull\ of\ triangles\ that\ are\ not\ facing\ the\ new\ vertex\ w}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStaticArray}{Edges}}\ edges;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!FindEdge(inFacingTriangle,\ pos,\ edges))}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ new\ triangles}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_edges\ =\ edges.\mbox{\hyperlink{classStaticArray_aea449055e7dab910eca1a4af05d53b6f}{size}}();}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_edges;\ ++i)}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ new\ triangle}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *nt\ =\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory_a10150659d6967c3da5444f42b257eda8}{CreateTriangle}}(edges[i].mStartIdx,\ edges[(i\ +\ 1)\ \%\ num\_edges].mStartIdx,\ inIdx);}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nt\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ outTriangles.\mbox{\hyperlink{classStaticArray_a1117d7fa5ecfe22248396f1632d842cb}{push\_back}}(nt);}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ need\ to\ put\ this\ triangle\ in\ the\ priority\ queue}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((nt-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a0b20e81cb148777b56012bbaf28fb18b}{mClosestPointInterior}}\ \&\&\ nt-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a89216110b3cac04a274376acaf28d7ae}{mClosestLenSq}}\ <\ inClosestDistSq)\ \ \ \ \textcolor{comment}{//\ For\ the\ main\ algorithm}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ||\ nt-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a89216110b3cac04a274376acaf28d7ae}{mClosestLenSq}}\ <\ 0.0f)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ when\ the\ origin\ is\ not\ inside\ the\ hull\ yet}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTriangleQueue.push\_back(nt);}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Link\ edges}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_edges;\ ++i)}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ sLinkTriangle(outTriangles[i],\ 0,\ edges[i].mNeighbourTriangle,\ edges[i].mNeighbourEdge);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ sLinkTriangle(outTriangles[i],\ 1,\ outTriangles[(i\ +\ 1)\ \%\ num\_edges],\ 2);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_VALIDATE}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ structure\ is\ intact}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ ValidateTriangles();}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ state\ of\ the\ hull}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ DrawState();}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Increment\ iteration\ counter}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ ++mIteration;}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_a8a5be413b034888eeb3ccc384e1ca9ec}{FreeTriangle}}(\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle}{Triangle}}\ *inT)}
+\DoxyCodeLine{00366\ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ that\ this\ triangle\ is\ not\ connected}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inT-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_aec2b4eeafa28ea5ea8a04789e944ae4d}{mRemoved}});}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Edge}{Edge}}\ \&e\ :\ inT-\/>\mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a73f39336e0cda2338ca31459de675f4f}{mEdge}})}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(e.mNeighbourTriangle\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#if\ defined(JPH\_EPA\_CONVEX\_BUILDER\_VALIDATE)\ ||\ defined(JPH\_EPA\_CONVEX\_BUILDER\_DRAW)}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ from\ list\ of\ all\ triangles}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ Triangles::iterator\ i\ =\ std::find(mTriangles.begin(),\ mTriangles.end(),\ inT);}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ JPH\_ASSERT(i\ !=\ mTriangles.end());}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ mTriangles.erase(i);}
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ mFactory.FreeTriangle(inT);}
+\DoxyCodeLine{00382\ \ \ \ \ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00386\ \ \ \ \ \mbox{\hyperlink{classTriangle}{Triangle}}\ *\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory_a10150659d6967c3da5444f42b257eda8}{CreateTriangle}}(\textcolor{keywordtype}{int}\ inIdx1,\ \textcolor{keywordtype}{int}\ inIdx2,\ \textcolor{keywordtype}{int}\ inIdx3)}
+\DoxyCodeLine{00387\ \ \ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ provider\ to\ create\ triangle}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangle}{Triangle}}\ *t\ =\ mFactory.CreateTriangle(inIdx1,\ inIdx2,\ inIdx3,\ mPositions.data());}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remember\ iteration\ counter}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ t-\/>mIteration\ =\ mIteration;}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\#if\ defined(JPH\_EPA\_CONVEX\_BUILDER\_VALIDATE)\ ||\ defined(JPH\_EPA\_CONVEX\_BUILDER\_DRAW)}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ to\ list\ of\ triangles\ for\ debugging\ purposes}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ mTriangles.push\_back(t);}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ sLinkTriangle(\mbox{\hyperlink{classTriangle}{Triangle}}\ *inT1,\ \textcolor{keywordtype}{int}\ inEdge1,\ \mbox{\hyperlink{classTriangle}{Triangle}}\ *inT2,\ \textcolor{keywordtype}{int}\ inEdge2)}
+\DoxyCodeLine{00408\ \ \ \ \ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inEdge1\ >=\ 0\ \&\&\ inEdge1\ <\ 3);}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inEdge2\ >=\ 0\ \&\&\ inEdge2\ <\ 3);}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ Edge\ \&e1\ =\ inT1-\/>mEdge[inEdge1];}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ Edge\ \&e2\ =\ inT2-\/>mEdge[inEdge2];}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ not\ connected\ yet}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ JPH\_ASSERT(e1.mNeighbourTriangle\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ JPH\_ASSERT(e2.mNeighbourTriangle\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ vertices\ match}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ JPH\_ASSERT(e1.mStartIdx\ ==\ inT2-\/>GetNextEdge(inEdge2).mStartIdx);}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ JPH\_ASSERT(e2.mStartIdx\ ==\ inT1-\/>GetNextEdge(inEdge1).mStartIdx);}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Link\ up}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ e1.mNeighbourTriangle\ =\ inT2;}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ e1.mNeighbourEdge\ =\ inEdge2;}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ e2.mNeighbourTriangle\ =\ inT1;}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ e2.mNeighbourEdge\ =\ inEdge1;}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlinkTriangle(\mbox{\hyperlink{classTriangle}{Triangle}}\ *inT)}
+\DoxyCodeLine{00431\ \ \ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unlink\ from\ neighbours}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ ++i)}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ Edge\ \&edge\ =\ inT-\/>mEdge[i];}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (edge.mNeighbourTriangle\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Edge\ \&neighbour\_edge\ =\ edge.mNeighbourTriangle-\/>mEdge[edge.mNeighbourEdge];}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ that\ neighbour\ points\ to\ us}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(neighbour\_edge.mNeighbourTriangle\ ==\ inT);}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(neighbour\_edge.mNeighbourEdge\ ==\ i);}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unlink}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ neighbour\_edge.mNeighbourTriangle\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edge.mNeighbourTriangle\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ this\ triangle\ is\ not\ in\ the\ priority\ queue,\ we\ can\ delete\ it\ now}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inT-\/>mInQueue)}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1TriangleFactory_a9a830ace866a248b1238eed4157e8925}{FreeTriangle}}(inT);}
+\DoxyCodeLine{00453\ \ \ \ \ \}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FindEdge(\mbox{\hyperlink{classTriangle}{Triangle}}\ *inFacingTriangle,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inVertex,\ Edges\ \&outEdges)}
+\DoxyCodeLine{00458\ \ \ \ \ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assert\ that\ we\ were\ given\ an\ empty\ array}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ JPH\_ASSERT(outEdges.empty());}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Should\ start\ with\ a\ facing\ triangle}}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inFacingTriangle-\/>IsFacing(inVertex));}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Flag\ as\ removed}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ inFacingTriangle-\/>mRemoved\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Instead\ of\ recursing,\ we\ build\ our\ own\ stack\ with\ the\ information\ we\ need}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }StackEntry}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangle}{Triangle}}\ *\ \ mTriangle;}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ mEdge;}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ mIter;}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ StackEntry\ stack[\mbox{\hyperlink{classEPAConvexHullBuilder_a745bd64c5b95a736c502901a1bd3d7c0}{cMaxEdgeLength}}];}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cur\_stack\_pos\ =\ 0;}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ with\ the\ triangle\ /\ edge\ provided}}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ stack[0].mTriangle\ =\ inFacingTriangle;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ stack[0].mEdge\ =\ 0;}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ stack[0].mIter\ =\ -\/1;\ \textcolor{comment}{//\ Start\ with\ edge\ 0\ (is\ incremented\ below\ before\ use)}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Next\ index\ that\ we\ expect\ to\ find,\ if\ we\ don't\ then\ there\ are\ 'islands'}}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ next\_expected\_start\_idx\ =\ -\/1;}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ StackEntry\ \&cur\_entry\ =\ stack[cur\_stack\_pos];}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Next\ iteration}}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (++cur\_entry.mIter\ >=\ 3)}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ triangle\ needs\ to\ be\ removed,\ unlink\ it\ now}}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UnlinkTriangle(cur\_entry.mTriangle);}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pop\ from\ stack}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (-\/-\/cur\_stack\_pos\ <\ 0)}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Visit\ neighbour}}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Edge\ \&e\ =\ cur\_entry.mTriangle-\/>mEdge[(cur\_entry.mEdge\ +\ cur\_entry.mIter)\ \%\ 3];}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classTriangle}{Triangle}}\ *n\ =\ e.mNeighbourTriangle;}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ !n-\/>mRemoved)}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ vertex\ is\ on\ the\ front\ side\ of\ this\ triangle}}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n-\/>IsFacing(inVertex))}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vertex\ on\ front,\ this\ triangle\ needs\ to\ be\ removed}}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n-\/>mRemoved\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ element\ to\ the\ stack\ of\ elements\ to\ visit}}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur\_stack\_pos++;}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(cur\_stack\_pos\ <\ \mbox{\hyperlink{classEPAConvexHullBuilder_a745bd64c5b95a736c502901a1bd3d7c0}{cMaxEdgeLength}});}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StackEntry\ \&new\_entry\ =\ stack[cur\_stack\_pos];}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_entry.mTriangle\ =\ n;}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_entry.mEdge\ =\ e.mNeighbourEdge;}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_entry.mIter\ =\ 0;\ \textcolor{comment}{//\ Is\ incremented\ before\ use,\ we\ don't\ need\ to\ test\ this\ edge\ again\ since\ we\ came\ from\ it}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Detect\ if\ edge\ doesn't\ connect\ to\ previous\ edge,\ if\ this\ happens\ we\ have\ found\ and\ 'island'\ which\ means}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ newly\ added\ point\ is\ so\ close\ to\ the\ triangles\ of\ the\ hull\ that\ we\ classified\ some\ (nearly)\ coplanar}}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ triangles\ as\ before\ and\ some\ behind\ the\ point.\ At\ this\ point\ we\ just\ abort\ adding\ the\ point\ because}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we've\ reached\ numerical\ precision.}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ we\ do\ not\ need\ to\ test\ if\ the\ first\ and\ last\ edge\ connect,\ since\ when\ there\ are\ islands}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ there\ should\ be\ at\ least\ 2\ disconnects.}}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e.mStartIdx\ !=\ next\_expected\_start\_idx\ \&\&\ next\_expected\_start\_idx\ !=\ -\/1)}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Next\ expected\ index\ is\ the\ start\ index\ of\ our\ neighbour's\ edge}}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ next\_expected\_start\_idx\ =\ n-\/>mEdge[e.mNeighbourEdge].mStartIdx;}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vertex\ behind,\ keep\ edge}}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outEdges.push\_back(e);}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assert\ that\ we\ have\ a\ fully\ connected\ loop}}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ JPH\_ASSERT(outEdges.empty()\ ||\ outEdges[0].mStartIdx\ ==\ next\_expected\_start\_idx);}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ edge\ of\ facing\ triangles}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)outEdges.size();\ ++i)}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ edge\_start\ =\ cDrawScale\ *\ (mOffset\ +\ mPositions[outEdges[i].mStartIdx]);}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_ad3208b1f011a70927082d734591c0e83}{DrawArrow}}(edge\_start,\ cDrawScale\ *\ (mOffset\ +\ mPositions[outEdges[(i\ +\ 1)\ \%\ outEdges.size()].mStartIdx]),\ Color::sYellow,\ 0.01f);}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a0caa614c01a9879eed46e55755884c75}{DrawText3D}}(edge\_start,\ ConvertToString(outEdges[i].mStartIdx),\ Color::sWhite);}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ state\ with\ the\ facing\ triangles\ removed}}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ DrawState();}
+\DoxyCodeLine{00556\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ we\ start\ with\ two\ triangles\ facing\ away\ from\ each\ other\ and\ adding\ a\ point\ that\ is\ on\ the\ plane,}}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sometimes\ we\ consider\ the\ point\ in\ front\ of\ both\ causing\ both\ triangles\ to\ be\ removed\ resulting\ in\ an\ empty\ edge\ list.}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ this\ case\ we\ fail\ to\ add\ the\ point\ which\ will\ result\ in\ no\ collision\ reported\ (the\ shapes\ are\ contacting\ in\ 1\ point\ so\ there's\ 0\ penetration)}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ outEdges.size()\ >=\ 3;}
+\DoxyCodeLine{00562\ \ \ \ \ \}}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00564\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_VALIDATE}}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidateTriangle(\textcolor{keyword}{const}\ \mbox{\hyperlink{classTriangle}{Triangle}}\ *inT)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00567\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inT-\/>mRemoved)}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Valdiate\ that\ removed\ triangles\ are\ not\ connected\ to\ anything}}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ Edge\ \&my\_edge\ :\ inT-\/>mEdge)}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(my\_edge.mNeighbourTriangle\ ==\ nullptr);}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ ++i)}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Edge\ \&my\_edge\ =\ inT-\/>mEdge[i];}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assert\ that\ we\ have\ a\ neighbour}}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classTriangle}{Triangle}}\ *nb\ =\ my\_edge.mNeighbourTriangle;}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(nb\ !=\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00583\ }
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nb\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assert\ that\ our\ neighbours\ edge\ points\ to\ us}}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Edge\ \&nb\_edge\ =\ nb-\/>mEdge[my\_edge.mNeighbourEdge];}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(nb\_edge.mNeighbourTriangle\ ==\ inT);}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(nb\_edge.mNeighbourEdge\ ==\ i);}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assert\ that\ the\ next\ edge\ of\ the\ neighbour\ points\ to\ the\ same\ vertex\ as\ this\ edge's\ vertex}}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Edge\ \&nb\_next\_edge\ =\ nb-\/>GetNextEdge(my\_edge.mNeighbourEdge);}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(nb\_next\_edge.mStartIdx\ ==\ my\_edge.mStartIdx);}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assert\ that\ my\ next\ edge\ points\ to\ the\ same\ vertex\ as\ my\ neighbours\ vertex}}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Edge\ \&my\_next\_edge\ =\ inT-\/>GetNextEdge(i);}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(my\_next\_edge.mStartIdx\ ==\ nb\_edge.mStartIdx);}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00601\ \ \ \ \ \}}
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ValidateTriangles()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00605\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classTriangle}{Triangle}}\ *t\ :\ mTriangles)}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ ValidateTriangle(t);}
+\DoxyCodeLine{00608\ \ \ \ \ \}}
+\DoxyCodeLine{00609\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00612\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00614\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawState()}
+\DoxyCodeLine{00615\ \ \ \ \ \{}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ origin}}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a7d64d230d835d560b34282b5402ae05e}{DrawCoordinateSystem}}(\mbox{\hyperlink{classMat44_a8cc7184902ce670d0822a28a8906df52}{RMat44::sTranslation}}(cDrawScale\ *\ mOffset),\ 1.0f);}
+\DoxyCodeLine{00618\ }
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ triangles}}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classTriangle}{Triangle}}\ *t\ :\ mTriangles)}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!t-\/>mRemoved)}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ triangle\ vertices}}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ p1\ =\ cDrawScale\ *\ (mOffset\ +\ mPositions[t-\/>mEdge[0].mStartIdx]);}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ p2\ =\ cDrawScale\ *\ (mOffset\ +\ mPositions[t-\/>mEdge[1].mStartIdx]);}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ p3\ =\ cDrawScale\ *\ (mOffset\ +\ mPositions[t-\/>mEdge[2].mStartIdx]);}
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ triangle}}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_afc6b62590e5a26de8cbd98a29bf8b1a3}{DrawTriangle}}(p1,\ p2,\ p3,\ \mbox{\hyperlink{classColor_a7404ab79844fec5e48cb844e9b0779c3}{Color::sGetDistinctColor}}(t-\/>mIteration));}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a54813e4e95f78cdfc22d938ba15bcb8d}{DrawWireTriangle}}(p1,\ p2,\ p3,\ Color::sGrey);}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ normal}}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ centroid\ =\ cDrawScale\ *\ (mOffset\ +\ t-\/>mCentroid);}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ len\ =\ t-\/>mNormal.Length();}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ >\ 0.0f)}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_ad3208b1f011a70927082d734591c0e83}{DrawArrow}}(centroid,\ centroid\ +\ t-\/>mNormal\ /\ len,\ Color::sDarkGreen,\ 0.01f);}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ max\ position}}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ min\_x\ =\ FLT\_MAX;}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ max\_x\ =\ -\/FLT\_MAX;}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classVec3}{Vec3}}\ p\ :\ mPositions)}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ min\_x\ =\ min(min\_x,\ p.GetX());}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ max\_x\ =\ max(max\_x,\ p.GetX());}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Offset\ to\ the\ right}}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ mOffset\ +=\ \mbox{\hyperlink{classVec3}{Vec3}}(max\_x\ -\/\ min\_x\ +\ 0.5f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{00650\ \ \ \ \ \}}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00653\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawLabel(\textcolor{keyword}{const}\ string\_view\ \&inText)}
+\DoxyCodeLine{00654\ \ \ \ \ \{}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a0caa614c01a9879eed46e55755884c75}{DrawText3D}}(cDrawScale\ *\ mOffset,\ inText,\ Color::sWhite,\ 0.1f\ *\ cDrawScale);}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ mOffset\ +=\ \mbox{\hyperlink{classVec3}{Vec3}}(5.0f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{00658\ \ \ \ \ \}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00661\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawGeometry(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRef}{DebugRenderer::GeometryRef}}\ \&inGeometry,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor)}
+\DoxyCodeLine{00662\ \ \ \ \ \{}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMat44}{RMat44}}\ origin\ =\ \mbox{\hyperlink{classMat44_a858ecd5c9c124039f5c7adab5bcf5041}{RMat44::sScale}}(\mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3::sReplicate}}(cDrawScale))\ *\ \mbox{\hyperlink{classMat44_a8cc7184902ce670d0822a28a8906df52}{RMat44::sTranslation}}(mOffset);}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a9542e23f59dcb2dbe19d5cc870e1efcf}{DrawGeometry}}(origin,\ inGeometry-\/>mBounds.Transformed(origin),\ inGeometry-\/>mBounds.GetExtent().LengthSq(),\ inColor,\ inGeometry);}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ mOffset\ +=\ \mbox{\hyperlink{classVec3}{Vec3}}(inGeometry-\/>mBounds.GetSize().GetX(),\ 0,\ 0);}
+\DoxyCodeLine{00667\ \ \ \ \ \}}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00670\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawWireTriangle(\textcolor{keyword}{const}\ \mbox{\hyperlink{classTriangle}{Triangle}}\ \&inTriangle,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor)}
+\DoxyCodeLine{00671\ \ \ \ \ \{}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ prev\ =\ cDrawScale\ *\ (mOffset\ +\ mPositions[inTriangle.mEdge[2].mStartIdx]);}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ Edge\ \&edge\ :\ inTriangle.mEdge)}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ cur\ =\ cDrawScale\ *\ (mOffset\ +\ mPositions[edge.mStartIdx]);}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_ad3208b1f011a70927082d734591c0e83}{DrawArrow}}(prev,\ cur,\ inColor,\ 0.01f);}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ prev\ =\ cur;}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00679\ \ \ \ \ \}}
+\DoxyCodeLine{00680\ }
+\DoxyCodeLine{00682\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawMarker(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPosition,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keywordtype}{float}\ inSize)}
+\DoxyCodeLine{00683\ \ \ \ \ \{}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_a146eec1ac4bb44258fc748e66cd154ba}{DrawMarker}}(cDrawScale\ *\ (mOffset\ +\ inPosition),\ inColor,\ inSize);}
+\DoxyCodeLine{00685\ \ \ \ \ \}}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00688\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DrawArrow(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inFrom,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTo,\ \mbox{\hyperlink{classColor}{ColorArg}}\ inColor,\ \textcolor{keywordtype}{float}\ inArrowSize)}
+\DoxyCodeLine{00689\ \ \ \ \ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDebugRenderer_a8b92e7678965c488b8d68230816aa000}{DebugRenderer::sInstance}}-\/>\mbox{\hyperlink{classDebugRenderer_ad3208b1f011a70927082d734591c0e83}{DrawArrow}}(cDrawScale\ *\ (mOffset\ +\ inFrom),\ cDrawScale\ *\ (mOffset\ +\ inTo),\ inColor,\ inArrowSize);}
+\DoxyCodeLine{00691\ \ \ \ \ \}}
+\DoxyCodeLine{00692\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00694\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00695\ \ \ \ \ TriangleFactory\ \ \ \ \ mFactory;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00696\ \ \ \ \ \textcolor{keyword}{const}\ Points\ \&\ \ \ \ \ \ mPositions;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00697\ \ \ \ \ TriangleQueue\ \ \ \ \ \ \ mTriangleQueue;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00698\ }
+\DoxyCodeLine{00699\ \textcolor{preprocessor}{\#if\ defined(JPH\_EPA\_CONVEX\_BUILDER\_VALIDATE)\ ||\ defined(JPH\_EPA\_CONVEX\_BUILDER\_DRAW)}}
+\DoxyCodeLine{00700\ \ \ \ \ Triangles\ \ \ \ \ \ \ \ \ \ \ mTriangles;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00701\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \textcolor{preprocessor}{\#ifdef\ JPH\_EPA\_CONVEX\_BUILDER\_DRAW}}
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mIteration;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00705\ \ \ \ \ \mbox{\hyperlink{classVec3}{RVec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mOffset;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00706\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00707\ \};}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \textcolor{comment}{//\ The\ determinant\ that\ is\ calculated\ in\ the\ Triangle\ constructor\ is\ really\ sensitive}}
+\DoxyCodeLine{00710\ \textcolor{comment}{//\ to\ numerical\ round\ off,\ disable\ the\ fmadd\ instructions\ to\ maintain\ precision.}}
+\DoxyCodeLine{00711\ JPH\_PRECISE\_MATH\_ON}
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ \mbox{\hyperlink{classEPAConvexHullBuilder_1_1Triangle_a92c48e626fb4a9870c5aa18dd01cba3e}{EPAConvexHullBuilder::Triangle::Triangle}}(\textcolor{keywordtype}{int}\ inIdx0,\ \textcolor{keywordtype}{int}\ inIdx1,\ \textcolor{keywordtype}{int}\ inIdx2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{Vec3}}\ *inPositions)}
+\DoxyCodeLine{00714\ \{}
+\DoxyCodeLine{00715\ \ \ \ \ \textcolor{comment}{//\ Fill\ in\ indexes}}
+\DoxyCodeLine{00716\ \ \ \ \ JPH\_ASSERT(inIdx0\ !=\ inIdx1\ \&\&\ inIdx0\ !=\ inIdx2\ \&\&\ inIdx1\ !=\ inIdx2);}
+\DoxyCodeLine{00717\ \ \ \ \ mEdge[0].mStartIdx\ =\ inIdx0;}
+\DoxyCodeLine{00718\ \ \ \ \ mEdge[1].mStartIdx\ =\ inIdx1;}
+\DoxyCodeLine{00719\ \ \ \ \ mEdge[2].mStartIdx\ =\ inIdx2;}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \ \ \ \ \textcolor{comment}{//\ Clear\ links}}
+\DoxyCodeLine{00722\ \ \ \ \ mEdge[0].mNeighbourTriangle\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00723\ \ \ \ \ mEdge[1].mNeighbourTriangle\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00724\ \ \ \ \ mEdge[2].mNeighbourTriangle\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00725\ }
+\DoxyCodeLine{00726\ \ \ \ \ \textcolor{comment}{//\ Get\ vertex\ positions}}
+\DoxyCodeLine{00727\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ y0\ =\ inPositions[inIdx0];}
+\DoxyCodeLine{00728\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ y1\ =\ inPositions[inIdx1];}
+\DoxyCodeLine{00729\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ y2\ =\ inPositions[inIdx2];}
+\DoxyCodeLine{00730\ }
+\DoxyCodeLine{00731\ \ \ \ \ \textcolor{comment}{//\ Calculate\ centroid}}
+\DoxyCodeLine{00732\ \ \ \ \ mCentroid\ =\ (y0\ +\ y1\ +\ y2)\ /\ 3.0f;}
+\DoxyCodeLine{00733\ }
+\DoxyCodeLine{00734\ \ \ \ \ \textcolor{comment}{//\ Calculate\ edges}}
+\DoxyCodeLine{00735\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ y10\ =\ y1\ -\/\ y0;}
+\DoxyCodeLine{00736\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ y20\ =\ y2\ -\/\ y0;}
+\DoxyCodeLine{00737\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ y21\ =\ y2\ -\/\ y1;}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00739\ \ \ \ \ \textcolor{comment}{//\ The\ most\ accurate\ normal\ is\ calculated\ by\ using\ the\ two\ shortest\ edges}}
+\DoxyCodeLine{00740\ \ \ \ \ \textcolor{comment}{//\ See:\ https://box2d.org/posts/2014/01/troublesome-\/triangle/}}
+\DoxyCodeLine{00741\ \ \ \ \ \textcolor{comment}{//\ The\ difference\ in\ normals\ is\ most\ pronounced\ when\ one\ edge\ is\ much\ smaller\ than\ the\ others\ (in\ which\ case\ the\ other\ 2\ must\ have\ roughly\ the\ same\ length).}}
+\DoxyCodeLine{00742\ \ \ \ \ \textcolor{comment}{//\ Therefore\ we\ can\ suffice\ by\ just\ picking\ the\ shortest\ from\ 2\ edges\ and\ use\ that\ with\ the\ 3rd\ edge\ to\ calculate\ the\ normal.}}
+\DoxyCodeLine{00743\ \ \ \ \ \textcolor{comment}{//\ We\ first\ check\ which\ of\ the\ edges\ is\ shorter.}}
+\DoxyCodeLine{00744\ \ \ \ \ \textcolor{keywordtype}{float}\ y20\_dot\_y20\ =\ y20.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y20);}
+\DoxyCodeLine{00745\ \ \ \ \ \textcolor{keywordtype}{float}\ y21\_dot\_y21\ =\ y21.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y21);}
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keywordflow}{if}\ (y20\_dot\_y20\ <\ y21\_dot\_y21)}
+\DoxyCodeLine{00747\ \ \ \ \ \{}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ select\ the\ edges\ y10\ and\ y20}}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ mNormal\ =\ y10.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(y20);}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ triangle\ is\ degenerate}}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ normal\_len\_sq\ =\ mNormal.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (normal\_len\_sq\ >\ \mbox{\hyperlink{classEPAConvexHullBuilder_a4aa8fa12b1aa66a498dcca309be791bb}{cMinTriangleArea}})}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ distance\ between\ triangle\ and\ origin:\ distance\ =\ (centroid\ -\/\ origin)\ .\ normal\ /\ |normal|}}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ this\ way\ of\ calculating\ the\ closest\ point\ is\ much\ more\ accurate\ than\ first\ calculating\ barycentric\ coordinates\ and\ then\ calculating\ the\ closest}}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ point\ based\ on\ those\ coordinates.\ Note\ that\ we\ preserve\ the\ sign\ of\ the\ distance\ to\ check\ on\ which\ side\ the\ origin\ is.}}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ c\_dot\_n\ =\ mCentroid.Dot(mNormal);}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \ \ \ \ mClosestLenSq\ =\ abs(c\_dot\_n)\ *\ c\_dot\_n\ /\ normal\_len\_sq;}
+\DoxyCodeLine{00760\ }
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ closest\ point\ to\ origin\ using\ barycentric\ coordinates:}}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v\ =\ y0\ +\ l0\ *\ (y1\ -\/\ y0)\ +\ l1\ *\ (y2\ -\/\ y0)}}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v\ .\ (y1\ -\/\ y0)\ =\ 0}}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v\ .\ (y2\ -\/\ y0)\ =\ 0}}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Written\ in\ matrix\ form:}}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ |\ y10.y10\ \ y20.y10\ |\ |\ l0\ |\ =\ |\ -\/y0.y10\ |}}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ |\ y10.y20\ \ y20.y20\ |\ |\ l1\ |\ \ \ |\ -\/y0.y20\ |}}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (y10\ =\ y1\ -\/\ y0\ etc.)}}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cramers\ rule\ to\ invert\ matrix:}}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y10\_dot\_y10\ =\ y10.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y10\_dot\_y20\ =\ y10.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y20);}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ determinant\ =\ y10\_dot\_y10\ *\ y20\_dot\_y20\ -\/\ y10\_dot\_y20\ *\ y10\_dot\_y20;}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (determinant\ >\ 0.0f)\ \textcolor{comment}{//\ If\ determinant\ ==\ 0\ then\ the\ system\ is\ linearly\ dependent\ and\ the\ triangle\ is\ degenerate,\ since\ y10.10\ *\ y20.y20\ >\ y10.y20\string^2\ it\ should\ also\ be\ >\ 0}}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y0\_dot\_y10\ =\ y0.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y10);}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y0\_dot\_y20\ =\ y0.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y20);}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ l0\ =\ (y10\_dot\_y20\ *\ y0\_dot\_y20\ -\/\ y20\_dot\_y20\ *\ y0\_dot\_y10)\ /\ determinant;}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ l1\ =\ (y10\_dot\_y20\ *\ y0\_dot\_y10\ -\/\ y10\_dot\_y10\ *\ y0\_dot\_y20)\ /\ determinant;}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLambda[0]\ =\ l0;}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLambda[1]\ =\ l1;}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLambdaRelativeTo0\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00787\ }
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ closest\ point\ is\ interior\ to\ the\ triangle.\ For\ a\ convex\ hull\ which\ contains\ the\ origin\ each\ face\ must\ contain\ the\ origin,\ but\ because}}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ our\ faces\ are\ triangles,\ we\ can\ have\ multiple\ coplanar\ triangles\ and\ only\ 1\ will\ have\ the\ origin\ as\ an\ interior\ point.\ We\ want\ to\ use\ this\ triangle}}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ calculate\ the\ contact\ points\ because\ it\ gives\ the\ most\ accurate\ results,\ so\ we\ will\ only\ add\ these\ triangles\ to\ the\ priority\ queue.}}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (l0\ >\ -\/\mbox{\hyperlink{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d}{cBarycentricEpsilon}}\ \&\&\ l1\ >\ -\/\mbox{\hyperlink{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d}{cBarycentricEpsilon}}\ \&\&\ l0\ +\ l1\ <\ 1.0f\ +\ \mbox{\hyperlink{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d}{cBarycentricEpsilon}})}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mClosestPointInterior\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00795\ \ \ \ \ \}}
+\DoxyCodeLine{00796\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00797\ \ \ \ \ \{}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ select\ the\ edges\ y10\ and\ y21}}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ mNormal\ =\ y10.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(y21);}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ triangle\ is\ degenerate}}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ normal\_len\_sq\ =\ mNormal.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (normal\_len\_sq\ >\ \mbox{\hyperlink{classEPAConvexHullBuilder_a4aa8fa12b1aa66a498dcca309be791bb}{cMinTriangleArea}})}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Again\ calculate\ distance\ between\ triangle\ and\ origin}}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ c\_dot\_n\ =\ mCentroid.Dot(mNormal);}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ mClosestLenSq\ =\ abs(c\_dot\_n)\ *\ c\_dot\_n\ /\ normal\_len\_sq;}
+\DoxyCodeLine{00808\ }
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ closest\ point\ to\ origin\ using\ barycentric\ coordinates\ but\ this\ time\ using\ y1\ as\ the\ reference\ vertex}}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v\ =\ y1\ +\ l0\ *\ (y0\ -\/\ y1)\ +\ l1\ *\ (y2\ -\/\ y1)}}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v\ .\ (y0\ -\/\ y1)\ =\ 0}}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v\ .\ (y2\ -\/\ y1)\ =\ 0}}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Written\ in\ matrix\ form:}}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ |\ y10.y10\ \ -\/y21.y10\ |\ |\ l0\ |\ =\ |\ y1.y10\ |}}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ |\ -\/y10.y21\ \ y21.y21\ |\ |\ l1\ |\ \ \ |\ -\/y1.y21\ |}}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cramers\ rule\ to\ invert\ matrix:}}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y10\_dot\_y10\ =\ y10.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y10\_dot\_y21\ =\ y10.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y21);}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ determinant\ =\ y10\_dot\_y10\ *\ y21\_dot\_y21\ -\/\ y10\_dot\_y21\ *\ y10\_dot\_y21;}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (determinant\ >\ 0.0f)}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y1\_dot\_y10\ =\ y1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y10);}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y1\_dot\_y21\ =\ y1.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y21);}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ l0\ =\ (y21\_dot\_y21\ *\ y1\_dot\_y10\ -\/\ y10\_dot\_y21\ *\ y1\_dot\_y21)\ /\ determinant;}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ l1\ =\ (y10\_dot\_y21\ *\ y1\_dot\_y10\ -\/\ y10\_dot\_y10\ *\ y1\_dot\_y21)\ /\ determinant;}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLambda[0]\ =\ l0;}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLambda[1]\ =\ l1;}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLambdaRelativeTo0\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00833\ }
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Again\ check\ if\ the\ closest\ point\ is\ inside\ the\ triangle}}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (l0\ >\ -\/\mbox{\hyperlink{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d}{cBarycentricEpsilon}}\ \&\&\ l1\ >\ -\/\mbox{\hyperlink{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d}{cBarycentricEpsilon}}\ \&\&\ l0\ +\ l1\ <\ 1.0f\ +\ \mbox{\hyperlink{classEPAConvexHullBuilder_a637ebd7296fad44e0342a5aadfd84a5d}{cBarycentricEpsilon}})}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mClosestPointInterior\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00839\ \ \ \ \ \}}
+\DoxyCodeLine{00840\ \}}
+\DoxyCodeLine{00841\ }
+\DoxyCodeLine{00842\ JPH\_PRECISE\_MATH\_OFF}
+\DoxyCodeLine{00843\ }
+\DoxyCodeLine{00844\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

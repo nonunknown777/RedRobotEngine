@@ -1,0 +1,5 @@
+<map id="AllHitCollisionCollector&lt; CollectorType &gt;" name="AllHitCollisionCollector&lt; CollectorType &gt;">
+<area shape="rect" id="Node000001" title="Simple implementation that collects all hits and optionally sorts them on distance." alt="" coords="5,123,168,273"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="36,5,137,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,90,89,123,84,123,84,90"/>
+</map>

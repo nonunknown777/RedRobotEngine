@@ -1,0 +1,424 @@
+\doxysection{Six\+DOFConstraint Class Reference}
+\hypertarget{classSixDOFConstraint}{}\label{classSixDOFConstraint}\index{SixDOFConstraint@{SixDOFConstraint}}
+
+
+6 Degree Of Freedom \doxylink{classConstraint}{Constraint}. Allows control over each of the 6 degrees of freedom.  
+
+
+
+
+{\ttfamily \#include $<$Six\+DOFConstraint.\+h$>$}
+
+
+
+Inheritance diagram for Six\+DOFConstraint\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/d67/classSixDOFConstraint__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Six\+DOFConstraint\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d9/d3a/classSixDOFConstraint__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSixDOFConstraint_a6ae2f17a4c67f08fb49cacab7ec0d501}\label{classSixDOFConstraint_a6ae2f17a4c67f08fb49cacab7ec0d501} 
+using {\bfseries EAxis} = \mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{Six\+DOFConstraint\+Settings\+::\+EAxis}}
+\begin{DoxyCompactList}\small\item\em Get Axis from settings class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSixDOFConstraint_a3002dc33540a30ce549738faa272f868}\label{classSixDOFConstraint_a3002dc33540a30ce549738faa272f868} 
+{\bfseries Six\+DOFConstraint} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classSixDOFConstraintSettings}{Six\+DOFConstraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Construct six DOF constraint. \end{DoxyCompactList}\item 
+virtual EConstraint\+Sub\+Type \mbox{\hyperlink{classSixDOFConstraint_ae13f824a4eddf95835fdeffe61c7ffba}{Get\+Sub\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Generic interface of a constraint. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSixDOFConstraint_a8fcd02d47dea9f40386d7d5c04aa5e8d}{Notify\+Shape\+Changed}} (const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&in\+Body\+ID, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Delta\+COM) override
+\item 
+virtual void \mbox{\hyperlink{classSixDOFConstraint_a146cd79c1a7305eb5f5336d665433bf2}{Setup\+Velocity\+Constraint}} (float in\+Delta\+Time) override
+\item 
+virtual void \mbox{\hyperlink{classSixDOFConstraint_aa036162c05a52d0e6cf1bc4335ce3188}{Warm\+Start\+Velocity\+Constraint}} (float in\+Warm\+Start\+Impulse\+Ratio) override
+\item 
+virtual bool \mbox{\hyperlink{classSixDOFConstraint_a8d7466b454c6e35d9cee32e8e37707eb}{Solve\+Velocity\+Constraint}} (float in\+Delta\+Time) override
+\item 
+virtual bool \mbox{\hyperlink{classSixDOFConstraint_aed5a73c29f8c6215d5c03d5889daf5b4}{Solve\+Position\+Constraint}} (float in\+Delta\+Time, float in\+Baumgarte) override
+\item 
+virtual void \mbox{\hyperlink{classSixDOFConstraint_a828ee70c16697a599f41aa8fe34d94dc}{Save\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) const override
+\begin{DoxyCompactList}\small\item\em Saving state for replay. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSixDOFConstraint_a0debe4d73fe64559d33974215d71584e}{Restore\+State}} (\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&in\+Stream) override
+\begin{DoxyCompactList}\small\item\em Restoring state for replay. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ \mbox{\hyperlink{classSixDOFConstraint_a73fd75d9d009ab3da592b43fc6206dcf}{Get\+Constraint\+Settings}} () const override
+\begin{DoxyCompactList}\small\item\em Debug function to convert a constraint to its settings, note that this will not save to which bodies the constraint is connected to. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classSixDOFConstraint_a93b7ceef3c7017e4a1a0bc53e29c93d8}{Get\+Constraint\+To\+Body1\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Calculates the transform that transforms from constraint space to body 1 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classMat44}{Mat44}} \mbox{\hyperlink{classSixDOFConstraint_a92d86c092002bec9d22d529f8616aa29}{Get\+Constraint\+To\+Body2\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Calculates the transform that transforms from constraint space to body 2 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_af5ff395b70a1170d8215850acf83826f}\label{classSixDOFConstraint_af5ff395b70a1170d8215850acf83826f} 
+void {\bfseries Set\+Translation\+Limits} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Limit\+Min, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Limit\+Max)
+\begin{DoxyCompactList}\small\item\em Update the translation limits for this constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_ae203835b5e57cbdb0acd755bf65e87fd}\label{classSixDOFConstraint_ae203835b5e57cbdb0acd755bf65e87fd} 
+void {\bfseries Set\+Rotation\+Limits} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Limit\+Min, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Limit\+Max)
+\begin{DoxyCompactList}\small\item\em Update the rotational limits for this constraint. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_a19166b2e56147da794b2651896007294}\label{classSixDOFConstraint_a19166b2e56147da794b2651896007294} 
+float {\bfseries Get\+Limits\+Min} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis) const
+\begin{DoxyCompactList}\small\item\em Get constraint Limits. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_a78e19363677045ac960e57d0deb166e6}\label{classSixDOFConstraint_a78e19363677045ac960e57d0deb166e6} 
+float {\bfseries Get\+Limits\+Max} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis) const
+\item 
+\Hypertarget{classSixDOFConstraint_adca299a0d75c785bb120d381cdb1e6ee}\label{classSixDOFConstraint_adca299a0d75c785bb120d381cdb1e6ee} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Translation\+Limits\+Min} () const
+\item 
+\Hypertarget{classSixDOFConstraint_a9dc7e49353c01c96388125cc6510bb92}\label{classSixDOFConstraint_a9dc7e49353c01c96388125cc6510bb92} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Translation\+Limits\+Max} () const
+\item 
+\Hypertarget{classSixDOFConstraint_ae130846346f47a470d08e7e916955bf6}\label{classSixDOFConstraint_ae130846346f47a470d08e7e916955bf6} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Rotation\+Limits\+Min} () const
+\item 
+\Hypertarget{classSixDOFConstraint_a9d5cd3757370c1c95a19828cfe8ed7ce}\label{classSixDOFConstraint_a9d5cd3757370c1c95a19828cfe8ed7ce} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Rotation\+Limits\+Max} () const
+\item 
+\Hypertarget{classSixDOFConstraint_a9388c6c3c237389fa77aec2862fba244}\label{classSixDOFConstraint_a9388c6c3c237389fa77aec2862fba244} 
+bool {\bfseries Is\+Fixed\+Axis} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis) const
+\begin{DoxyCompactList}\small\item\em Check which axis are fixed/free. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_aaa234472e01794bfa881cf59d0c5d6be}\label{classSixDOFConstraint_aaa234472e01794bfa881cf59d0c5d6be} 
+bool {\bfseries Is\+Free\+Axis} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis) const
+\item 
+\Hypertarget{classSixDOFConstraint_a70687b51cd67ed48ec11975e8799fcc5}\label{classSixDOFConstraint_a70687b51cd67ed48ec11975e8799fcc5} 
+const \mbox{\hyperlink{classSpringSettings}{Spring\+Settings}} \& {\bfseries Get\+Limits\+Spring\+Settings} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis) const
+\begin{DoxyCompactList}\small\item\em Update the limits spring settings. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_a0a7933aafb327871eb4a45e2a2c79fc0}\label{classSixDOFConstraint_a0a7933aafb327871eb4a45e2a2c79fc0} 
+void {\bfseries Set\+Limits\+Spring\+Settings} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis, const \mbox{\hyperlink{classSpringSettings}{Spring\+Settings}} \&in\+Limits\+Spring\+Settings)
+\item 
+\Hypertarget{classSixDOFConstraint_ab28cc63599921c1b582f71549be647b3}\label{classSixDOFConstraint_ab28cc63599921c1b582f71549be647b3} 
+void {\bfseries Set\+Max\+Friction} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis, float in\+Friction)
+\begin{DoxyCompactList}\small\item\em Set the max friction for each axis. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_a874ef6ddc1368b003ba0eb2808adf17c}\label{classSixDOFConstraint_a874ef6ddc1368b003ba0eb2808adf17c} 
+float {\bfseries Get\+Max\+Friction} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis) const
+\item 
+\Hypertarget{classSixDOFConstraint_ae4af627f61bd4bd61d242756dd7f838a}\label{classSixDOFConstraint_ae4af627f61bd4bd61d242756dd7f838a} 
+\mbox{\hyperlink{classQuat}{Quat}} {\bfseries Get\+Rotation\+In\+Constraint\+Space} () const
+\begin{DoxyCompactList}\small\item\em Get rotation of constraint in constraint space. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_a3e4372d1567140760e6cf46710108675}\label{classSixDOFConstraint_a3e4372d1567140760e6cf46710108675} 
+\mbox{\hyperlink{classMotorSettings}{Motor\+Settings}} \& {\bfseries Get\+Motor\+Settings} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis)
+\begin{DoxyCompactList}\small\item\em Motor settings. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_a12db08dc07d7ae6cf63acdb8e17547b7}\label{classSixDOFConstraint_a12db08dc07d7ae6cf63acdb8e17547b7} 
+const \mbox{\hyperlink{classMotorSettings}{Motor\+Settings}} \& {\bfseries Get\+Motor\+Settings} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis) const
+\item 
+void \mbox{\hyperlink{classSixDOFConstraint_a4294f297ae2bdf4f736eb137694ecc44}{Set\+Motor\+State}} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis, EMotor\+State in\+State)
+\item 
+\Hypertarget{classSixDOFConstraint_adcda93c3a6ca21bf6ed39b264a020f38}\label{classSixDOFConstraint_adcda93c3a6ca21bf6ed39b264a020f38} 
+EMotor\+State {\bfseries Get\+Motor\+State} (\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}} in\+Axis) const
+\item 
+\Hypertarget{classSixDOFConstraint_adea943442830716a4e865fe336910729}\label{classSixDOFConstraint_adea943442830716a4e865fe336910729} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Target\+Velocity\+CS} () const
+\begin{DoxyCompactList}\small\item\em Set the target velocity in body 1 constraint space. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_aa4fc743e2d8bbbe4eabcda4a0062d758}\label{classSixDOFConstraint_aa4fc743e2d8bbbe4eabcda4a0062d758} 
+void {\bfseries Set\+Target\+Velocity\+CS} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Velocity)
+\item 
+\Hypertarget{classSixDOFConstraint_a51543e5bc341f2812c0498eeb11ec8a2}\label{classSixDOFConstraint_a51543e5bc341f2812c0498eeb11ec8a2} 
+void {\bfseries Set\+Target\+Angular\+Velocity\+CS} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Angular\+Velocity)
+\begin{DoxyCompactList}\small\item\em Set the target angular velocity in body 2 constraint space (!) \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_aa8906a979a8a5bfcb1887997849d3f0c}\label{classSixDOFConstraint_aa8906a979a8a5bfcb1887997849d3f0c} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Target\+Angular\+Velocity\+CS} () const
+\item 
+\Hypertarget{classSixDOFConstraint_a5e3a3ca4dd727cabe3fbc97a43fffc1d}\label{classSixDOFConstraint_a5e3a3ca4dd727cabe3fbc97a43fffc1d} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Target\+Position\+CS} () const
+\begin{DoxyCompactList}\small\item\em Set the target position in body 1 constraint space. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_a79b66cc0a8850f926aecbcc56dc52570}\label{classSixDOFConstraint_a79b66cc0a8850f926aecbcc56dc52570} 
+void {\bfseries Set\+Target\+Position\+CS} (\mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Position)
+\item 
+\Hypertarget{classSixDOFConstraint_abad5e4ae0dfe6e5da9518683a2f1959c}\label{classSixDOFConstraint_abad5e4ae0dfe6e5da9518683a2f1959c} 
+void {\bfseries Set\+Target\+Orientation\+CS} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Orientation)
+\begin{DoxyCompactList}\small\item\em Set the target orientation in body 1 constraint space. \end{DoxyCompactList}\item 
+\Hypertarget{classSixDOFConstraint_ab3f325802dc065ba6fbeeea76884e0c8}\label{classSixDOFConstraint_ab3f325802dc065ba6fbeeea76884e0c8} 
+\mbox{\hyperlink{classQuat}{Quat}} {\bfseries Get\+Target\+Orientation\+CS} () const
+\item 
+void \mbox{\hyperlink{classSixDOFConstraint_a27200e904e3f52704ce99c2d3f12ad16}{Set\+Target\+Orientation\+BS}} (\mbox{\hyperlink{classQuat}{Quat\+Arg}} in\+Orientation)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Two\+Body\+Constraint} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2, const \mbox{\hyperlink{classTwoBodyConstraintSettings}{Two\+Body\+Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual EConstraint\+Type \mbox{\hyperlink{classTwoBodyConstraint_a25655ebd463476c1ada660d3a292d3c7}{Get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of a constraint. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classTwoBodyConstraint_a9ec4e14ada31bf5172141c2d50663e76}{Is\+Active}} () const override
+\begin{DoxyCompactList}\small\item\em Solver interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body1} () const
+\begin{DoxyCompactList}\small\item\em Access to the connected bodies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Body2} () const
+\item 
+virtual void \mbox{\hyperlink{classTwoBodyConstraint_afca1a46125600fea6ecd15a38ed45790}{Build\+Islands}} (uint32 in\+Constraint\+Index, \mbox{\hyperlink{classIslandBuilder}{Island\+Builder}} \&io\+Builder, \mbox{\hyperlink{classBodyManager}{Body\+Manager}} \&in\+Body\+Manager) override
+\begin{DoxyCompactList}\small\item\em Link bodies that are connected by this constraint in the island builder. \end{DoxyCompactList}\item 
+virtual uint \mbox{\hyperlink{classTwoBodyConstraint_a08db9f012da401e48d5ce4bf404ff6d4}{Build\+Island\+Splits}} (\mbox{\hyperlink{classLargeIslandSplitter}{Large\+Island\+Splitter}} \&io\+Splitter) const override
+\begin{DoxyCompactList}\small\item\em Link bodies that are connected by this constraint in the same split. Returns the split index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classConstraint}{Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Constraint} (const \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} \&in\+Settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Constraint} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraint_a6c75250d651da3854eda9e929193e585}{Get\+Constraint\+Priority}} () const
+\item 
+void {\bfseries Set\+Constraint\+Priority} (uint32 in\+Priority)
+\item 
+void {\bfseries Set\+Num\+Velocity\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Velocity\+Steps\+Override} () const
+\item 
+void {\bfseries Set\+Num\+Position\+Steps\+Override} (uint inN)
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries Get\+Num\+Position\+Steps\+Override} () const
+\item 
+void \mbox{\hyperlink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Set\+Enabled}} (bool in\+Enabled)
+\item 
+bool {\bfseries Get\+Enabled} () const
+\begin{DoxyCompactList}\small\item\em Test if a constraint is enabled. \end{DoxyCompactList}\item 
+uint64 {\bfseries Get\+User\+Data} () const
+\begin{DoxyCompactList}\small\item\em Access to the user data, can be used for anything by the application. \end{DoxyCompactList}\item 
+void {\bfseries Set\+User\+Data} (uint64 in\+User\+Data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Get Lagrange multiplier from last physics update (the linear/angular impulse applied to satisfy the constraint)}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSixDOFConstraint_a01a2d0f0a38d57af09fb86f5432df79b}\label{classSixDOFConstraint_a01a2d0f0a38d57af09fb86f5432df79b} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Total\+Lambda\+Position} () const
+\item 
+\Hypertarget{classSixDOFConstraint_a660cc3a7a434504917d71b2c463cef47}\label{classSixDOFConstraint_a660cc3a7a434504917d71b2c463cef47} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Total\+Lambda\+Rotation} () const
+\item 
+\Hypertarget{classSixDOFConstraint_a244e5b919415ca1feec2d707e3ad64bf}\label{classSixDOFConstraint_a244e5b919415ca1feec2d707e3ad64bf} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Total\+Lambda\+Motor\+Translation} () const
+\item 
+\Hypertarget{classSixDOFConstraint_a84ad5f919ccfff953b8de5ae421425b4}\label{classSixDOFConstraint_a84ad5f919ccfff953b8de5ae421425b4} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries Get\+Total\+Lambda\+Motor\+Rotation} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classConstraint}{Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries To\+Constraint\+Settings} (\mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} \&out\+Settings) const
+\begin{DoxyCompactList}\small\item\em Helper function to copy settings back to constraint settings for this base class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body1}
+\begin{DoxyCompactList}\small\item\em The two bodies involved. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBody}{Body}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Body2}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+6 Degree Of Freedom \doxylink{classConstraint}{Constraint}. Allows control over each of the 6 degrees of freedom. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSixDOFConstraint_a73fd75d9d009ab3da592b43fc6206dcf}\label{classSixDOFConstraint_a73fd75d9d009ab3da592b43fc6206dcf} 
+\index{SixDOFConstraint@{SixDOFConstraint}!GetConstraintSettings@{GetConstraintSettings}}
+\index{GetConstraintSettings@{GetConstraintSettings}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintSettings()}{GetConstraintSettings()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ Six\+DOFConstraint\+::\+Get\+Constraint\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Debug function to convert a constraint to its settings, note that this will not save to which bodies the constraint is connected to. 
+
+
+
+Implements \mbox{\hyperlink{classConstraint_a2cb32f0fbbc03050fd09c975e01277d2}{Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_a93b7ceef3c7017e4a1a0bc53e29c93d8}\label{classSixDOFConstraint_a93b7ceef3c7017e4a1a0bc53e29c93d8} 
+\index{SixDOFConstraint@{SixDOFConstraint}!GetConstraintToBody1Matrix@{GetConstraintToBody1Matrix}}
+\index{GetConstraintToBody1Matrix@{GetConstraintToBody1Matrix}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintToBody1Matrix()}{GetConstraintToBody1Matrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMat44}{Mat44}} Six\+DOFConstraint\+::\+Get\+Constraint\+To\+Body1\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates the transform that transforms from constraint space to body 1 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraint_a0edd748869643b1c904a7bc1314dad7a}{Two\+Body\+Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_a92d86c092002bec9d22d529f8616aa29}\label{classSixDOFConstraint_a92d86c092002bec9d22d529f8616aa29} 
+\index{SixDOFConstraint@{SixDOFConstraint}!GetConstraintToBody2Matrix@{GetConstraintToBody2Matrix}}
+\index{GetConstraintToBody2Matrix@{GetConstraintToBody2Matrix}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{GetConstraintToBody2Matrix()}{GetConstraintToBody2Matrix()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classMat44}{Mat44}} Six\+DOFConstraint\+::\+Get\+Constraint\+To\+Body2\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates the transform that transforms from constraint space to body 2 space. The first column of the matrix is the primary constraint axis (e.\+g. the hinge axis / slider direction), second column the secondary etc. 
+
+
+
+Implements \mbox{\hyperlink{classTwoBodyConstraint_a0966503073a315b6087f10208e8a61ff}{Two\+Body\+Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_ae13f824a4eddf95835fdeffe61c7ffba}\label{classSixDOFConstraint_ae13f824a4eddf95835fdeffe61c7ffba} 
+\index{SixDOFConstraint@{SixDOFConstraint}!GetSubType@{GetSubType}}
+\index{GetSubType@{GetSubType}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{GetSubType()}{GetSubType()}}
+{\footnotesize\ttfamily virtual EConstraint\+Sub\+Type Six\+DOFConstraint\+::\+Get\+Sub\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Generic interface of a constraint. 
+
+
+
+Implements \mbox{\hyperlink{classConstraint_a632a8161ad49c443c2e3a8b600a730a1}{Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_a8fcd02d47dea9f40386d7d5c04aa5e8d}\label{classSixDOFConstraint_a8fcd02d47dea9f40386d7d5c04aa5e8d} 
+\index{SixDOFConstraint@{SixDOFConstraint}!NotifyShapeChanged@{NotifyShapeChanged}}
+\index{NotifyShapeChanged@{NotifyShapeChanged}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{NotifyShapeChanged()}{NotifyShapeChanged()}}
+{\footnotesize\ttfamily virtual void Six\+DOFConstraint\+::\+Notify\+Shape\+Changed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classBodyID}{Body\+ID}} \&}]{in\+Body\+ID,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Delta\+COM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Notify the constraint that the shape of a body has changed and that its center of mass has moved by in\+Delta\+COM. Bodies don\textquotesingle{}t know which constraints are connected to them so the user is responsible for notifying the relevant constraints when a body changes. 
+\begin{DoxyParams}{Parameters}
+{\em in\+Body\+ID} & ID of the body that has changed \\
+\hline
+{\em in\+Delta\+COM} & The delta of the center of mass of the body (shape-\/\texorpdfstring{$>$}{>}Get\+Center\+Of\+Mass() -\/ shape\+\_\+before\+\_\+change-\/\texorpdfstring{$>$}{>}Get\+Center\+Of\+Mass()) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classConstraint_a3072411d2c9da10356f2087cdc02ec70}{Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_a0debe4d73fe64559d33974215d71584e}\label{classSixDOFConstraint_a0debe4d73fe64559d33974215d71584e} 
+\index{SixDOFConstraint@{SixDOFConstraint}!RestoreState@{RestoreState}}
+\index{RestoreState@{RestoreState}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{RestoreState()}{RestoreState()}}
+{\footnotesize\ttfamily virtual void Six\+DOFConstraint\+::\+Restore\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&}]{in\+Stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Restoring state for replay. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraint_aac3d4c1948f1062a8d7c511eddc92e7b}{Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_a828ee70c16697a599f41aa8fe34d94dc}\label{classSixDOFConstraint_a828ee70c16697a599f41aa8fe34d94dc} 
+\index{SixDOFConstraint@{SixDOFConstraint}!SaveState@{SaveState}}
+\index{SaveState@{SaveState}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{SaveState()}{SaveState()}}
+{\footnotesize\ttfamily virtual void Six\+DOFConstraint\+::\+Save\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStateRecorder}{State\+Recorder}} \&}]{in\+Stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saving state for replay. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classConstraint_aea8609ddde798f001409dd7c1a5c8b82}{Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_a4294f297ae2bdf4f736eb137694ecc44}\label{classSixDOFConstraint_a4294f297ae2bdf4f736eb137694ecc44} 
+\index{SixDOFConstraint@{SixDOFConstraint}!SetMotorState@{SetMotorState}}
+\index{SetMotorState@{SetMotorState}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{SetMotorState()}{SetMotorState()}}
+{\footnotesize\ttfamily void Six\+DOFConstraint\+::\+Set\+Motor\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSixDOFConstraintSettings_ad5d80ef30a4a99d4876b244e55fc10cd}{EAxis}}}]{in\+Axis,  }\item[{EMotor\+State}]{in\+State }\end{DoxyParamCaption})}
+
+Motor controls. Translation motors work in constraint space of body 1. Rotation motors work in constraint space of body 2 (!). \Hypertarget{classSixDOFConstraint_a27200e904e3f52704ce99c2d3f12ad16}\label{classSixDOFConstraint_a27200e904e3f52704ce99c2d3f12ad16} 
+\index{SixDOFConstraint@{SixDOFConstraint}!SetTargetOrientationBS@{SetTargetOrientationBS}}
+\index{SetTargetOrientationBS@{SetTargetOrientationBS}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{SetTargetOrientationBS()}{SetTargetOrientationBS()}}
+{\footnotesize\ttfamily void Six\+DOFConstraint\+::\+Set\+Target\+Orientation\+BS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classQuat}{Quat\+Arg}}}]{in\+Orientation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the target orientation in body space (R2 = R1 \texorpdfstring{$\ast$}{*} in\+Orientation, where R1 and R2 are the world space rotations for body 1 and 2). Solve\+: R2 \texorpdfstring{$\ast$}{*} Constraint\+To\+Body2 = R1 \texorpdfstring{$\ast$}{*} Constraint\+To\+Body1 \texorpdfstring{$\ast$}{*} q (see Swing\+Twist\+Constraint\+::\+Get\+Swing\+Twist) and R2 = R1 \texorpdfstring{$\ast$}{*} in\+Orientation for q. \Hypertarget{classSixDOFConstraint_a146cd79c1a7305eb5f5336d665433bf2}\label{classSixDOFConstraint_a146cd79c1a7305eb5f5336d665433bf2} 
+\index{SixDOFConstraint@{SixDOFConstraint}!SetupVelocityConstraint@{SetupVelocityConstraint}}
+\index{SetupVelocityConstraint@{SetupVelocityConstraint}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{SetupVelocityConstraint()}{SetupVelocityConstraint()}}
+{\footnotesize\ttfamily virtual void Six\+DOFConstraint\+::\+Setup\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_aed5a73c29f8c6215d5c03d5889daf5b4}\label{classSixDOFConstraint_aed5a73c29f8c6215d5c03d5889daf5b4} 
+\index{SixDOFConstraint@{SixDOFConstraint}!SolvePositionConstraint@{SolvePositionConstraint}}
+\index{SolvePositionConstraint@{SolvePositionConstraint}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{SolvePositionConstraint()}{SolvePositionConstraint()}}
+{\footnotesize\ttfamily virtual bool Six\+DOFConstraint\+::\+Solve\+Position\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time,  }\item[{float}]{in\+Baumgarte }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_a8d7466b454c6e35d9cee32e8e37707eb}\label{classSixDOFConstraint_a8d7466b454c6e35d9cee32e8e37707eb} 
+\index{SixDOFConstraint@{SixDOFConstraint}!SolveVelocityConstraint@{SolveVelocityConstraint}}
+\index{SolveVelocityConstraint@{SolveVelocityConstraint}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{SolveVelocityConstraint()}{SolveVelocityConstraint()}}
+{\footnotesize\ttfamily virtual bool Six\+DOFConstraint\+::\+Solve\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+\Hypertarget{classSixDOFConstraint_aa036162c05a52d0e6cf1bc4335ce3188}\label{classSixDOFConstraint_aa036162c05a52d0e6cf1bc4335ce3188} 
+\index{SixDOFConstraint@{SixDOFConstraint}!WarmStartVelocityConstraint@{WarmStartVelocityConstraint}}
+\index{WarmStartVelocityConstraint@{WarmStartVelocityConstraint}!SixDOFConstraint@{SixDOFConstraint}}
+\doxysubsubsection{\texorpdfstring{WarmStartVelocityConstraint()}{WarmStartVelocityConstraint()}}
+{\footnotesize\ttfamily virtual void Six\+DOFConstraint\+::\+Warm\+Start\+Velocity\+Constraint (\begin{DoxyParamCaption}\item[{float}]{in\+Warm\+Start\+Impulse\+Ratio }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classConstraint}{Constraint}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Six\+DOFConstraint.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,789 @@
+\doxysection{Fixed.\+hpp}
+\hypertarget{Fixed_8hpp_source}{}\label{Fixed_8hpp_source}\index{includes/playrho/Common/Fixed.hpp@{includes/playrho/Common/Fixed.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2023\ Louis\ Langholtz\ https://github.com/louis-\/langholtz/PlayRho}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ PLAYRHO\_COMMON\_FIXED\_HPP}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ PLAYRHO\_COMMON\_FIXED\_HPP}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Wider.hpp>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/Templates.hpp>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <PlayRho/Common/TypeInfo.hpp>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceplayrho}{playrho}}\ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BASE\_TYPE,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FRACTION\_BITS>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\ =\ BASE\_TYPE;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a50039441c4eaff3a416c73ccd76329c9}{TotalBits}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\textcolor{keyword}{>}(\textcolor{keyword}{sizeof}(BASE\_TYPE)\ *\ 8u);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1Fixed_ac825eb04e8322608de0b5aeb11335480}{FractionBits}}\ =\ FRACTION\_BITS;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1Fixed_afe3dade97bcc1a2b568b465b42b84c68}{WholeBits}}\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a50039441c4eaff3a416c73ccd76329c9}{TotalBits}}\ -\/\ \mbox{\hyperlink{classplayrho_1_1Fixed_ac825eb04e8322608de0b5aeb11335480}{FractionBits}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(1u\ <<\ \mbox{\hyperlink{classplayrho_1_1Fixed_ac825eb04e8322608de0b5aeb11335480}{FractionBits}});}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a17b16b2f06f99d0e941d7e8d9bff4e77}{CmpResult}}}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ Incomparable,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ Equal,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ LessThan,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ GreaterThan}
+\DoxyCodeLine{00071\ \ \ \ \ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a51ec3c07dd4a476c6139ee5c481bb2e4}{GetMin}}()\ noexcept}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\{1,\ scalar\_type\{1\}\};}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}()\ noexcept}
+\DoxyCodeLine{00081\ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\{numeric\_limits::max(),\ scalar\_type\{1\}\};}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{GetMax}}()\ noexcept}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ max\ reserved\ for\ +inf}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\{numeric\_limits::max()\ -\/\ 1,\ scalar\_type\{1\}\};}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}()\ noexcept}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\{numeric\_limits::lowest(),\ scalar\_type\{1\}\};}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}()\ noexcept}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lowest\ reserved\ for\ NaN}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\{numeric\_limits::lowest()\ +\ 1,\ scalar\_type\{1\}\};}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_af56f6641ae9d00bf8894d0b4eaebdd78}{GetLowest}}()\ noexcept}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lowest\ reserved\ for\ NaN}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lowest\ +\ 1\ reserved\ for\ -\/inf}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\{numeric\_limits::lowest()\ +\ 2,\ scalar\_type\{1\}\};}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a2ad5bd576f2074a511bf797d9f946a92}{GetFromFloat}}(T\ val)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_floating\_point<T>::value,\ \textcolor{stringliteral}{"{}floating\ point\ value\ required"{}});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ std::isnan(val)\ *NOT*\ constant\ expression,\ so\ can't\ use\ here!}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(val\ <=\ 0\ ||\ val\ >=\ 0)?\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}().m\_value:}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ (val\ >\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(\mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{GetMax}}()))?\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value:}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ (val\ <\ static\_cast<long\ double>(\mbox{\hyperlink{classplayrho_1_1Fixed_af56f6641ae9d00bf8894d0b4eaebdd78}{GetLowest}}()))?\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value:}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(val\ *\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_aecdf890560a9628053362827e2244dc6}{GetFromSignedInt}}(T\ val)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral<T>::value,\ \textcolor{stringliteral}{"{}integral\ value\ required"{}});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_signed<T>::value,\ \textcolor{stringliteral}{"{}must\ be\ signed"{}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (val\ >\ (\mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{GetMax}}().m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}}))?\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value:}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ (val\ <\ (\mbox{\hyperlink{classplayrho_1_1Fixed_af56f6641ae9d00bf8894d0b4eaebdd78}{GetLowest}}().m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}}))?\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value:}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(val\ *\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_ab0301ea06b852d6f8ef6b121c22f7555}{GetFromUnsignedInt}}(T\ val)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_integral<T>::value,\ \textcolor{stringliteral}{"{}integral\ value\ required"{}});}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(!std::is\_signed<T>::value,\ \textcolor{stringliteral}{"{}must\ be\ unsigned"{}});}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ max\ =\ \textcolor{keyword}{static\_cast<}unsigned\_wider\_type\textcolor{keyword}{>}(\mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{GetMax}}().m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (val\ >\ max)?\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value:\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(val)\ *\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}};}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a6a458c0ea31087e82401dfa621b177f8}{Fixed}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_a2ad5bd576f2074a511bf797d9f946a92}{GetFromFloat}}(val)\}}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty}}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_ab1823b0d4b06595d3f1f4f6159b8551e}{Fixed}}(\textcolor{keywordtype}{double}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_a2ad5bd576f2074a511bf797d9f946a92}{GetFromFloat}}(val)\}}
+\DoxyCodeLine{00158\ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty}}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa799babbcf53d04180d7dd98cf03b16f}{Fixed}}(\textcolor{keywordtype}{float}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_a2ad5bd576f2074a511bf797d9f946a92}{GetFromFloat}}(val)\}}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty}}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_aea9908fdc2c59dbb21327bc71f9e6ade}{Fixed}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_ab0301ea06b852d6f8ef6b121c22f7555}{GetFromUnsignedInt}}(val)\}}
+\DoxyCodeLine{00172\ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a861732457689a3b0b87ef7bf5c5f696a}{Fixed}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_ab0301ea06b852d6f8ef6b121c22f7555}{GetFromUnsignedInt}}(val)\}}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_af352cfb5293e8f992298819b48495265}{Fixed}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_ab0301ea06b852d6f8ef6b121c22f7555}{GetFromUnsignedInt}}(val)\}}
+\DoxyCodeLine{00186\ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a8424347cfc61cbcc9aa4a49498946cec}{Fixed}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_aecdf890560a9628053362827e2244dc6}{GetFromSignedInt}}(val)\}}
+\DoxyCodeLine{00193\ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a663679bd371ab162e801fd931584a54c}{Fixed}}(\textcolor{keywordtype}{long}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_aecdf890560a9628053362827e2244dc6}{GetFromSignedInt}}(val)\}}
+\DoxyCodeLine{00200\ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a6b36e8ececf43e981d89928175d18247}{Fixed}}(\textcolor{keywordtype}{int}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_aecdf890560a9628053362827e2244dc6}{GetFromSignedInt}}(val)\}}
+\DoxyCodeLine{00207\ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00209\ \ \ \ \ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a9fa3992b8612831e11901ecc0c223a30}{Fixed}}(\textcolor{keywordtype}{short}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ m\_value\{\mbox{\hyperlink{classplayrho_1_1Fixed_aecdf890560a9628053362827e2244dc6}{GetFromSignedInt}}(val)\}}
+\DoxyCodeLine{00214\ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a608468aa293e76ec38b7f7d384ac2034}{Fixed}}(\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\ val,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ fraction)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ m\_value\{\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}std::uint32\_t\textcolor{keyword}{>}(val\ *\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}})\ |\ fraction)\}}
+\DoxyCodeLine{00221\ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_ac92de155998569315ff02e1d24d0e5f6}{Fixed}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ val)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\textcolor{keyword}{>}(val))}
+\DoxyCodeLine{00229\ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty}}
+\DoxyCodeLine{00231\ \ \ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{comment}{//\ Methods}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{constexpr}\ T\ \mbox{\hyperlink{classplayrho_1_1Fixed_a035a071fc8938b0844a736dc8ed6349c}{ConvertTo}}()\ const\ noexcept}
+\DoxyCodeLine{00238\ \ \ \ \ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}()?\ std::numeric\_limits<T>::signaling\_NaN():}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{classplayrho_1_1Fixed_ac0fd7ab7953ba4fd1db70c5b6f2c9890}{isfinite}}()?\ std::numeric\_limits<T>::infinity()\ *\ \mbox{\hyperlink{classplayrho_1_1Fixed_acab0e81520ba5aebe0254ef1d78058b9}{getsign}}():}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ /\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a17b16b2f06f99d0e941d7e8d9bff4e77}{CmpResult}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a32d7fcfbf0765894e9abec13705968bb}{Compare}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ other)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00246\ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}()\ ||\ other.isnan())}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CmpResult::Incomparable;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_value\ <\ other.m\_value)}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CmpResult::LessThan;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_value\ >\ other.m\_value)}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CmpResult::GreaterThan;}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CmpResult::Equal;}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{comment}{//\ Unary\ operations}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ \textcolor{keywordtype}{long}\ double()\ const\ noexcept}
+\DoxyCodeLine{00266\ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ConvertTo<long\ double>();}
+\DoxyCodeLine{00268\ \ \ \ \ \}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ double()\ const\ noexcept}
+\DoxyCodeLine{00272\ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ConvertTo<double>();}
+\DoxyCodeLine{00274\ \ \ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ float()\ const\ noexcept}
+\DoxyCodeLine{00278\ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ConvertTo<float>();}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ \textcolor{keywordtype}{long}\ long()\ const\ noexcept}
+\DoxyCodeLine{00284\ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}};}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ long()\ const\ noexcept}
+\DoxyCodeLine{00290\ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}};}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ long()\ const\ noexcept}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Behavior\ is\ undefined\ if\ m\_value\ is\ negative}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\textcolor{keyword}{>}(m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ \textcolor{keywordtype}{unsigned}\ long()\ const\ noexcept}
+\DoxyCodeLine{00303\ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Behavior\ is\ undefined\ if\ m\_value\ is\ negative}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\textcolor{keyword}{>}(m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ \textcolor{keywordtype}{unsigned}\ int()\ const\ noexcept}
+\DoxyCodeLine{00310\ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Behavior\ is\ undefined\ if\ m\_value\ is\ negative}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00313\ \ \ \ \ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ int()\ const\ noexcept}
+\DoxyCodeLine{00317\ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00319\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ short()\ const\ noexcept}
+\DoxyCodeLine{00323\ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(m\_value\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}});}
+\DoxyCodeLine{00325\ \ \ \ \ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a75b6c941518b707b47d7402c8c5a46c8}{operator-\/\ }}()\ const\ noexcept}
+\DoxyCodeLine{00329\ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}())?\ *\textcolor{keyword}{this}:\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\{-\/m\_value,\ scalar\_type\{1\}\};}
+\DoxyCodeLine{00331\ \ \ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a5f378df30e254120e594223e9801a281}{operator+\ }}()\ const\ noexcept}
+\DoxyCodeLine{00335\ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00337\ \ \ \ \ \}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{operator}\ bool()\ const\ noexcept}
+\DoxyCodeLine{00341\ \ \ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_value\ !=\ 0;}
+\DoxyCodeLine{00343\ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1Fixed_abbb2f31d378da7ae7536aca6abfb0606}{operator!\ }}()\ const\ noexcept}
+\DoxyCodeLine{00347\ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_value\ ==\ 0;}
+\DoxyCodeLine{00349\ \ \ \ \ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\&\ \mbox{\hyperlink{classplayrho_1_1Fixed_acf75de5f89983ced654dd76a427d26af}{operator+=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ val)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00353\ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}()\ ||\ val.isnan()}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ ((m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value)\ \&\&\ (val.m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value))}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ ((m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value)\ \&\&\ (val.m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value))}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}();}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (val.m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value)}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (val.m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value)}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classplayrho_1_1Fixed_ac0fd7ab7953ba4fd1db70c5b6f2c9890}{isfinite}}()\ \&\&\ val.isfinite())}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ wider\_type\{m\_value\}\ +\ val.m\_value;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ >\ \mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{GetMax}}().m\_value)}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ overflow\ from\ max}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value;}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ <\ \mbox{\hyperlink{classplayrho_1_1Fixed_af56f6641ae9d00bf8894d0b4eaebdd78}{GetLowest}}().m\_value)}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ overflow\ from\ lowest}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value;}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(result);}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00388\ \ \ \ \ \}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\&\ \mbox{\hyperlink{classplayrho_1_1Fixed_a94f56719936097c7687e0504461881a9}{operator-\/=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ val)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00392\ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}()\ ||\ val.isnan()}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ ((m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value)\ \&\&\ (val.m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value))}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ ((m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value)\ \&\&\ (val.m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value))}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}();}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (val.m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value)}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value;}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (val.m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value)}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classplayrho_1_1Fixed_ac0fd7ab7953ba4fd1db70c5b6f2c9890}{isfinite}}()\ \&\&\ val.isfinite())}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ wider\_type\{m\_value\}\ -\/\ val.m\_value;}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ >\ \mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{GetMax}}().m\_value)}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ overflow\ from\ max}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value;}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ <\ \mbox{\hyperlink{classplayrho_1_1Fixed_af56f6641ae9d00bf8894d0b4eaebdd78}{GetLowest}}().m\_value)}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ overflow\ from\ lowest}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(result);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\&\ \mbox{\hyperlink{classplayrho_1_1Fixed_a8f3fe878039199a7d3854520e7c2b792}{operator*=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ val)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00431\ \ \ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}()\ ||\ val.isnan())}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}();}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classplayrho_1_1Fixed_ac0fd7ab7953ba4fd1db70c5b6f2c9890}{isfinite}}()\ ||\ !val.isfinite())}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_value\ ==\ 0\ ||\ val.m\_value\ ==\ 0)}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}();}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ ((m\_value\ >\ 0)\ !=\ (val.m\_value\ >\ 0))?\ -\/\mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}():\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}();}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ product\ =\ wider\_type\{m\_value\}\ *\ wider\_type\{val.m\_value\};}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ product\ /\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}};}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (product\ !=\ 0\ \&\&\ result\ ==\ 0)}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ underflow}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(result);}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ >\ \mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{GetMax}}().m\_value)}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ overflow\ from\ max}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value;}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ <\ \mbox{\hyperlink{classplayrho_1_1Fixed_af56f6641ae9d00bf8894d0b4eaebdd78}{GetLowest}}().m\_value)}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ overflow\ from\ lowest}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value;}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(result);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00473\ \ \ \ \ \}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\&\ \mbox{\hyperlink{classplayrho_1_1Fixed_afb80bfb92f908479849a324ff2b7236d}{operator/=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ val)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00477\ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}()\ ||\ val.isnan())}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}();}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classplayrho_1_1Fixed_ac0fd7ab7953ba4fd1db70c5b6f2c9890}{isfinite}}()\ \&\&\ !val.isfinite())}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}();}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classplayrho_1_1Fixed_ac0fd7ab7953ba4fd1db70c5b6f2c9890}{isfinite}}())}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ ((m\_value\ >\ 0)\ !=\ (val.m\_value\ >\ 0))?\ -\/\mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}():\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}();}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!val.isfinite())}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ 0;}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ product\ =\ wider\_type\{m\_value\}\ *\ \mbox{\hyperlink{classplayrho_1_1Fixed_aa77846d928bc514796c6ecde33696140}{ScaleFactor}};}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ product\ /\ val.m\_value;}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (product\ !=\ 0\ \&\&\ result\ ==\ 0)}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ underflow}}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(result);}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ >\ \mbox{\hyperlink{classplayrho_1_1Fixed_a442ce09ef7b5e5b5ae1e9b0618522704}{GetMax}}().m\_value)}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ overflow\ from\ max}}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value;}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ <\ \mbox{\hyperlink{classplayrho_1_1Fixed_af56f6641ae9d00bf8894d0b4eaebdd78}{GetLowest}}().m\_value)}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ overflow\ from\ lowest}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value;}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_value\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\textcolor{keyword}{>}(result);}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00520\ \ \ \ \ \}}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\&\ \mbox{\hyperlink{classplayrho_1_1Fixed_a821dd7c016f559c00428f951916e3585}{operator\%=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed}}\ val)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00524\ \ \ \ \ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ assert(!\mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}());}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ assert(!val.isnan());}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ m\_value\ \%=\ val.m\_value;}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00530\ \ \ \ \ \}}
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00533\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1Fixed_ac0fd7ab7953ba4fd1db70c5b6f2c9890}{isfinite}}()\ const\ noexcept}
+\DoxyCodeLine{00534\ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_value\ >\ \mbox{\hyperlink{classplayrho_1_1Fixed_a185fb950a852db73f2f550b58a2d66af}{GetNegativeInfinity}}().m\_value)}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \&\&\ (m\_value\ <\ \mbox{\hyperlink{classplayrho_1_1Fixed_a53788cab95bd0c406f58026e647beda9}{GetInfinity}}().m\_value);}
+\DoxyCodeLine{00537\ \ \ \ \ \}}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00540\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a848e394f6641a7d95421f346a02086ae}{isnan}}()\ const\ noexcept}
+\DoxyCodeLine{00541\ \ \ \ \ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_value\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{GetNaN}}().m\_value;}
+\DoxyCodeLine{00543\ \ \ \ \ \}}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classplayrho_1_1Fixed_acab0e81520ba5aebe0254ef1d78058b9}{getsign}}()\ const\ noexcept}
+\DoxyCodeLine{00547\ \ \ \ \ \{}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_value\ >=\ 0)?\ +1:\ -\/1;}
+\DoxyCodeLine{00549\ \ \ \ \ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00554\ \ \ \ \ \textcolor{keyword}{using\ }wider\_type\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structplayrho_1_1Wider}{Wider<value\_type>::type}};}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00557\ \ \ \ \ \textcolor{keyword}{using\ }unsigned\_wider\_type\ =\ \textcolor{keyword}{typename}\ std::make\_unsigned<wider\_type>::type;}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00560\ \ \ \ \ \textcolor{keyword}{struct\ }scalar\_type}
+\DoxyCodeLine{00561\ \ \ \ \ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\ value\ =\ 1;\ }
+\DoxyCodeLine{00563\ \ \ \ \ \};}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keyword}{using\ }numeric\_limits\ =\ std::numeric\_limits<value\_type>;}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{keyword}{constexpr}\ Fixed(\mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\ val,\ scalar\_type\ scalar)\ \textcolor{keyword}{noexcept}:}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ m\_value\{val\ *\ scalar.value\}}
+\DoxyCodeLine{00571\ \ \ \ \ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentionally\ empty.}}
+\DoxyCodeLine{00573\ \ \ \ \ \}}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \mbox{\hyperlink{classplayrho_1_1Fixed_ad5302b547a8052bcaec79f04430afaee}{value\_type}}\ m\_value;\ }
+\DoxyCodeLine{00576\ \};}
+\DoxyCodeLine{00577\ }
+\DoxyCodeLine{00579\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00580\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00581\ \{}
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.Compare(rhs)\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>::CmpResult::Equal}};}
+\DoxyCodeLine{00583\ \}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00586\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00587\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00588\ \{}
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1Fixed_a32d7fcfbf0765894e9abec13705968bb}{Compare}}(rhs)\ !=\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>::CmpResult::Equal}};}
+\DoxyCodeLine{00590\ \}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00593\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00594\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a4e50b7f361b27adaf57e0b275b849cb2}{operator<\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00595\ \{}
+\DoxyCodeLine{00596\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1Fixed_a32d7fcfbf0765894e9abec13705968bb}{Compare}}(rhs)\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>::CmpResult::LessThan}};}
+\DoxyCodeLine{00597\ \}}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00600\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00601\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_aab6a70eaafe3d414d9ebb561150a5ae0}{operator>\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00602\ \{}
+\DoxyCodeLine{00603\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1Fixed_a32d7fcfbf0765894e9abec13705968bb}{Compare}}(rhs)\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>::CmpResult::GreaterThan}};}
+\DoxyCodeLine{00604\ \}}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00607\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00608\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a17f5c3cf62f38463edf89ddc5bf05b80}{operator<=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00609\ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.\mbox{\hyperlink{classplayrho_1_1Fixed_a32d7fcfbf0765894e9abec13705968bb}{Compare}}(rhs);}
+\DoxyCodeLine{00611\ \ \ \ \ \textcolor{keywordflow}{return}\ result\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>::CmpResult::LessThan}}\ ||}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ result\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>::CmpResult::Equal}};}
+\DoxyCodeLine{00613\ \}}
+\DoxyCodeLine{00614\ }
+\DoxyCodeLine{00616\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00617\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a5c18729fd53f4bb5275874c8cd1eb644}{operator>=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00618\ \{}
+\DoxyCodeLine{00619\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.\mbox{\hyperlink{classplayrho_1_1Fixed_a32d7fcfbf0765894e9abec13705968bb}{Compare}}(rhs);}
+\DoxyCodeLine{00620\ \ \ \ \ \textcolor{keywordflow}{return}\ result\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>::CmpResult::GreaterThan}}\ ||\ result\ ==\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>::CmpResult::Equal}};}
+\DoxyCodeLine{00621\ \}}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00624\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00625\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ \mbox{\hyperlink{namespaceplayrho_ab0007f3b80a0bc77615b4566b5860111}{operator+\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00626\ \{}
+\DoxyCodeLine{00627\ \ \ \ \ lhs\ +=\ rhs;}
+\DoxyCodeLine{00628\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00629\ \}}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00632\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00633\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ \mbox{\hyperlink{namespaceplayrho_aa918349e3179ab2f97d04b41085d0a48}{operator-\/\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00634\ \{}
+\DoxyCodeLine{00635\ \ \ \ \ lhs\ -\/=\ rhs;}
+\DoxyCodeLine{00636\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00637\ \}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00640\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00641\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ \mbox{\hyperlink{namespaceplayrho_ab695c5da4298cd1267ccb84710dc5dc4}{operator*\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00642\ \{}
+\DoxyCodeLine{00643\ \ \ \ \ lhs\ *=\ rhs;}
+\DoxyCodeLine{00644\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00645\ \}}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00648\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00649\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ \mbox{\hyperlink{namespaceplayrho_a5a5b28003deb87e06a3c9e51f44fb096}{operator/\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00650\ \{}
+\DoxyCodeLine{00651\ \ \ \ \ lhs\ /=\ rhs;}
+\DoxyCodeLine{00652\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00653\ \}}
+\DoxyCodeLine{00654\ }
+\DoxyCodeLine{00656\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00657\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ \mbox{\hyperlink{namespaceplayrho_a8fbd676ab95ad944a50c343918c89658}{operator\%\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00658\ \{}
+\DoxyCodeLine{00659\ \ \ \ \ lhs\ \%=\ rhs;}
+\DoxyCodeLine{00660\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00661\ \}}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00667\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00668\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a87b5e301c1a03179e49ed7ee3a9408d9}{AlmostZero}}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ value)}
+\DoxyCodeLine{00669\ \{}
+\DoxyCodeLine{00670\ \ \ \ \ \textcolor{keywordflow}{return}\ value\ ==\ 0;}
+\DoxyCodeLine{00671\ \}}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00674\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00675\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a6aaf4879371df30246226867c121a9ad}{AlmostEqual}}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ x,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\ y,\ \textcolor{keywordtype}{int}\ ulp\ =\ 2)}
+\DoxyCodeLine{00676\ \{}
+\DoxyCodeLine{00677\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__FixedMath_ga403b0629c377f62b89a74cb4a39d0ce2}{abs}}(x\ -\/\ y)\ <=\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\{0,\ \textcolor{keyword}{static\_cast<}std::uint32\_t\textcolor{keyword}{>}(ulp)\};}
+\DoxyCodeLine{00678\ \}}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \textcolor{preprocessor}{\#ifdef\ CONFLICT\_WITH\_GETINVALID}}
+\DoxyCodeLine{00682\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00683\ \textcolor{keyword}{constexpr}\ Fixed<BT,\ FB>\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept}
+\DoxyCodeLine{00684\ \{}
+\DoxyCodeLine{00685\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{Fixed<BT,\ FB>::GetNaN}}();}
+\DoxyCodeLine{00686\ \}}
+\DoxyCodeLine{00687\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CONFLICT\_WITH\_GETINVALID}}
+\DoxyCodeLine{00688\ }
+\DoxyCodeLine{00690\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ BT,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ FB>}
+\DoxyCodeLine{00691\ inline\ ::std::ostream\&\ \mbox{\hyperlink{namespaceplayrho_acc045bd4bbb560077978ce21cd20c49f}{operator<<}}(::std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<BT,\ FB>}}\&\ value)}
+\DoxyCodeLine{00692\ \{}
+\DoxyCodeLine{00693\ \ \ \ \ \textcolor{keywordflow}{return}\ os\ <<\ static\_cast<double>(value);}
+\DoxyCodeLine{00694\ \}}
+\DoxyCodeLine{00695\ }
+\DoxyCodeLine{00710\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<std::int32\_t,9>}};}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00712\ \textcolor{comment}{//\ Fixed32\ free\ functions.}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00715\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00716\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept}
+\DoxyCodeLine{00717\ \{}
+\DoxyCodeLine{00718\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classplayrho_1_1Fixed_a1ff80903da60611b8aea0224d3d3f4eb}{Fixed32::GetNaN}}();}
+\DoxyCodeLine{00719\ \}}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00722\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ \mbox{\hyperlink{namespaceplayrho_ab0007f3b80a0bc77615b4566b5860111}{operator+\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00723\ \{}
+\DoxyCodeLine{00724\ \ \ \ \ lhs\ +=\ rhs;}
+\DoxyCodeLine{00725\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00726\ \}}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00729\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ \mbox{\hyperlink{namespaceplayrho_aa918349e3179ab2f97d04b41085d0a48}{operator-\/\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00730\ \{}
+\DoxyCodeLine{00731\ \ \ \ \ lhs\ -\/=\ rhs;}
+\DoxyCodeLine{00732\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00733\ \}}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00736\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ \mbox{\hyperlink{namespaceplayrho_ab695c5da4298cd1267ccb84710dc5dc4}{operator*\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00737\ \{}
+\DoxyCodeLine{00738\ \ \ \ \ lhs\ *=\ rhs;}
+\DoxyCodeLine{00739\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00740\ \}}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00743\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ \mbox{\hyperlink{namespaceplayrho_a5a5b28003deb87e06a3c9e51f44fb096}{operator/\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00744\ \{}
+\DoxyCodeLine{00745\ \ \ \ \ lhs\ /=\ rhs;}
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00747\ \}}
+\DoxyCodeLine{00748\ }
+\DoxyCodeLine{00750\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ \mbox{\hyperlink{namespaceplayrho_a8fbd676ab95ad944a50c343918c89658}{operator\%\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00751\ \{}
+\DoxyCodeLine{00752\ \ \ \ \ lhs\ \%=\ rhs;}
+\DoxyCodeLine{00753\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00754\ \}}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00757\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00758\ \{}
+\DoxyCodeLine{00759\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.\mbox{\hyperlink{classplayrho_1_1Fixed_a32d7fcfbf0765894e9abec13705968bb}{Compare}}(rhs)\ ==\ Fixed32::CmpResult::Equal;}
+\DoxyCodeLine{00760\ \}}
+\DoxyCodeLine{00761\ }
+\DoxyCodeLine{00763\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00764\ \{}
+\DoxyCodeLine{00765\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.Compare(rhs)\ !=\ Fixed32::CmpResult::Equal;}
+\DoxyCodeLine{00766\ \}}
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00769\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a17f5c3cf62f38463edf89ddc5bf05b80}{operator\ <=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00770\ \{}
+\DoxyCodeLine{00771\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.Compare(rhs);}
+\DoxyCodeLine{00772\ \ \ \ \ \textcolor{keywordflow}{return}\ (result\ ==\ Fixed32::CmpResult::LessThan)\ ||\ (result\ ==\ Fixed32::CmpResult::Equal);}
+\DoxyCodeLine{00773\ \}}
+\DoxyCodeLine{00774\ }
+\DoxyCodeLine{00776\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a5c18729fd53f4bb5275874c8cd1eb644}{operator\ >=\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00777\ \{}
+\DoxyCodeLine{00778\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.Compare(rhs);}
+\DoxyCodeLine{00779\ \ \ \ \ \textcolor{keywordflow}{return}\ (result\ ==\ Fixed32::CmpResult::GreaterThan)\ ||\ (result\ ==\ Fixed32::CmpResult::Equal);}
+\DoxyCodeLine{00780\ \}}
+\DoxyCodeLine{00781\ }
+\DoxyCodeLine{00783\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a4e50b7f361b27adaf57e0b275b849cb2}{operator\ <\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00784\ \{}
+\DoxyCodeLine{00785\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.Compare(rhs);}
+\DoxyCodeLine{00786\ \ \ \ \ \textcolor{keywordflow}{return}\ result\ ==\ Fixed32::CmpResult::LessThan;}
+\DoxyCodeLine{00787\ \}}
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00790\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_aab6a70eaafe3d414d9ebb561150a5ae0}{operator\ >\ }}(\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ lhs,\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00791\ \{}
+\DoxyCodeLine{00792\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.Compare(rhs);}
+\DoxyCodeLine{00793\ \ \ \ \ \textcolor{keywordflow}{return}\ result\ ==\ Fixed32::CmpResult::GreaterThan;}
+\DoxyCodeLine{00794\ \}}
+\DoxyCodeLine{00795\ }
+\DoxyCodeLine{00797\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00798\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayrho_1_1TypeInfo}{TypeInfo}}<\mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed32}}>}
+\DoxyCodeLine{00799\ \{}
+\DoxyCodeLine{00801\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structplayrho_1_1TypeInfo_a8b2fb3a860bc5cb91dba839bacb4d055}{name}}\ =\ \textcolor{stringliteral}{"{}Fixed32"{}};}
+\DoxyCodeLine{00802\ \};}
+\DoxyCodeLine{00803\ }
+\DoxyCodeLine{00804\ \textcolor{preprocessor}{\#ifdef\ PLAYRHO\_INT128}}
+\DoxyCodeLine{00805\ \textcolor{comment}{//\ Fixed64\ free\ functions.}}
+\DoxyCodeLine{00806\ }
+\DoxyCodeLine{00819\ \textcolor{keyword}{using\ }Fixed64\ =\ \mbox{\hyperlink{classplayrho_1_1Fixed}{Fixed<std::int64\_t,24>}};}
+\DoxyCodeLine{00820\ }
+\DoxyCodeLine{00822\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00823\ \textcolor{keyword}{constexpr}\ Fixed64\ \mbox{\hyperlink{namespaceplayrho_ad6ddaf8c685e3dd0ea312de07b3cda6a}{GetInvalid}}()\ noexcept}
+\DoxyCodeLine{00824\ \{}
+\DoxyCodeLine{00825\ \ \ \ \ \textcolor{keywordflow}{return}\ Fixed64::GetNaN();}
+\DoxyCodeLine{00826\ \}}
+\DoxyCodeLine{00827\ }
+\DoxyCodeLine{00829\ \textcolor{keyword}{constexpr}\ Fixed64\ \mbox{\hyperlink{namespaceplayrho_ab0007f3b80a0bc77615b4566b5860111}{operator+\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00830\ \{}
+\DoxyCodeLine{00831\ \ \ \ \ lhs\ +=\ rhs;}
+\DoxyCodeLine{00832\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00833\ \}}
+\DoxyCodeLine{00834\ }
+\DoxyCodeLine{00836\ \textcolor{keyword}{constexpr}\ Fixed64\ \mbox{\hyperlink{namespaceplayrho_aa918349e3179ab2f97d04b41085d0a48}{operator-\/\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00837\ \{}
+\DoxyCodeLine{00838\ \ \ \ \ lhs\ -\/=\ rhs;}
+\DoxyCodeLine{00839\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00840\ \}}
+\DoxyCodeLine{00841\ }
+\DoxyCodeLine{00843\ \textcolor{keyword}{constexpr}\ Fixed64\ \mbox{\hyperlink{namespaceplayrho_ab695c5da4298cd1267ccb84710dc5dc4}{operator*\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00844\ \{}
+\DoxyCodeLine{00845\ \ \ \ \ lhs\ *=\ rhs;}
+\DoxyCodeLine{00846\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00847\ \}}
+\DoxyCodeLine{00848\ }
+\DoxyCodeLine{00850\ \textcolor{keyword}{constexpr}\ Fixed64\ \mbox{\hyperlink{namespaceplayrho_a5a5b28003deb87e06a3c9e51f44fb096}{operator/\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00851\ \{}
+\DoxyCodeLine{00852\ \ \ \ \ lhs\ /=\ rhs;}
+\DoxyCodeLine{00853\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00854\ \}}
+\DoxyCodeLine{00855\ }
+\DoxyCodeLine{00856\ \textcolor{keyword}{constexpr}\ Fixed64\ \mbox{\hyperlink{namespaceplayrho_a8fbd676ab95ad944a50c343918c89658}{operator\%\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00857\ \{}
+\DoxyCodeLine{00858\ \ \ \ \ lhs\ \%=\ rhs;}
+\DoxyCodeLine{00859\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00860\ \}}
+\DoxyCodeLine{00861\ }
+\DoxyCodeLine{00863\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_ab5692e54289c87c156bd7455763082a9}{operator==\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00864\ \{}
+\DoxyCodeLine{00865\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.Compare(rhs)\ ==\ Fixed64::CmpResult::Equal;}
+\DoxyCodeLine{00866\ \}}
+\DoxyCodeLine{00867\ }
+\DoxyCodeLine{00869\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a425d26025dffe3901caa095b9fa19682}{operator!=\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00870\ \{}
+\DoxyCodeLine{00871\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.Compare(rhs)\ !=\ Fixed64::CmpResult::Equal;}
+\DoxyCodeLine{00872\ \}}
+\DoxyCodeLine{00873\ }
+\DoxyCodeLine{00874\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a17f5c3cf62f38463edf89ddc5bf05b80}{operator\ <=\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00875\ \{}
+\DoxyCodeLine{00876\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.Compare(rhs);}
+\DoxyCodeLine{00877\ \ \ \ \ \textcolor{keywordflow}{return}\ (result\ ==\ Fixed64::CmpResult::LessThan)\ ||\ (result\ ==\ Fixed64::CmpResult::Equal);}
+\DoxyCodeLine{00878\ \}}
+\DoxyCodeLine{00879\ }
+\DoxyCodeLine{00880\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a5c18729fd53f4bb5275874c8cd1eb644}{operator\ >=\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00881\ \{}
+\DoxyCodeLine{00882\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.Compare(rhs);}
+\DoxyCodeLine{00883\ \ \ \ \ \textcolor{keywordflow}{return}\ (result\ ==\ Fixed64::CmpResult::GreaterThan)\ ||\ (result\ ==\ Fixed64::CmpResult::Equal);}
+\DoxyCodeLine{00884\ \}}
+\DoxyCodeLine{00885\ }
+\DoxyCodeLine{00886\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_a4e50b7f361b27adaf57e0b275b849cb2}{operator\ <\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00887\ \{}
+\DoxyCodeLine{00888\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.Compare(rhs);}
+\DoxyCodeLine{00889\ \ \ \ \ \textcolor{keywordflow}{return}\ result\ ==\ Fixed64::CmpResult::LessThan;}
+\DoxyCodeLine{00890\ \}}
+\DoxyCodeLine{00891\ }
+\DoxyCodeLine{00892\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceplayrho_aab6a70eaafe3d414d9ebb561150a5ae0}{operator\ >\ }}(Fixed64\ lhs,\ Fixed64\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00893\ \{}
+\DoxyCodeLine{00894\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ lhs.Compare(rhs);}
+\DoxyCodeLine{00895\ \ \ \ \ \textcolor{keywordflow}{return}\ result\ ==\ Fixed64::CmpResult::GreaterThan;}
+\DoxyCodeLine{00896\ \}}
+\DoxyCodeLine{00897\ }
+\DoxyCodeLine{00899\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }Wider<\mbox{\hyperlink{namespaceplayrho_a51e61fee8a0be399ed24773ebc3135f8}{Fixed32}}>\ \{}
+\DoxyCodeLine{00900\ \ \ \ \ \textcolor{keyword}{using\ }type\ =\ Fixed64;\ }
+\DoxyCodeLine{00901\ \};}
+\DoxyCodeLine{00902\ }
+\DoxyCodeLine{00904\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00905\ \textcolor{keyword}{struct\ }TypeInfo<Fixed64>}
+\DoxyCodeLine{00906\ \{}
+\DoxyCodeLine{00908\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{structplayrho_1_1TypeInfo_a8b2fb3a860bc5cb91dba839bacb4d055}{name}}\ =\ \textcolor{stringliteral}{"{}Fixed64"{}};}
+\DoxyCodeLine{00909\ \};}
+\DoxyCodeLine{00910\ }
+\DoxyCodeLine{00911\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ PLAYRHO\_INT128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00912\ }
+\DoxyCodeLine{00913\ \}\ \textcolor{comment}{//\ namespace\ playrho}}
+\DoxyCodeLine{00914\ }
+\DoxyCodeLine{00915\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYRHO\_COMMON\_FIXED\_HPP}}
+
+\end{DoxyCode}

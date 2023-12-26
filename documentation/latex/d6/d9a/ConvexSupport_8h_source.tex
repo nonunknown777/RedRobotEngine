@@ -1,0 +1,173 @@
+\doxysection{Convex\+Support.\+h}
+\hypertarget{ConvexSupport_8h_source}{}\label{ConvexSupport_8h_source}\index{includes/jolt/Geometry/ConvexSupport.h@{includes/jolt/Geometry/ConvexSupport.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Mat44.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ConvexObject>}
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTransformedConvexObject}{TransformedConvexObject}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{structTransformedConvexObject_aee084d15cbc724e8a28b88298a557573}{TransformedConvexObject}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inTransform,\ \textcolor{keyword}{const}\ ConvexObject\ \&inObject)\ :}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ mTransform(inTransform),}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ mObject(inObject)}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTransformedConvexObject_a0fa745b8d15e71629ebb719716d16fa8}{GetSupport}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTransform\ *\ mObject.GetSupport(mTransform.\mbox{\hyperlink{classMat44_a3ed66bc4c5e8e010657bd5bb109f1406}{Multiply3x3Transposed}}(inDirection));}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY>}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTransformedConvexObject_ae7e5d51b4cbb01eb146274711eec26e2}{GetSupportingFace}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ VERTEX\_ARRAY\ \&outVertices)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ mObject.GetSupportingFace(mTransform.\mbox{\hyperlink{classMat44_a3ed66bc4c5e8e010657bd5bb109f1406}{Multiply3x3Transposed}}(inDirection),\ outVertices);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classVec3}{Vec3}}\ \&v\ :\ outVertices)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ mTransform\ *\ v;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTransform;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ ConvexObject\ \&\ \ \ \ mObject;}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ConvexObject>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAddConvexRadius}{AddConvexRadius}}}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structAddConvexRadius}{AddConvexRadius}}(\textcolor{keyword}{const}\ ConvexObject\ \&inObject,\ \textcolor{keywordtype}{float}\ inRadius)\ :}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ mObject(inObject),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ mRadius(inRadius)}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structAddConvexRadius_a77576ad6fd2ef0aafc34d245b578ef59}{GetSupport}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ length\ =\ inDirection.\mbox{\hyperlink{classVec3_a38a9efffc3f9413f3dd702abc73eb9a2}{Length}}();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ length\ >\ 0.0f\ ?\ mObject.GetSupport(inDirection)\ +\ (mRadius\ /\ length)\ *\ inDirection\ :\ mObject.GetSupport(inDirection);}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ ConvexObject\ \&\ \ \ \ mObject;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRadius;}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ConvexObjectA,\ \textcolor{keyword}{typename}\ ConvexObjectB>}
+\DoxyCodeLine{00066\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structMinkowskiDifference}{MinkowskiDifference}}}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{structMinkowskiDifference}{MinkowskiDifference}}(\textcolor{keyword}{const}\ ConvexObjectA\ \&inObjectA,\ \textcolor{keyword}{const}\ ConvexObjectB\ \&inObjectB)\ :}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ mObjectA(inObjectA),}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ mObjectB(inObjectB)}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structMinkowskiDifference_ad9e15e934b19be1df6e09a926a1e26dd}{GetSupport}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mObjectA.GetSupport(inDirection)\ -\/\ mObjectB.GetSupport(-\/inDirection);}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ ConvexObjectA\ \&\ \ \ mObjectA;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ ConvexObjectB\ \&\ \ \ mObjectB;}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPointConvexSupport}{PointConvexSupport}}}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPointConvexSupport_af9f294c5aa22abc2f9c826cbb8e2b05a}{GetSupport}}([[maybe\_unused]]\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mPoint;}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPoint;}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTriangleConvexSupport}{TriangleConvexSupport}}}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleConvexSupport_aff7b77e932e636e0fe582cd01c5c05fa}{TriangleConvexSupport}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV3)\ :}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleConvexSupport_a50d0969071796932f1e6463f44d6265d}{mV1}}(inV1),}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ mV2(inV2),}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ mV3(inV3)}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleConvexSupport_ac824e6c13d9702af6699e7ba4beccb4c}{GetSupport}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Project\ vertices\ on\ inDirection}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d1\ =\ \mbox{\hyperlink{structTriangleConvexSupport_a50d0969071796932f1e6463f44d6265d}{mV1}}.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inDirection);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d2\ =\ mV2.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inDirection);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ d3\ =\ mV3.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inDirection);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ vertex\ with\ biggest\ projection}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d1\ >\ d2)}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d1\ >\ d3)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structTriangleConvexSupport_a50d0969071796932f1e6463f44d6265d}{mV1}};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mV3;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d2\ >\ d3)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mV2;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mV3;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY>}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleConvexSupport_ab06eab6917e292cdf749432e50ac9159}{GetSupportingFace}}([[maybe\_unused]]\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ VERTEX\_ARRAY\ \&outVertices)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00135\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ outVertices.push\_back(\mbox{\hyperlink{structTriangleConvexSupport_a50d0969071796932f1e6463f44d6265d}{mV1}});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ outVertices.push\_back(mV2);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ outVertices.push\_back(mV3);}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structTriangleConvexSupport_a50d0969071796932f1e6463f44d6265d}{mV1}};}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mV2;}
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mV3;}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY>}
+\DoxyCodeLine{00149\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPolygonConvexSupport}{PolygonConvexSupport}}}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPolygonConvexSupport_a7597917acd3f2a6f73aa47045f22b69c}{PolygonConvexSupport}}(\textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&inVertices)\ :}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPolygonConvexSupport_ab038bf1e11e180f9663d1a5f877c4ee7}{mVertices}}(inVertices)}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPolygonConvexSupport_a4e117627d895a0466b06b76f267aa605}{GetSupport}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ support\_point\ =\ \mbox{\hyperlink{structPolygonConvexSupport_ab038bf1e11e180f9663d1a5f877c4ee7}{mVertices}}[0];}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ best\_dot\ =\ \mbox{\hyperlink{structPolygonConvexSupport_ab038bf1e11e180f9663d1a5f877c4ee7}{mVertices}}[0].\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(inDirection);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{typename}\ VERTEX\_ARRAY::const\_iterator\ v\ =\ \mbox{\hyperlink{structPolygonConvexSupport_ab038bf1e11e180f9663d1a5f877c4ee7}{mVertices}}.begin()\ +\ 1;\ v\ <\ \mbox{\hyperlink{structPolygonConvexSupport_ab038bf1e11e180f9663d1a5f877c4ee7}{mVertices}}.end();\ ++v)}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dot\ =\ v-\/>Dot(inDirection);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dot\ >\ best\_dot)}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ best\_dot\ =\ dot;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ support\_point\ =\ *v;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ support\_point;}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ VERTEX\_ARRAY\_ARG>}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPolygonConvexSupport_a25e370fc7ce4db9df032a10e3caee238}{GetSupportingFace}}([[maybe\_unused]]\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inDirection,\ VERTEX\_ARRAY\_ARG\ \&outVertices)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00179\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classVec3}{Vec3}}\ v\ :\ \mbox{\hyperlink{structPolygonConvexSupport_ab038bf1e11e180f9663d1a5f877c4ee7}{mVertices}})}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ outVertices.push\_back(v);}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{const}\ VERTEX\_ARRAY\ \&\ \ \ \ \mbox{\hyperlink{structPolygonConvexSupport_ab038bf1e11e180f9663d1a5f877c4ee7}{mVertices}};}
+\DoxyCodeLine{00186\ \};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

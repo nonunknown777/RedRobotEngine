@@ -1,0 +1,58 @@
+\doxysection{Body\+Access.\+h}
+\hypertarget{BodyAccess_8h_source}{}\label{BodyAccess_8h_source}\index{includes/jolt/Physics/Body/BodyAccess.h@{includes/jolt/Physics/Body/BodyAccess.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ JPH\_ENABLE\_ASSERTS}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }BodyAccess}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{enum\ class}\ EAccess\ :\ uint8}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ None\ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ Read\ \ \ \ \ \ \ \ =\ 1,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ ReadWrite\ \ \ =\ 3,}
+\DoxyCodeLine{00020\ \ \ \ \ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{class\ }Grant}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Grant(EAccess\ inVelocity,\ EAccess\ inPosition)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(sVelocityAccess\ ==\ EAccess::ReadWrite);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(sPositionAccess\ ==\ EAccess::ReadWrite);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ sVelocityAccess\ =\ inVelocity;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ sPositionAccess\ =\ inPosition;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string~Grant()}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ sVelocityAccess\ =\ EAccess::ReadWrite;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ sPositionAccess\ =\ EAccess::ReadWrite;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sCheckRights(EAccess\ inRights,\ EAccess\ inDesiredRights)}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (uint8(inRights)\ \&\ uint8(inDesiredRights))\ ==\ uint8(inDesiredRights);}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Various\ permissions\ that\ can\ be\ granted}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{thread\_local}\ EAccess\ \ \ \ \ \ \ \ \ sVelocityAccess;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{thread\_local}\ EAccess\ \ \ \ \ \ \ \ \ sPositionAccess;}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JPH\_ENABLE\_ASSERTS}}
+
+\end{DoxyCode}

@@ -1,0 +1,951 @@
+\doxysection{Mat44.\+inl}
+\hypertarget{Mat44_8inl_source}{}\label{Mat44_8inl_source}\index{includes/jolt/Math/Mat44.inl@{includes/jolt/Math/Mat44.inl}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Vec3.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Vec4.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Math/Quat.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ JPH\_EL(r,\ c)\ mCol[c].mF32[r]}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44::Mat44}}(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC1,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC2,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC3,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC4)\ :}
+\DoxyCodeLine{00016\ \ \ \ \ mCol\ \{\ inC1,\ inC2,\ inC3,\ inC4\ \}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44::Mat44}}(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC1,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC2,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inC3,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inC4)\ :}
+\DoxyCodeLine{00021\ \ \ \ \ mCol\ \{\ inC1,\ inC2,\ inC3,\ \mbox{\hyperlink{classVec4}{Vec4}}(inC4,\ 1.0f)\ \}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44::Mat44}}(Type\ inC1,\ Type\ inC2,\ Type\ inC3,\ Type\ inC4)\ :}
+\DoxyCodeLine{00026\ \ \ \ \ mCol\ \{\ inC1,\ inC2,\ inC3,\ inC4\ \}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a1e3a8da1cf3a631ffaf478ca3f6bb1ed}{Mat44::sZero}}()}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}(),\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}(),\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}(),\ \mbox{\hyperlink{classVec4_ab3d9624594386baa4ebd8c1d340ce924}{Vec4::sZero}}());}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a1b8c82590f5034e8c7f35157fdfd944f}{Mat44::sIdentity}}()}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(1,\ 0,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 1,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 1,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a5c6898814660114482bbfc4908c3ad37}{Mat44::sNaN}}()}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4_ae55a1d16541b4d01f0904784dda18f54}{Vec4::sNaN}}(),\ \mbox{\hyperlink{classVec4_ae55a1d16541b4d01f0904784dda18f54}{Vec4::sNaN}}(),\ \mbox{\hyperlink{classVec4_ae55a1d16541b4d01f0904784dda18f54}{Vec4::sNaN}}(),\ \mbox{\hyperlink{classVec4_ae55a1d16541b4d01f0904784dda18f54}{Vec4::sNaN}}());}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a3e2a056f901661fd715528c325df455d}{Mat44::sLoadFloat4x4}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat4}{Float4}}\ *inV)}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 4;\ ++c)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ result.mCol[c]\ =\ \mbox{\hyperlink{classVec4_aae23cc21ead458bce2968440134f350f}{Vec4::sLoadFloat4}}(inV\ +\ c);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a8bcbeea9029c5251ff4ea9bd4d518f4c}{Mat44::sLoadFloat4x4Aligned}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFloat4}{Float4}}\ *inV)}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 4;\ ++c)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ result.mCol[c]\ =\ \mbox{\hyperlink{classVec4_a1f1c3d12bab2296d6313caf8a9929919}{Vec4::sLoadFloat4Aligned}}(inV\ +\ c);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_af243335b6d6acec2cf71d4cdc79bdff4}{Mat44::sRotationX}}(\textcolor{keywordtype}{float}\ inX)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ sv,\ cv;}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inX).\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(sv,\ cv);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ sv.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}(),\ c\ =\ cv.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(1,\ 0,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ c,\ s,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ -\/s,\ c,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \mbox{\hyperlink{classMat44}{Mat44}}\ Mat44::sRotationY(\textcolor{keywordtype}{float}\ inY)}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ sv,\ cv;}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inY).\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(sv,\ cv);}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ sv.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}(),\ c\ =\ cv.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(c,\ 0,\ -\/s,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 1,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(s,\ 0,\ c,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \mbox{\hyperlink{classMat44}{Mat44}}\ Mat44::sRotationZ(\textcolor{keywordtype}{float}\ inZ)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ sv,\ cv;}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inZ).\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(sv,\ cv);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ sv.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}(),\ c\ =\ cv.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(c,\ s,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(-\/s,\ c,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 1,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{Mat44::sRotation}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inQuat)}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ JPH\_ASSERT(inQuat.\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ See:\ https://en.wikipedia.org/wiki/Quaternions\_and\_spatial\_rotation\ section\ 'Quaternion-\/derived\ rotation\ matrix'}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#ifdef\ JPH\_USE\_SSE4\_1}}
+\DoxyCodeLine{00091\ \ \ \ \ \_\_m128\ xyzw\ =\ inQuat.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.mValue;}
+\DoxyCodeLine{00092\ \ \ \ \ \_\_m128\ two\_xyzw\ =\ \_mm\_add\_ps(xyzw,\ xyzw);}
+\DoxyCodeLine{00093\ \ \ \ \ \_\_m128\ yzxw\ =\ \_mm\_shuffle\_ps(xyzw,\ xyzw,\ \_MM\_SHUFFLE(3,\ 0,\ 2,\ 1));}
+\DoxyCodeLine{00094\ \ \ \ \ \_\_m128\ two\_yzxw\ =\ \_mm\_add\_ps(yzxw,\ yzxw);}
+\DoxyCodeLine{00095\ \ \ \ \ \_\_m128\ zxyw\ =\ \_mm\_shuffle\_ps(xyzw,\ xyzw,\ \_MM\_SHUFFLE(3,\ 1,\ 0,\ 2));}
+\DoxyCodeLine{00096\ \ \ \ \ \_\_m128\ two\_zxyw\ =\ \_mm\_add\_ps(zxyw,\ zxyw);}
+\DoxyCodeLine{00097\ \ \ \ \ \_\_m128\ wwww\ =\ \_mm\_shuffle\_ps(xyzw,\ xyzw,\ \_MM\_SHUFFLE(3,\ 3,\ 3,\ 3));}
+\DoxyCodeLine{00098\ \ \ \ \ \_\_m128\ diagonal\ =\ \_mm\_sub\_ps(\_mm\_sub\_ps(\_mm\_set1\_ps(1.0f),\ \_mm\_mul\_ps(two\_yzxw,\ yzxw)),\ \_mm\_mul\_ps(two\_zxyw,\ zxyw));\ \ \ \ \textcolor{comment}{//\ (1\ -\/\ 2\ y\string^2\ -\/\ 2\ z\string^2,\ 1\ -\/\ 2\ x\string^2\ -\/\ 2\ z\string^2,\ 1\ -\/\ 2\ x\string^2\ -\/\ 2\ y\string^2,\ 1\ -\/\ 4\ w\string^2)}}
+\DoxyCodeLine{00099\ \ \ \ \ \_\_m128\ plus\ =\ \_mm\_add\_ps(\_mm\_mul\_ps(two\_xyzw,\ zxyw),\ \_mm\_mul\_ps(two\_yzxw,\ wwww));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2\ *\ (xz\ +\ yw,\ xy\ +\ zw,\ yz\ +\ xw,\ ww)}}
+\DoxyCodeLine{00100\ \ \ \ \ \_\_m128\ minus\ =\ \_mm\_sub\_ps(\_mm\_mul\_ps(two\_yzxw,\ xyzw),\ \_mm\_mul\_ps(two\_zxyw,\ wwww));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2\ *\ (xy\ -\/\ zw,\ yz\ -\/\ xw,\ xz\ -\/\ yw,\ 0)}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ Workaround\ for\ compiler\ changing\ \_mm\_sub\_ps(\_mm\_mul\_ps(...),\ ...)\ into\ a\ fused\ multiply\ sub\ instruction,\ resulting\ in\ w\ not\ being\ 0}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ There\ doesn't\ appear\ to\ be\ a\ reliable\ way\ to\ turn\ this\ off\ in\ Clang}}
+\DoxyCodeLine{00104\ \ \ \ \ minus\ =\ \_mm\_insert\_ps(minus,\ minus,\ 0b1000);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \_\_m128\ col0\ =\ \_mm\_blend\_ps(\_mm\_blend\_ps(plus,\ diagonal,\ 0b0001),\ minus,\ 0b1100);\ \ \ \ \textcolor{comment}{//\ (1\ -\/\ 2\ y\string^2\ -\/\ 2\ z\string^2,\ 2\ xy\ +\ 2\ zw,\ 2\ xz\ -\/\ 2\ yw,\ 0)}}
+\DoxyCodeLine{00107\ \ \ \ \ \_\_m128\ col1\ =\ \_mm\_blend\_ps(\_mm\_blend\_ps(diagonal,\ minus,\ 0b1001),\ plus,\ 0b0100);\ \ \ \ \textcolor{comment}{//\ (2\ xy\ -\/\ 2\ zw,\ 1\ -\/\ 2\ x\string^2\ -\/\ 2\ z\string^2,\ 2\ yz\ +\ 2\ xw,\ 0)}}
+\DoxyCodeLine{00108\ \ \ \ \ \_\_m128\ col2\ =\ \_mm\_blend\_ps(\_mm\_blend\_ps(minus,\ plus,\ 0b0001),\ diagonal,\ 0b0100);\ \ \ \ \textcolor{comment}{//\ (2\ xz\ +\ 2\ yw,\ 2\ yz\ -\/\ 2\ xw,\ 1\ -\/\ 2\ x\string^2\ -\/\ 2\ y\string^2,\ 0)}}
+\DoxyCodeLine{00109\ \ \ \ \ \_\_m128\ col3\ =\ \_mm\_set\_ps(1,\ 0,\ 0,\ 0);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(col0,\ col1,\ col2,\ col3);}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ inQuat.\mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}();}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ inQuat.\mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ inQuat.\mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}();}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{float}\ w\ =\ inQuat.\mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}();}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{float}\ tx\ =\ x\ +\ x;\ \textcolor{comment}{//\ Note:\ Using\ x\ +\ x\ instead\ of\ 2.0f\ *\ x\ to\ force\ this\ function\ to\ return\ the\ same\ value\ as\ the\ SSE4.1\ version\ across\ platforms.}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{float}\ ty\ =\ y\ +\ y;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{float}\ tz\ =\ z\ +\ z;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{float}\ xx\ =\ tx\ *\ x;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{float}\ yy\ =\ ty\ *\ y;}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{float}\ zz\ =\ tz\ *\ z;}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{float}\ xy\ =\ tx\ *\ y;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{float}\ xz\ =\ tx\ *\ z;}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{float}\ xw\ =\ tx\ *\ w;}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{float}\ yz\ =\ ty\ *\ z;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{float}\ yw\ =\ ty\ *\ w;}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{float}\ zw\ =\ tz\ *\ w;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}((1.0f\ -\/\ yy)\ -\/\ zz,\ xy\ +\ zw,\ xz\ -\/\ yw,\ 0.0f),\ \textcolor{comment}{//\ Note:\ Added\ extra\ brackets\ to\ force\ this\ function\ to\ return\ the\ same\ value\ as\ the\ SSE4.1\ version\ across\ platforms.}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(xy\ -\/\ zw,\ (1.0f\ -\/\ zz)\ -\/\ xx,\ yz\ +\ xw,\ 0.0f),}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(xz\ +\ yw,\ yz\ -\/\ xw,\ (1.0f\ -\/\ xx)\ -\/\ yy,\ 0.0f),}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0.0f,\ 0.0f,\ 0.0f,\ 1.0f));}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{Mat44::sRotation}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inAxis,\ \textcolor{keywordtype}{float}\ inAngle)}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{sRotation}}(\mbox{\hyperlink{classQuat_a3ac594bf7be610138e90735ae99ff8e9}{Quat::sRotation}}(inAxis,\ inAngle));}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a8cc7184902ce670d0822a28a8906df52}{Mat44::sTranslation}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(1,\ 0,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 1,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 1,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(inV,\ 1));}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_aba5427f45393b40263d52ec614cfa985}{Mat44::sRotationTranslation}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inR,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inT)}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ m\ =\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{sRotation}}(inR);}
+\DoxyCodeLine{00152\ \ \ \ \ m.SetTranslation(inT);}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_ac8be820a7eeb44bf570abb8dc01f4c59}{Mat44::sInverseRotationTranslation}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inR,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inT)}
+\DoxyCodeLine{00157\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ m\ =\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{sRotation}}(inR.\mbox{\hyperlink{classQuat_ac69dfd8cdf79a19b8c3f385125ff5ddc}{Conjugated}}());}
+\DoxyCodeLine{00159\ \ \ \ \ m.SetTranslation(-\/m.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(inT));}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a858ecd5c9c124039f5c7adab5bcf5041}{Mat44::sScale}}(\textcolor{keywordtype}{float}\ inScale)}
+\DoxyCodeLine{00164\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(inScale,\ 0,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ inScale,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ inScale,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00166\ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a858ecd5c9c124039f5c7adab5bcf5041}{Mat44::sScale}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(inV.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}(),\ 0,\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ inV.GetY(),\ 0,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ inV.GetZ(),\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a44ee960223f2270ce7ea2840418e3c72}{Mat44::sOuterProduct}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2)}
+\DoxyCodeLine{00174\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ v1(inV1,\ 0);}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(v1\ *\ inV2.\mbox{\hyperlink{classVec3_a1b03f087ce2755a85ccba4ba56f1e64b}{SplatX}}(),\ v1\ *\ inV2.\mbox{\hyperlink{classVec3_aad5b4211a6d98be56362559eefd9b029}{SplatY}}(),\ v1\ *\ inV2.\mbox{\hyperlink{classVec3_a81f4448e17219aafda0e3b886709d1f4}{SplatZ}}(),\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00177\ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a23d5a6de1a0058d380a0bf42d263c659}{Mat44::sCrossProduct}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)}
+\DoxyCodeLine{00180\ \{}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#ifdef\ JPH\_USE\_SSE4\_1}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ Zero\ out\ the\ W\ component}}
+\DoxyCodeLine{00183\ \ \ \ \ \_\_m128\ zero\ =\ \_mm\_setzero\_ps();}
+\DoxyCodeLine{00184\ \ \ \ \ \_\_m128\ v\ =\ \_mm\_blend\_ps(inV.mValue,\ zero,\ 0b1000);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ Negate}}
+\DoxyCodeLine{00187\ \ \ \ \ \_\_m128\ min\_v\ =\ \_mm\_sub\_ps(zero,\ v);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \_mm\_shuffle\_ps(v,\ min\_v,\ \_MM\_SHUFFLE(3,\ 1,\ 2,\ 3)),\ \textcolor{comment}{//\ [0,\ z,\ -\/y,\ 0]}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \_mm\_shuffle\_ps(min\_v,\ v,\ \_MM\_SHUFFLE(3,\ 0,\ 3,\ 2)),\ \textcolor{comment}{//\ [-\/z,\ 0,\ x,\ 0]}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \_mm\_blend\_ps(\_mm\_shuffle\_ps(v,\ v,\ \_MM\_SHUFFLE(3,\ 3,\ 3,\ 1)),\ \_mm\_shuffle\_ps(min\_v,\ min\_v,\ \_MM\_SHUFFLE(3,\ 3,\ 0,\ 3)),\ 0b0010),\ \textcolor{comment}{//\ [y,\ -\/x,\ 0,\ 0]}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ inV.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}();}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ inV.GetY();}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ inV.GetZ();}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ z,\ -\/y,\ 0),}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(-\/z,\ 0,\ x,\ 0),}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(y,\ -\/x,\ 0,\ 0),}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00205\ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a48f32e1e7f27b3eeaa8913d53b2c808f}{Mat44::sLookAt}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inPos,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTarget,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inUp)}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ direction\ =\ (inTarget\ -\/\ inPos).NormalizedOr(-\/Vec3::sAxisZ());}
+\DoxyCodeLine{00210\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ right\ =\ direction.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(inUp).\mbox{\hyperlink{classVec3_a6c6409cad56e4e357f73d43cd719ffe8}{NormalizedOr}}(\mbox{\hyperlink{classVec3_a142cc5c79f08229eb11532c26f1a1e90}{Vec3::sAxisX}}());}
+\DoxyCodeLine{00211\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ up\ =\ right.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(direction);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(right,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(up,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(-\/direction,\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(inPos,\ 1)).InversedRotationTranslation();}
+\DoxyCodeLine{00214\ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMat44_a3be30e0ae2ded68ebb5ceea9afbfe5c1}{Mat44::operator\ ==\ }}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00217\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(\mbox{\hyperlink{classVec4_a698a4e6c270545046633b043eb36d21f}{Vec4::sEquals}}(mCol[0],\ inM2.mCol[0]),\ \mbox{\hyperlink{classVec4_a698a4e6c270545046633b043eb36d21f}{Vec4::sEquals}}(mCol[1],\ inM2.mCol[1])),}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4_a69a2126a24a31ead596e3316c1285145}{UVec4::sAnd}}(\mbox{\hyperlink{classVec4_a698a4e6c270545046633b043eb36d21f}{Vec4::sEquals}}(mCol[2],\ inM2.mCol[2]),\ \mbox{\hyperlink{classVec4_a698a4e6c270545046633b043eb36d21f}{Vec4::sEquals}}(mCol[3],\ inM2.mCol[3]))}
+\DoxyCodeLine{00221\ \ \ \ \ ).\mbox{\hyperlink{classUVec4_a48549afaeaba00fc4b45a10c50656c9f}{TestAllTrue}}();}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMat44_a69e383afe2897a0179fdeb7a418d961d}{Mat44::IsClose}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM2,\ \textcolor{keywordtype}{float}\ inMaxDistSq)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!mCol[i].\mbox{\hyperlink{classMat44_a69e383afe2897a0179fdeb7a418d961d}{IsClose}}(inM2.mCol[i],\ inMaxDistSq))}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \mbox{\hyperlink{classMat44}{Mat44}}\ Mat44::operator\ *\ (\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00234\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00237\ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \_\_m128\ c\ =\ inM.mCol[i].mValue;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \_\_m128\ t\ =\ \_mm\_mul\_ps(mCol[0].mValue,\ \_mm\_shuffle\_ps(c,\ c,\ \_MM\_SHUFFLE(0,\ 0,\ 0,\ 0)));}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[1].mValue,\ \_mm\_shuffle\_ps(c,\ c,\ \_MM\_SHUFFLE(1,\ 1,\ 1,\ 1))));}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[2].mValue,\ \_mm\_shuffle\_ps(c,\ c,\ \_MM\_SHUFFLE(2,\ 2,\ 2,\ 2))));}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[3].mValue,\ \_mm\_shuffle\_ps(c,\ c,\ \_MM\_SHUFFLE(3,\ 3,\ 3,\ 3))));}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ result.mCol[i].mValue\ =\ t;}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00247\ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ Type\ c\ =\ inM.mCol[i].mValue;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ Type\ t\ =\ vmulq\_f32(mCol[0].mValue,\ vdupq\_laneq\_f32(c,\ 0));}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[1].mValue,\ vdupq\_laneq\_f32(c,\ 1));}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[2].mValue,\ vdupq\_laneq\_f32(c,\ 2));}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[3].mValue,\ vdupq\_laneq\_f32(c,\ 3));}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ result.mCol[i].mValue\ =\ t;}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ result.mCol[i]\ =\ mCol[0]\ *\ inM.mCol[i].mF32[0]\ +\ mCol[1]\ *\ inM.mCol[i].mF32[1]\ +\ mCol[2]\ *\ inM.mCol[i].mF32[2]\ +\ mCol[3]\ *\ inM.mCol[i].mF32[3];}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00260\ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \mbox{\hyperlink{classVec3}{Vec3}}\ Mat44::operator\ *\ (\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00263\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00265\ \ \ \ \ \_\_m128\ t\ =\ \_mm\_mul\_ps(mCol[0].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(0,\ 0,\ 0,\ 0)));}
+\DoxyCodeLine{00266\ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[1].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(1,\ 1,\ 1,\ 1))));}
+\DoxyCodeLine{00267\ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[2].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(2,\ 2,\ 2,\ 2))));}
+\DoxyCodeLine{00268\ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ mCol[3].mValue);}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_a0fd5f4e55649a94f140bd9d6fe38be3c}{Vec3::sFixW}}(t);}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00271\ \ \ \ \ Type\ t\ =\ vmulq\_f32(mCol[0].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 0));}
+\DoxyCodeLine{00272\ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[1].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 1));}
+\DoxyCodeLine{00273\ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[2].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 2));}
+\DoxyCodeLine{00274\ \ \ \ \ t\ =\ vaddq\_f32(t,\ mCol[3].mValue);\ \textcolor{comment}{//\ Don't\ combine\ this\ with\ the\ first\ mul\ into\ a\ fused\ multiply\ add,\ causes\ precision\ issues}}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_a0fd5f4e55649a94f140bd9d6fe38be3c}{Vec3::sFixW}}(t);}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ mCol[0].mF32[0]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[0]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[0]\ *\ inV.mF32[2]\ +\ mCol[3].mF32[0],}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ mCol[0].mF32[1]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[1]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[1]\ *\ inV.mF32[2]\ +\ mCol[3].mF32[1],}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ mCol[0].mF32[2]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[2]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[2]\ *\ inV.mF32[2]\ +\ mCol[3].mF32[2]);}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00282\ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \mbox{\hyperlink{classVec4}{Vec4}}\ Mat44::operator\ *\ (\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00285\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00287\ \ \ \ \ \_\_m128\ t\ =\ \_mm\_mul\_ps(mCol[0].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(0,\ 0,\ 0,\ 0)));}
+\DoxyCodeLine{00288\ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[1].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(1,\ 1,\ 1,\ 1))));}
+\DoxyCodeLine{00289\ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[2].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(2,\ 2,\ 2,\ 2))));}
+\DoxyCodeLine{00290\ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[3].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(3,\ 3,\ 3,\ 3))));}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00293\ \ \ \ \ Type\ t\ =\ vmulq\_f32(mCol[0].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 0));}
+\DoxyCodeLine{00294\ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[1].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 1));}
+\DoxyCodeLine{00295\ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[2].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 2));}
+\DoxyCodeLine{00296\ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[3].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 3));}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec4}{Vec4}}(}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ mCol[0].mF32[0]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[0]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[0]\ *\ inV.mF32[2]\ +\ mCol[3].mF32[0]\ *\ inV.mF32[3],}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ mCol[0].mF32[1]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[1]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[1]\ *\ inV.mF32[2]\ +\ mCol[3].mF32[1]\ *\ inV.mF32[3],}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ mCol[0].mF32[2]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[2]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[2]\ *\ inV.mF32[2]\ +\ mCol[3].mF32[2]\ *\ inV.mF32[3],}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ mCol[0].mF32[3]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[3]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[3]\ *\ inV.mF32[2]\ +\ mCol[3].mF32[3]\ *\ inV.mF32[3]);}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00305\ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Mat44::Multiply3x3}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00308\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00310\ \ \ \ \ \_\_m128\ t\ =\ \_mm\_mul\_ps(mCol[0].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(0,\ 0,\ 0,\ 0)));}
+\DoxyCodeLine{00311\ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[1].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(1,\ 1,\ 1,\ 1))));}
+\DoxyCodeLine{00312\ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[2].mValue,\ \_mm\_shuffle\_ps(inV.mValue,\ inV.mValue,\ \_MM\_SHUFFLE(2,\ 2,\ 2,\ 2))));}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_a0fd5f4e55649a94f140bd9d6fe38be3c}{Vec3::sFixW}}(t);}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00315\ \ \ \ \ Type\ t\ =\ vmulq\_f32(mCol[0].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 0));}
+\DoxyCodeLine{00316\ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[1].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 1));}
+\DoxyCodeLine{00317\ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[2].mValue,\ vdupq\_laneq\_f32(inV.mValue,\ 2));}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3_a0fd5f4e55649a94f140bd9d6fe38be3c}{Vec3::sFixW}}(t);}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classVec3}{Vec3}}(}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ mCol[0].mF32[0]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[0]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[0]\ *\ inV.mF32[2],}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ mCol[0].mF32[1]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[1]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[1]\ *\ inV.mF32[2],}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ mCol[0].mF32[2]\ *\ inV.mF32[0]\ +\ mCol[1].mF32[2]\ *\ inV.mF32[1]\ +\ mCol[2].mF32[2]\ *\ inV.mF32[2]);}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00325\ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \mbox{\hyperlink{classVec3}{Vec3}}\ \mbox{\hyperlink{classMat44_a3ed66bc4c5e8e010657bd5bb109f1406}{Mat44::Multiply3x3Transposed}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00328\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00330\ \ \ \ \ \_\_m128\ x\ =\ \_mm\_dp\_ps(mCol[0].mValue,\ inV.mValue,\ 0x7f);}
+\DoxyCodeLine{00331\ \ \ \ \ \_\_m128\ y\ =\ \_mm\_dp\_ps(mCol[1].mValue,\ inV.mValue,\ 0x7f);}
+\DoxyCodeLine{00332\ \ \ \ \ \_\_m128\ xy\ =\ \_mm\_blend\_ps(x,\ y,\ 0b0010);}
+\DoxyCodeLine{00333\ \ \ \ \ \_\_m128\ z\ =\ \_mm\_dp\_ps(mCol[2].mValue,\ inV.mValue,\ 0x7f);}
+\DoxyCodeLine{00334\ \ \ \ \ \_\_m128\ xyzz\ =\ \_mm\_blend\_ps(xy,\ z,\ 0b1100);}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordflow}{return}\ xyzz;}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_a29830ba9d80d31e00d30abcc0c099e7c}{Transposed3x3}}().\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(inV);}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00339\ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Mat44::Multiply3x3}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00342\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00343\ \ \ \ \ JPH\_ASSERT(mCol[0][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00344\ \ \ \ \ JPH\_ASSERT(mCol[1][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00345\ \ \ \ \ JPH\_ASSERT(mCol[2][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ ++i)}
+\DoxyCodeLine{00350\ \ \ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \_\_m128\ c\ =\ inM.mCol[i].mValue;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \_\_m128\ t\ =\ \_mm\_mul\_ps(mCol[0].mValue,\ \_mm\_shuffle\_ps(c,\ c,\ \_MM\_SHUFFLE(0,\ 0,\ 0,\ 0)));}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[1].mValue,\ \_mm\_shuffle\_ps(c,\ c,\ \_MM\_SHUFFLE(1,\ 1,\ 1,\ 1))));}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ t\ =\ \_mm\_add\_ps(t,\ \_mm\_mul\_ps(mCol[2].mValue,\ \_mm\_shuffle\_ps(c,\ c,\ \_MM\_SHUFFLE(2,\ 2,\ 2,\ 2))));}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ result.mCol[i].mValue\ =\ t;}
+\DoxyCodeLine{00356\ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ ++i)}
+\DoxyCodeLine{00359\ \ \ \ \ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ Type\ c\ =\ inM.mCol[i].mValue;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ Type\ t\ =\ vmulq\_f32(mCol[0].mValue,\ vdupq\_laneq\_f32(c,\ 0));}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[1].mValue,\ vdupq\_laneq\_f32(c,\ 1));}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ t\ =\ vmlaq\_f32(t,\ mCol[2].mValue,\ vdupq\_laneq\_f32(c,\ 2));}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ result.mCol[i].mValue\ =\ t;}
+\DoxyCodeLine{00365\ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ ++i)}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ result.mCol[i]\ =\ mCol[0]\ *\ inM.mCol[i].mF32[0]\ +\ mCol[1]\ *\ inM.mCol[i].mF32[1]\ +\ mCol[2]\ *\ inM.mCol[i].mF32[2];}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00370\ \ \ \ \ result.mCol[3]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1);}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00372\ \}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a1c302e1f10c6c5a233aed4a540e0f598}{Mat44::Multiply3x3LeftTransposed}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00375\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{comment}{//\ Transpose\ left\ hand\ side}}
+\DoxyCodeLine{00377\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ trans\ =\ \mbox{\hyperlink{classMat44_a29830ba9d80d31e00d30abcc0c099e7c}{Transposed3x3}}();}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{comment}{//\ Do\ 3x3\ matrix\ multiply}}
+\DoxyCodeLine{00380\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00381\ \ \ \ \ result.mCol[0]\ =\ trans.mCol[0]\ *\ inM.mCol[0].\mbox{\hyperlink{classVec4_a02525e7f8473c93268058324115eeb02}{SplatX}}()\ +\ trans.mCol[1]\ *\ inM.mCol[0].\mbox{\hyperlink{classVec4_a7ea3bcf62a6055b45527f720a51d0005}{SplatY}}()\ +\ trans.mCol[2]\ *\ inM.mCol[0].\mbox{\hyperlink{classVec4_a8fcd8e6ed1b4cf308656cca7cf68d5ee}{SplatZ}}();}
+\DoxyCodeLine{00382\ \ \ \ \ result.mCol[1]\ =\ trans.mCol[0]\ *\ inM.mCol[1].\mbox{\hyperlink{classVec4_a02525e7f8473c93268058324115eeb02}{SplatX}}()\ +\ trans.mCol[1]\ *\ inM.mCol[1].\mbox{\hyperlink{classVec4_a7ea3bcf62a6055b45527f720a51d0005}{SplatY}}()\ +\ trans.mCol[2]\ *\ inM.mCol[1].\mbox{\hyperlink{classVec4_a8fcd8e6ed1b4cf308656cca7cf68d5ee}{SplatZ}}();}
+\DoxyCodeLine{00383\ \ \ \ \ result.mCol[2]\ =\ trans.mCol[0]\ *\ inM.mCol[2].\mbox{\hyperlink{classVec4_a02525e7f8473c93268058324115eeb02}{SplatX}}()\ +\ trans.mCol[1]\ *\ inM.mCol[2].\mbox{\hyperlink{classVec4_a7ea3bcf62a6055b45527f720a51d0005}{SplatY}}()\ +\ trans.mCol[2]\ *\ inM.mCol[2].\mbox{\hyperlink{classVec4_a8fcd8e6ed1b4cf308656cca7cf68d5ee}{SplatZ}}();}
+\DoxyCodeLine{00384\ \ \ \ \ result.mCol[3]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1);}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00386\ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a595ae3cf26d9fb87761e20b6b35d3d10}{Mat44::Multiply3x3RightTransposed}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00389\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00390\ \ \ \ \ JPH\_ASSERT(mCol[0][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00391\ \ \ \ \ JPH\_ASSERT(mCol[1][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00392\ \ \ \ \ JPH\_ASSERT(mCol[2][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00395\ \ \ \ \ result.mCol[0]\ =\ mCol[0]\ *\ inM.mCol[0].\mbox{\hyperlink{classVec4_a02525e7f8473c93268058324115eeb02}{SplatX}}()\ +\ mCol[1]\ *\ inM.mCol[1].\mbox{\hyperlink{classVec4_a02525e7f8473c93268058324115eeb02}{SplatX}}()\ +\ mCol[2]\ *\ inM.mCol[2].\mbox{\hyperlink{classVec4_a02525e7f8473c93268058324115eeb02}{SplatX}}();}
+\DoxyCodeLine{00396\ \ \ \ \ result.mCol[1]\ =\ mCol[0]\ *\ inM.mCol[0].\mbox{\hyperlink{classVec4_a7ea3bcf62a6055b45527f720a51d0005}{SplatY}}()\ +\ mCol[1]\ *\ inM.mCol[1].\mbox{\hyperlink{classVec4_a7ea3bcf62a6055b45527f720a51d0005}{SplatY}}()\ +\ mCol[2]\ *\ inM.mCol[2].\mbox{\hyperlink{classVec4_a7ea3bcf62a6055b45527f720a51d0005}{SplatY}}();}
+\DoxyCodeLine{00397\ \ \ \ \ result.mCol[2]\ =\ mCol[0]\ *\ inM.mCol[0].\mbox{\hyperlink{classVec4_a8fcd8e6ed1b4cf308656cca7cf68d5ee}{SplatZ}}()\ +\ mCol[1]\ *\ inM.mCol[1].\mbox{\hyperlink{classVec4_a8fcd8e6ed1b4cf308656cca7cf68d5ee}{SplatZ}}()\ +\ mCol[2]\ *\ inM.mCol[2].\mbox{\hyperlink{classVec4_a8fcd8e6ed1b4cf308656cca7cf68d5ee}{SplatZ}}();}
+\DoxyCodeLine{00398\ \ \ \ \ result.mCol[3]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1);}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00400\ \}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \mbox{\hyperlink{classMat44}{Mat44}}\ Mat44::operator\ *\ (\textcolor{keywordtype}{float}\ inV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00403\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00404\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ multiplier\ =\ \mbox{\hyperlink{classVec4_af18f350dd2885dc48ff7e7cbf4b8bc9d}{Vec4::sReplicate}}(inV);}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 4;\ ++c)}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ result.mCol[c]\ =\ mCol[c]\ *\ multiplier;}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00410\ \}}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \mbox{\hyperlink{classMat44}{Mat44}}\ \&\mbox{\hyperlink{classMat44_a2a3d5b10d49ac1eed4eae855a0fd25d9}{Mat44::operator\ *=\ }}(\textcolor{keywordtype}{float}\ inV)}
+\DoxyCodeLine{00413\ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 4;\ ++c)}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ mCol[c]\ *=\ inV;}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00418\ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_ac0c3181759450b3498b5dc53967f803d}{Mat44::operator\ +\ }}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00421\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00422\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ result.mCol[i]\ =\ mCol[i]\ +\ inM.mCol[i];}
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00426\ \}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a22b266ee0c8cb215e96edaebc50d2cbf}{Mat44::operator\ -\/\ }}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00429\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00430\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ result.mCol[i]\ =\ -\/mCol[i];}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00434\ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a22b266ee0c8cb215e96edaebc50d2cbf}{Mat44::operator\ -\/\ }}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00437\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00438\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ ++i)}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ result.mCol[i]\ =\ mCol[i]\ -\/\ inM.mCol[i];}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00442\ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \mbox{\hyperlink{classMat44}{Mat44}}\ \&\mbox{\hyperlink{classMat44_a60273e38c2e5071066f14905698ef994}{Mat44::operator\ +=\ }}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)}
+\DoxyCodeLine{00445\ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 4;\ ++c)}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ mCol[c]\ +=\ inM.mCol[c];}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00450\ \}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMat44_a1f51050b35215131c7da9a7de78a3e1e}{Mat44::StoreFloat4x4}}(\mbox{\hyperlink{classFloat4}{Float4}}\ *outV)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00453\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 4;\ ++c)}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ mCol[c].StoreFloat4(outV\ +\ c);}
+\DoxyCodeLine{00456\ \}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a388723db2d35de31efcee6ff0cfb711d}{Mat44::Transposed}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00459\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00461\ \ \ \ \ \_\_m128\ tmp1\ =\ \_mm\_shuffle\_ps(mCol[0].mValue,\ mCol[1].mValue,\ \_MM\_SHUFFLE(1,\ 0,\ 1,\ 0));}
+\DoxyCodeLine{00462\ \ \ \ \ \_\_m128\ tmp3\ =\ \_mm\_shuffle\_ps(mCol[0].mValue,\ mCol[1].mValue,\ \_MM\_SHUFFLE(3,\ 2,\ 3,\ 2));}
+\DoxyCodeLine{00463\ \ \ \ \ \_\_m128\ tmp2\ =\ \_mm\_shuffle\_ps(mCol[2].mValue,\ mCol[3].mValue,\ \_MM\_SHUFFLE(1,\ 0,\ 1,\ 0));}
+\DoxyCodeLine{00464\ \ \ \ \ \_\_m128\ tmp4\ =\ \_mm\_shuffle\_ps(mCol[2].mValue,\ mCol[3].mValue,\ \_MM\_SHUFFLE(3,\ 2,\ 3,\ 2));}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00467\ \ \ \ \ result.mCol[0].mValue\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp2,\ \_MM\_SHUFFLE(2,\ 0,\ 2,\ 0));}
+\DoxyCodeLine{00468\ \ \ \ \ result.mCol[1].mValue\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp2,\ \_MM\_SHUFFLE(3,\ 1,\ 3,\ 1));}
+\DoxyCodeLine{00469\ \ \ \ \ result.mCol[2].mValue\ =\ \_mm\_shuffle\_ps(tmp3,\ tmp4,\ \_MM\_SHUFFLE(2,\ 0,\ 2,\ 0));}
+\DoxyCodeLine{00470\ \ \ \ \ result.mCol[3].mValue\ =\ \_mm\_shuffle\_ps(tmp3,\ tmp4,\ \_MM\_SHUFFLE(3,\ 1,\ 3,\ 1));}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00473\ \ \ \ \ float32x4x2\_t\ tmp1\ =\ vzipq\_f32(mCol[0].mValue,\ mCol[2].mValue);}
+\DoxyCodeLine{00474\ \ \ \ \ float32x4x2\_t\ tmp2\ =\ vzipq\_f32(mCol[1].mValue,\ mCol[3].mValue);}
+\DoxyCodeLine{00475\ \ \ \ \ float32x4x2\_t\ tmp3\ =\ vzipq\_f32(tmp1.val[0],\ tmp2.val[0]);}
+\DoxyCodeLine{00476\ \ \ \ \ float32x4x2\_t\ tmp4\ =\ vzipq\_f32(tmp1.val[1],\ tmp2.val[1]);}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00479\ \ \ \ \ result.mCol[0].mValue\ =\ tmp3.val[0];}
+\DoxyCodeLine{00480\ \ \ \ \ result.mCol[1].mValue\ =\ tmp3.val[1];}
+\DoxyCodeLine{00481\ \ \ \ \ result.mCol[2].mValue\ =\ tmp4.val[0];}
+\DoxyCodeLine{00482\ \ \ \ \ result.mCol[3].mValue\ =\ tmp4.val[1];}
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00485\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 4;\ ++c)}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ r\ =\ 0;\ r\ <\ 4;\ ++r)}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ result.mCol[r].mF32[c]\ =\ mCol[c].mF32[r];}
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00491\ \}}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a29830ba9d80d31e00d30abcc0c099e7c}{Mat44::Transposed3x3}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00494\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00496\ \ \ \ \ \_\_m128\ zero\ =\ \_mm\_setzero\_ps();}
+\DoxyCodeLine{00497\ \ \ \ \ \_\_m128\ tmp1\ =\ \_mm\_shuffle\_ps(mCol[0].mValue,\ mCol[1].mValue,\ \_MM\_SHUFFLE(1,\ 0,\ 1,\ 0));}
+\DoxyCodeLine{00498\ \ \ \ \ \_\_m128\ tmp3\ =\ \_mm\_shuffle\_ps(mCol[0].mValue,\ mCol[1].mValue,\ \_MM\_SHUFFLE(3,\ 2,\ 3,\ 2));}
+\DoxyCodeLine{00499\ \ \ \ \ \_\_m128\ tmp2\ =\ \_mm\_shuffle\_ps(mCol[2].mValue,\ zero,\ \_MM\_SHUFFLE(1,\ 0,\ 1,\ 0));}
+\DoxyCodeLine{00500\ \ \ \ \ \_\_m128\ tmp4\ =\ \_mm\_shuffle\_ps(mCol[2].mValue,\ zero,\ \_MM\_SHUFFLE(3,\ 2,\ 3,\ 2));}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00503\ \ \ \ \ result.mCol[0].mValue\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp2,\ \_MM\_SHUFFLE(2,\ 0,\ 2,\ 0));}
+\DoxyCodeLine{00504\ \ \ \ \ result.mCol[1].mValue\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp2,\ \_MM\_SHUFFLE(3,\ 1,\ 3,\ 1));}
+\DoxyCodeLine{00505\ \ \ \ \ result.mCol[2].mValue\ =\ \_mm\_shuffle\_ps(tmp3,\ tmp4,\ \_MM\_SHUFFLE(2,\ 0,\ 2,\ 0));}
+\DoxyCodeLine{00506\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00507\ \ \ \ \ float32x4x2\_t\ tmp1\ =\ vzipq\_f32(mCol[0].mValue,\ mCol[2].mValue);}
+\DoxyCodeLine{00508\ \ \ \ \ float32x4x2\_t\ tmp2\ =\ vzipq\_f32(mCol[1].mValue,\ vdupq\_n\_f32(0));}
+\DoxyCodeLine{00509\ \ \ \ \ float32x4x2\_t\ tmp3\ =\ vzipq\_f32(tmp1.val[0],\ tmp2.val[0]);}
+\DoxyCodeLine{00510\ \ \ \ \ float32x4x2\_t\ tmp4\ =\ vzipq\_f32(tmp1.val[1],\ tmp2.val[1]);}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00513\ \ \ \ \ result.mCol[0].mValue\ =\ tmp3.val[0];}
+\DoxyCodeLine{00514\ \ \ \ \ result.mCol[1].mValue\ =\ tmp3.val[1];}
+\DoxyCodeLine{00515\ \ \ \ \ result.mCol[2].mValue\ =\ tmp4.val[0];}
+\DoxyCodeLine{00516\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00517\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00518\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ 3;\ ++c)}
+\DoxyCodeLine{00519\ \ \ \ \ \{}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ r\ =\ 0;\ r\ <\ 3;\ ++r)}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ result.mCol[c].mF32[r]\ =\ mCol[r].mF32[c];}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ result.mCol[c].mF32[3]\ =\ 0;}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00525\ \ \ \ \ result.mCol[3]\ =\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1);}
+\DoxyCodeLine{00526\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00527\ \}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_aae48032b0b6d27778617b8546135b057}{Mat44::Inversed}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00530\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00531\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_SSE)}}
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{comment}{//\ Algorithm\ from:\ http://download.intel.com/design/PentiumIII/sml/24504301.pdf}}
+\DoxyCodeLine{00533\ \ \ \ \ \textcolor{comment}{//\ Streaming\ SIMD\ Extensions\ -\/\ Inverse\ of\ 4x4\ Matrix}}
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{comment}{//\ Adapted\ to\ load\ data\ using\ \_mm\_shuffle\_ps\ instead\ of\ loading\ from\ memory}}
+\DoxyCodeLine{00535\ \ \ \ \ \textcolor{comment}{//\ Replaced\ \_mm\_rcp\_ps\ with\ \_mm\_div\_ps\ for\ better\ accuracy}}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \ \ \ \ \_\_m128\ tmp1\ =\ \_mm\_shuffle\_ps(mCol[0].mValue,\ mCol[1].mValue,\ \_MM\_SHUFFLE(1,\ 0,\ 1,\ 0));}
+\DoxyCodeLine{00538\ \ \ \ \ \_\_m128\ row1\ =\ \_mm\_shuffle\_ps(mCol[2].mValue,\ mCol[3].mValue,\ \_MM\_SHUFFLE(1,\ 0,\ 1,\ 0));}
+\DoxyCodeLine{00539\ \ \ \ \ \_\_m128\ row0\ =\ \_mm\_shuffle\_ps(tmp1,\ row1,\ \_MM\_SHUFFLE(2,\ 0,\ 2,\ 0));}
+\DoxyCodeLine{00540\ \ \ \ \ row1\ =\ \_mm\_shuffle\_ps(row1,\ tmp1,\ \_MM\_SHUFFLE(3,\ 1,\ 3,\ 1));}
+\DoxyCodeLine{00541\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(mCol[0].mValue,\ mCol[1].mValue,\ \_MM\_SHUFFLE(3,\ 2,\ 3,\ 2));}
+\DoxyCodeLine{00542\ \ \ \ \ \_\_m128\ row3\ =\ \_mm\_shuffle\_ps(mCol[2].mValue,\ mCol[3].mValue,\ \_MM\_SHUFFLE(3,\ 2,\ 3,\ 2));}
+\DoxyCodeLine{00543\ \ \ \ \ \_\_m128\ row2\ =\ \_mm\_shuffle\_ps(tmp1,\ row3,\ \_MM\_SHUFFLE(2,\ 0,\ 2,\ 0));}
+\DoxyCodeLine{00544\ \ \ \ \ row3\ =\ \_mm\_shuffle\_ps(row3,\ tmp1,\ \_MM\_SHUFFLE(3,\ 1,\ 3,\ 1));}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ tmp1\ =\ \_mm\_mul\_ps(row2,\ row3);}
+\DoxyCodeLine{00547\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(2,\ 3,\ 0,\ 1));}
+\DoxyCodeLine{00548\ \ \ \ \ \_\_m128\ minor0\ =\ \_mm\_mul\_ps(row1,\ tmp1);}
+\DoxyCodeLine{00549\ \ \ \ \ \_\_m128\ minor1\ =\ \_mm\_mul\_ps(row0,\ tmp1);}
+\DoxyCodeLine{00550\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00551\ \ \ \ \ minor0\ =\ \_mm\_sub\_ps(\_mm\_mul\_ps(row1,\ tmp1),\ minor0);}
+\DoxyCodeLine{00552\ \ \ \ \ minor1\ =\ \_mm\_sub\_ps(\_mm\_mul\_ps(row0,\ tmp1),\ minor1);}
+\DoxyCodeLine{00553\ \ \ \ \ minor1\ =\ \_mm\_shuffle\_ps(minor1,\ minor1,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ tmp1\ =\ \_mm\_mul\_ps(row1,\ row2);}
+\DoxyCodeLine{00556\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(2,\ 3,\ 0,\ 1));}
+\DoxyCodeLine{00557\ \ \ \ \ minor0\ =\ \_mm\_add\_ps(\_mm\_mul\_ps(row3,\ tmp1),\ minor0);}
+\DoxyCodeLine{00558\ \ \ \ \ \_\_m128\ minor3\ =\ \_mm\_mul\_ps(row0,\ tmp1);}
+\DoxyCodeLine{00559\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00560\ \ \ \ \ minor0\ =\ \_mm\_sub\_ps(minor0,\ \_mm\_mul\_ps(row3,\ tmp1));}
+\DoxyCodeLine{00561\ \ \ \ \ minor3\ =\ \_mm\_sub\_ps(\_mm\_mul\_ps(row0,\ tmp1),\ minor3);}
+\DoxyCodeLine{00562\ \ \ \ \ minor3\ =\ \_mm\_shuffle\_ps(minor3,\ minor3,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00564\ \ \ \ \ tmp1\ =\ \_mm\_mul\_ps(\_mm\_shuffle\_ps(row1,\ row1,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2)),\ row3);}
+\DoxyCodeLine{00565\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(2,\ 3,\ 0,\ 1));}
+\DoxyCodeLine{00566\ \ \ \ \ row2\ =\ \_mm\_shuffle\_ps(row2,\ row2,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00567\ \ \ \ \ minor0\ =\ \_mm\_add\_ps(\_mm\_mul\_ps(row2,\ tmp1),\ minor0);}
+\DoxyCodeLine{00568\ \ \ \ \ \_\_m128\ minor2\ =\ \_mm\_mul\_ps(row0,\ tmp1);}
+\DoxyCodeLine{00569\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00570\ \ \ \ \ minor0\ =\ \_mm\_sub\_ps(minor0,\ \_mm\_mul\_ps(row2,\ tmp1));}
+\DoxyCodeLine{00571\ \ \ \ \ minor2\ =\ \_mm\_sub\_ps(\_mm\_mul\_ps(row0,\ tmp1),\ minor2);}
+\DoxyCodeLine{00572\ \ \ \ \ minor2\ =\ \_mm\_shuffle\_ps(minor2,\ minor2,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \ \ \ \ tmp1\ =\ \_mm\_mul\_ps(row0,\ row1);}
+\DoxyCodeLine{00575\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(2,\ 3,\ 0,\ 1));}
+\DoxyCodeLine{00576\ \ \ \ \ minor2\ =\ \_mm\_add\_ps(\_mm\_mul\_ps(row3,\ tmp1),\ minor2);}
+\DoxyCodeLine{00577\ \ \ \ \ minor3\ =\ \_mm\_sub\_ps(\_mm\_mul\_ps(row2,\ tmp1),\ minor3);}
+\DoxyCodeLine{00578\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00579\ \ \ \ \ minor2\ =\ \_mm\_sub\_ps(\_mm\_mul\_ps(row3,\ tmp1),\ minor2);}
+\DoxyCodeLine{00580\ \ \ \ \ minor3\ =\ \_mm\_sub\_ps(minor3,\ \_mm\_mul\_ps(row2,\ tmp1));}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \ \ tmp1\ =\ \_mm\_mul\_ps(row0,\ row3);}
+\DoxyCodeLine{00583\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(2,\ 3,\ 0,\ 1));}
+\DoxyCodeLine{00584\ \ \ \ \ minor1\ =\ \_mm\_sub\_ps(minor1,\ \_mm\_mul\_ps(row2,\ tmp1));}
+\DoxyCodeLine{00585\ \ \ \ \ minor2\ =\ \_mm\_add\_ps(\_mm\_mul\_ps(row1,\ tmp1),\ minor2);}
+\DoxyCodeLine{00586\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00587\ \ \ \ \ minor1\ =\ \_mm\_add\_ps(\_mm\_mul\_ps(row2,\ tmp1),\ minor1);}
+\DoxyCodeLine{00588\ \ \ \ \ minor2\ =\ \_mm\_sub\_ps(minor2,\ \_mm\_mul\_ps(row1,\ tmp1));}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00590\ \ \ \ \ tmp1\ =\ \_mm\_mul\_ps(row0,\ row2);}
+\DoxyCodeLine{00591\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(2,\ 3,\ 0,\ 1));}
+\DoxyCodeLine{00592\ \ \ \ \ minor1\ =\ \_mm\_add\_ps(\_mm\_mul\_ps(row3,\ tmp1),\ minor1);}
+\DoxyCodeLine{00593\ \ \ \ \ minor3\ =\ \_mm\_sub\_ps(minor3,\ \_mm\_mul\_ps(row1,\ tmp1));}
+\DoxyCodeLine{00594\ \ \ \ \ tmp1\ =\ \_mm\_shuffle\_ps(tmp1,\ tmp1,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2));}
+\DoxyCodeLine{00595\ \ \ \ \ minor1\ =\ \_mm\_sub\_ps(minor1,\ \_mm\_mul\_ps(row3,\ tmp1));}
+\DoxyCodeLine{00596\ \ \ \ \ minor3\ =\ \_mm\_add\_ps(\_mm\_mul\_ps(row1,\ tmp1),\ minor3);}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \ \ \_\_m128\ det\ =\ \_mm\_mul\_ps(row0,\ minor0);}
+\DoxyCodeLine{00599\ \ \ \ \ det\ =\ \_mm\_add\_ps(\_mm\_shuffle\_ps(det,\ det,\ \_MM\_SHUFFLE(2,\ 3,\ 0,\ 1)),\ det);\ \textcolor{comment}{//\ Original\ code\ did\ (x\ +\ z)\ +\ (y\ +\ w),\ changed\ to\ (x\ +\ y)\ +\ (z\ +\ w)\ to\ match\ the\ ARM\ code\ below\ and\ make\ the\ result\ cross\ platform\ deterministic}}
+\DoxyCodeLine{00600\ \ \ \ \ det\ =\ \_mm\_add\_ss(\_mm\_shuffle\_ps(det,\ det,\ \_MM\_SHUFFLE(1,\ 0,\ 3,\ 2)),\ det);}
+\DoxyCodeLine{00601\ \ \ \ \ det\ =\ \_mm\_div\_ss(\_mm\_set\_ss(1.0f),\ det);}
+\DoxyCodeLine{00602\ \ \ \ \ det\ =\ \_mm\_shuffle\_ps(det,\ det,\ \_MM\_SHUFFLE(0,\ 0,\ 0,\ 0));}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00605\ \ \ \ \ result.mCol[0].mValue\ =\ \_mm\_mul\_ps(det,\ minor0);}
+\DoxyCodeLine{00606\ \ \ \ \ result.mCol[1].mValue\ =\ \_mm\_mul\_ps(det,\ minor1);}
+\DoxyCodeLine{00607\ \ \ \ \ result.mCol[2].mValue\ =\ \_mm\_mul\_ps(det,\ minor2);}
+\DoxyCodeLine{00608\ \ \ \ \ result.mCol[3].mValue\ =\ \_mm\_mul\_ps(det,\ minor3);}
+\DoxyCodeLine{00609\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00610\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00611\ \ \ \ \ \textcolor{comment}{//\ Adapted\ from\ the\ SSE\ version,\ there's\ surprising\ few\ articles\ about\ efficient\ ways\ of\ calculating\ an\ inverse\ for\ ARM\ on\ the\ internet}}
+\DoxyCodeLine{00612\ \ \ \ \ Type\ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(mCol[0].mValue,\ mCol[1].mValue,\ 0,\ 1,\ 4,\ 5);}
+\DoxyCodeLine{00613\ \ \ \ \ Type\ row1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(mCol[2].mValue,\ mCol[3].mValue,\ 0,\ 1,\ 4,\ 5);}
+\DoxyCodeLine{00614\ \ \ \ \ Type\ row0\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ row1,\ 0,\ 2,\ 4,\ 6);}
+\DoxyCodeLine{00615\ \ \ \ \ row1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(row1,\ tmp1,\ 1,\ 3,\ 5,\ 7);}
+\DoxyCodeLine{00616\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(mCol[0].mValue,\ mCol[1].mValue,\ 2,\ 3,\ 6,\ 7);}
+\DoxyCodeLine{00617\ \ \ \ \ Type\ row3\ =\ JPH\_NEON\_SHUFFLE\_F32x4(mCol[2].mValue,\ mCol[3].mValue,\ 2,\ 3,\ 6,\ 7);}
+\DoxyCodeLine{00618\ \ \ \ \ Type\ row2\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ row3,\ 0,\ 2,\ 4,\ 6);}
+\DoxyCodeLine{00619\ \ \ \ \ row3\ =\ JPH\_NEON\_SHUFFLE\_F32x4(row3,\ tmp1,\ 1,\ 3,\ 5,\ 7);}
+\DoxyCodeLine{00620\ }
+\DoxyCodeLine{00621\ \ \ \ \ tmp1\ =\ vmulq\_f32(row2,\ row3);}
+\DoxyCodeLine{00622\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 1,\ 0,\ 3,\ 2);}
+\DoxyCodeLine{00623\ \ \ \ \ Type\ minor0\ =\ vmulq\_f32(row1,\ tmp1);}
+\DoxyCodeLine{00624\ \ \ \ \ Type\ minor1\ =\ vmulq\_f32(row0,\ tmp1);}
+\DoxyCodeLine{00625\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00626\ \ \ \ \ minor0\ =\ vsubq\_f32(vmulq\_f32(row1,\ tmp1),\ minor0);}
+\DoxyCodeLine{00627\ \ \ \ \ minor1\ =\ vsubq\_f32(vmulq\_f32(row0,\ tmp1),\ minor1);}
+\DoxyCodeLine{00628\ \ \ \ \ minor1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(minor1,\ minor1,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \ \ \ \ tmp1\ =\ vmulq\_f32(row1,\ row2);}
+\DoxyCodeLine{00631\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 1,\ 0,\ 3,\ 2);}
+\DoxyCodeLine{00632\ \ \ \ \ minor0\ =\ vaddq\_f32(vmulq\_f32(row3,\ tmp1),\ minor0);}
+\DoxyCodeLine{00633\ \ \ \ \ Type\ minor3\ =\ vmulq\_f32(row0,\ tmp1);}
+\DoxyCodeLine{00634\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00635\ \ \ \ \ minor0\ =\ vsubq\_f32(minor0,\ vmulq\_f32(row3,\ tmp1));}
+\DoxyCodeLine{00636\ \ \ \ \ minor3\ =\ vsubq\_f32(vmulq\_f32(row0,\ tmp1),\ minor3);}
+\DoxyCodeLine{00637\ \ \ \ \ minor3\ =\ JPH\_NEON\_SHUFFLE\_F32x4(minor3,\ minor3,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(row1,\ row1,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00640\ \ \ \ \ tmp1\ =\ vmulq\_f32(tmp1,\ row3);}
+\DoxyCodeLine{00641\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 1,\ 0,\ 3,\ 2);}
+\DoxyCodeLine{00642\ \ \ \ \ row2\ =\ JPH\_NEON\_SHUFFLE\_F32x4(row2,\ row2,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00643\ \ \ \ \ minor0\ =\ vaddq\_f32(vmulq\_f32(row2,\ tmp1),\ minor0);}
+\DoxyCodeLine{00644\ \ \ \ \ Type\ minor2\ =\ vmulq\_f32(row0,\ tmp1);}
+\DoxyCodeLine{00645\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00646\ \ \ \ \ minor0\ =\ vsubq\_f32(minor0,\ vmulq\_f32(row2,\ tmp1));}
+\DoxyCodeLine{00647\ \ \ \ \ minor2\ =\ vsubq\_f32(vmulq\_f32(row0,\ tmp1),\ minor2);}
+\DoxyCodeLine{00648\ \ \ \ \ minor2\ =\ JPH\_NEON\_SHUFFLE\_F32x4(minor2,\ minor2,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \ \ \ \ tmp1\ =\ vmulq\_f32(row0,\ row1);}
+\DoxyCodeLine{00651\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 1,\ 0,\ 3,\ 2);}
+\DoxyCodeLine{00652\ \ \ \ \ minor2\ =\ vaddq\_f32(vmulq\_f32(row3,\ tmp1),\ minor2);}
+\DoxyCodeLine{00653\ \ \ \ \ minor3\ =\ vsubq\_f32(vmulq\_f32(row2,\ tmp1),\ minor3);}
+\DoxyCodeLine{00654\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00655\ \ \ \ \ minor2\ =\ vsubq\_f32(vmulq\_f32(row3,\ tmp1),\ minor2);}
+\DoxyCodeLine{00656\ \ \ \ \ minor3\ =\ vsubq\_f32(minor3,\ vmulq\_f32(row2,\ tmp1));}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \ \ \ \ tmp1\ =\ vmulq\_f32(row0,\ row3);}
+\DoxyCodeLine{00659\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 1,\ 0,\ 3,\ 2);}
+\DoxyCodeLine{00660\ \ \ \ \ minor1\ =\ vsubq\_f32(minor1,\ vmulq\_f32(row2,\ tmp1));}
+\DoxyCodeLine{00661\ \ \ \ \ minor2\ =\ vaddq\_f32(vmulq\_f32(row1,\ tmp1),\ minor2);}
+\DoxyCodeLine{00662\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00663\ \ \ \ \ minor1\ =\ vaddq\_f32(vmulq\_f32(row2,\ tmp1),\ minor1);}
+\DoxyCodeLine{00664\ \ \ \ \ minor2\ =\ vsubq\_f32(minor2,\ vmulq\_f32(row1,\ tmp1));}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00666\ \ \ \ \ tmp1\ =\ vmulq\_f32(row0,\ row2);}
+\DoxyCodeLine{00667\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 1,\ 0,\ 3,\ 2);}
+\DoxyCodeLine{00668\ \ \ \ \ minor1\ =\ vaddq\_f32(vmulq\_f32(row3,\ tmp1),\ minor1);}
+\DoxyCodeLine{00669\ \ \ \ \ minor3\ =\ vsubq\_f32(minor3,\ vmulq\_f32(row1,\ tmp1));}
+\DoxyCodeLine{00670\ \ \ \ \ tmp1\ =\ JPH\_NEON\_SHUFFLE\_F32x4(tmp1,\ tmp1,\ 2,\ 3,\ 0,\ 1);}
+\DoxyCodeLine{00671\ \ \ \ \ minor1\ =\ vsubq\_f32(minor1,\ vmulq\_f32(row3,\ tmp1));}
+\DoxyCodeLine{00672\ \ \ \ \ minor3\ =\ vaddq\_f32(vmulq\_f32(row1,\ tmp1),\ minor3);}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \ \ \ \ Type\ det\ =\ vmulq\_f32(row0,\ minor0);}
+\DoxyCodeLine{00675\ \ \ \ \ det\ =\ vdupq\_n\_f32(vaddvq\_f32(det));}
+\DoxyCodeLine{00676\ \ \ \ \ det\ =\ vdivq\_f32(vdupq\_n\_f32(1.0f),\ det);}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00678\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ result;}
+\DoxyCodeLine{00679\ \ \ \ \ result.mCol[0].mValue\ =\ vmulq\_f32(det,\ minor0);}
+\DoxyCodeLine{00680\ \ \ \ \ result.mCol[1].mValue\ =\ vmulq\_f32(det,\ minor1);}
+\DoxyCodeLine{00681\ \ \ \ \ result.mCol[2].mValue\ =\ vmulq\_f32(det,\ minor2);}
+\DoxyCodeLine{00682\ \ \ \ \ result.mCol[3].mValue\ =\ vmulq\_f32(det,\ minor3);}
+\DoxyCodeLine{00683\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00684\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00685\ \ \ \ \ \textcolor{keywordtype}{float}\ m00\ =\ JPH\_EL(0,\ 0),\ m10\ =\ JPH\_EL(1,\ 0),\ m20\ =\ JPH\_EL(2,\ 0),\ m30\ =\ JPH\_EL(3,\ 0);}
+\DoxyCodeLine{00686\ \ \ \ \ \textcolor{keywordtype}{float}\ m01\ =\ JPH\_EL(0,\ 1),\ m11\ =\ JPH\_EL(1,\ 1),\ m21\ =\ JPH\_EL(2,\ 1),\ m31\ =\ JPH\_EL(3,\ 1);}
+\DoxyCodeLine{00687\ \ \ \ \ \textcolor{keywordtype}{float}\ m02\ =\ JPH\_EL(0,\ 2),\ m12\ =\ JPH\_EL(1,\ 2),\ m22\ =\ JPH\_EL(2,\ 2),\ m32\ =\ JPH\_EL(3,\ 2);}
+\DoxyCodeLine{00688\ \ \ \ \ \textcolor{keywordtype}{float}\ m03\ =\ JPH\_EL(0,\ 3),\ m13\ =\ JPH\_EL(1,\ 3),\ m23\ =\ JPH\_EL(2,\ 3),\ m33\ =\ JPH\_EL(3,\ 3);}
+\DoxyCodeLine{00689\ }
+\DoxyCodeLine{00690\ \ \ \ \ \textcolor{keywordtype}{float}\ m10211120\ =\ m10\ *\ m21\ -\/\ m11\ *\ m20;}
+\DoxyCodeLine{00691\ \ \ \ \ \textcolor{keywordtype}{float}\ m10221220\ =\ m10\ *\ m22\ -\/\ m12\ *\ m20;}
+\DoxyCodeLine{00692\ \ \ \ \ \textcolor{keywordtype}{float}\ m10231320\ =\ m10\ *\ m23\ -\/\ m13\ *\ m20;}
+\DoxyCodeLine{00693\ \ \ \ \ \textcolor{keywordtype}{float}\ m10311130\ =\ m10\ *\ m31\ -\/\ m11\ *\ m30;}
+\DoxyCodeLine{00694\ \ \ \ \ \textcolor{keywordtype}{float}\ m10321230\ =\ m10\ *\ m32\ -\/\ m12\ *\ m30;}
+\DoxyCodeLine{00695\ \ \ \ \ \textcolor{keywordtype}{float}\ m10331330\ =\ m10\ *\ m33\ -\/\ m13\ *\ m30;}
+\DoxyCodeLine{00696\ \ \ \ \ \textcolor{keywordtype}{float}\ m11221221\ =\ m11\ *\ m22\ -\/\ m12\ *\ m21;}
+\DoxyCodeLine{00697\ \ \ \ \ \textcolor{keywordtype}{float}\ m11231321\ =\ m11\ *\ m23\ -\/\ m13\ *\ m21;}
+\DoxyCodeLine{00698\ \ \ \ \ \textcolor{keywordtype}{float}\ m11321231\ =\ m11\ *\ m32\ -\/\ m12\ *\ m31;}
+\DoxyCodeLine{00699\ \ \ \ \ \textcolor{keywordtype}{float}\ m11331331\ =\ m11\ *\ m33\ -\/\ m13\ *\ m31;}
+\DoxyCodeLine{00700\ \ \ \ \ \textcolor{keywordtype}{float}\ m12231322\ =\ m12\ *\ m23\ -\/\ m13\ *\ m22;}
+\DoxyCodeLine{00701\ \ \ \ \ \textcolor{keywordtype}{float}\ m12331332\ =\ m12\ *\ m33\ -\/\ m13\ *\ m32;}
+\DoxyCodeLine{00702\ \ \ \ \ \textcolor{keywordtype}{float}\ m20312130\ =\ m20\ *\ m31\ -\/\ m21\ *\ m30;}
+\DoxyCodeLine{00703\ \ \ \ \ \textcolor{keywordtype}{float}\ m20322230\ =\ m20\ *\ m32\ -\/\ m22\ *\ m30;}
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{keywordtype}{float}\ m20332330\ =\ m20\ *\ m33\ -\/\ m23\ *\ m30;}
+\DoxyCodeLine{00705\ \ \ \ \ \textcolor{keywordtype}{float}\ m21322231\ =\ m21\ *\ m32\ -\/\ m22\ *\ m31;}
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keywordtype}{float}\ m21332331\ =\ m21\ *\ m33\ -\/\ m23\ *\ m31;}
+\DoxyCodeLine{00707\ \ \ \ \ \textcolor{keywordtype}{float}\ m22332332\ =\ m22\ *\ m33\ -\/\ m23\ *\ m32;}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ col0(m11\ *\ m22332332\ -\/\ m12\ *\ m21332331\ +\ m13\ *\ m21322231,\ \ \ \ \ \ -\/m10\ *\ m22332332\ +\ m12\ *\ m20332330\ -\/\ m13\ *\ m20322230,\ \ \ \ \ \ \ m10\ *\ m21332331\ -\/\ m11\ *\ m20332330\ +\ m13\ *\ m20312130,\ \ \ \ \ \ \ \ -\/m10\ *\ m21322231\ +\ m11\ *\ m20322230\ -\/\ m12\ *\ m20312130);}
+\DoxyCodeLine{00710\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ col1(-\/m01\ *\ m22332332\ +\ m02\ *\ m21332331\ -\/\ m03\ *\ m21322231,\ \ \ \ \ m00\ *\ m22332332\ -\/\ m02\ *\ m20332330\ +\ m03\ *\ m20322230,\ \ \ \ \ \ \ \ -\/m00\ *\ m21332331\ +\ m01\ *\ m20332330\ -\/\ m03\ *\ m20312130,\ \ \ \ \ \ \ m00\ *\ m21322231\ -\/\ m01\ *\ m20322230\ +\ m02\ *\ m20312130);}
+\DoxyCodeLine{00711\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ col2(m01\ *\ m12331332\ -\/\ m02\ *\ m11331331\ +\ m03\ *\ m11321231,\ \ \ \ \ \ -\/m00\ *\ m12331332\ +\ m02\ *\ m10331330\ -\/\ m03\ *\ m10321230,\ \ \ \ \ \ \ m00\ *\ m11331331\ -\/\ m01\ *\ m10331330\ +\ m03\ *\ m10311130,\ \ \ \ \ \ \ \ -\/m00\ *\ m11321231\ +\ m01\ *\ m10321230\ -\/\ m02\ *\ m10311130);}
+\DoxyCodeLine{00712\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ col3(-\/m01\ *\ m12231322\ +\ m02\ *\ m11231321\ -\/\ m03\ *\ m11221221,\ \ \ \ \ m00\ *\ m12231322\ -\/\ m02\ *\ m10231320\ +\ m03\ *\ m10221220,\ \ \ \ \ \ \ \ -\/m00\ *\ m11231321\ +\ m01\ *\ m10231320\ -\/\ m03\ *\ m10211120,\ \ \ \ \ \ \ m00\ *\ m11221221\ -\/\ m01\ *\ m10221220\ +\ m02\ *\ m10211120);}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \ \ \ \ \textcolor{keywordtype}{float}\ det\ =\ m00\ *\ col0.mF32[0]\ +\ m01\ *\ col0.mF32[1]\ +\ m02\ *\ col0.mF32[2]\ +\ m03\ *\ col0.mF32[3];}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(col0\ /\ det,\ col1\ /\ det,\ col2\ /\ det,\ col3\ /\ det);}
+\DoxyCodeLine{00717\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00718\ \}}
+\DoxyCodeLine{00719\ }
+\DoxyCodeLine{00720\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_af962ad0ed20cb6112f8249cb9573c233}{Mat44::InversedRotationTranslation}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00721\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00722\ \ \ \ \ \mbox{\hyperlink{classMat44}{Mat44}}\ m\ =\ \mbox{\hyperlink{classMat44_a29830ba9d80d31e00d30abcc0c099e7c}{Transposed3x3}}();}
+\DoxyCodeLine{00723\ \ \ \ \ m.SetTranslation(-\/m.\mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(GetTranslation()));}
+\DoxyCodeLine{00724\ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00725\ \}}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00727\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classMat44_a2b5ba5e6c68b059ae61a1bbc1b7fbb87}{Mat44::GetDeterminant3x3}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00728\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00729\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_aa71942f9a684cf2e0e55f8c9ba8f5b99}{GetAxisX}}().\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(GetAxisY().Cross(GetAxisZ()));}
+\DoxyCodeLine{00730\ \}}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a3b9c1e6d186b9ad59e81255c64049f22}{Mat44::Adjointed3x3}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00733\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00734\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(1,\ 1),\ JPH\_EL(1,\ 2),\ JPH\_EL(1,\ 0),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(2,\ 2),\ JPH\_EL(2,\ 0),\ JPH\_EL(2,\ 1),\ 0)}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(1,\ 2),\ JPH\_EL(1,\ 0),\ JPH\_EL(1,\ 1),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(2,\ 1),\ JPH\_EL(2,\ 2),\ JPH\_EL(2,\ 0),\ 0),}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(0,\ 2),\ JPH\_EL(0,\ 0),\ JPH\_EL(0,\ 1),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(2,\ 1),\ JPH\_EL(2,\ 2),\ JPH\_EL(2,\ 0),\ 0)}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(0,\ 1),\ JPH\_EL(0,\ 2),\ JPH\_EL(0,\ 0),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(2,\ 2),\ JPH\_EL(2,\ 0),\ JPH\_EL(2,\ 1),\ 0),}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(0,\ 1),\ JPH\_EL(0,\ 2),\ JPH\_EL(0,\ 0),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(1,\ 2),\ JPH\_EL(1,\ 0),\ JPH\_EL(1,\ 1),\ 0)}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(0,\ 2),\ JPH\_EL(0,\ 0),\ JPH\_EL(0,\ 1),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(1,\ 1),\ JPH\_EL(1,\ 2),\ JPH\_EL(1,\ 0),\ 0),}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00742\ \}}
+\DoxyCodeLine{00743\ }
+\DoxyCodeLine{00744\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_ad9f5df546296a7bdc816e6be5627926b}{Mat44::Inversed3x3}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00745\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keywordtype}{float}\ det\ =\ \mbox{\hyperlink{classMat44_a2b5ba5e6c68b059ae61a1bbc1b7fbb87}{GetDeterminant3x3}}();}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(1,\ 1),\ JPH\_EL(1,\ 2),\ JPH\_EL(1,\ 0),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(2,\ 2),\ JPH\_EL(2,\ 0),\ JPH\_EL(2,\ 1),\ 0)}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(1,\ 2),\ JPH\_EL(1,\ 0),\ JPH\_EL(1,\ 1),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(2,\ 1),\ JPH\_EL(2,\ 2),\ JPH\_EL(2,\ 0),\ 0))\ /\ det,}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(0,\ 2),\ JPH\_EL(0,\ 0),\ JPH\_EL(0,\ 1),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(2,\ 1),\ JPH\_EL(2,\ 2),\ JPH\_EL(2,\ 0),\ 0)}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(0,\ 1),\ JPH\_EL(0,\ 2),\ JPH\_EL(0,\ 0),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(2,\ 2),\ JPH\_EL(2,\ 0),\ JPH\_EL(2,\ 1),\ 0))\ /\ det,}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(0,\ 1),\ JPH\_EL(0,\ 2),\ JPH\_EL(0,\ 0),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(1,\ 2),\ JPH\_EL(1,\ 0),\ JPH\_EL(1,\ 1),\ 0)}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(0,\ 2),\ JPH\_EL(0,\ 0),\ JPH\_EL(0,\ 1),\ 0)\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(JPH\_EL(1,\ 1),\ JPH\_EL(1,\ 2),\ JPH\_EL(1,\ 0),\ 0))\ /\ det,}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00756\ \}}
+\DoxyCodeLine{00757\ }
+\DoxyCodeLine{00758\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMat44_a814c04077820ea83f444ccc5ae48299f}{Mat44::SetInversed3x3}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inM)}
+\DoxyCodeLine{00759\ \{}
+\DoxyCodeLine{00760\ \ \ \ \ \textcolor{keywordtype}{float}\ det\ =\ inM.\mbox{\hyperlink{classMat44_a2b5ba5e6c68b059ae61a1bbc1b7fbb87}{GetDeterminant3x3}}();}
+\DoxyCodeLine{00761\ }
+\DoxyCodeLine{00762\ \ \ \ \ \textcolor{comment}{//\ If\ the\ determinant\ is\ zero\ the\ matrix\ is\ singular\ and\ we\ return\ false}}
+\DoxyCodeLine{00763\ \ \ \ \ \textcolor{keywordflow}{if}\ (det\ ==\ 0.0f)}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ \ \ \textcolor{comment}{//\ Finish\ calculating\ the\ inverse}}
+\DoxyCodeLine{00767\ \ \ \ \ *\textcolor{keyword}{this}\ =\ inM.\mbox{\hyperlink{classMat44_a3b9c1e6d186b9ad59e81255c64049f22}{Adjointed3x3}}();}
+\DoxyCodeLine{00768\ \ \ \ \ mCol[0]\ /=\ det;}
+\DoxyCodeLine{00769\ \ \ \ \ mCol[1]\ /=\ det;}
+\DoxyCodeLine{00770\ \ \ \ \ mCol[2]\ /=\ det;}
+\DoxyCodeLine{00771\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00772\ \}}
+\DoxyCodeLine{00773\ }
+\DoxyCodeLine{00774\ \mbox{\hyperlink{classQuat}{Quat}}\ \mbox{\hyperlink{classMat44_a1e977c53b5f6a0c03f8da33ebef2c05a}{Mat44::GetQuaternion}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00775\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00776\ \ \ \ \ JPH\_ASSERT(mCol[3]\ ==\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00777\ }
+\DoxyCodeLine{00778\ \ \ \ \ \textcolor{keywordtype}{float}\ tr\ =\ mCol[0].mF32[0]\ +\ mCol[1].mF32[1]\ +\ mCol[2].mF32[2];}
+\DoxyCodeLine{00779\ }
+\DoxyCodeLine{00780\ \ \ \ \ \textcolor{keywordflow}{if}\ (tr\ >=\ 0.0f)}
+\DoxyCodeLine{00781\ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ sqrt(tr\ +\ 1.0f);}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ is\ =\ 0.5f\ /\ s;}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat}{Quat}}(}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[1].mF32[2]\ -\/\ mCol[2].mF32[1])\ *\ is,}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[2].mF32[0]\ -\/\ mCol[0].mF32[2])\ *\ is,}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[0].mF32[1]\ -\/\ mCol[1].mF32[0])\ *\ is,}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \ \ 0.5f\ *\ s);}
+\DoxyCodeLine{00789\ \ \ \ \ \}}
+\DoxyCodeLine{00790\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00791\ \ \ \ \ \{}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mCol[1].mF32[1]\ >\ mCol[0].mF32[0])\ i\ =\ 1;}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mCol[2].mF32[2]\ >\ mCol[i].mF32[i])\ i\ =\ 2;}
+\DoxyCodeLine{00795\ }
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 0)}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ sqrt(mCol[0].mF32[0]\ -\/\ (mCol[1].mF32[1]\ +\ mCol[2].mF32[2])\ +\ 1);}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ is\ =\ 0.5f\ /\ s;}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat}{Quat}}(}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.5f\ *\ s,}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[1].mF32[0]\ +\ mCol[0].mF32[1])\ *\ is,}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[0].mF32[2]\ +\ mCol[2].mF32[0])\ *\ is,}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[1].mF32[2]\ -\/\ mCol[2].mF32[1])\ *\ is);}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (i\ ==\ 1)}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ sqrt(mCol[1].mF32[1]\ -\/\ (mCol[2].mF32[2]\ +\ mCol[0].mF32[0])\ +\ 1);}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ is\ =\ 0.5f\ /\ s;}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat}{Quat}}(}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[1].mF32[0]\ +\ mCol[0].mF32[1])\ *\ is,}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.5f\ *\ s,}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[2].mF32[1]\ +\ mCol[1].mF32[2])\ *\ is,}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[2].mF32[0]\ -\/\ mCol[0].mF32[2])\ *\ is);}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(i\ ==\ 2);}
+\DoxyCodeLine{00819\ }
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ sqrt(mCol[2].mF32[2]\ -\/\ (mCol[0].mF32[0]\ +\ mCol[1].mF32[1])\ +\ 1);}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ is\ =\ 0.5f\ /\ s;}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classQuat}{Quat}}(}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[0].mF32[2]\ +\ mCol[2].mF32[0])\ *\ is,}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[2].mF32[1]\ +\ mCol[1].mF32[2])\ *\ is,}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.5f\ *\ s,}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (mCol[0].mF32[1]\ -\/\ mCol[1].mF32[0])\ *\ is);}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00828\ \ \ \ \ \}}
+\DoxyCodeLine{00829\ \}}
+\DoxyCodeLine{00830\ }
+\DoxyCodeLine{00831\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_adca3adc84118200afa5f4203164d241f}{Mat44::sQuatLeftMultiply}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inQ)}
+\DoxyCodeLine{00832\ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(1,\ 1,\ -\/1,\ -\/1)\ *\ inQ.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_W,\ SWIZZLE\_Z,\ SWIZZLE\_Y,\ SWIZZLE\_X>(),}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(-\/1,\ 1,\ 1,\ -\/1)\ *\ inQ.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_X,\ SWIZZLE\_Y>(),}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(1,\ -\/1,\ 1,\ -\/1)\ *\ inQ.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_X,\ SWIZZLE\_W,\ SWIZZLE\_Z>(),}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ inQ.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}});}
+\DoxyCodeLine{00838\ \}}
+\DoxyCodeLine{00839\ }
+\DoxyCodeLine{00840\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a2b688da0262b9096bfac9ddfa2c27e52}{Mat44::sQuatRightMultiply}}(\mbox{\hyperlink{classQuat}{QuatArg}}\ inQ)}
+\DoxyCodeLine{00841\ \{}
+\DoxyCodeLine{00842\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(1,\ -\/1,\ 1,\ -\/1)\ *\ inQ.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_W,\ SWIZZLE\_Z,\ SWIZZLE\_Y,\ SWIZZLE\_X>(),}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(1,\ 1,\ -\/1,\ -\/1)\ *\ inQ.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Z,\ SWIZZLE\_W,\ SWIZZLE\_X,\ SWIZZLE\_Y>(),}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(-\/1,\ 1,\ 1,\ -\/1)\ *\ inQ.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}}.\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_X,\ SWIZZLE\_W,\ SWIZZLE\_Z>(),}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ inQ.\mbox{\hyperlink{classQuat_afad087a5997d1318f544b5c9819c4d9b}{mValue}});}
+\DoxyCodeLine{00847\ \}}
+\DoxyCodeLine{00848\ }
+\DoxyCodeLine{00849\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a4cc37dcc7b9be4ab8f8e94bf49e06204}{Mat44::GetRotation}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00850\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00851\ \ \ \ \ JPH\_ASSERT(mCol[0][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00852\ \ \ \ \ JPH\_ASSERT(mCol[1][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00853\ \ \ \ \ JPH\_ASSERT(mCol[2][3]\ ==\ 0.0f);}
+\DoxyCodeLine{00854\ }
+\DoxyCodeLine{00855\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(mCol[0],\ mCol[1],\ mCol[2],\ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00856\ \}}
+\DoxyCodeLine{00857\ }
+\DoxyCodeLine{00858\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a564ee35616cca9a01624760e58bfb9ca}{Mat44::GetRotationSafe}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00859\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00860\ \textcolor{preprocessor}{\#if\ defined(JPH\_USE\_AVX512)}}
+\DoxyCodeLine{00861\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\_mm\_maskz\_mov\_ps(0b0111,\ mCol[0].mValue),}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm\_maskz\_mov\_ps(0b0111,\ mCol[1].mValue),}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm\_maskz\_mov\_ps(0b0111,\ mCol[2].mValue),}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00865\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_SSE4\_1)}}
+\DoxyCodeLine{00866\ \ \ \ \ \_\_m128\ zero\ =\ \_mm\_setzero\_ps();}
+\DoxyCodeLine{00867\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\_mm\_blend\_ps(mCol[0].mValue,\ zero,\ 8),}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm\_blend\_ps(mCol[1].mValue,\ zero,\ 8),}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_mm\_blend\_ps(mCol[2].mValue,\ zero,\ 8),}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00871\ \textcolor{preprocessor}{\#elif\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00872\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(vsetq\_lane\_f32(0,\ mCol[0].mValue,\ 3),}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vsetq\_lane\_f32(0,\ mCol[1].mValue,\ 3),}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vsetq\_lane\_f32(0,\ mCol[2].mValue,\ 3),}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00876\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00877\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(mCol[0].mF32[0],\ mCol[0].mF32[1],\ mCol[0].mF32[2],\ 0),}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(mCol[1].mF32[0],\ mCol[1].mF32[1],\ mCol[1].mF32[2],\ 0),}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(mCol[2].mF32[0],\ mCol[2].mF32[1],\ mCol[2].mF32[2],\ 0),}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}(0,\ 0,\ 0,\ 1));}
+\DoxyCodeLine{00881\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00882\ \}}
+\DoxyCodeLine{00883\ }
+\DoxyCodeLine{00884\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMat44_abd5dc78238403195cbd0cde87f40af49}{Mat44::SetRotation}}(\mbox{\hyperlink{classMat44}{Mat44Arg}}\ inRotation)}
+\DoxyCodeLine{00885\ \{}
+\DoxyCodeLine{00886\ \ \ \ \ mCol[0]\ =\ inRotation.mCol[0];}
+\DoxyCodeLine{00887\ \ \ \ \ mCol[1]\ =\ inRotation.mCol[1];}
+\DoxyCodeLine{00888\ \ \ \ \ mCol[2]\ =\ inRotation.mCol[2];}
+\DoxyCodeLine{00889\ \}}
+\DoxyCodeLine{00890\ }
+\DoxyCodeLine{00891\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a16f19b423139db52503bb8d6526d947f}{Mat44::PreTranslated}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTranslation)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00892\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00893\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(mCol[0],\ mCol[1],\ mCol[2],\ \mbox{\hyperlink{classVec4}{Vec4}}(GetTranslation()\ +\ \mbox{\hyperlink{classMat44_ab599aaeab3e4b832f7f4097816650b14}{Multiply3x3}}(inTranslation),\ 1));}
+\DoxyCodeLine{00894\ \}}
+\DoxyCodeLine{00895\ }
+\DoxyCodeLine{00896\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a16b90363d2e120bd570c4200e29f5ba6}{Mat44::PostTranslated}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTranslation)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00897\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00898\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(mCol[0],\ mCol[1],\ mCol[2],\ \mbox{\hyperlink{classVec4}{Vec4}}(GetTranslation()\ +\ inTranslation,\ 1));}
+\DoxyCodeLine{00899\ \}}
+\DoxyCodeLine{00900\ }
+\DoxyCodeLine{00901\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_af9c9948eced621a54424f05c397824dd}{Mat44::PreScaled}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00902\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00903\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(inScale.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}()\ *\ mCol[0],\ inScale.GetY()\ *\ mCol[1],\ inScale.GetZ()\ *\ mCol[2],\ mCol[3]);}
+\DoxyCodeLine{00904\ \}}
+\DoxyCodeLine{00905\ }
+\DoxyCodeLine{00906\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_a6503ccd1384b6681d191c327961fbb6d}{Mat44::PostScaled}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00907\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00908\ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ scale(inScale,\ 1);}
+\DoxyCodeLine{00909\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(scale\ *\ mCol[0],\ scale\ *\ mCol[1],\ scale\ *\ mCol[2],\ scale\ *\ mCol[3]);}
+\DoxyCodeLine{00910\ \}}
+\DoxyCodeLine{00911\ }
+\DoxyCodeLine{00912\ \mbox{\hyperlink{classMat44}{Mat44}}\ \mbox{\hyperlink{classMat44_aa11f571efdce00289f87a65317fbdd58}{Mat44::Decompose}}(\mbox{\hyperlink{classVec3}{Vec3}}\ \&outScale)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00913\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00914\ \ \ \ \ \textcolor{comment}{//\ Start\ the\ modified\ Gram-\/Schmidt\ algorithm}}
+\DoxyCodeLine{00915\ \ \ \ \ \textcolor{comment}{//\ X\ axis\ will\ just\ be\ normalized}}
+\DoxyCodeLine{00916\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ x\ =\ \mbox{\hyperlink{classMat44_aa71942f9a684cf2e0e55f8c9ba8f5b99}{GetAxisX}}();}
+\DoxyCodeLine{00917\ }
+\DoxyCodeLine{00918\ \ \ \ \ \textcolor{comment}{//\ Make\ Y\ axis\ perpendicular\ to\ X}}
+\DoxyCodeLine{00919\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ y\ =\ GetAxisY();}
+\DoxyCodeLine{00920\ \ \ \ \ \textcolor{keywordtype}{float}\ x\_dot\_x\ =\ x.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00921\ \ \ \ \ y\ -\/=\ (x.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(y)\ /\ x\_dot\_x)\ *\ x;}
+\DoxyCodeLine{00922\ }
+\DoxyCodeLine{00923\ \ \ \ \ \textcolor{comment}{//\ Make\ Z\ axis\ perpendicular\ to\ X}}
+\DoxyCodeLine{00924\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ z\ =\ GetAxisZ();}
+\DoxyCodeLine{00925\ \ \ \ \ z\ -\/=\ (x.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(z)\ /\ x\_dot\_x)\ *\ x;}
+\DoxyCodeLine{00926\ }
+\DoxyCodeLine{00927\ \ \ \ \ \textcolor{comment}{//\ Make\ Z\ axis\ perpendicular\ to\ Y}}
+\DoxyCodeLine{00928\ \ \ \ \ \textcolor{keywordtype}{float}\ y\_dot\_y\ =\ y.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00929\ \ \ \ \ z\ -\/=\ (y.\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(z)\ /\ y\_dot\_y)\ *\ y;}
+\DoxyCodeLine{00930\ }
+\DoxyCodeLine{00931\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ scale}}
+\DoxyCodeLine{00932\ \ \ \ \ \textcolor{keywordtype}{float}\ z\_dot\_z\ =\ z.\mbox{\hyperlink{classVec3_aba501a6a474028084799f871c9083dc1}{LengthSq}}();}
+\DoxyCodeLine{00933\ \ \ \ \ outScale\ =\ \mbox{\hyperlink{classVec3}{Vec3}}(x\_dot\_x,\ y\_dot\_y,\ z\_dot\_z).\mbox{\hyperlink{classVec3_ae3693c78a72d92e9ab821025f8ed28cf}{Sqrt}}();}
+\DoxyCodeLine{00934\ }
+\DoxyCodeLine{00935\ \ \ \ \ \textcolor{comment}{//\ If\ the\ resulting\ x,\ y\ and\ z\ vectors\ don't\ form\ a\ right\ handed\ matrix,\ flip\ the\ z\ axis.}}
+\DoxyCodeLine{00936\ \ \ \ \ \textcolor{keywordflow}{if}\ (x.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(y).\mbox{\hyperlink{classVec3_a0e078ff09f69e669db71a2b0e37939ff}{Dot}}(z)\ <\ 0.0f)}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ outScale.SetZ(-\/outScale.GetZ());}
+\DoxyCodeLine{00938\ }
+\DoxyCodeLine{00939\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ rotation\ and\ translation}}
+\DoxyCodeLine{00940\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classMat44_ad95a3b3f36bf3216574383e3dfb927ed}{Mat44}}(\mbox{\hyperlink{classVec4}{Vec4}}(x\ /\ outScale.\mbox{\hyperlink{classVec3_a284e29f161ae7709a934f402bd2a848c}{GetX}}(),\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(y\ /\ outScale.GetY(),\ 0),\ \mbox{\hyperlink{classVec4}{Vec4}}(z\ /\ outScale.GetZ(),\ 0),\ GetColumn4(3));}
+\DoxyCodeLine{00941\ \}}
+\DoxyCodeLine{00942\ }
+\DoxyCodeLine{00943\ \textcolor{preprocessor}{\#undef\ JPH\_EL}}
+\DoxyCodeLine{00944\ }
+\DoxyCodeLine{00945\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

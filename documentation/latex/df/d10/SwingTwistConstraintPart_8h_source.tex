@@ -1,0 +1,561 @@
+\doxysection{Swing\+Twist\+Constraint\+Part.\+h}
+\hypertarget{SwingTwistConstraintPart_8h_source}{}\label{SwingTwistConstraintPart_8h_source}\index{includes/jolt/Physics/Constraints/ConstraintPart/SwingTwistConstraintPart.h@{includes/jolt/Physics/Constraints/ConstraintPart/SwingTwistConstraintPart.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Geometry/Ellipse.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/RotationEulerConstraintPart.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Constraints/ConstraintPart/AngleConstraintPart.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ ESwingType\ :\ uint8}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ Cone,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ Pyramid,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSwingTwistConstraintPart}{SwingTwistConstraintPart}}}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a848425a649ffd87b994ea1efe3cf9944}{SetSwingType}}(ESwingType\ inSwingType)}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ mSwingType\ =\ inSwingType;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ ESwingType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a1e8cca76a13bf4490e18086adfe44fb5}{GetSwingType}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSwingType;}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_aad526f8386b3e605f88fddf583ec215b}{SetLimits}}(\textcolor{keywordtype}{float}\ inTwistMinAngle,\ \textcolor{keywordtype}{float}\ inTwistMaxAngle,\ \textcolor{keywordtype}{float}\ inSwingYMinAngle,\ \textcolor{keywordtype}{float}\ inSwingYMaxAngle,\ \textcolor{keywordtype}{float}\ inSwingZMinAngle,\ \textcolor{keywordtype}{float}\ inSwingZMaxAngle)}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ cLockedAngle\ =\ DegreesToRadians(0.5f);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ cFreeAngle\ =\ DegreesToRadians(179.5f);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Assume\ sane\ input}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inTwistMinAngle\ <=\ inTwistMinAngle);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inSwingYMinAngle\ <=\ inSwingYMaxAngle);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inSwingZMinAngle\ <=\ inSwingZMaxAngle);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inSwingYMinAngle\ >=\ -\/JPH\_PI\ \&\&\ inSwingYMaxAngle\ <=\ JPH\_PI);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ JPH\_ASSERT(inSwingZMinAngle\ >=\ -\/JPH\_PI\ \&\&\ inSwingZMaxAngle\ <=\ JPH\_PI);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ sine\ and\ cosine\ of\ the\ half\ angles}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ half\_twist\ =\ 0.5f\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(inTwistMinAngle,\ inTwistMaxAngle,\ 0,\ 0);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ twist\_s,\ twist\_c;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ half\_twist.\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(twist\_s,\ twist\_c);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ half\_swing\ =\ 0.5f\ *\ \mbox{\hyperlink{classVec4}{Vec4}}(inSwingYMinAngle,\ inSwingYMaxAngle,\ inSwingZMinAngle,\ inSwingZMaxAngle);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ swing\_s,\ swing\_c;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ half\_swing.\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(swing\_s,\ swing\_c);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ half\ angles\ for\ pyramid\ limit}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ mSwingYHalfMinAngle\ =\ half\_swing.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ mSwingYHalfMaxAngle\ =\ half\_swing.GetY();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ mSwingZHalfMinAngle\ =\ half\_swing.GetZ();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ mSwingZHalfMaxAngle\ =\ half\_swing.GetW();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ axis\ flags\ which\ are\ used\ at\ runtime\ to\ quickly\ decided\ which\ contraints\ to\ apply}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ mRotationFlags\ =\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inTwistMinAngle\ >\ -\/cLockedAngle\ \&\&\ inTwistMaxAngle\ <\ cLockedAngle)}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ mRotationFlags\ |=\ TwistXLocked;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ mSinTwistHalfMinAngle\ =\ 0.0f;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ mSinTwistHalfMaxAngle\ =\ 0.0f;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ mCosTwistHalfMinAngle\ =\ 1.0f;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ mCosTwistHalfMaxAngle\ =\ 1.0f;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (inTwistMinAngle\ <\ -\/cFreeAngle\ \&\&\ inTwistMaxAngle\ >\ cFreeAngle)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ mRotationFlags\ |=\ TwistXFree;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ mSinTwistHalfMinAngle\ =\ -\/1.0f;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ mSinTwistHalfMaxAngle\ =\ 1.0f;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ mCosTwistHalfMinAngle\ =\ 0.0f;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ mCosTwistHalfMaxAngle\ =\ 0.0f;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ mSinTwistHalfMinAngle\ =\ twist\_s.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ mSinTwistHalfMaxAngle\ =\ twist\_s.GetY();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ mCosTwistHalfMinAngle\ =\ twist\_c.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ mCosTwistHalfMaxAngle\ =\ twist\_c.GetY();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inSwingYMinAngle\ >\ -\/cLockedAngle\ \&\&\ inSwingYMaxAngle\ <\ cLockedAngle)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ mRotationFlags\ |=\ SwingYLocked;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingYHalfMinAngle\ =\ 0.0f;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingYHalfMaxAngle\ =\ 0.0f;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingYHalfMinAngle\ =\ 1.0f;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingYHalfMaxAngle\ =\ 1.0f;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (inSwingYMinAngle\ <\ -\/cFreeAngle\ \&\&\ inSwingYMaxAngle\ >\ cFreeAngle)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ mRotationFlags\ |=\ SwingYFree;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingYHalfMinAngle\ =\ -\/1.0f;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingYHalfMaxAngle\ =\ 1.0f;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingYHalfMinAngle\ =\ 0.0f;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingYHalfMaxAngle\ =\ 0.0f;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingYHalfMinAngle\ =\ swing\_s.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingYHalfMaxAngle\ =\ swing\_s.GetY();}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingYHalfMinAngle\ =\ swing\_c.\mbox{\hyperlink{classVec4_aad89aa3a9c4215f45c0dbe1fb65830c3}{GetX}}();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingYHalfMaxAngle\ =\ swing\_c.GetY();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSinSwingYHalfMinAngle\ <=\ mSinSwingYHalfMaxAngle);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inSwingZMinAngle\ >\ -\/cLockedAngle\ \&\&\ inSwingZMaxAngle\ <\ cLockedAngle)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ mRotationFlags\ |=\ SwingZLocked;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingZHalfMinAngle\ =\ 0.0f;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingZHalfMaxAngle\ =\ 0.0f;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingZHalfMinAngle\ =\ 1.0f;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingZHalfMaxAngle\ =\ 1.0f;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (inSwingZMinAngle\ <\ -\/cFreeAngle\ \&\&\ inSwingZMaxAngle\ >\ cFreeAngle)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ mRotationFlags\ |=\ SwingZFree;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingZHalfMinAngle\ =\ -\/1.0f;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingZHalfMaxAngle\ =\ 1.0f;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingZHalfMinAngle\ =\ 0.0f;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingZHalfMaxAngle\ =\ 0.0f;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingZHalfMinAngle\ =\ swing\_s.GetZ();}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingZHalfMaxAngle\ =\ swing\_s.GetW();}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingZHalfMinAngle\ =\ swing\_c.GetZ();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingZHalfMaxAngle\ =\ swing\_c.GetW();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ JPH\_ASSERT(mSinSwingZHalfMinAngle\ <=\ mSinSwingZHalfMaxAngle);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a52114d8a17117ba0e7db21c6d65ac317}{cClampedTwistMin}}\ =\ 1\ <<\ 0;}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ cClampedTwistMax\ =\ 1\ <<\ 1;}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ cClampedSwingYMin\ =\ 1\ <<\ 2;}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ cClampedSwingYMax\ =\ 1\ <<\ 3;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ cClampedSwingZMin\ =\ 1\ <<\ 4;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint\ \ \ \ \ \ \ cClampedSwingZMax\ =\ 1\ <<\ 5;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a6588973f6ab2b380c62caaa2d3658f20}{sDistanceToMinShorter}}(\textcolor{keywordtype}{float}\ inDeltaMin,\ \textcolor{keywordtype}{float}\ inDeltaMax)}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We're\ outside\ of\ the\ limits,\ get\ actual\ delta\ to\ min/max\ range}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ a\ swing/twist\ of\ -\/1\ and\ 1\ represent\ the\ same\ angle,\ so\ if\ the\ difference\ is\ bigger\ than\ 1,\ the\ shortest\ angle\ is\ the\ other\ way\ around\ (2\ -\/\ difference)}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ should\ actually\ be\ working\ with\ angles\ rather\ than\ sin(angle\ /\ 2).\ When\ the\ difference\ is\ small\ the\ approximation\ is\ accurate,\ but}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ when\ working\ with\ extreme\ values\ the\ calculation\ is\ off\ and\ e.g.\ when\ the\ limit\ is\ between\ 0\ and\ 180\ a\ value\ of\ approx\ -\/60\ will\ clamp}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ 180\ rather\ than\ 0\ (you'd\ expect\ anything\ >\ -\/90\ to\ go\ to\ 0).}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ inDeltaMin\ =\ abs(inDeltaMin);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inDeltaMin\ >\ 1.0f)\ inDeltaMin\ =\ 2.0f\ -\/\ inDeltaMin;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ inDeltaMax\ =\ abs(inDeltaMax);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inDeltaMax\ >\ 1.0f)\ inDeltaMax\ =\ 2.0f\ -\/\ inDeltaMax;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inDeltaMin\ <\ inDeltaMax;}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a63a4870b93b5bb0d90555edbacbf5229}{ClampSwingTwist}}(\mbox{\hyperlink{classQuat}{Quat}}\ \&ioSwing,\ \mbox{\hyperlink{classQuat}{Quat}}\ \&ioTwist,\ uint\ \&outClampedAxis)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00176\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ with\ not\ clamped}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ outClampedAxis\ =\ 0;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ that\ swing\ and\ twist\ quaternions\ don't\ contain\ rotations\ around\ the\ wrong\ axis}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ JPH\_ASSERT(ioSwing.\mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}()\ ==\ 0.0f);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ JPH\_ASSERT(ioTwist.\mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}()\ ==\ 0.0f);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ JPH\_ASSERT(ioTwist.\mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}()\ ==\ 0.0f);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ensure\ quaternions\ have\ w\ >\ 0}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ negate\_swing\ =\ ioSwing.\mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}()\ <\ 0.0f;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (negate\_swing)}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ -\/ioSwing;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ negate\_twist\ =\ ioTwist.\mbox{\hyperlink{classQuat_a13d0159a54a94e6a90dc5952f454b09e}{GetW}}()\ <\ 0.0f;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (negate\_twist)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ ioTwist\ =\ -\/ioTwist;}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mRotationFlags\ \&\ TwistXLocked)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Twist\ axis\ is\ locked,\ clamp\ whenever\ twist\ is\ not\ identity}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ ioTwist.\mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}()\ !=\ 0.0f?\ (\mbox{\hyperlink{classSwingTwistConstraintPart_a52114d8a17117ba0e7db21c6d65ac317}{cClampedTwistMin}}\ |\ cClampedTwistMax)\ :\ 0;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ ioTwist\ =\ \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat::sIdentity}}();}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((mRotationFlags\ \&\ TwistXFree)\ ==\ 0)}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Twist\ axis\ has\ limit,\ clamp\ whenever\ out\ of\ range}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ delta\_min\ =\ mSinTwistHalfMinAngle\ -\/\ ioTwist.\mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}();}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ delta\_max\ =\ ioTwist.\mbox{\hyperlink{classQuat_a3fb43a7bca4b20ce7573030fd826aa96}{GetX}}()\ -\/\ mSinTwistHalfMaxAngle;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\_min\ >\ 0.0f\ ||\ delta\_max\ >\ 0.0f)}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pick\ the\ twist\ that\ corresponds\ to\ the\ smallest\ delta}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classSwingTwistConstraintPart_a6588973f6ab2b380c62caaa2d3658f20}{sDistanceToMinShorter}}(delta\_min,\ delta\_max))}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioTwist\ =\ \mbox{\hyperlink{classQuat}{Quat}}(mSinTwistHalfMinAngle,\ 0,\ 0,\ mCosTwistHalfMinAngle);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ \mbox{\hyperlink{classSwingTwistConstraintPart_a52114d8a17117ba0e7db21c6d65ac317}{cClampedTwistMin}};}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioTwist\ =\ \mbox{\hyperlink{classQuat}{Quat}}(mSinTwistHalfMaxAngle,\ 0,\ 0,\ mCosTwistHalfMaxAngle);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ cClampedTwistMax;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clamp\ swing}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mRotationFlags\ \&\ SwingYLocked)}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mRotationFlags\ \&\ SwingZLocked)}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Both\ swing\ Y\ and\ Z\ are\ disabled,\ no\ degrees\ of\ freedom\ in\ swing}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ ioSwing.\mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}()\ !=\ 0.0f?\ (cClampedSwingYMin\ |\ cClampedSwingYMax)\ :\ 0;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ ioSwing.\mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}()\ !=\ 0.0f?\ (cClampedSwingZMin\ |\ cClampedSwingZMax)\ :\ 0;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat_a73a43fe262fbbbc0b1872d238b972794}{Quat::sIdentity}}();}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swing\ Y\ angle\ disabled,\ only\ 1\ degree\ of\ freedom\ in\ swing}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ ioSwing.\mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}()\ !=\ 0.0f?\ (cClampedSwingYMin\ |\ cClampedSwingYMax)\ :\ 0;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ delta\_min\ =\ mSinSwingZHalfMinAngle\ -\/\ ioSwing.\mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}();}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ delta\_max\ =\ ioSwing.\mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}()\ -\/\ mSinSwingZHalfMaxAngle;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\_min\ >\ 0.0f\ ||\ delta\_max\ >\ 0.0f)}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pick\ the\ swing\ that\ corresponds\ to\ the\ smallest\ delta}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classSwingTwistConstraintPart_a6588973f6ab2b380c62caaa2d3658f20}{sDistanceToMinShorter}}(delta\_min,\ delta\_max))}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat}{Quat}}(0,\ 0,\ mSinSwingZHalfMinAngle,\ mCosSwingZHalfMinAngle);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ cClampedSwingZMin;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat}{Quat}}(0,\ 0,\ mSinSwingZHalfMaxAngle,\ mCosSwingZHalfMaxAngle);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ cClampedSwingZMax;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((outClampedAxis\ \&\ cClampedSwingYMin)\ !=\ 0)}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ ioSwing.\mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}();}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat}{Quat}}(0,\ 0,\ z,\ sqrt(1.0f\ -\/\ Square(z)));}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mRotationFlags\ \&\ SwingZLocked)}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swing\ Z\ angle\ disabled,\ only\ 1\ degree\ of\ freedom\ in\ swing}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ ioSwing.\mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}()\ !=\ 0.0f?\ (cClampedSwingZMin\ |\ cClampedSwingZMax)\ :\ 0;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ delta\_min\ =\ mSinSwingYHalfMinAngle\ -\/\ ioSwing.\mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}();}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ delta\_max\ =\ ioSwing.\mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}()\ -\/\ mSinSwingYHalfMaxAngle;}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\_min\ >\ 0.0f\ ||\ delta\_max\ >\ 0.0f)}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pick\ the\ swing\ that\ corresponds\ to\ the\ smallest\ delta}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classSwingTwistConstraintPart_a6588973f6ab2b380c62caaa2d3658f20}{sDistanceToMinShorter}}(delta\_min,\ delta\_max))}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat}{Quat}}(0,\ mSinSwingYHalfMinAngle,\ 0,\ mCosSwingYHalfMinAngle);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ cClampedSwingYMin;}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat}{Quat}}(0,\ mSinSwingYHalfMaxAngle,\ 0,\ mCosSwingYHalfMaxAngle);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ cClampedSwingYMax;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((outClampedAxis\ \&\ cClampedSwingZMin)\ !=\ 0)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ ioSwing.\mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}();}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat}{Quat}}(0,\ y,\ 0,\ sqrt(1.0f\ -\/\ Square(y)));}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Two\ degrees\ of\ freedom}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mSwingType\ ==\ ESwingType::Cone)}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ ellipse\ to\ solve\ limits}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEllipse}{Ellipse}}\ ellipse(mSinSwingYHalfMaxAngle,\ mSinSwingZHalfMaxAngle);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat2}{Float2}}\ point(ioSwing.\mbox{\hyperlink{classQuat_a21f44684684b475d9f5d02ed9c580def}{GetY}}(),\ ioSwing.\mbox{\hyperlink{classQuat_a38dfc20f7628eee4492125a41ad91764}{GetZ}}());}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ellipse.\mbox{\hyperlink{classEllipse_a5592d2e8e6bb560567b3c9236babd545}{IsInside}}(point))}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFloat2}{Float2}}\ closest\ =\ ellipse.\mbox{\hyperlink{classEllipse_a07b49662cd16799da0e0b1a1d67a8d84}{GetClosestPoint}}(point);}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat}{Quat}}(0,\ closest.x,\ closest.y,\ sqrt(max(0.0f,\ 1.0f\ -\/\ Square(closest.x)\ -\/\ Square(closest.y))));}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ cClampedSwingYMin\ |\ cClampedSwingYMax\ |\ cClampedSwingZMin\ |\ cClampedSwingZMax;\ \textcolor{comment}{//\ We're\ not\ using\ the\ flags\ on\ which\ side\ we\ got\ clamped\ here}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ pyramid\ to\ solve\ limits}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ quaterion\ rotating\ by\ angle\ y\ around\ the\ Y\ axis\ then\ rotating\ by\ angle\ z\ around\ the\ Z\ axis\ is:}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ q\ =\ Quat::sRotation(Vec3::sAxisZ(),\ z)\ *\ Quat::sRotation(Vec3::sAxisY(),\ y)}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [q.x,\ q.y,\ q.z,\ q.w]\ =\ [-\/sin(y\ /\ 2)\ *\ sin(z\ /\ 2),\ sin(y\ /\ 2)\ *\ cos(z\ /\ 2),\ cos(y\ /\ 2)\ *\ sin(z\ /\ 2),\ cos(y\ /\ 2)\ *\ cos(z\ /\ 2)]}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ we\ can\ calculate\ y\ /\ 2\ =\ atan2(q.y,\ q.w)\ and\ z\ /\ 2\ =\ atan2(q.z,\ q.w)}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ half\_angle\ =\ \mbox{\hyperlink{classVec4_a276178476f7db15b1925cae464f136cf}{Vec4::sATan2}}(ioSwing.\mbox{\hyperlink{classQuat_a7800c0c4cb017273d86793d8a09bf136}{GetXYZW}}().\mbox{\hyperlink{classVec4_abc7417303ad93e9bbe7506e7cd045724}{Swizzle}}<SWIZZLE\_Y,\ SWIZZLE\_Y,\ SWIZZLE\_Z,\ SWIZZLE\_Z>(),\ ioSwing.\mbox{\hyperlink{classQuat_a7800c0c4cb017273d86793d8a09bf136}{GetXYZW}}().\mbox{\hyperlink{classVec4_aa890d45169669b6845a2770a72166fcf}{SplatW}}());}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ min\_half\_angle(mSwingYHalfMinAngle,\ mSwingYHalfMinAngle,\ mSwingZHalfMinAngle,\ mSwingZHalfMinAngle);}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ max\_half\_angle(mSwingYHalfMaxAngle,\ mSwingYHalfMaxAngle,\ mSwingZHalfMaxAngle,\ mSwingZHalfMaxAngle);}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ clamped\_half\_angle\ =\ \mbox{\hyperlink{classVec4_a85510ae45bcc02e079547de4bf4b6983}{Vec4::sMin}}(\mbox{\hyperlink{classVec4_ad41f746bf922376846050d932c0de23d}{Vec4::sMax}}(half\_angle,\ min\_half\_angle),\ max\_half\_angle);}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classUVec4}{UVec4}}\ unclamped\ =\ \mbox{\hyperlink{classVec4_a698a4e6c270545046633b043eb36d21f}{Vec4::sEquals}}(half\_angle,\ clamped\_half\_angle);}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!unclamped.\mbox{\hyperlink{classUVec4_a48549afaeaba00fc4b45a10c50656c9f}{TestAllTrue}}())}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ now\ calculate\ the\ quaternion\ again\ using\ the\ formula\ for\ q\ above,}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ but\ we\ leave\ out\ the\ x\ component\ in\ order\ to\ not\ introduce\ twist}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec4}{Vec4}}\ s,\ c;}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ clamped\_half\_angle.\mbox{\hyperlink{classVec4_af7e7da5ada5c3e85aac45d62871a867c}{SinCos}}(s,\ c);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ \mbox{\hyperlink{classQuat}{Quat}}(0,\ s.GetY()\ *\ c.GetZ(),\ c.GetY()\ *\ s.GetZ(),\ c.GetY()\ *\ c.GetZ()).\mbox{\hyperlink{classQuat_a9d4b1ee8c4685a4589766e1c8cacc268}{Normalized}}();}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outClampedAxis\ |=\ cClampedSwingYMin\ |\ cClampedSwingYMax\ |\ cClampedSwingZMin\ |\ cClampedSwingZMax;\ \textcolor{comment}{//\ We're\ not\ using\ the\ flags\ on\ which\ side\ we\ got\ clamped\ here}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Flip\ sign\ back}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (negate\_swing)}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ ioSwing\ =\ -\/ioSwing;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (negate\_twist)}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ ioTwist\ =\ -\/ioTwist;}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ JPH\_ASSERT(ioSwing.\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ JPH\_ASSERT(ioTwist.\mbox{\hyperlink{classQuat_ae628a9685f0be008f18752ea9302b4e4}{IsNormalized}}());}
+\DoxyCodeLine{00330\ \ \ \ \ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_aaf0e7de8bc6c556f7d1a1d2ef4c32317}{CalculateConstraintProperties}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classBody}{Body}}\ \&inBody2,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inConstraintRotation,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inConstraintToWorld)}
+\DoxyCodeLine{00338\ \ \ \ \ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Decompose\ into\ swing\ and\ twist}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ q\_swing,\ q\_twist;}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ inConstraintRotation.\mbox{\hyperlink{classQuat_a7bb8b016622e5ad8f361c52f9037f1aa}{GetSwingTwist}}(q\_swing,\ q\_twist);}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clamp\ against\ joint\ limits}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ q\_clamped\_swing\ =\ q\_swing,\ q\_clamped\_twist\ =\ q\_twist;}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ uint\ clamped\_axis;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a63a4870b93b5bb0d90555edbacbf5229}{ClampSwingTwist}}(q\_clamped\_swing,\ q\_clamped\_twist,\ clamped\_axis);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mRotationFlags\ \&\ SwingYLocked)}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ twist\_to\_world\ =\ inConstraintToWorld\ *\ q\_swing;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitYRotationAxis\ =\ twist\_to\_world.\mbox{\hyperlink{classQuat_adb1d1a70ed64c0a6fadc849126306706}{RotateAxisY}}();}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitZRotationAxis\ =\ twist\_to\_world.\mbox{\hyperlink{classQuat_ab226b2147a748e53008556bcf1a3cd76}{RotateAxisZ}}();}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mRotationFlags\ \&\ SwingZLocked)}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swing\ fully\ locked}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceSwingLimitYRotationAxis);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceSwingLimitZRotationAxis);}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swing\ only\ locked\ around\ Y}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceSwingLimitYRotationAxis);}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((clamped\_axis\ \&\ (cClampedSwingZMin\ |\ cClampedSwingZMax))\ !=\ 0)}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((clamped\_axis\ \&\ cClampedSwingZMin)\ !=\ 0)}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitZRotationAxis\ =\ -\/mWorldSpaceSwingLimitZRotationAxis;\ \textcolor{comment}{//\ Flip\ axis\ if\ hitting\ min\ limit\ because\ the\ impulse\ limit\ is\ going\ to\ be\ between\ [-\/FLT\_MAX,\ 0]}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceSwingLimitZRotationAxis);}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (mRotationFlags\ \&\ SwingZLocked)}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swing\ only\ locked\ around\ Z}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ twist\_to\_world\ =\ inConstraintToWorld\ *\ q\_swing;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitYRotationAxis\ =\ twist\_to\_world.\mbox{\hyperlink{classQuat_adb1d1a70ed64c0a6fadc849126306706}{RotateAxisY}}();}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitZRotationAxis\ =\ twist\_to\_world.\mbox{\hyperlink{classQuat_ab226b2147a748e53008556bcf1a3cd76}{RotateAxisZ}}();}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((clamped\_axis\ \&\ (cClampedSwingYMin\ |\ cClampedSwingYMax))\ !=\ 0)}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((clamped\_axis\ \&\ cClampedSwingYMin)\ !=\ 0)}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitYRotationAxis\ =\ -\/mWorldSpaceSwingLimitYRotationAxis;\ \textcolor{comment}{//\ Flip\ axis\ if\ hitting\ min\ limit\ because\ the\ impulse\ limit\ is\ going\ to\ be\ between\ [-\/FLT\_MAX,\ 0]}}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceSwingLimitYRotationAxis);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceSwingLimitZRotationAxis);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((mRotationFlags\ \&\ SwingYZFree)\ !=\ SwingYZFree)}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swing\ has\ limits\ around\ Y\ and\ Z}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((clamped\_axis\ \&\ (cClampedSwingYMin\ |\ cClampedSwingYMax\ |\ cClampedSwingZMin\ |\ cClampedSwingZMax))\ !=\ 0)}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ axis\ of\ rotation\ from\ clamped\ swing\ to\ swing}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ current\ =\ (inConstraintToWorld\ *\ q\_swing).RotateAxisX();}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ desired\ =\ (inConstraintToWorld\ *\ q\_clamped\_swing).RotateAxisX();}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitYRotationAxis\ =\ desired.\mbox{\hyperlink{classVec3_a224811af391ccfd1e05282eda22d1de8}{Cross}}(current);}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ len\ =\ mWorldSpaceSwingLimitYRotationAxis.\mbox{\hyperlink{classVec3_a38a9efffc3f9413f3dd702abc73eb9a2}{Length}}();}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ !=\ 0.0f)}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitYRotationAxis\ /=\ len;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceSwingLimitYRotationAxis);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ swing\ limits}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mRotationFlags\ \&\ TwistXLocked)}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Twist\ locked,\ always\ activate\ constraint}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceTwistLimitRotationAxis\ =\ (inConstraintToWorld\ *\ q\_swing).RotateAxisX();}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceTwistLimitRotationAxis);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((mRotationFlags\ \&\ TwistXFree)\ ==\ 0)}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Twist\ has\ limits}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((clamped\_axis\ \&\ (\mbox{\hyperlink{classSwingTwistConstraintPart_a52114d8a17117ba0e7db21c6d65ac317}{cClampedTwistMin}}\ |\ cClampedTwistMax))\ !=\ 0)}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceTwistLimitRotationAxis\ =\ (inConstraintToWorld\ *\ q\_swing).RotateAxisX();}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((clamped\_axis\ \&\ \mbox{\hyperlink{classSwingTwistConstraintPart_a52114d8a17117ba0e7db21c6d65ac317}{cClampedTwistMin}})\ !=\ 0)}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceTwistLimitRotationAxis\ =\ -\/mWorldSpaceTwistLimitRotationAxis;\ \textcolor{comment}{//\ Flip\ axis\ if\ hittin\ min\ limit\ because\ the\ impulse\ limit\ is\ going\ to\ be\ between\ [-\/FLT\_MAX,\ 0]}}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a4db6fb3120c161301e04ee92276544d4}{CalculateConstraintProperties}}(inBody1,\ inBody2,\ mWorldSpaceTwistLimitRotationAxis);}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ twist\ limits}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \}}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_ae76162c3dfe72782a020162752a7ccf5}{Deactivate}}()}
+\DoxyCodeLine{00448\ \ \ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a27c8bf9c172f0d3867c1a489aa08c840}{Deactivate}}();}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_af3c12b4e902bc93120df5ec5a706de99}{IsActive}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00456\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a470e2813d397af02acc6bf8e8373431c}{IsActive}}()\ ||\ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a470e2813d397af02acc6bf8e8373431c}{IsActive}}()\ ||\ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a470e2813d397af02acc6bf8e8373431c}{IsActive}}();}
+\DoxyCodeLine{00458\ \ \ \ \ \}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a507f0506fd29b63f244e73670d85d55d}{WarmStart}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&ioBody2,\ \textcolor{keywordtype}{float}\ inWarmStartImpulseRatio)}
+\DoxyCodeLine{00462\ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a8b54544706a1005ac865db7c445b76f1}{WarmStart}}(ioBody1,\ ioBody2,\ inWarmStartImpulseRatio);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a8b54544706a1005ac865db7c445b76f1}{WarmStart}}(ioBody1,\ ioBody2,\ inWarmStartImpulseRatio);}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a8b54544706a1005ac865db7c445b76f1}{WarmStart}}(ioBody1,\ ioBody2,\ inWarmStartImpulseRatio);}
+\DoxyCodeLine{00466\ \ \ \ \ \}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00469\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_ad62155a6ac18bfc95a038b72df927e02}{SolveVelocityConstraint}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&ioBody2)}
+\DoxyCodeLine{00470\ \ \ \ \ \{}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ impulse\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solve\ swing\ constraint}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a470e2813d397af02acc6bf8e8373431c}{IsActive}}())}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ impulse\ |=\ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_aab9cd08fa77ca04f5ab6a6d5cfd78538}{SolveVelocityConstraint}}(ioBody1,\ ioBody2,\ mWorldSpaceSwingLimitYRotationAxis,\ -\/FLT\_MAX,\ mSinSwingYHalfMinAngle\ ==\ mSinSwingYHalfMaxAngle?\ FLT\_MAX\ :\ 0.0f);}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a470e2813d397af02acc6bf8e8373431c}{IsActive}}())}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ impulse\ |=\ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_aab9cd08fa77ca04f5ab6a6d5cfd78538}{SolveVelocityConstraint}}(ioBody1,\ ioBody2,\ mWorldSpaceSwingLimitZRotationAxis,\ -\/FLT\_MAX,\ mSinSwingZHalfMinAngle\ ==\ mSinSwingZHalfMaxAngle?\ FLT\_MAX\ :\ 0.0f);}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solve\ twist\ constraint}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a470e2813d397af02acc6bf8e8373431c}{IsActive}}())}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ impulse\ |=\ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_aab9cd08fa77ca04f5ab6a6d5cfd78538}{SolveVelocityConstraint}}(ioBody1,\ ioBody2,\ mWorldSpaceTwistLimitRotationAxis,\ -\/FLT\_MAX,\ mSinTwistHalfMinAngle\ ==\ mSinTwistHalfMaxAngle?\ FLT\_MAX\ :\ 0.0f);}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ impulse;}
+\DoxyCodeLine{00485\ \ \ \ \ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_ae8a947eca657db9a653b0d3de921e7c1}{SolvePositionConstraint}}(\mbox{\hyperlink{classBody}{Body}}\ \&ioBody1,\ \mbox{\hyperlink{classBody}{Body}}\ \&ioBody2,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inConstraintRotation,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inConstraintToBody1,\ \mbox{\hyperlink{classQuat}{QuatArg}}\ inConstraintToBody2,\ \textcolor{keywordtype}{float}\ inBaumgarte)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00494\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ q\_swing,\ q\_twist;}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ inConstraintRotation.\mbox{\hyperlink{classQuat_a7bb8b016622e5ad8f361c52f9037f1aa}{GetSwingTwist}}(q\_swing,\ q\_twist);}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ uint\ clamped\_axis;}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a63a4870b93b5bb0d90555edbacbf5229}{ClampSwingTwist}}(q\_swing,\ q\_twist,\ clamped\_axis);}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solve\ rotation\ violations}}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (clamped\_axis\ !=\ 0)}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRotationEulerConstraintPart}{RotationEulerConstraintPart}}\ part;}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQuat}{Quat}}\ inv\_initial\_orientation\ =\ inConstraintToBody2\ *\ (inConstraintToBody1\ *\ q\_swing\ *\ q\_twist).Conjugated();}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ part.\mbox{\hyperlink{classRotationEulerConstraintPart_af37f613895af10af42c71f644fe3f2f5}{CalculateConstraintProperties}}(ioBody1,\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{Mat44::sRotation}}(ioBody1.\mbox{\hyperlink{classBody_aaee24bfb5e32e756f50113b9d1f45a2c}{GetRotation}}()),\ ioBody2,\ \mbox{\hyperlink{classMat44_ac3109f2d950061c0b4de57e76a132634}{Mat44::sRotation}}(ioBody2.\mbox{\hyperlink{classBody_aaee24bfb5e32e756f50113b9d1f45a2c}{GetRotation}}()));}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ part.\mbox{\hyperlink{classRotationEulerConstraintPart_ab2276b37dd0f8eaf4229469def2627b6}{SolvePositionConstraint}}(ioBody1,\ ioBody2,\ inv\_initial\_orientation,\ inBaumgarte);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00511\ \ \ \ \ \}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a16832ee912d335e0865e78f37fe7ad81}{GetTotalSwingYLambda}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00515\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_af482295498d9ca4f6fcdd0c034d0fb90}{GetTotalLambda}}();}
+\DoxyCodeLine{00517\ \ \ \ \ \}}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetTotalSwingZLambda()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00520\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_af482295498d9ca4f6fcdd0c034d0fb90}{GetTotalLambda}}();}
+\DoxyCodeLine{00522\ \ \ \ \ \}}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00525\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a45a880db0765176f7e807f4aba08da6e}{GetTotalTwistLambda}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00526\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_af482295498d9ca4f6fcdd0c034d0fb90}{GetTotalLambda}}();}
+\DoxyCodeLine{00528\ \ \ \ \ \}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a901f23c5450f15ee2c8979776fcdbf15}{SaveState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00532\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_ab75081badd77c6854423f45825ff36ce}{SaveState}}(inStream);}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_ab75081badd77c6854423f45825ff36ce}{SaveState}}(inStream);}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_ab75081badd77c6854423f45825ff36ce}{SaveState}}(inStream);}
+\DoxyCodeLine{00536\ \ \ \ \ \}}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00539\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSwingTwistConstraintPart_a2964a0ed18137258a244d1b4926fa290}{RestoreState}}(\mbox{\hyperlink{classStateRecorder}{StateRecorder}}\ \&inStream)}
+\DoxyCodeLine{00540\ \ \ \ \ \{}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a80bd3ee7db86967d1a55100ab244d01c}{RestoreState}}(inStream);}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a80bd3ee7db86967d1a55100ab244d01c}{RestoreState}}(inStream);}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart.\mbox{\hyperlink{classAngleConstraintPart_a80bd3ee7db86967d1a55100ab244d01c}{RestoreState}}(inStream);}
+\DoxyCodeLine{00544\ \ \ \ \ \}}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00547\ \ \ \ \ \textcolor{comment}{//\ CONFIGURATION\ PROPERTIES\ FOLLOW}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \ \ \textcolor{keyword}{enum}\ ERotationFlags}
+\DoxyCodeLine{00550\ \ \ \ \ \{}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ TwistXLocked\ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 0,}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ SwingYLocked\ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 1,}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ SwingZLocked\ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 2,}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ TwistXFree\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 3,}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ SwingYFree\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 4,}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ SwingZFree\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ <<\ 5,}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ SwingYZFree\ \ \ \ \ \ \ \ \ \ \ \ \ =\ SwingYFree\ |\ SwingZFree}
+\DoxyCodeLine{00561\ \ \ \ \ \};}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \ \ \ \ uint8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRotationFlags;}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{comment}{//\ Constants}}
+\DoxyCodeLine{00566\ \ \ \ \ ESwingType\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingType\ =\ ESwingType::Cone;}
+\DoxyCodeLine{00567\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSinTwistHalfMinAngle;}
+\DoxyCodeLine{00568\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSinTwistHalfMaxAngle;}
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCosTwistHalfMinAngle;}
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCosTwistHalfMaxAngle;}
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingYHalfMinAngle;}
+\DoxyCodeLine{00572\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingYHalfMaxAngle;}
+\DoxyCodeLine{00573\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingZHalfMinAngle;}
+\DoxyCodeLine{00574\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSwingZHalfMaxAngle;}
+\DoxyCodeLine{00575\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingYHalfMinAngle;}
+\DoxyCodeLine{00576\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingYHalfMaxAngle;}
+\DoxyCodeLine{00577\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingZHalfMinAngle;}
+\DoxyCodeLine{00578\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSinSwingZHalfMaxAngle;}
+\DoxyCodeLine{00579\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingYHalfMinAngle;}
+\DoxyCodeLine{00580\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingYHalfMaxAngle;}
+\DoxyCodeLine{00581\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingZHalfMinAngle;}
+\DoxyCodeLine{00582\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCosSwingZHalfMaxAngle;}
+\DoxyCodeLine{00583\ }
+\DoxyCodeLine{00584\ \ \ \ \ \textcolor{comment}{//\ RUN\ TIME\ PROPERTIES\ FOLLOW}}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00587\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitYRotationAxis;}
+\DoxyCodeLine{00588\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceSwingLimitZRotationAxis;}
+\DoxyCodeLine{00589\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldSpaceTwistLimitRotationAxis;}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00592\ \ \ \ \ \mbox{\hyperlink{classAngleConstraintPart}{AngleConstraintPart}}\ \ \ \ \ \ \ \ \ \ mSwingLimitYConstraintPart;}
+\DoxyCodeLine{00593\ \ \ \ \ \mbox{\hyperlink{classAngleConstraintPart}{AngleConstraintPart}}\ \ \ \ \ \ \ \ \ \ mSwingLimitZConstraintPart;}
+\DoxyCodeLine{00594\ \ \ \ \ \mbox{\hyperlink{classAngleConstraintPart}{AngleConstraintPart}}\ \ \ \ \ \ \ \ \ \ mTwistLimitConstraintPart;}
+\DoxyCodeLine{00595\ \};}
+\DoxyCodeLine{00596\ }
+\DoxyCodeLine{00597\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

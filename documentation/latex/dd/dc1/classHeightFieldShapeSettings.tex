@@ -1,0 +1,229 @@
+\doxysection{Height\+Field\+Shape\+Settings Class Reference}
+\hypertarget{classHeightFieldShapeSettings}{}\label{classHeightFieldShapeSettings}\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+
+
+Class that constructs a \doxylink{classHeightFieldShape}{Height\+Field\+Shape}.  
+
+
+
+
+{\ttfamily \#include $<$Height\+Field\+Shape.\+h$>$}
+
+
+
+Inheritance diagram for Height\+Field\+Shape\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/d6b/classHeightFieldShapeSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Height\+Field\+Shape\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d4/d95/classHeightFieldShapeSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classHeightFieldShapeSettings_a3bd65c794f1651b192e95a4fc7c60576}\label{classHeightFieldShapeSettings_a3bd65c794f1651b192e95a4fc7c60576} 
+{\bfseries Height\+Field\+Shape\+Settings} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for deserialization. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHeightFieldShapeSettings_adf01e409660816defec790e752348cc0}{Height\+Field\+Shape\+Settings}} (const float \texorpdfstring{$\ast$}{*}in\+Samples, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Offset, \mbox{\hyperlink{classVec3}{Vec3\+Arg}} in\+Scale, uint32 in\+Sample\+Count, const uint8 \texorpdfstring{$\ast$}{*}in\+Material\+Indices=nullptr, const Physics\+Material\+List \&in\+Material\+List=Physics\+Material\+List())
+\item 
+virtual \mbox{\hyperlink{classResult}{Shape\+Result}} \mbox{\hyperlink{classHeightFieldShapeSettings_a9bccce0245f148f03112b84c92d6c8d0}{Create}} () const override
+\begin{DoxyCompactList}\small\item\em Create a shape according to the settings specified by this object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHeightFieldShapeSettings_a461c9c2289620877314186af163ebf73}{Determine\+Min\+And\+Max\+Sample}} (float \&out\+Min\+Value, float \&out\+Max\+Value, float \&out\+Quantization\+Scale) const
+\item 
+uint32 \mbox{\hyperlink{classHeightFieldShapeSettings_afa8076803d2d512fbe625d0eb9c90811}{Calculate\+Bits\+Per\+Sample\+For\+Error}} (float in\+Max\+Error) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVec3}{Vec3}} \mbox{\hyperlink{classHeightFieldShapeSettings_a7b2cbd09f2cd2d0c5d5381ab244a1d6a}{m\+Offset}} = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3\+::s\+Zero}}()
+\item 
+\Hypertarget{classHeightFieldShapeSettings_abdaa8bfc9ee9392b6813519a989f089e}\label{classHeightFieldShapeSettings_abdaa8bfc9ee9392b6813519a989f089e} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Scale} = \mbox{\hyperlink{classVec3_ad6be51ce14811d6c196784d20cb39b98}{Vec3\+::s\+Replicate}}(1.\+0f)
+\item 
+\Hypertarget{classHeightFieldShapeSettings_a8028cb21d400d589b670f0a88d25e4b8}\label{classHeightFieldShapeSettings_a8028cb21d400d589b670f0a88d25e4b8} 
+uint32 {\bfseries m\+Sample\+Count} = 0
+\item 
+\Hypertarget{classHeightFieldShapeSettings_a5a5666c8a5c77d89b4fd1f7fb555a96e}\label{classHeightFieldShapeSettings_a5a5666c8a5c77d89b4fd1f7fb555a96e} 
+float {\bfseries m\+Min\+Height\+Value} = FLT\+\_\+\+MAX
+\begin{DoxyCompactList}\small\item\em Artifical minimal value of m\+Height\+Samples, used for compression and can be used to update the terrain after creating with lower height values. If there are any lower values in m\+Height\+Samples, this value will be ignored. \end{DoxyCompactList}\item 
+\Hypertarget{classHeightFieldShapeSettings_a8851f44e1c36e194a1fa033c463fedb7}\label{classHeightFieldShapeSettings_a8851f44e1c36e194a1fa033c463fedb7} 
+float {\bfseries m\+Max\+Height\+Value} = -\/FLT\+\_\+\+MAX
+\begin{DoxyCompactList}\small\item\em Artifical maximum value of m\+Height\+Samples, used for compression and can be used to update the terrain after creating with higher height values. If there are any higher values in m\+Height\+Samples, this value will be ignored. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classHeightFieldShapeSettings_a8e99fb8a4d1444569a307ac2b9712e31}{m\+Block\+Size}} = 2
+\item 
+uint32 \mbox{\hyperlink{classHeightFieldShapeSettings_a7f87d207da7948e2a36a22be55143ad0}{m\+Bits\+Per\+Sample}} = 8
+\item 
+\Hypertarget{classHeightFieldShapeSettings_a7e55509101c2c09001a431825ca0c82a}\label{classHeightFieldShapeSettings_a7e55509101c2c09001a431825ca0c82a} 
+Array$<$ float $>$ {\bfseries m\+Height\+Samples}
+\begin{DoxyCompactList}\small\item\em An array of m\+Sample\+Count\texorpdfstring{$^\wedge$}{\string^}2 height samples. Samples are stored in row major order, so the sample at (x, y) is at index y \texorpdfstring{$\ast$}{*} m\+Sample\+Count + x. \end{DoxyCompactList}\item 
+\Hypertarget{classHeightFieldShapeSettings_aea730c5a9dc0ebbc614448d5b6187d00}\label{classHeightFieldShapeSettings_aea730c5a9dc0ebbc614448d5b6187d00} 
+Array$<$ uint8 $>$ {\bfseries m\+Material\+Indices}
+\begin{DoxyCompactList}\small\item\em An array of (m\+Sample\+Count -\/ 1)\texorpdfstring{$^\wedge$}{\string^}2 material indices. \end{DoxyCompactList}\item 
+\Hypertarget{classHeightFieldShapeSettings_af9c4d464234b38f19df16faab06c6f38}\label{classHeightFieldShapeSettings_af9c4d464234b38f19df16faab06c6f38} 
+Physics\+Material\+List {\bfseries m\+Materials}
+\begin{DoxyCompactList}\small\item\em The materials of square at (x, y) is\+: m\+Materials\mbox{[}m\+Material\+Indices\mbox{[}x + y \texorpdfstring{$\ast$}{*} (m\+Sample\+Count -\/ 1)\mbox{]}\mbox{]}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classHeightFieldShapeSettings_ac600befce41089e57309054090c889c8}{m\+Active\+Edge\+Cos\+Threshold\+Angle}} = 0.\+996195f
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+uint64 {\bfseries m\+User\+Data} = 0
+\begin{DoxyCompactList}\small\item\em User data (to be used freely by the application) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Shape\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classShape}{Shape}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classShapeSettings}{Shape\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classResult}{Shape\+Result}} {\bfseries m\+Cached\+Result}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Shape\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that constructs a \doxylink{classHeightFieldShape}{Height\+Field\+Shape}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classHeightFieldShapeSettings_adf01e409660816defec790e752348cc0}\label{classHeightFieldShapeSettings_adf01e409660816defec790e752348cc0} 
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\doxysubsubsection{\texorpdfstring{HeightFieldShapeSettings()}{HeightFieldShapeSettings()}}
+{\footnotesize\ttfamily Height\+Field\+Shape\+Settings\+::\+Height\+Field\+Shape\+Settings (\begin{DoxyParamCaption}\item[{const float \texorpdfstring{$\ast$}{*}}]{in\+Samples,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Offset,  }\item[{\mbox{\hyperlink{classVec3}{Vec3\+Arg}}}]{in\+Scale,  }\item[{uint32}]{in\+Sample\+Count,  }\item[{const uint8 \texorpdfstring{$\ast$}{*}}]{in\+Material\+Indices = {\ttfamily nullptr},  }\item[{const Physics\+Material\+List \&}]{in\+Material\+List = {\ttfamily PhysicsMaterialList()} }\end{DoxyParamCaption})}
+
+Create a height field shape of in\+Sample\+Count \texorpdfstring{$\ast$}{*} in\+Sample\+Count vertices. The height field is a surface defined by\+: in\+Offset + in\+Scale \texorpdfstring{$\ast$}{*} (x, in\+Samples\mbox{[}y \texorpdfstring{$\ast$}{*} in\+Sample\+Count + x\mbox{]}, y). where x and y are integers in the range x and y e \mbox{[}0, in\+Sample\+Count -\/ 1\mbox{]}. in\+Sample\+Count\+: in\+Sample\+Count / m\+Block\+Size must be minimally 2 and a power of 2 is the most efficient in terms of performance and storage. in\+Samples\+: in\+Sample\+Count\texorpdfstring{$^\wedge$}{\string^}2 vertices. in\+Material\+Indices\+: (in\+Sample\+Count -\/ 1)\texorpdfstring{$^\wedge$}{\string^}2 indices that index into in\+Material\+List. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classHeightFieldShapeSettings_afa8076803d2d512fbe625d0eb9c90811}\label{classHeightFieldShapeSettings_afa8076803d2d512fbe625d0eb9c90811} 
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!CalculateBitsPerSampleForError@{CalculateBitsPerSampleForError}}
+\index{CalculateBitsPerSampleForError@{CalculateBitsPerSampleForError}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\doxysubsubsection{\texorpdfstring{CalculateBitsPerSampleForError()}{CalculateBitsPerSampleForError()}}
+{\footnotesize\ttfamily uint32 Height\+Field\+Shape\+Settings\+::\+Calculate\+Bits\+Per\+Sample\+For\+Error (\begin{DoxyParamCaption}\item[{float}]{in\+Max\+Error }\end{DoxyParamCaption}) const}
+
+Given m\+Block\+Size, m\+Sample\+Count and m\+Height\+Samples, calculate the amount of bits needed to stay below absolute error in\+Max\+Error 
+\begin{DoxyParams}{Parameters}
+{\em in\+Max\+Error} & Maximum allowed error in m\+Height\+Samples after compression (note that this does not take m\+Scale.\+Y into account) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Needed bits per sample in the range \mbox{[}1, 8\mbox{]}. 
+\end{DoxyReturn}
+\Hypertarget{classHeightFieldShapeSettings_a9bccce0245f148f03112b84c92d6c8d0}\label{classHeightFieldShapeSettings_a9bccce0245f148f03112b84c92d6c8d0} 
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!Create@{Create}}
+\index{Create@{Create}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classResult}{Shape\+Result}} Height\+Field\+Shape\+Settings\+::\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Create a shape according to the settings specified by this object. 
+
+
+
+Implements \mbox{\hyperlink{classShapeSettings_a21e53b5758542a5527c7941d61d838fa}{Shape\+Settings}}.
+
+\Hypertarget{classHeightFieldShapeSettings_a461c9c2289620877314186af163ebf73}\label{classHeightFieldShapeSettings_a461c9c2289620877314186af163ebf73} 
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!DetermineMinAndMaxSample@{DetermineMinAndMaxSample}}
+\index{DetermineMinAndMaxSample@{DetermineMinAndMaxSample}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\doxysubsubsection{\texorpdfstring{DetermineMinAndMaxSample()}{DetermineMinAndMaxSample()}}
+{\footnotesize\ttfamily void Height\+Field\+Shape\+Settings\+::\+Determine\+Min\+And\+Max\+Sample (\begin{DoxyParamCaption}\item[{float \&}]{out\+Min\+Value,  }\item[{float \&}]{out\+Max\+Value,  }\item[{float \&}]{out\+Quantization\+Scale }\end{DoxyParamCaption}) const}
+
+Determine the minimal and maximal value of m\+Height\+Samples (will ignore c\+No\+Collision\+Value) 
+\begin{DoxyParams}{Parameters}
+{\em out\+Min\+Value} & The minimal value fo m\+Height\+Samples or FLT\+\_\+\+MAX if no samples have collision \\
+\hline
+{\em out\+Max\+Value} & The maximal value fo m\+Height\+Samples or -\/FLT\+\_\+\+MAX if no samples have collision \\
+\hline
+{\em out\+Quantization\+Scale} & (value -\/ out\+Min\+Value) \texorpdfstring{$\ast$}{*} out\+Quantization\+Scale quantizes a height sample to 16 bits \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classHeightFieldShapeSettings_ac600befce41089e57309054090c889c8}\label{classHeightFieldShapeSettings_ac600befce41089e57309054090c889c8} 
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!mActiveEdgeCosThresholdAngle@{mActiveEdgeCosThresholdAngle}}
+\index{mActiveEdgeCosThresholdAngle@{mActiveEdgeCosThresholdAngle}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\doxysubsubsection{\texorpdfstring{mActiveEdgeCosThresholdAngle}{mActiveEdgeCosThresholdAngle}}
+{\footnotesize\ttfamily float Height\+Field\+Shape\+Settings\+::m\+Active\+Edge\+Cos\+Threshold\+Angle = 0.\+996195f}
+
+Cosine of the threshold angle (if the angle between the two triangles is bigger than this, the edge is active, note that a concave edge is always inactive). Setting this value too small can cause ghost collisions with edges, setting it too big can cause depenetration artifacts (objects not depenetrating quickly). Valid ranges are between cos(0 degrees) and cos(90 degrees). The default value is cos(5 degrees). \Hypertarget{classHeightFieldShapeSettings_a7f87d207da7948e2a36a22be55143ad0}\label{classHeightFieldShapeSettings_a7f87d207da7948e2a36a22be55143ad0} 
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!mBitsPerSample@{mBitsPerSample}}
+\index{mBitsPerSample@{mBitsPerSample}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\doxysubsubsection{\texorpdfstring{mBitsPerSample}{mBitsPerSample}}
+{\footnotesize\ttfamily uint32 Height\+Field\+Shape\+Settings\+::m\+Bits\+Per\+Sample = 8}
+
+How many bits per sample to use to compress the height field. Can be in the range \mbox{[}1, 8\mbox{]}. Note that each sample is compressed relative to the min/max value of its block of m\+Block\+Size \texorpdfstring{$\ast$}{*} m\+Block\+Size pixels so the effective precision is higher. Also note that increasing m\+Block\+Size saves more memory than reducing the amount of bits per sample. \Hypertarget{classHeightFieldShapeSettings_a8e99fb8a4d1444569a307ac2b9712e31}\label{classHeightFieldShapeSettings_a8e99fb8a4d1444569a307ac2b9712e31} 
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!mBlockSize@{mBlockSize}}
+\index{mBlockSize@{mBlockSize}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\doxysubsubsection{\texorpdfstring{mBlockSize}{mBlockSize}}
+{\footnotesize\ttfamily uint32 Height\+Field\+Shape\+Settings\+::m\+Block\+Size = 2}
+
+The heightfield is divided in blocks of m\+Block\+Size \texorpdfstring{$\ast$}{*} m\+Block\+Size \texorpdfstring{$\ast$}{*} 2 triangles and the acceleration structure culls blocks only, bigger block sizes reduce memory consumption but also reduce query performance. Sensible values are \mbox{[}2, 8\mbox{]}, does not need to be a power of 2. Note that at run-\/time we\textquotesingle{}ll perform one more grid subdivision, so the effective block size is half of what is provided here. \Hypertarget{classHeightFieldShapeSettings_a7b2cbd09f2cd2d0c5d5381ab244a1d6a}\label{classHeightFieldShapeSettings_a7b2cbd09f2cd2d0c5d5381ab244a1d6a} 
+\index{HeightFieldShapeSettings@{HeightFieldShapeSettings}!mOffset@{mOffset}}
+\index{mOffset@{mOffset}!HeightFieldShapeSettings@{HeightFieldShapeSettings}}
+\doxysubsubsection{\texorpdfstring{mOffset}{mOffset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVec3}{Vec3}} Height\+Field\+Shape\+Settings\+::m\+Offset = \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3\+::s\+Zero}}()}
+
+The height field is a surface defined by\+: m\+Offset + m\+Scale \texorpdfstring{$\ast$}{*} (x, m\+Height\+Samples\mbox{[}y \texorpdfstring{$\ast$}{*} m\+Sample\+Count + x\mbox{]}, y). where x and y are integers in the range x and y e \mbox{[}0, m\+Sample\+Count -\/ 1\mbox{]}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Collision/\+Shape/Height\+Field\+Shape.\+h\end{DoxyCompactItemize}

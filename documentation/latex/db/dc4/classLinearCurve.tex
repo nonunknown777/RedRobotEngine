@@ -1,0 +1,92 @@
+\doxysection{Linear\+Curve Class Reference}
+\hypertarget{classLinearCurve}{}\label{classLinearCurve}\index{LinearCurve@{LinearCurve}}
+
+
+Collaboration diagram for Linear\+Curve\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{db/dc4/classLinearCurve__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classLinearCurve_1_1Point}{Point}}
+\begin{DoxyCompactList}\small\item\em A point on the curve. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classLinearCurve_ac5e86231b54adb339250de6c06a77cbc}\label{classLinearCurve_ac5e86231b54adb339250de6c06a77cbc} 
+using {\bfseries Points} = Array$<$ \mbox{\hyperlink{classLinearCurve_1_1Point}{Point}} $>$
+\begin{DoxyCompactList}\small\item\em The points on the curve, should be sorted ascending by x. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classLinearCurve_aff2fa573a7368134091a91bd01274fca}\label{classLinearCurve_aff2fa573a7368134091a91bd01274fca} 
+void {\bfseries Clear} ()
+\begin{DoxyCompactList}\small\item\em Remove all points. \end{DoxyCompactList}\item 
+\Hypertarget{classLinearCurve_a97a229bd7bbda997fab1f22649afcd9c}\label{classLinearCurve_a97a229bd7bbda997fab1f22649afcd9c} 
+void {\bfseries Reserve} (uint in\+Num\+Points)
+\begin{DoxyCompactList}\small\item\em Reserve memory for in\+Num\+Points points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLinearCurve_aa5b4a499837cb2a3a0c3b9b5eb618a53}{Add\+Point}} (float inX, float inY)
+\item 
+\Hypertarget{classLinearCurve_ad78f856bc64b3249ffd1982a29e0178c}\label{classLinearCurve_ad78f856bc64b3249ffd1982a29e0178c} 
+void {\bfseries Sort} ()
+\begin{DoxyCompactList}\small\item\em Sort the points on X ascending. \end{DoxyCompactList}\item 
+\Hypertarget{classLinearCurve_ac23b16f88bf858f9ff79e9a94500b549}\label{classLinearCurve_ac23b16f88bf858f9ff79e9a94500b549} 
+float {\bfseries Get\+MinX} () const
+\begin{DoxyCompactList}\small\item\em Get the lowest X value. \end{DoxyCompactList}\item 
+\Hypertarget{classLinearCurve_aa92a24bc4fff522ea56c5a0dadbf6ff4}\label{classLinearCurve_aa92a24bc4fff522ea56c5a0dadbf6ff4} 
+float {\bfseries Get\+MaxX} () const
+\begin{DoxyCompactList}\small\item\em Get the highest X value. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classLinearCurve_a24eda4be408b24e5dfeba9bf94edb295}{Get\+Value}} (float inX) const
+\item 
+\Hypertarget{classLinearCurve_a7e8f85b447ccb50d077a1fd61da102e0}\label{classLinearCurve_a7e8f85b447ccb50d077a1fd61da102e0} 
+void {\bfseries Save\+Binary\+State} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the state of this object in binary form to in\+Stream. \end{DoxyCompactList}\item 
+\Hypertarget{classLinearCurve_a1b1dc52c995b9c5ac2d890f01d2af11d}\label{classLinearCurve_a1b1dc52c995b9c5ac2d890f01d2af11d} 
+void {\bfseries Restore\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Restore the state of this object from in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classLinearCurve_a2d5721b04dfe7c3cb67ce8ae87ff3fe3}\label{classLinearCurve_a2d5721b04dfe7c3cb67ce8ae87ff3fe3} 
+\mbox{\hyperlink{classLinearCurve_ac5e86231b54adb339250de6c06a77cbc}{Points}} {\bfseries m\+Points}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classLinearCurve_aa5b4a499837cb2a3a0c3b9b5eb618a53}\label{classLinearCurve_aa5b4a499837cb2a3a0c3b9b5eb618a53} 
+\index{LinearCurve@{LinearCurve}!AddPoint@{AddPoint}}
+\index{AddPoint@{AddPoint}!LinearCurve@{LinearCurve}}
+\doxysubsubsection{\texorpdfstring{AddPoint()}{AddPoint()}}
+{\footnotesize\ttfamily void Linear\+Curve\+::\+Add\+Point (\begin{DoxyParamCaption}\item[{float}]{inX,  }\item[{float}]{inY }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a point to the curve. Points must be inserted in ascending X or \doxylink{classLinearCurve_ad78f856bc64b3249ffd1982a29e0178c}{Sort()} needs to be called when all points have been added. 
+\begin{DoxyParams}{Parameters}
+{\em inX} & X value \\
+\hline
+{\em inY} & Y value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classLinearCurve_a24eda4be408b24e5dfeba9bf94edb295}\label{classLinearCurve_a24eda4be408b24e5dfeba9bf94edb295} 
+\index{LinearCurve@{LinearCurve}!GetValue@{GetValue}}
+\index{GetValue@{GetValue}!LinearCurve@{LinearCurve}}
+\doxysubsubsection{\texorpdfstring{GetValue()}{GetValue()}}
+{\footnotesize\ttfamily float Linear\+Curve\+::\+Get\+Value (\begin{DoxyParamCaption}\item[{float}]{inX }\end{DoxyParamCaption}) const}
+
+Sample value on the curve 
+\begin{DoxyParams}{Parameters}
+{\em inX} & X value to sample at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Interpolated Y value 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Core/Linear\+Curve.\+h\end{DoxyCompactItemize}

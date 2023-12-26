@@ -1,0 +1,91 @@
+\doxysection{Vec8.\+h}
+\hypertarget{Vec8_8h_source}{}\label{Vec8_8h_source}\index{includes/jolt/Math/Vec8.h@{includes/jolt/Math/Vec8.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Math/MathTypes.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }[[nodiscard]]\ \mbox{\hyperlink{classVec8}{Vec8}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ JPH\_OVERRIDE\_NEW\_DELETE}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec8_abbdb68a45ef818a365f358803a2d5820}{Vec8}}()\ =\ \textcolor{keywordflow}{default};\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec8}{Vec8}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVec8}{Vec8}}\ \&inRHS)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00019\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec8}{Vec8}}(\_\_m256\ inRHS)\ :\ mValue(inRHS)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \ \ \ \ JPH\_INLINE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec8}{Vec8}}(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inLo,\ \mbox{\hyperlink{classVec4}{Vec4Arg}}\ inHi);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sZero();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sReplicate(\textcolor{keywordtype}{float}\ inV);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sSplatX(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sSplatY(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sSplatZ(\mbox{\hyperlink{classVec4}{Vec4Arg}}\ inV);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sFusedMultiplyAdd(\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inMul1,\ \mbox{\hyperlink{classVec8}{Vec8Arg}}\ inMul2,\ \mbox{\hyperlink{classVec8}{Vec8Arg}}\ inAdd);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sSelect(\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV1,\ \mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inControl);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sMin(\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV1,\ \mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sMax(\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV1,\ \mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sLess(\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV1,\ \mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \ \ \ \ \ \ \ sGreater(\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV1,\ \mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sLoadFloat8(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ *inV);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ sLoadFloat8Aligned(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ *inV);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ operator\ []\ (uint\ inCoordinate)\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ }\{\ JPH\_ASSERT(inCoordinate\ <\ 8);\ \textcolor{keywordflow}{return}\ mF32[inCoordinate];\ \}}
+\DoxyCodeLine{00065\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{float}\ \&\ \ \ \ \ \ \ \ \ \ operator\ []\ (uint\ inCoordinate)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ JPH\_ASSERT(inCoordinate\ <\ 8);\ \textcolor{keywordflow}{return}\ mF32[inCoordinate];\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ *\ (\textcolor{keywordtype}{float}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ +\ (\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ -\/\ (\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ operator\ /\ (\mbox{\hyperlink{classVec8}{Vec8Arg}}\ inV2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ Reciprocal()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\ SwizzleX,\ u\textcolor{keywordtype}{int}32\ SwizzleY,\ u\textcolor{keywordtype}{int}32\ SwizzleZ,\ u\textcolor{keywordtype}{int}32\ SwizzleW>}
+\DoxyCodeLine{00087\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVec8_afa43e457f8368acb7b249d9f13e484eb}{Swizzle}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec8}{Vec8}}\ \ \ \ \ \ \ \ \ \ \ \ \ Abs()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00093\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ LowerVec4()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00096\ \ \ \ \ JPH\_INLINE\ \mbox{\hyperlink{classVec4}{Vec4}}\ \ \ \ \ \ \ \ \ \ \ \ \ UpperVec4()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ JPH\_INLINE\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ ReduceMin()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \_\_m256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mValue;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mF32[8];}
+\DoxyCodeLine{00105\ \ \ \ \ \};}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{static\_assert}(is\_trivial<Vec8>(),\ \textcolor{stringliteral}{"{}Is\ supposed\ to\ be\ a\ trivial\ type!"{}});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ JPH\_NAMESPACE\_END}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#include\ "{}Vec8.inl"{}}}
+
+\end{DoxyCode}

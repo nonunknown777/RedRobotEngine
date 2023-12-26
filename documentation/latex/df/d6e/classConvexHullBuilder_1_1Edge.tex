@@ -1,0 +1,70 @@
+\doxysection{Convex\+Hull\+Builder\+::Edge Class Reference}
+\hypertarget{classConvexHullBuilder_1_1Edge}{}\label{classConvexHullBuilder_1_1Edge}\index{ConvexHullBuilder::Edge@{ConvexHullBuilder::Edge}}
+
+
+Class that holds the information of an edge.  
+
+
+
+
+{\ttfamily \#include $<$Convex\+Hull\+Builder.\+h$>$}
+
+
+
+Inheritance diagram for Convex\+Hull\+Builder\+::Edge\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{dd/d53/classConvexHullBuilder_1_1Edge__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Convex\+Hull\+Builder\+::Edge\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d5/d23/classConvexHullBuilder_1_1Edge__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classConvexHullBuilder_1_1Edge_a0d350bab8acf2ad5360554e87c2c5b0e}\label{classConvexHullBuilder_1_1Edge_a0d350bab8acf2ad5360554e87c2c5b0e} 
+JPH\+\_\+\+OVERRIDE\+\_\+\+NEW\+\_\+\+DELETE {\bfseries Edge} (\mbox{\hyperlink{classConvexHullBuilder_1_1Face}{Face}} \texorpdfstring{$\ast$}{*}in\+Face, int in\+Start\+Idx)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Edge_af8a79bb1db1fa4f8cdbc67dc04261563}\label{classConvexHullBuilder_1_1Edge_af8a79bb1db1fa4f8cdbc67dc04261563} 
+\mbox{\hyperlink{classConvexHullBuilder_1_1Edge}{Edge}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Previous\+Edge} ()
+\begin{DoxyCompactList}\small\item\em Get the previous edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classConvexHullBuilder_1_1Edge_abfc9e0d70adde9c5c0118cccaace8677}\label{classConvexHullBuilder_1_1Edge_abfc9e0d70adde9c5c0118cccaace8677} 
+\mbox{\hyperlink{classConvexHullBuilder_1_1Face}{Face}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Face}
+\begin{DoxyCompactList}\small\item\em \doxylink{classConvexHullBuilder_1_1Face}{Face} that this edge belongs to. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Edge_a6b51430691fc49292ebca40a2736b508}\label{classConvexHullBuilder_1_1Edge_a6b51430691fc49292ebca40a2736b508} 
+\mbox{\hyperlink{classConvexHullBuilder_1_1Edge}{Edge}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Next\+Edge} = nullptr
+\begin{DoxyCompactList}\small\item\em Next edge of this face. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Edge_a0472b2afdf6989d40f9e82067364df1d}\label{classConvexHullBuilder_1_1Edge_a0472b2afdf6989d40f9e82067364df1d} 
+\mbox{\hyperlink{classConvexHullBuilder_1_1Edge}{Edge}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Neighbour\+Edge} = nullptr
+\begin{DoxyCompactList}\small\item\em \doxylink{classConvexHullBuilder_1_1Edge}{Edge} that this edge is connected to. \end{DoxyCompactList}\item 
+\Hypertarget{classConvexHullBuilder_1_1Edge_ab10d2e518b78941d3a5a4cb8854e30df}\label{classConvexHullBuilder_1_1Edge_ab10d2e518b78941d3a5a4cb8854e30df} 
+int {\bfseries m\+Start\+Idx}
+\begin{DoxyCompactList}\small\item\em Vertex index in m\+Positions that indicates the start vertex of this edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that holds the information of an edge. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Geometry/Convex\+Hull\+Builder.\+h\end{DoxyCompactItemize}

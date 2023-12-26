@@ -1,0 +1,51 @@
+\doxysection{Semaphore.\+h}
+\hypertarget{Semaphore_8h_source}{}\label{Semaphore_8h_source}\index{includes/jolt/Core/Semaphore.h@{includes/jolt/Core/Semaphore.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2023\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ JPH\_SUPPRESS\_WARNINGS\_STD\_BEGIN}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00011\ JPH\_SUPPRESS\_WARNINGS\_STD\_END}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Things\ we're\ using\ from\ STL}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ }std::atomic;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }std::mutex;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ }std::condition\_variable;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classSemaphore}{Semaphore}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSemaphore_ae32c955336ae9e60e20a3facde270714}{Semaphore}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSemaphore}{\string~Semaphore}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSemaphore_aad2d5e92add4088a741869d88fd2fc37}{Release}}(uint\ inNumber\ =\ 1);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSemaphore_a81c1cbdab78310c8b13e7052572e599d}{Acquire}}(uint\ inNumber\ =\ 1);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSemaphore_a8e4d787c14be5d3191ba1353594267e4}{GetValue}}()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ mCount;\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ JPH\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ On\ windows\ we\ use\ a\ semaphore\ object\ since\ it\ is\ more\ efficient\ than\ a\ lock\ and\ a\ condition\ variable}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{alignas}(JPH\_CACHE\_LINE\_SIZE)\ atomic<int>\ mCount\ \{\ 0\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ mSemaphore;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Other\ platforms:\ Emulate\ a\ semaphore\ using\ a\ mutex,\ condition\ variable\ and\ count}}
+\DoxyCodeLine{00045\ \ \ \ \ mutex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLock;}
+\DoxyCodeLine{00046\ \ \ \ \ condition\_variable\ \ mWaitVariable;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCount\ =\ 0;}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

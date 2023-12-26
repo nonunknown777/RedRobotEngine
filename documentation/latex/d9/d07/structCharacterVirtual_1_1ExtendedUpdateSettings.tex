@@ -1,0 +1,50 @@
+\doxysection{Character\+Virtual\+::Extended\+Update\+Settings Struct Reference}
+\hypertarget{structCharacterVirtual_1_1ExtendedUpdateSettings}{}\label{structCharacterVirtual_1_1ExtendedUpdateSettings}\index{CharacterVirtual::ExtendedUpdateSettings@{CharacterVirtual::ExtendedUpdateSettings}}
+
+
+Settings struct with settings for Extended\+Update.  
+
+
+
+
+{\ttfamily \#include $<$Character\+Virtual.\+h$>$}
+
+
+
+Collaboration diagram for Character\+Virtual\+::Extended\+Update\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{de/d96/structCharacterVirtual_1_1ExtendedUpdateSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structCharacterVirtual_1_1ExtendedUpdateSettings_a1c5ed3a437d5b284f4ce9b271bfebbf8}\label{structCharacterVirtual_1_1ExtendedUpdateSettings_a1c5ed3a437d5b284f4ce9b271bfebbf8} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Stick\+To\+Floor\+Step\+Down} \{ 0, -\/0.\+5f, 0 \}
+\begin{DoxyCompactList}\small\item\em See Stick\+To\+Floor in\+Step\+Down parameter. Can be zero to turn off. \end{DoxyCompactList}\item 
+\Hypertarget{structCharacterVirtual_1_1ExtendedUpdateSettings_ac716eaa1338501e45efa6b6d0100e931}\label{structCharacterVirtual_1_1ExtendedUpdateSettings_ac716eaa1338501e45efa6b6d0100e931} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Walk\+Stairs\+Step\+Up} \{ 0, 0.\+4f, 0 \}
+\begin{DoxyCompactList}\small\item\em See Walk\+Stairs in\+Step\+Up parameter. Can be zero to turn off. \end{DoxyCompactList}\item 
+\Hypertarget{structCharacterVirtual_1_1ExtendedUpdateSettings_a175073b371406a720d7e381fc9103110}\label{structCharacterVirtual_1_1ExtendedUpdateSettings_a175073b371406a720d7e381fc9103110} 
+float {\bfseries m\+Walk\+Stairs\+Min\+Step\+Forward} \{ 0.\+02f \}
+\begin{DoxyCompactList}\small\item\em See Walk\+Stairs in\+Step\+Forward parameter. Note that the parameter only indicates a magnitude, direction is taken from current velocity. \end{DoxyCompactList}\item 
+\Hypertarget{structCharacterVirtual_1_1ExtendedUpdateSettings_a773f3fecf53db30cd8a6381b307a3cb4}\label{structCharacterVirtual_1_1ExtendedUpdateSettings_a773f3fecf53db30cd8a6381b307a3cb4} 
+float {\bfseries m\+Walk\+Stairs\+Step\+Forward\+Test} \{ 0.\+15f \}
+\begin{DoxyCompactList}\small\item\em See Walk\+Stairs in\+Step\+Forward\+Test parameter. Note that the parameter only indicates a magnitude, direction is taken from current velocity. \end{DoxyCompactList}\item 
+\Hypertarget{structCharacterVirtual_1_1ExtendedUpdateSettings_aa1710035a7d1b96b4b1d2ba526452528}\label{structCharacterVirtual_1_1ExtendedUpdateSettings_aa1710035a7d1b96b4b1d2ba526452528} 
+float {\bfseries m\+Walk\+Stairs\+Cos\+Angle\+Forward\+Contact} \{ Cos(Degrees\+To\+Radians(75.\+0f)) \}
+\begin{DoxyCompactList}\small\item\em Cos(angle) where angle is the maximum angle between the ground normal in the horizontal plane and the character forward vector where we\textquotesingle{}re willing to adjust the step forward test towards the contact normal. \end{DoxyCompactList}\item 
+\Hypertarget{structCharacterVirtual_1_1ExtendedUpdateSettings_a8cd00377425d16b8b2fbee1eb8dc97dc}\label{structCharacterVirtual_1_1ExtendedUpdateSettings_a8cd00377425d16b8b2fbee1eb8dc97dc} 
+\mbox{\hyperlink{classVec3}{Vec3}} {\bfseries m\+Walk\+Stairs\+Step\+Down\+Extra} \{ \mbox{\hyperlink{classVec3_ad03c52ab27761bc1e64e33c47632ba51}{Vec3\+::s\+Zero}}() \}
+\begin{DoxyCompactList}\small\item\em See Walk\+Stairs in\+Step\+Down\+Extra. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Settings struct with settings for Extended\+Update. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Character/Character\+Virtual.\+h\end{DoxyCompactItemize}

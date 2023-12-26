@@ -1,0 +1,5 @@
+<map id="playrho::detail::IsIterableImpl&lt; T, std::void_t&lt; decltype(begin(std::declval&lt; T &gt;())), decltype(end(std::declval&lt; T &gt;())), decltype(++std::declval&lt; decltype(begin(std::declval&lt; T &amp; &gt;()))&amp; &gt;()), decltype(*begin(std::declval&lt; T &gt;())) &gt; &gt;" name="playrho::detail::IsIterableImpl&lt; T, std::void_t&lt; decltype(begin(std::declval&lt; T &gt;())), decltype(end(std::declval&lt; T &gt;())), decltype(++std::declval&lt; decltype(begin(std::declval&lt; T &amp; &gt;()))&amp; &gt;()), decltype(*begin(std::declval&lt; T &gt;())) &gt; &gt;">
+<area shape="rect" id="Node000001" title="Low&#45;level implementation of the is&#45;iterable true value trait." alt="" coords="5,123,244,312"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="73,5,176,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,90,127,123,122,123,122,90"/>
+</map>

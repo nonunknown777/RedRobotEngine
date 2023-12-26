@@ -1,0 +1,144 @@
+\doxysection{UVec8.\+inl}
+\hypertarget{UVec8_8inl_source}{}\label{UVec8_8inl_source}\index{includes/jolt/Math/UVec8.inl@{includes/jolt/Math/UVec8.inl}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \mbox{\hyperlink{classUVec8_a01713cf88c3edb46c73aca8927447be3}{UVec8::UVec8}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inLo,\ \mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inHi)\ :}
+\DoxyCodeLine{00008\ \ \ \ \ mValue(\_mm256\_insertf128\_si256(\_mm256\_castsi128\_si256(inLo.mValue),\ inHi.mValue,\ 1))}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUVec8_a42797ff3cc1bf751ce42d71302851d13}{UVec8::operator\ ==\ }}(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec8_a1652f07d05b02ca36a8f6c35f18c1cb6}{sEquals}}(*\textcolor{keyword}{this},\ inV2).\mbox{\hyperlink{classUVec8_a3269b59051bb75bdb3c9f22ceb272492}{TestAllTrue}}();}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a980a0e87ee35f33a2778022f6e95e50f}{UVec8::sReplicate}}(uint32\ inV)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_set1\_epi32(\textcolor{keywordtype}{int}(inV));}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a8feae856c89191c68f06b805203df53f}{UVec8::sSplatX}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV)}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_set1\_epi32(inV.\mbox{\hyperlink{classUVec4_ab2f2894975c86cd37303d8454aa37fcf}{GetX}}());}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a7f27a397508f57859f2e8c87c4be3d3b}{UVec8::sSplatY}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV)}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_set1\_epi32(inV.GetY());}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a284219a34c2eef183e1b66bfe96ae186}{UVec8::sSplatZ}}(\mbox{\hyperlink{classUVec4}{UVec4Arg}}\ inV)}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_set1\_epi32(inV.GetZ());}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a1652f07d05b02ca36a8f6c35f18c1cb6}{UVec8::sEquals}}(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ JPH\_USE\_AVX2}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_cmpeq\_epi32(inV1.mValue,\ inV2.mValue);}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec8_a01713cf88c3edb46c73aca8927447be3}{UVec8}}(\mbox{\hyperlink{classUVec4_a7124c8dadba4fa2467bb542e33b664f1}{UVec4::sEquals}}(inV1.\mbox{\hyperlink{classUVec8_ac1befe2c88fff8ac646f1c34bedbc9d3}{LowerVec4}}(),\ inV2.\mbox{\hyperlink{classUVec8_ac1befe2c88fff8ac646f1c34bedbc9d3}{LowerVec4}}()),\ \mbox{\hyperlink{classUVec4_a7124c8dadba4fa2467bb542e33b664f1}{UVec4::sEquals}}(inV1.\mbox{\hyperlink{classUVec8_a11d69b0b6000ceac965236eb6ff5a4da}{UpperVec4}}(),\ inV2.\mbox{\hyperlink{classUVec8_a11d69b0b6000ceac965236eb6ff5a4da}{UpperVec4}}()));}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_af6073e4bae8355de6c0965306f3d8c02}{UVec8::sSelect}}(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inControl)}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_castps\_si256(\_mm256\_blendv\_ps(\_mm256\_castsi256\_ps(inV1.mValue),\ \_mm256\_castsi256\_ps(inV2.mValue),\ \_mm256\_castsi256\_ps(inControl.mValue)));}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_abaa2dd18e4ff3fee6465bb322733e7e6}{UVec8::sOr}}(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2)}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_castps\_si256(\_mm256\_or\_ps(\_mm256\_castsi256\_ps(inV1.mValue),\ \_mm256\_castsi256\_ps(inV2.mValue)));}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_ac76cd233870c4735b88b298883e0569e}{UVec8::sXor}}(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2)}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_castps\_si256(\_mm256\_xor\_ps(\_mm256\_castsi256\_ps(inV1.mValue),\ \_mm256\_castsi256\_ps(inV2.mValue)));}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a50253d7ab7872642a1cbe8c200759432}{UVec8::sAnd}}(\mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV1,\ \mbox{\hyperlink{classUVec8}{UVec8Arg}}\ inV2)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_castps\_si256(\_mm256\_and\_ps(\_mm256\_castsi256\_ps(inV1.mValue),\ \_mm256\_castsi256\_ps(inV2.mValue)));}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\ SwizzleX,\ u\textcolor{keywordtype}{int}32\ SwizzleY,\ u\textcolor{keywordtype}{int}32\ SwizzleZ,\ u\textcolor{keywordtype}{int}32\ SwizzleW>}
+\DoxyCodeLine{00067\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a2e355553378c7ecbac97bf9a52760f20}{UVec8::Swizzle}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static\_assert}(SwizzleX\ <=\ 3,\ \textcolor{stringliteral}{"{}SwizzleX\ template\ parameter\ out\ of\ range"{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static\_assert}(SwizzleY\ <=\ 3,\ \textcolor{stringliteral}{"{}SwizzleY\ template\ parameter\ out\ of\ range"{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{static\_assert}(SwizzleZ\ <=\ 3,\ \textcolor{stringliteral}{"{}SwizzleZ\ template\ parameter\ out\ of\ range"{}});}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static\_assert}(SwizzleW\ <=\ 3,\ \textcolor{stringliteral}{"{}SwizzleW\ template\ parameter\ out\ of\ range"{}});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_castps\_si256(\_mm256\_shuffle\_ps(\_mm256\_castsi256\_ps(mValue),\ \_mm256\_castsi256\_ps(mValue),\ \_MM\_SHUFFLE(SwizzleW,\ SwizzleZ,\ SwizzleY,\ SwizzleX)));}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUVec8_a7cc280bb498d1da896005b682a768db9}{UVec8::TestAnyTrue}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_movemask\_ps(\_mm256\_castsi256\_ps(mValue))\ !=\ 0;}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classUVec8_a3269b59051bb75bdb3c9f22ceb272492}{UVec8::TestAllTrue}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00083\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_movemask\_ps(\_mm256\_castsi256\_ps(mValue))\ ==\ 0xff;}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec8_ac1befe2c88fff8ac646f1c34bedbc9d3}{UVec8::LowerVec4}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00088\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_castsi256\_si128(mValue);}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \mbox{\hyperlink{classUVec4}{UVec4}}\ \mbox{\hyperlink{classUVec8_a11d69b0b6000ceac965236eb6ff5a4da}{UVec8::UpperVec4}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm\_castps\_si128(\_mm256\_extractf128\_ps(\_mm256\_castsi256\_ps(mValue),\ 1));}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \mbox{\hyperlink{classVec8}{Vec8}}\ \mbox{\hyperlink{classUVec8_aca1ec9006b80aa9845b81cdef795731d}{UVec8::ToFloat}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_cvtepi32\_ps(mValue);}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00103\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_af26e70e8e238b9765bc5ab12b817e5d1}{UVec8::LogicalShiftLeft}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{static\_assert}(Count\ <=\ 31,\ \textcolor{stringliteral}{"{}Invalid\ shift"{}});}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#ifdef\ JPH\_USE\_AVX2}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_slli\_epi32(mValue,\ Count);}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec8_a01713cf88c3edb46c73aca8927447be3}{UVec8}}(\mbox{\hyperlink{classUVec8_ac1befe2c88fff8ac646f1c34bedbc9d3}{LowerVec4}}().LogicalShiftLeft<Count>(),\ \mbox{\hyperlink{classUVec8_a11d69b0b6000ceac965236eb6ff5a4da}{UpperVec4}}().LogicalShiftLeft<Count>());}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00115\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a4d13b9d84a398e856caf4f072483bf0d}{UVec8::LogicalShiftRight}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{static\_assert}(Count\ <=\ 31,\ \textcolor{stringliteral}{"{}Invalid\ shift"{}});}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#ifdef\ JPH\_USE\_AVX2}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_srli\_epi32(mValue,\ Count);}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec8_a01713cf88c3edb46c73aca8927447be3}{UVec8}}(\mbox{\hyperlink{classUVec8_ac1befe2c88fff8ac646f1c34bedbc9d3}{LowerVec4}}().LogicalShiftRight<Count>(),\ \mbox{\hyperlink{classUVec8_a11d69b0b6000ceac965236eb6ff5a4da}{UpperVec4}}().LogicalShiftRight<Count>());}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}\ <const\ u\textcolor{keywordtype}{int}\ Count>}
+\DoxyCodeLine{00127\ \mbox{\hyperlink{classUVec8}{UVec8}}\ \mbox{\hyperlink{classUVec8_a49a21bc576313ae676fb2064904ed506}{UVec8::ArithmeticShiftRight}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{static\_assert}(Count\ <=\ 31,\ \textcolor{stringliteral}{"{}Invalid\ shift"{}});}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#ifdef\ JPH\_USE\_AVX2}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mm256\_srai\_epi32(mValue,\ Count);}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classUVec8_a01713cf88c3edb46c73aca8927447be3}{UVec8}}(\mbox{\hyperlink{classUVec8_ac1befe2c88fff8ac646f1c34bedbc9d3}{LowerVec4}}().ArithmeticShiftRight<Count>(),\ \mbox{\hyperlink{classUVec8_a11d69b0b6000ceac965236eb6ff5a4da}{UpperVec4}}().ArithmeticShiftRight<Count>());}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,71 @@
+\doxysection{Stream\+Out.\+h}
+\hypertarget{StreamOut_8h_source}{}\label{StreamOut_8h_source}\index{includes/jolt/Core/StreamOut.h@{includes/jolt/Core/StreamOut.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classStreamOut}{StreamOut}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_aed2cfe74214f89965cb640ac9d1bbb8d}{\string~StreamOut}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_aa80bff3216178ef392693f1997803d99}{WriteBytes}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *inData,\ \textcolor{keywordtype}{size\_t}\ inNumBytes)\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_a30c9fa2d50a64c0da4d6dc5ae614e756}{IsFailed}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_ab6cde59b6c5efff58855641a44e6275e}{Write}}(\textcolor{keyword}{const}\ T\ \&inT)}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ WriteBytes(\&inT,\ \textcolor{keyword}{sizeof}(inT));}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A>}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_a2d1566dbb6023f03d4c39b5b76bff9c6}{Write}}(\textcolor{keyword}{const}\ std::vector<T,\ A>\ \&inT)}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Array<T>::size\_type\ len\ =\ inT.size();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Write(len);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsFailed())}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{typename}\ Array<T>::size\_type\ i\ =\ 0;\ i\ <\ len;\ ++i)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Write(inT[i]);}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Type,\ \textcolor{keyword}{class}\ Traits,\ \textcolor{keyword}{class}\ Allocator>}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_ae1b1f7fee2bcf46896c198ff13eabf10}{Write}}(\textcolor{keyword}{const}\ std::basic\_string<Type,\ Traits,\ Allocator>\ \&inString)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::basic\_string<Type,\ Traits,\ Allocator>::size\_type\ len\ =\ inString.size();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ Write(len);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsFailed())}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ WriteBytes(inString.data(),\ len\ *\ \textcolor{keyword}{sizeof}(Type));}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_a067f43db7805fa22f5ffefbefac23b13}{Write}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVec3}{Vec3}}\ \&inVec)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ WriteBytes(\&inVec,\ 3\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{float}));}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_a5c9dec0ec5fb4af10a3258f03fa99bb1}{Write}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDVec3}{DVec3}}\ \&inVec)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ WriteBytes(\&inVec,\ 3\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{double}));}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStreamOut_a076687e0453908f83336761c13b75f19}{Write}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classDMat44}{DMat44}}\ \&inVec)}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ Write(inVec.GetColumn4(0));}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ Write(inVec.GetColumn4(1));}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ Write(inVec.GetColumn4(2));}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ Write(inVec.GetTranslation());}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

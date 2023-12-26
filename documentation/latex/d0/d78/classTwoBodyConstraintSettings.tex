@@ -1,0 +1,139 @@
+\doxysection{Two\+Body\+Constraint\+Settings Class Reference}
+\hypertarget{classTwoBodyConstraintSettings}{}\label{classTwoBodyConstraintSettings}\index{TwoBodyConstraintSettings@{TwoBodyConstraintSettings}}
+
+
+Base class for settings for all constraints that involve 2 bodies.  
+
+
+
+
+{\ttfamily \#include $<$Two\+Body\+Constraint.\+h$>$}
+
+
+
+Inheritance diagram for Two\+Body\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d68/classTwoBodyConstraintSettings__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Two\+Body\+Constraint\+Settings\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d6/da0/classTwoBodyConstraintSettings__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classTwoBodyConstraintSettings_a42e353e736b0254b02008b050a28f55b}{Create}} (\mbox{\hyperlink{classBody}{Body}} \&in\+Body1, \mbox{\hyperlink{classBody}{Body}} \&in\+Body2) const =0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classConstraintSettings_a2f45c4a1fd6d6d74691729d5103f094a}{Save\+Binary\+State}} (\mbox{\hyperlink{classStreamOut}{Stream\+Out}} \&in\+Stream) const
+\begin{DoxyCompactList}\small\item\em Saves the contents of the constraint settings in binary form to in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSerializableObject}{Serializable\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Serializable\+Object} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Non\+Copyable} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\item 
+void {\bfseries operator=} (const \mbox{\hyperlink{classNonCopyable}{Non\+Copyable}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Ref\+Target} ()=default
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\bfseries Ref\+Target} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Ref\+Target} ()
+\begin{DoxyCompactList}\small\item\em assert no one is referencing us \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRefTarget_a3befa746ea517453572f6f4f5fc3b099}{Set\+Embedded}} () const
+\item 
+\mbox{\hyperlink{classRefTarget}{Ref\+Target}} \& {\bfseries operator=} (const \mbox{\hyperlink{classRefTarget}{Ref\+Target}} \&)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+uint32 {\bfseries Get\+Ref\+Count} () const
+\begin{DoxyCompactList}\small\item\em Get current refcount of this object. \end{DoxyCompactList}\item 
+void {\bfseries Add\+Ref} () const
+\begin{DoxyCompactList}\small\item\em Add or release a reference to this object. \end{DoxyCompactList}\item 
+void {\bfseries Release} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Constraint\+Result} = \mbox{\hyperlink{classResult}{Result}}$<$ \mbox{\hyperlink{classRef}{Ref}}$<$ \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classResult}{Constraint\+Result}} {\bfseries s\+Restore\+From\+Binary\+State} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em Creates a constraint of the correct type and restores its contents from the binary stream in\+Stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries s\+Internal\+Get\+Ref\+Count\+Offset} ()
+\begin{DoxyCompactList}\small\item\em INTERNAL HELPER FUNCTION USED BY SERIALIZATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries m\+Enabled} = true
+\begin{DoxyCompactList}\small\item\em If this constraint is enabled initially. Use \doxylink{classConstraint_aa6621fbefd246003aece1e9be8a169cb}{Constraint\+::\+Set\+Enabled} to toggle after creation. \end{DoxyCompactList}\item 
+uint32 \mbox{\hyperlink{classConstraintSettings_ab01ba90506d17f415054bfa6208a4939}{m\+Constraint\+Priority}} = 0
+\item 
+uint {\bfseries m\+Num\+Velocity\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver velocity iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a66af679ba7f202b402bb23d0a0e117ad}{Physics\+Settings\+::m\+Num\+Velocity\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+uint {\bfseries m\+Num\+Position\+Steps\+Override} = 0
+\begin{DoxyCompactList}\small\item\em Used only when the constraint is active. Override for the number of solver position iterations to run, 0 means use the default in \doxylink{structPhysicsSettings_a3724f8c1ef9269076dac93c4d7b7cfdb}{Physics\+Settings\+::m\+Num\+Position\+Steps}. The number of iterations to use is the max of all contacts and constraints in the island. \end{DoxyCompactList}\item 
+float {\bfseries m\+Draw\+Constraint\+Size} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Size of constraint when drawing it through the debug renderer. \end{DoxyCompactList}\item 
+uint64 {\bfseries m\+User\+Data} = 0
+\begin{DoxyCompactList}\small\item\em User data value (can be used by application) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classConstraintSettings}{Constraint\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classConstraintSettings_adcdb433a58df0924940fd8f86acd3251}{Restore\+Binary\+State}} (\mbox{\hyperlink{classStreamIn}{Stream\+In}} \&in\+Stream)
+\begin{DoxyCompactList}\small\item\em This function should not be called directly, it is used by s\+Restore\+From\+Binary\+State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+atomic$<$ uint32 $>$ {\bfseries m\+Ref\+Count}
+\begin{DoxyCompactList}\small\item\em Current reference count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classRefTarget}{Ref\+Target$<$ Constraint\+Settings $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint32 {\bfseries c\+Embedded}
+\begin{DoxyCompactList}\small\item\em A large value that gets added to the refcount to mark the object as embedded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for settings for all constraints that involve 2 bodies. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTwoBodyConstraintSettings_a42e353e736b0254b02008b050a28f55b}\label{classTwoBodyConstraintSettings_a42e353e736b0254b02008b050a28f55b} 
+\index{TwoBodyConstraintSettings@{TwoBodyConstraintSettings}!Create@{Create}}
+\index{Create@{Create}!TwoBodyConstraintSettings@{TwoBodyConstraintSettings}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classTwoBodyConstraint}{Two\+Body\+Constraint}} \texorpdfstring{$\ast$}{*} Two\+Body\+Constraint\+Settings\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body1,  }\item[{\mbox{\hyperlink{classBody}{Body}} \&}]{in\+Body2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Create an an instance of this constraint You can use \doxylink{classBody_a8dd9a53f984efe2ced2f73ee084f636a}{Body\+::s\+Fixed\+To\+World} for in\+Body1 if you want to attach in\+Body2 to the world 
+
+Implemented in \mbox{\hyperlink{classConeConstraintSettings_ad75d25f29e4fba4529bb12c8a6896570}{Cone\+Constraint\+Settings}}, \mbox{\hyperlink{classDistanceConstraintSettings_a5c9c44f0de0435c281aa9346567614df}{Distance\+Constraint\+Settings}}, \mbox{\hyperlink{classFixedConstraintSettings_a1470f654a01cfb05bdfc08dff0a5bdf3}{Fixed\+Constraint\+Settings}}, \mbox{\hyperlink{classGearConstraintSettings_aff4822e62c003ce5ce6211c29fceed5b}{Gear\+Constraint\+Settings}}, \mbox{\hyperlink{classHingeConstraintSettings_a0568310688c6bcdc6ecdbe1142bbe4bc}{Hinge\+Constraint\+Settings}}, \mbox{\hyperlink{classPathConstraintSettings_a89af369a92a6d89d0faf29104b7627e7}{Path\+Constraint\+Settings}}, \mbox{\hyperlink{classPointConstraintSettings_a0fe504812bad1f6b0c8d1b31681b2bca}{Point\+Constraint\+Settings}}, \mbox{\hyperlink{classPulleyConstraintSettings_aeeb0a2c8f97ac32f889305cbddfe46d9}{Pulley\+Constraint\+Settings}}, \mbox{\hyperlink{classRackAndPinionConstraintSettings_affae752be945c849c22a90912e2c0fbf}{Rack\+And\+Pinion\+Constraint\+Settings}}, \mbox{\hyperlink{classSixDOFConstraintSettings_a65db68e27befd3ce125c73206ac3ae2c}{Six\+DOFConstraint\+Settings}}, \mbox{\hyperlink{classSliderConstraintSettings_a0ed3ca24da816da2f44d7a17ae480bc8}{Slider\+Constraint\+Settings}}, and \mbox{\hyperlink{classSwingTwistConstraintSettings_a2e2054697e7b0491fc6bdf4d2c4592bb}{Swing\+Twist\+Constraint\+Settings}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/jolt/\+Physics/\+Constraints/Two\+Body\+Constraint.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="TriangleSplitterBinning" name="TriangleSplitterBinning">
+<area shape="rect" id="Node000001" title="Binning splitter approach taken from: Realtime Ray Tracing on GPU with BVH&#45;based Packet Traversal by ..." alt="" coords="5,496,188,608"/>
+<area shape="rect" id="Node000002" href="$d0/d4e/classTriangleSplitter.html" title="A class that splits a triangle list into two parts for building a tree." alt="" coords="21,165,173,448"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,463,99,496,94,496,94,463"/>
+<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="35,5,158,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,132,99,165,94,165,94,132"/>
+</map>

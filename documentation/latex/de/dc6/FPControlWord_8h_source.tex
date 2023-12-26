@@ -1,0 +1,133 @@
+\doxysection{FPControl\+Word.\+h}
+\hypertarget{FPControlWord_8h_source}{}\label{FPControlWord_8h_source}\index{includes/jolt/Core/FPControlWord.h@{includes/jolt/Core/FPControlWord.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Core/NonCopyable.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifdef\ JPH\_USE\_SSE}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}\ Value,\ u\textcolor{keywordtype}{int}\ Mask>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }FPControlWord\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FPControlWord()}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ mPrevState\ =\ \_mm\_getcsr();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \_mm\_setcsr((mPrevState\ \&\ \string~Mask)\ |\ Value);}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string~FPControlWord()}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \_mm\_setcsr((\_mm\_getcsr()\ \&\ \string~Mask)\ |\ (mPrevState\ \&\ Mask));}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ uint\ \ \ \ \ \ \ \ mPrevState;}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_ARM)\ \&\&\ defined(JPH\_COMPILER\_MSVC)}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ Value,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ Mask>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }FPControlWord\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FPControlWord()}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ state\ before\ change}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \_controlfp\_s(\&mPrevState,\ 0,\ 0);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ the\ state}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ dummy;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \_controlfp\_s(\&dummy,\ Value,\ Mask);}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string~FPControlWord()}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Restore\ state}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ dummy;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \_controlfp\_s(\&dummy,\ mPrevState,\ Mask);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ mPrevState;}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_ARM)\ \&\&\ defined(JPH\_USE\_NEON)}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}64\ Value,\ u\textcolor{keywordtype}{int}64\ Mask>}
+\DoxyCodeLine{00068\ \textcolor{keyword}{class\ }FPControlWord\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FPControlWord()}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ uint64\ val;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}mrs\ \%0,\ fpcr"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (val));}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ mPrevState\ =\ val;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ val\ \&=\ \string~Mask;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ val\ |=\ Value;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}msr\ fpcr,\ \%0"{}}\ :\ \textcolor{comment}{/*\ no\ output\ */}\ :\ \textcolor{stringliteral}{"{}r"{}}\ (val));}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string~FPControlWord()}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ uint64\ val;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}mrs\ \%0,\ fpcr"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (val));}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ val\ \&=\ \string~Mask;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ val\ |=\ mPrevState\ \&\ Mask;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}msr\ fpcr,\ \%0"{}}\ :\ \textcolor{comment}{/*\ no\ output\ */}\ :\ \textcolor{stringliteral}{"{}r"{}}\ (val));}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ \ \ uint64\ \ \ \ \ \ mPrevState;}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_ARM)}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}32\ Value,\ u\textcolor{keywordtype}{int}32\ Mask>}
+\DoxyCodeLine{00099\ \textcolor{keyword}{class\ }FPControlWord\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classNonCopyable}{NonCopyable}}}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00102\ \ \ \ \ FPControlWord()}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ uint32\ val;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}vmrs\ \%0,\ fpscr"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (val));}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ mPrevState\ =\ val;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ val\ \&=\ \string~Mask;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ val\ |=\ Value;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}vmsr\ fpscr,\ \%0"{}}\ :\ \textcolor{comment}{/*\ no\ output\ */}\ :\ \textcolor{stringliteral}{"{}r"{}}\ (val));}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \string~FPControlWord()}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ uint32\ val;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}vmrs\ \%0,\ fpscr"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (val));}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ val\ \&=\ \string~Mask;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ val\ |=\ mPrevState\ \&\ Mask;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}vmsr\ fpscr,\ \%0"{}}\ :\ \textcolor{comment}{/*\ no\ output\ */}\ :\ \textcolor{stringliteral}{"{}r"{}}\ (val));}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00122\ \ \ \ \ uint32\ \ \ \ \ \ mPrevState;}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#elif\ defined(JPH\_CPU\_WASM)}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ Not\ supported}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#error\ Unsupported\ CPU\ architecture}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

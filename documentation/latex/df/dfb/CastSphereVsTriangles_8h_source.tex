@@ -1,0 +1,42 @@
+\doxysection{Cast\+Sphere\+Vs\+Triangles.\+h}
+\hypertarget{CastSphereVsTriangles_8h_source}{}\label{CastSphereVsTriangles_8h_source}\index{includes/jolt/Physics/Collision/CastSphereVsTriangles.h@{includes/jolt/Physics/Collision/CastSphereVsTriangles.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Jolt\ Physics\ Library\ (https://github.com/jrouwe/JoltPhysics)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ SPDX-\/FileCopyrightText:\ 2021\ Jorrit\ Rouwe}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <Jolt/Physics/Collision/ShapeCast.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ JPH\_NAMESPACE\_BEGIN}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }JPH\_EXPORT\ \mbox{\hyperlink{classCastSphereVsTriangles}{CastSphereVsTriangles}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCastSphereVsTriangles_a962760abd1146feac412856c2ca4cf1b}{CastSphereVsTriangles}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structShapeCast}{ShapeCast}}\ \&inShapeCast,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&inShapeCastSettings,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inScale,\ \mbox{\hyperlink{classMat44}{Mat44Arg}}\ inCenterOfMassTransform2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \&inSubShapeIDCreator1,\ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&ioCollector);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCastSphereVsTriangles_ade8de510194b2a8bed2474f3b9605a80}{Cast}}(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV0,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2,\ uint8\ inActiveEdges,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID2);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCastSphereVsTriangles_a97177eb99d17fdaba69e79d5a1e6be9b}{mStart}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCastSphereVsTriangles_a55eca94a671eb829c77a28ea4ce2c38a}{mDirection}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classCastSphereVsTriangles_ad228cdb4784b5a3ad14b6ba38c296d34}{mRadius}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classShapeCastSettings}{ShapeCastSettings}}\ \&\ \ \ \ \ \ mShapeCastSettings;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classMat44}{Mat44}}\ \&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCenterOfMassTransform2;}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classVec3}{Vec3}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mScale;}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classSubShapeIDCreator}{SubShapeIDCreator}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mSubShapeIDCreator1;}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classCollisionCollector}{CastShapeCollector}}\ \&\ \ \ \ \ \ \ \ \ \ mCollector;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddHit(\textcolor{keywordtype}{bool}\ inBackFacing,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID2,\ \textcolor{keywordtype}{float}\ inFraction,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactPointA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactPointB,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactNormal);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddHitWithActiveEdgeDetection(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV0,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV1,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inV2,\ \textcolor{keywordtype}{bool}\ inBackFacing,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inTriangleNormal,\ uint8\ inActiveEdges,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classSubShapeID}{SubShapeID}}\ \&inSubShapeID2,\ \textcolor{keywordtype}{float}\ inFraction,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactPointA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactPointB,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inContactNormal);}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RayCylinder(\mbox{\hyperlink{classVec3}{Vec3Arg}}\ inRayDirection,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inCylinderA,\ \mbox{\hyperlink{classVec3}{Vec3Arg}}\ inCylinderB,\ \textcolor{keywordtype}{float}\ inRadius)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mScaleSign;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ JPH\_NAMESPACE\_END}
+
+\end{DoxyCode}

@@ -1,0 +1,677 @@
+\doxysection{qoi.\+h}
+\hypertarget{qoi_8h_source}{}\label{qoi_8h_source}\index{includes/rres/external/qoi.h@{includes/rres/external/qoi.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{QOI\ -\/\ The\ "{}Quite\ OK\ Image"{}\ format\ for\ fast,\ lossless\ image\ compression}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{Dominic\ Szablewski\ -\/\ https://phoboslab.org}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{}}
+\DoxyCodeLine{00008\ \textcolor{comment}{-\/-\/\ LICENSE:\ The\ MIT\ License(MIT)}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{Copyright(c)\ 2021\ Dominic\ Szablewski}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy\ of}}
+\DoxyCodeLine{00013\ \textcolor{comment}{this\ software\ and\ associated\ documentation\ files(the\ "{}Software"{}),\ to\ deal\ in}}
+\DoxyCodeLine{00014\ \textcolor{comment}{the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights\ to}}
+\DoxyCodeLine{00015\ \textcolor{comment}{use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and\ /\ or\ sell\ copies}}
+\DoxyCodeLine{00016\ \textcolor{comment}{of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is\ furnished\ to\ do}}
+\DoxyCodeLine{00017\ \textcolor{comment}{so,\ subject\ to\ the\ following\ conditions\ :}}
+\DoxyCodeLine{00018\ \textcolor{comment}{The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00019\ \textcolor{comment}{copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00021\ \textcolor{comment}{IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00023\ \textcolor{comment}{AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00026\ \textcolor{comment}{SOFTWARE.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{}}
+\DoxyCodeLine{00028\ \textcolor{comment}{}}
+\DoxyCodeLine{00029\ \textcolor{comment}{-\/-\/\ About}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{QOI\ encodes\ and\ decodes\ images\ in\ a\ lossless\ format.\ Compared\ to\ stb\_image\ and}}
+\DoxyCodeLine{00032\ \textcolor{comment}{stb\_image\_write\ QOI\ offers\ 20x-\/50x\ faster\ encoding,\ 3x-\/4x\ faster\ decoding\ and}}
+\DoxyCodeLine{00033\ \textcolor{comment}{20\%\ better\ compression.}}
+\DoxyCodeLine{00034\ \textcolor{comment}{}}
+\DoxyCodeLine{00035\ \textcolor{comment}{}}
+\DoxyCodeLine{00036\ \textcolor{comment}{-\/-\/\ Synopsis}}
+\DoxyCodeLine{00037\ \textcolor{comment}{}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ Define\ \`{}QOI\_IMPLEMENTATION`\ in\ *one*\ C/C++\ file\ before\ including\ this}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ library\ to\ create\ the\ implementation.}}
+\DoxyCodeLine{00040\ \textcolor{comment}{}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\#define\ QOI\_IMPLEMENTATION}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\#include\ "{}qoi.h"{}}}
+\DoxyCodeLine{00043\ \textcolor{comment}{}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Encode\ and\ store\ an\ RGBA\ buffer\ to\ the\ file\ system.\ The\ qoi\_desc\ describes}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ the\ input\ pixel\ data.}}
+\DoxyCodeLine{00046\ \textcolor{comment}{qoi\_write("{}image\_new.qoi"{},\ rgba\_pixels,\ \&(qoi\_desc)\{}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ .width\ =\ 1920,}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ .height\ =\ 1080,}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ .channels\ =\ 4,}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ .colorspace\ =\ QOI\_SRGB}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\});}}
+\DoxyCodeLine{00052\ \textcolor{comment}{}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ Load\ and\ decode\ a\ QOI\ image\ from\ the\ file\ system\ into\ a\ 32bbp\ RGBA\ buffer.}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ The\ qoi\_desc\ struct\ will\ be\ filled\ with\ the\ width,\ height,\ number\ of\ channels}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ and\ colorspace\ read\ from\ the\ file\ header.}}
+\DoxyCodeLine{00056\ \textcolor{comment}{qoi\_desc\ desc;}}
+\DoxyCodeLine{00057\ \textcolor{comment}{void\ *rgba\_pixels\ =\ qoi\_read("{}image.qoi"{},\ \&desc,\ 4);}}
+\DoxyCodeLine{00058\ \textcolor{comment}{}}
+\DoxyCodeLine{00059\ \textcolor{comment}{}}
+\DoxyCodeLine{00060\ \textcolor{comment}{}}
+\DoxyCodeLine{00061\ \textcolor{comment}{-\/-\/\ Documentation}}
+\DoxyCodeLine{00062\ \textcolor{comment}{}}
+\DoxyCodeLine{00063\ \textcolor{comment}{This\ library\ provides\ the\ following\ functions;}}
+\DoxyCodeLine{00064\ \textcolor{comment}{-\/\ qoi\_read\ \ \ \ -\/-\/\ read\ and\ decode\ a\ QOI\ file}}
+\DoxyCodeLine{00065\ \textcolor{comment}{-\/\ qoi\_decode\ \ -\/-\/\ decode\ the\ raw\ bytes\ of\ a\ QOI\ image\ from\ memory}}
+\DoxyCodeLine{00066\ \textcolor{comment}{-\/\ qoi\_write\ \ \ -\/-\/\ encode\ and\ write\ a\ QOI\ file}}
+\DoxyCodeLine{00067\ \textcolor{comment}{-\/\ qoi\_encode\ \ -\/-\/\ encode\ an\ rgba\ buffer\ into\ a\ QOI\ image\ in\ memory}}
+\DoxyCodeLine{00068\ \textcolor{comment}{}}
+\DoxyCodeLine{00069\ \textcolor{comment}{See\ the\ function\ declaration\ below\ for\ the\ signature\ and\ more\ information.}}
+\DoxyCodeLine{00070\ \textcolor{comment}{}}
+\DoxyCodeLine{00071\ \textcolor{comment}{If\ you\ don't\ want/need\ the\ qoi\_read\ and\ qoi\_write\ functions,\ you\ can\ define}}
+\DoxyCodeLine{00072\ \textcolor{comment}{QOI\_NO\_STDIO\ before\ including\ this\ library.}}
+\DoxyCodeLine{00073\ \textcolor{comment}{}}
+\DoxyCodeLine{00074\ \textcolor{comment}{This\ library\ uses\ malloc()\ and\ free().\ To\ supply\ your\ own\ malloc\ implementation}}
+\DoxyCodeLine{00075\ \textcolor{comment}{you\ can\ define\ QOI\_MALLOC\ and\ QOI\_FREE\ before\ including\ this\ library.}}
+\DoxyCodeLine{00076\ \textcolor{comment}{}}
+\DoxyCodeLine{00077\ \textcolor{comment}{This\ library\ uses\ memset()\ to\ zero-\/initialize\ the\ index.\ To\ supply\ your\ own}}
+\DoxyCodeLine{00078\ \textcolor{comment}{implementation\ you\ can\ define\ QOI\_ZEROARR\ before\ including\ this\ library.}}
+\DoxyCodeLine{00079\ \textcolor{comment}{}}
+\DoxyCodeLine{00080\ \textcolor{comment}{}}
+\DoxyCodeLine{00081\ \textcolor{comment}{-\/-\/\ Data\ Format}}
+\DoxyCodeLine{00082\ \textcolor{comment}{}}
+\DoxyCodeLine{00083\ \textcolor{comment}{A\ QOI\ file\ has\ a\ 14\ byte\ header,\ followed\ by\ any\ number\ of\ data\ "{}chunks"{}\ and\ an}}
+\DoxyCodeLine{00084\ \textcolor{comment}{8-\/byte\ end\ marker.}}
+\DoxyCodeLine{00085\ \textcolor{comment}{}}
+\DoxyCodeLine{00086\ \textcolor{comment}{struct\ qoi\_header\_t\ \{}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ char\ \ \ \ \ magic[4];\ \ \ //\ magic\ bytes\ "{}qoif"{}}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ \ uint32\_t\ width;\ \ \ \ \ \ //\ image\ width\ in\ pixels\ (BE)}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ uint32\_t\ height;\ \ \ \ \ //\ image\ height\ in\ pixels\ (BE)}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ uint8\_t\ \ channels;\ \ \ //\ 3\ =\ RGB,\ 4\ =\ RGBA}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ uint8\_t\ \ colorspace;\ //\ 0\ =\ sRGB\ with\ linear\ alpha,\ 1\ =\ all\ channels\ linear}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\};}}
+\DoxyCodeLine{00093\ \textcolor{comment}{}}
+\DoxyCodeLine{00094\ \textcolor{comment}{Images\ are\ encoded\ row\ by\ row,\ left\ to\ right,\ top\ to\ bottom.\ The\ decoder\ and}}
+\DoxyCodeLine{00095\ \textcolor{comment}{encoder\ start\ with\ \{r:\ 0,\ g:\ 0,\ b:\ 0,\ a:\ 255\}\ as\ the\ previous\ pixel\ value.\ An}}
+\DoxyCodeLine{00096\ \textcolor{comment}{image\ is\ complete\ when\ all\ pixels\ specified\ by\ width\ *\ height\ have\ been\ covered.}}
+\DoxyCodeLine{00097\ \textcolor{comment}{}}
+\DoxyCodeLine{00098\ \textcolor{comment}{Pixels\ are\ encoded\ as}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ -\/\ a\ run\ of\ the\ previous\ pixel}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ -\/\ an\ index\ into\ an\ array\ of\ previously\ seen\ pixels}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ -\/\ a\ difference\ to\ the\ previous\ pixel\ value\ in\ r,g,b}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ -\/\ full\ r,g,b\ or\ r,g,b,a\ values}}
+\DoxyCodeLine{00103\ \textcolor{comment}{}}
+\DoxyCodeLine{00104\ \textcolor{comment}{The\ color\ channels\ are\ assumed\ to\ not\ be\ premultiplied\ with\ the\ alpha\ channel}}
+\DoxyCodeLine{00105\ \textcolor{comment}{("{}un-\/premultiplied\ alpha"{}).}}
+\DoxyCodeLine{00106\ \textcolor{comment}{}}
+\DoxyCodeLine{00107\ \textcolor{comment}{A\ running\ array[64]\ (zero-\/initialized)\ of\ previously\ seen\ pixel\ values\ is}}
+\DoxyCodeLine{00108\ \textcolor{comment}{maintained\ by\ the\ encoder\ and\ decoder.\ Each\ pixel\ that\ is\ seen\ by\ the\ encoder}}
+\DoxyCodeLine{00109\ \textcolor{comment}{and\ decoder\ is\ put\ into\ this\ array\ at\ the\ position\ formed\ by\ a\ hash\ function\ of}}
+\DoxyCodeLine{00110\ \textcolor{comment}{the\ color\ value.\ In\ the\ encoder,\ if\ the\ pixel\ value\ at\ the\ index\ matches\ the}}
+\DoxyCodeLine{00111\ \textcolor{comment}{current\ pixel,\ this\ index\ position\ is\ written\ to\ the\ stream\ as\ QOI\_OP\_INDEX.}}
+\DoxyCodeLine{00112\ \textcolor{comment}{The\ hash\ function\ for\ the\ index\ is:}}
+\DoxyCodeLine{00113\ \textcolor{comment}{}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ index\_position\ =\ (r\ *\ 3\ +\ g\ *\ 5\ +\ b\ *\ 7\ +\ a\ *\ 11)\ \%\ 64}}
+\DoxyCodeLine{00115\ \textcolor{comment}{}}
+\DoxyCodeLine{00116\ \textcolor{comment}{Each\ chunk\ starts\ with\ a\ 2-\/\ or\ 8-\/bit\ tag,\ followed\ by\ a\ number\ of\ data\ bits.\ The}}
+\DoxyCodeLine{00117\ \textcolor{comment}{bit\ length\ of\ chunks\ is\ divisible\ by\ 8\ -\/\ i.e.\ all\ chunks\ are\ byte\ aligned.\ All}}
+\DoxyCodeLine{00118\ \textcolor{comment}{values\ encoded\ in\ these\ data\ bits\ have\ the\ most\ significant\ bit\ on\ the\ left.}}
+\DoxyCodeLine{00119\ \textcolor{comment}{}}
+\DoxyCodeLine{00120\ \textcolor{comment}{The\ 8-\/bit\ tags\ have\ precedence\ over\ the\ 2-\/bit\ tags.\ A\ decoder\ must\ check\ for\ the}}
+\DoxyCodeLine{00121\ \textcolor{comment}{presence\ of\ an\ 8-\/bit\ tag\ first.}}
+\DoxyCodeLine{00122\ \textcolor{comment}{}}
+\DoxyCodeLine{00123\ \textcolor{comment}{The\ byte\ stream's\ end\ is\ marked\ with\ 7\ 0x00\ bytes\ followed\ a\ single\ 0x01\ byte.}}
+\DoxyCodeLine{00124\ \textcolor{comment}{}}
+\DoxyCodeLine{00125\ \textcolor{comment}{}}
+\DoxyCodeLine{00126\ \textcolor{comment}{The\ possible\ chunks\ are:}}
+\DoxyCodeLine{00127\ \textcolor{comment}{}}
+\DoxyCodeLine{00128\ \textcolor{comment}{}}
+\DoxyCodeLine{00129\ \textcolor{comment}{.-\/\ QOI\_OP\_INDEX\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/.}}
+\DoxyCodeLine{00130\ \textcolor{comment}{|\ \ \ \ \ \ \ \ \ Byte[0]\ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00131\ \textcolor{comment}{|\ \ 7\ \ 6\ \ 5\ \ 4\ \ 3\ \ 2\ \ 1\ \ 0\ |}}
+\DoxyCodeLine{00132\ \textcolor{comment}{|-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}}
+\DoxyCodeLine{00133\ \textcolor{comment}{|\ \ 0\ \ 0\ |\ \ \ \ \ index\ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\`{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/`}}
+\DoxyCodeLine{00135\ \textcolor{comment}{2-\/bit\ tag\ b00}}
+\DoxyCodeLine{00136\ \textcolor{comment}{6-\/bit\ index\ into\ the\ color\ index\ array:\ 0..63}}
+\DoxyCodeLine{00137\ \textcolor{comment}{}}
+\DoxyCodeLine{00138\ \textcolor{comment}{A\ valid\ encoder\ must\ not\ issue\ 2\ or\ more\ consecutive\ QOI\_OP\_INDEX\ chunks\ to\ the}}
+\DoxyCodeLine{00139\ \textcolor{comment}{same\ index.\ QOI\_OP\_RUN\ should\ be\ used\ instead.}}
+\DoxyCodeLine{00140\ \textcolor{comment}{}}
+\DoxyCodeLine{00141\ \textcolor{comment}{}}
+\DoxyCodeLine{00142\ \textcolor{comment}{.-\/\ QOI\_OP\_DIFF\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/.}}
+\DoxyCodeLine{00143\ \textcolor{comment}{|\ \ \ \ \ \ \ \ \ Byte[0]\ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00144\ \textcolor{comment}{|\ \ 7\ \ 6\ \ 5\ \ 4\ \ 3\ \ 2\ \ 1\ \ 0\ |}}
+\DoxyCodeLine{00145\ \textcolor{comment}{|-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/|}}
+\DoxyCodeLine{00146\ \textcolor{comment}{|\ \ 0\ \ 1\ |\ \ dr\ |\ \ dg\ |\ \ db\ |}}
+\DoxyCodeLine{00147\ \textcolor{comment}{\`{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/`}}
+\DoxyCodeLine{00148\ \textcolor{comment}{2-\/bit\ tag\ b01}}
+\DoxyCodeLine{00149\ \textcolor{comment}{2-\/bit\ \ \ red\ channel\ difference\ from\ the\ previous\ pixel\ between\ -\/2..1}}
+\DoxyCodeLine{00150\ \textcolor{comment}{2-\/bit\ green\ channel\ difference\ from\ the\ previous\ pixel\ between\ -\/2..1}}
+\DoxyCodeLine{00151\ \textcolor{comment}{2-\/bit\ \ blue\ channel\ difference\ from\ the\ previous\ pixel\ between\ -\/2..1}}
+\DoxyCodeLine{00152\ \textcolor{comment}{}}
+\DoxyCodeLine{00153\ \textcolor{comment}{The\ difference\ to\ the\ current\ channel\ values\ are\ using\ a\ wraparound\ operation,}}
+\DoxyCodeLine{00154\ \textcolor{comment}{so\ "{}1\ -\/\ 2"{}\ will\ result\ in\ 255,\ while\ "{}255\ +\ 1"{}\ will\ result\ in\ 0.}}
+\DoxyCodeLine{00155\ \textcolor{comment}{}}
+\DoxyCodeLine{00156\ \textcolor{comment}{Values\ are\ stored\ as\ unsigned\ integers\ with\ a\ bias\ of\ 2.\ E.g.\ -\/2\ is\ stored\ as}}
+\DoxyCodeLine{00157\ \textcolor{comment}{0\ (b00).\ 1\ is\ stored\ as\ 3\ (b11).}}
+\DoxyCodeLine{00158\ \textcolor{comment}{}}
+\DoxyCodeLine{00159\ \textcolor{comment}{The\ alpha\ value\ remains\ unchanged\ from\ the\ previous\ pixel.}}
+\DoxyCodeLine{00160\ \textcolor{comment}{}}
+\DoxyCodeLine{00161\ \textcolor{comment}{}}
+\DoxyCodeLine{00162\ \textcolor{comment}{.-\/\ QOI\_OP\_LUMA\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/.}}
+\DoxyCodeLine{00163\ \textcolor{comment}{|\ \ \ \ \ \ \ \ \ Byte[0]\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ Byte[1]\ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00164\ \textcolor{comment}{|\ \ 7\ \ 6\ \ 5\ \ 4\ \ 3\ \ 2\ \ 1\ \ 0\ |\ \ 7\ \ 6\ \ 5\ \ 4\ \ 3\ \ 2\ \ 1\ \ 0\ |}}
+\DoxyCodeLine{00165\ \textcolor{comment}{|-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}}
+\DoxyCodeLine{00166\ \textcolor{comment}{|\ \ 1\ \ 0\ |\ \ green\ diff\ \ \ \ \ |\ \ \ dr\ -\/\ dg\ \ \ |\ \ db\ -\/\ dg\ \ |}}
+\DoxyCodeLine{00167\ \textcolor{comment}{\`{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/`}}
+\DoxyCodeLine{00168\ \textcolor{comment}{2-\/bit\ tag\ b10}}
+\DoxyCodeLine{00169\ \textcolor{comment}{6-\/bit\ green\ channel\ difference\ from\ the\ previous\ pixel\ -\/32..31}}
+\DoxyCodeLine{00170\ \textcolor{comment}{4-\/bit\ \ \ red\ channel\ difference\ minus\ green\ channel\ difference\ -\/8..7}}
+\DoxyCodeLine{00171\ \textcolor{comment}{4-\/bit\ \ blue\ channel\ difference\ minus\ green\ channel\ difference\ -\/8..7}}
+\DoxyCodeLine{00172\ \textcolor{comment}{}}
+\DoxyCodeLine{00173\ \textcolor{comment}{The\ green\ channel\ is\ used\ to\ indicate\ the\ general\ direction\ of\ change\ and\ is}}
+\DoxyCodeLine{00174\ \textcolor{comment}{encoded\ in\ 6\ bits.\ The\ red\ and\ blue\ channels\ (dr\ and\ db)\ base\ their\ diffs\ off}}
+\DoxyCodeLine{00175\ \textcolor{comment}{of\ the\ green\ channel\ difference\ and\ are\ encoded\ in\ 4\ bits.\ I.e.:}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ dr\_dg\ =\ (cur\_px.r\ -\/\ prev\_px.r)\ -\/\ (cur\_px.g\ -\/\ prev\_px.g)}}
+\DoxyCodeLine{00177\ \textcolor{comment}{\ \ \ \ db\_dg\ =\ (cur\_px.b\ -\/\ prev\_px.b)\ -\/\ (cur\_px.g\ -\/\ prev\_px.g)}}
+\DoxyCodeLine{00178\ \textcolor{comment}{}}
+\DoxyCodeLine{00179\ \textcolor{comment}{The\ difference\ to\ the\ current\ channel\ values\ are\ using\ a\ wraparound\ operation,}}
+\DoxyCodeLine{00180\ \textcolor{comment}{so\ "{}10\ -\/\ 13"{}\ will\ result\ in\ 253,\ while\ "{}250\ +\ 7"{}\ will\ result\ in\ 1.}}
+\DoxyCodeLine{00181\ \textcolor{comment}{}}
+\DoxyCodeLine{00182\ \textcolor{comment}{Values\ are\ stored\ as\ unsigned\ integers\ with\ a\ bias\ of\ 32\ for\ the\ green\ channel}}
+\DoxyCodeLine{00183\ \textcolor{comment}{and\ a\ bias\ of\ 8\ for\ the\ red\ and\ blue\ channel.}}
+\DoxyCodeLine{00184\ \textcolor{comment}{}}
+\DoxyCodeLine{00185\ \textcolor{comment}{The\ alpha\ value\ remains\ unchanged\ from\ the\ previous\ pixel.}}
+\DoxyCodeLine{00186\ \textcolor{comment}{}}
+\DoxyCodeLine{00187\ \textcolor{comment}{}}
+\DoxyCodeLine{00188\ \textcolor{comment}{.-\/\ QOI\_OP\_RUN\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/.}}
+\DoxyCodeLine{00189\ \textcolor{comment}{|\ \ \ \ \ \ \ \ \ Byte[0]\ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00190\ \textcolor{comment}{|\ \ 7\ \ 6\ \ 5\ \ 4\ \ 3\ \ 2\ \ 1\ \ 0\ |}}
+\DoxyCodeLine{00191\ \textcolor{comment}{|-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}}
+\DoxyCodeLine{00192\ \textcolor{comment}{|\ \ 1\ \ 1\ |\ \ \ \ \ \ \ run\ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00193\ \textcolor{comment}{\`{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/`}}
+\DoxyCodeLine{00194\ \textcolor{comment}{2-\/bit\ tag\ b11}}
+\DoxyCodeLine{00195\ \textcolor{comment}{6-\/bit\ run-\/length\ repeating\ the\ previous\ pixel:\ 1..62}}
+\DoxyCodeLine{00196\ \textcolor{comment}{}}
+\DoxyCodeLine{00197\ \textcolor{comment}{The\ run-\/length\ is\ stored\ with\ a\ bias\ of\ -\/1.\ Note\ that\ the\ run-\/lengths\ 63\ and\ 64}}
+\DoxyCodeLine{00198\ \textcolor{comment}{(b111110\ and\ b111111)\ are\ illegal\ as\ they\ are\ occupied\ by\ the\ QOI\_OP\_RGB\ and}}
+\DoxyCodeLine{00199\ \textcolor{comment}{QOI\_OP\_RGBA\ tags.}}
+\DoxyCodeLine{00200\ \textcolor{comment}{}}
+\DoxyCodeLine{00201\ \textcolor{comment}{}}
+\DoxyCodeLine{00202\ \textcolor{comment}{.-\/\ QOI\_OP\_RGB\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/.}}
+\DoxyCodeLine{00203\ \textcolor{comment}{|\ \ \ \ \ \ \ \ \ Byte[0]\ \ \ \ \ \ \ \ \ |\ Byte[1]\ |\ Byte[2]\ |\ Byte[3]\ |}}
+\DoxyCodeLine{00204\ \textcolor{comment}{|\ \ 7\ \ 6\ \ 5\ \ 4\ \ 3\ \ 2\ \ 1\ \ 0\ |\ 7\ ..\ 0\ \ |\ 7\ ..\ 0\ \ |\ 7\ ..\ 0\ \ |}}
+\DoxyCodeLine{00205\ \textcolor{comment}{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/|}}
+\DoxyCodeLine{00206\ \textcolor{comment}{|\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 0\ |\ \ \ red\ \ \ |\ \ green\ \ |\ \ blue\ \ \ |}}
+\DoxyCodeLine{00207\ \textcolor{comment}{\`{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/`}}
+\DoxyCodeLine{00208\ \textcolor{comment}{8-\/bit\ tag\ b11111110}}
+\DoxyCodeLine{00209\ \textcolor{comment}{8-\/bit\ \ \ red\ channel\ value}}
+\DoxyCodeLine{00210\ \textcolor{comment}{8-\/bit\ green\ channel\ value}}
+\DoxyCodeLine{00211\ \textcolor{comment}{8-\/bit\ \ blue\ channel\ value}}
+\DoxyCodeLine{00212\ \textcolor{comment}{}}
+\DoxyCodeLine{00213\ \textcolor{comment}{The\ alpha\ value\ remains\ unchanged\ from\ the\ previous\ pixel.}}
+\DoxyCodeLine{00214\ \textcolor{comment}{}}
+\DoxyCodeLine{00215\ \textcolor{comment}{}}
+\DoxyCodeLine{00216\ \textcolor{comment}{.-\/\ QOI\_OP\_RGBA\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/.}}
+\DoxyCodeLine{00217\ \textcolor{comment}{|\ \ \ \ \ \ \ \ \ Byte[0]\ \ \ \ \ \ \ \ \ |\ Byte[1]\ |\ Byte[2]\ |\ Byte[3]\ |\ Byte[4]\ |}}
+\DoxyCodeLine{00218\ \textcolor{comment}{|\ \ 7\ \ 6\ \ 5\ \ 4\ \ 3\ \ 2\ \ 1\ \ 0\ |\ 7\ ..\ 0\ \ |\ 7\ ..\ 0\ \ |\ 7\ ..\ 0\ \ |\ 7\ ..\ 0\ \ |}}
+\DoxyCodeLine{00219\ \textcolor{comment}{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/|}}
+\DoxyCodeLine{00220\ \textcolor{comment}{|\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ \ 1\ |\ \ \ red\ \ \ |\ \ green\ \ |\ \ blue\ \ \ |\ \ alpha\ \ |}}
+\DoxyCodeLine{00221\ \textcolor{comment}{\`{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/`}}
+\DoxyCodeLine{00222\ \textcolor{comment}{8-\/bit\ tag\ b11111111}}
+\DoxyCodeLine{00223\ \textcolor{comment}{8-\/bit\ \ \ red\ channel\ value}}
+\DoxyCodeLine{00224\ \textcolor{comment}{8-\/bit\ green\ channel\ value}}
+\DoxyCodeLine{00225\ \textcolor{comment}{8-\/bit\ \ blue\ channel\ value}}
+\DoxyCodeLine{00226\ \textcolor{comment}{8-\/bit\ alpha\ channel\ value}}
+\DoxyCodeLine{00227\ \textcolor{comment}{}}
+\DoxyCodeLine{00228\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00232\ \textcolor{comment}{Header\ -\/\ Public\ functions\ */}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#ifndef\ QOI\_H}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#define\ QOI\_H}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00238\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{comment}{/*\ A\ pointer\ to\ a\ qoi\_desc\ struct\ has\ to\ be\ supplied\ to\ all\ of\ qoi's\ functions.}}
+\DoxyCodeLine{00242\ \textcolor{comment}{It\ describes\ either\ the\ input\ format\ (for\ qoi\_write\ and\ qoi\_encode),\ or\ is}}
+\DoxyCodeLine{00243\ \textcolor{comment}{filled\ with\ the\ description\ read\ from\ the\ file\ header\ (for\ qoi\_read\ and}}
+\DoxyCodeLine{00244\ \textcolor{comment}{qoi\_decode).}}
+\DoxyCodeLine{00245\ \textcolor{comment}{}}
+\DoxyCodeLine{00246\ \textcolor{comment}{The\ colorspace\ in\ this\ qoi\_desc\ is\ an\ enum\ where}}
+\DoxyCodeLine{00247\ \textcolor{comment}{\ \ \ \ 0\ =\ sRGB,\ i.e.\ gamma\ scaled\ RGB\ channels\ and\ a\ linear\ alpha\ channel}}
+\DoxyCodeLine{00248\ \textcolor{comment}{\ \ \ \ 1\ =\ all\ channels\ are\ linear}}
+\DoxyCodeLine{00249\ \textcolor{comment}{You\ may\ use\ the\ constants\ QOI\_SRGB\ or\ QOI\_LINEAR.\ The\ colorspace\ is\ purely}}
+\DoxyCodeLine{00250\ \textcolor{comment}{informative.\ It\ will\ be\ saved\ to\ the\ file\ header,\ but\ does\ not\ affect}}
+\DoxyCodeLine{00251\ \textcolor{comment}{how\ chunks\ are\ en-\//decoded.\ */}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ QOI\_SRGB\ \ \ 0}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#define\ QOI\_LINEAR\ 1}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ width;}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ height;}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ channels;}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ colorspace;}
+\DoxyCodeLine{00261\ \}\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#ifndef\ QOI\_NO\_STDIO}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{comment}{/*\ Encode\ raw\ RGB\ or\ RGBA\ pixels\ into\ a\ QOI\ image\ and\ write\ it\ to\ the\ file}}
+\DoxyCodeLine{00266\ \textcolor{comment}{system.\ The\ qoi\_desc\ struct\ must\ be\ filled\ with\ the\ image\ width,\ height,}}
+\DoxyCodeLine{00267\ \textcolor{comment}{number\ of\ channels\ (3\ =\ RGB,\ 4\ =\ RGBA)\ and\ the\ colorspace.}}
+\DoxyCodeLine{00268\ \textcolor{comment}{}}
+\DoxyCodeLine{00269\ \textcolor{comment}{The\ function\ returns\ 0\ on\ failure\ (invalid\ parameters,\ or\ fopen\ or\ malloc}}
+\DoxyCodeLine{00270\ \textcolor{comment}{failed)\ or\ the\ number\ of\ bytes\ written\ on\ success.\ */}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{keywordtype}{int}\ qoi\_write(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}}\ *desc);}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{comment}{/*\ Read\ and\ decode\ a\ QOI\ image\ from\ the\ file\ system.\ If\ channels\ is\ 0,\ the}}
+\DoxyCodeLine{00276\ \textcolor{comment}{number\ of\ channels\ from\ the\ file\ header\ is\ used.\ If\ channels\ is\ 3\ or\ 4\ the}}
+\DoxyCodeLine{00277\ \textcolor{comment}{output\ format\ will\ be\ forced\ into\ this\ number\ of\ channels.}}
+\DoxyCodeLine{00278\ \textcolor{comment}{}}
+\DoxyCodeLine{00279\ \textcolor{comment}{The\ function\ either\ returns\ NULL\ on\ failure\ (invalid\ data,\ or\ malloc\ or\ fopen}}
+\DoxyCodeLine{00280\ \textcolor{comment}{failed)\ or\ a\ pointer\ to\ the\ decoded\ pixels.\ On\ success,\ the\ qoi\_desc\ struct}}
+\DoxyCodeLine{00281\ \textcolor{comment}{will\ be\ filled\ with\ the\ description\ from\ the\ file\ header.}}
+\DoxyCodeLine{00282\ \textcolor{comment}{}}
+\DoxyCodeLine{00283\ \textcolor{comment}{The\ returned\ pixel\ data\ should\ be\ free()d\ after\ use.\ */}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{keywordtype}{void}\ *qoi\_read(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename,\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}}\ *desc,\ \textcolor{keywordtype}{int}\ channels);}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ QOI\_NO\_STDIO\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{comment}{/*\ Encode\ raw\ RGB\ or\ RGBA\ pixels\ into\ a\ QOI\ image\ in\ memory.}}
+\DoxyCodeLine{00291\ \textcolor{comment}{}}
+\DoxyCodeLine{00292\ \textcolor{comment}{The\ function\ either\ returns\ NULL\ on\ failure\ (invalid\ parameters\ or\ malloc}}
+\DoxyCodeLine{00293\ \textcolor{comment}{failed)\ or\ a\ pointer\ to\ the\ encoded\ data\ on\ success.\ On\ success\ the\ out\_len}}
+\DoxyCodeLine{00294\ \textcolor{comment}{is\ set\ to\ the\ size\ in\ bytes\ of\ the\ encoded\ data.}}
+\DoxyCodeLine{00295\ \textcolor{comment}{}}
+\DoxyCodeLine{00296\ \textcolor{comment}{The\ returned\ qoi\ data\ should\ be\ free()d\ after\ use.\ */}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{keywordtype}{void}\ *qoi\_encode(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}}\ *desc,\ \textcolor{keywordtype}{int}\ *out\_len);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{comment}{/*\ Decode\ a\ QOI\ image\ from\ memory.}}
+\DoxyCodeLine{00302\ \textcolor{comment}{}}
+\DoxyCodeLine{00303\ \textcolor{comment}{The\ function\ either\ returns\ NULL\ on\ failure\ (invalid\ parameters\ or\ malloc}}
+\DoxyCodeLine{00304\ \textcolor{comment}{failed)\ or\ a\ pointer\ to\ the\ decoded\ pixels.\ On\ success,\ the\ qoi\_desc\ struct}}
+\DoxyCodeLine{00305\ \textcolor{comment}{is\ filled\ with\ the\ description\ from\ the\ file\ header.}}
+\DoxyCodeLine{00306\ \textcolor{comment}{}}
+\DoxyCodeLine{00307\ \textcolor{comment}{The\ returned\ pixel\ data\ should\ be\ free()d\ after\ use.\ */}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \textcolor{keywordtype}{void}\ *qoi\_decode(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ \textcolor{keywordtype}{int}\ size,\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}}\ *desc,\ \textcolor{keywordtype}{int}\ channels);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00313\ \}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ QOI\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00319\ \textcolor{comment}{Implementation\ */}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#ifdef\ QOI\_IMPLEMENTATION}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#ifndef\ QOI\_MALLOC}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\ \ \ \ \#define\ QOI\_MALLOC(sz)\ malloc(sz)}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\ \ \ \ \#define\ QOI\_FREE(p)\ \ \ \ free(p)}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#ifndef\ QOI\_ZEROARR}}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\ \ \ \ \#define\ QOI\_ZEROARR(a)\ memset((a),0,sizeof(a))}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#define\ QOI\_OP\_INDEX\ \ 0x00\ }\textcolor{comment}{/*\ 00xxxxxx\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#define\ QOI\_OP\_DIFF\ \ \ 0x40\ }\textcolor{comment}{/*\ 01xxxxxx\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#define\ QOI\_OP\_LUMA\ \ \ 0x80\ }\textcolor{comment}{/*\ 10xxxxxx\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#define\ QOI\_OP\_RUN\ \ \ \ 0xc0\ }\textcolor{comment}{/*\ 11xxxxxx\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\#define\ QOI\_OP\_RGB\ \ \ \ 0xfe\ }\textcolor{comment}{/*\ 11111110\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#define\ QOI\_OP\_RGBA\ \ \ 0xff\ }\textcolor{comment}{/*\ 11111111\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#define\ QOI\_MASK\_2\ \ \ \ 0xc0\ }\textcolor{comment}{/*\ 11000000\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#define\ QOI\_COLOR\_HASH(C)\ (C.rgba.r*3\ +\ C.rgba.g*5\ +\ C.rgba.b*7\ +\ C.rgba.a*11)}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#define\ QOI\_MAGIC\ \(\backslash\)}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\ \ \ \ (((unsigned\ int)'q')\ <<\ 24\ |\ ((unsigned\ int)'o')\ <<\ 16\ |\ \(\backslash\)}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\ \ \ \ \ ((unsigned\ int)'i')\ <<\ \ 8\ |\ ((unsigned\ int)'f'))}}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#define\ QOI\_HEADER\_SIZE\ 14}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{comment}{/*\ 2GB\ is\ the\ max\ file\ size\ that\ this\ implementation\ can\ safely\ handle.\ We\ guard}}
+\DoxyCodeLine{00349\ \textcolor{comment}{against\ anything\ larger\ than\ that,\ assuming\ the\ worst\ case\ with\ 5\ bytes\ per}}
+\DoxyCodeLine{00350\ \textcolor{comment}{pixel,\ rounded\ down\ to\ a\ nice\ clean\ value.\ 400\ million\ pixels\ ought\ to\ be}}
+\DoxyCodeLine{00351\ \textcolor{comment}{enough\ for\ anybody.\ */}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#define\ QOI\_PIXELS\_MAX\ ((unsigned\ int)400000000)}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{struct\ }\{\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ r,\ g,\ b,\ a;\ \}\ rgba;}
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ v;}
+\DoxyCodeLine{00357\ \}\ qoi\_rgba\_t;}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ qoi\_padding[8]\ =\ \{0,0,0,0,0,0,0,1\};}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ qoi\_write\_32(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *bytes,\ \textcolor{keywordtype}{int}\ *p,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ v)\ \{}
+\DoxyCodeLine{00362\ \ \ \ \ bytes[(*p)++]\ =\ (0xff000000\ \&\ v)\ >>\ 24;}
+\DoxyCodeLine{00363\ \ \ \ \ bytes[(*p)++]\ =\ (0x00ff0000\ \&\ v)\ >>\ 16;}
+\DoxyCodeLine{00364\ \ \ \ \ bytes[(*p)++]\ =\ (0x0000ff00\ \&\ v)\ >>\ 8;}
+\DoxyCodeLine{00365\ \ \ \ \ bytes[(*p)++]\ =\ (0x000000ff\ \&\ v);}
+\DoxyCodeLine{00366\ \}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ qoi\_read\_32(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *bytes,\ \textcolor{keywordtype}{int}\ *p)\ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ a\ =\ bytes[(*p)++];}
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ b\ =\ bytes[(*p)++];}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ c\ =\ bytes[(*p)++];}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ d\ =\ bytes[(*p)++];}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordflow}{return}\ a\ <<\ 24\ |\ b\ <<\ 16\ |\ c\ <<\ 8\ |\ d;}
+\DoxyCodeLine{00374\ \}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \textcolor{keywordtype}{void}\ *qoi\_encode(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}}\ *desc,\ \textcolor{keywordtype}{int}\ *out\_len)\ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordtype}{int}\ i,\ \mbox{\hyperlink{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3}{max\_size}},\ p,\ run;}
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{keywordtype}{int}\ px\_len,\ px\_end,\ px\_pos,\ channels;}
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *bytes;}
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *pixels;}
+\DoxyCodeLine{00381\ \ \ \ \ qoi\_rgba\_t\ index[64];}
+\DoxyCodeLine{00382\ \ \ \ \ qoi\_rgba\_t\ px,\ px\_prev;}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ data\ ==\ NULL\ ||\ out\_len\ ==\ NULL\ ||\ desc\ ==\ NULL\ ||}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ desc-\/>width\ ==\ 0\ ||\ desc-\/>height\ ==\ 0\ ||}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ desc-\/>channels\ <\ 3\ ||\ desc-\/>channels\ >\ 4\ ||}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ desc-\/>colorspace\ >\ 1\ ||}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ desc-\/>height\ >=\ QOI\_PIXELS\_MAX\ /\ desc-\/>width}
+\DoxyCodeLine{00390\ \ \ \ \ )\ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00392\ \ \ \ \ \}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \mbox{\hyperlink{namespaceplayrho_1_1detail_aaa616ce7863431ef4a242233299ac2e3}{max\_size}}\ =}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ desc-\/>width\ *\ desc-\/>height\ *\ (desc-\/>channels\ +\ 1)\ +}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ QOI\_HEADER\_SIZE\ +\ \textcolor{keyword}{sizeof}(qoi\_padding);}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ p\ =\ 0;}
+\DoxyCodeLine{00399\ \ \ \ \ bytes\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)\ QOI\_MALLOC(max\_size);}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keywordflow}{if}\ (!bytes)\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00402\ \ \ \ \ \}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ qoi\_write\_32(bytes,\ \&p,\ QOI\_MAGIC);}
+\DoxyCodeLine{00405\ \ \ \ \ qoi\_write\_32(bytes,\ \&p,\ desc-\/>width);}
+\DoxyCodeLine{00406\ \ \ \ \ qoi\_write\_32(bytes,\ \&p,\ desc-\/>height);}
+\DoxyCodeLine{00407\ \ \ \ \ bytes[p++]\ =\ desc-\/>channels;}
+\DoxyCodeLine{00408\ \ \ \ \ bytes[p++]\ =\ desc-\/>colorspace;}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ pixels\ =\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)data;}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ QOI\_ZEROARR(index);}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ run\ =\ 0;}
+\DoxyCodeLine{00416\ \ \ \ \ px\_prev.rgba.r\ =\ 0;}
+\DoxyCodeLine{00417\ \ \ \ \ px\_prev.rgba.g\ =\ 0;}
+\DoxyCodeLine{00418\ \ \ \ \ px\_prev.rgba.b\ =\ 0;}
+\DoxyCodeLine{00419\ \ \ \ \ px\_prev.rgba.a\ =\ 255;}
+\DoxyCodeLine{00420\ \ \ \ \ px\ =\ px\_prev;}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ px\_len\ =\ desc-\/>width\ *\ desc-\/>height\ *\ desc-\/>channels;}
+\DoxyCodeLine{00423\ \ \ \ \ px\_end\ =\ px\_len\ -\/\ desc-\/>channels;}
+\DoxyCodeLine{00424\ \ \ \ \ channels\ =\ desc-\/>channels;}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{keywordflow}{for}\ (px\_pos\ =\ 0;\ px\_pos\ <\ px\_len;\ px\_pos\ +=\ channels)\ \{}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (channels\ ==\ 4)\ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ px\ =\ *(qoi\_rgba\_t\ *)(pixels\ +\ px\_pos);}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.r\ =\ pixels[px\_pos\ +\ 0];}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.g\ =\ pixels[px\_pos\ +\ 1];}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.b\ =\ pixels[px\_pos\ +\ 2];}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (px.v\ ==\ px\_prev.v)\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ run++;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (run\ ==\ 62\ ||\ px\_pos\ ==\ px\_end)\ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ QOI\_OP\_RUN\ |\ (run\ -\/\ 1);}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ run\ =\ 0;}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\_pos;}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (run\ >\ 0)\ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ QOI\_OP\_RUN\ |\ (run\ -\/\ 1);}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ run\ =\ 0;}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ index\_pos\ =\ QOI\_COLOR\_HASH(px)\ \%\ 64;}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index[index\_pos].v\ ==\ px.v)\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ QOI\_OP\_INDEX\ |\ index\_pos;}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index[index\_pos]\ =\ px;}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (px.rgba.a\ ==\ px\_prev.rgba.a)\ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{char}\ vr\ =\ px.rgba.r\ -\/\ px\_prev.rgba.r;}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{char}\ vg\ =\ px.rgba.g\ -\/\ px\_prev.rgba.g;}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{char}\ vb\ =\ px.rgba.b\ -\/\ px\_prev.rgba.b;}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{char}\ vg\_r\ =\ vr\ -\/\ vg;}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{char}\ vg\_b\ =\ vb\ -\/\ vg;}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vr\ >\ -\/3\ \&\&\ vr\ <\ 2\ \&\&}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vg\ >\ -\/3\ \&\&\ vg\ <\ 2\ \&\&}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vb\ >\ -\/3\ \&\&\ vb\ <\ 2}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ QOI\_OP\_DIFF\ |\ (vr\ +\ 2)\ <<\ 4\ |\ (vg\ +\ 2)\ <<\ 2\ |\ (vb\ +\ 2);}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vg\_r\ >\ \ -\/9\ \&\&\ vg\_r\ <\ \ 8\ \&\&}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vg\ \ \ >\ -\/33\ \&\&\ vg\ \ \ <\ 32\ \&\&}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vg\_b\ >\ \ -\/9\ \&\&\ vg\_b\ <\ \ 8}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ QOI\_OP\_LUMA\ \ \ \ \ |\ (vg\ \ \ +\ 32);}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ (vg\_r\ +\ 8)\ <<\ 4\ |\ (vg\_b\ +\ \ 8);}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ QOI\_OP\_RGB;}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ px.rgba.r;}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ px.rgba.g;}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ px.rgba.b;}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ QOI\_OP\_RGBA;}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ px.rgba.r;}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ px.rgba.g;}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ px.rgba.b;}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bytes[p++]\ =\ px.rgba.a;}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ px\_prev\ =\ px;}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ (int)\textcolor{keyword}{sizeof}(qoi\_padding);\ i++)\ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ bytes[p++]\ =\ qoi\_padding[i];}
+\DoxyCodeLine{00503\ \ \ \ \ \}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ *out\_len\ =\ p;}
+\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keywordflow}{return}\ bytes;}
+\DoxyCodeLine{00507\ \}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \textcolor{keywordtype}{void}\ *qoi\_decode(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ \textcolor{keywordtype}{int}\ size,\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}}\ *desc,\ \textcolor{keywordtype}{int}\ channels)\ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *bytes;}
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ header\_magic;}
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *pixels;}
+\DoxyCodeLine{00513\ \ \ \ \ qoi\_rgba\_t\ index[64];}
+\DoxyCodeLine{00514\ \ \ \ \ qoi\_rgba\_t\ px;}
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keywordtype}{int}\ px\_len,\ chunks\_len,\ px\_pos;}
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keywordtype}{int}\ p\ =\ 0,\ run\ =\ 0;}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ data\ ==\ NULL\ ||\ desc\ ==\ NULL\ ||}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ (channels\ !=\ 0\ \&\&\ channels\ !=\ 3\ \&\&\ channels\ !=\ 4)\ ||}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ size\ <\ QOI\_HEADER\_SIZE\ +\ (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(qoi\_padding)}
+\DoxyCodeLine{00522\ \ \ \ \ )\ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00524\ \ \ \ \ \}}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00526\ \ \ \ \ bytes\ =\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)data;}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \ \ \ \ header\_magic\ =\ qoi\_read\_32(bytes,\ \&p);}
+\DoxyCodeLine{00529\ \ \ \ \ desc-\/>width\ =\ qoi\_read\_32(bytes,\ \&p);}
+\DoxyCodeLine{00530\ \ \ \ \ desc-\/>height\ =\ qoi\_read\_32(bytes,\ \&p);}
+\DoxyCodeLine{00531\ \ \ \ \ desc-\/>channels\ =\ bytes[p++];}
+\DoxyCodeLine{00532\ \ \ \ \ desc-\/>colorspace\ =\ bytes[p++];}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ desc-\/>width\ ==\ 0\ ||\ desc-\/>height\ ==\ 0\ ||}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ desc-\/>channels\ <\ 3\ ||\ desc-\/>channels\ >\ 4\ ||}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ desc-\/>colorspace\ >\ 1\ ||}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ header\_magic\ !=\ QOI\_MAGIC\ ||}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ desc-\/>height\ >=\ QOI\_PIXELS\_MAX\ /\ desc-\/>width}
+\DoxyCodeLine{00540\ \ \ \ \ )\ \{}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00542\ \ \ \ \ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keywordflow}{if}\ (channels\ ==\ 0)\ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ channels\ =\ desc-\/>channels;}
+\DoxyCodeLine{00546\ \ \ \ \ \}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ px\_len\ =\ desc-\/>width\ *\ desc-\/>height\ *\ channels;}
+\DoxyCodeLine{00549\ \ \ \ \ pixels\ =\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *)\ QOI\_MALLOC(px\_len);}
+\DoxyCodeLine{00550\ \ \ \ \ \textcolor{keywordflow}{if}\ (!pixels)\ \{}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00552\ \ \ \ \ \}}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \ \ QOI\_ZEROARR(index);}
+\DoxyCodeLine{00555\ \ \ \ \ px.rgba.r\ =\ 0;}
+\DoxyCodeLine{00556\ \ \ \ \ px.rgba.g\ =\ 0;}
+\DoxyCodeLine{00557\ \ \ \ \ px.rgba.b\ =\ 0;}
+\DoxyCodeLine{00558\ \ \ \ \ px.rgba.a\ =\ 255;}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \ \ \ \ chunks\_len\ =\ size\ -\/\ (int)\textcolor{keyword}{sizeof}(qoi\_padding);}
+\DoxyCodeLine{00561\ \ \ \ \ \textcolor{keywordflow}{for}\ (px\_pos\ =\ 0;\ px\_pos\ <\ px\_len;\ px\_pos\ +=\ channels)\ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (run\ >\ 0)\ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ run-\/-\/;}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (p\ <\ chunks\_len)\ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ b1\ =\ bytes[p++];}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (b1\ ==\ QOI\_OP\_RGB)\ \{}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.r\ =\ bytes[p++];}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.g\ =\ bytes[p++];}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.b\ =\ bytes[p++];}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (b1\ ==\ QOI\_OP\_RGBA)\ \{}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.r\ =\ bytes[p++];}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.g\ =\ bytes[p++];}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.b\ =\ bytes[p++];}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.a\ =\ bytes[p++];}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((b1\ \&\ QOI\_MASK\_2)\ ==\ QOI\_OP\_INDEX)\ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px\ =\ index[b1];}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((b1\ \&\ QOI\_MASK\_2)\ ==\ QOI\_OP\_DIFF)\ \{}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.r\ +=\ ((b1\ >>\ 4)\ \&\ 0x03)\ -\/\ 2;}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.g\ +=\ ((b1\ >>\ 2)\ \&\ 0x03)\ -\/\ 2;}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.b\ +=\ (\ b1\ \ \ \ \ \ \ \&\ 0x03)\ -\/\ 2;}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((b1\ \&\ QOI\_MASK\_2)\ ==\ QOI\_OP\_LUMA)\ \{}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ b2\ =\ bytes[p++];}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ vg\ =\ (b1\ \&\ 0x3f)\ -\/\ 32;}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.r\ +=\ vg\ -\/\ 8\ +\ ((b2\ >>\ 4)\ \&\ 0x0f);}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.g\ +=\ vg;}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px.rgba.b\ +=\ vg\ -\/\ 8\ +\ \ (b2\ \ \ \ \ \ \ \&\ 0x0f);}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((b1\ \&\ QOI\_MASK\_2)\ ==\ QOI\_OP\_RUN)\ \{}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ run\ =\ (b1\ \&\ 0x3f);}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ index[QOI\_COLOR\_HASH(px)\ \%\ 64]\ =\ px;}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (channels\ ==\ 4)\ \{}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ *(qoi\_rgba\_t*)(pixels\ +\ px\_pos)\ =\ px;}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ pixels[px\_pos\ +\ 0]\ =\ px.rgba.r;}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ pixels[px\_pos\ +\ 1]\ =\ px.rgba.g;}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ pixels[px\_pos\ +\ 2]\ =\ px.rgba.b;}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00609\ \ \ \ \ \}}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \ \ \ \ \textcolor{keywordflow}{return}\ pixels;}
+\DoxyCodeLine{00612\ \}}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \textcolor{preprocessor}{\#ifndef\ QOI\_NO\_STDIO}}
+\DoxyCodeLine{00615\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ \textcolor{keywordtype}{int}\ qoi\_write(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}}\ *desc)\ \{}
+\DoxyCodeLine{00618\ \ \ \ \ FILE\ *f\ =\ fopen(filename,\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00619\ \ \ \ \ \textcolor{keywordtype}{int}\ size;}
+\DoxyCodeLine{00620\ \ \ \ \ \textcolor{keywordtype}{void}\ *encoded;}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ \ \ \textcolor{keywordflow}{if}\ (!f)\ \{}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00624\ \ \ \ \ \}}
+\DoxyCodeLine{00625\ }
+\DoxyCodeLine{00626\ \ \ \ \ encoded\ =\ qoi\_encode(data,\ desc,\ \&size);}
+\DoxyCodeLine{00627\ \ \ \ \ \textcolor{keywordflow}{if}\ (!encoded)\ \{}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00630\ \ \ \ \ \}}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \ \ \ \ fwrite(encoded,\ 1,\ size,\ f);}
+\DoxyCodeLine{00633\ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \ \ \ \ QOI\_FREE(encoded);}
+\DoxyCodeLine{00636\ \ \ \ \ \textcolor{keywordflow}{return}\ size;}
+\DoxyCodeLine{00637\ \}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \textcolor{keywordtype}{void}\ *qoi\_read(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename,\ \mbox{\hyperlink{structqoi__desc}{qoi\_desc}}\ *desc,\ \textcolor{keywordtype}{int}\ channels)\ \{}
+\DoxyCodeLine{00640\ \ \ \ \ FILE\ *f\ =\ fopen(filename,\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{keywordtype}{int}\ size,\ bytes\_read;}
+\DoxyCodeLine{00642\ \ \ \ \ \textcolor{keywordtype}{void}\ *pixels,\ *data;}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00644\ \ \ \ \ \textcolor{keywordflow}{if}\ (!f)\ \{}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00646\ \ \ \ \ \}}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \ \ \ \ fseek(f,\ 0,\ SEEK\_END);}
+\DoxyCodeLine{00649\ \ \ \ \ size\ =\ ftell(f);}
+\DoxyCodeLine{00650\ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ <=\ 0)\ \{}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00653\ \ \ \ \ \}}
+\DoxyCodeLine{00654\ \ \ \ \ fseek(f,\ 0,\ SEEK\_SET);}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ \ \ \ \ data\ =\ QOI\_MALLOC(size);}
+\DoxyCodeLine{00657\ \ \ \ \ \textcolor{keywordflow}{if}\ (!data)\ \{}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00660\ \ \ \ \ \}}
+\DoxyCodeLine{00661\ }
+\DoxyCodeLine{00662\ \ \ \ \ bytes\_read\ =\ fread(data,\ 1,\ size,\ f);}
+\DoxyCodeLine{00663\ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \ \ \ \ pixels\ =\ qoi\_decode(data,\ bytes\_read,\ desc,\ channels);}
+\DoxyCodeLine{00666\ \ \ \ \ QOI\_FREE(data);}
+\DoxyCodeLine{00667\ \ \ \ \ \textcolor{keywordflow}{return}\ pixels;}
+\DoxyCodeLine{00668\ \}}
+\DoxyCodeLine{00669\ }
+\DoxyCodeLine{00670\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ QOI\_NO\_STDIO\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00671\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ QOI\_IMPLEMENTATION\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
