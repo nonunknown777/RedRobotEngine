@@ -5,8 +5,8 @@
 myproject
 zengine-debug
 zengine-release
-includes/
-libs/
+./includes/
+./libs/
 ### C++ ###
 # Prerequisites
 *.d

@@ -31,34 +31,3 @@ else:
 
 # Build the executable
 env.Program(target=program_name, source=['src/main.cpp'] + src_files)
-
-# SConstruct
-
-# # Set the C++ version to C++20
-# env = Environment(CXXFLAGS='-std=c++20 -g -Wall -Werror ', tools=['default', 'g++'])
-
-# # Define DEBUG when needed
-# env.Append(CPPDEFINES=['DEBUG'])  # Add this line if you want DEBUG defined
-
-# # Include directories
-# includes_folders = [
-#     'includes',
-#     'includes/imgui',
-#     'includes/raylib',
-#     'includes/rl_imgui',
-#     'includes/rl_imgui/extras',
-#     'includes/rres',
-#     'includes/rres/external',
-#     'src/includes'
-# ]
-
-# env.Append(CPPPATH=Flatten([Glob('{}/**'.format(folder)) for folder in includes_folders]))
-
-# # Source files
-# src_folders = ['src', 'src/includes', 'src/nodes']
-
-# # Collect source files using Glob
-# src_files = Flatten([Glob('{}/*.cpp {}/*.h {}/*.hpp'.format(folder, folder, folder)) for folder in src_folders])
-
-# # Build the executable
-# env.Program(target='my_project', source=src_files + ['src/main.cpp'])
