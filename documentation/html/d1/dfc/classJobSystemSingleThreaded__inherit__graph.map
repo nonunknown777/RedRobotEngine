@@ -1,7 +1,0 @@
-<map id="JobSystemSingleThreaded" name="JobSystemSingleThreaded">
-<area shape="rect" id="Node000001" title="Implementation of a JobSystem without threads, runs jobs as soon as they are added." alt="" coords="5,453,212,757"/>
-<area shape="rect" id="Node000002" href="$df/dff/classJobSystem.html" title=" " alt="" coords="25,165,193,405"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,420,111,454,106,454,106,420"/>
-<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="47,5,170,117"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,132,111,166,106,166,106,132"/>
-</map>

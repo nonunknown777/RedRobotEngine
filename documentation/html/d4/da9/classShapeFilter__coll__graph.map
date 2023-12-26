@@ -1,7 +1,0 @@
-<map id="ShapeFilter" name="ShapeFilter">
-<area shape="rect" id="Node000001" title="Filter class." alt="" coords="105,417,231,529"/>
-<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="5,123,128,235"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,248,152,417,147,418,88,249"/>
-<area shape="rect" id="Node000003" href="$df/d4d/classBodyID.html" title="ID of a body. This is a way of reasoning about bodies in a multithreaded simulation while avoiding ra..." alt="" coords="152,5,387,352"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="212,353,195,402,190,401,207,351"/>
-</map>

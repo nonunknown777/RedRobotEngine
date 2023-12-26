@@ -1,8 +1,0 @@
-<map id="DebugRendererRecorder::GeometryBlob" name="DebugRendererRecorder::GeometryBlob">
-<area shape="rect" id="Node000001" title="Holds a single geometry draw call." alt="" coords="80,716,252,866"/>
-<area shape="rect" id="Node000002" href="$de/d0e/classMat44.html" title="Holds a 4x4 matrix of floats, but supports also operations on the 3x3 upper left part of the matrix." alt="" coords="5,69,185,587"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,586,124,691,126,699,121,700,119,692,100,587"/>
-<area shape="rect" id="Node000003" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="209,5,360,651"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,651,234,693,230,702,225,699,229,691,243,650"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="361,263,371,271,380,285,385,304,387,328,383,359,375,381,370,379,378,358,381,328,380,305,375,287,367,275,358,267"/>
-</map>

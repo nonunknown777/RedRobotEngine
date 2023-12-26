@@ -1,7 +1,0 @@
-<map id="SpecifiedObjectLayerFilter" name="SpecifiedObjectLayerFilter">
-<area shape="rect" id="Node000001" title="Allows objects from a specific layer only." alt="" coords="5,304,212,395"/>
-<area shape="rect" id="Node000002" href="$d0/d86/classObjectLayerFilter.html" title="Filter class for object layers." alt="" coords="29,165,188,256"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,271,111,304,106,304,106,271"/>
-<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="47,5,170,117"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,133,111,166,106,166,106,133"/>
-</map>

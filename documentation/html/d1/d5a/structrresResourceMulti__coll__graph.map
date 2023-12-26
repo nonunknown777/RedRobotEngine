@@ -1,9 +1,0 @@
-<map id="rresResourceMulti" name="rresResourceMulti">
-<area shape="rect" id="Node000001" title=" " alt="" coords="117,466,247,535"/>
-<area shape="rect" id="Node000002" href="$d9/dc8/structrresResourceChunk.html" title=" " alt="" coords="113,332,251,401"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,401,185,449,179,449,179,401"/>
-<area shape="rect" id="Node000003" href="$d2/d81/structrresResourceChunkInfo.html" title=" " alt="" coords="5,5,169,267"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="143,265,164,315,159,317,139,267"/>
-<area shape="rect" id="Node000004" href="$d5/d68/structrresResourceChunkData.html" title=" " alt="" coords="193,80,363,192"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="257,193,205,317,200,315,253,191"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="DebugRenderer" name="DebugRenderer">
-<area shape="rect" id="Node000001" title="Simple triangle renderer for debugging purposes." alt="" coords="7,5,198,331"/>
-<area shape="rect" id="Node000002" href="$d6/de1/classDebugRendererRecorder.html" title="Implementation of DebugRenderer that records the API invocations to be played back later." alt="" coords="5,379,200,597"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,345,105,379,100,379,100,345"/>
-</map>

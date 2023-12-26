@@ -1,9 +1,0 @@
-<map id="RayCastResult" name="RayCastResult">
-<area shape="rect" id="Node000001" title="Specialization of cast result against a shape." alt="" coords="151,679,259,749"/>
-<area shape="rect" id="Node000002" href="$d6/d57/classBroadPhaseCastResult.html" title="Structure that holds a ray cast or other object cast hit." alt="" coords="39,481,206,550"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,563,194,679,189,681,140,565"/>
-<area shape="rect" id="Node000003" href="$df/d4d/classBodyID.html" title="ID of a body. This is a way of reasoning about bodies in a multithreaded simulation while avoiding ra..." alt="" coords="5,5,240,352"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="125,352,125,464,120,464,120,352"/>
-<area shape="rect" id="Node000004" href="$da/d65/classSubShapeID.html" title="A sub shape id contains a path to an element (usually a triangle or other primitive type) of a compou..." alt="" coords="231,417,345,614"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="249,615,228,665,223,663,244,613"/>
-</map>

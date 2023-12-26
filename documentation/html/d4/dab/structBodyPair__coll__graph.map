@@ -1,5 +1,0 @@
-<map id="BodyPair" name="BodyPair">
-<area shape="rect" id="Node000001" title="Structure that holds a body pair." alt="" coords="66,434,179,589"/>
-<area shape="rect" id="Node000002" href="$df/d4d/classBodyID.html" title="ID of a body. This is a way of reasoning about bodies in a multithreaded simulation while avoiding ra..." alt="" coords="5,5,240,352"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,352,125,417,120,417,120,352"/>
-</map>

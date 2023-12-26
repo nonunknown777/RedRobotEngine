@@ -1,9 +1,0 @@
-<map id="Ragdoll" name="Ragdoll">
-<area shape="rect" id="Node000001" title="Runtime ragdoll information." alt="" coords="98,429,319,712"/>
-<area shape="rect" id="Node000002" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,140,220,380"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,393,168,429,163,430,152,395"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="48,5,177,75"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,74,115,123,110,123,110,74"/>
-<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="245,204,367,316"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="287,331,255,430,250,428,282,329"/>
-</map>

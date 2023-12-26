@@ -1,8 +1,0 @@
-<map id="DebugRendererRecorder::TriangleBlob" name="DebugRendererRecorder::TriangleBlob">
-<area shape="rect" id="Node000001" title="Holds a single triangle." alt="" coords="37,750,209,836"/>
-<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="5,37,167,619"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,618,121,733,116,733,107,618"/>
-<area shape="rect" id="Node000003" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="191,5,341,651"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,651,171,727,167,736,162,734,166,725,195,649"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="343,260,353,269,361,283,366,303,368,328,365,361,356,383,351,381,359,360,363,328,361,304,356,285,349,272,339,264"/>
-</map>

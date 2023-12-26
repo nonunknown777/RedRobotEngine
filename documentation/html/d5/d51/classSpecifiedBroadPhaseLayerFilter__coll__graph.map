@@ -1,7 +1,0 @@
-<map id="SpecifiedBroadPhaseLayerFilter" name="SpecifiedBroadPhaseLayerFilter">
-<area shape="rect" id="Node000001" title="Allows objects from a specific broad phase layer only." alt="" coords="5,304,204,429"/>
-<area shape="rect" id="Node000002" href="$dd/d02/classBroadPhaseLayerFilter.html" title="Filter class for broadphase layers." alt="" coords="8,165,201,256"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,271,107,304,102,304,102,271"/>
-<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="43,5,166,117"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,133,107,166,102,166,102,133"/>
-</map>

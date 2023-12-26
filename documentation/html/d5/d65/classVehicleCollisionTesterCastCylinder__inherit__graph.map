@@ -1,9 +1,0 @@
-<map id="VehicleCollisionTesterCastCylinder" name="VehicleCollisionTesterCastCylinder">
-<area shape="rect" id="Node000001" title="Collision tester that tests collision using a cylinder shape." alt="" coords="110,769,307,916"/>
-<area shape="rect" id="Node000002" href="$d1/db2/classVehicleCollisionTester.html" title="Class that does collision detection between wheels and ground." alt="" coords="106,332,311,721"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,736,211,770,206,770,206,736"/>
-<area shape="rect" id="Node000003" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,5,220,284"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="154,297,162,332,157,333,149,299"/>
-<area shape="rect" id="Node000004" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="245,89,367,201"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="291,216,261,333,256,332,286,214"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="DebugRendererRecorder::TextBlob" name="DebugRendererRecorder::TextBlob">
-<area shape="rect" id="Node000001" title="Holds a single text entry." alt="" coords="72,716,244,845"/>
-<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="5,37,167,619"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,618,125,691,127,699,122,700,119,692,104,619"/>
-<area shape="rect" id="Node000003" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="191,5,341,651"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,651,205,693,202,701,197,699,199,691,212,649"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="343,263,353,271,361,285,366,304,368,328,365,359,356,381,351,379,360,358,363,328,361,305,356,287,349,275,339,267"/>
-</map>

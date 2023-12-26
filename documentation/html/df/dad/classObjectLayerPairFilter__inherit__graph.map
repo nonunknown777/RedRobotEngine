@@ -1,9 +1,0 @@
-<map id="ObjectLayerPairFilter" name="ObjectLayerPairFilter">
-<area shape="rect" id="Node000001" title="Filter class to test if two objects can collide based on their object layer. Used while finding colli..." alt="" coords="115,165,297,256"/>
-<area shape="rect" id="Node000003" href="$d7/d59/classObjectLayerPairFilterMask.html" title=" " alt="" coords="5,304,188,459"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,270,148,306,143,303,167,267"/>
-<area shape="rect" id="Node000004" href="$d7/d65/classObjectLayerPairFilterTable.html" title=" " alt="" coords="213,304,418,459"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="245,267,269,303,264,306,240,270"/>
-<area shape="rect" id="Node000002" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="145,5,267,117"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,133,209,166,203,166,203,133"/>
-</map>

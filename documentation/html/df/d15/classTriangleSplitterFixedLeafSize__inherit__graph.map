@@ -1,7 +1,0 @@
-<map id="TriangleSplitterFixedLeafSize" name="TriangleSplitterFixedLeafSize">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,496,205,625"/>
-<area shape="rect" id="Node000002" href="$d0/d4e/classTriangleSplitter.html" title="A class that splits a triangle list into two parts for building a tree." alt="" coords="29,165,181,448"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,463,108,496,103,496,103,463"/>
-<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="44,5,167,117"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,132,108,165,103,165,103,132"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="SoftBodySharedSettings::Vertex" name="SoftBodySharedSettings::Vertex">
-<area shape="rect" id="Node000001" title="A vertex is a particle, the data in this structure is only used during creation of the soft body and ..." alt="" coords="5,327,175,435"/>
-<area shape="rect" id="Node000002" href="$d9/ded/classFloat3.html" title="Class that holds 3 floats. Used as a storage class. Convert to Vec3 for calculations." alt="" coords="33,5,147,245"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,245,93,310,87,310,87,245"/>
-</map>

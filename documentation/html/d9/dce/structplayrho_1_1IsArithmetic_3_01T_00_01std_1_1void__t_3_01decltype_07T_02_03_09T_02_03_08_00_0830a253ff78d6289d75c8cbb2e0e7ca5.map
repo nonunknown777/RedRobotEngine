@@ -1,5 +1,0 @@
-<map id="playrho::IsArithmetic&lt; T, std::void_t&lt; decltype(T{}+T{}), decltype(T{} &#45; T{}), decltype(T{} *T{}), decltype(T{}/T{})&gt; &gt;" name="playrho::IsArithmetic&lt; T, std::void_t&lt; decltype(T{}+T{}), decltype(T{} &#45; T{}), decltype(T{} *T{}), decltype(T{}/T{})&gt; &gt;">
-<area shape="rect" id="Node000001" title="Template specialization for valid/acceptable &quot;arithmetic&quot; types." alt="" coords="5,123,189,260"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="46,5,149,75"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,89,100,123,95,123,95,89"/>
-</map>

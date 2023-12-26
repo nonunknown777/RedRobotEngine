@@ -1,5 +1,0 @@
-<map id="SkeletonMapper" name="SkeletonMapper">
-<area shape="rect" id="Node000001" title="Class that is able to map a low detail (ragdoll) skeleton to a high detail (animation) skeleton and v..." alt="" coords="17,315,209,875"/>
-<area shape="rect" id="Node000002" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="5,5,220,267"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,281,115,315,110,315,110,281"/>
-</map>

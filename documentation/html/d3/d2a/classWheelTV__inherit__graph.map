@@ -1,7 +1,0 @@
-<map id="WheelTV" name="WheelTV">
-<area shape="rect" id="Node000001" title="Wheel object specifically for TrackedVehicleController." alt="" coords="5,709,239,907"/>
-<area shape="rect" id="Node000002" href="$d0/db1/classWheel.html" title="Base class for runtime data for a wheel, each VehicleController can implement a derived class of this..." alt="" coords="35,165,209,661"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,677,125,710,119,710,119,677"/>
-<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="61,5,183,117"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="125,132,125,165,119,165,119,132"/>
-</map>

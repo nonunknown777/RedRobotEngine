@@ -1,5 +1,0 @@
-<map id="VehicleTransmission" name="VehicleTransmission">
-<area shape="rect" id="Node000001" title="Runtime data for transmission." alt="" coords="30,315,178,555"/>
-<area shape="rect" id="Node000002" href="$df/dc1/classVehicleTransmissionSettings.html" title="Configuration for the transmission of a vehicle (gear box)" alt="" coords="5,5,203,267"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,282,107,315,101,315,101,282"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="MotionProperties" name="MotionProperties">
-<area shape="rect" id="Node000001" title="The Body class only keeps track of state for static bodies, the MotionProperties class keeps the addi..." alt="" coords="5,5,223,629"/>
-<area shape="rect" id="Node000002" href="$d5/dfe/classSoftBodyMotionProperties.html" title="This class contains the runtime information of a soft body." alt="" coords="23,677,205,960"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,644,117,678,111,678,111,644"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="RayInvDirection" name="RayInvDirection">
-<area shape="rect" id="Node000001" title="Helper structure holding the reciprocal of a ray for Ray vs AABox testing." alt="" coords="105,716,245,828"/>
-<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="5,37,167,619"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,618,131,691,134,700,129,701,126,692,106,619"/>
-<area shape="rect" id="Node000003" href="$d4/da3/classUVec4.html" title=" " alt="" coords="191,5,339,651"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="251,651,238,693,234,702,229,700,233,691,246,649"/>
-</map>

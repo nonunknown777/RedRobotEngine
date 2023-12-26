@@ -1,8 +1,0 @@
-<map id="MaterialMap" name="MaterialMap">
-<area shape="rect" id="Node000001" title=" " alt="" coords="48,716,143,785"/>
-<area shape="rect" id="Node000002" href="$df/dda/structTexture.html" title=" " alt="" coords="5,251,92,405"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="51,405,57,539,65,616,77,691,79,699,74,700,72,692,59,617,51,540,45,405"/>
-<area shape="rect" id="Node000003" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="116,5,267,651"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="154,651,139,693,134,703,130,700,134,691,149,649"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="268,263,278,271,286,285,291,304,293,328,290,359,281,381,276,379,285,358,288,328,286,305,281,287,274,275,265,267"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="SoftBodyVertex" name="SoftBodyVertex">
-<area shape="rect" id="Node000001" title=" " alt="" coords="97,686,269,798"/>
-<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="5,5,167,587"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,586,123,661,127,670,122,672,118,663,95,587"/>
-<area shape="rect" id="Node000003" href="$dc/d90/classPlane.html" title="An infinite plane described by the formula X . Normal + Constant = 0." alt="" coords="191,123,373,469"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="293,469,283,567,271,616,255,663,250,673,246,670,250,661,266,614,277,566,288,469"/>
-</map>

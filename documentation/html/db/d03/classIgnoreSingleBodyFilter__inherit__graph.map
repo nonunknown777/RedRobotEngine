@@ -1,7 +1,0 @@
-<map id="IgnoreSingleBodyFilter" name="IgnoreSingleBodyFilter">
-<area shape="rect" id="Node000001" title="A simple body filter implementation that ignores a single, specified body." alt="" coords="5,325,188,416"/>
-<area shape="rect" id="Node000002" href="$d4/d7d/classBodyFilter.html" title="Class function to filter out bodies, returns true if test should collide with body." alt="" coords="11,165,182,277"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,293,99,326,94,326,94,293"/>
-<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="35,5,158,117"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,133,99,166,94,166,94,133"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="QuadTree::Tracking" name="QuadTree::Tracking">
-<area shape="rect" id="Node000001" title="Data to track location of a Body in the tree." alt="" coords="215,157,381,248"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,191,92"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,90,136,112,153,131,202,163,199,167,150,135,132,115,117,93"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="215,14,381,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="301,83,301,140,295,140,295,83"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="405,14,535,83"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="453,85,434,110,412,135,395,149,391,145,408,131,430,107,448,82"/>
-</map>

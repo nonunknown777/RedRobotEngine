@@ -1,7 +1,0 @@
-<map id="ShapeCastSettings" name="ShapeCastSettings">
-<area shape="rect" id="Node000001" title="Settings to be passed with a shape cast." alt="" coords="5,834,244,985"/>
-<area shape="rect" id="Node000002" href="$d1/d1a/classCollideSettingsBase.html" title="Settings to be passed with a collision query." alt="" coords="37,652,213,785"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,800,127,835,122,835,122,800"/>
-<area shape="rect" id="Node000003" href="$d9/de4/classVec3.html" title=" " alt="" coords="44,5,205,587"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="127,587,127,634,122,634,122,587"/>
-</map>

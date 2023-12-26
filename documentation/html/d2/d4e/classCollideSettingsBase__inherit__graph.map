@@ -1,7 +1,0 @@
-<map id="CollideSettingsBase" name="CollideSettingsBase">
-<area shape="rect" id="Node000001" title="Settings to be passed with a collision query." alt="" coords="102,5,343,160"/>
-<area shape="rect" id="Node000002" href="$d6/df7/classCollideShapeSettings.html" title="Settings to be passed with a collision query." alt="" coords="5,238,200,329"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,174,132,239,127,237,167,171"/>
-<area shape="rect" id="Node000003" href="$df/db6/classShapeCastSettings.html" title="Settings to be passed with a shape cast." alt="" coords="225,208,463,359"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="279,171,301,207,297,210,275,174"/>
-</map>

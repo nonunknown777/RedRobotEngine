@@ -1,7 +1,0 @@
-<map id="BodyLockMultiWrite" name="BodyLockMultiWrite">
-<area shape="rect" id="Node000001" title="Specialization that locks multiple bodies for writing to." alt="" coords="21,343,165,412"/>
-<area shape="rect" id="Node000002" href="$d8/d77/classBodyLockMultiBase.html" title=" " alt="" coords="5,165,180,295"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,309,95,343,90,343,90,309"/>
-<area shape="rect" id="Node000003" href="$dc/d3c/classNonCopyable.html" title="Class that makes another class non&#45;copyable. Usage: Inherit from NonCopyable." alt="" coords="31,5,154,117"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,132,95,166,90,166,90,132"/>
-</map>

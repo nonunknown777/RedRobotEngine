@@ -1,7 +1,0 @@
-<map id="VehicleEngine" name="VehicleEngine">
-<area shape="rect" id="Node000001" title="Runtime data for engine." alt="" coords="6,557,185,818"/>
-<area shape="rect" id="Node000002" href="$d0/dbd/classVehicleEngineSettings.html" title="Generic properties for a vehicle engine." alt="" coords="5,310,185,508"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,523,98,557,93,557,93,523"/>
-<area shape="rect" id="Node000003" href="$db/dc4/classLinearCurve.html" title=" " alt="" coords="14,5,177,245"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,245,98,294,93,294,93,245"/>
-</map>

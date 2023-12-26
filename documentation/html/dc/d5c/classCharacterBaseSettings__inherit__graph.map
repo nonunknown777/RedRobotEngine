@@ -1,9 +1,0 @@
-<map id="CharacterBaseSettings" name="CharacterBaseSettings">
-<area shape="rect" id="Node000001" title="Base class for configuration of a character." alt="" coords="70,332,265,529"/>
-<area shape="rect" id="Node000003" href="$d9/d5c/classCharacterSettings.html" title="Contains the configuration of a character." alt="" coords="5,769,135,903"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,544,88,770,83,769,138,543"/>
-<area shape="rect" id="Node000004" href="$d2/d9b/classCharacterVirtualSettings.html" title="Contains the configuration of a character." alt="" coords="159,577,373,1095"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,543,206,577,200,578,192,544"/>
-<area shape="rect" id="Node000002" href="$d6/dfc/classRefTarget.html" title=" " alt="" coords="60,5,275,284"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,299,170,332,165,332,165,299"/>
-</map>

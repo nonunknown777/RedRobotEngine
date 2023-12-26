@@ -1,5 +1,0 @@
-<map id="CollideSettingsBase" name="CollideSettingsBase">
-<area shape="rect" id="Node000001" title="Settings to be passed with a collision query." alt="" coords="5,652,181,785"/>
-<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="13,5,174,587"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,587,96,634,91,634,91,587"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="DebugRendererRecorder::LineBlob" name="DebugRendererRecorder::LineBlob">
-<area shape="rect" id="Node000001" title="Holds a single line segment." alt="" coords="45,733,217,819"/>
-<area shape="rect" id="Node000002" href="$d9/de4/classVec3.html" title=" " alt="" coords="5,37,167,619"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,618,128,716,123,716,113,619"/>
-<area shape="rect" id="Node000003" href="$d2/d37/classColor.html" title="Class that holds an RGBA color with 8&#45;bits per component." alt="" coords="191,5,341,651"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,651,194,710,188,720,183,717,189,707,214,649"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="343,261,353,270,361,284,366,304,368,328,365,360,356,382,351,380,359,359,363,328,361,304,356,286,349,273,339,265"/>
-</map>
