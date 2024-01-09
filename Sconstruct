@@ -1,7 +1,46 @@
 # # SConstruct
 
+import os
+import shutil
+import subprocess
+import multiprocessing
+
+def copy_header_files(source_folder="src/", destination_folder="bin"):
+    try:
+        # Ensure the destination folder exists
+        if not os.path.exists(destination_folder):
+            os.makedirs(destination_folder)
+
+        # Walk through the source folder
+        for root, dirs, files in os.walk(source_folder):
+            for file in files:
+                # Check if the file has a .h or .hpp extension
+                if file.endswith(('.h', '.hpp')):
+                    source_path = os.path.join(root, file)
+                    
+                    # Create the corresponding folder structure in the destination folder
+                    relative_path = os.path.relpath(source_path, source_folder)
+                    destination_path = os.path.join(destination_folder, relative_path)
+
+                    # Ensure the destination folder for the current file exists
+                    os.makedirs(os.path.dirname(destination_path), exist_ok=True)
+
+                    # Copy the file to the destination folder
+                    shutil.copy2(source_path, destination_path)
+
+                    # Uncomment the next line if you want to print each file copy operation
+                    # print(f"Copied: {source_path} to {destination_path}")
+
+        print("Header files copied successfully.")
+        return True
+
+    except Exception as e:
+        print(f"Error copying header files: {e}")
+        return False
+
+
 # Set the C++ version to C++17
-env = Environment(CXXFLAGS='-std=c++20 -g -Wall -Werror ', tools=['default', 'g++'])
+env = Environment(CXXFLAGS='-std=c++20 -g -Wall ', tools=['default', 'g++'])
 
 program_name = 'zengine-'
 # Define DEBUG or RELEASE based on the target
@@ -31,3 +70,6 @@ else:
 
 # Build the executable
 env.Program(target=program_name, source=['src/main.cpp'] + src_files)
+
+if ARGUMENTS.get('export') == 'yes':
+    copy_header_files()

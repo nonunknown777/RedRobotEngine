@@ -3,24 +3,26 @@
 
 #include <vector>
 #include <string>
+#include <cstdint>
 
 #include "raylib.h"
 #include "../references/input_event.hpp"
 
 class Node {
 
+    protected:
     private:
         std::vector<Node*> children;
         // std::vector<Node*> siblings;
         Node* parent;
         std::string name;
-
     public:
         Node(std::string name = "NewNode");
         ~Node();
 
         std::string get_name() const;
         virtual void set_name(std::string name);
+        // SceneTree* tree;
 
         int iteration_index;
         bool visible = true;
@@ -32,7 +34,8 @@ class Node {
 
         // virtual void _physics_process(float delta);
         void add_child(Node* node);
-        int get_child_count();
+        uint32_t get_child_count();
+        Node* get_tree();
         Node* get_child(int p_index);
         Node* get_parent();
         std::vector<Node*> get_children();

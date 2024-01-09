@@ -29,7 +29,7 @@ void Node::add_child(Node *node)
         std::string  errorMessage = "\033[1;31m Node: " + node->name + " already has parent: " + node->parent->name;
         std::cerr << errorMessage + "\n\n\033[0m";
 
-        return;
+        throw std::runtime_error("already has parent!");
     }
     node->parent = this;
     children.push_back(node);
@@ -47,7 +47,7 @@ Node::~Node() {
 
 }
 
-int Node::get_child_count() {
+uint32_t Node::get_child_count() {
     return children.size();
 }
 
@@ -55,6 +55,10 @@ Node* Node::get_child(int p_index) {
     if (get_child_count() < 1) return nullptr;
     if ((size_t)p_index >= children.size()) return nullptr;
     return children[p_index];
+}
+
+Node* Node::get_tree() {
+    return nullptr;
 }
 
 std::vector<Node*> Node::get_children() {

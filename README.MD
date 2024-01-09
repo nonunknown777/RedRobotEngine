@@ -17,8 +17,6 @@
 > 
 > * **C++20 Swagger:** ZEngine starts off with the coolness of C++20, making your code look more stylish than a catwalk model.
 > 
-> * **Future-Forward Migration to Zig:** In our grand symphony of coding, we're charting a course toward the horizon of Zig programming language as soon as it anchors itself in stability. Why the switch, you ask? Well, as aficionados of all things intriguing, we revel in the excitement of the unknown. Much like how skilled mountaineers zigzag their way to conquer challenging terrains, we, too, are poised for a zigzag journey in the realm of game engines. After all, embracing the uncharted paths is not just an adventure—it's the essence of innovation!
-> 
 > * **Godot's Cool Cousin:** Inspired by Godot, ZEngine brings that awesome Godot's node flavor but with a focus on C++. It's like Godot's edgier sibling who rides a motorcycle.
 > 
 > * **No Bloat, No Bother:** We're not about that bloat life. ZEngine is sleeker than a cat after a nap, and it won't bog you down with unnecessary baggage.

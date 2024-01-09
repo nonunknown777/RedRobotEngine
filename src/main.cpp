@@ -1,31 +1,18 @@
-/*******************************************************************************************
-*
-*   raylib-extras [ImGui] example - Simple Integration
-*
-*	This is a simple ImGui Integration
-*	It is done using C++ but with C style code
-*	It can be done in C as well if you use the C ImGui wrapper
-*	https://github.com/cimgui/cimgui
-*
-*   Copyright (c) 2021 Jeffery Myers
-*
-********************************************************************************************/
+#include "main.hpp"
+#include <thread>
 
-#include "raylib.h"
-#include "raymath.h"
 
-#include "nodes/tree.hpp"
-#include "utils.hpp"
+void draw_routine() {
 
-#include "temp_data.hpp"
+	ClearBackground(GRAY);
 
-#include <chrono>
+	//[NodeA,NodeB,NodeC]
+	//buffer.commit();
 
-#include "references/resource_loader.hpp"
-
-void load_yaml() {
-	// ResourceLoader::load("scenes/Main.yaml");
+	EndDrawing();
 }
+
+
 
 int main(int argc, char* argv[])
 {
@@ -38,33 +25,53 @@ int main(int argc, char* argv[])
 	InitWindow(screenWidth, screenHeight, "Z-Engine");
 	SetTargetFPS(60);
 
-	SceneTree tree = SceneTree();
 
-	auto delta_start = std::chrono::high_resolution_clock::now();
+	// auto delta_start = std::chrono::high_resolution_clock::now();
 
-	// bool window_created = false;
-	load_yaml();
+	// tree = new SceneTree();
+
+
 
 	// Main game loop
-	while (!WindowShouldClose())    // Detect window close button or ESC key
-	{
-		// Calculate delta time in seconds
-        auto delta_current = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<float> delta_seconds = delta_current - delta_start;
-        float delta = delta_seconds.count();
+	// while (!WindowShouldClose())    // Detect window close button or ESC key
+	// {
+	// 	TIMER_START();
+	// 	// Calculate delta time in seconds
+    //     auto delta_current = std::chrono::high_resolution_clock::now();
+    //     std::chrono::duration<float> delta_seconds = delta_current - delta_start;
+    //     float delta = delta_seconds.count();
 
-		ClearBackground(GRAY);
+	ClearBackground(GRAY);
 
-		tree.update(delta);
+	// 	// if (tree != nullptr)
+	// 	// 	tree->update(delta);
+		
+	// 	// if (IsKeyPressed(KEY_A)) {
+	// 	// 	tree->root->get_child(0)->visible = false;
+	// 	// }
 
 	
-        delta_start = delta_current;
+    //     delta_start = delta_current;
 
-		// DrawText(TextFormat("FPS: %03i",GetFPS()),720,100,16,GREEN);
-		EndDrawing();
+	// 	// DrawText(TextFormat("FPS: %03i",GetFPS()),720,100,16,GREEN);
+	// 	EndDrawing();
+
+	// 	TIMER_END("main loop");
+	// }
+	DrawRectangle(0,0,100,200,RED);
+	EndDrawing();
+
+	tree = new SceneTree();
+	
+
+	while(!WindowShouldClose()){
+
+		if (IsKeyPressed(KEY_ESCAPE)) {
+			break;
+		}
 	}
-	
 
+	delete tree;
 	CloseWindow();        // Close window and OpenGL context
 
 	return 0;
