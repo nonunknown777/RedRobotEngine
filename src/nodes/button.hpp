@@ -1,13 +1,14 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#pragma once
 
-#include "base_button.hpp"
-#include "../references/style_box.hpp"
-#include "../references/style_box_flat.hpp"
+#include "common.hpp"
+
+
+namespace rre {
+
 
 class Button : public BaseButton{
 public:
-    Button(std::string name);
+    Button();
     ~Button();
 
     std::string text;
@@ -18,4 +19,4 @@ public:
 
 };
 
-#endif
+}

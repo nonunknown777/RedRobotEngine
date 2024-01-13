@@ -1,20 +1,9 @@
-#ifndef MAIN_H
-#define MAIN_H
+#pragma once
 
-#include "main.hpp"
-#include "raylib.h"
-#include "raymath.h"
+#include "common.hpp"
 
-#include "nodes/tree.hpp"
-#include "utils.hpp"
-
-#include "temp_data.hpp"
-
-#include <chrono>
-
-#include "references/resource_loader.hpp"
+namespace rre  {
 
 SceneTree* tree = nullptr;
 
-
-#endif
+}

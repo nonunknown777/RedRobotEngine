@@ -91,6 +91,7 @@
         "span": "cpp",
         "__mutex_base": "cpp",
         "stack": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "stop_token": "cpp"
     }
 }

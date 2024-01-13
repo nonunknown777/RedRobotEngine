@@ -1,7 +1,9 @@
-#ifndef BUTTON_GROUP_H
-#define BUTTON_GROUP_H
+#pragma once
 
-#include "resource.hpp"
+#include "common.hpp"
+
+namespace rre {
+
 
 class ButtonGroup : public Resource{
 public:
@@ -9,4 +11,5 @@ public:
     ~ButtonGroup();
 };
 
-#endif
+}
+

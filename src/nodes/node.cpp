@@ -1,6 +1,7 @@
 #include "node.hpp"
-#include <stdexcept>
-#include <iostream>
+
+namespace rre  {
+    
 
 void Node::_ready()
 {
@@ -35,12 +36,18 @@ void Node::add_child(Node *node)
     children.push_back(node);
 }
 
-Node::Node(std::string name) {
+Node::Node() {
+    this->name = "Node";
+    parent = nullptr;
+    children = std::vector<Node*>();
+    // std::cout << "Created node: " + name + "\n";
+    
+}
+
+Node::Node(const std::string& name) {
     this->name = name;
     parent = nullptr;
     children = std::vector<Node*>();
-    std::cout << "Created node: " + name + "\n";
-    iteration_index = -1;
 }
 
 Node::~Node() {
@@ -76,4 +83,7 @@ void Node::set_name(std::string name) {
 
  std::string Node::get_name() const {
     return name;
+}
+
+
 }

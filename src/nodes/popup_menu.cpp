@@ -1,8 +1,9 @@
 #include "popup_menu.hpp"
 
-#include <iostream>
+namespace rre {
 
-PopupMenu::PopupMenu(std::string name = "PopupMenu") : Popup(name) {
+
+PopupMenu::PopupMenu() {
     position = Vector2(0,0);
     size = Vector2(100,40);
     
@@ -21,4 +22,6 @@ void PopupMenu::_input() {
     if (CheckCollisionPointRec(GetMousePosition(), Rectangle(position.x,position.y,size.x,size.y))) {
         // std::cout << "hello world\n";
     }
+}
+
 }

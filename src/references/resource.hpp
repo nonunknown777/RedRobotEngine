@@ -1,9 +1,8 @@
+#pragma once
 
-#ifndef RESOURCE_H
-#define RESOURCE_H
+#include "common.hpp"
 
-
-#include <string>
+namespace rre {
 
 class Resource {
 
@@ -13,5 +12,5 @@ public:
 
 };
 
-#endif
+}
 

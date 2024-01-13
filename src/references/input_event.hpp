@@ -1,7 +1,8 @@
-#ifndef INPUT_EVENT_H
-#define INPUT_EVENT_H
+#pragma once
 
-#include "resource.hpp"
+#include "common.hpp"
+
+namespace rre {
 
 class InputEvent : public Resource{
 public:
@@ -9,4 +10,4 @@ public:
     ~InputEvent();
 };
 
-#endif
+}

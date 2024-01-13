@@ -1,9 +1,8 @@
-#ifndef STYLE_BOX_FLAT_H
-#define STYLE_BOX_FLAT_H
+#pragma once
 
-#include "raylib.h"
-#include "style_box.hpp"
+#include "common.hpp"
 
+namespace rre {
 
 class StyleBoxFlat : public StyleBox {
 
@@ -19,4 +18,4 @@ public:
 
 };
 
-#endif
+}

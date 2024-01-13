@@ -1,7 +1,10 @@
-#ifndef CONTROL_H
-#define CONTROL_H
+#pragma once
 
-#include "canvas_item.hpp"
+#include "common.hpp"
+
+
+namespace rre {
+
 
 enum LayoutPreset {
 		PRESET_TOP_LEFT,
@@ -25,7 +28,7 @@ enum LayoutPreset {
 class Control : public CanvasItem {
 
     public:
-        Control(std::string name = "Control");
+        Control();
         ~Control();
 
 		Vector2 position;
@@ -34,4 +37,4 @@ class Control : public CanvasItem {
         void _draw() override;
 };
 
-#endif
+}

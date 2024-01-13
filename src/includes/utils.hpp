@@ -1,13 +1,12 @@
+#pragma once
+
+namespace rre {
 
 
-#ifndef UTILITY_H
-#define UTILITY_H
 
 #ifdef DEBUG
 
-#include <iostream>
-#include <chrono>
-#include "raylib.h"
+
 #define TIMER_START() auto start_time = std::chrono::high_resolution_clock::now();
 #define TIMER_START_CONTINUE() start_time = std::chrono::high_resolution_clock::now();
 
@@ -50,6 +49,4 @@ inline bool IsType(const SrcType* src)
 template <typename T>
 using FuncRef = void(*)(T);
 
-
-
-#endif // UTILS_H
+}

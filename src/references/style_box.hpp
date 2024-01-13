@@ -1,7 +1,8 @@
-#ifndef STYLE_BOX_H
-#define STYLE_BOX_H
+#pragma once
 
-#include "resource.hpp"
+#include "common.hpp"
+
+namespace rre {
 
 class StyleBox : public Resource{
 
@@ -18,4 +19,4 @@ public:
 
 };
 
-#endif
+}

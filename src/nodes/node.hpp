@@ -1,30 +1,26 @@
-#ifndef NODE_H
-#define NODE_H
+#pragma once
 
-#include <vector>
-#include <string>
-#include <cstdint>
+#include "common.hpp"
 
-#include "raylib.h"
-#include "../references/input_event.hpp"
+namespace rre {
+
 
 class Node {
 
-    protected:
     private:
         std::vector<Node*> children;
         // std::vector<Node*> siblings;
         Node* parent;
         std::string name;
     public:
-        Node(std::string name = "NewNode");
+        Node();
+        Node(const std::string& name);
         ~Node();
 
         std::string get_name() const;
         virtual void set_name(std::string name);
         // SceneTree* tree;
 
-        int iteration_index;
         bool visible = true;
         virtual void _ready();
         virtual void _process(float delta);
@@ -43,4 +39,4 @@ class Node {
 
 };
 
-#endif
+}

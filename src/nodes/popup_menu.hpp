@@ -1,15 +1,19 @@
-#ifndef POPUP_MENU_H
-#define POPUP_MENU_H
+#pragma once
 
-#include "popup.hpp"
+#include "common.hpp"
+
+
+namespace rre {
+
 
 class PopupMenu : public Popup{
 public:
-    PopupMenu(std::string name);
+    PopupMenu();
     ~PopupMenu();
 
-    void _process(float delta) override;
-    void _input() override;
+    void _process(float delta); //TODO: override;
+    void _input(); //TODO: override
 };
 
-#endif
+}
+

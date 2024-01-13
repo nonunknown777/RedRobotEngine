@@ -1,7 +1,8 @@
-#ifndef THEME_H
-#define THEME_H
+#pragma once
 
-#include "resource.hpp"
+#include "common.hpp"
+
+namespace rre {
 
 class Theme : public Resource{
 public:
@@ -9,4 +10,4 @@ public:
     ~Theme();
 };
 
-#endif
+}

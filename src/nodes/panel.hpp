@@ -1,13 +1,14 @@
-#ifndef PANEL_H
-#define PANEL_H
+#pragma once
 
-#include "../references/style_box_flat.hpp"
-#include "control.hpp"
+#include "common.hpp"
+
+namespace rre {
+
 
 class Panel : public Control {
 
 public:
-    Panel(std::string name = "Panel");
+    Panel();
     ~Panel();
 
     StyleBox* panel;
@@ -16,4 +17,4 @@ public:
 
 };
 
-#endif
+}

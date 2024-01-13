@@ -1,7 +1,6 @@
 #include "resource_loader.hpp"
 
-#include "utils.hpp"
-
+namespace rre  {
 
 Resource ResourceLoader::load(const char* path) {
 	TIMER_START();
@@ -27,4 +26,6 @@ Resource ResourceLoader::load(const char* path) {
 	TIMER_END("load_yaml");
 
     return Resource();
+}
+
 }

@@ -1,16 +1,16 @@
-#ifndef POPUP_H
-#define POPUP_H
+#pragma once
 
-#include "window.hpp"
-#include "../references/style_box.hpp"
-#include "../references/style_box_flat.hpp"
+#include "common.hpp"
+
+
+namespace rre {
 
 class Popup : public Window{
 public:
-    Popup(std::string name);
+    Popup();
     ~Popup();
 
     StyleBox* panel;
 };
 
-#endif
+}

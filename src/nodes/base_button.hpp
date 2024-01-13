@@ -1,8 +1,9 @@
-#ifndef BASE_BUTTON_H
-#define BASE_BUTTON_H
+#pragma once
 
-#include "control.hpp"
-#include "../references/button_group.hpp"
+#include "common.hpp"
+
+namespace rre {
+
 
 enum ActionMode {
     ACTION_MODE_BUTTON_PRESS,
@@ -12,7 +13,7 @@ enum ActionMode {
 class BaseButton : public Control{
 
 public:
-    BaseButton(std::string name);
+    BaseButton();
     ~BaseButton();
 
     ActionMode action_mode;
@@ -25,4 +26,4 @@ public:
 
 };
 
-#endif
+}

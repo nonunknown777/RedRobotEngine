@@ -1,8 +1,10 @@
-#ifndef WINDOW_H
-#define WINDOW_H
+#pragma once
+
+#include "common.hpp"
 
 
-#include "viewport.hpp"
+namespace rre {
+
 
 class Window : public Viewport {
 
@@ -10,7 +12,7 @@ class Window : public Viewport {
         bool active = true;
 
     public:
-        Window(std::string name);
+        Window();
         ~Window();
 
         int flags = 0;
@@ -20,4 +22,4 @@ class Window : public Viewport {
      
 };
 
-#endif
+}

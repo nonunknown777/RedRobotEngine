@@ -1,13 +1,9 @@
 
-#ifndef RESOURCE_LOADER_H
-#define RESOURCE_LOADER_H
+#pragma once
 
-#include <string>
-#include "resource.hpp"
+#include "common.hpp"
 
-
-
-
+namespace rre {
 
 class ResourceLoader {
     public:
@@ -16,5 +12,5 @@ class ResourceLoader {
 
 };
 
-#endif
+}
 

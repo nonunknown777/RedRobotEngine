@@ -1,7 +1,11 @@
 #include "input_event.hpp"
 
-InputEvent::InputEvent() : Resource() {
+namespace rre {
+
+InputEvent::InputEvent() {
 }
 
 InputEvent::~InputEvent() {
+}
+
 }

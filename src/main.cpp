@@ -1,5 +1,6 @@
-#include "main.hpp"
-#include <thread>
+#include "common.hpp"
+
+namespace rre {
 
 
 void draw_routine() {
@@ -12,7 +13,7 @@ void draw_routine() {
 	EndDrawing();
 }
 
-
+SceneTree* tree = nullptr;
 
 int main(int argc, char* argv[])
 {
@@ -77,3 +78,4 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
+}

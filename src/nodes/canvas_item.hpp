@@ -1,15 +1,20 @@
-#ifndef CANVAS_ITEM_H
-#define CANVAS_ITEM_H
+#pragma once
 
-#include "node.hpp"
+#include "common.hpp"
+
+
+namespace rre {
+
 
 class CanvasItem : public Node {
 
 
     public:
-        CanvasItem(std::string name = "CanvasItem") : Node(name) {};
+        CanvasItem();
         ~CanvasItem();
+
+        void _input() override;
 
 };
 
-#endif
+}

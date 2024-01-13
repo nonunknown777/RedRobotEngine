@@ -1,8 +1,13 @@
 #include "popup.hpp"
 
-Popup::Popup(std::string name = "Popup") : Window(name) {
+namespace rre {
+
+
+Popup::Popup() {
     panel = new StyleBoxFlat();
 }
 
 Popup::~Popup() {
+}
+
 }

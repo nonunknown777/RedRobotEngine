@@ -1,8 +1,13 @@
 #include "theme.hpp"
 
-Theme::Theme() : Resource() {
+namespace rre {
+
+
+Theme::Theme(){
     
 }
 
 Theme::~Theme() {
+}
+
 }
