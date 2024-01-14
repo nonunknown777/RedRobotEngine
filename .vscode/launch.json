@@ -6,7 +6,7 @@
             "cwd": "${workspaceFolder}",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/zengine-debug",
+            "program": "${workspaceFolder}/redrobot_debug",
             "preLaunchTask": "build",
             "setupCommands": [ { "text": "-enable-pretty-printing" } ]
         },
@@ -15,14 +15,14 @@
             "cwd": "${workspaceFolder}",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/zengine-bebug",
+            "program": "${workspaceFolder}/redrobot_bebug",
             "setupCommands": [ { "text": "-enable-pretty-printing" } ]
         },
         {
             "name": "C/C++: g++ build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/zengine-debug",
+            "program": "${workspaceFolder}/redrobot_debug",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -1,40 +1,12 @@
 #pragma once
 
-#include "common.hpp"
-
+#include "canvas_item.hpp"
 
 namespace rre {
+    class Control : public CanvasItem {
+        public:
+            Control();
+            ~Control();
 
-
-enum LayoutPreset {
-		PRESET_TOP_LEFT,
-		PRESET_TOP_RIGHT,
-		PRESET_BOTTOM_LEFT,
-		PRESET_BOTTOM_RIGHT,
-		PRESET_CENTER_LEFT,
-		PRESET_CENTER_TOP,
-		PRESET_CENTER_RIGHT,
-		PRESET_CENTER_BOTTOM,
-		PRESET_CENTER,
-		PRESET_LEFT_WIDE,
-		PRESET_TOP_WIDE,
-		PRESET_RIGHT_WIDE,
-		PRESET_BOTTOM_WIDE,
-		PRESET_VCENTER_WIDE,
-		PRESET_HCENTER_WIDE,
-		PRESET_FULL_RECT
-	};
-
-class Control : public CanvasItem {
-
-    public:
-        Control();
-        ~Control();
-
-		Vector2 position;
-		Vector2 size;
-
-        void _draw() override;
-};
-
+    };
 }

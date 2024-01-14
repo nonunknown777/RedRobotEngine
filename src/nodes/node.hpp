@@ -1,6 +1,10 @@
 #pragma once
 
-#include "common.hpp"
+#include <vector>
+#include <string>
+#include <cstdint>
+#include <stdexcept>
+#include <iostream>
 
 namespace rre {
 
@@ -25,7 +29,7 @@ class Node {
         virtual void _ready();
         virtual void _process(float delta);
         virtual void _input();
-        virtual void _unhandled_input(InputEvent event);
+        // virtual void _unhandled_input(InputEvent event);
         virtual void _draw();
 
         // virtual void _physics_process(float delta);

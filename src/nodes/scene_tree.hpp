@@ -1,7 +1,13 @@
 #pragma once
 
-#include "common.hpp"
+#include <vector>
+#include <string>
+#include <cstdint>
+#include <limits>
+#include <map> //TODO: Change to unordered map
 
+#include "node.hpp"
+#include "utils.hpp"
 
 namespace rre {
 
@@ -19,27 +25,27 @@ struct Iteration {
         
     }
 
-    uint32_t& get_index_of_tp() {
+    inline uint32_t& get_index_of_tb() {
         return index[0];
     }
 
-    uint32_t& get_index_of_bt() {
+    inline uint32_t& get_index_of_bt() {
         return index[1];
     }
 
-    uint32_t& get_index_of(size_t at) {
+    inline uint32_t& get_index_of(size_t at) {
         return index[at];
     }
 
 };
 
-typedef std::map<Node*, Iteration> IterationSystem;
+typedef std::map<Node*, Iteration> IterationMap;
 
 class SceneTree {
 
     private:
         std::vector<FuncRef<Node*>> draw_buffer;
-        IterationSystem iteration_system;
+        IterationMap iteration_map;
         Node* get_last_node(Node* from, bool change_iteration_index);
     public:
         SceneTree();

@@ -16,9 +16,9 @@ void Node::_input() {
 
 }
 
-void Node::_unhandled_input(InputEvent event) {
+// void Node::_unhandled_input(InputEvent event) {
 
-}
+// }
 
 void Node::_draw() {
     
@@ -51,7 +51,10 @@ Node::Node(const std::string& name) {
 }
 
 Node::~Node() {
-
+    for (auto &&child : children)
+    {
+        free(child);
+    }
 }
 
 uint32_t Node::get_child_count() {

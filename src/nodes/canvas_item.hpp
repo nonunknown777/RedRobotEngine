@@ -1,20 +1,11 @@
 #pragma once
 
-#include "common.hpp"
-
+#include "node.hpp"
 
 namespace rre {
-
-
-class CanvasItem : public Node {
-
-
-    public:
-        CanvasItem();
-        ~CanvasItem();
-
-        void _input() override;
-
-};
-
+    class CanvasItem : public Node {
+        public:
+            CanvasItem();
+            ~CanvasItem();
+    };
 }
