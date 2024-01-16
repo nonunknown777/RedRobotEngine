@@ -7,5 +7,8 @@ namespace rre {
         public:
             CanvasItem();
             ~CanvasItem();
+            virtual void _draw() = 0;
+           
+
     };
 }

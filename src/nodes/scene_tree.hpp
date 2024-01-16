@@ -7,7 +7,9 @@
 #include <map> //TODO: Change to unordered map
 
 #include "node.hpp"
+#include "panel.hpp"
 #include "utils.hpp"
+#include "rendering_server.hpp"
 
 namespace rre {
 
@@ -41,10 +43,10 @@ struct Iteration {
 
 typedef std::map<Node*, Iteration> IterationMap;
 
+
 class SceneTree {
 
     private:
-        std::vector<FuncRef<Node*>> draw_buffer;
         IterationMap iteration_map;
         Node* get_last_node(Node* from, bool change_iteration_index);
     public:
@@ -52,6 +54,7 @@ class SceneTree {
         ~SceneTree();
         Node* root;
         Node* current_scene;
+        void redraw(); //TODO: should be private
 
         void traverse_bottom_top(FuncRef<Node*> action);
         void traverse_top_bottom(FuncRef<Node*> action);

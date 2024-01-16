@@ -4,6 +4,7 @@
 #include "scene_tree.hpp"
 #include "utils.hpp"
 #include "temp_data.hpp"
+#include "rendering_server.hpp"
 
 using namespace rre;
 
@@ -30,34 +31,44 @@ int main(int argc, char* argv[])
 	InitWindow(screenWidth, screenHeight, "Red Robot Engine");
 	SetTargetFPS(60);
 
-	auto test = [](Node* current){
-        // std::cout << "iterated at: " << current->get_name() << "\n";
-    };
 
-	auto delta = std::chrono::high_resolution_clock::now();
+	// auto delta = std::chrono::high_resolution_clock::now();
+
+
+	InputEvent* input_event = new InputEvent();
 
 	tree = new SceneTree();
 	
+	ClearBackground(GRAY);
+	
+
 
 	while(!WindowShouldClose()) {
 		TIMER_START();
-		
-		ClearBackground(GRAY);
 
-		tree->traverse_bottom_top(test);
+		BeginDrawing();
+
+		input_event->check_update(tree);
+
+
+		if (IsKeyDown(KEY_SPACE)) {
+
+			tree->redraw();
+
+		}
 
 
 		EndDrawing();
 
-
-
 		TIMER_END(std::string("Loop"));
-
-
 
 	}
 
+	
+	// UnloadRenderTexture(tex);
 	delete tree;
+	
+
 	CloseWindow();        // Close window and OpenGL context
 
 	return 0;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 namespace rre {
 
 
@@ -40,11 +42,21 @@ namespace rre {
 #endif // DEBUG
 
 
-template <class DstType, class SrcType>
-inline bool IsType(const SrcType* src)
-{
-  return dynamic_cast<const DstType*>(src) != nullptr;
+// template <class DstType, class SrcType>
+// inline bool IsType(const SrcType* src)
+// {
+//   return dynamic_cast<const DstType*>(src) != nullptr;
+// }
+
+//Check if class A is derived from B
+// template<class Base, class Derived>
+// using extends_from = std::is_base_of<Base,Derived>::value;
+
+template<class C>
+inline bool extends_from(Node* node) {
+    return dynamic_cast<C*>(node) != nullptr;
 }
+
 
 template <typename T>
 using FuncRef = void(*)(T);

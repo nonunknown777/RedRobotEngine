@@ -21,7 +21,7 @@ else:
     env.Append(CXXFLAGS='-O3')  # Add optimization level for release
 
 # Include directories
-env.Append(CPPPATH=[Glob('includes/**'),'src/includes','src/references','src/nodes'])
+env.Append(CPPPATH=[Glob('includes/**'),'src/includes','src/references','src/nodes','src/servers'])
 
 # Source files
 src_files = Glob('src/**/*.cpp')

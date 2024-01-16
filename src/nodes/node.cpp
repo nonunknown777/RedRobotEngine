@@ -1,4 +1,5 @@
 #include "node.hpp"
+#include "scene_tree.hpp"
 
 namespace rre  {
     
@@ -12,17 +13,10 @@ void Node::_process(float delta) {
 
 }
 
-void Node::_input() {
+void Node::_input(const InputEvent& event) {
 
 }
 
-// void Node::_unhandled_input(InputEvent event) {
-
-// }
-
-void Node::_draw() {
-    
-}
 
 void Node::add_child(Node *node)
 {
@@ -67,8 +61,12 @@ Node* Node::get_child(int p_index) {
     return children[p_index];
 }
 
-Node* Node::get_tree() {
-    return nullptr;
+SceneTree* Node::get_tree() {
+    return tree;
+}
+
+void Node::set_tree(SceneTree* tree) {
+    this->tree = tree;
 }
 
 std::vector<Node*> Node::get_children() {
