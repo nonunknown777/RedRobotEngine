@@ -48,18 +48,8 @@ SceneTree::SceneTree() {
     register_node(node6);
 
 
-    auto add_to_buffer = [](Node* node){
-        std::cout << "checking for register: " << node->get_name() << "\n";
-        if (CanvasItem* canvas_item = dynamic_cast<CanvasItem*>(node)) {
-            std::cout << "registering canvas_item into buffer: " << node->get_name() << "\n\n";
-           RenderingServer::get_singleton().register_into_buffer(0, canvas_item);
-        }
-    };
-
-    traverse_bottom_top(add_to_buffer);
-
-    
-
+    traverse_bottom_top(&SceneTree::add_to_buffer);
+ 
     current_scene = nullptr;
 }
 
@@ -67,16 +57,26 @@ SceneTree::~SceneTree() {
     free(root);
 }
 
+void SceneTree::add_to_buffer(Node* node) {
+    // std::cout << "checking for register: " << node->get_name() << "\n";
+    if (CanvasItem* canvas_item = dynamic_cast<CanvasItem*>(node)) {
+        // std::cout << "registering canvas_item into buffer: " << node->get_name() << "\n\n";
+        RenderingServer::get_singleton().register_into_buffer(0, canvas_item);
+    }
+}
+
 void SceneTree::register_node(Node* node) {
     Iteration iteration = Iteration();
     iteration_map.emplace(node, iteration);
 }
 
+template <class C>
+void SceneTree::traverse_bottom_top( void(C::*action)(Node*) ) {
 
-void SceneTree::traverse_bottom_top(FuncRef<Node*> action) {
+    #define func_call(node) (this->*action)(node);
 
     Node* current = get_last_node(root,true); //this already set iteration index, so its easy to traverse now
-    action(current);
+    func_call(current);
     current = current->get_parent();
     bool is_going_up = true;
 
@@ -90,7 +90,7 @@ void SceneTree::traverse_bottom_top(FuncRef<Node*> action) {
             iteration_index(current)--;
 
             if (iteration_index(current) == UMAX) {
-                action(current);
+                func_call(current);
                 break;
             }
 
@@ -100,36 +100,37 @@ void SceneTree::traverse_bottom_top(FuncRef<Node*> action) {
         }
         if (is_going_up) {
             if (iteration_index(current) == current->get_child_count()-1) {
-                action(current);
+                func_call(current);
                 iteration_set_default(current);
                 current = current->get_parent();
                 continue;
             }
             current = current->get_parent();
         } else {
-            action(current);
+            func_call(current);
             current = current->get_parent();
             is_going_up = true;
         }
     }
 
     #undef iteration_index
-
+    #undef func_call
 }
 
-void SceneTree::traverse_top_bottom(FuncRef<Node*> action) {
+template<class C>
+void SceneTree::traverse_top_bottom( void(C::*action)(Node*) ) {
 
     Node* current = root;
 
     #define iteration_index(node) iteration_map[node].get_index_of_tb()
     #define iteration_not_used(node) iteration_index(node) == UMAX
     #define iteration_set_default(node) iteration_index(node) = UMAX;
-
+    #define func_call(node) (this->*action)(node);
     while(true) {
 
         if (iteration_not_used(current)) {
             iteration_index(current) = 0;
-            action(current);
+            func_call(current);
             if (iteration_index(current) >= current->get_child_count()) {
                 //reached a node with no children
                 iteration_set_default(current);
@@ -164,7 +165,7 @@ void SceneTree::traverse_top_bottom(FuncRef<Node*> action) {
     #undef iteration_index
     #undef iteration_set_default
     #undef iteration_not_used
-
+    #undef func_call
 
 
 }

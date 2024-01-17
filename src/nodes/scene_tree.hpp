@@ -49,15 +49,17 @@ class SceneTree {
     private:
         IterationMap iteration_map;
         Node* get_last_node(Node* from, bool change_iteration_index);
+        void add_to_buffer(Node* node);
     public:
         SceneTree();
         ~SceneTree();
         Node* root;
         Node* current_scene;
         void redraw(); //TODO: should be private
-
-        void traverse_bottom_top(FuncRef<Node*> action);
-        void traverse_top_bottom(FuncRef<Node*> action);
+        template<class C>
+        void traverse_bottom_top( void(C::*action)(Node*));
+        template <class C>
+        void traverse_top_bottom( void(C::*action)(Node*) );
         void register_node(Node* node);
 };
 

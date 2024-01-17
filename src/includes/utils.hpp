@@ -1,6 +1,7 @@
 #pragma once
 
 #include <type_traits>
+#include <functional>
 
 namespace rre {
 
@@ -56,9 +57,5 @@ template<class C>
 inline bool extends_from(Node* node) {
     return dynamic_cast<C*>(node) != nullptr;
 }
-
-
-template <typename T>
-using FuncRef = void(*)(T);
 
 }

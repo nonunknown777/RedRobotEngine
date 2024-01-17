@@ -8,6 +8,7 @@ using namespace glm;
 namespace rre {
 
     class SceneTree;
+    class Node;
 
     enum InputType {
         MOUSE = 0,
@@ -19,6 +20,7 @@ namespace rre {
     class InputEvent {
         private:
             ivec2 mouse_pos;
+            void action_captured(Node* node);
         public:
             InputEvent();
             ~InputEvent();
