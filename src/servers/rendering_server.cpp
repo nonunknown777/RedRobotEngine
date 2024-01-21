@@ -11,12 +11,7 @@ RenderingServer::RenderingServer() {
 }
 
 RenderingServer::~RenderingServer() {
-    DrawBuffer* b = draw_buffers[0];
-
-    draw_buffers.clear();
-
-    delete b;
-
+    //Render textures are unloaded by raylib (discovered this accidentally when trying to delete drawbuffers)
 }
 
 

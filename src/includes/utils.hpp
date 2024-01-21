@@ -2,6 +2,7 @@
 
 #include <type_traits>
 #include <functional>
+#include <iostream>
 
 namespace rre {
 
@@ -53,9 +54,29 @@ namespace rre {
 // template<class Base, class Derived>
 // using extends_from = std::is_base_of<Base,Derived>::value;
 
-template<class C>
-inline bool extends_from(Node* node) {
-    return dynamic_cast<C*>(node) != nullptr;
-}
+// template<class C>
+// inline bool extends_from(Node* node) {
+//     return dynamic_cast<C*>(node) != nullptr;
+// }
 
 }
+
+template<class C, typename T>
+struct FuncPtr {
+    C& instance;
+    void (C::*function)(T) = nullptr;
+
+    FuncPtr(C& obj, void (C::*func)(T)) : instance(obj), function(func) {
+    }
+
+    // Call the stored member function with a provided argument
+    void call(T arg) {
+        if (function) {
+            (instance.*function)(arg);
+        } else {
+            throw std::runtime_error("Error: Function pointer is nullptr.\n\n");
+        }
+    }
+};
+
+// FuncPtr<Class>(ClassInstance,)

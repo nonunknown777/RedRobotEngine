@@ -18,6 +18,12 @@ constexpr uint32_t UMAX = std::numeric_limits<uint32_t>::max();
 struct Iteration {
     std::vector<uint32_t> index;
 
+    enum RESERVED {
+        TB = 0, // Traverse Top to bottom
+        BT = 1, // Traverse Bottom to top
+        IE = 2 // Traverse Bottom to top for InputEvent
+    };
+
     Iteration() {
         index = std::vector<uint32_t>(3);
         for (size_t i = 0; i < index.size(); i++)
@@ -28,11 +34,11 @@ struct Iteration {
     }
 
     inline uint32_t& get_index_of_tb() {
-        return index[0];
+        return index[RESERVED::TB];
     }
 
     inline uint32_t& get_index_of_bt() {
-        return index[1];
+        return index[RESERVED::BT];
     }
 
     inline uint32_t& get_index_of(size_t at) {
@@ -41,14 +47,13 @@ struct Iteration {
 
 };
 
-typedef std::map<Node*, Iteration> IterationMap;
-
+typedef std::map<Node*, Iteration> IterationMap; 
 
 class SceneTree {
 
     private:
         IterationMap iteration_map;
-        Node* get_last_node(Node* from, bool change_iteration_index);
+        Node* get_last_node(Node* from, bool change_iteration_index, size_t iteration_id);
         void add_to_buffer(Node* node);
     public:
         SceneTree();
@@ -56,10 +61,10 @@ class SceneTree {
         Node* root;
         Node* current_scene;
         void redraw(); //TODO: should be private
-        template<class C>
-        void traverse_bottom_top( void(C::*action)(Node*));
-        template <class C>
-        void traverse_top_bottom( void(C::*action)(Node*) );
+        void traverse_bottom_top(FuncPtr<SceneTree, Node*>& action);
+        void traverse_bottom_top(FuncPtr<InputEvent, Node*>& action);
+
+        void traverse_top_bottom(FuncPtr<SceneTree, Node*>& action);
         void register_node(Node* node);
 };
 

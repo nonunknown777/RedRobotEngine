@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
 
 		BeginDrawing();
 
-		input_event->check_update(tree);
+		input_event->check_update(*tree);
 
 
 		if (IsKeyDown(KEY_SPACE)) {

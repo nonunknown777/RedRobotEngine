@@ -5,6 +5,7 @@
 #include "resource.hpp"
 #include "glm/vec4.hpp"
 #include "raylib.h"
+#include <type_traits>
 
 using namespace glm;
 
@@ -45,5 +46,11 @@ namespace rre {
     class StyleBoxTexture : public StyleBox {
 
     };
+
+
+    template<class C>
+    C* get_style(StyleBox* style_box) {
+        return ((C*)style_box);
+    }
 
 }

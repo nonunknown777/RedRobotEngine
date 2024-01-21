@@ -48,7 +48,8 @@ SceneTree::SceneTree() {
     register_node(node6);
 
 
-    traverse_bottom_top(&SceneTree::add_to_buffer);
+    FuncPtr f = {*this, &SceneTree::add_to_buffer};
+    traverse_bottom_top(f);
  
     current_scene = nullptr;
 }
@@ -70,12 +71,12 @@ void SceneTree::register_node(Node* node) {
     iteration_map.emplace(node, iteration);
 }
 
-template <class C>
-void SceneTree::traverse_bottom_top( void(C::*action)(Node*) ) {
 
-    #define func_call(node) (this->*action)(node);
+void SceneTree::traverse_bottom_top(FuncPtr<SceneTree,Node*>& action) {
 
-    Node* current = get_last_node(root,true); //this already set iteration index, so its easy to traverse now
+    #define func_call(node) action.call(node);
+
+    Node* current = get_last_node(root,true, Iteration::RESERVED::BT); //this already set iteration index, so its easy to traverse now
     func_call(current);
     current = current->get_parent();
     bool is_going_up = true;
@@ -95,7 +96,7 @@ void SceneTree::traverse_bottom_top( void(C::*action)(Node*) ) {
             }
 
             is_going_up = false;
-            current = get_last_node(current->get_child(iteration_index(current)), true);
+            current = get_last_node(current->get_child(iteration_index(current)), true, Iteration::RESERVED::BT);
             continue;
         }
         if (is_going_up) {
@@ -115,17 +116,65 @@ void SceneTree::traverse_bottom_top( void(C::*action)(Node*) ) {
 
     #undef iteration_index
     #undef func_call
+    #undef iteration_set_default
 }
 
-template<class C>
-void SceneTree::traverse_top_bottom( void(C::*action)(Node*) ) {
+void SceneTree::traverse_bottom_top(FuncPtr<InputEvent, Node*>& action) {
+
+    #define func_call(node) action.call(node);
+
+    Node* current = get_last_node(root,true, Iteration::RESERVED::IE); //this already set iteration index, so its easy to traverse now
+    func_call(current);
+    current = current->get_parent();
+    bool is_going_up = true;
+
+    #define iteration_index(node) iteration_map[node].get_index_of(Iteration::RESERVED::IE) // Index 2 for the Inputevent
+    #define iteration_set_default(node) iteration_index(node) = UMAX;
+
+    while(current != nullptr) {
+        //if its in the root node;
+        if (current->get_parent() == nullptr && is_going_up) {
+            
+            iteration_index(current)--;
+
+            if (iteration_index(current) == UMAX) {
+                func_call(current);
+                break;
+            }
+
+            is_going_up = false;
+            current = get_last_node(current->get_child(iteration_index(current)), true, Iteration::RESERVED::IE);
+            continue;
+        }
+        if (is_going_up) {
+            if (iteration_index(current) == current->get_child_count()-1) {
+                func_call(current);
+                iteration_set_default(current);
+                current = current->get_parent();
+                continue;
+            }
+            current = current->get_parent();
+        } else {
+            func_call(current);
+            current = current->get_parent();
+            is_going_up = true;
+        }
+    }
+
+    #undef iteration_index
+    #undef func_call
+    #undef iteration_set_default
+
+}
+
+void SceneTree::traverse_top_bottom( FuncPtr<SceneTree,Node*>& action) {
 
     Node* current = root;
 
     #define iteration_index(node) iteration_map[node].get_index_of_tb()
     #define iteration_not_used(node) iteration_index(node) == UMAX
     #define iteration_set_default(node) iteration_index(node) = UMAX;
-    #define func_call(node) (this->*action)(node);
+    #define func_call(node) action.call(node);
     while(true) {
 
         if (iteration_not_used(current)) {
@@ -171,18 +220,18 @@ void SceneTree::traverse_top_bottom( void(C::*action)(Node*) ) {
 }
 
 
-Node* SceneTree::get_last_node(Node* from, bool change_iteration_index) {
+Node* SceneTree::get_last_node(Node* from, bool change_iteration_index, size_t iteration_id) {
     // TIMER_START();
     if (from->get_child_count() == 0) return from;
 
     Node* current = from->get_child(from->get_child_count()-1);
 
     if (change_iteration_index)
-        iteration_map[current->get_parent()].get_index_of_bt() = current->get_parent()->get_child_count()-1;
+        iteration_map[current->get_parent()].get_index_of(iteration_id) = current->get_parent()->get_child_count()-1;
 
     while(current->get_child_count() != 0) {
         current = current->get_child(current->get_child_count()-1);
-        if (change_iteration_index) iteration_map[current->get_parent()].get_index_of_bt() = current->get_parent()->get_child_count()-1;
+        if (change_iteration_index) iteration_map[current->get_parent()].get_index_of(iteration_id) = current->get_parent()->get_child_count()-1;
     }
 
     // TIMER_END_PRINT("get_last_node");

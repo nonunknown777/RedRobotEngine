@@ -8,7 +8,13 @@
 namespace rre {
 
     InputEvent::InputEvent() {
+
+        
+
+        action_captured_ptr = new FuncPtr<InputEvent,Node*>(*this, &InputEvent::action_captured);
+
         mouse_pos = ivec2(0,0);
+
     }
 
     InputEvent::~InputEvent() {
@@ -20,7 +26,7 @@ namespace rre {
     }
 
 
-    void InputEvent::check_update(SceneTree* scene_tree) {
+    void InputEvent::check_update(SceneTree& scene_tree) {
         //======== Mouse
 
         //Mouse Movement
@@ -28,8 +34,8 @@ namespace rre {
 
         if (mouse_pos != ivec2(new_mouse_pos.x, new_mouse_pos.y)) {
             mouse_pos = ivec2(new_mouse_pos.x, new_mouse_pos.y);
-            // scene_tree->traverse_bottom_top<InputEvent,Node*>(this->action_captured);
-            // std::cout << "mouse changed pos: " << to_string(mouse_pos) << "\n";
+            scene_tree.traverse_bottom_top(*action_captured_ptr);
+            
         }
     }
 }
