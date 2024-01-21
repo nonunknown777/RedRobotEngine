@@ -16,7 +16,11 @@ namespace rre {
             StyleBox();
             ~StyleBox();
 
-        vec4 content_margin;
+            virtual void draw(Rectangle& rect);
+
+            vec4 content_margin;
+
+
         
 
     };
@@ -32,20 +36,30 @@ namespace rre {
             vec4 border_width;
             bool draw_center;
             vec4 expand_margin;
+
+            void draw(Rectangle& rect) override;
     
     };
 
-    class StyleBoxEmpty : public StyleBox {
+    // class StyleBoxEmpty : public StyleBox {
+    //     public:
+    //         void draw(Rectangle& rect) override;
 
-    };
+    // };
 
-    class StyleBoxLine : public StyleBox {
+    // class StyleBoxLine : public StyleBox {
+    //     public:
+    //         void draw(Rectangle& rect) override;
 
-    };
 
-    class StyleBoxTexture : public StyleBox {
+    // };
 
-    };
+    // class StyleBoxTexture : public StyleBox {
+    //     public:
+    //         void draw(Rectangle& rect) override;
+
+
+    // };
 
 
     template<class C>

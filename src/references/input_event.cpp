@@ -18,10 +18,11 @@ namespace rre {
     }
 
     InputEvent::~InputEvent() {
-
+        delete action_captured_ptr;
     }
 
     void InputEvent::action_captured(Node* node) {
+
         node->_input(*this);
     }
 
@@ -34,8 +35,13 @@ namespace rre {
 
         if (mouse_pos != ivec2(new_mouse_pos.x, new_mouse_pos.y)) {
             mouse_pos = ivec2(new_mouse_pos.x, new_mouse_pos.y);
+            type = InputType::MOUSE_MOVED;
             scene_tree.traverse_bottom_top(*action_captured_ptr);
-            
+        }
+
+        int key = GetKeyPressed();
+        if (key != 0) {
+            std::cout << "Key pressed: " << key << "\n";
         }
     }
 }

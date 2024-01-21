@@ -79,4 +79,11 @@ struct FuncPtr {
     }
 };
 
+#include "raylib.h"
+#include "glm/vec2.hpp"
+
+inline Vector2 Vec2(glm::vec2& vec) {
+    return Vector2(vec.x,vec.y);
+}
+
 // FuncPtr<Class>(ClassInstance,)

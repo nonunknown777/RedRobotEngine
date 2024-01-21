@@ -5,11 +5,14 @@
 #include <cstdint>
 #include <limits>
 #include <map> //TODO: Change to unordered map
+#include <thread>
+
 
 #include "node.hpp"
 #include "panel.hpp"
 #include "utils.hpp"
 #include "rendering_server.hpp"
+#include "button.hpp"
 
 namespace rre {
 
@@ -63,6 +66,7 @@ class SceneTree {
         void redraw(); //TODO: should be private
         void traverse_bottom_top(FuncPtr<SceneTree, Node*>& action);
         void traverse_bottom_top(FuncPtr<InputEvent, Node*>& action);
+        void threaded_traverse(FuncPtr<SceneTree, Node*>& action );
 
         void traverse_top_bottom(FuncPtr<SceneTree, Node*>& action);
         void register_node(Node* node);

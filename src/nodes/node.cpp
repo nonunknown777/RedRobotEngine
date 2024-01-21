@@ -14,7 +14,7 @@ void Node::_process(float delta) {
 }
 
 void Node::_input(const InputEvent& event) {
-    std::cout << get_name() << " received input: \n\n";
+    // std::cout << get_name() << " received input: \n\n";
 }
 
 

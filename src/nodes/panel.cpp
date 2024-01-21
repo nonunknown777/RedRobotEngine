@@ -11,6 +11,7 @@ namespace rre {
     }
 
     void Panel::_draw() {
-        DrawRectangle((int)position.x,(int)position.y,(int)size.x,(int)size.y,((StyleBoxFlat*)panel)->bg_color);
+        Rectangle rect = Rectangle(position.x, position.y, size.x, size.y);
+        panel->draw(rect);
     }
 }

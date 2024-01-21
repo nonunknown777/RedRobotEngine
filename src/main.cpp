@@ -54,7 +54,6 @@ int main(int argc, char* argv[])
 		if (IsKeyDown(KEY_SPACE)) {
 
 			tree->redraw();
-
 		}
 
 

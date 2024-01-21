@@ -26,7 +26,11 @@ SceneTree::SceneTree() {
     ((StyleBoxFlat*)node2->panel)->bg_color = Color(BLUE);
     node1->add_child(node2);
 
-    auto node3 = new Node("3");
+    auto node3 = new Button();
+    node3->set_name("Button");
+    node3->set_tree(this);
+    node3->size = vec2(100,20);
+    
     root->add_child(node3);
     node3->set_tree(this);
     auto node4 = new Node("4");
@@ -119,6 +123,7 @@ void SceneTree::traverse_bottom_top(FuncPtr<SceneTree,Node*>& action) {
     #undef iteration_set_default
 }
 
+//TODO: I know I should use Template for variation of classes, but for some reason it gave me errors
 void SceneTree::traverse_bottom_top(FuncPtr<InputEvent, Node*>& action) {
 
     #define func_call(node) action.call(node);
@@ -237,6 +242,13 @@ Node* SceneTree::get_last_node(Node* from, bool change_iteration_index, size_t i
     // TIMER_END_PRINT("get_last_node");
     return current;
 }
+
+void SceneTree::threaded_traverse(FuncPtr<SceneTree, Node*>& action) {
+
+    traverse_bottom_top(action);
+    
+}
+
 
 void SceneTree::redraw() {
     RenderingServer::get_singleton().update();

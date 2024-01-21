@@ -3,6 +3,7 @@
 #include "canvas_item.hpp"
 #include "glm/vec4.hpp"
 #include "glm/vec2.hpp"
+#include "rendering_server.hpp"
 
 using namespace glm;
 
